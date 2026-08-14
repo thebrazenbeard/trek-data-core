@@ -1,0 +1,24 @@
+{
+  "all_pass": true,
+  "batch_id": "TAS-B003-S01E11-E15",
+  "checks": {
+    "copyright_raw_transcript_stored": false,
+    "cross_series_identity_merges": 0,
+    "global_identity_mutations": 0,
+    "json_parse": true,
+    "partition_only": true,
+    "reconciliation_mutations": 0,
+    "referential_integrity": true,
+    "source_relative_evidence": true,
+    "unique_ids": true
+  },
+  "record_counts": {
+    "assertion": 28,
+    "evidence": 37,
+    "local_entity": 40,
+    "source": 5,
+    "work": 5,
+    "work_coverage": 5
+  },
+  "record_type": "tas_batch_validation"
+}

@@ -1,0 +1,40 @@
+{
+  "accepted_coverage_increment": 0,
+  "base_main_commit": "694cb833ac5197f45276089d45dc2d4e0b16f556",
+  "batch_id": "TAS-B003-S01E11-E15",
+  "branch": "research/tas/TAS-B003-S01E11-E15",
+  "copyright": "No transcript text or large passage is stored; records contain paraphrase and locators only.",
+  "created_at": "2026-08-14T10:47:00-04:00",
+  "global_identity_mutations": 0,
+  "highlights": [
+    "Body-scale change alters technology accessibility without itself deciding personal identity.",
+    "Enforced nonviolence and chosen cooperation are distinct peace mechanisms.",
+    "Inherited taboo can preserve trauma while blocking reversible medical knowledge.",
+    "Artificial security reasoning can include secrecy, deception, and context inference without requiring a global personhood verdict.",
+    "Anthropocentric intelligence assumptions reverse when humans become zoo specimens."
+  ],
+  "next_frontier": "TAS-S01E16 The Jihad",
+  "partition": "research/tas",
+  "reconciliation_mutations": 0,
+  "record_counts": {
+    "assertion": 28,
+    "evidence": 37,
+    "local_entity": 40,
+    "source": 5,
+    "work": 5,
+    "work_coverage": 5
+  },
+  "record_type": "batch_manifest",
+  "schema_version": "candidate-0.1.0",
+  "sibling_proposals_note": "Other TAS research branches are proposals and are not counted as accepted main state.",
+  "source_hash_scope": "Retrieval receipt hashes in source records; raw transcript byte hashes unavailable.",
+  "source_quality": "COMPLETE_DIALOGUE_TRANSCRIPT_DOWNSTREAM_NOT_OFFICIAL_SCRIPT_OR_AV_VIEWING",
+  "worker_id": "TAS_RESEARCH_AND_INDEX",
+  "works": [
+    "TAS-S01E11",
+    "TAS-S01E12",
+    "TAS-S01E13",
+    "TAS-S01E14",
+    "TAS-S01E15"
+  ]
+}

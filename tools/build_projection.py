@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PREDICATE_REGISTRY = ROOT / "registry" / "predicates.json"
 
 
 def canonical(obj):
@@ -15,6 +16,11 @@ def canonical(obj):
 
 def sha256_bytes(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
+
+
+def canonical_json_hash(path: Path) -> str:
+    obj = json.loads(path.read_text(encoding="utf-8"))
+    return sha256_bytes(canonical(obj).encode("utf-8"))
 
 
 def read_jsonl(paths):
@@ -37,8 +43,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--projection-version", default="0.1.0")
-    ap.add_argument("--methodology-version", default="0.1.0")
-    ap.add_argument("--compiler-commit", default="UNPINNED")
+    ap.add_argument("--schema-version", required=True)
+    ap.add_argument("--methodology-version", required=True)
+    ap.add_argument("--research-head", required=True)
+    ap.add_argument("--reconciliation-head", required=True)
+    ap.add_argument("--compiler-commit", required=True)
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -49,24 +58,41 @@ def main():
 
     a_hash, a_count = write_jsonl(out / "accepted_assertions.jsonl", assertions, "assertion_id")
     d_hash, d_count = write_jsonl(out / "accepted_reconciliation.jsonl", decisions, "decision_id")
+    predicate_registry_hash = canonical_json_hash(PREDICATE_REGISTRY)
 
-    input_material = canonical({"assertions": a_hash, "reconciliation": d_hash}).encode("utf-8")
-    input_hash = sha256_bytes(input_material)
-    projection_hash = sha256_bytes((a_hash + "\n" + d_hash + "\n").encode("utf-8"))
+    input_identity = {
+        "research_head": args.research_head,
+        "reconciliation_head": args.reconciliation_head,
+        "schema_version": args.schema_version,
+        "methodology_version": args.methodology_version,
+        "predicate_registry_hash": predicate_registry_hash,
+        "compiler_commit": args.compiler_commit,
+        "accepted_assertions_hash": a_hash,
+        "accepted_reconciliation_hash": d_hash,
+    }
+    input_hash = sha256_bytes(canonical(input_identity).encode("utf-8"))
+
+    projection_material = canonical({
+        "accepted_assertions.jsonl": a_hash,
+        "accepted_reconciliation.jsonl": d_hash,
+    }).encode("utf-8")
+    projection_hash = sha256_bytes(projection_material)
+
     manifest = {
         "record_type": "projection_manifest",
         "projection_version": args.projection_version,
+        "schema_version": args.schema_version,
         "methodology_version": args.methodology_version,
         "compiler_commit": args.compiler_commit,
-        "research_head": None,
-        "reconciliation_head": None,
-        "predicate_registry_hash": None,
+        "research_head": args.research_head,
+        "reconciliation_head": args.reconciliation_head,
+        "predicate_registry_hash": predicate_registry_hash,
         "input_hash": input_hash,
         "projection_hash": projection_hash,
         "outputs": {
             "accepted_assertions.jsonl": {"hash": a_hash, "count": a_count},
-            "accepted_reconciliation.jsonl": {"hash": d_hash, "count": d_count}
-        }
+            "accepted_reconciliation.jsonl": {"hash": d_hash, "count": d_count},
+        },
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(projection_hash)

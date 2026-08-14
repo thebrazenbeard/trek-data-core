@@ -58,9 +58,13 @@ External registries expose `Inside Short Treks`, making-of/production extras and
 
 A Director routing proposal for a Librarian Source/Work bootstrap was found, but it explicitly minted no Source IDs, Work IDs, hashes, bindings, or coverage and was closed without merge. It does not satisfy the SHORT source-binding dependency.
 
-## Review / validation state
+## Proposal / review state
 
-- PR #7 has no submitted reviews or discussion comments at this checkpoint.
+- PR #7, `Short Treks: stage ten-episode research corpus`, was **closed unmerged** by the repository owner at 2026-08-14T15:24:02Z.
+- GitHub records no closure reason, review submission, or discussion comment on PR #7.
+- No superseding SHORT pull request was found at the latest scan.
+- This branch remains available and now contains additional post-closure cross-work hypothesis/status commits made under the user's explicit continue-execution instruction.
+- The worker will **not** reopen PR #7 or create a replacement PR merely to bypass that explicit closure without separate authority/context indicating that is desired.
 - latest branch comparison against `main` shows only `research/short/` changed paths from this worker;
 - no CI/status checks are reported for the current SHORT proposal head;
 - no accepted state, protected effect, global identity, or other research partition was modified.
@@ -72,6 +76,7 @@ A Director routing proposal for a Librarian Source/Work bootstrap was found, but
 3. Governed validation once accepted schema/predicate tooling exists on `main`.
 4. Re-test the cross-work hypotheses after primary audiovisual verification or after newly assigned SHORT Works materially expand the corpus.
 5. Research accepted extras only if the Librarian assigns them to this lane.
+6. Re-surface the proposal only if repository coordination explicitly authorizes reopening/replacement after PR #7's closure.
 
 ## Exact next frontier
 

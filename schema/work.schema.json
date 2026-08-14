@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/work.schema.json",
+  "title": "Work",
+  "type": "object",
+  "required": ["record_type", "work_id", "title", "medium"],
+  "properties": {
+    "record_type": {"const": "work"},
+    "work_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "medium": {"type": "string"},
+    "series": {"type": ["string", "null"]},
+    "continuity_scope": {"type": ["string", "null"]},
+    "parent_work_id": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

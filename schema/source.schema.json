@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/source.schema.json",
+  "title": "Source",
+  "type": "object",
+  "required": ["record_type", "source_id", "source_kind", "locator"],
+  "properties": {
+    "record_type": {"const": "source"},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_kind": {"type": "string"},
+    "locator": {"type": "string", "minLength": 1},
+    "content_hash": {"type": ["string", "null"]},
+    "retrieved_at": {"type": ["string", "null"]},
+    "source_variant": {"type": ["string", "null"]},
+    "provenance_family": {"type": ["string", "null"]},
+    "derived_from": {"type": "array", "items": {"type": "string"}, "default": []}
+  },
+  "additionalProperties": true
+}

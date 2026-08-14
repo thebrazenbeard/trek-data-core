@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1.0",
+  "predicates": [
+    {"name": "CLAIMS", "status": "ACCEPTED"},
+    {"name": "DEPICTS", "status": "ACCEPTED"},
+    {"name": "SUPPORTS", "status": "ACCEPTED"},
+    {"name": "CONTRADICTS", "status": "ACCEPTED"},
+    {"name": "MAPS_TO", "status": "ACCEPTED"},
+    {"name": "SAME_AS", "status": "EXPERIMENTAL"},
+    {"name": "COUNTERPART_OF", "status": "EXPERIMENTAL"},
+    {"name": "CAUSES", "status": "EXPERIMENTAL"},
+    {"name": "LOCATED_AT", "status": "EXPERIMENTAL"},
+    {"name": "MEMBER_OF", "status": "EXPERIMENTAL"},
+    {"name": "REMEMBERS", "status": "EXPERIMENTAL"},
+    {"name": "STATE_CHANGED", "status": "EXPERIMENTAL"},
+    {"name": "IDENTITY_DIVERGES", "status": "EXPERIMENTAL"},
+    {"name": "TIMELINE_BRANCHES", "status": "EXPERIMENTAL"}
+  ]
+}

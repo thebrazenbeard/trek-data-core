@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/batch-manifest.schema.json",
+  "title": "Research Batch Manifest",
+  "type": "object",
+  "required": ["record_type", "batch_id", "schema_version", "worker_id", "works", "source_hashes", "record_counts", "batch_hash"],
+  "properties": {
+    "record_type": {"const": "batch_manifest"},
+    "batch_id": {"type": "string"},
+    "schema_version": {"type": "string"},
+    "worker_id": {"type": "string"},
+    "works": {"type": "array", "items": {"type": "string"}},
+    "source_hashes": {"type": "array", "items": {"type": "string"}},
+    "record_counts": {"type": "object"},
+    "batch_hash": {"type": "string"},
+    "created_at": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

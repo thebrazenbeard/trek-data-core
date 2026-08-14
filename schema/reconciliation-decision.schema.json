@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/reconciliation-decision.schema.json",
+  "title": "Reconciliation Decision",
+  "type": "object",
+  "required": ["record_type", "decision_id", "decision_type", "subject_id", "value", "status", "evidence", "method"],
+  "properties": {
+    "record_type": {"const": "reconciliation_decision"},
+    "decision_id": {"type": "string"},
+    "decision_type": {"enum": ["ENTITY_LINK", "ASSERTION_STATUS", "SCOPE_RESOLUTION", "SUPERSESSION", "OTHER"]},
+    "subject_id": {"type": "string"},
+    "value": {},
+    "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "method": {"type": "string"},
+    "supersedes": {"type": ["string", "null"]},
+    "reason": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

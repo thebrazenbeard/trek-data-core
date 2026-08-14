@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "required": ["record_type", "evidence_id", "source_id", "work_id", "evidence_kind", "locator", "observed"],
+  "properties": {
+    "record_type": {"const": "evidence"},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "evidence_kind": {"enum": ["depiction", "testimony", "sensor_report", "memory", "document", "narration", "other"]},
+    "locator": {"type": "object"},
+    "observed": {"type": "object"},
+    "observer_local_entity_id": {"type": ["string", "null"]},
+    "frame": {"type": "string", "default": "UNKNOWN"},
+    "epistemic_status": {"enum": ["DIRECT", "CONTESTED", "UNRESOLVED", "UNKNOWN"], "default": "UNKNOWN"},
+    "passage_fingerprint": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

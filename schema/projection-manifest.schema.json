@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/projection-manifest.schema.json",
+  "title": "Projection Manifest",
+  "type": "object",
+  "required": ["record_type", "projection_version", "methodology_version", "compiler_commit", "input_hash", "projection_hash", "outputs"],
+  "properties": {
+    "record_type": {"const": "projection_manifest"},
+    "projection_version": {"type": "string"},
+    "methodology_version": {"type": "string"},
+    "compiler_commit": {"type": "string"},
+    "research_head": {"type": ["string", "null"]},
+    "reconciliation_head": {"type": ["string", "null"]},
+    "predicate_registry_hash": {"type": ["string", "null"]},
+    "input_hash": {"type": "string"},
+    "projection_hash": {"type": "string"},
+    "outputs": {"type": "object"}
+  },
+  "additionalProperties": true
+}

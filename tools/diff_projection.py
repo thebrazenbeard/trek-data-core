@@ -118,8 +118,8 @@ def semantic_diff(old_root: Path, new_root: Path):
 
     old_provenance = load_provenance(old_root)
     new_provenance = load_provenance(new_root)
-    for assertion_id in sorted(old_assertions.keys() & new_assertions.keys()):
-        if canonical(old_provenance.get(assertion_id, [])) != canonical(new_provenance.get(assertion_id, [])):
+    for assertion_id in sorted(old_provenance.keys() & new_provenance.keys()):
+        if canonical(old_provenance[assertion_id]) != canonical(new_provenance[assertion_id]):
             changes.append(change("PROVENANCE_CHANGED", "assertion", assertion_id))
 
     # Accepted reconciliation history remains part of the canonical projection even when

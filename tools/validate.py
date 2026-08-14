@@ -27,6 +27,7 @@ COUNT_KEYS = {
 }
 REQUIRED_BATCH_COUNTS = ("local_entities", "evidence", "assertions")
 WORKER_FORBIDDEN_RECORD_TYPES = {"source", "work", "reconciliation_decision"}
+SINGLE_ACTIVE_DECISION_TYPES = {"ENTITY_LINK", "ASSERTION_STATUS", "SCOPE_RESOLUTION"}
 RESEARCH_WORKERS = {
     "tos": "TOS", "tas": "TAS", "tng": "TNG", "ds9": "DS9", "voyager": "VOY", "enterprise": "ENT",
     "discovery": "DIS", "short-treks": "SHORT", "picard": "PIC", "lower-decks": "LD", "prodigy": "PRO",
@@ -183,6 +184,23 @@ def validate_batch_integrity(records, index, errors):
             if forbidden: errors.append(f"{path}: worker-owned batch contains Librarian/Consolidator-owned record types: {', '.join(forbidden)}")
 
 
+def validate_reconciliation_integrity(index, errors):
+    accepted = [d for d in index.get("reconciliation_decision", {}).values() if d.get("status") == "ACCEPTED"]
+    superseded_ids = {d.get("supersedes") for d in accepted if d.get("supersedes")}
+    active = [d for d in accepted if d.get("decision_id") not in superseded_ids]
+    groups = {}
+    for decision in active:
+        if decision.get("decision_type") not in SINGLE_ACTIVE_DECISION_TYPES:
+            continue
+        key = (decision.get("decision_type"), decision.get("subject_id"))
+        groups.setdefault(key, []).append(decision.get("decision_id"))
+    for (decision_type, subject_id), decision_ids in sorted(groups.items()):
+        if len(decision_ids) > 1:
+            errors.append(
+                f"reconciliation: multiple active {decision_type} decisions for {subject_id}: {', '.join(sorted(decision_ids))}"
+            )
+
+
 def main() -> int:
     seen = {}; index = {record_type: {} for record_type in ID_FIELDS}; errors = []
     schemas = load_schemas(); predicates = load_predicates()
@@ -204,7 +222,9 @@ def main() -> int:
             predicate = record.get("predicate")
             if predicate and predicate not in predicates: errors.append(f"{path}: assertion {record.get('assertion_id')} uses unregistered predicate {predicate}")
         if rt == "reconciliation_decision" and record.get("status") == "ACCEPTED" and not record.get("method"): errors.append(f"{path}: accepted reconciliation decision missing method")
-    validate_references(records, index, errors); validate_batch_integrity(records, index, errors)
+    validate_references(records, index, errors)
+    validate_batch_integrity(records, index, errors)
+    validate_reconciliation_integrity(index, errors)
     if errors:
         print("VALIDATION FAILED"); print("\n".join(f"- {e}" for e in errors)); return 1
     print(f"VALIDATION PASSED: {len(seen)} identified records"); return 0

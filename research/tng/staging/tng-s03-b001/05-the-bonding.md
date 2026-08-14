@@ -1,0 +1,24 @@
+## S3-05 — The Bonding
+
+**Complete source processed:** Springfield `s03e05`, lines 18–454.
+**Metadata cross-check:** Chakoteya production 153, original airdate 23 Oct 1989.
+**Local entities:** Picard, Riker, Troi, Worf, Wesley, Crusher, Jeremy Aster, original Marla Aster, recreated Marla Aster, Koinonian energy entity, Koinonian energy beings as described, Koinonian matter beings as described, Enterprise, Koinonian planet.
+
+### Evidence
+- `tng-s03-b001-staging:e05:ev01` — **death/mission frame, early transcript.** Lieutenant Marla Aster is killed by an ancient explosive device left on the planet; Picard must notify her son Jeremy, whose father is already dead. [death; consequence]
+- `tng-s03-b001-staging:e05:ev02` — **historical/technical inference, early transcript.** Enterprise finds no current biological inhabitants; evidence indicates the destructive devices are remnants of an old Koinonian conflict rather than a current attacker. [history; epistemic]
+- `tng-s03-b001-staging:e05:ev03` — **grief testimony, ordinary frame.** Worf experiences guilt and anger over Aster's death and proposes the Klingon R'uustai bonding ritual with Jeremy because both have lost their parents; Troi cautions that Jeremy still needs time to grieve. [grief; culture]
+- `tng-s03-b001-staging:e05:ev04` — **memory/recollection, ordinary frame.** Jeremy's loss activates Wesley's memories of his own father's death and unresolved anger about Starfleet duty and Picard's role in bringing that news home. [memory; grief]
+- `tng-s03-b001-staging:e05:ev05` — **manifestation/altered-reality frame.** A figure physically resembling Marla Aster appears to Jeremy, speaks as his mother, and offers comfort despite the original Aster's confirmed death. [identity; recreation]
+- `tng-s03-b001-staging:e05:ev06` — **recreation evidence, ordinary/altered frame.** The entity recreates Jeremy's former home environment and familiar details; Picard and Worf explicitly identify the apparent mother/home as generated fantasy rather than restoration of the original dead person and place. [identity; counterevidence]
+- `tng-s03-b001-staging:e05:ev07` — **agency/technical interaction.** The recreated mother attempts to take Jeremy to the planet and the phenomenon can interact with Enterprise systems strongly enough that the crew must intervene rather than dismissing it as a private hallucination. [agency; technology]
+- `tng-s03-b001-staging:e05:ev08` — **entity testimony, later transcript.** The encountered energy entity says Koinonia once contained matter and energy beings, that the matter beings destroyed themselves in war, and that the energy beings created the Marla manifestation to spare Jeremy further suffering. [testimony; history]
+- `tng-s03-b001-staging:e05:ev09` — **ethical/identity confrontation.** Picard argues that replacing Jeremy's painful reality with a total fiction denies the real significance of Marla's life and death; the entity acknowledges that its attempt does not match human grieving. [ethics; identity]
+- `tng-s03-b001-staging:e05:ev10` — **grief/social consequence, final transcript.** Wesley finally voices anger connected to his father's death; Jeremy rejects permanent withdrawal into the recreated life and later performs R'uustai with Worf, establishing a chosen social/familial bond. [grief; consequence]
+
+### Staging assertions
+- `tng-s03-b001-staging:e05:as01` **PROVISIONAL / DERIVED_FROM** — The apparent Marla Aster is a generated recreation derived from Jeremy's memories/knowledge of his dead mother; the source explicitly distinguishes the manifestation from the original Marla, who remains dead. Supports: ev01, ev05, ev06, ev09.
+- `tng-s03-b001-staging:e05:as02` **PROVISIONAL** — Tangible interaction and environmental recreation demonstrate that the manifestation is more than a private hallucination, but they do not establish resurrection of the original Marla. Supports: ev05, ev06, ev07.
+- `tng-s03-b001-staging:e05:as03` **UNRESOLVED / testimony-limited** — The energy entity's history of Koinonian matter/energy peoples and self-destruction is source-supported testimony partly consistent with surviving hazards, but the ancient historical details lack independent records in the work. Supports: ev02, ev08.
+- `tng-s03-b001-staging:e05:as04` **PROVISIONAL** — Jeremy's grief is not erased or reset; he ultimately rejects the substitute reality and continues within real social relationships, while Wesley's parallel grief remains part of the episode's support structure. Supports: ev03, ev04, ev09, ev10.
+- `tng-s03-b001-staging:e05:as05` **PROVISIONAL / social scope** — R'uustai establishes an explicitly chosen Klingon social/familial bond between Worf and Jeremy; it does not by itself establish biological kinship or a Federation legal adoption status. Supports: ev03, ev10.

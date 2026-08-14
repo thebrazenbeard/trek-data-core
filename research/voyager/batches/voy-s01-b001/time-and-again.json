@@ -1,0 +1,39 @@
+{
+  "record_type": "working_episode_research",
+  "batch_id": "voy-s01-b001",
+  "provisional_work_ref": "voy-time-and-again",
+  "provisional_source_ref": "fd-voy-time-and-again-94244",
+  "projection_eligible": false,
+  "local_entities": [
+    {"id":"voy-time-and-again:janeway","label":"Kathryn Janeway","kind":"person"},
+    {"id":"voy-time-and-again:paris","label":"Tom Paris","kind":"person"},
+    {"id":"voy-time-and-again:kes","label":"Kes","kind":"person"},
+    {"id":"voy-time-and-again:voyager","label":"USS Voyager","kind":"vessel"},
+    {"id":"voy-time-and-again:planet_destroyed_state","label":"Planet as observed after catastrophe","kind":"temporal_state","notes":"Local temporal state, not a global immutable fact."},
+    {"id":"voy-time-and-again:planet_precatastrophe_state","label":"Planet before catastrophe","kind":"temporal_state"},
+    {"id":"voy-time-and-again:planet_intact_reset_state","label":"Planet after prevented catastrophe","kind":"temporal_state","notes":"Local post-reset state."},
+    {"id":"voy-time-and-again:rescue_beam","label":"Voyager rescue beam","kind":"event_or_process"},
+    {"id":"voy-time-and-again:polaric_system","label":"Polaric power system","kind":"technology"}
+  ],
+  "evidence": [
+    {"id":"voy-b001-t01","kind":"sensor_report","lines":"0-146","frame":"POST_EVENT_OBSERVATION","status":"DIRECT","summary":"Voyager encounters a shock wave and observes a planet in a catastrophically destroyed state."},
+    {"id":"voy-b001-t02","kind":"depiction","lines":"146-330","frame":"TEMPORAL_DISPLACEMENT","status":"DIRECT","summary":"Janeway and Paris pass through a temporal fracture and arrive in the planet's pre-catastrophe period."},
+    {"id":"voy-b001-t03","kind":"testimony","lines":"242-434","frame":"COMMAND_DIRECTIVE","status":"DIRECT","observer":"voy-time-and-again:janeway","summary":"Janeway repeatedly stresses noninterference while attempting to understand the pre-catastrophe situation."},
+    {"id":"voy-b001-t04","kind":"depiction","lines":"330-600","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Local activists target the polaric power system; Janeway and Paris become entangled in events while trying to return."},
+    {"id":"voy-b001-t05","kind":"testimony","lines":"495-680","frame":"TEMPORAL_CAUSAL_INFERENCE","status":"UNRESOLVED","observer":"voy-time-and-again:janeway","summary":"Janeway recognizes that Voyager's attempted rescue and their presence can alter the sequence leading to catastrophe."},
+    {"id":"voy-b001-t06","kind":"depiction","lines":"600-740","frame":"TEMPORAL_CAUSAL_DEPICTION","status":"DIRECT","summary":"Voyager's rescue attempt intersects the polaric system in the pre-catastrophe period and becomes part of the causal chain producing the explosion."},
+    {"id":"voy-b001-t07","kind":"depiction","lines":"720-803","frame":"POST_RESET_TIMELINE","status":"DIRECT","summary":"Janeway prevents the rescue interaction; the episode returns to a present in which the planet is intact and most of Voyager's crew does not retain the prior events.","counterevidence":"The earlier destroyed-planet observation remains valid evidence for the superseded temporal state rather than being erased as false."},
+    {"id":"voy-b001-t08","kind":"testimony","lines":"770-814","frame":"SUBJECTIVE_TEMPORAL_RESIDUE","status":"UNRESOLVED","observer":"voy-time-and-again:kes","summary":"Kes expresses a residual sense or premonition connected to the superseded events after the reset.","counterevidence":"The source does not establish an objective mechanism or the full informational content of Kes's retained experience."}
+  ],
+  "assertions": [
+    {"id":"voy-b001-a08","subject":"voy-time-and-again:planet_destroyed_state","predicate":"TEMPORAL_STATE_DIVERGES_FROM","object":"voy-time-and-again:planet_intact_reset_state","evidence":["voy-b001-t01","voy-b001-t07"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"timeline_dimension":"explicitly_scoped","pre_reset":"destroyed","post_reset":"intact"},"counterevidence":["Neither temporal state is discarded; both are directly depicted at different points in the episode's causal history."]},
+    {"id":"voy-b001-a09","subject":"voy-time-and-again:rescue_beam","predicate":"PARTICIPATES_IN_CAUSAL_CHAIN","object":"polaric catastrophe","evidence":["voy-b001-t05","voy-b001-t06"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"timeline":"prevention loop"}},
+    {"id":"voy-b001-a10","subject":"voy-time-and-again:kes","predicate":"RETAINS_SUBJECTIVE_TEMPORAL_RESIDUE","object":"superseded timeline experience","evidence":["voy-b001-t08"],"status":"PROPOSED","projection_status":"UNRESOLVED","counterevidence":["The mechanism and objective informational content of Kes's residual sense are not established."]}
+  ],
+  "neutral_coding": {
+    "plot_problem":"An apparent planetary disaster becomes a temporal-causality problem in which the rescue effort itself contributes to the catastrophe.",
+    "institutions_rules":"Janeway invokes noninterference, but participation becomes unavoidable as temporal displacement entangles Voyager with local events.",
+    "identity_continuity":"Temporal states are represented separately. The batch does not collapse the destroyed-state planet and reset-state planet into one timeless fact or invent global timeline entities.",
+    "counterevidence":"Initial destroyed-state observations and final intact-state observations are both retained; Kes's residual experience is scoped as subjective and unresolved."
+  }
+}

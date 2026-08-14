@@ -1,0 +1,42 @@
+{
+  "record_type": "working_episode_research",
+  "batch_id": "voy-s01-b001",
+  "provisional_work_ref": "voy-the-cloud",
+  "provisional_source_ref": "fd-voy-the-cloud-94246",
+  "projection_eligible": false,
+  "local_entities": [
+    {"id":"voy-the-cloud:janeway","label":"Kathryn Janeway","kind":"person"},
+    {"id":"voy-the-cloud:chakotay","label":"Chakotay","kind":"person"},
+    {"id":"voy-the-cloud:neelix","label":"Neelix","kind":"person"},
+    {"id":"voy-the-cloud:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program"},
+    {"id":"voy-the-cloud:voyager","label":"USS Voyager","kind":"vessel"},
+    {"id":"voy-the-cloud:cloud_organism","label":"Entity initially classified as a nebula/cloud","kind":"lifeform_or_phenomenon","notes":"Later evidence reclassifies the encounter as living; initial classification is preserved as a superseded interpretation."},
+    {"id":"voy-the-cloud:sandrine","label":"Sandrine holoprogram proprietor","kind":"simulation_character","notes":"Scoped to holoprogram."},
+    {"id":"voy-the-cloud:animal_guide","label":"Janeway's animal-guide experience","kind":"vision_or_ritual_entity","notes":"Experiential/ritual frame only; not objective external entity evidence."}
+  ],
+  "evidence": [
+    {"id":"voy-b001-cl01","kind":"document","lines":"0-247","frame":"CAPTAINS_LOG_AND_DIALOGUE","status":"DIRECT","observer":"voy-the-cloud:janeway","summary":"Janeway's log and crew discussion establish severe energy/resource scarcity and her concern about distance between captain and crew."},
+    {"id":"voy-b001-cl02","kind":"depiction","lines":"272-503","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Voyager enters what the crew classifies as a nebula in search of omicron particles, encounters resistance and energy drain, and exits after firing a torpedo."},
+    {"id":"voy-b001-cl03","kind":"testimony","lines":"450-610","frame":"CREW_DELIBERATION","status":"DIRECT","observer":"voy-the-cloud:neelix","summary":"Neelix criticizes the risks and resource costs of exploration under Voyager's survival constraints.","counterevidence":"Janeway and others continue to value exploration, so the episode presents a policy tension rather than one endorsed view."},
+    {"id":"voy-b001-cl04","kind":"other","lines":"607-855","frame":"RITUAL_OR_VISION","status":"UNRESOLVED","observer":"voy-the-cloud:janeway","summary":"Janeway participates in Chakotay's animal-guide ritual and experiences/reports an animal guide.","counterevidence":"The scene supports Janeway's experience within the ritual frame, not independent objective existence of the guide."},
+    {"id":"voy-b001-cl05","kind":"sensor_report","lines":"903-946","frame":"SENSOR_ANALYSIS","status":"DIRECT","summary":"Analysis of residue leads the crew to reclassify the apparent nebula as a living organism that Voyager likely injured.","counterevidence":"Earlier bridge evidence classified the encounter as a nebula; that earlier classification is retained as a superseded interpretation."},
+    {"id":"voy-b001-cl06","kind":"testimony","lines":"948-1074","frame":"COMMAND_DECISION","status":"DIRECT","observer":"voy-the-cloud:janeway","summary":"Janeway states that Voyager harmed the organism and decides the ship must return to repair the damage despite additional risk and resource cost."},
+    {"id":"voy-b001-cl07","kind":"testimony","lines":"1277-1317","frame":"MEDICAL_ANALOGY_AND_PLAN","status":"DIRECT","observer":"voy-the-cloud:doctor","summary":"The Doctor proposes that Voyager can function like a suture while repairing the organism."},
+    {"id":"voy-b001-cl08","kind":"depiction","lines":"1333-1418","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Voyager uses a nucleonic beam and microprobe-assisted procedure; the organism regenerates while Voyager's energy reserves are further depleted."},
+    {"id":"voy-b001-cl09","kind":"depiction","lines":"1433-1525","frame":"HOLOPROGRAM_SOCIAL_SCENE","status":"DIRECT","summary":"Janeway chooses to spend off-duty time with crew members in the Sandrine holoprogram, softening the social separation she had described earlier."},
+    {"id":"voy-b001-cl10","kind":"testimony","lines":"607-855","frame":"PROGRAM_SELF_REPORT","status":"UNRESOLVED","observer":"voy-the-cloud:doctor","summary":"The Doctor discusses the possibility of modifying or expanding his own programming.","counterevidence":"Contemplation is not proof that unrestricted self-reprogramming is available."}
+  ],
+  "assertions": [
+    {"id":"voy-b001-a15","subject":"voy-the-cloud:cloud_organism","predicate":"RECLASSIFIED_FROM_PHENOMENON_TO_LIFEFORM","object":"living organism","evidence":["voy-b001-cl02","voy-b001-cl05"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["The initial nebula classification was reasonable under earlier evidence and is preserved as a superseded interpretation."]},
+    {"id":"voy-b001-a16","subject":"voy-the-cloud:janeway","predicate":"UNDERTAKES_REPAIR_AFTER_CAUSING_HARM","object":"voy-the-cloud:cloud_organism","evidence":["voy-b001-cl05","voy-b001-cl06","voy-b001-cl08"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["Repair consumes additional scarce energy and requires re-entering a hazardous environment."]},
+    {"id":"voy-b001-a17","subject":"voy-the-cloud:janeway","predicate":"ALTERS_COMMAND_SOCIAL_BOUNDARY","object":"joins crew recreation","evidence":["voy-b001-cl01","voy-b001-cl09"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b001-a18","subject":"voy-the-cloud:animal_guide","predicate":"EXISTS_WITHIN_EXPERIENTIAL_RITUAL_FRAME","object":"Janeway's animal-guide experience","evidence":["voy-b001-cl04"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"frame":"ritual_or_vision"},"counterevidence":["No independent external-world evidence establishes the guide as an objective entity."]},
+    {"id":"voy-b001-a19","subject":"voy-the-cloud:doctor","predicate":"CONTEMPLATES_SELF_PROGRAM_MODIFICATION","object":"own programming","evidence":["voy-b001-cl10"],"status":"PROPOSED","projection_status":"UNRESOLVED","counterevidence":["Contemplation is not proof of successful or unrestricted self-modification capability."]}
+  ],
+  "neutral_coding": {
+    "plot_problem":"A resource-seeking exploration damages an organism initially misclassified as a nebula, forcing a costly repair mission.",
+    "epistemics":"The initial nebula classification and later life-form reclassification are both preserved in sequence rather than rewriting the earlier evidence.",
+    "identity_frames":"Sandrine is scoped to a holoprogram; Janeway's animal guide is scoped to a ritual/vision experience; the Doctor's self-programming discussion remains a capability hypothesis.",
+    "counterevidence":"Neelix's conservation argument is retained against exploration; restorative action carries measurable energy cost and risk."
+  }
+}

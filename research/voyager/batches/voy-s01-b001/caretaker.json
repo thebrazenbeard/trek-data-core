@@ -1,0 +1,48 @@
+{
+  "record_type": "working_episode_research",
+  "batch_id": "voy-s01-b001",
+  "provisional_work_ref": "voy-caretaker",
+  "provisional_source_ref": "fd-voy-caretaker-94242",
+  "projection_eligible": false,
+  "local_entities": [
+    {"id":"voy-caretaker:janeway","label":"Kathryn Janeway","kind":"person"},
+    {"id":"voy-caretaker:chakotay","label":"Chakotay","kind":"person"},
+    {"id":"voy-caretaker:tuvok","label":"Tuvok","kind":"person"},
+    {"id":"voy-caretaker:paris","label":"Tom Paris","kind":"person"},
+    {"id":"voy-caretaker:kim","label":"Harry Kim","kind":"person"},
+    {"id":"voy-caretaker:torres","label":"B'Elanna Torres","kind":"person"},
+    {"id":"voy-caretaker:kes","label":"Kes","kind":"person"},
+    {"id":"voy-caretaker:neelix","label":"Neelix","kind":"person"},
+    {"id":"voy-caretaker:caretaker","label":"Caretaker","kind":"person_or_entity","notes":"Underlying entity and constructed/holographic presentations are not globally identity-resolved."},
+    {"id":"voy-caretaker:voyager","label":"USS Voyager","kind":"vessel"},
+    {"id":"voy-caretaker:maquis_ship","label":"Chakotay's Maquis vessel","kind":"vessel"},
+    {"id":"voy-caretaker:array","label":"Caretaker's array","kind":"installation"},
+    {"id":"voy-caretaker:kazon","label":"Kazon-Ogla group","kind":"collective"},
+    {"id":"voy-caretaker:ocampa","label":"Ocampa population","kind":"collective"}
+  ],
+  "evidence": [
+    {"id":"voy-b001-c01","kind":"depiction","lines":"18-113","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"A Maquis vessel is pursued into the Badlands, encounters a coherent tetryon beam, and is overtaken by an accelerating displacement wave."},
+    {"id":"voy-b001-c02","kind":"testimony","lines":"138-204","frame":"DIALOGUE_TESTIMONY","status":"DIRECT","observer":"voy-caretaker:janeway","summary":"Janeway tells Paris that Voyager's mission is to find a missing Maquis ship and that her chief of security was aboard undercover."},
+    {"id":"voy-b001-c03","kind":"depiction","lines":"707-946","frame":"CONSTRUCTED_ENVIRONMENT","status":"DIRECT","summary":"Voyager's crew encounters an artificial farm-like environment associated with the Caretaker while Kim and Torres remain missing from their crews."},
+    {"id":"voy-b001-c04","kind":"depiction","lines":"900-980","frame":"DIALOGUE_AND_DEPICTION","status":"DIRECT","summary":"Tuvok's undercover role among Chakotay's Maquis is revealed."},
+    {"id":"voy-b001-c05","kind":"depiction","lines":"1387-1685","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Kes participates actively in her rescue and describes Ocampa dependence and confinement while Neelix and Voyager engage Kazon actors amid extreme water scarcity."},
+    {"id":"voy-b001-c06","kind":"testimony","lines":"1798-1885","frame":"ANALYTIC_INFERENCE","status":"UNRESOLVED","observer":"voy-caretaker:tuvok","summary":"Tuvok infers that changes in the Caretaker's behavior are consistent with the Caretaker dying.","counterevidence":"This is initially an inference, not direct world-state evidence; later Caretaker testimony supports but does not retroactively change the evidence kind."},
+    {"id":"voy-b001-c07","kind":"testimony","lines":"1980-2115","frame":"DIALOGUE_TESTIMONY","status":"DIRECT","observer":"voy-caretaker:caretaker","summary":"The Caretaker states that his people accidentally harmed the Ocampa environment and that he remained to provide for them.","counterevidence":"This establishes the Caretaker's account, not independent verification of the historical event."},
+    {"id":"voy-b001-c08","kind":"testimony","lines":"1980-2115","frame":"DIALOGUE_TESTIMONY","status":"DIRECT","observer":"voy-caretaker:caretaker","summary":"The Caretaker states that he searched for a compatible mate or offspring who could continue caring for the Ocampa."},
+    {"id":"voy-b001-c09","kind":"depiction","lines":"2146-2290","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"After the array's return mechanism is damaged, Janeway orders the array destroyed to prevent Kazon control rather than preserve it as a possible route home."},
+    {"id":"voy-b001-c10","kind":"depiction","lines":"2290-2353","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Janeway assigns Chakotay as first officer, gives Paris a field commission, accepts Kes and Neelix aboard, and sets a course toward home."}
+  ],
+  "assertions": [
+    {"id":"voy-b001-a01","subject":"voy-caretaker:caretaker","predicate":"TESTIFIES_CAUSED_ENVIRONMENTAL_HARM","object":"Ocampa environment","evidence":["voy-b001-c07"],"status":"PROPOSED","projection_status":"UNRESOLVED","counterevidence":["Caretaker testimony is not independent historical verification."]},
+    {"id":"voy-b001-a02","subject":"voy-caretaker:janeway","predicate":"DESTROYS_ROUTE_HOME_AS_PROTECTIVE_ACTION","object":"voy-caretaker:array","evidence":["voy-b001-c09"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["The action also removes Voyager's immediate return option, imposing a direct cost on the crew."]},
+    {"id":"voy-b001-a03","subject":"voy-caretaker:chakotay","predicate":"ASSIGNED_STARFLEET_COMMAND_ROLE","object":"first officer","evidence":["voy-b001-c10"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b001-a04","subject":"voy-caretaker:caretaker","predicate":"PRESENTS_THROUGH_CONSTRUCTED_PERSONA","object":"farm/humanlike forms","evidence":["voy-b001-c03","voy-b001-c07"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"identity_note":"No global sameness claim between persona appearances and underlying entity."}}
+  ],
+  "neutral_coding": {
+    "plot_problem":"Two displaced crews must recover missing people and confront the Caretaker/Kazon conflict while losing their return mechanism.",
+    "institutions_rules":"Starfleet command, Maquis integration, and explicit Prime Directive reasoning are active constraints rather than background decoration.",
+    "agency":"Janeway, Kes, Chakotay, Tuvok, Neelix, and the Caretaker make consequential choices; Ocampa are not coded merely as passive dependents.",
+    "material_constraints":"Water scarcity, damaged ships, and loss of the array's return function materially constrain decisions.",
+    "counterevidence":"Caretaker claims about Ocampa history remain testimony; Tuvok's dying-Caretaker conclusion begins as inference; protection of the Ocampa carries a severe cost to Voyager's crew."
+  }
+}

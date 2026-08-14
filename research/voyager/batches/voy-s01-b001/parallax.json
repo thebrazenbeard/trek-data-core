@@ -1,0 +1,38 @@
+{
+  "record_type": "working_episode_research",
+  "batch_id": "voy-s01-b001",
+  "provisional_work_ref": "voy-parallax",
+  "provisional_source_ref": "fd-voy-parallax-94243",
+  "projection_eligible": false,
+  "local_entities": [
+    {"id":"voy-parallax:janeway","label":"Kathryn Janeway","kind":"person"},
+    {"id":"voy-parallax:chakotay","label":"Chakotay","kind":"person"},
+    {"id":"voy-parallax:torres","label":"B'Elanna Torres","kind":"person"},
+    {"id":"voy-parallax:carey","label":"Joe Carey","kind":"person"},
+    {"id":"voy-parallax:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program","notes":"Program/person status intentionally not globally resolved."},
+    {"id":"voy-parallax:voyager","label":"USS Voyager","kind":"vessel"},
+    {"id":"voy-parallax:voyager_reflection","label":"Apparent second Voyager / temporal reflection","kind":"temporal_manifestation","notes":"Scoped to this work; not treated as a persistent duplicate vessel."},
+    {"id":"voy-parallax:singularity","label":"Type-4 quantum singularity","kind":"phenomenon"}
+  ],
+  "evidence": [
+    {"id":"voy-b001-p01","kind":"depiction","lines":"1-180","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Torres assaults Carey amid unresolved Starfleet-Maquis integration and engineering command conflict."},
+    {"id":"voy-b001-p02","kind":"testimony","lines":"180-420","frame":"COMMAND_DELIBERATION","status":"DIRECT","observer":"voy-parallax:chakotay","summary":"Chakotay advocates Torres for chief engineer while Janeway questions discipline and command suitability.","counterevidence":"Carey's experience and Torres's assault complicate a simple merit-only appointment narrative."},
+    {"id":"voy-b001-p03","kind":"sensor_report","lines":"430-760","frame":"SENSOR_AND_BRIDGE_REPORT","status":"DIRECT","summary":"Voyager encounters a quantum singularity and sensor evidence suggesting another trapped vessel."},
+    {"id":"voy-b001-p04","kind":"sensor_report","lines":"650-900","frame":"SENSOR_INTERPRETATION","status":"CONTESTED","summary":"The crew initially treats the apparent vessel as a separate ship and experiences anomalous communications and duplicated observations.","counterevidence":"Later evidence identifies the apparent vessel as Voyager's temporal reflection."},
+    {"id":"voy-b001-p05","kind":"depiction","lines":"897-1148","frame":"TEMPORAL_ANOMALY","status":"DIRECT","summary":"Janeway and Torres conclude that the apparent second Voyager is a temporal reflection of their own ship inside the singularity and that observed effects can precede their causes."},
+    {"id":"voy-b001-p06","kind":"depiction","lines":"1040-1210","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Janeway and Torres cooperate to navigate Voyager through the rupture and out of the singularity."},
+    {"id":"voy-b001-p07","kind":"depiction","lines":"1210-1403","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Janeway appoints Torres chief engineer after the crisis; objections and crew-integration tensions remain part of the scene."},
+    {"id":"voy-b001-p08","kind":"testimony","lines":"300-520","frame":"PROGRAM_SELF_REPORT","status":"DIRECT","observer":"voy-parallax:doctor","summary":"The Emergency Medical Hologram describes operational limits tied to the sickbay projection system and his program.","counterevidence":"Self-description establishes the program's reported constraints, not a general theory of holographic personhood."}
+  ],
+  "assertions": [
+    {"id":"voy-b001-a05","subject":"voy-parallax:voyager_reflection","predicate":"TEMPORAL_REFLECTION_OF","object":"voy-parallax:voyager","evidence":["voy-b001-p04","voy-b001-p05"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"temporal_anomaly":true,"identity_note":"No persistent duplicate vessel is asserted."},"counterevidence":["The crew initially interprets the manifestation as a separate trapped vessel."]},
+    {"id":"voy-b001-a06","subject":"voy-parallax:torres","predicate":"APPOINTED_COMMAND_ROLE","object":"chief engineer","evidence":["voy-b001-p01","voy-b001-p02","voy-b001-p07"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["Her appointment follows documented assault/discipline concerns and competing claims of experience."]},
+    {"id":"voy-b001-a07","subject":"voy-parallax:doctor","predicate":"EXPRESSES_PROGRAM_BOUND_OPERATION","object":"sickbay projection system","evidence":["voy-b001-p08"],"status":"PROPOSED","projection_status":"STABLE"}
+  ],
+  "neutral_coding": {
+    "plot_problem":"A command-integration dispute unfolds while Voyager becomes trapped in a temporal distortion around a singularity.",
+    "institutions_rules":"Janeway and Chakotay negotiate authority, discipline, and personnel legitimacy across Starfleet and Maquis backgrounds.",
+    "identity_epistemics":"The apparent second Voyager is preserved first as a contested sensor interpretation and later as a scoped temporal reflection, not globally merged or duplicated.",
+    "counterevidence":"Torres's technical competence does not erase assault and discipline concerns; the apparent second ship interpretation is preserved even after supersession."
+  }
+}

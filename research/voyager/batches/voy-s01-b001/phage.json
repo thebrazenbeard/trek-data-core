@@ -1,0 +1,39 @@
+{
+  "record_type": "working_episode_research",
+  "batch_id": "voy-s01-b001",
+  "provisional_work_ref": "voy-phage",
+  "provisional_source_ref": "fd-voy-phage-94245",
+  "projection_eligible": false,
+  "local_entities": [
+    {"id":"voy-phage:neelix","label":"Neelix","kind":"person"},
+    {"id":"voy-phage:kes","label":"Kes","kind":"person"},
+    {"id":"voy-phage:janeway","label":"Kathryn Janeway","kind":"person"},
+    {"id":"voy-phage:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program","notes":"Evidence is coded for self-concept and social treatment without deciding metaphysical personhood."},
+    {"id":"voy-phage:vidiian_1","label":"Vidiian organ harvester 1","kind":"person"},
+    {"id":"voy-phage:vidiian_2","label":"Vidiian organ harvester 2","kind":"person"},
+    {"id":"voy-phage:holo_lungs","label":"Holographic lung simulation","kind":"medical_holographic_construct","notes":"Functional medical construct; not treated as a person."},
+    {"id":"voy-phage:voyager","label":"USS Voyager","kind":"vessel"}
+  ],
+  "evidence": [
+    {"id":"voy-b001-ph01","kind":"depiction","lines":"0-173","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"During a search for resources, Neelix is attacked and his lungs are removed via transporter technology."},
+    {"id":"voy-b001-ph02","kind":"depiction","lines":"173-360","frame":"MEDICAL_HOLOGRAPHIC_INTERVENTION","status":"DIRECT","summary":"The Doctor stabilizes Neelix using holographic lungs that require him to remain motionless within the projection field."},
+    {"id":"voy-b001-ph03","kind":"testimony","lines":"242-441","frame":"PROGRAM_AND_MEDICAL_SELF_REPORT","status":"DIRECT","observer":"voy-phage:doctor","summary":"The Doctor explains medical and program limitations while Kes participates in decisions about Neelix's treatment."},
+    {"id":"voy-b001-ph04","kind":"testimony","lines":"330-520","frame":"INTERPERSONAL_DIALOGUE","status":"DIRECT","observer":"voy-phage:kes","summary":"Kes addresses the Doctor as an accountable interlocutor and credits his learning; the Doctor acknowledges that his interactions are changing his practice.","counterevidence":"This supports social treatment and expressed learning, not a settled ontological claim that the hologram is or is not a person."},
+    {"id":"voy-b001-ph05","kind":"testimony","lines":"668-760","frame":"DIALOGUE_TESTIMONY","status":"DIRECT","observer":"voy-phage:vidiian_1","summary":"Captured Vidiians state that the Phage has devastated their species and that they harvest organs to survive.","counterevidence":"The survival rationale is their testimony; the organ theft itself is independently depicted."},
+    {"id":"voy-b001-ph06","kind":"depiction","lines":"720-810","frame":"COMMAND_DECISION","status":"DIRECT","summary":"Janeway refuses to kill the Vidiians merely to recover Neelix's lungs, releases them, and warns that future attacks on her crew will meet force."},
+    {"id":"voy-b001-ph07","kind":"depiction","lines":"760-849","frame":"MEDICAL_PROCEDURE","status":"DIRECT","summary":"The Vidiians offer a transplant solution; Kes donates one lung and Neelix is restored to organic respiration."},
+    {"id":"voy-b001-ph08","kind":"depiction","lines":"820-864","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"Kes begins assisting the Doctor in sickbay, extending the emerging working relationship between them."}
+  ],
+  "assertions": [
+    {"id":"voy-b001-a11","subject":"voy-phage:doctor","predicate":"RECEIVES_PERSON_DIRECTED_SOCIAL_RECOGNITION","object":"voy-phage:kes","evidence":["voy-b001-ph03","voy-b001-ph04"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"identity_dimension":"social/person-directed treatment"},"counterevidence":["Social recognition and expressed learning do not by themselves settle metaphysical or legal personhood."]},
+    {"id":"voy-b001-a12","subject":"voy-phage:vidiian_1","predicate":"TESTIFIES_ORGAN_HARVESTING_AS_SURVIVAL_PRACTICE","object":"Vidiian response to the Phage","evidence":["voy-b001-ph05"],"status":"PROPOSED","projection_status":"UNRESOLVED","counterevidence":["The source independently depicts organ theft, but the broader species-level necessity claim remains testimony."]},
+    {"id":"voy-b001-a13","subject":"voy-phage:janeway","predicate":"REFUSES_LETHAL_ORGAN_RETRIEVAL","object":"captured Vidiians","evidence":["voy-b001-ph06"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b001-a14","subject":"voy-phage:kes","predicate":"DONATES_ORGAN_FOR_TRANSPLANT","object":"lung to Neelix","evidence":["voy-b001-ph07"],"status":"PROPOSED","projection_status":"STABLE"}
+  ],
+  "neutral_coding": {
+    "plot_problem":"Neelix's stolen organs create a medical emergency that becomes a pursuit and ethical confrontation with the Vidiians.",
+    "identity_self_concept":"The Doctor is treated as a program with operational limits and also as an accountable interlocutor capable of learning; neither pole is inflated into a global personhood verdict.",
+    "ethics":"Janeway distinguishes stopping predation from killing captives to repossess organs; Kes voluntarily assumes bodily cost through donation.",
+    "counterevidence":"Vidiian survival claims are testimony rather than independent species-wide proof; their desperation does not erase the depicted organ theft."
+  }
+}

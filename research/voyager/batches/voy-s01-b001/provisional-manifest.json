@@ -1,0 +1,28 @@
+{
+  "record_type": "provisional_batch_manifest",
+  "batch_id": "voy-s01-b001",
+  "worker_id": "VOY",
+  "partition": "research/voyager",
+  "base_main_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "schema_status": "UNACCEPTED_ARCHITECTURE_PROPOSAL_ONLY",
+  "projection_eligible": false,
+  "accepted_coverage_advanced": false,
+  "status": "WORKING_EXTRACTION_COMPLETE_BINDING_BLOCKED",
+  "works": ["voy-caretaker","voy-parallax","voy-time-and-again","voy-phage","voy-the-cloud"],
+  "sources": ["fd-voy-caretaker-94242","fd-voy-parallax-94243","fd-voy-time-and-again-94244","fd-voy-phage-94245","fd-voy-the-cloud-94246"],
+  "source_hashes": [],
+  "record_counts": {"sources":5,"working_local_entities":47,"working_evidence":44,"working_assertions":19},
+  "content_blobs": {
+    "README.md":"0cb9d4fb7d98d8153d573f0768af298ceacee08d",
+    "source-read-log.jsonl":"c9c3291a3ab58b570b668ef39ccd560644692c60",
+    "caretaker.json":"47087d3d5ee95ee521f9e63d14e5f67a57a34703",
+    "parallax.json":"d484394f1e0390e46534c1c30b131dce2d1c0d0c",
+    "time-and-again.json":"d1ac9e9545759a9adaadc1a464a63e06f88a4e50",
+    "phage.json":"304f7cdd9571254a0598f2d94fd6eb979e4cb2bf",
+    "the-cloud.json":"07ed7406d27502e6ae636beb7bf0125c9bb878df"
+  },
+  "working_content_hash_sha256": "16dff1ba40e17e8a8a93b4feb5e160b9a50ba3bd3840741b0ae262bc39191c79",
+  "created_at": "2026-08-14T07:09:00-04:00",
+  "blockers": ["ACCEPTED_WORK_IDS_MISSING","ACCEPTED_SOURCE_IDS_AND_HASHES_MISSING","ACCEPTED_SCHEMA_MISSING"],
+  "notes": "Source hashes are intentionally absent rather than fabricated. Final manifest/coverage promotion must wait for Librarian binding and accepted schemas."
+}

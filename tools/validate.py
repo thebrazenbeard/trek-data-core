@@ -64,8 +64,9 @@ def iter_records():
                 obj = json.loads(path.read_text(encoding="utf-8"))
             except Exception as exc:
                 raise ValueError(f"{path}: invalid JSON: {exc}") from exc
-            if isinstance(obj, dict) and "record_type" in obj:
-                yield path, obj
+            if not isinstance(obj, dict):
+                raise ValueError(f"{path}: governed JSON artifact must be an object record")
+            yield path, obj
         for path in sorted(base.rglob("*.jsonl")):
             for line_no, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
                 if not raw.strip():
@@ -197,7 +198,6 @@ def validate_batch_integrity(records, index, errors):
         expected_hash = compute_batch_hash(manifest, batch_records)
         if manifest.get("batch_hash") != expected_hash:
             errors.append(f"{path}: batch_hash mismatch: declared {manifest.get('batch_hash')}, expected {expected_hash}")
-
         actual_counts = {}
         for record in batch_records:
             rt = record.get("record_type")
@@ -209,12 +209,10 @@ def validate_batch_integrity(records, index, errors):
         for key, record_type in COUNT_KEYS.items():
             if key in declared_counts and declared_counts[key] != actual_counts.get(record_type, 0):
                 errors.append(f"{path}: record_counts.{key}={declared_counts[key]} but batch contains {actual_counts.get(record_type, 0)}")
-
         for work_id in manifest.get("works", []): add_missing_reference(errors, path, "works", "work", work_id, index)
         for source_hash in manifest.get("source_hashes", []):
             if source_hash not in known_source_hashes:
                 errors.append(f"{path}: source_hashes references unknown source content_hash {source_hash}")
-
         expected_worker = expected_worker_for_path(path)
         if expected_worker and manifest.get("worker_id") != expected_worker:
             errors.append(f"{path}: worker_id {manifest.get('worker_id')} does not match research partition owner {expected_worker}")
@@ -231,7 +229,6 @@ def main() -> int:
     except ValueError as exc:
         records = []
         errors.append(str(exc))
-
     for path, record in records:
         rt = record.get("record_type")
         if not rt:
@@ -255,7 +252,6 @@ def main() -> int:
             if predicate and predicate not in predicates: errors.append(f"{path}: assertion {record.get('assertion_id')} uses unregistered predicate {predicate}")
         if rt == "reconciliation_decision" and record.get("status") == "ACCEPTED" and not record.get("method"):
             errors.append(f"{path}: accepted reconciliation decision missing method")
-
     validate_references(records, index, errors)
     validate_batch_integrity(records, index, errors)
     if errors:

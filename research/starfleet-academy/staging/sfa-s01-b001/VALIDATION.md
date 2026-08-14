@@ -2,8 +2,8 @@
 
 Validation targets:
 
-- `research/starfleet-academy/staging/sfa-s01-b001/README.md` — `Kids These Days`
-- `research/starfleet-academy/staging/sfa-s01-b001/BETA_TEST.md` — `Beta Test`
+- `research/starfleet-academy/staging/sfa-s01-b001/README.md` — batch/frontier summary
+- `research/starfleet-academy/staging/sfa-s01-b001/BETA_TEST.md` — `Beta Test` detailed close read
 
 Result: `PASS_STAGING_BOUNDARY`
 
@@ -16,8 +16,8 @@ Checks performed:
 - no canonical Work ID or Source ID was minted;
 - no global identity or reconciliation record was created;
 - no complete copyrighted transcript text was committed;
-- `Kids These Days` transcript body was read end-to-end before its records were generated;
-- `Beta Test` transcript body was read end-to-end through its final scene before its records were generated;
+- `Kids These Days` transcript body was read end-to-end before its staging records were generated;
+- `Beta Test` transcript body was read end-to-end through its final scene before its staging records were generated;
 - `Beta Test` official discovery metadata was cross-checked against the current Paramount+ listing without treating that listing as the accepted Work registry;
 - evidence remains source-relative and distinguishes character testimony, institutional statements, computer reports, interpreter-drone output, historical claims, joking/banter, and depiction;
 - the Goja V non-recognition/location sequence is represented as database-relative evidence rather than an omniscient contradiction forced into certainty;

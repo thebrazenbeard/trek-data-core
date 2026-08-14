@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run projection regression tests
-        run: python -m unittest discover -s tools -p 'test_build_projection.py' -v
+        run: python -m unittest discover -s tools -p 'test_*projection.py' -v
       - name: Validate repository records
         run: python tools/validate.py
       - name: Build projection twice

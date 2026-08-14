@@ -113,8 +113,47 @@ def schema_errors(value, schema, location="$"):
     return errors
 
 
+def add_missing_reference(errors, path, field, target_type, target_id, index):
+    if target_id and target_id not in index.get(target_type, {}):
+        errors.append(f"{path}: {field} references missing {target_type} {target_id}")
+
+
+def validate_references(records, index, errors):
+    for path, record in records:
+        rt = record.get("record_type")
+        if rt == "source":
+            for source_id in record.get("derived_from", []):
+                add_missing_reference(errors, path, "derived_from", "source", source_id, index)
+        elif rt == "work":
+            parent = record.get("parent_work_id")
+            if parent:
+                add_missing_reference(errors, path, "parent_work_id", "work", parent, index)
+        elif rt == "local_entity":
+            add_missing_reference(errors, path, "work_id", "work", record.get("work_id"), index)
+        elif rt == "evidence":
+            add_missing_reference(errors, path, "source_id", "source", record.get("source_id"), index)
+            add_missing_reference(errors, path, "work_id", "work", record.get("work_id"), index)
+            observer = record.get("observer_local_entity_id")
+            if observer:
+                add_missing_reference(errors, path, "observer_local_entity_id", "local_entity", observer, index)
+        elif rt == "assertion":
+            for evidence_id in record.get("evidence", []):
+                add_missing_reference(errors, path, "evidence", "evidence", evidence_id, index)
+            supersedes = record.get("supersedes")
+            if supersedes:
+                add_missing_reference(errors, path, "supersedes", "assertion", supersedes, index)
+        elif rt == "reconciliation_decision":
+            for evidence_id in record.get("evidence", []):
+                if evidence_id not in index.get("evidence", {}) and evidence_id not in index.get("assertion", {}):
+                    errors.append(f"{path}: evidence references missing evidence/assertion {evidence_id}")
+            supersedes = record.get("supersedes")
+            if supersedes:
+                add_missing_reference(errors, path, "supersedes", "reconciliation_decision", supersedes, index)
+
+
 def main() -> int:
     seen = {}
+    index = {record_type: {} for record_type in ID_FIELDS}
     errors = []
     schemas = load_schemas()
     try:
@@ -144,11 +183,14 @@ def main() -> int:
                 errors.append(f"duplicate {rt} id {rid}: {seen[(rt, rid)]} and {path}")
             else:
                 seen[(rt, rid)] = path
+                index[rt][rid] = record
 
         if rt == "assertion" and not record.get("evidence"):
             errors.append(f"{path}: assertion {record.get('assertion_id')} has no evidence")
         if rt == "reconciliation_decision" and record.get("status") == "ACCEPTED" and not record.get("method"):
             errors.append(f"{path}: accepted reconciliation decision missing method")
+
+    validate_references(records, index, errors)
 
     if errors:
         print("VALIDATION FAILED")

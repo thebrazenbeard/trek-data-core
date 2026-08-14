@@ -20,25 +20,37 @@ The accepted head moved through an accidental sentinel-file change and revert, l
 
 ## Infrastructure gate
 
-Current relevant proposals:
+Current relevant proposals/findings:
 
 - PR #1 `Bootstrap provenance-aware Trek research architecture`
-  - proposal head observed: `4b771b28406e1b2f41d93f5787e1978e98c6e432`
-  - canonical five-object flow is corrected at this head;
+  - current proposal head observed: `a26b444cd64be25c34cdb46c76721da7aeb777a2`;
+  - canonical five-object flow is corrected;
   - `FULL_TEXT_AVAILABLE` remains absent from the proposed processing ladder;
   - no independent Source↔Work binding record/schema is present;
-  - current validator remains insufficient for governed literary admission.
+  - `research/README.md` still omits SHORT.
+
+- PR #33 `Consolidator: strengthen research admission validation`
+  - current head observed: `1bf5eedb9bebfc5a3c96300263bc7fdc643d1363`;
+  - proposal now performs schema-subset enforcement, cross-record referential integrity, and predicate-registry membership checks;
+  - regression tests cover schema-invalid Source rejection, dangling Assertion evidence, and unregistered predicates;
+  - current `validate-core` workflow at that head succeeded;
+  - still proposal-only and does not provide Source↔Work binding, `FULL_TEXT_AVAILABLE`, legal coverage transitions, byte custody, or source-family semantics.
 
 - PR #19 `Audit architecture bootstrap validation and projection gate`
   - Auditor finding set remains proposal state;
-  - CRITICAL findings include missing schema/referential validation, accepted reconciliation not deterministically applied, and provenance/evidence omissions from logical projection/hash;
-  - HIGH finding: semantic diff classes not implemented as governed.
+  - the original validation defect is materially reduced by PR #33 but is not accepted infrastructure yet;
+  - separate CRITICAL findings remain around deterministic application of accepted reconciliation and provenance/evidence observability in projection/hash;
+  - HIGH semantic-diff finding remains separate.
+
+- PR #38 `Audit TNG proposal batch tng-s01-b001`
+  - confirms worker-effort processing states cannot simply be imported into the ordered governed coverage ladder when `SOURCE_BOUND=false`;
+  - reinforces the distinction between performed close-reading work and legally admitted coverage tiers.
 
 - PR #32 `Director: refresh gate after accepted-main head movement`
-  - confirms PR #1 is not acceptance-ready while PR #19 findings remain open;
-  - confirms accepted tree remains README-only.
+  - confirms accepted tree remains README-only;
+  - records PR #1 as unaccepted/gated and research staging as proposal-only.
 
-Infrastructure admission condition: a corrected architecture successor must be validated/audited and then become accepted `main` state. LIT does not decide or perform that acceptance.
+Infrastructure admission condition: corrected infrastructure must be validated/audited and then become accepted `main` state. LIT does not decide or perform that acceptance.
 
 ## Librarian / source gate
 
@@ -65,20 +77,23 @@ Current collision warnings include:
 - `A Time to...` component membership ambiguity;
 - `Worlds of Star Trek: Deep Space Nine, Volume Three` container-versus-contained-work ambiguity.
 
-PR #26 / branch `architecture/librarian-bootstrap-route-001` is Director routing only. It creates no Source IDs, Work IDs, hashes, bindings, or coverage. No separate Librarian-owned registry/source-binding implementation branch or PR was found at this checkpoint.
+PR #26 / branch `architecture/librarian-bootstrap-route-001` was Director routing only and is now **closed unmerged**. It created no Source IDs, Work IDs, hashes, bindings, or coverage. Latest branch/PR searches found no separate Librarian-owned registry/source-binding implementation.
 
 ## Exhausted LIT-side searches
 
-Current File Library searches have been performed for:
+Current File Library and repository searches have been performed for:
 
 - both reported ebook ZIP names;
 - `BOOK_TEXT` literary Sources;
 - `SOURCE_BOUND` literary records;
 - canonical book Source IDs;
 - `STS-*` book Source identifiers;
-- candidate individual titles including `The Wounded Sky`, `Metamorphosis`, `Vendetta`, and `Seven of Nine`.
+- candidate individual titles including `The Wounded Sky`, `Metamorphosis`, `Vendetta`, and `Seven of Nine`;
+- Librarian/source-binding branches and PRs;
+- Source↔Work binding implementation;
+- `FULL_TEXT_AVAILABLE` / coverage-transition implementation.
 
-Results exposed governance/checkpoint/crosswalk artifacts only, not complete byte-addressable literary Sources.
+Results exposed governance/checkpoint/crosswalk artifacts and infrastructure proposals only, not complete byte-addressable literary Sources or an admitted literary binding implementation.
 
 External/crosswalk metadata is not a substitute for book text and does not satisfy the LIT deep-read gate.
 
@@ -87,13 +102,14 @@ External/crosswalk metadata is not a substitute for book text and does not satis
 Refresh immediately when any of these occurs:
 
 1. accepted `main` changes to include governed research infrastructure;
-2. a Librarian-owned Source/Work registry or source-binding proposal appears;
+2. a Librarian-owned Source/Work registry or source-binding implementation appears;
 3. readable bytes for either ebook container become exposed to the Librarian and produce byte-backed Source records;
-4. accepted `main` gains at least one LIT-assigned Work with an accepted Source↔Work binding.
+4. accepted `main` gains at least one LIT-assigned Work with an accepted Source↔Work binding;
+5. accepted coverage semantics include `FULL_TEXT_AVAILABLE` and enforce legal coverage transitions.
 
 The first deep-research batch may begin only when **both** are true:
 
-- governed research infrastructure is accepted; and
+- governed research infrastructure is accepted with sufficient literary coverage semantics; and
 - at least one literary Work is accepted with sufficient byte-backed Librarian Source binding and complete readable text.
 
 Then apply `ADMISSION_CHECKLIST.md`, select the next 1–3 eligible substantial Works, and execute complete-source research under `Source → Work → Local Entity → Evidence → Assertion`.

@@ -13,8 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Run projection regression tests
-        run: python -m unittest discover -s tools -p 'test_*projection.py' -v
+      - name: Run integrated regression tests
+        run: python -m unittest discover -s tools -p 'test_*.py' -v
       - name: Validate repository records
         run: python tools/validate.py
       - name: Build projection twice
@@ -37,12 +37,8 @@ jobs:
           python - <<'PY'
           import importlib.util
           from pathlib import Path
-
-          module_path = Path('tools/build_sqlite.py')
-          spec = importlib.util.spec_from_file_location('trek_build_sqlite_ci', module_path)
-          module = importlib.util.module_from_spec(spec)
-          spec.loader.exec_module(module)
-          assert module.query_snapshot(Path('/tmp/query-a.db')) == module.query_snapshot(Path('/tmp/query-b.db'))
+          spec=importlib.util.spec_from_file_location('sqlite_ci',Path('tools/build_sqlite.py')); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          assert m.query_snapshot(Path('/tmp/query-a.db')) == m.query_snapshot(Path('/tmp/query-b.db'))
           PY
       - name: Assert PostgreSQL bundle determinism
         run: |
@@ -56,22 +52,13 @@ jobs:
           diff -ru /tmp/graph-search-a /tmp/graph-search-b
       - name: Assert input identity sensitivity
         run: |
-          python tools/build_projection.py \
-            --out /tmp/projection-different-input \
-            --schema-version "0.1.0" \
-            --methodology-version "0.1.0" \
-            --research-head "TEST-DIFFERENT-RESEARCH-HEAD" \
-            --reconciliation-head "TEST-NO-ACCEPTED-RECONCILIATION" \
-            --compiler-commit "$GITHUB_SHA"
+          python tools/build_projection.py --out /tmp/projection-different-input --schema-version "0.1.0" --methodology-version "0.1.0" --research-head "TEST-DIFFERENT-RESEARCH-HEAD" --reconciliation-head "TEST-NO-ACCEPTED-RECONCILIATION" --compiler-commit "$GITHUB_SHA"
           python - <<'PY'
           import json
           from pathlib import Path
-
-          baseline = json.loads(Path('/tmp/projection-a/manifest.json').read_text())
-          changed = json.loads(Path('/tmp/projection-different-input/manifest.json').read_text())
-
-          assert baseline['input_hash'] != changed['input_hash'], 'input_hash must change when pinned input identity changes'
-          assert baseline['projection_hash'] == changed['projection_hash'], 'logical content hash should remain stable when output content is unchanged'
+          baseline=json.loads(Path('/tmp/projection-a/manifest.json').read_text()); changed=json.loads(Path('/tmp/projection-different-input/manifest.json').read_text())
+          assert baseline['input_hash'] != changed['input_hash']
+          assert baseline['projection_hash'] == changed['projection_hash']
           assert baseline['predicate_registry_hash'].startswith('sha256:')
           assert baseline['schema_version'] == '0.1.0'
           PY

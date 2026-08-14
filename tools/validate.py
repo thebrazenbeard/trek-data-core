@@ -22,38 +22,21 @@ SCHEMA_FILES = {
     "reconciliation_decision": "reconciliation-decision.schema.json",
 }
 ID_FIELDS = {
-    "source": "source_id",
-    "work": "work_id",
-    "local_entity": "local_entity_id",
-    "evidence": "evidence_id",
-    "assertion": "assertion_id",
-    "batch_manifest": "batch_id",
+    "source": "source_id", "work": "work_id", "local_entity": "local_entity_id",
+    "evidence": "evidence_id", "assertion": "assertion_id", "batch_manifest": "batch_id",
     "reconciliation_decision": "decision_id",
 }
 COUNT_KEYS = {
-    "sources": "source",
-    "works": "work",
-    "local_entities": "local_entity",
-    "evidence": "evidence",
-    "assertions": "assertion",
+    "sources": "source", "works": "work", "local_entities": "local_entity",
+    "evidence": "evidence", "assertions": "assertion",
     "reconciliation_decisions": "reconciliation_decision",
 }
+REQUIRED_BATCH_COUNTS = ("local_entities", "evidence", "assertions")
 RESEARCH_WORKERS = {
-    "tos": "TOS",
-    "tas": "TAS",
-    "tng": "TNG",
-    "ds9": "DS9",
-    "voyager": "VOY",
-    "enterprise": "ENT",
-    "discovery": "DIS",
-    "short-treks": "SHORT",
-    "picard": "PIC",
-    "lower-decks": "LD",
-    "prodigy": "PRO",
-    "strange-new-worlds": "SNW",
-    "starfleet-academy": "SFA",
-    "films": "FILMS",
-    "literature": "LIT",
+    "tos": "TOS", "tas": "TAS", "tng": "TNG", "ds9": "DS9", "voyager": "VOY",
+    "enterprise": "ENT", "discovery": "DIS", "short-treks": "SHORT", "picard": "PIC",
+    "lower-decks": "LD", "prodigy": "PRO", "strange-new-worlds": "SNW",
+    "starfleet-academy": "SFA", "films": "FILMS", "literature": "LIT",
 }
 
 
@@ -66,8 +49,7 @@ def sha256_canonical(value):
 
 
 def physical_path(path: Path) -> Path:
-    text = str(path)
-    match = re.match(r"^(.*\.jsonl):\d+$", text)
+    match = re.match(r"^(.*\.jsonl):\d+$", str(path))
     return Path(match.group(1)) if match else path
 
 
@@ -98,10 +80,7 @@ def iter_records():
 
 
 def load_schemas():
-    return {
-        record_type: json.loads((SCHEMA_ROOT / filename).read_text(encoding="utf-8"))
-        for record_type, filename in SCHEMA_FILES.items()
-    }
+    return {rt: json.loads((SCHEMA_ROOT / fn).read_text(encoding="utf-8")) for rt, fn in SCHEMA_FILES.items()}
 
 
 def load_predicates():
@@ -110,20 +89,13 @@ def load_predicates():
 
 
 def type_matches(value, expected):
-    if expected == "null":
-        return value is None
-    if expected == "object":
-        return isinstance(value, dict)
-    if expected == "array":
-        return isinstance(value, list)
-    if expected == "string":
-        return isinstance(value, str)
-    if expected == "boolean":
-        return isinstance(value, bool)
-    if expected == "integer":
-        return isinstance(value, int) and not isinstance(value, bool)
-    if expected == "number":
-        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    if expected == "null": return value is None
+    if expected == "object": return isinstance(value, dict)
+    if expected == "array": return isinstance(value, list)
+    if expected == "string": return isinstance(value, str)
+    if expected == "boolean": return isinstance(value, bool)
+    if expected == "integer": return isinstance(value, int) and not isinstance(value, bool)
+    if expected == "number": return isinstance(value, (int, float)) and not isinstance(value, bool)
     return True
 
 
@@ -134,7 +106,6 @@ def schema_errors(value, schema, location="$"):
         allowed = expected_type if isinstance(expected_type, list) else [expected_type]
         if not any(type_matches(value, item) for item in allowed):
             return [f"{location}: expected type {allowed}, got {type(value).__name__}"]
-
     if "const" in schema and value != schema["const"]:
         errors.append(f"{location}: expected constant {schema['const']!r}, got {value!r}")
     if "enum" in schema and value not in schema["enum"]:
@@ -169,44 +140,32 @@ def validate_references(records, index, errors):
     for path, record in records:
         rt = record.get("record_type")
         if rt == "source":
-            for source_id in record.get("derived_from", []):
-                add_missing_reference(errors, path, "derived_from", "source", source_id, index)
+            for source_id in record.get("derived_from", []): add_missing_reference(errors, path, "derived_from", "source", source_id, index)
         elif rt == "work":
-            parent = record.get("parent_work_id")
-            if parent:
-                add_missing_reference(errors, path, "parent_work_id", "work", parent, index)
+            if record.get("parent_work_id"): add_missing_reference(errors, path, "parent_work_id", "work", record["parent_work_id"], index)
         elif rt == "local_entity":
             add_missing_reference(errors, path, "work_id", "work", record.get("work_id"), index)
         elif rt == "evidence":
             add_missing_reference(errors, path, "source_id", "source", record.get("source_id"), index)
             add_missing_reference(errors, path, "work_id", "work", record.get("work_id"), index)
-            observer = record.get("observer_local_entity_id")
-            if observer:
-                add_missing_reference(errors, path, "observer_local_entity_id", "local_entity", observer, index)
+            if record.get("observer_local_entity_id"): add_missing_reference(errors, path, "observer_local_entity_id", "local_entity", record["observer_local_entity_id"], index)
         elif rt == "assertion":
-            for evidence_id in record.get("evidence", []):
-                add_missing_reference(errors, path, "evidence", "evidence", evidence_id, index)
-            supersedes = record.get("supersedes")
-            if supersedes:
-                add_missing_reference(errors, path, "supersedes", "assertion", supersedes, index)
+            for evidence_id in record.get("evidence", []): add_missing_reference(errors, path, "evidence", "evidence", evidence_id, index)
+            if record.get("supersedes"): add_missing_reference(errors, path, "supersedes", "assertion", record["supersedes"], index)
         elif rt == "reconciliation_decision":
             for evidence_id in record.get("evidence", []):
                 if evidence_id not in index.get("evidence", {}) and evidence_id not in index.get("assertion", {}):
                     errors.append(f"{path}: evidence references missing evidence/assertion {evidence_id}")
-            supersedes = record.get("supersedes")
-            if supersedes:
-                add_missing_reference(errors, path, "supersedes", "reconciliation_decision", supersedes, index)
+            if record.get("supersedes"): add_missing_reference(errors, path, "supersedes", "reconciliation_decision", record["supersedes"], index)
 
 
 def batch_records_for(manifest_path: Path, records):
     batch_root = physical_path(manifest_path).parent
     selected = []
     for path, record in records:
-        if record.get("record_type") == "batch_manifest":
-            continue
-        record_path = physical_path(path)
+        if record.get("record_type") == "batch_manifest": continue
         try:
-            record_path.relative_to(batch_root)
+            physical_path(path).relative_to(batch_root)
         except ValueError:
             continue
         selected.append(record)
@@ -221,55 +180,44 @@ def compute_batch_hash(manifest, batch_records):
 def expected_worker_for_path(path: Path):
     physical = physical_path(path)
     for root in DATA_ROOTS:
-        if root.name != "research":
-            continue
+        if root.name != "research": continue
         try:
             relative = physical.relative_to(root)
         except ValueError:
             continue
-        if relative.parts:
-            return RESEARCH_WORKERS.get(relative.parts[0])
+        if relative.parts: return RESEARCH_WORKERS.get(relative.parts[0])
     return None
 
 
 def validate_batch_integrity(records, index, errors):
-    known_source_hashes = {
-        record.get("content_hash")
-        for record in index.get("source", {}).values()
-        if record.get("content_hash")
-    }
+    known_source_hashes = {r.get("content_hash") for r in index.get("source", {}).values() if r.get("content_hash")}
     for path, manifest in records:
-        if manifest.get("record_type") != "batch_manifest":
-            continue
+        if manifest.get("record_type") != "batch_manifest": continue
         batch_records = batch_records_for(path, records)
         expected_hash = compute_batch_hash(manifest, batch_records)
         if manifest.get("batch_hash") != expected_hash:
-            errors.append(
-                f"{path}: batch_hash mismatch: declared {manifest.get('batch_hash')}, expected {expected_hash}"
-            )
+            errors.append(f"{path}: batch_hash mismatch: declared {manifest.get('batch_hash')}, expected {expected_hash}")
 
         actual_counts = {}
         for record in batch_records:
             rt = record.get("record_type")
             actual_counts[rt] = actual_counts.get(rt, 0) + 1
         declared_counts = manifest.get("record_counts", {})
+        for required_key in REQUIRED_BATCH_COUNTS:
+            if required_key not in declared_counts:
+                errors.append(f"{path}: record_counts.{required_key} is required for a governed research batch")
         for key, record_type in COUNT_KEYS.items():
             if key in declared_counts and declared_counts[key] != actual_counts.get(record_type, 0):
-                errors.append(
-                    f"{path}: record_counts.{key}={declared_counts[key]} but batch contains {actual_counts.get(record_type, 0)}"
-                )
+                errors.append(f"{path}: record_counts.{key}={declared_counts[key]} but batch contains {actual_counts.get(record_type, 0)}")
 
-        for work_id in manifest.get("works", []):
-            add_missing_reference(errors, path, "works", "work", work_id, index)
+        for work_id in manifest.get("works", []): add_missing_reference(errors, path, "works", "work", work_id, index)
         for source_hash in manifest.get("source_hashes", []):
             if source_hash not in known_source_hashes:
                 errors.append(f"{path}: source_hashes references unknown source content_hash {source_hash}")
 
         expected_worker = expected_worker_for_path(path)
         if expected_worker and manifest.get("worker_id") != expected_worker:
-            errors.append(
-                f"{path}: worker_id {manifest.get('worker_id')} does not match research partition owner {expected_worker}"
-            )
+            errors.append(f"{path}: worker_id {manifest.get('worker_id')} does not match research partition owner {expected_worker}")
 
 
 def main() -> int:
@@ -292,33 +240,24 @@ def main() -> int:
         if rt not in schemas:
             errors.append(f"{path}: unknown record_type {rt}")
             continue
-
-        for error in schema_errors(record, schemas[rt]):
-            errors.append(f"{path}: schema: {error}")
-
+        for error in schema_errors(record, schemas[rt]): errors.append(f"{path}: schema: {error}")
         id_field = ID_FIELDS.get(rt)
         if id_field:
             rid = record.get(id_field)
-            if not rid:
-                errors.append(f"{path}: {rt} missing {id_field}")
-            elif (rt, rid) in seen:
-                errors.append(f"duplicate {rt} id {rid}: {seen[(rt, rid)]} and {path}")
+            if not rid: errors.append(f"{path}: {rt} missing {id_field}")
+            elif (rt, rid) in seen: errors.append(f"duplicate {rt} id {rid}: {seen[(rt, rid)]} and {path}")
             else:
                 seen[(rt, rid)] = path
                 index[rt][rid] = record
-
         if rt == "assertion":
-            if not record.get("evidence"):
-                errors.append(f"{path}: assertion {record.get('assertion_id')} has no evidence")
+            if not record.get("evidence"): errors.append(f"{path}: assertion {record.get('assertion_id')} has no evidence")
             predicate = record.get("predicate")
-            if predicate and predicate not in predicates:
-                errors.append(f"{path}: assertion {record.get('assertion_id')} uses unregistered predicate {predicate}")
+            if predicate and predicate not in predicates: errors.append(f"{path}: assertion {record.get('assertion_id')} uses unregistered predicate {predicate}")
         if rt == "reconciliation_decision" and record.get("status") == "ACCEPTED" and not record.get("method"):
             errors.append(f"{path}: accepted reconciliation decision missing method")
 
     validate_references(records, index, errors)
     validate_batch_integrity(records, index, errors)
-
     if errors:
         print("VALIDATION FAILED")
         print("\n".join(f"- {e}" for e in errors))

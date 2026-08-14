@@ -2,8 +2,10 @@
 """Deterministic repository admission validation with no network dependencies."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +30,28 @@ ID_FIELDS = {
     "batch_manifest": "batch_id",
     "reconciliation_decision": "decision_id",
 }
+COUNT_KEYS = {
+    "sources": "source",
+    "works": "work",
+    "local_entities": "local_entity",
+    "evidence": "evidence",
+    "assertions": "assertion",
+    "reconciliation_decisions": "reconciliation_decision",
+}
+
+
+def canonical(value):
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def sha256_canonical(value):
+    return "sha256:" + hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
+
+
+def physical_path(path: Path) -> Path:
+    text = str(path)
+    match = re.match(r"^(.*\.jsonl):\d+$", text)
+    return Path(match.group(1)) if match else path
 
 
 def iter_records():
@@ -157,6 +181,60 @@ def validate_references(records, index, errors):
                 add_missing_reference(errors, path, "supersedes", "reconciliation_decision", supersedes, index)
 
 
+def batch_records_for(manifest_path: Path, records):
+    batch_root = physical_path(manifest_path).parent
+    selected = []
+    for path, record in records:
+        if record.get("record_type") == "batch_manifest":
+            continue
+        record_path = physical_path(path)
+        try:
+            record_path.relative_to(batch_root)
+        except ValueError:
+            continue
+        selected.append(record)
+    return sorted(selected, key=canonical)
+
+
+def compute_batch_hash(manifest, batch_records):
+    manifest_material = {key: value for key, value in manifest.items() if key != "batch_hash"}
+    return sha256_canonical({"manifest": manifest_material, "records": batch_records})
+
+
+def validate_batch_integrity(records, index, errors):
+    known_source_hashes = {
+        record.get("content_hash")
+        for record in index.get("source", {}).values()
+        if record.get("content_hash")
+    }
+    for path, manifest in records:
+        if manifest.get("record_type") != "batch_manifest":
+            continue
+        batch_records = batch_records_for(path, records)
+        expected_hash = compute_batch_hash(manifest, batch_records)
+        if manifest.get("batch_hash") != expected_hash:
+            errors.append(
+                f"{path}: batch_hash mismatch: declared {manifest.get('batch_hash')}, expected {expected_hash}"
+            )
+
+        actual_counts = {}
+        for record in batch_records:
+            rt = record.get("record_type")
+            actual_counts[rt] = actual_counts.get(rt, 0) + 1
+        declared_counts = manifest.get("record_counts", {})
+        for key, record_type in COUNT_KEYS.items():
+            if key in declared_counts and declared_counts[key] != actual_counts.get(record_type, 0):
+                errors.append(
+                    f"{path}: record_counts.{key}={declared_counts[key]} but batch contains {actual_counts.get(record_type, 0)}"
+                )
+
+        for work_id in manifest.get("works", []):
+            add_missing_reference(errors, path, "works", "work", work_id, index)
+        for source_hash in manifest.get("source_hashes", []):
+            if source_hash not in known_source_hashes:
+                errors.append(f"{path}: source_hashes references unknown source content_hash {source_hash}")
+
+
 def main() -> int:
     seen = {}
     index = {record_type: {} for record_type in ID_FIELDS}
@@ -202,6 +280,7 @@ def main() -> int:
             errors.append(f"{path}: accepted reconciliation decision missing method")
 
     validate_references(records, index, errors)
+    validate_batch_integrity(records, index, errors)
 
     if errors:
         print("VALIDATION FAILED")

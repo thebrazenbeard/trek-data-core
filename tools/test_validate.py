@@ -17,17 +17,13 @@ spec.loader.exec_module(validate)
 
 
 class ValidationTests(unittest.TestCase):
-    def test_schema_invalid_source_is_rejected(self):
+    def run_records(self, records):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             research = root / "research"
             research.mkdir()
             (research / "records.jsonl").write_text(
-                json.dumps({
-                    "record_type": "source",
-                    "source_id": "source-1",
-                    "source_kind": "transcript"
-                }) + "\n",
+                "".join(json.dumps(record) + "\n" for record in records),
                 encoding="utf-8",
             )
             old_roots = validate.DATA_ROOTS
@@ -38,8 +34,33 @@ class ValidationTests(unittest.TestCase):
                     rc = validate.main()
             finally:
                 validate.DATA_ROOTS = old_roots
-            self.assertEqual(rc, 1)
-            self.assertIn("locator", stdout.getvalue())
+            return rc, stdout.getvalue()
+
+    def test_schema_invalid_source_is_rejected(self):
+        rc, output = self.run_records([
+            {
+                "record_type": "source",
+                "source_id": "source-1",
+                "source_kind": "transcript"
+            }
+        ])
+        self.assertEqual(rc, 1)
+        self.assertIn("locator", output)
+
+    def test_dangling_assertion_evidence_reference_is_rejected(self):
+        rc, output = self.run_records([
+            {
+                "record_type": "assertion",
+                "assertion_id": "assertion-1",
+                "subject": "local-1",
+                "predicate": "CLAIMS",
+                "object": "x",
+                "evidence": ["evidence-missing"],
+                "status": "ACCEPTED"
+            }
+        ])
+        self.assertEqual(rc, 1)
+        self.assertIn("evidence-missing", output)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,24 @@
+## S4-05 — Remember Me
+
+**Complete source processed:** Springfield `s04e05`, complete page.
+**Metadata cross-check:** Chakoteya production 179, original airdate 22 Oct 1990.
+**Local entities:** Crusher in warp-bubble reality, external Crusher before/after bubble, Picard-bubble manifestation, Wesley-bubble manifestation, other shrinking-reality crew manifestations, external Picard, external Wesley, Traveler, Dalen Quaice, Enterprise, static warp bubble, engineering warp experiment.
+
+### Evidence
+- `tng-s04-b001-staging:e05:ev01` — **personal/experimental setup.** Crusher welcomes elderly colleague Dalen Quaice aboard while Wesley conducts a warp-field experiment nearby; a flash/anomaly occurs without Crusher initially realizing she has entered a separate reality. [plot; technology]
+- `tng-s04-b001-staging:e05:ev02` — **memory/reality discrepancy.** Quaice disappears and everyone around Crusher denies he was ever aboard; Crusher alone remembers him and begins investigating the mismatch rather than accepting immediate personal memory failure. [memory; epistemic]
+- `tng-s04-b001-staging:e05:ev03` — **progressive reality contraction.** Additional crew disappear from Crusher's experienced Enterprise while remaining occupants and the computer revise records/memories so the shrinking population appears normal within that reality. [altered reality; memory]
+- `tng-s04-b001-staging:e05:ev04` — **medical self-test/counterevidence.** Crusher repeatedly tests her own neurological/medical status and finds no ordinary impairment sufficient to explain the consistent external anomalies she observes. [medical; epistemic]
+- `tng-s04-b001-staging:e05:ev05` — **physical-law anomaly.** The experienced universe shrinks until Enterprise becomes effectively the only object/place available to Crusher, while the computer supplies internally consistent but increasingly impossible answers. [altered reality; world model]
+- `tng-s04-b001-staging:e05:ev06` — **external-world investigation.** Outside the bubble, Wesley and the real Enterprise crew know Crusher is missing, reproduce the warp experiment, and work with the Traveler to establish that she is trapped in a static warp bubble rather than physically erased from existence. [technology; counterevidence]
+- `tng-s04-b001-staging:e05:ev07` — **bubble provenance/model.** The Traveler explains that Wesley accidentally created a static warp bubble and that Crusher's thought/perception at formation influenced the reality she experienced as the bubble contracted. [testimony; causation]
+- `tng-s04-b001-staging:e05:ev08` — **manifestation distinction.** The Picard/Wesley/crew Crusher encounters in the contracting bubble disappear with that internal reality; the external Enterprise crew remain continuously present outside it and attempt to recover her. [identity; altered reality]
+- `tng-s04-b001-staging:e05:ev09` — **return action.** Wesley/Traveler reopen a threshold; Crusher recognizes the anomaly inside her shrinking universe and crosses through it back to external Enterprise. [agency; consequence]
+- `tng-s04-b001-staging:e05:ev10` — **post-return continuity.** Crusher reunites with the external crew and Quaice; her memory of the bubble experience remains while the people who vanished inside it are alive outside. [memory; identity]
+
+### Staging assertions
+- `tng-s04-b001-staging:e05:as01` **PROVISIONAL / ALTERED_REALITY_FRAME** — Crusher enters and later exits a static warp-bubble reality while remaining the same local person; the source does not depict a duplicate Crusher replacing her on return. Supports: ev01, ev06, ev09, ev10.
+- `tng-s04-b001-staging:e05:as02` **PROVISIONAL / negative scope** — Crew members who disappear inside Crusher's shrinking reality are not thereby dead or erased in the external Enterprise; external counterparts remain continuously present. Supports: ev03, ev06, ev08, ev10.
+- `tng-s04-b001-staging:e05:as03` **PROVISIONAL** — Crusher's retained memory is initially better evidence than the bubble's internally rewritten consensus because independent external investigation later corroborates that her missing-person memories correspond to people still existing outside the bubble. Supports: ev02, ev04, ev06, ev10.
+- `tng-s04-b001-staging:e05:as04` **UNRESOLVED / mechanism scope** — Wesley's static warp experiment and Crusher's mental state are both implicated in shaping the bubble reality, but this work does not establish a general theory of thought-created universes beyond this event. Supports: ev06, ev07.
+- `tng-s04-b001-staging:e05:as05` **PROVISIONAL** — Internal Picard/Wesley/crew manifestations are bubble-reality counterparts/contents and must not be silently merged with claims about the continuously external crew for events that occur only inside the bubble. Supports: ev05, ev08, ev10.

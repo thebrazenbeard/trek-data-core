@@ -17,6 +17,7 @@ spec.loader.exec_module(validate)
 
 VALID_BATCH_HASH = "sha256:40ca469fdf56fab55a88717f6f5098199ecf3951ca9ed212dc3d34dde83019e0"
 TOS_NAMED_BATCH_HASH = "sha256:ea0deec400e19e6b4fd13ace80313ad9cb62ea2e6be082bafccc63b63c2e0705"
+MISSING_ASSERTION_COUNT_HASH = "sha256:a0f537d5a0542e1f747b007c7dbd650022bf585858b036c98960dcc33d4b704d"
 
 
 class ValidationTests(unittest.TestCase):
@@ -35,13 +36,10 @@ class ValidationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             research = Path(td) / "research"
             research.mkdir()
-            (research / "records.jsonl").write_text(
-                "".join(json.dumps(record) + "\n" for record in records),
-                encoding="utf-8",
-            )
+            (research / "records.jsonl").write_text("".join(json.dumps(record) + "\n" for record in records), encoding="utf-8")
             return self.run_research_root(research)
 
-    def write_batch_fixture(self, research, batch_hash, worker_id="TNG"):
+    def write_batch_fixture(self, research, batch_hash, worker_id="TNG", record_counts=None):
         batch = research / "tng" / "batches" / "batch-1"
         batch.mkdir(parents=True)
         records = [
@@ -51,14 +49,13 @@ class ValidationTests(unittest.TestCase):
             {"record_type": "evidence", "evidence_id": "evidence-1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "depiction", "locator": {"line": 1}, "observed": {"event": "fixture"}},
             {"record_type": "assertion", "assertion_id": "assertion-1", "subject": "local-1", "predicate": "CLAIMS", "object": "x", "evidence": ["evidence-1"], "status": "ACCEPTED"}
         ]
-        (batch / "records.jsonl").write_text(
-            "".join(json.dumps(record) + "\n" for record in records), encoding="utf-8"
-        )
+        (batch / "records.jsonl").write_text("".join(json.dumps(record) + "\n" for record in records), encoding="utf-8")
+        if record_counts is None:
+            record_counts = {"sources": 1, "works": 1, "local_entities": 1, "evidence": 1, "assertions": 1}
         manifest = {
             "record_type": "batch_manifest", "batch_id": "batch-1", "schema_version": "0.1.0",
             "worker_id": worker_id, "works": ["work-1"], "source_hashes": ["sha256:source"],
-            "record_counts": {"sources": 1, "works": 1, "local_entities": 1, "evidence": 1, "assertions": 1},
-            "batch_hash": batch_hash
+            "record_counts": record_counts, "batch_hash": batch_hash
         }
         (batch / "manifest.json").write_text(json.dumps(manifest) + "\n", encoding="utf-8")
 
@@ -105,6 +102,18 @@ class ValidationTests(unittest.TestCase):
             self.assertEqual(rc, 1)
             self.assertIn("worker_id", output)
             self.assertIn("TNG", output)
+
+    def test_core_batch_count_keys_are_required(self):
+        with tempfile.TemporaryDirectory() as td:
+            research = Path(td) / "research"
+            self.write_batch_fixture(
+                research,
+                MISSING_ASSERTION_COUNT_HASH,
+                record_counts={"sources": 1, "works": 1, "local_entities": 1, "evidence": 1},
+            )
+            rc, output = self.run_research_root(research)
+            self.assertEqual(rc, 1)
+            self.assertIn("record_counts.assertions", output)
 
 
 if __name__ == "__main__":

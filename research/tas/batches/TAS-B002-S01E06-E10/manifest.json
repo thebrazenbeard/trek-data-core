@@ -1,0 +1,107 @@
+{
+  "accepted_coverage_increment": 0,
+  "accepted_main_state_at_start": "README_ONLY_NO_TAS_PARTITION",
+  "base_main_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "batch_hash": "a5868d846b1260d1c0d3522e3a52a92eb753c8fe72da5b39ea9137de4ea27a2f",
+  "batch_id": "TAS-B002-S01E06-E10",
+  "blockers": [
+    "Accepted main still has no canonical Work/Source registry or accepted predicate registry; B002 work/source IDs remain local/provisional.",
+    "Raw transcript source-byte hashes are unavailable through the current retrieval channel.",
+    "B001 remains a separate unaccepted proposal and is not treated as accepted coverage or an ancestor of B002."
+  ],
+  "branch": "research/tas/TAS-B002-S01E06-E10",
+  "compression": {
+    "algorithm": "gzip",
+    "mtime": 0,
+    "reason": "bounded deterministic Git packaging"
+  },
+  "copyright": "No full transcript text or large passages stored; evidence is paraphrased with source-specific locators.",
+  "created_at": "2026-08-14T10:28:00-04:00",
+  "global_identity_mutations": 0,
+  "next_frontier": "TAS-S01E11 The Terratin Incident",
+  "partition": "research/tas",
+  "reconciliation_mutations": 0,
+  "record_counts": {
+    "assertions": 32,
+    "coverage_episodes": 5,
+    "evidence": 38,
+    "local_entities": 41,
+    "sources": 5,
+    "works": 5
+  },
+  "record_type": "batch_manifest",
+  "repo_files": [
+    {
+      "bytes": 3069,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E06.json.gz",
+      "sha256": "5258cc7563e71d79afcfafbae227ba4b5a0c1286b88b9ba07c17e0b80c00c6ce",
+      "uncompressed_bytes": 13981,
+      "uncompressed_sha256": "1d4a3ea9e635f0142a7a6e7b38e4b6258c330b7a01f36bdac8aa6067ed4fea55",
+      "work_id": "TAS-S01E06"
+    },
+    {
+      "bytes": 2784,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E07.json.gz",
+      "sha256": "b6d2434ae7c912e0aedf97996154397ead13bdd9bd08f447890c8c9de669e5ba",
+      "uncompressed_bytes": 13037,
+      "uncompressed_sha256": "b8b605c6ab21f717ea693a82a8ce0acb9d6805ac2909f0c5ecd46f667a501201",
+      "work_id": "TAS-S01E07"
+    },
+    {
+      "bytes": 2914,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E08.json.gz",
+      "sha256": "05a7adb3e4b590a75c2a9b4d2b38bf3745602670ee84f6e4207100e7b2bf3b0f",
+      "uncompressed_bytes": 13173,
+      "uncompressed_sha256": "f0a7c716f68228e3d7d9dbe93d4a749f34353b06c60a449fd1b04bb9494a98f0",
+      "work_id": "TAS-S01E08"
+    },
+    {
+      "bytes": 2648,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E09.json.gz",
+      "sha256": "8a27a2fd0292d048b9ce3407bfca34b980378672c3c1d52a4bc21e143f7642aa",
+      "uncompressed_bytes": 12419,
+      "uncompressed_sha256": "3abc80c4a498e91308e4b2d40ac10addc3d40d4e5fa4b518043b0c89bcebf47e",
+      "work_id": "TAS-S01E09"
+    },
+    {
+      "bytes": 2808,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E10.json.gz",
+      "sha256": "9abb57690048b759728aeed89ec303f7c5e35c40e030eca53a69ce57173a91ee",
+      "uncompressed_bytes": 13502,
+      "uncompressed_sha256": "3627b13313fcfd7a0e123243bd49fe1e1bb1475ad1f32731cc2ba6bcc8887440",
+      "work_id": "TAS-S01E10"
+    }
+  ],
+  "repo_layout": "deterministic gzip-json episode envelopes plus manifest and validation",
+  "research_highlights": [
+    "Vendorian impersonation preserves partial Winston-derived memory/emotion without silently merging the Vendorian with Winston.",
+    "Spock Two remains a separately embodied clone with transferred learned content while source Spock survives.",
+    "Megan testimony, Salem history, and Lucien/Lucifer identity remain source-relative and partly unresolved.",
+    "The shore-leave planet computer is a local artificial agent whose service role becomes self-directed and then voluntarily renegotiated.",
+    "Love-crystal exposure is coded as altered-affect agency/consent evidence rather than authentic baseline preference."
+  ],
+  "schema_basis": "TREK_RESEARCH_METHOD.md + TREK_REPO_PROTOCOL.md; architecture/v0.1-bootstrap used only as unmerged format guidance",
+  "schema_version": "candidate-0.1.0",
+  "source_hash_scope": "Retrieval-receipt hashes only; raw transcript byte hashes unavailable through current extraction channel.",
+  "source_hashes": [
+    "receipt-sha256:529c67d1dff5d8c57b749f0bafa2941dd472a349f47e4d0155f86c5b54b40a3d",
+    "receipt-sha256:4f940e879db7e164dc5210cb4dec415e42f35e43ba5dba4d06aa748ab2e6801c",
+    "receipt-sha256:f2ad88936b6195751bf26da61a1bfadb4f4b76f69b14a5ed628b69a8a9fde063",
+    "receipt-sha256:a3ad9068982168d9f32612ac78aa725f8eea61409cb24d984e06d05af54610a6",
+    "receipt-sha256:a4f319a11fb4f73e725376c6c2e2de5774eb09727baf7251532a0c1947d26dac"
+  ],
+  "source_quality": "COMPLETE_DIALOGUE_TRANSCRIPT_DOWNSTREAM_NOT_OFFICIAL_SCRIPT_OR_AV_VIEWING",
+  "worker_id": "TAS_RESEARCH_AND_INDEX",
+  "works": [
+    "TAS-S01E06",
+    "TAS-S01E07",
+    "TAS-S01E08",
+    "TAS-S01E09",
+    "TAS-S01E10"
+  ]
+}

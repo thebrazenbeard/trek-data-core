@@ -1,0 +1,33 @@
+{
+  "record_type": "batch_validation",
+  "batch_id": "PIC-S01-B002",
+  "validation_scope": "PROVISIONAL_CANDIDATE_INTERNAL",
+  "checks": {
+    "local_entity_count": 76,
+    "evidence_count": 50,
+    "assertion_count": 28,
+    "local_entity_ids_unique": true,
+    "evidence_ids_unique": true,
+    "assertion_ids_unique": true,
+    "assertion_evidence_references_resolve": true,
+    "assertion_subjects_resolve_to_local_entities": true,
+    "all_assertions_proposed": true,
+    "same_as_assertion_count": 0,
+    "worker_partition_only": true,
+    "raw_copyrighted_source_bytes_committed": false,
+    "explicit_counterevidence_preserved": true,
+    "identity_ambiguity_preserved": true
+  },
+  "regression_cases": [
+    "Picard organic body -> transferred neural-image state -> golem embodiment remain separate local entities with unresolved relation",
+    "Historical Data referent -> copied memory/neural material -> quantum-reconstruction occurrence remain separate local entities with unresolved relation",
+    "Seven individual occurrence and temporary Borg collective state remain distinct",
+    "Physical Rios and five self-scan-derived hologram installs remain distinct",
+    "Jurati E06 Maddox-death account and E08 EMH counterevidence remain explicitly contradictory",
+    "Sutra survival rationale and evidence of manipulation around Saga's death remain both represented"
+  ],
+  "accepted_schema_validation": "BLOCKED_NOT_PRESENT_ON_ACCEPTED_MAIN",
+  "librarian_source_work_binding": "BLOCKED_PENDING_LIBRARIAN",
+  "overall_result": "CANDIDATE_VALIDATED_INTERNAL_BLOCKED_FROM_ACCEPTANCE",
+  "notes": "Validation proves internal referential and methodological integrity of the proposal, not acceptance or canonical source authority."
+}

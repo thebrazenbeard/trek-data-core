@@ -1,0 +1,35 @@
+{
+  "accepted_coverage_increment": 0,
+  "base_main_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "batch_id": "TAS-B005-S02E05-E06",
+  "branch": "research/tas/TAS-B005-S02E05-E06",
+  "copyright": "No transcript text stored; derived paraphrase/locators only.",
+  "created_at": "2026-08-14T10:47:00-04:00",
+  "global_identity_mutations": 0,
+  "highlights": [
+    "Creator/teacher provenance is separated from permanent authority or ownership.",
+    "Paternalistic care is distinguished from autonomy.",
+    "De-aging, knowledge state, command competence and institutional age policy are separate dimensions.",
+    "Transporter structural restoration is recorded without metaphysical identity proof.",
+    "Choosing accumulated lived history over biological youth is an attributed character decision."
+  ],
+  "next_frontier": "NO_UNPROCESSED_TAS_TRANSCRIPT_EPISODES_IN_22_EPISODE_EXTERNAL_CANDIDATE_INVENTORY",
+  "partition": "research/tas",
+  "reconciliation_mutations": 0,
+  "record_counts": {
+    "assertion": 11,
+    "evidence": 15,
+    "local_entity": 16,
+    "source": 2,
+    "work": 2,
+    "work_coverage": 2
+  },
+  "record_type": "batch_manifest",
+  "schema_version": "candidate-0.1.0",
+  "source_quality": "COMPLETE_DIALOGUE_TRANSCRIPT_DOWNSTREAM_NOT_OFFICIAL_SCRIPT_OR_AV_VIEWING",
+  "worker_id": "TAS_RESEARCH_AND_INDEX",
+  "works": [
+    "TAS-S02E05",
+    "TAS-S02E06"
+  ]
+}

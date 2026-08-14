@@ -1,0 +1,26 @@
+{
+  "all_pass": true,
+  "batch_id": "TAS-B005-S02E05-E06",
+  "checks": {
+    "copyright_raw_transcript_stored": false,
+    "cross_series_identity_merges": 0,
+    "global_identity_mutations": 0,
+    "gzip_decompression": true,
+    "json_parse": true,
+    "partition_only": true,
+    "reconciliation_mutations": 0,
+    "record_counts_match": true,
+    "referential_integrity": true,
+    "source_relative_evidence_preserved": true,
+    "unique_ids": true
+  },
+  "record_counts": {
+    "assertion": 11,
+    "evidence": 15,
+    "local_entity": 16,
+    "source": 2,
+    "work": 2,
+    "work_coverage": 2
+  },
+  "record_type": "tas_batch_validation"
+}

@@ -30,6 +30,20 @@ jobs:
           python tools/build_projection.py --out /tmp/projection-b "${COMMON_ARGS[@]}"
       - name: Assert deterministic output
         run: diff -ru /tmp/projection-a /tmp/projection-b
+      - name: Assert SQLite query determinism
+        run: |
+          python tools/build_sqlite.py /tmp/projection-a /tmp/query-a.db
+          python tools/build_sqlite.py /tmp/projection-a /tmp/query-b.db
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+
+          module_path = Path('tools/build_sqlite.py')
+          spec = importlib.util.spec_from_file_location('trek_build_sqlite_ci', module_path)
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          assert module.query_snapshot(Path('/tmp/query-a.db')) == module.query_snapshot(Path('/tmp/query-b.db'))
+          PY
       - name: Assert input identity sensitivity
         run: |
           python tools/build_projection.py \

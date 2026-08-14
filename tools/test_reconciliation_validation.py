@@ -24,32 +24,52 @@ def base_records():
     ]
 
 
+def link(decision_id, value, *, subject="local-1", supersedes=None, reason=None, evidence=None):
+    record = {
+        "record_type": "reconciliation_decision",
+        "decision_id": decision_id,
+        "decision_type": "ENTITY_LINK",
+        "subject_id": subject,
+        "value": value,
+        "status": "ACCEPTED",
+        "evidence": ["evidence-1"] if evidence is None else evidence,
+        "method": "manual reconciliation",
+    }
+    if supersedes is not None:
+        record["supersedes"] = supersedes
+    if reason is not None:
+        record["reason"] = reason
+    return record
+
+
 class ReconciliationValidationTests(unittest.TestCase):
     def run_records(self, records):
         with tempfile.TemporaryDirectory() as td:
-            root = Path(td) / "reconciliation"
-            root.mkdir()
+            root = Path(td) / "reconciliation"; root.mkdir()
             (root / "records.jsonl").write_text("".join(json.dumps(record) + "\n" for record in records), encoding="utf-8")
-            old_roots = validate.DATA_ROOTS
-            validate.DATA_ROOTS = [root]
+            old_roots = validate.DATA_ROOTS; validate.DATA_ROOTS = [root]
             try:
                 stdout = io.StringIO()
-                with contextlib.redirect_stdout(stdout):
-                    rc = validate.main()
+                with contextlib.redirect_stdout(stdout): rc = validate.main()
             finally:
                 validate.DATA_ROOTS = old_roots
             return rc, stdout.getvalue()
 
     def test_conflicting_active_entity_links_are_rejected(self):
-        records = base_records() + [
-            {"record_type": "reconciliation_decision", "decision_id": "link-1", "decision_type": "ENTITY_LINK", "subject_id": "local-1", "value": "global-a", "status": "ACCEPTED", "evidence": ["evidence-1"], "method": "manual reconciliation"},
-            {"record_type": "reconciliation_decision", "decision_id": "link-2", "decision_type": "ENTITY_LINK", "subject_id": "local-1", "value": "global-b", "status": "ACCEPTED", "evidence": ["evidence-1"], "method": "manual reconciliation"},
-        ]
-        rc, output = self.run_records(records)
+        rc, output = self.run_records(base_records() + [link("link-1", "global-a"), link("link-2", "global-b")])
         self.assertEqual(rc, 1)
         self.assertIn("multiple active", output)
         self.assertIn("ENTITY_LINK", output)
         self.assertIn("local-1", output)
+
+    def test_accepted_supersession_requires_reason(self):
+        rc, output = self.run_records(base_records() + [
+            link("link-1", "global-a"),
+            link("link-2", "global-b", supersedes="link-1"),
+        ])
+        self.assertEqual(rc, 1)
+        self.assertIn("superseding accepted decision", output)
+        self.assertIn("reason", output)
 
 
 if __name__ == "__main__":

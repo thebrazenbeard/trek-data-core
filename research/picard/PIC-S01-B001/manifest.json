@@ -1,0 +1,29 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "PIC-S01-B001",
+  "schema_version": "PROVISIONAL_COMPAT_V0.1",
+  "worker_id": "PIC",
+  "works": [
+    "PIC-PROV-S01E01",
+    "PIC-PROV-S01E02",
+    "PIC-PROV-S01E03",
+    "PIC-PROV-S01E04",
+    "PIC-PROV-S01E05"
+  ],
+  "source_hashes": [],
+  "record_counts": {
+    "local_entities": 48,
+    "evidence": 47,
+    "assertions": 20
+  },
+  "batch_hash": "bdf1abc2ed4de0d705710917edb96d24dc8dd9cfec190cadf21a5d71088247e0",
+  "batch_hash_method": "SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S01-B001 files except manifest.json",
+  "created_at": "2026-08-14T07:10:00-04:00",
+  "status": "RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect": "NONE",
+  "notes": "Five-episode Picard lane close-read candidate based on complete dialogue representations. No accepted coverage is promoted. The open architecture proposal is used only as shape guidance; source/work binding, accepted schema, primary/full-source authority, and cryptographic source hashing remain unresolved governance dependencies."
+}

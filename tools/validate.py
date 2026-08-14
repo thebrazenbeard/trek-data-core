@@ -9,6 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOTS = [ROOT / "research", ROOT / "reconciliation", ROOT / "external", ROOT / "migrations"]
 SCHEMA_ROOT = ROOT / "schema"
+PREDICATE_REGISTRY = ROOT / "registry" / "predicates.json"
 SCHEMA_FILES = {
     "source": "source.schema.json",
     "work": "work.schema.json",
@@ -60,6 +61,11 @@ def load_schemas():
         record_type: json.loads((SCHEMA_ROOT / filename).read_text(encoding="utf-8"))
         for record_type, filename in SCHEMA_FILES.items()
     }
+
+
+def load_predicates():
+    registry = json.loads(PREDICATE_REGISTRY.read_text(encoding="utf-8"))
+    return {item["name"] for item in registry.get("predicates", []) if item.get("name")}
 
 
 def type_matches(value, expected):
@@ -156,6 +162,7 @@ def main() -> int:
     index = {record_type: {} for record_type in ID_FIELDS}
     errors = []
     schemas = load_schemas()
+    predicates = load_predicates()
     try:
         records = list(iter_records())
     except ValueError as exc:
@@ -185,8 +192,12 @@ def main() -> int:
                 seen[(rt, rid)] = path
                 index[rt][rid] = record
 
-        if rt == "assertion" and not record.get("evidence"):
-            errors.append(f"{path}: assertion {record.get('assertion_id')} has no evidence")
+        if rt == "assertion":
+            if not record.get("evidence"):
+                errors.append(f"{path}: assertion {record.get('assertion_id')} has no evidence")
+            predicate = record.get("predicate")
+            if predicate and predicate not in predicates:
+                errors.append(f"{path}: assertion {record.get('assertion_id')} uses unregistered predicate {predicate}")
         if rt == "reconciliation_decision" and record.get("status") == "ACCEPTED" and not record.get("method"):
             errors.append(f"{path}: accepted reconciliation decision missing method")
 

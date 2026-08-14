@@ -44,6 +44,16 @@ jobs:
           spec.loader.exec_module(module)
           assert module.query_snapshot(Path('/tmp/query-a.db')) == module.query_snapshot(Path('/tmp/query-b.db'))
           PY
+      - name: Assert PostgreSQL bundle determinism
+        run: |
+          python tools/build_postgres.py /tmp/projection-a /tmp/postgres-a
+          python tools/build_postgres.py /tmp/projection-a /tmp/postgres-b
+          diff -ru /tmp/postgres-a /tmp/postgres-b
+      - name: Assert graph and search bundle determinism
+        run: |
+          python tools/build_graph_search.py /tmp/projection-a /tmp/graph-search-a
+          python tools/build_graph_search.py /tmp/projection-a /tmp/graph-search-b
+          diff -ru /tmp/graph-search-a /tmp/graph-search-b
       - name: Assert input identity sensitivity
         run: |
           python tools/build_projection.py \

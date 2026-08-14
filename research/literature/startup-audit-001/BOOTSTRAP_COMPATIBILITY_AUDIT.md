@@ -65,9 +65,32 @@ The binding representation should remain Librarian-owned and exist independently
 
 Current `research/README.md` includes `literature` but omits the independent `short-treks` / SHORT lane required by the role catalog. This does not directly prevent LIT reading, but it remains evidence that the proposal has not yet reached the complete governing partition contract and therefore should not be treated as accepted infrastructure.
 
-### 4. Green CI is not sufficient literary admission validation
+### 4. Current validator cannot enforce literary admission integrity
 
-The current bootstrap workflow may pass deterministic validation, but Director issue #15 records that governed admission still needs stronger checks including JSON Schema conformance, referential integrity, predicate-registry membership, batch-manifest/hash integrity, worker partition boundaries, legal coverage transitions, calibration fixtures, and complete projection provenance identity.
+Direct inspection of proposed `tools/validate.py` confirms the limitation rather than relying only on coordination commentary.
+
+The validator currently:
+
+- parses JSON/JSONL;
+- checks duplicate IDs for known record types;
+- requires assertions to contain an `evidence` field;
+- requires an accepted reconciliation decision to contain a method.
+
+It does **not** currently:
+
+- validate records against the repository JSON Schemas;
+- verify that an Evidence `source_id` actually resolves to an existing Source;
+- verify that an Evidence `work_id` actually resolves to an existing Work;
+- verify a governed Source<->Work binding because no such independent binding record exists yet;
+- validate predicates against the governed predicate registry;
+- enforce worker partition boundaries;
+- verify batch manifest/hash completeness;
+- enforce legal coverage transitions such as `SOURCE_BOUND -> FULL_TEXT_AVAILABLE -> STRUCTURALLY_INDEXED -> CLOSE_READ`;
+- distinguish proposal/legacy/discovery IDs from accepted Source/Work identity.
+
+Therefore `VALIDATION PASSED` from the current script cannot by itself establish that a literary batch is admissible under the Project method.
+
+Director issue #15 independently records the same broader requirement for stronger validation, calibration fixtures, and complete projection provenance identity.
 
 For LIT specifically, a governed batch must fail closed if Source/Work references are dangling, if a source binding is proposal-only, or if an illegal coverage jump skips `FULL_TEXT_AVAILABLE` or `CLOSE_READ` requirements.
 

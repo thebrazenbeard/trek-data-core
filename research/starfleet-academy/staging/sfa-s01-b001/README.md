@@ -9,7 +9,7 @@ This packet preserves completed full-transcript close reads while accepted `main
 ## Accepted-state pin
 
 - repository: `thebrazenbeard/trek-data-core`
-- accepted branch at start and latest refresh: `main`
+- accepted branch at latest refresh: `main`
 - accepted head observed: `d58359a207da89e812d0a0330558c66774ed1241`
 - accepted SFA Work registry observed: absent
 - accepted SFA Source registry observed: absent
@@ -51,7 +51,7 @@ Status:
 - primary audiovisual media not directly inspected;
 - provider lineage/independence unresolved;
 - no reproducible source-byte hash claimed;
-- local entity/evidence/assertion and counterevidence staging preserved in the original body of this branch history.
+- detailed work-local staging from this close read is preserved in earlier commits on this same branch and remains recoverable from branch history; the current batch summary does not pretend that historical commit content is an accepted canonical record.
 
 ### 2. Beta Test
 

@@ -1,0 +1,27 @@
+{
+  "all_pass": true,
+  "batch_id": "TAS-B001-S01E01-E05",
+  "checks": {
+    "candidate_schema_validation": true,
+    "copyright_raw_transcript_stored": false,
+    "global_identity_mutations": 0,
+    "gzip_decompression": true,
+    "json_parse": true,
+    "partition_only": true,
+    "reconciliation_mutations": 0,
+    "record_counts_match": true,
+    "referential_integrity": true,
+    "unique_ids": true,
+    "work_ids_match": true
+  },
+  "record_counts": {
+    "assertions": 25,
+    "coverage_episodes": 5,
+    "evidence": 32,
+    "local_entities": 40,
+    "sources": 5,
+    "works": 5
+  },
+  "record_type": "tas_batch_validation",
+  "schema_status": "UNMERGED_ARCHITECTURE_GUIDANCE_ONLY"
+}

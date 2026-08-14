@@ -1,0 +1,154 @@
+{
+  "accepted_coverage_increment": 0,
+  "accepted_main_state_at_start": "README_ONLY_NO_TAS_PARTITION",
+  "artifact_files": [
+    {
+      "bytes": 5179,
+      "path": "sources.jsonl",
+      "sha256": "bf119e1be0e843b992b7cf2bdbe83a29030510d8bd9181325ecbb6dfdf458ea5"
+    },
+    {
+      "bytes": 2084,
+      "path": "works.jsonl",
+      "sha256": "79ec93533ec7db5aaac6d571b0bd2dab3f636ac5b2ada2d23d7c738468086cff"
+    },
+    {
+      "bytes": 11365,
+      "path": "local_entities.jsonl",
+      "sha256": "d18c0a01f982b1cf086ec59e3c39c0ca451ed0d0200dcb70834e988e1dd6945c"
+    },
+    {
+      "bytes": 36275,
+      "path": "evidence.jsonl",
+      "sha256": "7a000edf45f45a5e3557f088565ea87cd11fb35b8c0060bb5cfb12758ea5b382"
+    },
+    {
+      "bytes": 15170,
+      "path": "assertions.jsonl",
+      "sha256": "cce0685ce11a0111bc9f9f3df9e5a7f1a33564936a9797a37583800ad5d11142"
+    },
+    {
+      "bytes": 3000,
+      "path": "coverage.json",
+      "sha256": "e1fb5644bc875f929741cd2ed987edb69da380f9f27cac406708f86dca4762eb"
+    },
+    {
+      "bytes": 127,
+      "path": "validation.json",
+      "sha256": "5df6ed5edd93e56c490c410218dd9fa637264c2a1a3f5c4c73df4f3cfcb42518"
+    },
+    {
+      "bytes": 939,
+      "path": "schema_validation.json",
+      "sha256": "800370b70ec750346664d9e031747a9a5ec2e1b6b895d9340cdd10043ceee3dd"
+    }
+  ],
+  "base_main_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "batch_hash": "80edaa3b375961334327a7286b306196929aa0ddf6420398764a976ea055997b",
+  "batch_id": "TAS-B001-S01E01-E05",
+  "blockers": [
+    "Accepted main has no canonical Work/Source registry or accepted predicate registry; source/work IDs in this batch are explicitly local/provisional pending Librarian/architecture acceptance.",
+    "Raw source-content byte hashes are unavailable through the current web extraction channel."
+  ],
+  "branch": "research/tas/TAS-B001-S01E01-E05",
+  "compression": {
+    "algorithm": "gzip",
+    "mtime": 0,
+    "reason": "bounded atomic Git batch packaging; records remain losslessly reproducible"
+  },
+  "copyright": "No complete transcript text or large passages stored; evidence is paraphrased and source locators/fingerprints are retained.",
+  "created_at": "2026-08-14T08:48:00-04:00",
+  "global_identity_mutations": 0,
+  "next_frontier": "TAS-S01E06 The Survivor",
+  "partition": "research/tas",
+  "reconciliation_mutations": 0,
+  "record_counts": {
+    "assertions": 25,
+    "coverage_episodes": 5,
+    "evidence": 32,
+    "local_entities": 40,
+    "sources": 5,
+    "works": 5
+  },
+  "record_type": "batch_manifest",
+  "repo_batch_hash": "a60c255eeb13aa24f21b13587fa84c45fc10dc061e8880c4dfaf4ec83996fa9e",
+  "repo_files": [
+    {
+      "bytes": 3475,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E01.json.gz",
+      "sha256": "bf16ef7a9845d14afb90b3865c47c9fdd22f0509dbab25f64f24976702f9ff67",
+      "uncompressed_bytes": 13975,
+      "uncompressed_sha256": "5a928b60e837cde2968e2501e903191f710ea3d8a2436d9ce9e0975d803da1a7",
+      "work_id": "TAS-S01E01"
+    },
+    {
+      "bytes": 3479,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E02.json.gz",
+      "sha256": "6df17292e389591261d73fee23aab91ea1323756dc4239761387ab6348a6dabf",
+      "uncompressed_bytes": 13972,
+      "uncompressed_sha256": "c91c8a39d2f153c04edca55d3b194b2456ce673d375c1ee09c6671bcdbca6e4b",
+      "work_id": "TAS-S01E02"
+    },
+    {
+      "bytes": 3588,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E03.json.gz",
+      "sha256": "beef9ab6f7ead53ba4d0cb7e674c6f317a07ce5f14d95a1739c3cac29f58c3ab",
+      "uncompressed_bytes": 14058,
+      "uncompressed_sha256": "9f292b4fc7bc597877c25d71391c9b85923392f096fe437028c894a340ffff8a",
+      "work_id": "TAS-S01E03"
+    },
+    {
+      "bytes": 3774,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E04.json.gz",
+      "sha256": "aa66c2dbb0201d45a5d55b39198c4ce38ed3c03bca6dca8f3a362901b835cd48",
+      "uncompressed_bytes": 15333,
+      "uncompressed_sha256": "03b1e986dcfb8c50d2e7dceb1214cf2cb5cdf0e1a3fd2813d7c71a8259b3666c",
+      "work_id": "TAS-S01E04"
+    },
+    {
+      "bytes": 3973,
+      "encoding": "gzip-json",
+      "path": "episodes/TAS-S01E05.json.gz",
+      "sha256": "cf2dae3fca7df701ab6ccc2267e218e137d0dcfa7f43264234fd906fc4b5f2a1",
+      "uncompressed_bytes": 15804,
+      "uncompressed_sha256": "af2334906d83156200c9b57bbd34a0fafa7f623da46606447a831e40f080c16a",
+      "work_id": "TAS-S01E05"
+    }
+  ],
+  "repo_layout": "deterministic gzip-json episode envelopes plus batch manifest and validation",
+  "schema_basis": "Project TREK_RESEARCH_METHOD.md + TREK_REPO_PROTOCOL.md; architecture/v0.1-bootstrap schemas used as UNMERGED format guidance only",
+  "schema_version": "candidate-0.1.0",
+  "source_hash_scope": "Retrieval-receipt hashes only. Raw transcript byte hashes unavailable in current fetch channel; source.content_hash remains null.",
+  "source_hashes": [
+    "receipt-sha256:c6fabc0ea4df5e4a3bb332adc14fe9d230206e39b02381e8e8ab806f34a134e7",
+    "receipt-sha256:56aaa734652b6ff80b4fb185e5c0a32e14a138c544cb7c80999347d4cc46d4bb",
+    "receipt-sha256:90fc459debdd1c589aec84ca0ae54b81d99a8c2fc1f0457e754cc309351488d8",
+    "receipt-sha256:085de04fac6d07863abc29003e130bc974931747e1d87f2de1d2504bc1c36d01",
+    "receipt-sha256:d1af8c26859c2198a3d5a76ccc4b37c628ae73aa034cf22a1c6b1eb881d917d5"
+  ],
+  "source_quality": "FULL_TRANSCRIPT_DOWNSTREAM_NOT_OFFICIAL_SCRIPT_OR_AV_VIEWING",
+  "validation": {
+    "all_pass": true,
+    "candidate_schema_validation": "PASS",
+    "extra_partition_identity_invariants": "PASS",
+    "json_parse": true,
+    "referential_checks": [
+      true,
+      true,
+      true
+    ],
+    "unique_ids": true
+  },
+  "worker_id": "TAS_RESEARCH_AND_INDEX",
+  "works": [
+    "TAS-S01E01",
+    "TAS-S01E02",
+    "TAS-S01E03",
+    "TAS-S01E04",
+    "TAS-S01E05"
+  ]
+}

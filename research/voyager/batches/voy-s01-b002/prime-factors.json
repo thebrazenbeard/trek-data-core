@@ -1,0 +1,30 @@
+{
+  "record_type":"working_episode_research",
+  "batch_id":"voy-s01-b002",
+  "provisional_work_ref":"voy-prime-factors",
+  "provisional_source_ref":"ss-voy-s01e10",
+  "source_class":"complete_transcript_secondary_rendering",
+  "projection_eligible":false,
+  "local_entities":[
+    {"id":"voy-prime:janeway","label":"Kathryn Janeway","kind":"person"},{"id":"voy-prime:tuvok","label":"Tuvok","kind":"person"},{"id":"voy-prime:torres","label":"B'Elanna Torres","kind":"person"},{"id":"voy-prime:seska","label":"Seska","kind":"person"},{"id":"voy-prime:kim","label":"Harry Kim","kind":"person"},{"id":"voy-prime:gath","label":"Gathorel Labin","kind":"person"},{"id":"voy-prime:otel","label":"Jaret Otel","kind":"person"},{"id":"voy-prime:sikarians","label":"Sikarian polity","kind":"institution_collective"},{"id":"voy-prime:trajector","label":"Sikarian spatial trajector","kind":"technology"},{"id":"voy-prime:matrix","label":"Trajector matrix acquired by Voyager crew","kind":"technology_component"}
+  ],
+  "evidence":[
+    {"id":"voy-b002-pf01","kind":"testimony","lines":"13-150","frame":"TECHNOLOGY_DEMONSTRATION_AND_TESTIMONY","status":"DIRECT","summary":"Sikarians demonstrate a spatial trajector capable of transporting people tens of thousands of light-years."},
+    {"id":"voy-b002-pf02","kind":"testimony","lines":"120-235","frame":"LEGAL_INSTITUTIONAL_TESTIMONY","status":"DIRECT","observer":"voy-prime:gath","summary":"Gath states that Sikarian law prohibits sharing the trajector technology with outsiders.","counterevidence":"This is a stated legal rule, not independent evidence about every Sikarian's compliance."},
+    {"id":"voy-b002-pf03","kind":"testimony","lines":"180-300","frame":"COMMAND_DELIBERATION","status":"DIRECT","observer":"voy-prime:janeway","summary":"Janeway recognizes the symmetry between Sikarian restrictions and Federation non-transfer principles and pursues authorized negotiation rather than covert acquisition."},
+    {"id":"voy-b002-pf04","kind":"testimony","lines":"245-340","frame":"SECRET_OFFER","status":"DIRECT","observer":"voy-prime:otel","summary":"Otel privately offers a trajector matrix in exchange for Federation literature despite the public prohibition; Kim reports the offer instead of secretly accepting it."},
+    {"id":"voy-b002-pf05","kind":"depiction","lines":"310-430","frame":"COVERT_ACQUISITION","status":"DIRECT","summary":"After formal negotiations fail, Torres and Seska pursue the covert exchange; Tuvok intervenes and personally completes the trade."},
+    {"id":"voy-b002-pf06","kind":"sensor_report","lines":"430-503","frame":"ENGINEERING_FAILURE","status":"DIRECT","summary":"The acquired matrix produces antineutrino effects incompatible with Voyager's systems and nearly causes a warp-core breach."},
+    {"id":"voy-b002-pf07","kind":"depiction","lines":"503-532","frame":"ACCOUNTABILITY","status":"DIRECT","summary":"Torres rejects a cover-up and accepts responsibility; Tuvok then identifies himself as the senior officer who actually made the exchange."},
+    {"id":"voy-b002-pf08","kind":"testimony","lines":"533-560","frame":"ETHICAL_RATIONALE","status":"DIRECT","observer":"voy-prime:tuvok","summary":"Tuvok says he chose to act because Janeway's standards prevented her from violating Sikarian law despite her goal of getting the crew home."},
+    {"id":"voy-b002-pf09","kind":"testimony","lines":"541-560","frame":"COMMAND_REBUKE","status":"DIRECT","observer":"voy-prime:janeway","summary":"Janeway rejects Tuvok's unilateral substitution of judgment, says she depends on him as counsel, and requires him to bring such logic to her rather than act behind her back."}
+  ],
+  "assertions":[
+    {"id":"voy-b002-a15","subject":"voy-prime:sikarians","predicate":"STATES_LAW_PROHIBITING_TECHNOLOGY_TRANSFER","object":"voy-prime:trajector","evidence":["voy-b002-pf02"],"status":"PROPOSED","projection_status":"STABLE","scope":{"claim_type":"institutional_rule_as_stated"}},
+    {"id":"voy-b002-a16","subject":"voy-prime:tuvok","predicate":"COVERTLY_ACQUIRES_RESTRICTED_TECHNOLOGY","object":"voy-prime:matrix","evidence":["voy-b002-pf04","voy-b002-pf05","voy-b002-pf07"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b002-a17","subject":"voy-prime:matrix","predicate":"INCOMPATIBLE_WITH_VOYAGER_SYSTEMS_IN_ATTEMPTED_USE","object":"Voyager propulsion/power systems","evidence":["voy-b002-pf06"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b002-a18","subject":"voy-prime:tuvok","predicate":"TESTIFIES_ACTED_TO_SPARE_COMMANDER_ETHICAL_VIOLATION","object":"voy-prime:janeway","evidence":["voy-b002-pf08"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["Janeway explicitly rejects his authority to make that sacrifice on her behalf."]},
+    {"id":"voy-b002-a19","subject":"voy-prime:janeway","predicate":"REJECTS_UNILATERAL_ETHICAL_SUBSTITUTION_BY_SUBORDINATE","object":"voy-prime:tuvok","evidence":["voy-b002-pf09"],"status":"PROPOSED","projection_status":"STABLE"}
+  ],
+  "neutral_coding":{"plot_problem":"A society possesses near-return technology but bars transfer, producing conflict between getting home and respecting another polity's restrictions.","institutions_rules":"Federation restraint and Sikarian legal restraint are explicitly compared rather than coding one as mere obstruction.","agency_ethics":"Tuvok makes a deliberate unauthorized choice; Janeway distinguishes valuing his motive from accepting his authority to act for her.","counterevidence":"The matrix is actually obtained but proves unusable and dangerous; moral conflict remains even though the technological shortcut fails."}
+}

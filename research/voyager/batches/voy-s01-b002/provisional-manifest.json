@@ -1,0 +1,20 @@
+{
+  "record_type":"provisional_batch_manifest",
+  "batch_id":"voy-s01-b002",
+  "worker_id":"VOY",
+  "partition":"research/voyager",
+  "base_main_commit":"d58359a207da89e812d0a0330558c66774ed1241",
+  "schema_status":"NO_ACCEPTED_SCHEMA_ON_MAIN",
+  "projection_eligible":false,
+  "accepted_coverage_advanced":false,
+  "status":"WORKING_EXTRACTION_COMPLETE_BINDING_BLOCKED",
+  "works":["voy-eye-of-the-needle","voy-ex-post-facto","voy-emanations","voy-prime-factors","voy-state-of-flux"],
+  "sources":["ss-voy-s01e07","ss-voy-s01e08","fd-voy-emanations-94249","ss-voy-s01e10","fd-voy-state-of-flux-94251"],
+  "source_class":"complete_transcript_secondary_rendering",
+  "source_hashes":[],
+  "record_counts":{"sources_read_complete":5,"working_local_entities":47,"working_evidence":47,"working_assertions":25},
+  "content_blobs":{"README.md":"1352b26da692f2be475fc3bfb881fef6fd035c75","source-read-log.jsonl":"4b0544e65deb4fdd72ce0023ec15adfbc14ac01b","eye-of-the-needle.json":"9ccc6fbb96c8ecc978c345e644e5d9bc6ceedb54","ex-post-facto.json":"bc1c61b0ca60aa2a28299983b0edb74c599dd6d0","emanations.json":"57a9cd746a3e688bce17cb2f37ff90bb843986b9","prime-factors.json":"003a4d67ba325f8bad0b965df00744b7ac860f3d","state-of-flux.json":"acf45732e19ae0c0ed47cb4d366a6396886ec22b"},
+  "created_at":null,
+  "blockers":["ACCEPTED_WORK_IDS_MISSING","ACCEPTED_SOURCE_IDS_AND_HASHES_MISSING","ACCEPTED_SCHEMA_AND_PREDICATE_REGISTRY_MISSING"],
+  "notes":"Full available transcript text was processed for each source representation. Source hashes are intentionally absent rather than fabricated. Complete transcript renderings are secondary source representations and are not mislabeled as authoritative audiovisual or teleplay editions. Final manifest conversion and coverage promotion wait on Librarian binding and accepted governance."
+}

@@ -1,0 +1,31 @@
+{
+  "record_type":"working_episode_research",
+  "batch_id":"voy-s01-b002",
+  "provisional_work_ref":"voy-emanations",
+  "provisional_source_ref":"fd-voy-emanations-94249",
+  "source_class":"complete_transcript_secondary_rendering",
+  "projection_eligible":false,
+  "local_entities":[
+    {"id":"voy-eman:kim","label":"Harry Kim","kind":"person"},{"id":"voy-eman:janeway","label":"Kathryn Janeway","kind":"person"},{"id":"voy-eman:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program"},{"id":"voy-eman:ptera","label":"Ptera","kind":"person"},{"id":"voy-eman:hatil","label":"Hatil","kind":"person"},{"id":"voy-eman:vhnori","label":"Vhnori community","kind":"collective"},{"id":"voy-eman:cenotaph","label":"Vhnori cenotaph system","kind":"technology_institution"},{"id":"voy-eman:vacuole","label":"Subspace vacuole / spectral rupture","kind":"phenomenon"},{"id":"voy-eman:neural_energy","label":"Observed neural-energy emissions","kind":"measured_phenomenon"}
+  ],
+  "evidence":[
+    {"id":"voy-b002-m01","kind":"depiction","lines":"39-250","frame":"DIRECT_DEPICTION","status":"DIRECT","summary":"An away team finds numerous recently deceased bodies in an asteroid and debates scientific study against respect for local funerary practice."},
+    {"id":"voy-b002-m02","kind":"depiction","lines":"250-410","frame":"SUBSPACE_DISPLACEMENT","status":"DIRECT","summary":"A vacuole event transfers Kim away and brings Ptera's recently deceased body to Voyager."},
+    {"id":"voy-b002-m03","kind":"depiction","lines":"410-610","frame":"MEDICAL_REVIVAL","status":"DIRECT","summary":"The Doctor removes a brain tumor and revives Ptera after the crew had received her as a dead body.","counterevidence":"Medical revival does not settle philosophical continuity or afterlife questions."},
+    {"id":"voy-b002-m04","kind":"testimony","lines":"430-760","frame":"CULTURAL_RELIGIOUS_TESTIMONY","status":"DIRECT","observer":"voy-eman:ptera","summary":"Ptera describes Vhnori belief that the spectral rupture carries the dead to a Next Emanation.","counterevidence":"This establishes Vhnori belief and Ptera's expectation, not objective proof of an afterlife."},
+    {"id":"voy-b002-m05","kind":"depiction","lines":"525-818","frame":"CENOTAPH_RITUAL","status":"DIRECT","summary":"Kim observes that cenotaph transfer intentionally ends biological life immediately before the rupture."},
+    {"id":"voy-b002-m06","kind":"testimony","lines":"650-930","frame":"END_OF_LIFE_DELIBERATION","status":"DIRECT","observer":"voy-eman:hatil","summary":"Hatil expresses fear and ambivalence about proceeding with transfer while family and cultural expectations frame his disability as a burden."},
+    {"id":"voy-b002-m07","kind":"depiction","lines":"820-1080","frame":"RISKED_TRANSFER_AND_REVIVAL","status":"DIRECT","summary":"Kim uses Hatil's scheduled ritual transfer as a route back, undergoes biological death, and is revived aboard Voyager.","counterevidence":"The sequence shows death/revival as depicted medical events but does not independently settle continuity of consciousness."},
+    {"id":"voy-b002-m08","kind":"sensor_report","lines":"1030-1260","frame":"SENSOR_ANALYSIS","status":"DIRECT","summary":"Voyager detects neural-energy emissions associated with transferred bodies joining a broader electromagnetic field."},
+    {"id":"voy-b002-m09","kind":"testimony","lines":"1240-1336","frame":"EPISTEMIC_REFLECTION","status":"DIRECT","observer":"voy-eman:janeway","summary":"Janeway explicitly declines certainty that the observed energy constitutes an afterlife or higher existence.","counterevidence":"The sensor finding permits hypotheses but not an identity claim between the measured energy and surviving persons."}
+  ],
+  "assertions":[
+    {"id":"voy-b002-a09","subject":"voy-eman:vhnori","predicate":"HOLDS_BELIEF_ABOUT_POST_DEATH_CONTINUATION","object":"Next Emanation","evidence":["voy-b002-m04","voy-b002-m05"],"status":"PROPOSED","projection_status":"STABLE","scope":{"claim_type":"cultural_belief"}},
+    {"id":"voy-b002-a10","subject":"voy-eman:ptera","predicate":"BIOLOGICALLY_REVIVED_AFTER_RECORDED_DEATH_STATE","object":"voy-eman:ptera","evidence":["voy-b002-m02","voy-b002-m03"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"continuity_dimension":"biological_event_only"},"counterevidence":["No metaphysical sameness or persistence claim is inferred from successful revival."]},
+    {"id":"voy-b002-a11","subject":"voy-eman:kim","predicate":"BIOLOGICALLY_REVIVED_AFTER_TRANSFER_DEATH","object":"voy-eman:kim","evidence":["voy-b002-m07"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"continuity_dimension":"biological_event_only"}},
+    {"id":"voy-b002-a12","subject":"voy-eman:neural_energy","predicate":"ASSOCIATED_WITH_TRANSFERRED_DECEASED_BODIES","object":"ambient electromagnetic field","evidence":["voy-b002-m08"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["Association does not establish retained personhood, memory, consciousness, or identity."]},
+    {"id":"voy-b002-a13","subject":"voy-eman:neural_energy","predicate":"AFTERLIFE_INTERPRETATION","object":"UNKNOWN","evidence":["voy-b002-m04","voy-b002-m08","voy-b002-m09"],"status":"PROPOSED","projection_status":"UNRESOLVED"},
+    {"id":"voy-b002-a14","subject":"voy-eman:hatil","predicate":"EXPRESSES_AMBIVALENCE_ABOUT_END_OF_LIFE_TRANSFER","object":"cenotaph ritual","evidence":["voy-b002-m06"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["The source also depicts strong cultural and family expectations favoring the transfer."]}
+  ],
+  "neutral_coding":{"plot_problem":"Kim is displaced into a culture whose death ritual uses the same phenomenon that may return him to Voyager.","epistemics":"Cultural testimony, biological death/revival, sensor evidence, and afterlife interpretation remain separate layers.","identity_continuity":"Revival is recorded without deciding whether consciousness or metaphysical identity survived interruption.","counterevidence":"The measured neural energy supports a physical phenomenon but Janeway explicitly preserves uncertainty about what, if anything, persists after death."}
+}

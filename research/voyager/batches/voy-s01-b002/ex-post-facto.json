@@ -1,0 +1,28 @@
+{
+  "record_type":"working_episode_research",
+  "batch_id":"voy-s01-b002",
+  "provisional_work_ref":"voy-ex-post-facto",
+  "provisional_source_ref":"ss-voy-s01e08",
+  "source_class":"complete_transcript_secondary_rendering",
+  "projection_eligible":false,
+  "local_entities":[
+    {"id":"voy-expost:paris","label":"Tom Paris","kind":"person"},{"id":"voy-expost:tuvok","label":"Tuvok","kind":"person"},{"id":"voy-expost:janeway","label":"Kathryn Janeway","kind":"person"},{"id":"voy-expost:ren","label":"Tolen Ren","kind":"person"},{"id":"voy-expost:lidell","label":"Lidell Ren","kind":"person"},{"id":"voy-expost:doctor_banean","label":"Banean physician involved in memory implantation","kind":"person"},{"id":"voy-expost:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program"},{"id":"voy-expost:neeka","label":"Neeka","kind":"animal"},{"id":"voy-expost:implanted_engrams","label":"Implanted Tolen Ren memory engrams","kind":"memory_artifact","notes":"Derived memory record whose integrity is contested and later shown altered."}
+  ],
+  "evidence":[
+    {"id":"voy-b002-x01","kind":"testimony","lines":"20-152","frame":"LEGAL_TESTIMONY","status":"DIRECT","observer":"voy-expost:paris","summary":"Paris denies murdering Tolen Ren and reports a gap between his last ordinary recollection and the implanted punishment experience."},
+    {"id":"voy-b002-x02","kind":"memory","lines":"80-215","frame":"IMPLANTED_MEMORY_REPLAY","status":"CONTESTED","summary":"Paris repeatedly experiences an implanted first-person memory attributed to the victim in which Paris appears as the killer.","counterevidence":"The memory is later shown to have been altered, so the depicted murder is not coded as objective history."},
+    {"id":"voy-b002-x03","kind":"testimony","lines":"120-250","frame":"LEGAL_INSTITUTIONAL_CLAIM","status":"DIRECT","summary":"Banean authorities present the victim's implanted engrams as decisive evidence and use recurring replay as punishment.","counterevidence":"The episode later demonstrates that the engram record can be manipulated."},
+    {"id":"voy-b002-x04","kind":"depiction","lines":"220-345","frame":"MIND_MELD_WITH_IMPLANTED_MEMORY","status":"DIRECT","summary":"Tuvok mind-melds with Paris while the implanted memory recurs and observes inconsistencies in the remembered scene."},
+    {"id":"voy-b002-x05","kind":"sensor_report","lines":"300-395","frame":"FORENSIC_ANALYSIS","status":"DIRECT","summary":"Tuvok identifies alterations in the engram image and encoded technical information tied to Ren's weapons research."},
+    {"id":"voy-b002-x06","kind":"depiction","lines":"375-475","frame":"INVESTIGATIVE_RECONSTRUCTION","status":"DIRECT","summary":"Tuvok reconstructs a conspiracy in which altered engrams falsely implicate Paris while carrying stolen research data."},
+    {"id":"voy-b002-x07","kind":"depiction","lines":"440-520","frame":"CORROBORATING_BEHAVIOR","status":"DIRECT","summary":"Additional behavior and reactions, including Neeka's familiarity response, support Tuvok's identification of the conspirators rather than Paris as Ren's killer."},
+    {"id":"voy-b002-x08","kind":"testimony","lines":"20-90,500-532","frame":"PROGRAM_SELF_REPORT","status":"DIRECT","observer":"voy-expost:doctor","summary":"The Doctor discusses naming and later acknowledges he had not previously considered himself as having a life.","counterevidence":"The utterance records changing self-concept; it does not by itself establish metaphysical personhood."}
+  ],
+  "assertions":[
+    {"id":"voy-b002-a05","subject":"voy-expost:implanted_engrams","predicate":"MEMORY_RECORD_TAMPERED_WITH","object":{"false_subject_image":"voy-expost:paris","embedded_data":"Tolen Ren weapons research"},"evidence":["voy-b002-x02","voy-b002-x04","voy-b002-x05","voy-b002-x06"],"status":"PROPOSED","projection_status":"STABLE","counterevidence":["The Banean legal system initially treats the engram as incontrovertible."]},
+    {"id":"voy-b002-a06","subject":"voy-expost:paris","predicate":"FALSELY_IDENTIFIED_BY_TAMPERED_MEMORY_RECORD","object":"killer of Tolen Ren","evidence":["voy-b002-x01","voy-b002-x05","voy-b002-x06","voy-b002-x07"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b002-a07","subject":"voy-expost:implanted_engrams","predicate":"DERIVED_FROM_MEMORY_OF","object":"voy-expost:ren","evidence":["voy-b002-x02","voy-b002-x03"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"continuity_dimension":"memory_content"},"counterevidence":["The source establishes derivation plus tampering, so identity with an unmodified memory state is not asserted."]},
+    {"id":"voy-b002-a08","subject":"voy-expost:doctor","predicate":"EXPRESSES_CHANGING_SELF_CONCEPT","object":"having a life / choosing a name","evidence":["voy-b002-x08"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"identity_dimension":"self_concept"}}
+  ],
+  "neutral_coding":{"plot_problem":"Paris is convicted through a memory-based punishment system whose central evidentiary artifact has been manipulated.","epistemics":"Official certainty, subjective replay, forensic analysis, and investigative reconstruction are kept separate.","identity_memory":"The implanted engram is a derived and altered memory artifact, not automatically the victim's unmodified perspective or objective history.","counterevidence":"The system's initial trust in engrams is preserved as an institutional position even after this instance is discredited."}
+}

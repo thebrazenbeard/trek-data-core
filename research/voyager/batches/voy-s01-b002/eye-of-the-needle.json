@@ -1,0 +1,29 @@
+{
+  "record_type":"working_episode_research",
+  "batch_id":"voy-s01-b002",
+  "provisional_work_ref":"voy-eye-of-the-needle",
+  "provisional_source_ref":"ss-voy-s01e07",
+  "source_class":"complete_transcript_secondary_rendering",
+  "projection_eligible":false,
+  "local_entities":[
+    {"id":"voy-eye:janeway","label":"Kathryn Janeway","kind":"person"},{"id":"voy-eye:tuvok","label":"Tuvok","kind":"person"},{"id":"voy-eye:kim","label":"Harry Kim","kind":"person"},{"id":"voy-eye:torres","label":"B'Elanna Torres","kind":"person"},{"id":"voy-eye:kes","label":"Kes","kind":"person"},{"id":"voy-eye:doctor","label":"Emergency Medical Hologram","kind":"holographic_person_program","notes":"Self-concept and institutional treatment are recorded without a metaphysical personhood ruling."},{"id":"voy-eye:rmor","label":"Telek R'Mor","kind":"person","notes":"Contacted at an earlier temporal position; no duplicate identity is created."},{"id":"voy-eye:voyager","label":"USS Voyager","kind":"vessel"},{"id":"voy-eye:wormhole","label":"Micro-wormhole","kind":"temporal_spatial_phenomenon"}
+  ],
+  "evidence":[
+    {"id":"voy-b002-e01","kind":"sensor_report","lines":"19-132","frame":"SENSOR_ANALYSIS","status":"DIRECT","summary":"Voyager detects a microscopic decaying wormhole and successfully sends a probe into it."},
+    {"id":"voy-b002-e02","kind":"sensor_report","lines":"120-252","frame":"REMOTE_CONTACT","status":"DIRECT","summary":"The probe enables communication with an Alpha Quadrant contact later identified as Romulan Telek R'Mor."},
+    {"id":"voy-b002-e03","kind":"testimony","lines":"152-280","frame":"PROGRAM_SELF_REPORT","status":"DIRECT","observer":"voy-eye:doctor","summary":"The Doctor reports frustration with being left activated without autonomous deactivation and with being treated as an emergency tool.","counterevidence":"This establishes expressed operational and social concerns, not a global metaphysical personhood result."},
+    {"id":"voy-b002-e04","kind":"depiction","lines":"235-346","frame":"INSTITUTIONAL_DECISION","status":"DIRECT","summary":"After Kes challenges the crew's treatment of the Doctor, Janeway treats him as a crew member and authorizes work toward self-deactivation control."},
+    {"id":"voy-b002-e05","kind":"sensor_report","lines":"318-411","frame":"TEMPORAL_ANALYSIS","status":"DIRECT","summary":"Tuvok and Torres determine that the two ends of the wormhole are temporally offset: Voyager is in 2371 while R'Mor is in 2351."},
+    {"id":"voy-b002-e06","kind":"testimony","lines":"378-456","frame":"COMMAND_DELIBERATION","status":"DIRECT","observer":"voy-eye:janeway","summary":"Janeway declines using the wormhole to send the crew physically into 2351 because doing so would contaminate the intervening timeline."},
+    {"id":"voy-b002-e07","kind":"testimony","lines":"420-488","frame":"REMOTE_TESTIMONY","status":"DIRECT","observer":"voy-eye:rmor","summary":"R'Mor agrees to preserve Voyager crew messages for delivery roughly twenty years later."},
+    {"id":"voy-b002-e08","kind":"document","lines":"485-552","frame":"DATABASE_REPORT","status":"DIRECT","observer":"voy-eye:tuvok","summary":"Tuvok reports from databank records that R'Mor died in 2367, before the intended relay date.","counterevidence":"The record does not establish whether R'Mor left instructions or transferred the messages before his death."},
+    {"id":"voy-b002-e09","kind":"testimony","lines":"520-572","frame":"PROGRAM_SELF_CONCEPT","status":"DIRECT","observer":"voy-eye:doctor","summary":"The Doctor continues considering a personal name and a role beyond emergency activation.","counterevidence":"Self-description and naming interest are evidence about self-concept, not proof of any broader ontology."}
+  ],
+  "assertions":[
+    {"id":"voy-b002-a01","subject":"voy-eye:wormhole","predicate":"LINKS_TEMPORALLY_OFFSET_ENDPOINTS","object":{"voyager_side":"2371","rmor_side":"2351"},"evidence":["voy-b002-e05"],"status":"PROPOSED","projection_status":"STABLE","scope":{"work":"voy-eye-of-the-needle"}},
+    {"id":"voy-b002-a02","subject":"voy-eye:janeway","predicate":"DECLINES_TEMPORAL_RETURN_DUE_TO_TIMELINE_CONTAMINATION_RISK","object":"crew transfer through wormhole into 2351","evidence":["voy-b002-e05","voy-b002-e06"],"status":"PROPOSED","projection_status":"STABLE"},
+    {"id":"voy-b002-a03","subject":"voy-eye:doctor","predicate":"RECEIVES_INSTITUTIONAL_CREW_RECOGNITION","object":"Voyager crew role","evidence":["voy-b002-e03","voy-b002-e04"],"status":"PROPOSED","projection_status":"UNRESOLVED","scope":{"identity_dimension":"social_institutional"},"counterevidence":["Institutional recognition does not settle metaphysical, legal, or biological personhood."]},
+    {"id":"voy-b002-a04","subject":"voy-eye:rmor","predicate":"MESSAGE_RELAY_OUTCOME","object":"UNKNOWN","evidence":["voy-b002-e07","voy-b002-e08"],"status":"PROPOSED","projection_status":"UNRESOLVED","counterevidence":["R'Mor dies before the intended date, but the source leaves open prior delegation or other arrangements."]}
+  ],
+  "neutral_coding":{"plot_problem":"A tiny wormhole offers possible Alpha Quadrant contact but turns out to connect different times.","epistemics":"The initial return-home opportunity is revised after temporal analysis; the fate of the message relay remains unresolved.","identity_self_concept":"The Doctor's treatment and self-concept are coded on social and operational dimensions only.","counterevidence":"R'Mor's death weakens but does not disprove eventual message delivery; temporal contact does not create a second R'Mor entity."}
+}

@@ -18,7 +18,7 @@ def write_jsonl(root, filename, rows):
     (root / filename).write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
 
 
-def write_projection(root, conflicting_evidence=False):
+def write_projection(root, conflicting_evidence=False, domain_relation=False):
     (root / "manifest.json").write_text(json.dumps({
         "record_type": "projection_manifest",
         "projection_version": "0.1.0",
@@ -42,7 +42,9 @@ def write_projection(root, conflicting_evidence=False):
         {"record_type": "assertion", "assertion_id": "a2", "subject": "local-1", "predicate": "CLAIMS", "object": {"text": "paradox fixture"}, "projection_status": "STRUCTURAL_PARADOX"},
     ])
     write_jsonl(root, "unresolved.jsonl", [])
-    write_jsonl(root, "relations.jsonl", [])
+    write_jsonl(root, "relations.jsonl", [
+        {"relation_id": "r1", "source": "local-1", "predicate": "CLAIMS", "target": "unknown-shape"}
+    ] if domain_relation else [])
     provenance = [
         {"provenance_id": "a1::e1", "assertion_id": "a1", "evidence_id": "e1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "dialogue", "source_content_hash": "sha256:source-a", "work_title": "Fixture Work"},
         {"provenance_id": "a2::e1", "assertion_id": "a2", "evidence_id": "e1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "dialogue", "source_content_hash": "sha256:source-a" if not conflicting_evidence else "sha256:source-b", "work_title": "Fixture Work"},
@@ -101,6 +103,13 @@ class GraphSearchProjectionTests(unittest.TestCase):
     def test_conflicting_structural_metadata_fails_closed(self):
         with tempfile.TemporaryDirectory() as td:
             projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection, conflicting_evidence=True)
+            out = Path(td) / "out"
+            with self.assertRaises(ValueError):
+                graph_search.build_bundle(projection, out)
+
+    def test_nonempty_domain_relations_fail_closed_until_schema_is_governed(self):
+        with tempfile.TemporaryDirectory() as td:
+            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection, domain_relation=True)
             out = Path(td) / "out"
             with self.assertRaises(ValueError):
                 graph_search.build_bundle(projection, out)

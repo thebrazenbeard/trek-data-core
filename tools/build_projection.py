@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PREDICATE_REGISTRY = ROOT / "registry" / "predicates.json"
 DATA_ROOTS = (ROOT / "research", ROOT / "external", ROOT / "migrations")
 PROJECTION_STATUSES = {"STABLE", "CONTESTED", "UNRESOLVED", "STRUCTURAL_PARADOX"}
+APPLIED_DECISION_TYPES = {"ENTITY_LINK", "ASSERTION_STATUS", "SCOPE_RESOLUTION"}
 
 
 def canonical(obj):
@@ -71,6 +72,8 @@ def decision_index(decisions):
     indexed = {}
     for decision in active_accepted_decisions(decisions):
         decision_type = decision.get("decision_type")
+        if decision_type not in APPLIED_DECISION_TYPES:
+            continue
         subject_id = decision.get("subject_id")
         key = (decision_type, subject_id)
         if key in indexed:

@@ -17,6 +17,7 @@ Checks performed:
 - no global identity or reconciliation record was created;
 - no complete copyrighted transcript text was committed;
 - `Kids These Days` transcript body was read end-to-end before its staging records were generated;
+- the original detailed `Kids These Days` staging packet remains recoverable from branch history even though the live README is now a two-work batch summary;
 - `Beta Test` transcript body was read end-to-end through its final scene before its staging records were generated;
 - `Beta Test` official discovery metadata was cross-checked against the current Paramount+ listing without treating that listing as the accepted Work registry;
 - evidence remains source-relative and distinguishes character testimony, institutional statements, computer reports, interpreter-drone output, historical claims, joking/banter, and depiction;

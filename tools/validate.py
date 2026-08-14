@@ -38,6 +38,23 @@ COUNT_KEYS = {
     "assertions": "assertion",
     "reconciliation_decisions": "reconciliation_decision",
 }
+RESEARCH_WORKERS = {
+    "tos": "TOS",
+    "tas": "TAS",
+    "tng": "TNG",
+    "ds9": "DS9",
+    "voyager": "VOY",
+    "enterprise": "ENT",
+    "discovery": "DIS",
+    "short-treks": "SHORT",
+    "picard": "PIC",
+    "lower-decks": "LD",
+    "prodigy": "PRO",
+    "strange-new-worlds": "SNW",
+    "starfleet-academy": "SFA",
+    "films": "FILMS",
+    "literature": "LIT",
+}
 
 
 def canonical(value):
@@ -201,6 +218,20 @@ def compute_batch_hash(manifest, batch_records):
     return sha256_canonical({"manifest": manifest_material, "records": batch_records})
 
 
+def expected_worker_for_path(path: Path):
+    physical = physical_path(path)
+    for root in DATA_ROOTS:
+        if root.name != "research":
+            continue
+        try:
+            relative = physical.relative_to(root)
+        except ValueError:
+            continue
+        if relative.parts:
+            return RESEARCH_WORKERS.get(relative.parts[0])
+    return None
+
+
 def validate_batch_integrity(records, index, errors):
     known_source_hashes = {
         record.get("content_hash")
@@ -233,6 +264,12 @@ def validate_batch_integrity(records, index, errors):
         for source_hash in manifest.get("source_hashes", []):
             if source_hash not in known_source_hashes:
                 errors.append(f"{path}: source_hashes references unknown source content_hash {source_hash}")
+
+        expected_worker = expected_worker_for_path(path)
+        if expected_worker and manifest.get("worker_id") != expected_worker:
+            errors.append(
+                f"{path}: worker_id {manifest.get('worker_id')} does not match research partition owner {expected_worker}"
+            )
 
 
 def main() -> int:

@@ -1,0 +1,25 @@
+{
+  "record_type": "source_binding_dependencies",
+  "batch_id": "PIC-S02-B004",
+  "lane": "PIC",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "candidates": [
+    {"work_id":"PIC-PROV-S02E06","source_id":"PIC-PROV-SRC-S02E06","representation_kind":"third_party_full_dialogue_or_subtitle_representation","authority":"UNBOUND_CANDIDATE","provenance_family":"UNKNOWN_OR_UNRESOLVED","cryptographic_source_hash":"UNAVAILABLE_RAW_BYTES_NOT_INGESTED"},
+    {"work_id":"PIC-PROV-S02E07","source_id":"PIC-PROV-SRC-S02E07","representation_kind":"third_party_full_dialogue_or_subtitle_representation","authority":"UNBOUND_CANDIDATE","provenance_family":"UNKNOWN_OR_UNRESOLVED","cryptographic_source_hash":"UNAVAILABLE_RAW_BYTES_NOT_INGESTED"},
+    {"work_id":"PIC-PROV-S02E08","source_id":"PIC-PROV-SRC-S02E08","representation_kind":"third_party_full_dialogue_or_subtitle_representation","authority":"UNBOUND_CANDIDATE","provenance_family":"UNKNOWN_OR_UNRESOLVED","cryptographic_source_hash":"UNAVAILABLE_RAW_BYTES_NOT_INGESTED"},
+    {"work_id":"PIC-PROV-S02E09","source_id":"PIC-PROV-SRC-S02E09","representation_kind":"third_party_full_dialogue_or_subtitle_representation","authority":"UNBOUND_CANDIDATE","provenance_family":"UNKNOWN_OR_UNRESOLVED","cryptographic_source_hash":"UNAVAILABLE_RAW_BYTES_NOT_INGESTED"},
+    {"work_id":"PIC-PROV-S02E10","source_id":"PIC-PROV-SRC-S02E10","representation_kind":"third_party_full_dialogue_or_subtitle_representation","authority":"UNBOUND_CANDIDATE","provenance_family":"UNKNOWN_OR_UNRESOLVED","cryptographic_source_hash":"UNAVAILABLE_RAW_BYTES_NOT_INGESTED"}
+  ],
+  "official_metadata_refs": [
+    {"work_id":"PIC-PROV-S02E10","source_role":"metadata_only","authority":"official_paramount_metadata","note":"Used only for episode metadata, not dialogue evidence."}
+  ],
+  "promotion_blockers": [
+    "Accepted main contains no Picard Source/Work registry.",
+    "Accepted main contains no accepted research schemas/predicate registry.",
+    "Candidate representations are not yet Librarian-bound primary/full sources.",
+    "Raw source bytes are not retained, so cryptographic source hashes are unavailable.",
+    "Provenance independence among third-party transcript/subtitle families remains unresolved."
+  ],
+  "notes": "This file records dependencies rather than asserting source authority. Full-text representations were actually processed, but SOURCE_BOUND/FULL_TEXT_AVAILABLE acceptance requires Librarian binding."
+}

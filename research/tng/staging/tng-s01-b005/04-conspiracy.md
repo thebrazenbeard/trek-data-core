@@ -1,0 +1,24 @@
+## 24 — Conspiracy
+
+**Complete source processed:** Springfield! Springfield! `s01e25`, lines 13–559.
+**Metadata cross-check:** Chakoteya production 125, original airdate 9 May 1988.
+**Local entities:** Picard, Riker, Data, Crusher, Worf, Troi, La Forge, Walker Keel, Tryla Scott, Rixx, Quinn, Remmick, Savar, Aaron, parasite in Quinn, parasite network, mother creature in Remmick, Enterprise, Horatio, Starfleet Command.
+
+### Evidence
+- `tng-s01-b005-staging:e25:ev01` — **secure testimony, ordinary frame, lines 55–80.** Keel uses emergency Code 47, requests a secret face-to-face meeting, and warns Picard of an undefined Starfleet threat while explicitly lacking an explanation over subspace. [testimony; institutions]
+- `tng-s01-b005-staging:e25:ev02` — **identity challenge/testimony, ordinary frame, lines 122–180.** Keel's group verifies Picard through personal-history questions and reports changing command personnel, irrational orders, unexplained deaths, and memory failures; Picard says the claims remain too vague for belief. [identity; epistemic]
+- `tng-s01-b005-staging:e25:ev03` — **log/depiction, ordinary frame, lines 186–250.** Picard initially keeps the matter compartmented; after the Horatio is found destroyed, he upgrades his own assessment from skepticism to serious suspicion while still acknowledging lack of proof. [epistemic revision]
+- `tng-s01-b005-staging:e25:ev04` — **record analysis, ordinary frame, lines 265–284.** Data finds subtle command-personnel reshuffling and high-level contact patterns consistent with clandestine territorial control, while stating available data cannot identify who is responsible. [records; inference]
+- `tng-s01-b005-staging:e25:ev05` — **interpersonal recognition, ordinary frame, lines 337–383.** Quinn retracts his earlier warning and appears behaviorally different; Picard concludes the person is not acting like the Quinn he knew, but physical identity remains unresolved at that point. [identity; epistemic]
+- `tng-s01-b005-staging:e25:ev06` — **medical/depiction, ordinary frame, lines 400–488.** Quinn exhibits extraordinary strength; retinal scans identify his body as Quinn's, and Crusher discovers a parasite controlling brain function, stimulating strength, and resisting stun. [medical; identity]
+- `tng-s01-b005-staging:e25:ev07` — **parasite testimony, ordinary frame, lines 494–533.** Infiltrated Starfleet officials describe a slow covert campaign, intend to acquire Enterprise through Picard/Riker, and characterize the relationship as parasite intellect using humanoid bodies. [testimony; institutions]
+- `tng-s01-b005-staging:e25:ev08` — **deception frame + action, ordinary frame, final sequence.** Riker's apparent blue gill is later identified as a Crusher-created simulation used to infiltrate the parasite gathering; it is not evidence that Riker was truly infected. [deception; medical]
+- `tng-s01-b005-staging:e25:ev09` — **medical/log, lines 542–552.** After the central parasite organism is destroyed, Quinn recovers with no parasite trace; Picard's log infers the parasites could not survive independently of the mother creature occupying Remmick. [medical; causal inference]
+- `tng-s01-b005-staging:e25:ev10` — **computer analysis, lines 554–559.** Data traces Remmick's outgoing message toward an unexplored galactic sector and identifies it as a homing beacon, leaving its recipient and future consequence unresolved. [records; unresolved thread]
+
+### Staging assertions
+- `tng-s01-b005-staging:e25:as01` **PROVISIONAL** — This episode supplies strong local corroboration for the previously stated Starfleet-subversion warning, moving the local evidentiary situation beyond the unresolved suspicion seen in `Coming of Age`; accepted cross-work promotion remains outside this staging worker. Supports: ev01, ev02, ev04, ev06, ev07.
+- `tng-s01-b005-staging:e25:as02` **PROVISIONAL** — Parasite possession is depicted as control of the host's existing body, not replacement by a visually copied body: retinal identity remains Quinn's while an internal organism controls brain function. Supports: ev05, ev06.
+- `tng-s01-b005-staging:e25:as03` **PROVISIONAL / counterevidence** — Riker's blue-gill appearance is a deliberate medical deception and must not be used as evidence that he became parasite-controlled. Supports: ev08.
+- `tng-s01-b005-staging:e25:as04` **PROVISIONAL** — The conspiracy is materially real within the episode, but parasite statements about race, origin, and intentions remain testimony except where corroborated by infiltration behavior and medical evidence. Supports: ev06, ev07, ev09.
+- `tng-s01-b005-staging:e25:as05` **UNRESOLVED** — The homing beacon establishes an outbound signal but not who receives it, whether more organisms exist, or what later events follow. Supports: ev10.

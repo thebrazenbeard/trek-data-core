@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import copy
+import importlib.util
+from pathlib import Path
+import unittest
+
+MODULE_PATH = Path(__file__).with_name("build_projection.py")
+spec = importlib.util.spec_from_file_location("trek_build_projection", MODULE_PATH)
+projection = importlib.util.module_from_spec(spec)
+assert spec.loader is not None
+spec.loader.exec_module(projection)
+
+
+def fixture_records(source_hash="sha256:source-a", projection_status="STABLE"):
+    assertion = {
+        "record_type": "assertion",
+        "assertion_id": "assertion-1",
+        "subject": "local-1",
+        "predicate": "CLAIMS",
+        "object": {"value": "fixture"},
+        "evidence": ["evidence-1"],
+        "status": "ACCEPTED",
+    }
+    if projection_status is not None:
+        assertion["projection_status"] = projection_status
+    return [
+        {
+            "record_type": "source",
+            "source_id": "source-1",
+            "source_kind": "transcript",
+            "locator": "fixture://source-1",
+            "content_hash": source_hash,
+        },
+        {
+            "record_type": "work",
+            "work_id": "work-1",
+            "title": "Fixture Work",
+            "medium": "test",
+        },
+        {
+            "record_type": "local_entity",
+            "local_entity_id": "local-1",
+            "work_id": "work-1",
+            "label": "Fixture Entity",
+        },
+        {
+            "record_type": "evidence",
+            "evidence_id": "evidence-1",
+            "source_id": "source-1",
+            "work_id": "work-1",
+            "evidence_kind": "depiction",
+            "locator": {"line": 1},
+            "observed": {"event": "fixture"},
+        },
+        assertion,
+    ]
+
+
+def accepted_link(decision_id, value, supersedes=None):
+    decision = {
+        "record_type": "reconciliation_decision",
+        "decision_id": decision_id,
+        "decision_type": "ENTITY_LINK",
+        "subject_id": "local-1",
+        "value": value,
+        "status": "ACCEPTED",
+        "evidence": ["evidence-1"],
+        "method": "fixture",
+    }
+    if supersedes:
+        decision["supersedes"] = supersedes
+        decision["reason"] = "fixture correction"
+    return decision
+
+
+class LogicalProjectionTests(unittest.TestCase):
+    def test_provenance_carries_source_hash_and_changes_with_source(self):
+        first = projection.build_logical_projection(fixture_records("sha256:source-a"), [])
+        second = projection.build_logical_projection(fixture_records("sha256:source-b"), [])
+        self.assertEqual(first["provenance"][0]["source_content_hash"], "sha256:source-a")
+        self.assertNotEqual(
+            projection.canonical(first["provenance"]),
+            projection.canonical(second["provenance"]),
+        )
+
+    def test_entity_link_is_applied_without_mutating_worker_subject(self):
+        result = projection.build_logical_projection(
+            fixture_records(),
+            [accepted_link("link-1", "global:fixture")],
+        )
+        entity = result["entities"][0]
+        fact = result["facts"][0]
+        self.assertEqual(entity["local_entity_id"], "local-1")
+        self.assertEqual(entity["resolved_entity"], "global:fixture")
+        self.assertEqual(entity["reconciliation_decision_id"], "link-1")
+        self.assertEqual(fact["subject"], "local-1")
+        self.assertEqual(fact["resolved_subject"], "global:fixture")
+
+    def test_missing_projection_status_fails_closed_to_unresolved(self):
+        result = projection.build_logical_projection(fixture_records(projection_status=None), [])
+        self.assertEqual(result["facts"], [])
+        self.assertEqual(len(result["unresolved"]), 1)
+        self.assertEqual(result["unresolved"][0]["projection_status"], "UNRESOLVED")
+        self.assertEqual(result["unresolved"][0]["projection_reason"], "MISSING_PROJECTION_STATUS")
+
+    def test_superseded_entity_link_is_not_applied(self):
+        decisions = [
+            accepted_link("link-1", "global:old"),
+            accepted_link("link-2", "global:new", supersedes="link-1"),
+        ]
+        result = projection.build_logical_projection(fixture_records(), decisions)
+        self.assertEqual(result["entities"][0]["resolved_entity"], "global:new")
+        self.assertEqual(result["entities"][0]["reconciliation_decision_id"], "link-2")
+
+
+if __name__ == "__main__":
+    unittest.main()

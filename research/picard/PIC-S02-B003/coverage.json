@@ -1,0 +1,19 @@
+{
+  "accepted_base_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "accepted_coverage_effect": "NONE",
+  "accepted_picard_episode_count_after": 0,
+  "accepted_picard_episode_count_before": 0,
+  "batch_id": "PIC-S02-B003",
+  "candidate_episodes": [
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S02E01","title":"The Star Gazer","work_id":"PIC-PROV-S02E01"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S02E02","title":"Penance","work_id":"PIC-PROV-S02E02"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S02E03","title":"Assimilation","work_id":"PIC-PROV-S02E03"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S02E04","title":"Watcher","work_id":"PIC-PROV-S02E04"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S02E05","title":"Fly Me to the Moon","work_id":"PIC-PROV-S02E05"}
+  ],
+  "candidate_frontier": "S02E05",
+  "lane": "PIC",
+  "notes": "Candidate processing states describe work actually performed in this proposal only; they do not alter accepted coverage or inherit acceptance from prior proposal batches.",
+  "promotion_blockers": ["Accepted main contains no Picard Source/Work registry.","Accepted main contains no accepted research schemas/predicate registry.","Candidate representations are not yet Librarian-bound primary/full sources.","Source-variant cryptographic hashes and provenance lineage are not yet bound."],
+  "record_type": "coverage_update"
+}

@@ -1,0 +1,36 @@
+{
+  "accepted_schema_validation":"BLOCKED_NOT_PRESENT_ON_ACCEPTED_MAIN",
+  "batch_id":"PIC-S02-B003",
+  "checks":{
+    "all_assertions_proposed":true,
+    "all_evidence_source_ids_are_batch_provisional_sources":true,
+    "all_evidence_work_ids_are_batch_works":true,
+    "assertion_count":33,
+    "assertion_evidence_references_resolve":true,
+    "assertion_ids_unique":true,
+    "assertion_subjects_resolve_to_local_entities":true,
+    "evidence_count":52,
+    "evidence_ids_unique":true,
+    "explicit_counterevidence_preserved":true,
+    "identity_ambiguity_preserved":true,
+    "local_entity_count":70,
+    "local_entity_ids_unique":true,
+    "raw_copyrighted_source_bytes_committed":false,
+    "same_as_assertion_count":0,
+    "worker_partition_only":true
+  },
+  "librarian_source_work_binding":"BLOCKED_PENDING_LIBRARIAN",
+  "notes":"Validation establishes internal referential/methodological integrity of the proposal only. It does not establish source authority, canonical identity, or accepted coverage.",
+  "overall_result":"CANDIDATE_VALIDATED_INTERNAL_BLOCKED_FROM_ACCEPTANCE",
+  "record_type":"batch_validation",
+  "regression_cases":[
+    "Baseline Picard occurrence and Confederation-role Picard remain separate local entities; Q's synthetic-body statement stays testimony rather than global body fact.",
+    "Seven and President Annika remain separate local occurrences; changed Borg-marker/body history does not produce an automatic global identity merge.",
+    "The Confederation Borg Queen, 2024 physical Queen, Jurati-Queen neural-link state, and later Queen mental presence remain distinct local occurrences/states.",
+    "Jurati's neural-link/mental entwinement with the Queen is represented as contested agency/identity boundary rather than a binary merger.",
+    "Watcher temporary host body and Tallinn remain distinct; Tallinn/Laris resemblance is evidence of resemblance only, not SAME_AS.",
+    "Elnor's depicted death and the possibility of temporal restoration remain separate propositions, with restoration explicitly unresolved.",
+    "Renée Picard's Europa mission as the temporal hinge remains a participant hypothesis with incomplete causal mechanism."
+  ],
+  "validation_scope":"PROVISIONAL_CANDIDATE_INTERNAL"
+}

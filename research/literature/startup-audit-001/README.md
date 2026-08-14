@@ -4,116 +4,86 @@
 
 Star Trek Literary Corpus Research & Index (`LIT`) lane only.
 
-This record captures the accepted-state startup audit while the repository has no accepted Librarian-owned Source/Work registry assigning licensed literary works to this lane. It does **not** advance literary research coverage and contains no semantic book research.
+This record captures the accepted-state startup audit while the repository has no accepted Librarian-owned literary Source/Work registry and no admitted LIT frontier. It does **not** advance literary research coverage and contains no semantic book research.
 
 ## Accepted-state pin
 
 - accepted base: `main`
-- accepted head observed: `694cb833ac5197f45276089d45dc2d4e0b16f556`
-- accepted tree observed: `2cbf2d9d3f4911e63941e509a76ffc2205b75200`
-- accepted files observed: `README.md` only
+- accepted head observed: `007641c57933dda222489fff56555f6968ff2a53`
+- accepted tree observed: `eb662d3dab7b47c26162a041bd315499be9385b0`
+- accepted files observed: `README.md` and one-byte file `x`
 - accepted LIT Work records observed: 0
 - accepted LIT Source records observed: 0
 - accepted LIT Source↔Work bindings observed: 0
 - accepted LIT research batches observed: 0
 
-The accepted head advanced through an accidental sentinel-file change and its revert. The accepted tree is unchanged from the earlier skeletal state, so that head movement creates **no literary registry, source-binding, infrastructure, or coverage effect**.
+The current accepted `x` file contains only the literal character `x`. It adds no governance, schema, registry, source binding, coverage mechanism, or corpus research. It is therefore accepted repository content but has no observed LIT/corpus effect.
 
-These are repository-state counts only. They are not a claim that the licensed Star Trek literary corpus contains zero works.
+These counts describe repository state only, not the real-world licensed Star Trek literary corpus.
 
-## Admission requirement
+## Literary admission requirement
 
-LIT deep-reading begins only after the Librarian has sufficiently source-bound a literary work. File presence alone is not a Work record and must not be used to infer one work per archive member.
+LIT deep-reading begins only after the Librarian has sufficiently source-bound a literary Work and the accepted infrastructure can represent the batch honestly.
 
-The eventual literary registry must preserve distinctions relevant to admission and provenance, including where applicable:
+The eventual literary registry must preserve editions/release variants, omnibuses/anthologies versus contained works, multipart works, duplicate formats and derivative conversions, LIT/TXT/OPF lineage, alternate naming, series/subseries placement, and continuity/canon scope where applicable.
 
-- editions and release variants;
-- omnibuses and anthologies versus contained works;
-- multipart works;
-- duplicate formats and derivative conversions;
-- LIT/TXT/OPF lineage relationships;
-- alternate naming;
-- series/subseries placement;
-- continuity/canon scope.
+## Current Librarian/source evidence
 
-## Current Librarian dependency evidence
+Current Librarian artifacts remain migration/proposal evidence rather than accepted `main` state.
 
-Current Librarian handoff artifacts remain proposal/migration evidence rather than accepted `trek-data-core/main` state, but they narrow the blocker materially.
+They report:
 
-`ST_LIBRARIAN_COLLISION_RECOVERY_QUEUE_V1` reports:
-
-- the two candidate containers `Star_Trek_OPF_Converted(1).zip` and `ST ebooks(1).zip` are reported but not byte-exposed to the Librarian;
+- candidate containers `Star_Trek_OPF_Converted(1).zip` and `ST ebooks(1).zip` are not byte-exposed to the Librarian;
 - neither container is byte-verified, hashed, or assigned a Source ID;
-- the promotion rule is `NO_STS_OR_BOOK_TEXT_PROMOTION_BEFORE_READABLE_BYTES_AND_HASH`;
-- a legacy 14-work abstract literary inventory is recoverable only as migration evidence and must not be promoted directly to accepted Work IDs;
-- historical collision evidence includes 84 high-confidence LIT↔TXT candidates, 121 title-overlap groups, and 41 suspicious short LIT-derived conversions, with exact memberships still unresolved;
-- named source-quality/container edge cases include `Ghost Ship`, `Millennium`, `A Time to...`, and `Worlds of Star Trek: Deep Space Nine, Volume Three`.
+- canonical book Sources remain 0;
+- source-bound literary Works remain 0;
+- preferred literary Sources remain 0;
+- reading-ledger effect remains none;
+- a legacy 14-Work abstract literary inventory is recoverable only as migration/convergence evidence, not accepted Work identity;
+- unresolved historical collision classes include 84 high-confidence LIT↔TXT candidates, 121 title-overlap groups, and 41 suspicious short LIT-derived conversions;
+- named source/container edge cases include `Ghost Ship`, `Millennium`, `A Time to...`, and `Worlds of Star Trek: Deep Space Nine, Volume Three`.
 
-`ST_LIBRARIAN_EXTERNAL_CROSSWALK_TRANCHE_001` adds external candidate metadata for six legacy work candidates, but explicitly creates zero accepted Work IDs, zero accepted Source IDs, and zero accepted crosswalks. Those rows therefore cannot be used by LIT to select a deep-reading batch.
+External candidate metadata/crosswalk work does not substitute for book bytes and created no accepted literary Source or Work identity.
 
-The convergence checkpoint likewise records 14 abstract literary Works but zero canonical book Sources, zero preferred Sources, zero source-bound Works, and no reading-ledger effect. This is consistent with the current repository gate rather than evidence of hidden completed book research.
+Exhaustive LIT-side File Library searches for both ZIP names, `BOOK_TEXT`, `SOURCE_BOUND`, canonical book Source IDs, `STS-*`, and representative legacy candidate titles found no complete byte-addressable literary Source.
 
-File Library searches for both ebook ZIP names, `BOOK_TEXT`, `SOURCE_BOUND`, canonical book Source IDs, `STS-*`, and candidate individual titles found no admitted complete literary Source.
+## Infrastructure state
 
-## Infrastructure dependency
+PR #1 (`architecture/v0.1-bootstrap`) remains unaccepted at observed head `a26b444cd64be25c34cdb46c76721da7aeb777a2`.
 
-LIT also requires accepted governed research infrastructure before a formal batch can be admitted.
+LIT-relevant unresolved proposal gaps include:
 
-Current PR #1 (`architecture/v0.1-bootstrap`) head observed: `a26b444cd64be25c34cdb46c76721da7aeb777a2`.
+- `FULL_TEXT_AVAILABLE` absent from the proposed processing ladder;
+- no independent Librarian Source↔Work binding schema/registry;
+- incomplete partition declaration (`SHORT` omitted);
+- no accepted governed coverage-transition mechanism.
 
-Useful compatible pieces exist, including the restored five-object flow, independent Source and Work schemas, and provenance fields. Remaining LIT-critical gaps include:
+PR #33 (`architecture/admission-validation-v0.1`) has materially improved deterministic validation. At observed head `ec25f6525255fe019b4a51652d353eeb6ecd4844`, it checks schema conformance within the repository subset, cross-record references, predicates, batch hashes, record counts, manifest Work references, and manifest source hashes. Its current regression tests and `validate-core` workflow pass.
 
-- `FULL_TEXT_AVAILABLE` still absent from the proposed processing-depth ladder;
-- no explicit Librarian-owned Source↔Work binding record/schema;
-- incomplete research-partition declaration (`SHORT` remains omitted);
-- no governed legal coverage-transition enforcement.
+That progress remains proposal-only and does not itself supply literary Source↔Work binding, full-text availability semantics, legal coverage transitions, byte custody, source-family reconciliation, or closure of Auditor PR #19's separate reconciliation/provenance/diff findings.
 
-PR #33 (`architecture/admission-validation-v0.1`) materially improves the earlier validator. At head `1bf5eedb9bebfc5a3c96300263bc7fdc643d1363`, direct inspection shows schema-subset enforcement, cross-record referential checks, and predicate-registry membership checks, with CI success. This **reduces** the validation blocker.
+Auditor PR #38 further confirms that worker-effort processing states cannot simply be promoted into the ordered governed coverage ladder when `SOURCE_BOUND=false`.
 
-PR #33 remains proposal state and does not supply Source↔Work binding, `FULL_TEXT_AVAILABLE`, coverage-transition semantics, byte custody, source completeness, or source-family/container correctness. It also does not by itself close Auditor PR #19's separate deterministic reconciliation, provenance-projection, and semantic-diff findings.
+## Director queue control
 
-Auditor PR #38 adds a relevant coverage constraint: proposal worker effort may record downstream processing while `SOURCE_BOUND=false`, but that vector cannot be imported unchanged into the governed ordered coverage ladder. For LIT, close-reading effort and accepted coverage therefore remain deliberately distinct.
+Director issue #23 is open and pauses new episode/book close-read tranches while the admission bottleneck remains unresolved. It explicitly records LIT as correctly stopped at the missing accepted Work/Source registry and directs workers with no admitted frontier to remain at startup/blocker state.
 
-PR #26 (`architecture/librarian-bootstrap-route-001`) was Director routing only and was closed **without merge**. It created no Source IDs, Work IDs, hashes, bindings, or coverage. No separate Librarian-owned Source/Work implementation branch or PR was found in the latest scan.
+Issue #14 remains the Librarian Source/Work dependency-clearing queue. Its latest Director refresh reports no Librarian/source-binding implementation branch or PR. The recommended first tranche is to define the binding shape and validate a small hard-case fixture set, including literary derivative/container distinctions, before broad binding expansion.
 
-## Blocker
+PR #26 was Director routing only and is closed without merge. It created no Source IDs, Work IDs, hashes, bindings, or coverage.
 
-The dependency sequence is now precise:
+## Current blocker
 
-**accepted infrastructure + byte custody → Librarian source-family reconciliation/binding → accepted literary Source/Work admission → LIT deep-reading → legal coverage transitions**.
+The dependency sequence remains:
 
-Accepted `main` currently contains no Source registry, Work registry, literary source bindings, accepted research infrastructure, or accepted literary coverage ledger. Selecting a title from memory, archive filenames, external metadata, legacy Work IDs, or an unaccepted proposal would cross the Librarian-owned registry boundary and risk collapsing editions, containers, derivatives, or contained stories into false Work identities.
+**accepted governance/schema/coverage infrastructure + byte custody → Librarian source-family reconciliation/binding → accepted literary Source/Work admission → full readable source availability → LIT deep-reading → legal coverage advancement**.
 
-## Required upstream sequence before LIT admission
-
-The Librarian's current first-byte queue requires, in order:
-
-1. obtain readable bytes for an ebook container and hash the container;
-2. enumerate and hash physical archive members;
-3. classify original/primary candidates, derivative conversions, metadata/sidecars, containers, and unresolved members;
-4. detect byte-identical and normalized-content duplicate candidates without collapsing physical-source identity;
-5. construct provenance families and `derived_from` chains across LIT/TXT/OPF/HTML or other representations;
-6. run readability/completeness checks, including body/spine and beginning/end integrity;
-7. propose byte-backed Source records;
-8. propose Source-to-Work mappings only after source-family reconciliation, preserving container/contained-work distinctions;
-9. admit stable Source/Work binding through the accepted repository process.
-
-In parallel, governed infrastructure must be corrected, validated, audited, and accepted before formal research admission.
-
-Only after both independent gates pass may LIT select the next 1–3 substantial works for deep research.
+Selecting a title from memory, filenames, external metadata, legacy Work IDs, or proposal ordering would violate the current queue and Librarian ownership boundary.
 
 ## Validation constraints
 
-This startup audit intentionally creates no:
-
-- canonical Source or Work IDs;
-- local literary entities;
-- evidence records;
-- assertion records;
-- continuity reconciliation;
-- coverage advancement;
-- copyrighted source text.
+This startup/readiness branch intentionally creates no canonical Source or Work IDs, local literary entities, evidence, assertions, continuity reconciliation, coverage advancement, or copyrighted source text.
 
 ## Resume condition
 
-When accepted `main` contains both accepted governed research infrastructure and Librarian-accepted literary Work records with sufficient source binding and complete readable text, refresh the accepted LIT inventory, select the next 1–3 eligible substantial works, and begin the first bounded deep-research batch using the common Source → Work → Local Entity → Evidence → Assertion method while advancing only legally supported coverage tiers.
+Recalculate from accepted `main` only after issue #23's minimum resume conditions are actually met: accepted governance/method, accepted usable schema/predicate contract, Librarian-owned Work/Source inventory and binding for the next LIT Works, and a governed coverage/admission mechanism sufficient to represent the batch honestly. Then select the next 1–3 eligible substantial Works and begin complete-source research under Source → Work → Local Entity → Evidence → Assertion.

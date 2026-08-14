@@ -1,2 +1,2 @@
 # trek-data-core
-A universal index &amp; guide of the universe that is Star Trek
+Mr. Data's Core Index & Guide to the Star Trek Universe

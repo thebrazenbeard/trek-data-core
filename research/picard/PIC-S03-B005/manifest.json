@@ -1,0 +1,19 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "PIC-S03-B005",
+  "schema_version": "PROVISIONAL_COMPAT_V0.1",
+  "worker_id": "PIC",
+  "works": ["PIC-PROV-S03E01","PIC-PROV-S03E02","PIC-PROV-S03E03","PIC-PROV-S03E04","PIC-PROV-S03E05"],
+  "source_hashes": [],
+  "record_counts": {"local_entities":76,"evidence":50,"assertions":36},
+  "batch_hash": "c2adc841700d4794a64abf91c2241a580f9d1f25492d4a720e0226871a914971",
+  "batch_hash_method": "SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S03-B005 files except manifest.json",
+  "created_at": "2026-08-17T18:07:00-04:00",
+  "status": "RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect": "NONE",
+  "notes": "Five-episode Picard S03E01-S03E05 close-read candidate. Jack kinship remains source-relative pending reconciliation; Vadic's body-state claims remain testimony; Changeling forms remain local occurrences; Jack's voices remain altered-perception evidence; Ro's reappearance and intelligence claims are not globally resolved. No accepted coverage is promoted."
+}

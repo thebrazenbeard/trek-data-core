@@ -58,7 +58,7 @@ def validate_decision(d,predicates,scope_keys,indexes):
  if t=='ENTITY_LINK':
   if st!='LOCAL_ENTITY' or set(p)!={'relation_predicate','target_type','target_id'} or p.get('target_type')!='LOCAL_ENTITY':raise ValueError('invalid ENTITY_LINK payload/domain')
   pred=predicates.get(p.get('relation_predicate'))
-  if not pred or pred.get('semantic_class')!='IDENTITY_RELATION' or pred.get('status')!='ACCEPTED':raise ValueError(f"ENTITY_LINK predicate {p.get('relation_predicate')} is not accepted identity semantics")
+  if not pred or 'RECONCILIATION_RELATION' not in set(pred.get('usage_levels',[])) or pred.get('semantic_class')!='IDENTITY_RELATION' or pred.get('status')!='ACCEPTED':raise ValueError(f"ENTITY_LINK predicate {p.get('relation_predicate')} is not accepted RECONCILIATION_RELATION identity semantics")
   if d.get('subject_id') not in indexes['local_entity'] or p.get('target_id') not in indexes['local_entity']:raise ValueError('ENTITY_LINK references missing local entity')
  elif t=='ASSERTION_DISPOSITION':
   if st!='ASSERTION' or set(p)!={'disposition'} or p.get('disposition') not in DISPOSITIONS:raise ValueError('invalid ASSERTION_DISPOSITION')
@@ -119,6 +119,10 @@ def build_logical_projection(records,reconciliation_decisions):
  indexes={'source':index_unique(records,'source','source_id'),'work':index_unique(records,'work','work_id'),'local_entity':index_unique(records,'local_entity','local_entity_id'),'evidence':index_unique(records,'evidence','evidence_id'),'assertion':index_unique(records,'assertion','assertion_id'),'reconciliation_decision':index_unique(reconciliation_decisions,'reconciliation_decision','decision_id')}
  predicates=load_registry(PREDICATE_REGISTRY,'name'); scope_keys=load_registry(SCOPE_KEY_REGISTRY,'key'); decisions=active_decision_index(reconciliation_decisions,predicates,scope_keys,indexes); assertions=indexes['assertion']; superseded_assertions={a.get('supersedes') for a in assertions.values() if a.get('supersedes')}
  effective={aid:effective_disposition(a,decisions,superseded_assertions) for aid,a in assertions.items()}
+ for aid,a in assertions.items():
+  if effective[aid][0]=='ACCEPTED':
+   pred=predicates.get(a.get('predicate'))
+   if not pred or 'RESEARCH_ASSERTION' not in set(pred.get('usage_levels',[])):raise ValueError(f"active assertion {aid} predicate {a.get('predicate')} is not governed for RESEARCH_ASSERTION usage")
  for key,d in decisions.items():
   if key[0]=='ASSERTION_PROJECTION_STATUS' and effective.get(d['subject_id'],(None,None))[0]!='ACCEPTED':raise ValueError(f"projection status targets non-accepted assertion {d['subject_id']}")
  entities=[]; relations=[]

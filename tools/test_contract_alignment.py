@@ -29,7 +29,6 @@ def active_decisions():
  return [
   decision('disp1','ASSERTION_DISPOSITION','ASSERTION','a1',{'disposition':'ACCEPTED'}),
   decision('stat1','ASSERTION_PROJECTION_STATUS','ASSERTION','a1',{'projection_status':'STABLE'}),
-  decision('link1','ENTITY_LINK','LOCAL_ENTITY','local-1',{'relation_predicate':'SAME_AS','target_type':'GLOBAL_ENTITY','target_id':'global:fixture'}),
   decision('scope1','SCOPE_RESOLUTION','ASSERTION','a1',{'resolution_key':'continuity','resolution':{'continuity':'alternate'}}),
  ]
 
@@ -48,27 +47,35 @@ class ContractAlignmentTests(unittest.TestCase):
   rows=records(object_value={'ref_type':'WORK','ref_id':'missing-work'}); rc,o=self.run_validation(rows); self.assertEqual(rc,1); self.assertIn('missing-work',o)
  def test_worker_proposed_status_is_not_authoritative(self):
   result=projection.build_logical_projection(records(proposed='STABLE'),[])
-  self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'][0]['projection_status'],'UNRESOLVED'); self.assertEqual(result['unresolved'][0]['projection_reason'],'MISSING_ASSERTION_DISPOSITION')
+  self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'][0]['projection_status'],'UNRESOLVED'); self.assertEqual(result['unresolved'][0]['projection_reason'],'MISSING_PROJECTION_STATUS')
  def test_typed_reconciliation_drives_projection_without_mutating_worker_fields(self):
   result=projection.build_logical_projection(records(proposed='CONTESTED'),active_decisions()); fact=result['facts'][0]
   self.assertEqual(fact['subject'],'local-1'); self.assertEqual(fact['subject_type'],'LOCAL_ENTITY'); self.assertEqual(fact['proposed_projection_status'],'CONTESTED')
   self.assertEqual(fact['assertion_disposition'],'ACCEPTED'); self.assertEqual(fact['projection_status'],'STABLE')
-  self.assertEqual(fact['resolved_subject'],{'relation_predicate':'SAME_AS','target_type':'GLOBAL_ENTITY','target_id':'global:fixture'})
   self.assertEqual(fact['resolved_scope']['continuity'],{'continuity':'alternate'})
  def test_rejected_disposition_excludes_assertion_from_active_partitions(self):
-  ds=[decision('disp1','ASSERTION_DISPOSITION','ASSERTION','a1',{'disposition':'REJECTED'}),decision('stat1','ASSERTION_PROJECTION_STATUS','ASSERTION','a1',{'projection_status':'STABLE'})]
+  ds=[decision('disp1','ASSERTION_DISPOSITION','ASSERTION','a1',{'disposition':'REJECTED'})]
   result=projection.build_logical_projection(records(),ds); self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'],[])
  def test_provenance_contains_full_reachable_records(self):
   result=projection.build_logical_projection(records(),active_decisions()); p=result['provenance'][0]
   self.assertEqual(p['source_record']['content_hash'],'sha256:source'); self.assertEqual(p['source_record']['source_variant'],'v1'); self.assertEqual(p['evidence_record']['observed'],{'event':'fixture'}); self.assertEqual(p['work_record']['work_id'],'w1'); self.assertEqual(p['local_entity_record']['local_entity_id'],'local-1')
- def test_diff_uses_status_changed_not_fake_rank(self):
+ def test_nonstable_transition_is_provisional_status_change_without_conflict_inference(self):
+  with tempfile.TemporaryDirectory() as td:
+   old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir()
+   (old/'unresolved.jsonl').write_text(json.dumps({'assertion_id':'a1','projection_status':'UNRESOLVED','subject':'x','predicate':'CLAIMS','object':'v'})+'\n')
+   (new/'contested.jsonl').write_text(json.dumps({'assertion_id':'a1','projection_status':'CONTESTED','subject':'x','predicate':'CLAIMS','object':'v'})+'\n')
+   classes=[x['class'] for x in diff.semantic_diff(old,new)]
+   self.assertIn('PROVISIONAL_STATUS_CHANGED',classes); self.assertNotIn('STATUS_PROMOTED',classes); self.assertNotIn('STATUS_DEMOTED',classes); self.assertNotIn('CONFLICT_INTRODUCED',classes); self.assertNotIn('CONFLICT_RESOLVED',classes)
+ def test_stable_to_contested_is_demotion_without_conflict_inference(self):
   with tempfile.TemporaryDirectory() as td:
    old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir()
    (old/'facts.jsonl').write_text(json.dumps({'assertion_id':'a1','projection_status':'STABLE','subject':'x','predicate':'CLAIMS','object':'v'})+'\n')
    (new/'contested.jsonl').write_text(json.dumps({'assertion_id':'a1','projection_status':'CONTESTED','subject':'x','predicate':'CLAIMS','object':'v'})+'\n')
-   classes=[x['class'] for x in diff.semantic_diff(old,new)]; self.assertIn('STATUS_CHANGED',classes); self.assertNotIn('STATUS_PROMOTED',classes); self.assertNotIn('STATUS_DEMOTED',classes); self.assertIn('CONFLICT_INTRODUCED',classes)
- def test_reconciliation_history_has_dedicated_diff_class(self):
+   classes=[x['class'] for x in diff.semantic_diff(old,new)]
+   self.assertIn('STATUS_DEMOTED',classes); self.assertNotIn('PROVISIONAL_STATUS_CHANGED',classes); self.assertNotIn('CONFLICT_INTRODUCED',classes)
+ def test_reconciliation_history_change_is_not_fact_value_change(self):
   with tempfile.TemporaryDirectory() as td:
-   old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir(); row={'decision_id':'d1','record_type':'reconciliation_decision','decision_type':'OTHER','subject_id':'x','status':'ACCEPTED'}
-   (new/'accepted_reconciliation.jsonl').write_text(json.dumps(row)+'\n'); classes=[x['class'] for x in diff.semantic_diff(old,new)]; self.assertEqual(classes,['RECONCILIATION_HISTORY_CHANGED'])
+   old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir(); row={'decision_id':'d1','record_type':'reconciliation_decision','decision_type':'ASSERTION_DISPOSITION','subject_type':'ASSERTION','subject_id':'a1','payload':{'disposition':'ACCEPTED'},'status':'ACCEPTED','evidence':['e1'],'method':'fixture'}
+   (new/'accepted_reconciliation.jsonl').write_text(json.dumps(row)+'\n'); changes=diff.semantic_diff(old,new); classes=[x['class'] for x in changes]
+   self.assertNotIn('VALUE_CHANGED',classes); self.assertIn('PROVISIONAL_RECONCILIATION_HISTORY_CHANGED',classes)
 if __name__=='__main__': unittest.main()

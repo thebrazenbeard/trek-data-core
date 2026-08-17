@@ -6,17 +6,18 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 MANIFEST_SCHEMA=ROOT/'schema'/'projection-manifest.schema.json'
-REQUIRED_OUTPUTS=(
- 'entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl'
-)
-ID_KEYS={
- 'entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'
-}
+REQUIRED_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
+ID_KEYS={'entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'}
 HASH_RE=re.compile(r'^sha256:[0-9a-f]{64}$')
 
 def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"))
 def sha256_bytes(data): return 'sha256:'+hashlib.sha256(data).hexdigest()
 def compute_projection_hash(outputs): return sha256_bytes(canonical({name:outputs[name]['hash'] for name in REQUIRED_OUTPUTS}).encode())
+def tool_identity(*paths):
+ material=[]
+ for path in sorted((Path(p) for p in paths),key=lambda p:str(p)):
+  material.append({'path':path.name,'hash':sha256_bytes(path.read_bytes())})
+ return sha256_bytes(canonical(material).encode('utf-8'))
 
 def type_matches(value,expected):
  if expected=='null':return value is None
@@ -50,8 +51,7 @@ def schema_errors(value,schema,location='$'):
  return errors
 
 def parse_jsonl(path,id_key):
- rows=[]; seen=set()
- raw_bytes=path.read_bytes()
+ rows=[]; seen=set(); raw_bytes=path.read_bytes()
  for line_no,raw in enumerate(raw_bytes.decode('utf-8').splitlines(),1):
   if not raw.strip():continue
   try:row=json.loads(raw)
@@ -94,7 +94,7 @@ def verify_projection(root):
  for name,allowed in (('facts.jsonl',{'STABLE'}),('unresolved.jsonl',{'UNRESOLVED'}),('contested.jsonl',{'CONTESTED','STRUCTURAL_PARADOX'})):
   for row in rows[name]:
    if row.get('projection_status') not in allowed:raise ValueError(f"{name}: invalid projection_status {row.get('projection_status')}")
-   if row.get('effective_assertion_status')!='ACCEPTED':raise ValueError(f"{name}: active assertion is not effectively ACCEPTED")
+   if row.get('effective_assertion_status')!='ACCEPTED':raise ValueError(f'{name}: active assertion is not effectively ACCEPTED')
    aid=row['assertion_id']
    if aid in active_ids:raise ValueError(f'assertion {aid} appears in multiple active partitions')
    active_ids.add(aid)
@@ -104,8 +104,6 @@ def verify_projection(root):
   if row.get('record_type')!='projection_provenance':raise ValueError('provenance.jsonl contains non-projection_provenance row')
  recomputed=compute_projection_hash(outputs)
  if manifest.get('projection_hash')!=recomputed:raise ValueError(f"projection_hash mismatch: declared {manifest.get('projection_hash')}, expected {recomputed}")
- receipt={
-  'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS),
- }
+ receipt={'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS)}
  receipt_hash=sha256_bytes(canonical(receipt).encode('utf-8'))
  return {'manifest':manifest,'rows':rows,'receipt':receipt,'receipt_hash':receipt_hash}

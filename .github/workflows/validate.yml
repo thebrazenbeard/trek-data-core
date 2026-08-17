@@ -17,10 +17,10 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_*.py' -v
       - name: Validate repository records
         run: python tools/validate.py
-      - name: Build projection twice
+      - name: Build canonical projection twice
         run: |
           COMMON_ARGS=(
-            --schema-version "0.1.0"
+            --schema-version "0.2.0"
             --methodology-version "0.1.0"
             --research-head "TEST-NO-ACCEPTED-RESEARCH"
             --reconciliation-head "TEST-NO-ACCEPTED-RECONCILIATION"
@@ -28,9 +28,22 @@ jobs:
           )
           python tools/build_projection.py --out /tmp/projection-a "${COMMON_ARGS[@]}"
           python tools/build_projection.py --out /tmp/projection-b "${COMMON_ARGS[@]}"
-      - name: Assert deterministic output
+      - name: Verify canonical projection bundles
+        run: |
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          spec=importlib.util.spec_from_file_location('bundle_ci',Path('tools/projection_bundle.py')); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          a=m.verify_projection(Path('/tmp/projection-a')); b=m.verify_projection(Path('/tmp/projection-b'))
+          assert a['manifest']['projection_hash']==b['manifest']['projection_hash']
+          assert a['receipt_hash']==b['receipt_hash']
+          PY
+      - name: Assert canonical byte determinism
         run: diff -ru /tmp/projection-a /tmp/projection-b
-      - name: Assert SQLite query determinism
+      - name: Assert semantic zero diff for identical projection
+        run: |
+          test "$(python tools/diff_projection.py /tmp/projection-a /tmp/projection-b | tail -1)" = "changes=0"
+      - name: Assert SQLite verified query determinism
         run: |
           python tools/build_sqlite.py /tmp/projection-a /tmp/query-a.db
           python tools/build_sqlite.py /tmp/projection-a /tmp/query-b.db
@@ -38,7 +51,13 @@ jobs:
           import importlib.util
           from pathlib import Path
           spec=importlib.util.spec_from_file_location('sqlite_ci',Path('tools/build_sqlite.py')); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-          assert m.query_snapshot(Path('/tmp/query-a.db')) == m.query_snapshot(Path('/tmp/query-b.db'))
+          a=m.query_snapshot(Path('/tmp/query-a.db')); b=m.query_snapshot(Path('/tmp/query-b.db'))
+          assert a==b
+          meta=dict(a['metadata'])
+          assert meta['projection_hash']
+          assert meta['verification_receipt_hash'].startswith('sha256:')
+          assert meta['derived_builder_identity'].startswith('sha256:')
+          assert meta['derived_schema_version']=='0.2.0'
           PY
       - name: Assert PostgreSQL bundle determinism
         run: |
@@ -50,15 +69,23 @@ jobs:
           python tools/build_graph_search.py /tmp/projection-a /tmp/graph-search-a
           python tools/build_graph_search.py /tmp/projection-a /tmp/graph-search-b
           diff -ru /tmp/graph-search-a /tmp/graph-search-b
-      - name: Assert input identity sensitivity
+      - name: Assert input identity sensitivity without semantic drift
         run: |
-          python tools/build_projection.py --out /tmp/projection-different-input --schema-version "0.1.0" --methodology-version "0.1.0" --research-head "TEST-DIFFERENT-RESEARCH-HEAD" --reconciliation-head "TEST-NO-ACCEPTED-RECONCILIATION" --compiler-commit "$GITHUB_SHA"
+          python tools/build_projection.py \
+            --out /tmp/projection-different-input \
+            --schema-version "0.2.0" \
+            --methodology-version "0.1.0" \
+            --research-head "TEST-DIFFERENT-RESEARCH-HEAD" \
+            --reconciliation-head "TEST-NO-ACCEPTED-RECONCILIATION" \
+            --compiler-commit "$GITHUB_SHA"
           python - <<'PY'
           import json
           from pathlib import Path
           baseline=json.loads(Path('/tmp/projection-a/manifest.json').read_text()); changed=json.loads(Path('/tmp/projection-different-input/manifest.json').read_text())
-          assert baseline['input_hash'] != changed['input_hash']
-          assert baseline['projection_hash'] == changed['projection_hash']
+          assert baseline['input_hash']!=changed['input_hash']
+          assert baseline['projection_hash']==changed['projection_hash']
+          assert baseline['schema_version']=='0.2.0'
           assert baseline['predicate_registry_hash'].startswith('sha256:')
-          assert baseline['schema_version'] == '0.1.0'
+          assert baseline['scope_key_registry_hash'].startswith('sha256:')
           PY
+          test "$(python tools/diff_projection.py /tmp/projection-a /tmp/projection-different-input | tail -1)" = "changes=0"

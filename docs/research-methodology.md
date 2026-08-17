@@ -2,7 +2,11 @@
 
 ## Tiered processing
 
-Corpus scale requires progressive depth. A work may be discovered, source-bound, structurally indexed, close-read, semantically analyzed, entity-linked, cross-referenced, and audited at different times. Do not collapse these states into one `done` flag.
+Corpus scale requires progressive depth. A work may advance through distinct states:
+
+`DISCOVERED -> SOURCE_BOUND -> FULL_TEXT_AVAILABLE -> STRUCTURALLY_INDEXED -> CLOSE_READ -> SEMANTICALLY_ANALYZED -> ENTITY_LINKED -> CROSS_REFERENCED -> AUDITED`
+
+Do not collapse these states into one `done` flag, and do not infer a later state from an earlier one.
 
 ## Evidence before interpretation
 

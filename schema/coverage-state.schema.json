@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/coverage-state.schema.json",
+  "title": "Coverage State",
+  "type": "object",
+  "required": ["record_type", "coverage_id", "work_id", "ledger", "states", "transition_evidence"],
+  "properties": {
+    "record_type": {"const": "coverage_state"},
+    "coverage_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "ledger": {"type": "string", "minLength": 1},
+    "medium": {"type": ["string", "null"]},
+    "states": {
+      "type": "object",
+      "required": ["DISCOVERED", "SOURCE_BOUND", "FULL_TEXT_AVAILABLE", "STRUCTURALLY_INDEXED", "CLOSE_READ", "SEMANTICALLY_ANALYZED", "ENTITY_LINKED", "CROSS_REFERENCED", "AUDITED"],
+      "properties": {
+        "DISCOVERED": {"type": "boolean"},
+        "SOURCE_BOUND": {"type": "boolean"},
+        "FULL_TEXT_AVAILABLE": {"type": "boolean"},
+        "STRUCTURALLY_INDEXED": {"type": "boolean"},
+        "CLOSE_READ": {"type": "boolean"},
+        "SEMANTICALLY_ANALYZED": {"type": "boolean"},
+        "ENTITY_LINKED": {"type": "boolean"},
+        "CROSS_REFERENCED": {"type": "boolean"},
+        "AUDITED": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "transition_evidence": {"type": "array", "items": {"type": "string"}},
+    "updated_at": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

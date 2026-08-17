@@ -1,0 +1,32 @@
+{
+  "fixture_version": "0.1.0",
+  "known_difficult": [
+    {
+      "id": "known-transporter-duplicate",
+      "input": {"local_entities": ["original", "duplicate"], "evidence": ["shared_pre_split_history", "post_split_independent_actions"]},
+      "required_invariants": ["NO_SILENT_SAME_AS", "IDENTITY_AMBIGUITY_REPRESENTABLE"]
+    },
+    {
+      "id": "known-altered-timeline",
+      "input": {"frames": ["baseline", "altered_timeline"], "claims_conflict": true},
+      "required_invariants": ["SCOPE_PRESERVED", "CONTRADICTION_NOT_FORCED_RESOLVED"]
+    },
+    {
+      "id": "known-memory-report",
+      "input": {"evidence_kind": "memory", "reported_proposition": "event_x"},
+      "required_invariants": ["REPORT_NOT_AUTO_WORLD_FACT"]
+    }
+  ],
+  "synthetic_adversarial": [
+    {
+      "id": "synthetic-unknown-frame",
+      "input": {"frame": "UNRECOGNIZED_FUTURE_FRAME"},
+      "required_invariants": ["UNKNOWN_STRUCTURE_REPRESENTABLE", "NO_EVIDENCE_DISCARD"]
+    },
+    {
+      "id": "synthetic-mutually-incompatible-testimony",
+      "input": {"testimony": ["A", "not_A"], "independent_world_state_support": false},
+      "required_invariants": ["CONFLICT_REPRESENTABLE", "NO_FAKE_CONFIDENCE_SCORE"]
+    }
+  ]
+}

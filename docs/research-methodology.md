@@ -2,7 +2,11 @@
 
 ## Tiered processing
 
-Corpus scale requires progressive depth. A work may be discovered, source-bound, structurally indexed, close-read, semantically analyzed, entity-linked, cross-referenced, and audited at different times. Do not collapse these states into one `done` flag.
+Coverage is tracked with distinct states and must never be collapsed into one `done` flag:
+
+`DISCOVERED -> SOURCE_BOUND -> FULL_TEXT_AVAILABLE -> STRUCTURALLY_INDEXED -> CLOSE_READ -> SEMANTICALLY_ANALYZED -> ENTITY_LINKED -> CROSS_REFERENCED -> AUDITED`
+
+Each state is reported independently. A later state must not be inferred merely because an earlier state is true, and file presence alone establishes none of the semantic states. Coverage denominators remain separable by medium and ledger.
 
 ## Evidence before interpretation
 
@@ -29,7 +33,9 @@ Assertions are interpretations or propositions supported by one or more evidence
 Use three complementary controls:
 
 1. deterministic schema/graph validation;
-2. a fixed regression suite of known difficult narrative cases;
-3. generated adversarial anomaly tests that verify graceful handling of previously unseen identity, timeline, testimony, and narrative-frame structures.
+2. a fixed regression suite of known difficult Trek situations;
+3. synthetic/adversarial anomaly fixtures that verify graceful handling of previously unseen identity, timeline, testimony, and narrative-frame structures.
+
+Regression fixtures test invariants rather than canon conclusions: contradiction must remain representable, unknown structures must not be discarded, local identities must not be silently merged, and source-relative reports must not become world-state truth automatically.
 
 A small deliberate overlap between independent research passes may be used to estimate classification drift. Disagreement is data; it is not automatically averaged away.

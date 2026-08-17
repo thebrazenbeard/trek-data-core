@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/source-work-binding.schema.json",
+  "title": "Source Work Binding",
+  "type": "object",
+  "required": ["record_type", "binding_id", "source_id", "work_id", "status", "method"],
+  "properties": {
+    "record_type": {"const": "source_work_binding"},
+    "binding_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
+    "method": {"type": "string", "minLength": 1},
+    "source_variant": {"type": ["string", "null"]},
+    "mapping_notes": {"type": ["string", "null"]},
+    "supersedes": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

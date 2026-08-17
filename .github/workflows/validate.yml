@@ -15,6 +15,8 @@ jobs:
           python-version: '3.12'
       - name: Validate repository records
         run: python tools/validate.py
+      - name: Validate drift fixtures
+        run: python tools/test_invariants.py
       - name: Build projection twice
         run: |
           python tools/build_projection.py --out /tmp/projection-a --compiler-commit "$GITHUB_SHA"

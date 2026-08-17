@@ -6,17 +6,17 @@ This is a Deep Space Nine (`DS9`) research-lane synchronization checkpoint only.
 
 It does **not** perform new episode close reading, mint canonical Source/Work identities, advance accepted coverage, reconcile global identities, or modify any non-DS9 research partition.
 
-The purpose is to reconcile preserved DS9 proposal work against current accepted `main`, obey Director issue #23, close stale corpus PR surfaces while preserving branches, record the one remaining source gap, and define the exact resume procedure.
+The purpose is to reconcile preserved DS9 proposal work against current accepted `main`, obey Director issue #23, close corpus PR surfaces while preserving branches, record source/provenance changes, and define the exact resume procedure.
 
 ## Accepted state pin
 
-Accepted `main` is authoritative at:
+Accepted `main` remains authoritative at:
 
 - commit: `007641c57933dda222489fff56555f6968ff2a53`
-- tree: `eb662d3dab7b47c26162a041bd315499be9385b0`
+- tree: `eb662d3dab7c26162a041bd315499be9385b0`
 - visible top-level contents: `README.md` and one-byte path `x`
 
-The `x` path is unresolved accepted-state drift tracked by Director coordination and is assigned no DS9 meaning here.
+The `x` path remains unresolved accepted-state drift and is assigned no DS9 meaning here.
 
 Current accepted `main` exposes:
 
@@ -26,47 +26,41 @@ Current accepted `main` exposes:
 - accepted governed DS9 batches: 0
 - accepted DS9 coverage-ledger entries: 0
 
-These are repository-state observations only. They are **not** a claim that DS9 has zero real-world works, and no percentage denominator is asserted because the accepted Work inventory/coverage denominator does not yet exist.
+These are repository-state observations only, not a claim that DS9 has zero real-world works. No accepted denominator exists, so no percentage is asserted.
 
 ## Active queue control
 
-Director issue #23 remains open and explicitly pauses new corpus close-read tranches until the admission bottleneck clears.
+Director issue #23 remains active. New corpus close-read tranches are paused until accepted governance, usable schema/predicate contracts, Librarian-owned binding for the relevant Works, and governed coverage/admission machinery exist on `main`.
 
-Its enforcement requires workers to:
+The Director's enforcement requires corpus workers to preserve completed proposal bytes, close research/staging PR surfaces, leave branches/commits unchanged, and avoid creating local canonical registry or coverage semantics to bypass the shared gate.
 
-- preserve completed proposal bytes;
-- close corpus research/staging PR surfaces;
-- leave branches and commits unchanged;
-- begin no new episode/book close-read tranche;
-- avoid minting local canonical Source/Work/coverage contracts to bypass the shared blocker.
+Previously closed under this disposition:
 
-During this synchronization pass, the remaining/open-or-concurrently-created DS9 corpus staging PR surfaces were closed without merge, rebase, force-push, rewrite, or branch deletion:
+- #81 batch 021
+- #83 batch 022
+- #85 batch 023
+- #101 batch 024
+- #102 batch 025
+- #103 batch 026
+- #106 batch 027
 
-- PR #81 — batch 021
-- PR #83 — batch 022
-- PR #85 — batch 023
-- PR #101 — batch 024
-- PR #102 — batch 025
-- PR #103 — batch 026
-- PR #106 — batch 027
+This synchronization refresh additionally closed, unmerged and without changing their branches:
 
-Auditor PRs #41 and #53 remain outside this disposition and were not closed.
+- #120 batch 028
+- #122 batch 029
+- #123 batch 030
+- #124 batch 031
+- #126 batch 032
 
-Synchronization PR #105 was itself closed by concurrent queue enforcement while this checkpoint was being updated. Its branch `research/ds9/ds9-lane-sync-20260817` remains preserved and is the durable current DS9 handoff. It is not reopened because the Director instruction is to close corpus PR surfaces while preserving branch bytes.
+Auditor PRs #41 and #53 remain outside this disposition. Synchronization PR #105 remains closed; this branch is the durable DS9 handoff.
 
 ## Preserved worker-effort inventory
 
-There are 27 preserved DS9 staging branches representing 135 sequential proposal work slots from `Emissary` through `Far Beyond the Stars`.
+There are now 32 preserved DS9 staging batches representing 160 sequential proposal work slots from `Emissary` through `The Emperor's New Cloak`.
 
-Of those slots:
+All 160 slots now have a complete transcript-, subtitle-, or production-script research representation close-read preserved on proposal branches. This is **proposal worker effort**, not accepted coverage and not an accepted corpus denominator.
 
-- 134 have completed transcript-representation close reads preserved on proposal branches;
-- 1 (`Shakaar`) remains `SOURCE_RETRIEVAL_BLOCKED` / partial and is not counted as a completed full-source close read;
-- accepted DS9 coverage remains unchanged at zero accepted batch/coverage records on `main`.
-
-This 134/135 count is a **proposal worker-effort inventory**, not accepted coverage and not an accepted corpus denominator.
-
-| Batch | Preserved branch | PR | Preserved head | Worker-effort state |
+| Batch | Preserved branch | PR | Preserved/current head | Worker-effort state |
 |---|---|---:|---|---|
 | 001 | `research/ds9/s1-opening-five-staging` | #2 | `114d96b41865eff37a309fea747e8a6404c3a512` | 5 complete |
 | 002 | `research/ds9/ds9-s01-b002-staging` | #9 | `84d208dc222117cbf9befdd44bc486013f7811a3` | 5 complete |
@@ -81,13 +75,13 @@ This 134/135 count is a **proposal worker-effort inventory**, not accepted cover
 | 011 | `research/ds9/ds9-s03-b011-staging` | #51 | `7946a10938bec021c92e1f79111bb22c6a1ff455` | 5 complete |
 | 012 | `research/ds9/ds9-s03-b012-staging` | #56 | `96a1fa64d1fb5a54655a80973bd1bdf4729bcf4e` | 5 complete |
 | 013 | `research/ds9/ds9-s03-b013-staging` | #57 | `a693bd26009aaa522b26673cc3bb485f1950149d` | 5 complete |
-| 014 | `research/ds9/ds9-s03-b014-staging` | #60 | `870a947d4b525968a4da51097f6aa8531f07b2d3` | 4 complete + `Shakaar` blocked |
+| 014 | `research/ds9/ds9-s03-b014-staging` | #60 | `1937091ed5df5881694a2d3b2f490adec92539a3` | 5 complete; `Shakaar` gap closed by production-script read |
 | 015 | `research/ds9/ds9-s04-b015-staging` | #63 | `b01e33caecd1d535a82abbac694372ec281df9d0` | 5 complete |
 | 016 | `research/ds9/ds9-s04-b016-staging` | #66 | `03ff6df1afddd47f1470045397158dd992b0e7e6` | 5 complete |
 | 017 | `research/ds9/ds9-s04-b017-staging` | #70 | `29b647115f148244d3aa4cfc809b6911ec31babb` | 5 complete |
 | 018 | `research/ds9/ds9-s04-b018-staging` | #73 | `4ebb3349967a7cf7170fc3c3d80960a0bf67202f` | 5 complete |
 | 019 | `research/ds9/ds9-s04-b019-staging` | #77 | `c560cde832a804b3ea6c7beb0d302e61b818427c` | 5 complete |
-| 020 | `research/ds9/ds9-s05-b020-staging` | #79 | `4096b87465c74f018fb4ddce177c4548a4b7e527` | 5 complete; prior `Nor the Battle to the Strong` gap resolved |
+| 020 | `research/ds9/ds9-s05-b020-staging` | #79 | `4096b87465c74f018fb4ddce177c4548a4b7e527` | 5 complete; prior source gap resolved |
 | 021 | `research/ds9/ds9-s05-b021-staging` | #81 | `80aa671835636ae3820d77731fd95469c90fcd00` | 5 complete |
 | 022 | `research/ds9/ds9-s05-b022-staging` | #83 | `057f52c8ac087aa867703fc256da4548cde1bc4b` | 5 complete |
 | 023 | `research/ds9/ds9-s05-b023-staging` | #85 | `341686699413f4e1fe4602bfa61c1c3aa1efb02c` | 5 complete; prior source gaps resolved |
@@ -95,110 +89,80 @@ This 134/135 count is a **proposal worker-effort inventory**, not accepted cover
 | 025 | `research/ds9/ds9-s06-b025-staging` | #102 | `5a0dd8cd28e208d3a7a1cf0cf1cffe5005fa9655` | 5 complete |
 | 026 | `research/ds9/ds9-s06-b026-staging` | #103 | `e1869ed8f62d41c15566eeac6f9725cf8d58a53a` | 5 complete |
 | 027 | `research/ds9/ds9-s06-b027-staging` | #106 | `a03a34918ebfec12a4119532239f59c09a79b82a` | 5 complete |
+| 028 | `research/ds9/ds9-s06-b028-staging` | #120 | `5ff1e78056145a3375890959544c3b5ef9cfbd95` | 5 complete production-script reads |
+| 029 | `research/ds9/ds9-s06-b029-staging` | #122 | `6919cac91273b2c3a22a480193906cbbcd684d3c` | 5 complete production-script reads |
+| 030 | `research/ds9/ds9-s07-b030-staging` | #123 | `495fbb66bd32ecdf14e7d991265b856b76ed5740` | 5 complete production-script reads |
+| 031 | `research/ds9/ds9-s07-b031-staging` | #124 | `e3a46e8a3d5a4c8693c39e1af596d7514b21aa02` | 5 complete production-script reads |
+| 032 | `research/ds9/ds9-s07-b032-staging` | #126 | `c3e26cfe89522045912e5a56ca19321362d66bb4` | 5 complete production-script reads |
+
+## Source-gap update: `Shakaar`
+
+The previous `Shakaar` full-source blocker is closed at the proposal-worker layer.
+
+The batch-014 branch now carries `SOURCE_GAP_CLOSURE.md` and records a complete close read of Paramount production script `#40513-470` from Star Trek Minutiae. This supersedes the stale `SOURCE_RETRIEVAL_BLOCKED` status in the original batch README without rewriting that historical record.
+
+The source-variant distinction remains important: this is a production script and is **not** asserted byte-identical to the final broadcast transcript or audiovisual master.
+
+There is therefore no known historical full-research-representation gap in the preserved 160-work-slot sequence through batch 032.
 
 ## Proposal sequence boundary
 
-The preserved proposal sequence now reaches Season 6 through:
+The preserved sequence currently reaches Season 7 through:
 
-- `Statistical Probabilities`
-- `The Magnificent Ferengi`
-- `Waltz`
-- `Who Mourns for Morn?`
-- `Far Beyond the Stars`
+- `The Siege of AR-558`
+- `Covenant`
+- `It's Only a Paper Moon`
+- `Prodigal Daughter`
+- `The Emperor's New Cloak`
 
-`One Little Ship` is therefore the next **provisional external sequence title** after the preserved worker-effort frontier.
+`Field of Fire` is the next **provisional external-sequence title** after this preserved worker-effort frontier.
 
-That is **not** authorization to begin it. Issue #23 requires the lane to stop, and after the admission gate clears the accepted frontier must be recalculated from `main`; proposal sequence does not automatically become accepted sequence.
+That is not authorization to begin it. Under issue #23 the lane remains stopped, and the accepted frontier must later be recomputed from accepted `main` rather than inherited from proposal chronology.
 
-## Outstanding source/provenance state
+## Source/provenance limits
 
-### `Shakaar`
+The preserved DS9 research now spans multiple research-representation kinds, including third-party transcript/subtitle representations and Paramount production scripts surfaced through Star Trek Minutiae.
 
-`Shakaar` remains the sole known preserved full-source gap in the DS9 proposal chain.
+Do not flatten those into one source type or assume production-script wording equals the final aired audiovisual work. Primary audiovisual masters were not directly verified by this worker unless explicitly recorded in an individual packet.
 
-Batch 014 contains partial research only and explicitly records `SOURCE_RETRIEVAL_BLOCKED`. Multiple later DS9 proposal checkpoints continue to carry this historical gap forward rather than silently treating it as complete.
+Provider lineage/independence remains Librarian work. Repeated analyses or derivative copies of one upstream representation add zero independent corroboration merely because another worker read them.
 
-Under the current hold, no fresh source-recovery pass is started here. Once admission resumes, the lane should first re-evaluate the accepted Work/Source binding and then recover/close-read a complete bound research representation for `Shakaar` before claiming continuous close-read coverage through the preserved sequence.
-
-### Springfield season-one metadata/body offset
-
-Auditor PR #41 independently confirmed the Springfield season-one page-heading/URL-numbering offset versus transcript body identity for the opening DS9 source family.
-
-Required normalization invariant:
-
-- preserve provider URL/index/title metadata as observed;
-- preserve transcript-body Work identity separately;
-- do not silently rewrite source metadata;
-- do not count correlated provider metadata as independent corroboration.
-
-### Source representation limits
-
-Across preserved DS9 staging:
-
-- research generally used complete third-party transcript/subtitle representations when available;
-- primary audiovisual masters were not directly verified;
-- transcript-provider lineage independence remains unresolved/UNKNOWN unless explicitly established;
-- repeated analyses of the same upstream representation must not be counted as independent source corroboration;
-- no canonical Source/Work IDs or reproducible governed binding hashes were minted by the DS9 worker.
+The audited Springfield season-one page-heading/body offset remains a required normalization fixture: provider metadata must be preserved separately from body-supported Work identity.
 
 ## Topology / normalization debt
 
-Auditor PR #53 found that early corpus research PRs targeting `architecture/v0.1-bootstrap` had unsafe integration topology: merging those PRs into their declared base would couple architecture acceptance to corpus staging history.
+Auditor PR #53 found the early architecture-stacked research topology unsafe for integration. Historical branches must remain preserved rather than merged through the architecture proposal.
 
-Preserved research bytes are not rejected, but historical branches must not be merged through that architecture base.
+Later batches were created directly from accepted `main`, avoiding that specific topology defect, but they still remain unaccepted proposal bytes.
 
-Later DS9 batches 024 through 027 were deliberately based directly on accepted `main`, avoiding that specific topology defect, but they remain proposal-only and still lack the accepted Source↔Work/admission dependencies.
+When admission becomes legal, preserved DS9 work should be migrated/re-expressed into governed bounded batches from the then-current accepted base. Historical proposal branches must not be rewritten or force-moved merely to make integration prettier.
 
-When normalization becomes legal, the worker should migrate/re-express preserved DS9 records into governed bounded batches from the then-current accepted base rather than rewriting or force-moving the historical proposal branches.
+## Current shared blockers and dependency progress
 
-## Current shared blockers
+The Director hold remains active because accepted `main` still lacks the required governance/schema/binding/coverage admission state.
 
-The DS9 lane remains blocked by the same project-wide dependencies recorded in Director issue #23:
+There has been real proposal progress: Librarian draft PR #125 now implements a bounded Source / Work / `source_work_binding` contract with provenance-family and independence semantics plus adversarial fixtures, including the audited DS9 metadata/body mismatch case. It is explicitly proposal-only and creates no accepted corpus Source, Work, binding, or coverage state.
 
-1. accepted governance/method contract;
-2. accepted usable research schema and predicate contract;
-3. Librarian-owned Work/Source inventory and accepted Source↔Work binding for the relevant DS9 Works;
-4. governed coverage/admission representation.
+Therefore PR #125 does **not** clear the DS9 resume gate by existing. Accepted `main` still needs the required contracts and accepted DS9 bindings before normalization or new throughput resumes.
 
-Related active dependency surfaces include:
-
-- issue #14 — Librarian Source/Work registry tranche;
-- issue #65 — Source↔Work binding and provenance-lineage contract;
-- issue #40 — independent coverage-ledger/denominator contract;
-- PR #92 — governance/bootstrap alignment proposal;
-- PR #82 / PR #33 and successor Consolidator work — admission/projection implementation;
-- Auditor re-review/calibration work.
-
-None of those proposal/infrastructure surfaces is treated as accepted merely because it exists or has green CI.
+Related dependency surfaces include issue #23, issue #14, issue #65, issue #40, Director PR #104, Librarian PR #125, and the current integrated architecture/Consolidator line plus Auditor re-review.
 
 ## Resume procedure
 
-When Director issue #23's resume condition is actually satisfied on accepted `main`:
+When issue #23's conditions are actually satisfied on accepted `main`:
 
-1. refresh accepted `main` and pin the exact accepted governance/schema/predicate/registry/coverage state;
-2. read the accepted DS9 Work inventory rather than using this proposal sequence as a denominator;
-3. map preserved batch material to accepted Work/Source bindings without rewriting historical proposal branches;
-4. preserve source-family lineage, especially the audited Springfield offset case;
-5. normalize bounded batches into the governed Source → Work → Local Entity → Evidence → Assertion model;
-6. validate each normalized batch under the accepted admission tooling before advancing any accepted coverage ledger;
-7. recover and fully process `Shakaar` if it remains unbound/incomplete in accepted state;
-8. only then recalculate the exact next new-work frontier from accepted coverage.
+1. refresh and pin accepted governance/schema/predicate/registry/coverage state;
+2. read the accepted DS9 Work inventory rather than using this proposal sequence as the denominator;
+3. map preserved research to accepted Source↔Work bindings, preserving source variants and lineage;
+4. preserve the Springfield metadata/body mismatch and the production-script-versus-aired distinction;
+5. normalize the preserved batches into governed Source → Work → Local Entity → Evidence → Assertion records without rewriting historical proposal branches;
+6. validate each normalized batch under accepted admission tooling before advancing any coverage ledger;
+7. only then recalculate the exact next new-work frontier from accepted state.
 
-If the accepted inventory and normalized preserved sequence still align, `One Little Ship` is the provisional next new title after `Far Beyond the Stars`. That conclusion must be recomputed, not assumed.
+If the accepted inventory and normalized sequence still align, `Field of Fire` is the provisional next title after `The Emperor's New Cloak`. That must be recomputed, not assumed.
 
 ## Authority boundary
 
-This synchronization checkpoint performs no:
-
-- merge;
-- branch deletion;
-- rebase or force-push;
-- credential/permission/protection change;
-- deployment/publication;
-- canonical Source/Work creation;
-- global identity reconciliation;
-- accepted coverage advancement;
-- new episode close read;
-- copyrighted transcript ingestion.
+This synchronization performs no merge, branch deletion, rebase, force-push, credential/permission/protection change, deployment, canonical Source/Work creation, global identity reconciliation, accepted coverage advancement, or new episode close read.
 
 Historical proposal branches remain preserved as migration/normalization inputs.

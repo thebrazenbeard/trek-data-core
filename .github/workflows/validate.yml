@@ -17,6 +17,15 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_*.py' -v
       - name: Validate repository records
         run: python tools/validate.py
+      - name: Validate independent coverage ledger
+        run: |
+          python tools/coverage_ledger.py validate
+          python tools/coverage_ledger.py report > /tmp/coverage-report.json
+          python - <<'PY'
+          import json
+          report=json.load(open('/tmp/coverage-report.json'))
+          assert report['denominator_status'] in {'RESOLVED','DENOMINATOR_UNRESOLVED'}
+          PY
       - name: Build canonical projection twice
         run: |
           COMMON_ARGS=(
@@ -41,8 +50,7 @@ jobs:
       - name: Assert canonical byte determinism
         run: diff -ru /tmp/projection-a /tmp/projection-b
       - name: Assert semantic zero diff for identical projection
-        run: |
-          test "$(python tools/diff_projection.py /tmp/projection-a /tmp/projection-b | tail -1)" = "changes=0"
+        run: test "$(python tools/diff_projection.py /tmp/projection-a /tmp/projection-b | tail -1)" = "changes=0"
       - name: Assert SQLite verified query determinism
         run: |
           python tools/build_sqlite.py /tmp/projection-a /tmp/query-a.db

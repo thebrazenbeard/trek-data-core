@@ -13,7 +13,7 @@ The purpose is to reconcile preserved DS9 proposal work against current accepted
 Accepted `main` remains authoritative at:
 
 - commit: `007641c57933dda222489fff56555f6968ff2a53`
-- tree: `eb662d3dab7c26162a041bd315499be9385b0`
+- tree: `eb662d3dab7b47c26162a041bd315499be9385b0`
 - visible top-level contents: `README.md` and one-byte path `x`
 
 The `x` path remains unresolved accepted-state drift and is assigned no DS9 meaning here.

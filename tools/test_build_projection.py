@@ -1,128 +1,67 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-
 import importlib.util
 from pathlib import Path
 import unittest
 
-MODULE_PATH = Path(__file__).with_name("build_projection.py")
-spec = importlib.util.spec_from_file_location("trek_build_projection", MODULE_PATH)
-projection = importlib.util.module_from_spec(spec)
-assert spec.loader is not None
-spec.loader.exec_module(projection)
+MODULE_PATH=Path(__file__).with_name('build_projection.py'); spec=importlib.util.spec_from_file_location('trek_build_projection',MODULE_PATH); projection=importlib.util.module_from_spec(spec); spec.loader.exec_module(projection)
 
+def fixture_records(source_hash='sha256:source-a', assertion_status='ACCEPTED', proposed='STABLE', object_value=None):
+ if object_value is None: object_value={'value':'fixture'}
+ assertion={'record_type':'assertion','assertion_id':'assertion-1','subject_type':'LOCAL_ENTITY','subject':'local-1','predicate':'CLAIMS','object':object_value,'evidence':['evidence-1'],'status':assertion_status,'scope':{'worker_scope':'fixture'}}
+ if proposed is not None: assertion['proposed_projection_status']=proposed
+ return [
+  {'record_type':'source','source_id':'source-1','source_kind':'transcript','locator':'fixture://source-1','content_hash':source_hash,'retrieved_at':'2026-08-14T00:00:00Z','source_variant':'v1','provenance_family':'family-a','derived_from':[]},
+  {'record_type':'work','work_id':'work-1','title':'Fixture Work','medium':'test','continuity_scope':'fixture'},
+  {'record_type':'local_entity','local_entity_id':'local-1','work_id':'work-1','label':'Fixture Entity'},
+  {'record_type':'evidence','evidence_id':'evidence-1','source_id':'source-1','work_id':'work-1','evidence_kind':'depiction','locator':{'line':1},'observed':{'event':'fixture'},'frame':'PRIMARY','epistemic_status':'DIRECT','passage_fingerprint':'fp-1'},
+  assertion,
+ ]
 
-def fixture_records(source_hash="sha256:source-a", projection_status="STABLE"):
-    assertion = {
-        "record_type": "assertion",
-        "assertion_id": "assertion-1",
-        "subject": "local-1",
-        "predicate": "CLAIMS",
-        "object": {"value": "fixture"},
-        "evidence": ["evidence-1"],
-        "status": "ACCEPTED",
-        "scope": {"continuity": "fixture"},
-    }
-    if projection_status is not None:
-        assertion["projection_status"] = projection_status
-    return [
-        {"record_type": "source", "source_id": "source-1", "source_kind": "transcript", "locator": "fixture://source-1", "content_hash": source_hash},
-        {"record_type": "work", "work_id": "work-1", "title": "Fixture Work", "medium": "test"},
-        {"record_type": "local_entity", "local_entity_id": "local-1", "work_id": "work-1", "label": "Fixture Entity"},
-        {"record_type": "evidence", "evidence_id": "evidence-1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "depiction", "locator": {"line": 1}, "observed": {"event": "fixture"}},
-        assertion,
-    ]
+def decision(i,t,subject_type,subject_id,payload,status='ACCEPTED',sup=None):
+ r={'record_type':'reconciliation_decision','decision_id':i,'decision_type':t,'subject_type':subject_type,'subject_id':subject_id,'payload':payload,'status':status,'evidence':['evidence-1'],'method':'fixture'}
+ if sup: r['supersedes']=sup; r['reason']='fixture correction'
+ return r
 
-
-def decision(decision_id, decision_type, subject_id, value, supersedes=None):
-    record = {
-        "record_type": "reconciliation_decision",
-        "decision_id": decision_id,
-        "decision_type": decision_type,
-        "subject_id": subject_id,
-        "value": value,
-        "status": "ACCEPTED",
-        "evidence": ["evidence-1"],
-        "method": "fixture",
-    }
-    if supersedes:
-        record["supersedes"] = supersedes
-        record["reason"] = "fixture correction"
-    return record
-
-
-def accepted_link(decision_id, value, supersedes=None):
-    return decision(decision_id, "ENTITY_LINK", "local-1", value, supersedes=supersedes)
-
+def status_decision(value='STABLE'):
+ return decision('status-1','ASSERTION_PROJECTION_STATUS','ASSERTION','assertion-1',{'projection_status':value})
 
 class LogicalProjectionTests(unittest.TestCase):
-    def test_provenance_carries_source_hash_and_changes_with_source(self):
-        first = projection.build_logical_projection(fixture_records("sha256:source-a"), [])
-        second = projection.build_logical_projection(fixture_records("sha256:source-b"), [])
-        self.assertEqual(first["provenance"][0]["source_content_hash"], "sha256:source-a")
-        self.assertNotEqual(projection.canonical(first["provenance"]), projection.canonical(second["provenance"]))
-        self.assertEqual(first["facts"], second["facts"])
+ def test_accepted_assertion_without_projection_decision_fails_closed_to_unresolved(self):
+  result=projection.build_logical_projection(fixture_records(proposed='STABLE'),[])
+  self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'][0]['projection_status'],'UNRESOLVED'); self.assertEqual(result['unresolved'][0]['projection_reason'],'MISSING_PROJECTION_STATUS')
+ def test_worker_proposed_projection_status_is_preserved_but_not_authoritative(self):
+  result=projection.build_logical_projection(fixture_records(proposed='CONTESTED'),[status_decision('STABLE')]); fact=result['facts'][0]
+  self.assertEqual(fact['proposed_projection_status'],'CONTESTED'); self.assertEqual(fact['projection_status'],'STABLE')
+ def test_disposition_can_promote_proposed_assertion_without_mutating_record(self):
+  ds=[decision('disp-1','ASSERTION_DISPOSITION','ASSERTION','assertion-1',{'disposition':'ACCEPTED'}),status_decision('STABLE')]
+  result=projection.build_logical_projection(fixture_records(assertion_status='PROPOSED'),ds); fact=result['facts'][0]
+  self.assertEqual(fact['status'],'PROPOSED'); self.assertEqual(fact['effective_assertion_status'],'ACCEPTED'); self.assertEqual(fact['assertion_disposition_decision_id'],'disp-1')
+ def test_disposition_can_demote_accepted_assertion(self):
+  result=projection.build_logical_projection(fixture_records(),[decision('disp-1','ASSERTION_DISPOSITION','ASSERTION','assertion-1',{'disposition':'REJECTED'})])
+  self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'],[]); self.assertEqual(len(result['assertion_history']),1)
+ def test_projection_status_controls_partition_separately_from_disposition(self):
+  result=projection.build_logical_projection(fixture_records(),[status_decision('CONTESTED')])
+  self.assertEqual(result['facts'],[]); self.assertEqual(result['unresolved'],[]); self.assertEqual(result['contested'][0]['status'],'ACCEPTED'); self.assertEqual(result['contested'][0]['effective_assertion_status'],'ACCEPTED'); self.assertEqual(result['contested'][0]['projection_status'],'CONTESTED')
+ def test_keyed_scope_resolutions_coexist_without_rewriting_worker_scope(self):
+  ds=[decision('scope-1','SCOPE_RESOLUTION','ASSERTION','assertion-1',{'resolution_key':'CONTINUITY_SCOPE','resolution':'alternate'}),decision('scope-2','SCOPE_RESOLUTION','ASSERTION','assertion-1',{'resolution_key':'TIMELINE_SCOPE','resolution':'branch-a'}),status_decision('STABLE')]
+  result=projection.build_logical_projection(fixture_records(),ds); fact=result['facts'][0]
+  self.assertEqual(fact['scope'],{'worker_scope':'fixture'}); self.assertEqual(fact['resolved_scope'],{'CONTINUITY_SCOPE':'alternate','TIMELINE_SCOPE':'branch-a'}); self.assertEqual(set(fact['scope_resolution_decision_ids']),{'CONTINUITY_SCOPE','TIMELINE_SCOPE'})
+ def test_structural_paradox_is_preserved_as_nonstable(self):
+  result=projection.build_logical_projection(fixture_records(),[status_decision('STRUCTURAL_PARADOX')]); self.assertEqual(result['facts'],[]); self.assertEqual(result['unresolved'],[]); self.assertEqual(result['contested'][0]['projection_status'],'STRUCTURAL_PARADOX')
+ def test_explicit_assertion_supersession_excludes_predecessor_from_active_projection(self):
+  rows=fixture_records(); successor=dict(rows[-1]); successor.update({'assertion_id':'assertion-2','object':{'value':'successor'},'supersedes':'assertion-1'}); rows.append(successor)
+  ds=[status_decision('STABLE'),decision('status-2','ASSERTION_PROJECTION_STATUS','ASSERTION','assertion-2',{'projection_status':'STABLE'})]
+  result=projection.build_logical_projection(rows,ds); self.assertEqual([r['assertion_id'] for r in result['facts']],['assertion-2']); self.assertEqual(len(result['assertion_history']),2)
+ def test_provenance_contains_full_reachable_records_and_changes_with_source(self):
+  first=projection.build_logical_projection(fixture_records('sha256:source-a'),[status_decision('STABLE')]); second=projection.build_logical_projection(fixture_records('sha256:source-b'),[status_decision('STABLE')]); p=first['provenance'][0]
+  self.assertEqual(p['source_record']['content_hash'],'sha256:source-a'); self.assertEqual(p['source_record']['source_variant'],'v1'); self.assertEqual(p['evidence_record']['observed'],{'event':'fixture'}); self.assertEqual(p['evidence_record']['frame'],'PRIMARY'); self.assertEqual(p['work_record']['continuity_scope'],'fixture'); self.assertEqual(p['local_entity_record']['local_entity_id'],'local-1'); self.assertNotEqual(projection.canonical(first['provenance']),projection.canonical(second['provenance']))
+ def test_typed_reference_assertion_emits_governed_relation_row(self):
+  rows=fixture_records(object_value={'ref_type':'WORK','ref_id':'work-1'}); result=projection.build_logical_projection(rows,[status_decision('STABLE')]); rel=result['relations'][0]
+  self.assertEqual(rel['assertion_id'],'assertion-1'); self.assertEqual(rel['predicate'],'CLAIMS'); self.assertEqual(rel['target_type'],'WORK'); self.assertEqual(rel['target_id'],'work-1')
+ def test_accepted_experimental_identity_link_fails_closed(self):
+  rows=fixture_records(); rows.insert(3,{'record_type':'local_entity','local_entity_id':'local-2','work_id':'work-1','label':'Second'})
+  link=decision('link-1','ENTITY_LINK','LOCAL_ENTITY','local-1',{'relation_predicate':'SAME_AS','target_type':'LOCAL_ENTITY','target_id':'local-2'})
+  with self.assertRaises(ValueError): projection.build_logical_projection(rows,[link])
 
-    def test_entity_link_is_applied_without_mutating_worker_subject(self):
-        result = projection.build_logical_projection(fixture_records(), [accepted_link("link-1", "global:fixture")])
-        entity = result["entities"][0]
-        fact = result["facts"][0]
-        self.assertEqual(entity["local_entity_id"], "local-1")
-        self.assertEqual(entity["resolved_entity"], "global:fixture")
-        self.assertEqual(entity["reconciliation_decision_id"], "link-1")
-        self.assertEqual(fact["subject"], "local-1")
-        self.assertEqual(fact["resolved_subject"], "global:fixture")
-
-    def test_missing_projection_status_fails_closed_to_unresolved(self):
-        result = projection.build_logical_projection(fixture_records(projection_status=None), [])
-        self.assertEqual(result["facts"], [])
-        self.assertEqual(len(result["unresolved"]), 1)
-        self.assertEqual(result["unresolved"][0]["projection_status"], "UNRESOLVED")
-        self.assertEqual(result["unresolved"][0]["projection_reason"], "MISSING_PROJECTION_STATUS")
-
-    def test_superseded_entity_link_is_not_applied(self):
-        decisions = [accepted_link("link-1", "global:old"), accepted_link("link-2", "global:new", supersedes="link-1")]
-        result = projection.build_logical_projection(fixture_records(), decisions)
-        self.assertEqual(result["entities"][0]["resolved_entity"], "global:new")
-        self.assertEqual(result["entities"][0]["reconciliation_decision_id"], "link-2")
-
-    def test_assertion_status_reconciliation_controls_partition(self):
-        decisions = [decision("status-1", "ASSERTION_STATUS", "assertion-1", "CONTESTED")]
-        result = projection.build_logical_projection(fixture_records(projection_status="STABLE"), decisions)
-        self.assertEqual(result["facts"], [])
-        self.assertEqual(len(result["contested"]), 1)
-        self.assertEqual(result["contested"][0]["projection_status"], "CONTESTED")
-        self.assertEqual(result["contested"][0]["projection_status_decision_id"], "status-1")
-
-    def test_scope_resolution_is_derived_without_rewriting_original_scope(self):
-        resolved = {"continuity": "alternate", "timeline": "branch-a"}
-        decisions = [decision("scope-1", "SCOPE_RESOLUTION", "assertion-1", resolved)]
-        result = projection.build_logical_projection(fixture_records(), decisions)
-        fact = result["facts"][0]
-        self.assertEqual(fact["scope"], {"continuity": "fixture"})
-        self.assertEqual(fact["resolved_scope"], resolved)
-        self.assertEqual(fact["scope_resolution_decision_id"], "scope-1")
-
-    def test_structural_paradox_is_preserved_as_contested_not_stable(self):
-        result = projection.build_logical_projection(fixture_records(projection_status="STRUCTURAL_PARADOX"), [])
-        self.assertEqual(result["facts"], [])
-        self.assertEqual(result["unresolved"], [])
-        self.assertEqual(result["contested"][0]["projection_status"], "STRUCTURAL_PARADOX")
-
-    def test_multiple_other_decisions_for_same_subject_do_not_collide(self):
-        decisions = [
-            decision("other-1", "OTHER", "local-1", {"note": 1}),
-            decision("other-2", "OTHER", "local-1", {"note": 2}),
-        ]
-        result = projection.build_logical_projection(fixture_records(), decisions)
-        self.assertEqual(len(result["facts"]), 1)
-        self.assertEqual(len(result["accepted_reconciliation"]), 2)
-
-    def test_invalid_reconciled_projection_status_fails_closed(self):
-        decisions = [decision("status-1", "ASSERTION_STATUS", "assertion-1", "CERTAIN_BECAUSE_COMPUTER")]
-        with self.assertRaises(ValueError):
-            projection.build_logical_projection(fixture_records(), decisions)
-
-
-if __name__ == "__main__":
-    unittest.main()
+if __name__=='__main__': unittest.main()

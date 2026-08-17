@@ -1,0 +1,16 @@
+{
+  "inventory_id": "TREK_LEGACY_ARTIFACT_INVENTORY_003",
+  "record_type": "migration_inventory_validation",
+  "artifact_classes_recorded": 9,
+  "accepted_state_mutations": 0,
+  "coverage_promotions": 0,
+  "source_bindings_performed": 0,
+  "global_identity_mutations": 0,
+  "cross_role_mutations": 0,
+  "protected_effects": 0,
+  "known_recovered_migration_packages_preserved": 1,
+  "historical_state_claim_tranches_quarantined": 1,
+  "remaining_executable_migration_batches": 0,
+  "stop_condition": "NO_FURTHER_EXECUTABLE_MIGRATION_BATCH_IDENTIFIED_WITH_CURRENT_EVIDENCE_AND_AUTHORITY",
+  "status": "PASS_FAIL_CLOSED"
+}

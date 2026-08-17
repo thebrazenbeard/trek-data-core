@@ -1,0 +1,68 @@
+{
+  "accepted_repo_main_head_observed": "d58359a207da89e812d0a0330558c66774ed1241",
+  "batch_id": "TREK_LEGACY_MIGRATION_BATCH_001",
+  "bootstrap_pr_status": "OPEN_PROPOSAL",
+  "files": [
+    {
+      "bytes": 1873,
+      "name": "README.md",
+      "sha256": "59f90f875004a6fb352e8454cdb32cc1720f992367292a182925cbe4929e6fce"
+    },
+    {
+      "bytes": 4548,
+      "name": "assertions.jsonl",
+      "sha256": "6b26d628538835f5c45c2b7924dc6c393075681fb2de75f68d0f1cf7e60a3bd5"
+    },
+    {
+      "bytes": 2557,
+      "name": "coverage.json",
+      "sha256": "b9c3b7f04c78e91f90ac4fbc894cb61a615fd4f3be38eddcdb096b65b49dc8dd"
+    },
+    {
+      "bytes": 9060,
+      "name": "evidence.jsonl",
+      "sha256": "38e24af56351d34876d05c006008b9fa0ea6ad15e26123a87c660424fad02d9d"
+    },
+    {
+      "bytes": 4569,
+      "name": "local_entities.jsonl",
+      "sha256": "de51af0ba84dd706df6ec5253dfdc5a7ef65fe4bc52ed95616a8f332c17bbe2e"
+    },
+    {
+      "bytes": 3353,
+      "name": "migration_adjudications.jsonl",
+      "sha256": "d2a097a680f456f40f6279758bfb1e6c2337e6faeaa6b8bbd435e7194f8e8126"
+    },
+    {
+      "bytes": 5994,
+      "name": "sources.jsonl",
+      "sha256": "d68de00233bcbcce59a17eee9047e452913fdcf4deff14f93ea19e105f71d231"
+    },
+    {
+      "bytes": 530,
+      "name": "validation.json",
+      "sha256": "5bdedadb43c2986fd23d1baeb59f2ab0e619d0eb945bd8aa00f07ba63c781b93"
+    },
+    {
+      "bytes": 1919,
+      "name": "works.jsonl",
+      "sha256": "52e615f42824c5dd8af08a9f286d61e2d1dfe3ac38aaf032d7130e8d5d78bc3d"
+    }
+  ],
+  "generated_at": "2026-08-14T07:08:37-04:00",
+  "legacy_artifacts": {
+    "M4_RESULTS": {
+      "path": "/mnt/data/st_reconciliation_m4/st_reconciliation_results.jsonl",
+      "sha256": "5bf8ddbb40c246b469e9d78af3edcdec28ede1e10013c13ab5cc8d5c2e92d4fc"
+    },
+    "M5_RESULTS": {
+      "path": "/mnt/data/st_reconciliation_m5/st_reconciliation_results.jsonl",
+      "sha256": "0c3db36ea24ef72e2a8da13af6a9999a12fe332583de1bdabaa44cda1229c019"
+    },
+    "M6_RESULTS": {
+      "path": "/mnt/data/st_reconciliation_m6/st_reconciliation_results.jsonl",
+      "sha256": "f4d6c321d203e5236f19f49277edbc4b45bd5086bf83505897dcec2307bd6eb3"
+    }
+  },
+  "status": "MIGRATION_CANDIDATE_NOT_ACCEPTED_REPO_STATE"
+}

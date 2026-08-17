@@ -5,7 +5,7 @@ import hashlib, json, re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-MANIFEST_SCHEMA=ROOT/'schema'/'projection-manifest.schema.json'
+MANIFEST_SCHEMA=ROOT/'schema'/'projection-manifest.schema.json'; RELATION_SCHEMA=ROOT/'schema'/'projection-relation.schema.json'; PROVENANCE_SCHEMA=ROOT/'schema'/'projection-provenance.schema.json'
 REQUIRED_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
 ID_KEYS={'entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'}
 HASH_RE=re.compile(r'^sha256:[0-9a-f]{64}$')
@@ -15,10 +15,8 @@ def sha256_bytes(data): return 'sha256:'+hashlib.sha256(data).hexdigest()
 def compute_projection_hash(outputs): return sha256_bytes(canonical({name:outputs[name]['hash'] for name in REQUIRED_OUTPUTS}).encode())
 def tool_identity(*paths):
  material=[]
- for path in sorted((Path(p) for p in paths),key=lambda p:str(p)):
-  material.append({'path':path.name,'hash':sha256_bytes(path.read_bytes())})
+ for path in sorted((Path(p) for p in paths),key=lambda p:str(p)): material.append({'path':path.name,'hash':sha256_bytes(path.read_bytes())})
  return sha256_bytes(canonical(material).encode('utf-8'))
-
 def type_matches(value,expected):
  if expected=='null':return value is None
  if expected=='object':return isinstance(value,dict)
@@ -28,7 +26,6 @@ def type_matches(value,expected):
  if expected=='integer':return isinstance(value,int) and not isinstance(value,bool)
  if expected=='number':return isinstance(value,(int,float)) and not isinstance(value,bool)
  return True
-
 def schema_errors(value,schema,location='$'):
  errors=[]; expected=schema.get('type')
  if expected is not None:
@@ -49,7 +46,6 @@ def schema_errors(value,schema,location='$'):
    if key in props:errors.extend(schema_errors(item,props[key],f'{location}.{key}'))
    elif schema.get('additionalProperties') is False:errors.append(f'{location}: unexpected property {key}')
  return errors
-
 def parse_jsonl(path,id_key):
  rows=[]; seen=set(); raw_bytes=path.read_bytes()
  for line_no,raw in enumerate(raw_bytes.decode('utf-8').splitlines(),1):
@@ -64,7 +60,6 @@ def parse_jsonl(path,id_key):
  canonical_bytes=''.join(canonical(r)+'\n' for r in sorted(rows,key=lambda r:(str(r.get(id_key,'')),canonical(r)))).encode('utf-8')
  if raw_bytes!=canonical_bytes:raise ValueError(f'{path}: JSONL bytes are not canonical deterministic serialization')
  return rows,raw_bytes
-
 def verify_projection(root):
  root=Path(root); manifest_path=root/'manifest.json'
  if not manifest_path.exists():raise ValueError('projection manifest is missing')
@@ -98,12 +93,14 @@ def verify_projection(root):
    aid=row['assertion_id']
    if aid in active_ids:raise ValueError(f'assertion {aid} appears in multiple active partitions')
    active_ids.add(aid)
+ relation_schema=json.loads(RELATION_SCHEMA.read_text(encoding='utf-8')); provenance_schema=json.loads(PROVENANCE_SCHEMA.read_text(encoding='utf-8'))
  for row in rows['relations.jsonl']:
-  if row.get('record_type')!='projection_relation':raise ValueError('relations.jsonl contains non-projection_relation row')
+  errs=schema_errors(row,relation_schema)
+  if errs:raise ValueError('invalid projection relation: '+'; '.join(errs))
  for row in rows['provenance.jsonl']:
-  if row.get('record_type')!='projection_provenance':raise ValueError('provenance.jsonl contains non-projection_provenance row')
+  errs=schema_errors(row,provenance_schema)
+  if errs:raise ValueError('invalid projection provenance: '+'; '.join(errs))
  recomputed=compute_projection_hash(outputs)
  if manifest.get('projection_hash')!=recomputed:raise ValueError(f"projection_hash mismatch: declared {manifest.get('projection_hash')}, expected {recomputed}")
  receipt={'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS)}
- receipt_hash=sha256_bytes(canonical(receipt).encode('utf-8'))
- return {'manifest':manifest,'rows':rows,'receipt':receipt,'receipt_hash':receipt_hash}
+ receipt_hash=sha256_bytes(canonical(receipt).encode('utf-8')); return {'manifest':manifest,'rows':rows,'receipt':receipt,'receipt_hash':receipt_hash}

@@ -1,0 +1,15 @@
+{
+  "accepted_repo_write": "NONE",
+  "adjudication_count": 7,
+  "assertion_count": 5,
+  "batch_id": "TREK_LEGACY_MIGRATION_BATCH_001",
+  "coverage_invariant": "PASS: 0 CLOSE_READ / 0 COMPLETE_CLOSE_READ / 0 viewing promotions",
+  "evidence_count": 14,
+  "jsonl_parse": "PASS",
+  "local_entity_count": 19,
+  "preference_blind_gate": "PASS_FOR_MIGRATED_STRUCTURAL_ASSERTIONS; THEMATIC/ANALOGY OUTPUTS EXCLUDED",
+  "reference_integrity": "PASS",
+  "source_count": 5,
+  "validated_at": "2026-08-14T07:08:37-04:00",
+  "work_count": 5
+}

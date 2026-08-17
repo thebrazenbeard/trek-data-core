@@ -35,7 +35,7 @@ class ReconTests(unittest.TestCase):
   rc,o=self.run_records(base()+[disposition('d1','ACCEPTED'),disposition('d2','REJECTED',sup='d1',reason='correction')]); self.assertEqual(rc,0,o)
  def test_cross_subject_supersession_is_rejected(self):
   rows=base()+[{'record_type':'assertion','assertion_id':'assertion-2','subject_type':'LOCAL_ENTITY','subject':'local-1','predicate':'CLAIMS','object':'fixture-2','evidence':['evidence-1'],'status':'ACCEPTED'}]
-  rc,o=self.run_records(rows+[disposition('d1','ACCEPTED','assertion-1'),disposition('d2','REJECTED','assertion-2',sup='d1',reason='bad')]); self.assertEqual(rc,1); self.assertIn('different subject',o)
+  rc,o=self.run_records(rows+[disposition('d1','ACCEPTED','assertion-1'),disposition('d2','REJECTED','assertion-2',sup='d1',reason='bad')]); self.assertEqual(rc,1); self.assertIn('different active key',o)
  def test_supersession_cycle_is_rejected(self):
   rc,o=self.run_records(base()+[disposition('d1','ACCEPTED',sup='d2',reason='a'),disposition('d2','REJECTED',sup='d1',reason='b')]); self.assertEqual(rc,1); self.assertIn('cycle',o)
 if __name__=='__main__': unittest.main()

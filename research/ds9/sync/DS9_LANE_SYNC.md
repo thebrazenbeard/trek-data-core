@@ -47,20 +47,21 @@ During this synchronization pass, the remaining open DS9 corpus staging PR surfa
 - PR #85 — batch 023
 - PR #101 — batch 024
 - PR #102 — batch 025
+- PR #103 — batch 026, created concurrently while this sync was being finalized
 
 Auditor PRs #41 and #53 remain outside this disposition and were not closed.
 
 ## Preserved worker-effort inventory
 
-There are 25 preserved DS9 staging branches representing 125 sequential proposal work slots from `Emissary` through `Sons and Daughters`.
+There are 26 preserved DS9 staging branches representing 130 sequential proposal work slots from `Emissary` through `Resurrection`.
 
 Of those slots:
 
-- 124 have completed transcript-representation close reads preserved on proposal branches;
+- 129 have completed transcript-representation close reads preserved on proposal branches;
 - 1 (`Shakaar`) remains `SOURCE_RETRIEVAL_BLOCKED` / partial and is not counted as a completed full-source close read;
 - accepted DS9 coverage remains unchanged at zero accepted batch/coverage records on `main`.
 
-This 124/125 count is a **proposal worker-effort inventory**, not accepted coverage and not an accepted corpus denominator.
+This 129/130 count is a **proposal worker-effort inventory**, not accepted coverage and not an accepted corpus denominator.
 
 | Batch | Preserved branch | PR | Preserved head | Worker-effort state |
 |---|---|---:|---|---|
@@ -89,15 +90,19 @@ This 124/125 count is a **proposal worker-effort inventory**, not accepted cover
 | 023 | `research/ds9/ds9-s05-b023-staging` | #85 | `341686699413f4e1fe4602bfa61c1c3aa1efb02c` | 5 complete; prior source gaps resolved |
 | 024 | `research/ds9/ds9-s05-b024-staging` | #101 | `ae2458e1682c7b5e5e4182780e6647885ee6e0f0` | 5 complete |
 | 025 | `research/ds9/ds9-s06-b025-staging` | #102 | `5a0dd8cd28e208d3a7a1cf0cf1cffe5005fa9655` | 5 complete |
+| 026 | `research/ds9/ds9-s06-b026-staging` | #103 | `e1869ed8f62d41c15566eeac6f9725cf8d58a53a` | 5 complete |
 
 ## Proposal sequence boundary
 
-The preserved proposal sequence currently reaches:
+The preserved proposal sequence now reaches Season 6 through:
 
-- Season 5 conclusion: `In the Cards`, `Call to Arms`;
-- Season 6 opening: `A Time to Stand`, `Rocks and Shoals`, `Sons and Daughters`.
+- `Behind the Lines`
+- `Favor the Bold`
+- `Sacrifice of Angels`
+- `You Are Cordially Invited`
+- `Resurrection`
 
-`Behind the Lines` is therefore the next **provisional external sequence title** after the preserved worker-effort frontier.
+`Statistical Probabilities` is therefore the next **provisional external sequence title** after the preserved worker-effort frontier.
 
 That is **not** authorization to begin it. Issue #23 requires the lane to stop, and after the admission gate clears the accepted frontier must be recalculated from `main`; proposal sequence does not automatically become accepted sequence.
 
@@ -138,7 +143,7 @@ Auditor PR #53 found that early corpus research PRs targeting `architecture/v0.1
 
 Preserved research bytes are not rejected, but historical branches must not be merged through that architecture base.
 
-Later DS9 batches 024 and 025 were deliberately based directly on accepted `main`, avoiding that specific topology defect, but they remain proposal-only and still lack the accepted Source↔Work/admission dependencies.
+Later DS9 batches 024, 025, and 026 were deliberately based directly on accepted `main`, avoiding that specific topology defect, but they remain proposal-only and still lack the accepted Source↔Work/admission dependencies.
 
 When normalization becomes legal, the worker should migrate/re-express preserved DS9 records into governed bounded batches from the then-current accepted base rather than rewriting or force-moving the historical proposal branches.
 
@@ -175,7 +180,7 @@ When Director issue #23's resume condition is actually satisfied on accepted `ma
 7. recover and fully process `Shakaar` if it remains unbound/incomplete in accepted state;
 8. only then recalculate the exact next new-work frontier from accepted coverage.
 
-If the accepted inventory and normalized preserved sequence still align, `Behind the Lines` is the provisional next new title after `Sons and Daughters`. That conclusion must be recomputed, not assumed.
+If the accepted inventory and normalized preserved sequence still align, `Statistical Probabilities` is the provisional next new title after `Resurrection`. That conclusion must be recomputed, not assumed.
 
 ## Authority boundary
 

@@ -1,0 +1,68 @@
+{
+  "audiovisual_viewing_claims": 0,
+  "batch_id": "TREK_LEGACY_MIGRATION_BATCH_001",
+  "book_read_effect": "NONE",
+  "close_read_promotions": 0,
+  "complete_close_read_promotions": 0,
+  "coverage_state_by_work": [
+    {
+      "coverage_promotion": "NONE",
+      "legacy_episode_id": "STEP-DIS-S02E09",
+      "semantic_migration_scope": "ONLY ASSERTIONS EXPLICITLY LISTED IN assertions.jsonl",
+      "source_id": "MIG001-SRC-01",
+      "source_retrieved": true,
+      "targeted_legacy_passages_present": true,
+      "targeted_passages_currently_revalidated": true,
+      "whole_source_close_read_verified": false,
+      "work_id": "MIG001-WORK-01"
+    },
+    {
+      "coverage_promotion": "NONE",
+      "legacy_episode_id": "STEP-DIS-S01E12",
+      "semantic_migration_scope": "ONLY ASSERTIONS EXPLICITLY LISTED IN assertions.jsonl",
+      "source_id": "MIG001-SRC-02",
+      "source_retrieved": true,
+      "targeted_legacy_passages_present": true,
+      "targeted_passages_currently_revalidated": true,
+      "whole_source_close_read_verified": false,
+      "work_id": "MIG001-WORK-02"
+    },
+    {
+      "coverage_promotion": "NONE",
+      "legacy_episode_id": "STEP-DIS-S03E10",
+      "semantic_migration_scope": "ONLY ASSERTIONS EXPLICITLY LISTED IN assertions.jsonl",
+      "source_id": "MIG001-SRC-03",
+      "source_retrieved": true,
+      "targeted_legacy_passages_present": true,
+      "targeted_passages_currently_revalidated": true,
+      "whole_source_close_read_verified": false,
+      "work_id": "MIG001-WORK-03"
+    },
+    {
+      "coverage_promotion": "NONE",
+      "legacy_episode_id": "STEP-DIS-S05E03",
+      "semantic_migration_scope": "ONLY ASSERTIONS EXPLICITLY LISTED IN assertions.jsonl",
+      "source_id": "MIG001-SRC-04",
+      "source_retrieved": true,
+      "targeted_legacy_passages_present": true,
+      "targeted_passages_currently_revalidated": true,
+      "whole_source_close_read_verified": false,
+      "work_id": "MIG001-WORK-04"
+    },
+    {
+      "coverage_promotion": "NONE",
+      "legacy_episode_id": "STEP-DIS-S04E03",
+      "semantic_migration_scope": "ONLY ASSERTIONS EXPLICITLY LISTED IN assertions.jsonl",
+      "source_id": "MIG001-SRC-05",
+      "source_retrieved": true,
+      "targeted_legacy_passages_present": true,
+      "targeted_passages_currently_revalidated": true,
+      "whole_source_close_read_verified": false,
+      "work_id": "MIG001-WORK-05"
+    }
+  ],
+  "historical_completion_claims_migrated": 0,
+  "lane": "MIGRATION",
+  "legacy_partition": "Star Trek: Discovery",
+  "works_in_batch": 5
+}

@@ -1,0 +1,87 @@
+{
+  "inventory_id": "TREK_LEGACY_ARTIFACT_INVENTORY_003",
+  "status": "MIGRATION_CUSTODY_AND_ACTIONABILITY_CHECKPOINT_NOT_ACCEPTED",
+  "accepted_main_observed": "007641c57933dda222489fff56555f6968ff2a53",
+  "artifacts": [
+    {
+      "artifact": "TREK_LEGACY_MIGRATION_BATCH_001",
+      "class": "RECOVERED_LEGACY_MIGRATION_PACKAGE",
+      "owner": "MIGRATION",
+      "state": "PRESERVED_AS_DRAFT_PR_115",
+      "actionability": "COMPLETE_FOR_PROPOSAL_PRESERVATION_BLOCKED_FOR_ACCEPTED_ADMISSION",
+      "notes": "Five Discovery works; targeted transcript passage revalidation only; zero close-read/viewing/completion promotion. Historical M4/M5/M6 byte paths are referenced by hash but not currently re-exposed."
+    },
+    {
+      "artifact": "ChatGPT-Vera-20260817-0934.md legacy Trek state claims",
+      "class": "HISTORICAL_WORKFLOW_AND_COVERAGE_CLAIMS",
+      "owner": "MIGRATION",
+      "state": "QUARANTINED_AS_DRAFT_PR_118",
+      "actionability": "COMPLETE_FOR_CURRENT_CORRECTION_TRANCHE",
+      "notes": "Historical 29/158 and related counters remain workflow claims only; model knowledge and user preferences are excluded from research evidence."
+    },
+    {
+      "artifact": "ST_CORPUS_CONVERGENCE_CHECKPOINT_V2_R3",
+      "class": "LEGACY_CONVERGENCE_AND_DEPENDENCY_ARTIFACT",
+      "owner": "MIXED_RECONCILIATION_MIGRATION",
+      "state": "DISCOVERED_DURABLE_NOT_ACCEPTED",
+      "actionability": "PARTIALLY_CAPTURED_IN_PR_118_REMAINDER_BLOCKED",
+      "notes": "Useful negative/source-dependency corrections are preserved; semantic reconciliation and legacy counters are not promoted without current source/registry support."
+    },
+    {
+      "artifact": "ST_LIBRARIAN_COLLISION_RECOVERY_QUEUE_V1",
+      "class": "LEGACY_SOURCE_COLLISION_EVIDENCE",
+      "owner": "LIBRARIAN",
+      "state": "DISCOVERED_DURABLE_NOT_ACCEPTED",
+      "actionability": "HANDOFF_ONLY",
+      "notes": "Reports 84 LIT/TXT candidates, 121 title-overlap groups, 41 suspicious short conversions and named edge cases, but exact memberships and source bytes remain unresolved. MIGRATION must not perform Librarian source binding."
+    },
+    {
+      "artifact": "ST_LIBRARIAN_EXTERNAL_CROSSWALK_TRANCHE_001_AND_002",
+      "class": "EXTERNAL_METADATA_CROSSWALK_CANDIDATES",
+      "owner": "LIBRARIAN",
+      "state": "DISCOVERED_DURABLE_NOT_ACCEPTED",
+      "actionability": "HANDOFF_ONLY",
+      "notes": "Useful candidate metadata and edition distinctions; external IDs and legacy STW identifiers are not accepted Trek IDs."
+    },
+    {
+      "artifact": "M4_M5_M6_st_reconciliation_results.jsonl",
+      "class": "HISTORICAL_LEGACY_RECONCILIATION_BYTES",
+      "owner": "MIGRATION",
+      "state": "HASH_AND_PATH_REFERENCED_BYTES_NOT_CURRENTLY_ACCESSIBLE",
+      "actionability": "BLOCKED_ON_BYTE_CUSTODY",
+      "notes": "Batch 001 manifest preserves historical paths and SHA-256 values. Current migration pass did not recover standalone byte objects, so hashes are provenance claims rather than newly verified custody."
+    },
+    {
+      "artifact": "Star_Trek_OPF_Converted(1).zip and ST ebooks(1).zip",
+      "class": "REPORTED_LITERARY_SOURCE_CONTAINERS",
+      "owner": "LIBRARIAN",
+      "state": "NOT_BYTE_ADDRESSABLE_IN_CURRENT_DURABLE_SURFACES",
+      "actionability": "BLOCKED_AND_OUTSIDE_MIGRATION_SOURCE_BINDING_AUTHORITY",
+      "notes": "Literary migration cannot establish source reading or Source-to-Work identity before Librarian byte custody, hashing, member enumeration and lineage reconciliation."
+    },
+    {
+      "artifact": "historical user Trek preferences",
+      "class": "USER_CONTEXT_NOT_RESEARCH_EVIDENCE",
+      "owner": "NONE_PRIMARY_RESEARCH",
+      "state": "QUARANTINED",
+      "actionability": "NO_PRIMARY_RESEARCH_USE",
+      "notes": "May only be used in an explicitly separate user-lens comparison after preference-blind research."
+    },
+    {
+      "artifact": "legacy chat/conversation exports generally",
+      "class": "DISCOVERY_AND_PROVENANCE_SURFACE",
+      "owner": "MIGRATION",
+      "state": "AVAILABLE_SELECTIVELY",
+      "actionability": "NOT_AUTOMATIC_EVIDENCE",
+      "notes": "Conversation text can identify candidate legacy records, source locators, corrections and workflow claims. It does not by itself prove source reading, accepted coverage or fictional world-state truth."
+    }
+  ],
+  "current_migration_result": "NO_FURTHER_EXECUTABLE_MIGRATION_BATCH_IDENTIFIED_WITH_CURRENT_EVIDENCE_AND_AUTHORITY",
+  "reactivation_triggers": [
+    "accepted governing methodology/schema/predicate/coverage admission contract appears on main",
+    "accepted Librarian Source/Work binding becomes available for a staged migration package",
+    "byte-accessible M4/M5/M6 historical reconciliation artifact or another exact legacy research artifact is recovered",
+    "byte-addressable literary source container and Librarian custody/binding records become available",
+    "new durable legacy migration package with attributable source provenance is discovered"
+  ]
+}

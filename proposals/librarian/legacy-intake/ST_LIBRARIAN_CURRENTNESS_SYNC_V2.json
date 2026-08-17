@@ -1,0 +1,43 @@
+{
+  "checkpoint_id": "ST_LIBRARIAN_CURRENTNESS_SYNC_V2",
+  "role": "LIBRARIAN",
+  "proposal_only": true,
+  "current_accepted_main": "007641c57933dda222489fff56555f6968ff2a53",
+  "historical_branch_base": "d58359a207da89e812d0a0330558c66774ed1241",
+  "current_main_drift_note": "Accepted main later added one-byte top-level path x. The path currently has no Source/Work meaning. Earlier Librarian artifacts remain historical proposal evidence and are not rewritten to pretend they were produced from the later head.",
+  "component_state": {
+    "custody_intake": "SYNCED_ON_BRANCH",
+    "collision_recovery_queue": "SYNCED_ON_BRANCH",
+    "legacy_crosswalk_tranche_001": "SYNCED_ON_BRANCH",
+    "legacy_crosswalk_tranche_002": "SYNCED_ON_BRANCH",
+    "external_adapter_assessment": "SYNCED_ON_BRANCH"
+  },
+  "current_registry_implementation": {
+    "draft_pr": 125,
+    "branch": "external/librarian/source-work-binding-v1",
+    "base": "007641c57933dda222489fff56555f6968ff2a53",
+    "state": "PROPOSAL_READY_FOR_AUDITOR_REVIEW"
+  },
+  "rtrek_binary_intake": {
+    "dataset": "cran/rtrek data/stBooks.rda",
+    "repository_commit": "b0583ee4b204457bfe1020564aad0d7acf7146a4",
+    "git_blob_sha": "ea0a3c4dafdcc2e857edec38b6231bc9acd75a25",
+    "bytes": 77722,
+    "state": "LOCATED_BUT_NOT_DECODABLE_IN_CURRENT_RUNTIME",
+    "runtime_blockers": [
+      "Rscript unavailable",
+      "pyreadr unavailable",
+      "rdata unavailable",
+      "binary connector fetch attempts UTF-8 decode",
+      "execution container has no direct network/DNS route"
+    ],
+    "rule": "Do not invent broad candidate inventory rows from documentation counts alone."
+  },
+  "ebook_byte_custody": "STILL_NOT_EXPOSED",
+  "accepted_state_effect": "NONE",
+  "exact_next_frontier": [
+    "AUDITOR_REVIEW_PR_125",
+    "FIRST_BYTE_ADDRESSABLE_EBOOK_CONTAINER",
+    "RTREK_BINARY_DECODER_OR_EXPORT_ROUTE"
+  ]
+}

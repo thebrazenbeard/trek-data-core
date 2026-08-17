@@ -1,0 +1,28 @@
+{
+  "batch_id": "LIBRARIAN_SOURCE_WORK_BINDING_V1",
+  "role": "LIBRARIAN",
+  "proposal_only": true,
+  "accepted_base": "007641c57933dda222489fff56555f6968ff2a53",
+  "director_contracts": [
+    "issue-14",
+    "issue-65"
+  ],
+  "fixture_basis": [
+    "auditor-pr-41",
+    "auditor-pr-45",
+    "auditor-pr-47"
+  ],
+  "record_files": [
+    "registry/librarian_registry_fixtures.json"
+  ],
+  "schema_files": [
+    "registry/librarian_registry_contract.schema.json"
+  ],
+  "validator": "tools/validate_librarian_registry.py",
+  "tests": "tools/test_librarian_registry.py",
+  "coverage_effect": "NONE",
+  "accepted_source_work_effect": "NONE",
+  "copyrighted_source_bytes_committed": false,
+  "literary_byte_custody": "NOT_EXPOSED",
+  "next_frontier": "AUDITOR_REVIEW_OF_BINDING_CONTRACT_AND_FIRST_BYTE_ADDRESSABLE_EBOOK_CONTAINER"
+}

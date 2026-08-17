@@ -6,19 +6,19 @@ Accepted state observed: `main` @ `007641c57933dda222489fff56555f6968ff2a53`
 
 ## Accepted state
 
-Accepted `main` remains authoritative. The current accepted tree contains the skeletal README plus the unresolved one-byte top-level path `x`. The `x` path is tracked as accepted-state drift under issues #90/#91 and has no assigned Trek corpus, governance, schema, registry, coverage, or research meaning.
+Accepted `main` remains authoritative. The current accepted tree contains the skeletal README plus the unresolved one-byte top-level path `x`. The `x` path is tracked as accepted-state drift under issue #90 and has no assigned Trek corpus, governance, schema, registry, coverage, or research meaning. Issue #91 is a closed duplicate of #90.
 
-No open governance, architecture, registry, reconciliation, coverage, or research proposal is accepted merely because it exists or has green CI.
+No open or closed-unmerged governance, architecture, registry, reconciliation, coverage, or research proposal is accepted merely because it exists or has green CI.
 
 ## Current shared gates
 
 ### Governance
 
-PR #4 preserves the four Project-supplied governance files with prior byte-identity audit support. PR #92 is the active governance/bootstrap alignment proposal. Neither is accepted state. Governance acceptance remains a separate decision from architecture acceptance.
+PR #4 remains the open byte-preserving proposal for the four Project-supplied governance files. PR #92 is now closed-unmerged and therefore preserved only as proposal history, not an active review surface. Governance acceptance remains separate from architecture acceptance.
 
-PR #92 now includes the corrected canonical flow `SOURCE -> WORK -> LOCAL ENTITY -> EVIDENCE -> ASSERTION -> ACCEPTED RECONCILIATION -> DETERMINISTIC PROJECTION -> QUERY DATABASE`, carries the four root governance files, restores the governed `FULL_TEXT_AVAILABLE` coverage state in implementation methodology, and strengthens the bootstrap validator so governed record schemas are actually enforced. Its head `be957be4a4f893d9467fc0e22cb74f896d20ae08` passed `validate-core` workflow run `32076118155`, including repository validation, two projection builds, and deterministic output diff. This green result does not satisfy the broader architecture admission gate.
+Before PR #92 closed, its branch reached head `be957be4a4f893d9467fc0e22cb74f896d20ae08`. That preserved proposal contains the corrected canonical flow `SOURCE -> WORK -> LOCAL ENTITY -> EVIDENCE -> ASSERTION -> ACCEPTED RECONCILIATION -> DETERMINISTIC PROJECTION -> QUERY DATABASE`, restores the governed `FULL_TEXT_AVAILABLE` coverage state in implementation methodology, and strengthens the bootstrap validator so governed record schemas are actually enforced. `validate-core` workflow run `32076118155` passed on that exact head, including repository validation, two projection builds, and deterministic output diff. Those bytes remain available for comparison/migration but do not reopen or supersede PR #4 or the current architecture gate.
 
-A fresh Director audit of PR #92 re-observed the canonical-projection incompleteness already governed by issue #76. Temporary issue #107 was therefore closed as a duplicate of #76 rather than creating competing projection authority.
+A fresh Director audit of the closed #92 branch re-observed the canonical-projection incompleteness already governed by issue #76. Temporary issue #107 was closed as a duplicate of #76 rather than creating competing projection authority.
 
 ### Architecture / Consolidator
 
@@ -55,7 +55,7 @@ Issue #43 defines the calibration/adversarial regression policy. Corpus-derived 
 
 Issue #23 remains active. New episode/book close-read tranches are paused until accepted governance, usable accepted schema/predicate contracts, Librarian-owned Work/Source binding for the next Works, and governed coverage/admission machinery exist.
 
-Recent lane PRs #96–#100 are synchronization/preservation checkpoints rather than new authorized corpus expansion. That is the correct behavior under the hold. Existing proposal branches remain preservation/migration inputs and must not be deleted or rewritten merely to simplify topology.
+Recent lane PRs #96–#100 are synchronization/preservation checkpoints rather than new authorized corpus expansion. Existing proposal branches remain preservation/migration inputs and must not be deleted or rewritten merely to simplify topology.
 
 Any lane-specific `exact next frontier` text is provisional only and does not override issue #23.
 
@@ -83,7 +83,7 @@ SERIES / FILMS / LITERATURE WORKERS:
 
 DIRECTOR:
 1. keep issue #29 and issue #23 current as shared gate/queue records;
-2. keep PR #92 aligned with the current root governance contract while treating #82/successor as the implementation admission surface;
+2. treat PR #4 as the active governance baseline proposal, closed #92 as preserved alignment history, and #82/successor as the implementation admission surface;
 3. reassess acceptance readiness only after integrated implementation plus Auditor re-review and Librarian/coverage progress;
 4. preserve accepted-state drift as unresolved until explicitly corrected through an authorized path.
 

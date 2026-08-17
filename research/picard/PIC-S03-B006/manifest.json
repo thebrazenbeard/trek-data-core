@@ -1,0 +1,19 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "PIC-S03-B006",
+  "schema_version": "PROVISIONAL_COMPAT_V0.1",
+  "worker_id": "PIC",
+  "works": ["PIC-PROV-S03E06","PIC-PROV-S03E07","PIC-PROV-S03E08","PIC-PROV-S03E09","PIC-PROV-S03E10"],
+  "source_hashes": [],
+  "record_counts": {"local_entities":75,"evidence":50,"assertions":35},
+  "batch_hash": "996a166337e74e9131a9d3a5784eba47bf81a4d7e5c2cb202efdb384e4015de8",
+  "batch_hash_method": "SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S03-B006 files except manifest.json",
+  "created_at": "2026-08-17T18:07:00-04:00",
+  "status": "RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect": "NONE",
+  "notes": "Five-episode Picard S03E06-S03E10 close-read candidate reaching series end. Current Picard and his former biological remains remain distinct; hybrid golem profiles and post-conflict Data remain unresolved identity relations; apparent Tuvok and Changeling impersonator remain separate; Jack, Võx and post-severance Jack remain local states; Borg genetic/transporter and Fleet Formation mechanisms are separated; Q's post-crisis occurrence remains temporally unresolved."
+}

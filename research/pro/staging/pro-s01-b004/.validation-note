@@ -1,0 +1,7 @@
+manual-staging-validation: PASS
+base-main: 007641c57933dda222489fff56555f6968ff2a53
+scope: research/pro/staging/pro-s01-b004 only
+complete-full-source-reads: 1x17,1x18,1x19,1x20
+accepted-coverage-advanced: no
+global-identity-mutated: no
+canonical-source-work-binding: blocked on accepted Librarian state

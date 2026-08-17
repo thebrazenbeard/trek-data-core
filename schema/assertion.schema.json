@@ -7,7 +7,7 @@
   "properties": {
     "record_type": {"const": "assertion"},
     "assertion_id": {"type": "string", "minLength": 1},
-    "subject_type": {"enum": ["SOURCE", "WORK", "LOCAL_ENTITY", "EVIDENCE", "ASSERTION", "RECONCILIATION_DECISION"]},
+    "subject_type": {"enum": ["SOURCE", "WORK", "LOCAL_ENTITY", "ASSERTION"]},
     "subject": {"type": "string", "minLength": 1},
     "predicate": {"type": "string", "minLength": 1},
     "object": {},

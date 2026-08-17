@@ -29,7 +29,7 @@ def active_decisions():
  return [
   decision('disp1','ASSERTION_DISPOSITION','ASSERTION','a1',{'disposition':'ACCEPTED'}),
   decision('stat1','ASSERTION_PROJECTION_STATUS','ASSERTION','a1',{'projection_status':'STABLE'}),
-  decision('scope1','SCOPE_RESOLUTION','ASSERTION','a1',{'resolution_key':'continuity','resolution':{'continuity':'alternate'}}),
+  decision('scope1','SCOPE_RESOLUTION','ASSERTION','a1',{'resolution_key':'CONTINUITY_SCOPE','resolution':{'continuity':'alternate'}}),
  ]
 
 class ContractAlignmentTests(unittest.TestCase):
@@ -51,14 +51,14 @@ class ContractAlignmentTests(unittest.TestCase):
  def test_typed_reconciliation_drives_projection_without_mutating_worker_fields(self):
   result=projection.build_logical_projection(records(proposed='CONTESTED'),active_decisions()); fact=result['facts'][0]
   self.assertEqual(fact['subject'],'local-1'); self.assertEqual(fact['subject_type'],'LOCAL_ENTITY'); self.assertEqual(fact['proposed_projection_status'],'CONTESTED')
-  self.assertEqual(fact['assertion_disposition'],'ACCEPTED'); self.assertEqual(fact['projection_status'],'STABLE')
-  self.assertEqual(fact['resolved_scope']['continuity'],{'continuity':'alternate'})
+  self.assertEqual(fact['effective_assertion_status'],'ACCEPTED'); self.assertEqual(fact['projection_status'],'STABLE')
+  self.assertEqual(fact['resolved_scope']['CONTINUITY_SCOPE'],{'continuity':'alternate'})
  def test_rejected_disposition_excludes_assertion_from_active_partitions(self):
   ds=[decision('disp1','ASSERTION_DISPOSITION','ASSERTION','a1',{'disposition':'REJECTED'})]
   result=projection.build_logical_projection(records(),ds); self.assertEqual(result['facts'],[]); self.assertEqual(result['contested'],[]); self.assertEqual(result['unresolved'],[])
  def test_provenance_contains_full_reachable_records(self):
   result=projection.build_logical_projection(records(),active_decisions()); p=result['provenance'][0]
-  self.assertEqual(p['source_record']['content_hash'],'sha256:source'); self.assertEqual(p['source_record']['source_variant'],'v1'); self.assertEqual(p['evidence_record']['observed'],{'event':'fixture'}); self.assertEqual(p['work_record']['work_id'],'w1'); self.assertEqual(p['local_entity_record']['local_entity_id'],'local-1')
+  self.assertEqual(p['source_record']['content_hash'],'sha256:source'); self.assertEqual(p['source_record']['source_variant'],'v1'); self.assertEqual(p['evidence_record']['observed'],{'event':'fixture'}); self.assertEqual(p['work_record']['work_id'],'w1'); self.assertEqual(p['subject_record']['local_entity_id'],'local-1')
  def test_nonstable_transition_is_provisional_status_change_without_conflict_inference(self):
   with tempfile.TemporaryDirectory() as td:
    old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir()
@@ -76,6 +76,6 @@ class ContractAlignmentTests(unittest.TestCase):
  def test_reconciliation_history_change_is_not_fact_value_change(self):
   with tempfile.TemporaryDirectory() as td:
    old=Path(td)/'old'; new=Path(td)/'new'; old.mkdir(); new.mkdir(); row={'decision_id':'d1','record_type':'reconciliation_decision','decision_type':'ASSERTION_DISPOSITION','subject_type':'ASSERTION','subject_id':'a1','payload':{'disposition':'ACCEPTED'},'status':'ACCEPTED','evidence':['e1'],'method':'fixture'}
-   (new/'accepted_reconciliation.jsonl').write_text(json.dumps(row)+'\n'); changes=diff.semantic_diff(old,new); classes=[x['class'] for x in changes]
+   (new/'reconciliation_history.jsonl').write_text(json.dumps(row)+'\n'); changes=diff.semantic_diff(old,new); classes=[x['class'] for x in changes]
    self.assertNotIn('VALUE_CHANGED',classes); self.assertIn('PROVISIONAL_RECONCILIATION_HISTORY_CHANGED',classes)
 if __name__=='__main__': unittest.main()

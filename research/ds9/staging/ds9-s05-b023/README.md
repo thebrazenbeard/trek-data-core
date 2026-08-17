@@ -5,11 +5,11 @@ Authority status: PROPOSAL ONLY. Accepted `main` remains authoritative. No canon
 ## Work set / batch honesty
 1. By Inferno's Light — COMPLETE transcript-body close read
 2. Doctor Bashir, I Presume? — COMPLETE transcript-body close read
-3. A Simple Investigation — SOURCE_RETRIEVAL_BLOCKED for full-source completion; strong detailed episode/quotation evidence preserved only
+3. A Simple Investigation — COMPLETE transcript-body close read
 4. Business as Usual — COMPLETE transcript-body close read
-5. Ties of Blood and Water — SOURCE_RETRIEVAL_BLOCKED for full-source completion; strong official/detailed quotation evidence preserved only
+5. Ties of Blood and Water — COMPLETE transcript-body close read
 
-This tranche is NOT claimed complete because two works lack an actually inspected complete transcript body. Primary audiovisual masters were not directly inspected. Provider independence/reproducible byte lineage remain UNKNOWN. No copyrighted full transcript text is reproduced.
+All five works now have an actually inspected complete transcript representation. The two source gaps present in the original staging commit were later closed using complete Forever Dreaming transcript pages. Primary audiovisual masters were not directly inspected. Provider independence/reproducible byte lineage remain UNKNOWN. No copyrighted full transcript text is reproduced.
 
 ## By Inferno's Light
 BI01 Gul Dukat/Cardassia formally join the Dominion. Dukat becomes head of the new Cardassian government and openly threatens Federation, Klingon and Maquis opponents.
@@ -39,15 +39,15 @@ DB11 The legal rationale is framed partly through Federation fear of renewed eug
 DB12 In the Leeta/Rom subplot, Leeta nearly leaves for Jupiter with Zimmerman after Rom repeatedly fails to disclose his feelings; Rom finally professes love, Leeta reciprocates and chooses to remain.
 Assertions: genetic enhancement is a real childhood intervention with lasting bodily/cognitive consequences. Julian's language of “Jules died” is self-concept testimony and must not be promoted to literal person death/replacement. Richard bears the criminal sentence under a negotiated legal arrangement while Julian retains Starfleet/medical status. The LMH derived from Bashir is a holographic template/copy, not Bashir himself.
 
-## A Simple Investigation — SOURCE_RETRIEVAL_BLOCKED
-Strong partial evidence from detailed episode records and indexed dialogue, not a successfully inspected complete transcript body.
+## A Simple Investigation
+Full-source closure: a complete Forever Dreaming transcript body was inspected after the original source-blocked staging commit.
 ASI01 The woman calling herself Arissa becomes involved with Odo while apparently fleeing Orion Syndicate connections and attempting to recover information about a prior life/daughter.
 ASI02 Odo and Arissa form a romantic/sexual relationship during the investigation.
-ASI03 Idanian operatives reveal that “Arissa” is an undercover constructed identity. The operative had volunteered for a roughly two-year infiltration of the Orion Syndicate.
-ASI04 To defeat Syndicate telepaths, her original autobiographical memories were removed/suppressed and her appearance/social identity altered; a data source enables later restoration.
-ASI05 Bashir restores her prior memories/appearance. The restored person has a husband/prior life and cannot continue the relationship with Odo in the same form.
-ASI06 Odo says he fell in love with a woman who never really existed; she answers that Arissa did exist and loved him, and that some continuity remains.
-Partial assertions only: constructed-Arissa and restored operative should remain distinct local identity states with bodily/causal continuity but discontinuous/restored memory and social role. The Arissa/Odo relationship was experientially genuine to the constructed identity and Odo despite the covert origin. Full transcript closure required before semantic promotion.
+ASI03 Idanian operatives reveal that “Arissa” is an undercover constructed identity. The operative had volunteered for an approximately two-year infiltration of the Orion Syndicate.
+ASI04 To defeat Syndicate telepaths, her original autobiographical memories were removed and stored while her appearance and social identity were altered; the memory crystal enables later restoration.
+ASI05 Bashir restores her prior memories and appearance. The restored operative remembers a husband and prior life and cannot continue the relationship with Odo in the same form.
+ASI06 Odo says he fell in love with a woman who never really existed; she explicitly rejects that conclusion, saying Arissa did exist, was real, loved him, and in a way still does.
+Assertions: constructed-Arissa and the restored operative are preserved as distinct local identity states rather than silently collapsed. The transcript supports bodily/causal continuity alongside intentionally removed/restored memory and changed social role. The Arissa/Odo relationship was experientially genuine to both participants despite the covert origin of the constructed identity. The source does not require a global metaphysical verdict about whether Arissa and the restored operative are the same person.
 
 ## Business as Usual
 BU01 Quark, under substantial debt, enters arms dealing with Gaila and Hagath, using holosuite demonstrations and off-station delivery mechanisms to avoid ordinary local scrutiny.
@@ -61,21 +61,23 @@ BU08 Hagath/Gaila flee. The Regent is later reported killed by a purification sq
 BU09 Quark recognizes that millions remain alive because the sale failed, but Sisko still holds him responsible for station riot/endangerment/repair consequences from his operation.
 Assertions: Quark knowingly participates in arms dealing before rejecting a specific mass-casualty deal. His later prevention of the massacre does not erase prior agency/benefit, while prior wrongdoing does not erase the causal fact that his sabotage prevents the proposed attack. Hagath's Bajoran Resistance history is real political provenance but not blanket present immunity.
 
-## Ties of Blood and Water — SOURCE_RETRIEVAL_BLOCKED
-Strong partial evidence from official episode material and indexed dialogue, not a successfully inspected complete transcript body.
-TB01 Tekeny Ghemor, previously bonded with Kira during the false-Iliana operation, returns terminally ill and asks Kira to hear his Cardassian shri-tal secrets as a chosen daughter/family relation.
-TB02 Ghemor opposes the Dominion-aligned Cardassian government and refuses Dukat/Weyoun attempts to buy his cooperation with claims about locating/clearing Iliana.
-TB03 Kira learns Ghemor served on Bajor and was present during the Kiessa Monastery operation in which seventeen monks were killed; Ghemor expresses regret and says he joined the military/served on Bajor but cannot undo it.
-TB04 Kira initially withdraws emotionally after learning the history, experiencing it against her own occupation trauma.
-TB05 Kira's memory of deliberately avoiding her biological father Taban's deathbed because she could not bear to watch him die becomes a counterexample to repeating that avoidance with Ghemor.
-TB06 Kira returns and remains with Ghemor through his death. Later dialogue describes him fighting for each final breath and Bashir affirming he did not die alone.
-TB07 After death, Dukat/Weyoun fabricate propaganda claiming Ghemor repented and endorsed the Dominion government. Sisko explicitly states this never happened.
-TB08 Ghemor is buried on Bajor in connection with Kira's chosen familial understanding of him.
-Partial assertions only: Kira/Ghemor's chosen family relation is socially/emotionally real without biological daughter identity. Ghemor's occupation service and later dissidence both belong to his biography; remorse does not erase the former and the former does not make Dominion propaganda true. Dukat's posthumous endorsement claim is knowingly false political testimony. Full transcript closure required before semantic promotion.
+## Ties of Blood and Water
+Full-source closure: a complete Forever Dreaming transcript body was inspected after the original source-blocked staging commit.
+TB01 Tekeny Ghemor, previously bonded with Kira during the false-Iliana operation, returns terminally ill and asks Kira to receive his Cardassian shri-tal secrets as a chosen daughter/family relation.
+TB02 Ghemor opposes the Dominion-aligned Cardassian government and refuses Dukat/Weyoun attempts to buy his cooperation with claims about locating or clearing Iliana.
+TB03 Kira learns Ghemor served on Bajor and was present during the Kiessa Monastery operation in which seventeen monks were killed. Ghemor acknowledges responsibility for joining the military and serving on Bajor and expresses regret without claiming that regret undoes the event.
+TB04 Odo supplies counterevidence against over-attribution: Ghemor was nineteen, had been in the military less than a year, was one of hundreds present, and no evidence establishes that he personally fired a shot. Kira nevertheless holds his voluntary presence morally relevant.
+TB05 Kira initially withdraws emotionally after learning the history, experiencing it against her own occupation trauma.
+TB06 Kira recalls deliberately leaving her biological father Taban's deathbed because she could not bear to watch him die, then returns to Ghemor rather than repeat that avoidance.
+TB07 Kira remains with Ghemor through his death. Bashir confirms that he did not die alone.
+TB08 After death, Dukat/Weyoun manufacture propaganda claiming Ghemor repented and endorsed the Dominion government. Sisko explicitly states that this never happened; Dukat treats the factual contradiction as merely a propaganda inconvenience.
+TB09 Kira had already arranged Ghemor's burial on Bajor, preventing Dukat/Weyoun from appropriating his remains for the fabricated state narrative.
+TB10 Weyoun identifies himself as a cloned successor to prior Weyouns, calling the succession a form of immortality; the dialogue supports clone-line continuity claims while leaving individual-instance identity to later reconciliation.
+Assertions: Kira/Ghemor's chosen-family relation is socially and emotionally real without biological daughter identity. Ghemor's occupation service and later dissidence both belong to his biography; remorse does not erase the former and the former does not make Dominion propaganda true. Dukat's posthumous endorsement claim is knowingly false political testimony. Weyoun clone instances must not be silently merged by a series worker.
 
 ## Coverage / promotion state
-Proposal research frontier is non-contiguous through `Ties of Blood and Water`; A Simple Investigation and Ties of Blood and Water remain SOURCE_RETRIEVAL_BLOCKED, as do earlier Shakaar and Nor the Battle to the Strong. Batch 023 is NOT complete under project batch-honesty rules.
+Batch 023 is now complete at the transcript-representation close-read level. Earlier historical gap `Nor the Battle to the Strong` has also been closed independently; `Shakaar` remains the only known earlier SOURCE_RETRIEVAL_BLOCKED work in the proposal chain at this checkpoint.
 
 Accepted DS9 coverage remains unchanged. Promotion still requires accepted governance, Librarian Work/Source binding with reproducible lineage/hashes, architecture-audit resolution, formal record conversion, and governed validation.
 
-Next research frontier may continue past the gaps: `Ferengi Love Songs`, `Soldiers of the Empire`, `Children of Time`, `Blaze of Glory`, `Empok Nor`.
+Next research frontier: `Ferengi Love Songs`, `Soldiers of the Empire`, `Children of Time`, `Blaze of Glory`, `Empok Nor`.

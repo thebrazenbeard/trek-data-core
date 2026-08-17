@@ -1,114 +1,130 @@
 # Director Synchronization — 2026-08-17
 
-Role: DIRECTOR
-Authority: coordination proposal only
-Accepted state observed: `main` @ `007641c57933dda222489fff56555f6968ff2a53`
+Role: DIRECTOR  
+Authority: coordination proposal only  
+Accepted state: `main` @ `007641c57933dda222489fff56555f6968ff2a53`
 
 ## Accepted state
 
-Accepted `main` remains authoritative. The current accepted tree contains the skeletal README plus the unresolved one-byte top-level path `x`. The `x` path is tracked as accepted-state drift under issue #90 and has no assigned Trek corpus, governance, schema, registry, coverage, or research meaning. Issue #91 is a closed duplicate of #90.
+Accepted `main` remains authoritative. Its meaningful Trek state is still the skeletal README plus unresolved one-byte top-level path `x`. The `x` path remains accepted-state drift under #90 and has no assigned corpus, governance, schema, registry, coverage, or research meaning.
 
-No open or closed-unmerged governance, architecture, registry, reconciliation, coverage, or research proposal is accepted merely because it exists or has green CI.
+No proposal becomes accepted because it exists, is complete, or has green CI.
 
-## Current shared gates
+## Governance
 
-### Governance
+PR #4 remains the open governance-only proposal containing the four Project-supplied root governance files with prior byte-custody support. PR #92 is CLOSED UNMERGED and preserved only as governance/bootstrap alignment history; it is not the current architecture integration path.
 
-PR #4 remains the open byte-preserving proposal for the four Project-supplied governance files. PR #92 is closed-unmerged and therefore preserved only as proposal history, not an active review surface. Governance acceptance remains separate from architecture acceptance.
+Convergence route:
+1. preserve the audited root governance bytes;
+2. repair the current integrated architecture line (#82 or explicit successor);
+3. obtain a complete green integrated run plus independent Auditor re-review;
+4. carry the audited root governance files onto that current integration lineage or a clean successor.
 
-Before PR #92 closed, its branch reached head `be957be4a4f893d9467fc0e22cb74f896d20ae08`. That preserved proposal contains the corrected canonical flow `SOURCE -> WORK -> LOCAL ENTITY -> EVIDENCE -> ASSERTION -> ACCEPTED RECONCILIATION -> DETERMINISTIC PROJECTION -> QUERY DATABASE`, restores the governed `FULL_TEXT_AVAILABLE` coverage state in implementation methodology, and strengthens the bootstrap validator so governed record schemas are actually enforced. `validate-core` workflow run `32076118155` passed on that exact head, including repository validation, two projection builds, and deterministic output diff. Those bytes remain available for comparison/migration but do not reopen or supersede PR #4 or the current architecture gate.
+Any governance merge remains a protected effect requiring Patrick's explicit authorization.
 
-A fresh Director audit of the closed #92 branch re-observed the canonical-projection incompleteness already governed by issue #76. Temporary issue #107 was closed as a duplicate of #76 rather than creating competing projection authority.
+## Architecture / Consolidator
 
-### Architecture / Consolidator
+Issue #29 is the current architecture gate. Integrated PR #82 is the preferred implementation surface.
 
-Issue #29 is the current architecture admission gate. Material remediation exists across PRs #33, #59, #64, #68, #71, #74 and integrated PR #82.
+Current #82 head: `6a4489626617e5ddb7ead25493f15143291801db`.
 
-PR #82 is the preferred integrated execution surface. Current head `6a4489626617e5ddb7ead25493f15143291801db` is mergeable but not acceptance-ready. Workflow run `32076279046` fails during the integrated regression suite before repository validation or derived builds execute.
+Current workflow: `32076279046` = RED. Unlike the earlier head, the `unittest.TestCase.run` helper collision is fixed and all 50 integrated tests now execute. Current result is 6 failures and 2 errors, so this is real narrowing rather than a generic broken harness.
 
-The latest two commits after Auditor-reviewed head `8491ae3` modify only contract/reconciliation tests. This is still useful progress: the prior `unittest.TestCase.run` helper collision is fixed and all 50 integrated tests now execute. Current result is 6 failures and 2 errors.
+Current load-bearing failures/gaps:
+- #67: non-STABLE transitions are still misclassified as `VALUE_CHANGED` and can synthesize `CONFLICT_INTRODUCED` without governed conflict structure;
+- #67: `STABLE -> CONTESTED` reaches `STATUS_DEMOTED` but still wrongly co-emits status-derived conflict;
+- reconciliation-history changes are still being mislabeled as fact `VALUE_CHANGED` instead of a separately governed/provisional history channel;
+- #76: full reachable Source/Evidence/Work/local-entity provenance remains incomplete (`source_record` is absent in the contract test);
+- #72: accepted REJECTED disposition still leaves an assertion active as UNRESOLVED, so effective assertion disposition is not implemented correctly;
+- #61/#72: typed reconciliation application still does not produce the expected active fact without mutating worker-authored state;
+- remaining Auditor gaps in #52/#55 subject/ownership/predicate governance still require implementation.
 
-Current blocking implementation evidence:
-- #67: non-STABLE transitions are still misclassified as `VALUE_CHANGED` and can still synthesize `CONFLICT_INTRODUCED` without an explicit governed conflict structure;
-- #67: `STABLE -> CONTESTED` now reaches `STATUS_DEMOTED`, but incorrectly co-emits status-derived conflict;
-- #67: reconciliation-history changes are still laundered into fact `VALUE_CHANGED` rather than a separate governed/provisional history channel;
-- #76: full reachable provenance remains absent (`source_record` is missing in the contract test), so required Source/Evidence/Work/local-entity provenance observability is not yet implemented;
-- #72: an accepted REJECTED disposition still leaves the assertion active as UNRESOLVED, so the compiler has not implemented effective assertion disposition;
-- #61/#72: typed reconciliation application remains incomplete and does not yet produce the expected active fact without mutating worker-authored state.
+Two red cases appear primarily fixture/diagnostic maintenance rather than absent invariants:
+- cross-subject supersession is rejected, but test wording expects `different subject` while validator reports `different active key`;
+- a formerly-valid batch/hash fixture is now stale under newer schema/predicate/subject requirements and must be updated without weakening validation.
 
-Two remaining red cases appear primarily fixture/diagnostic maintenance rather than missing invariant enforcement:
-- cross-subject supersession is rejected, but the test expects wording `different subject` while validation reports `different active key`;
-- the formerly-valid batch/hash fixture now fails under the newer schema/predicate/subject contract and must be inspected/updated without weakening validation.
+Required order:
+1. repair only stale/brittle fixtures where the intended invariant already holds;
+2. close remaining #52/#55 admission gaps;
+3. implement typed #61/#72 reconciliation and effective disposition/projection-state semantics;
+4. implement #76 canonical provenance plus required manifest outputs;
+5. implement #67 diff semantics without invented conflict or fact/history conflation;
+6. obtain one complete green integrated run;
+7. Auditor independently re-opens and tests that exact head;
+8. only then re-audit SQLite/PostgreSQL/graph/search trust under #78.
 
-Positive latest delta:
-- the test harness collision is resolved;
-- `test_worker_proposed_status_is_not_authoritative` now passes;
-- the suite reaches the complete integrated regression surface, making the remaining red failures actionable.
+AUD-ARCH-001 remains PARTIAL. AUD-ARCH-002, -003, and -004 remain OPEN. Green sibling PRs do not close this integrated gate.
 
-Required implementation order:
-1. repair the two stale/brittle fixtures only where the intended invariant already holds;
-2. close remaining #52/#55 admission and predicate-governance gaps from the Auditor delta;
-3. implement typed #61/#72 reconciliation and compiler semantics;
-4. implement #76 canonical provenance and required manifest outputs;
-5. implement #67 semantic diff semantics against governed taxonomy without invented conflict or fact-history conflation;
-6. obtain a complete green integrated run;
-7. Auditor independently re-opens and tests the exact green bytes;
-8. only then re-evaluate downstream SQLite/PostgreSQL/graph/search trust chains under #78.
+## Librarian Source↔Work gate
 
-AUD-ARCH-001 remains PARTIAL; AUD-ARCH-002, AUD-ARCH-003, and AUD-ARCH-004 remain OPEN. Do not route PR #82 to architecture acceptance while the integrated suite is red or those findings remain unresolved.
+Issues #14 and #65 remain the active Librarian dependency and binding contract.
 
-### Librarian Source↔Work gate
+A genuine Librarian execution branch now exists: `external/librarian/crosswalk-intake-v1`. This corrects the earlier Director observation that only the routing branch existed.
 
-Issues #14 and #65 define the active Librarian dependency and binding contract. Fresh branch/PR inspection on 2026-08-17 found no Librarian-owned implementation branch or bounded registry/binding proposal. The only previously observed `librarian`-named branch is the older Director routing branch `architecture/librarian-bootstrap-route-001`, which does not create registry state.
+Current Librarian proposal/checkpoint artifacts under `proposals/librarian/legacy-intake/`:
+- `ST_LIBRARIAN_CUSTODY_INTAKE_V1.json`;
+- `ST_LIBRARIAN_COLLISION_RECOVERY_QUEUE_V1.json`;
+- `ST_LIBRARIAN_EXTERNAL_CROSSWALK_TRANCHE_001.json`;
+- `ST_LIBRARIAN_EXTERNAL_CROSSWALK_TRANCHE_002.json`.
 
-Therefore accepted Source records, Work records, Source↔Work bindings, provenance-lineage registry state, and SOURCE_BOUND coverage remain absent.
+Verified current meaning:
+- two reported ebook ZIPs remain not byte-exposed to the Librarian, so no hashes or Source IDs are fabricated;
+- custody rules fail closed until readable bytes + hashes exist;
+- external crosswalk work covers the 14 preserved legacy candidate Works using Memory Alpha, Memory Beta, and publisher metadata as candidate metadata only;
+- edition/reprint/eBook/audio distinctions, container/member structure, metadata conflicts, derivative lineage, and source-independence limits are preserved rather than collapsed;
+- collision-recovery artifacts preserve historical aggregate classes and a deterministic first-byte workflow;
+- accepted Work IDs created: 0;
+- accepted Source IDs created: 0;
+- accepted Source↔Work bindings created: 0;
+- accepted coverage advancement: 0.
 
-The next Librarian tranche should be deliberately small and exercise the binding contract against audited hard cases such as the DS9 metadata/body mismatch and Prodigy segmentation, preserving uncertainty rather than canonicalizing worker staging.
+The existing Librarian artifacts pin an older accepted head as historical checkpoint provenance. Do not rewrite that history merely to make it current. The next tranche should refresh accepted state against current `main` while preserving the earlier checkpoint.
 
-### Coverage/admission
+Issue #14 therefore remains OPEN. Exact next Librarian frontier:
+1. obtain a byte-addressable ebook container or another suitable byte-backed fixture;
+2. hash physical container/member bytes and establish provenance-family / `derived_from` relationships;
+3. create a small #65-conforming Source + Work + `source_work_binding` proposal with one-to-many/many-to-one support and unresolved mappings preserved;
+4. route those exact bytes to Auditor.
 
-Issue #40 defines independent coverage ledgers and denominator rules, but accepted coverage machinery is still absent. Proposal-local staging counters, transcript-read receipts, or branch completeness do not advance accepted coverage.
+External metadata expansion is useful bounded Librarian work but does not substitute for byte-backed Source/Work/binding implementation.
 
-### Calibration/audit
+## Coverage / calibration
 
-Issue #43 defines the calibration/adversarial regression policy. Corpus-derived fixed fixtures cannot become accepted truth until their Source/Work/Evidence basis is accepted and Auditor-verified. Synthetic invariants may proceed independently where they do not smuggle corpus conclusions into the oracle.
+Issue #40 defines independent coverage ledgers and denominators, but accepted coverage machinery remains absent. Proposal counters, source-read receipts, sync totals, and close-read packets do not advance accepted coverage.
 
-## Corpus queue synchronization
+SOURCE_BOUND remains distinct from FULL_TEXT_AVAILABLE and later structural/semantic/audit states.
 
-Issue #23 remains active and has been refreshed to this accepted-state snapshot. New episode/book close-read tranches are paused until accepted governance, usable accepted schema/predicate contracts, Librarian-owned Work/Source binding for the next Works, and governed coverage/admission machinery exist.
+Issue #43 governs calibration/adversarial regression. Synthetic invariant fixtures may proceed without corpus claims; real Trek fixtures require accepted Source/Work/Evidence provenance before becoming canonical regression truth.
 
-The hold was materially violated by earlier continued staging through at least TNG #89 and DS9 #85. Preserve those bytes as proposal/migration inputs; do not count them as accepted coverage and do not extend their provisional next-frontier text into further source-reading work.
+## Corpus queue
 
-Recent lane PRs #96–#100 are synchronization/preservation checkpoints rather than new authorized corpus expansion. Existing proposal branches remain preservation/migration inputs and must not be deleted or rewritten merely to simplify topology.
+Issue #23 remains ACTIVE. New episode/book close-read tranches remain paused until accepted governance, accepted usable schema/predicate contracts, Librarian-owned binding for the next Works, and governed coverage/admission machinery exist.
 
-## Required next actions by role
+Preservation/synchronization checkpoints are legitimate when they only inventory completed proposal bytes and stop. Discovery #96 and TAS #97 are examples.
 
-CONSOLIDATOR:
-1. continue PR #82 or an explicit successor using the implementation order above;
-2. do not weaken red tests merely to obtain green CI;
-3. do not invent accepted corpus records, global identities, Source/Work bindings, or semantic defaults to make tests pass.
+Recent hold cleanup already recorded:
+- DS9 #103 closed unmerged after new five-work throughput under the hold;
+- DS9 #106 closed unmerged after another five-work tranche appeared after the DS9 stop/sync checkpoint;
+- TNG staging #84, #86, #87, #88, #89 closed unmerged;
+- all underlying research branches/commits remain preserved;
+- accepted coverage remains zero for those proposal packets.
 
-AUDITOR:
-1. re-audit the exact integrated green architecture head when it exists;
-2. map original AUD-ARCH findings plus later Director contracts to CONFIRMED / RESOLVED / CONTESTED;
-3. independently verify adversarial fixtures rather than accepting producer CI as proof.
+Any future DS9 synchronization must include preserved batch 027 (#106) while still recording zero accepted coverage and no authorization for another tranche.
 
-LIBRARIAN:
-1. create the first bounded Source/Work/source_work_binding implementation proposal under issues #14/#65;
-2. preserve provenance families, independence, derivatives, container/member structure, mapping role/scope, lifecycle, supersession, and unresolved mappings;
-3. do not convert provider metadata or worker staging into canonical truth merely because downstream batches are waiting.
+Lane-local `exact next frontier` text never overrides #23.
 
-SERIES / FILMS / LITERATURE WORKERS:
-1. synchronize/preserve already completed work;
-2. stop before new close-read tranches while #23 is active;
-3. do not mint canonical Source/Work IDs, coverage semantics, predicates, or reconciliation state locally.
+## Next actions by role
 
-DIRECTOR:
-1. keep issue #29, issue #23, issue #14, and this synchronization checkpoint current;
-2. treat PR #4 as the active governance baseline proposal, closed #92 as preserved alignment history, and #82/successor as the implementation admission surface;
-3. reassess acceptance readiness only after integrated implementation plus Auditor re-review and Librarian/coverage progress;
-4. preserve accepted-state drift as unresolved until explicitly corrected through an authorized path.
+CONSOLIDATOR: continue #82/successor in the order above; do not weaken legitimate red tests or invent accepted corpus state.
+
+AUDITOR: wait for substantive corrected integrated bytes, then independently re-open them and map AUD-ARCH-001..004 plus later Director contracts to explicit dispositions.
+
+LIBRARIAN: preserve current fail-closed custody/crosswalk work, obtain byte-addressable custody, create the first bounded #65 Source/Work/binding proposal, and route exact bytes to Auditor.
+
+SERIES / FILMS / LITERATURE: synchronize/preserve existing proposal work only; do not start another close-read tranche while #23 is active; do not mint canonical Source/Work, coverage, predicate, or reconciliation state locally.
+
+DIRECTOR: keep #29, #14, #23, #40 and this PR #104 sync surface current only when substantive dependencies change; do not spawn redundant checkpoints; preserve accepted-state drift until explicitly authorized correction.
 
 ## Protected effects
 
-This synchronization authorizes no merge, force-push, branch deletion, deployment, credential/permission change, branch-protection change, accepted reconciliation decision, Source/Work acceptance, or coverage promotion.
+This synchronization authorizes no merge, force-push, branch deletion, deployment, credential/permission or branch-protection change, accepted reconciliation decision, Source/Work acceptance, accepted binding, coverage promotion, or deletion/reversion of `x`.

@@ -3,17 +3,18 @@
   "$id": "https://trek-data-core/schema/assertion.schema.json",
   "title": "Assertion",
   "type": "object",
-  "required": ["record_type", "assertion_id", "subject", "predicate", "object", "evidence", "status"],
+  "required": ["record_type", "assertion_id", "subject_type", "subject", "predicate", "object", "evidence", "status"],
   "properties": {
     "record_type": {"const": "assertion"},
     "assertion_id": {"type": "string", "minLength": 1},
+    "subject_type": {"enum": ["SOURCE", "WORK", "LOCAL_ENTITY", "ASSERTION"]},
     "subject": {"type": "string", "minLength": 1},
     "predicate": {"type": "string", "minLength": 1},
     "object": {},
     "evidence": {"type": "array", "items": {"type": "string"}, "minItems": 1},
     "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},
     "scope": {"type": "object", "default": {}},
-    "projection_status": {"enum": ["STABLE", "CONTESTED", "UNRESOLVED", "STRUCTURAL_PARADOX"]},
+    "proposed_projection_status": {"enum": ["STABLE", "CONTESTED", "UNRESOLVED", "STRUCTURAL_PARADOX"]},
     "supersedes": {"type": ["string", "null"]}
   },
   "additionalProperties": true

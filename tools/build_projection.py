@@ -1,287 +1,195 @@
 #!/usr/bin/env python3
-"""Deterministically compile accepted Git records into canonical logical projections."""
+"""Deterministically compile governed Git records into the canonical logical projection."""
 from __future__ import annotations
-
-import argparse
-import copy
-import hashlib
-import json
+import argparse, contextlib, copy, hashlib, importlib.util, io, json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-PREDICATE_REGISTRY = ROOT / "registry" / "predicates.json"
-DATA_ROOTS = (ROOT / "research", ROOT / "external", ROOT / "migrations")
-PROJECTION_STATUSES = {"STABLE", "CONTESTED", "UNRESOLVED", "STRUCTURAL_PARADOX"}
-APPLIED_DECISION_TYPES = {"ENTITY_LINK", "ASSERTION_STATUS", "SCOPE_RESOLUTION"}
+ROOT=Path(__file__).resolve().parents[1]
+PREDICATE_REGISTRY=ROOT/'registry'/'predicates.json'; SCOPE_KEY_REGISTRY=ROOT/'registry'/'scope_keys.json'
+DATA_ROOTS=(ROOT/'research',ROOT/'external',ROOT/'migrations')
+PROJECTION_STATUSES={'STABLE','CONTESTED','UNRESOLVED','STRUCTURAL_PARADOX'}; DISPOSITIONS={'PROPOSED','ACCEPTED','REJECTED'}
+CANONICAL_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
 
-
-def canonical(obj):
-    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-
-
-def sha256_bytes(data: bytes) -> str:
-    return "sha256:" + hashlib.sha256(data).hexdigest()
-
-
-def canonical_json_hash(path: Path) -> str:
-    obj = json.loads(path.read_text(encoding="utf-8"))
-    return sha256_bytes(canonical(obj).encode("utf-8"))
-
-
+def canonical(v):return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"))
+def sha256_bytes(data):return 'sha256:'+hashlib.sha256(data).hexdigest()
+def canonical_json_hash(path):return sha256_bytes(canonical(json.loads(Path(path).read_text(encoding='utf-8'))).encode())
+def load_registry(path,key):
+ data=json.loads(Path(path).read_text(encoding='utf-8')); return {r[key]:r for r in data.get('predicates' if key=='name' else 'scope_keys',[]) if r.get(key)}
 def iter_typed_records(roots):
-    """Read typed JSON/JSONL records deterministically; validation owns schema admission."""
-    for root in roots:
-        if not root.exists():
-            continue
-        for path in sorted(root.rglob("*.json")):
-            obj = json.loads(path.read_text(encoding="utf-8"))
-            if isinstance(obj, dict) and obj.get("record_type"):
-                yield obj
-        for path in sorted(root.rglob("*.jsonl")):
-            for raw in path.read_text(encoding="utf-8").splitlines():
-                if not raw.strip():
-                    continue
-                obj = json.loads(raw)
-                if not isinstance(obj, dict):
-                    raise ValueError(f"{path}: JSONL record must be an object")
-                if obj.get("record_type"):
-                    yield obj
-
-
-def index_unique(records, record_type, id_key):
-    indexed = {}
-    for record in records:
-        if record.get("record_type") != record_type:
-            continue
-        rid = record.get(id_key)
-        if not rid:
-            continue
-        if rid in indexed:
-            raise ValueError(f"duplicate {record_type} id {rid}")
-        indexed[rid] = record
-    return indexed
-
-
-def active_accepted_decisions(decisions):
-    accepted = [d for d in decisions if d.get("record_type") == "reconciliation_decision" and d.get("status") == "ACCEPTED"]
-    superseded = {d.get("supersedes") for d in accepted if d.get("supersedes")}
-    return [d for d in accepted if d.get("decision_id") not in superseded]
-
-
-def decision_index(decisions):
-    indexed = {}
-    for decision in active_accepted_decisions(decisions):
-        decision_type = decision.get("decision_type")
-        if decision_type not in APPLIED_DECISION_TYPES:
-            continue
-        subject_id = decision.get("subject_id")
-        key = (decision_type, subject_id)
-        if key in indexed:
-            raise ValueError(f"multiple active {decision_type} decisions for {subject_id}")
-        indexed[key] = decision
-    return indexed
-
-
-def projection_status_for(assertion, decisions):
-    decision = decisions.get(("ASSERTION_STATUS", assertion.get("assertion_id")))
-    if decision is not None:
-        value = decision.get("value")
-        if value not in PROJECTION_STATUSES:
-            raise ValueError(f"invalid reconciled projection status {value!r} for {assertion.get('assertion_id')}")
-        return value, decision.get("decision_id"), "RECONCILIATION_DECISION"
-
-    value = assertion.get("projection_status")
-    if value is None:
-        return "UNRESOLVED", None, "MISSING_PROJECTION_STATUS"
-    if value not in PROJECTION_STATUSES:
-        raise ValueError(f"invalid assertion projection status {value!r} for {assertion.get('assertion_id')}")
-    return value, None, "ASSERTION"
-
-
-def build_logical_projection(records, reconciliation_decisions):
-    """Pure deterministic transform. No semantic inference is performed here."""
-    records = [copy.deepcopy(record) for record in records]
-    reconciliation_decisions = [copy.deepcopy(record) for record in reconciliation_decisions]
-
-    sources = index_unique(records, "source", "source_id")
-    works = index_unique(records, "work", "work_id")
-    local_entities = index_unique(records, "local_entity", "local_entity_id")
-    evidence = index_unique(records, "evidence", "evidence_id")
-    assertions = index_unique(records, "assertion", "assertion_id")
-    accepted_assertions = [record for record in assertions.values() if record.get("status") == "ACCEPTED"]
-    decisions = decision_index(reconciliation_decisions)
-
-    entity_links = {
-        subject_id: decision
-        for (decision_type, subject_id), decision in decisions.items()
-        if decision_type == "ENTITY_LINK"
-    }
-
-    entities = []
-    for local_id, entity in sorted(local_entities.items()):
-        row = copy.deepcopy(entity)
-        link = entity_links.get(local_id)
-        if link is not None:
-            row["resolved_entity"] = copy.deepcopy(link.get("value"))
-            row["reconciliation_decision_id"] = link.get("decision_id")
-        entities.append(row)
-
-    facts = []
-    contested = []
-    unresolved = []
-    provenance = []
-
-    for assertion in sorted(accepted_assertions, key=lambda item: item.get("assertion_id", "")):
-        row = copy.deepcopy(assertion)
-        status, status_decision_id, status_reason = projection_status_for(assertion, decisions)
-        row["projection_status"] = status
-        if status_decision_id:
-            row["projection_status_decision_id"] = status_decision_id
-        if status_reason == "MISSING_PROJECTION_STATUS":
-            row["projection_reason"] = status_reason
-
-        link = entity_links.get(assertion.get("subject"))
-        if link is not None:
-            row["resolved_subject"] = copy.deepcopy(link.get("value"))
-            row["entity_link_decision_id"] = link.get("decision_id")
-
-        scope_decision = decisions.get(("SCOPE_RESOLUTION", assertion.get("assertion_id")))
-        if scope_decision is not None:
-            row["resolved_scope"] = copy.deepcopy(scope_decision.get("value"))
-            row["scope_resolution_decision_id"] = scope_decision.get("decision_id")
-
-        if status == "STABLE":
-            facts.append(row)
-        elif status in {"CONTESTED", "STRUCTURAL_PARADOX"}:
-            contested.append(row)
-        else:
-            unresolved.append(row)
-
-        for evidence_id in assertion.get("evidence", []):
-            ev = evidence.get(evidence_id)
-            provenance_row = {
-                "provenance_id": f"{assertion.get('assertion_id')}::{evidence_id}",
-                "assertion_id": assertion.get("assertion_id"),
-                "evidence_id": evidence_id,
-            }
-            if ev is not None:
-                provenance_row.update({
-                    "source_id": ev.get("source_id"),
-                    "work_id": ev.get("work_id"),
-                    "evidence_kind": ev.get("evidence_kind"),
-                    "evidence_locator": copy.deepcopy(ev.get("locator")),
-                })
-                source = sources.get(ev.get("source_id"))
-                if source is not None:
-                    provenance_row["source_content_hash"] = source.get("content_hash")
-                    provenance_row["source_locator"] = copy.deepcopy(source.get("locator"))
-                work = works.get(ev.get("work_id"))
-                if work is not None:
-                    provenance_row["work_title"] = work.get("title")
-            else:
-                provenance_row["provenance_state"] = "MISSING_EVIDENCE_RECORD"
-            provenance.append(provenance_row)
-
-    accepted_reconciliation = sorted(
-        [copy.deepcopy(d) for d in reconciliation_decisions if d.get("record_type") == "reconciliation_decision" and d.get("status") == "ACCEPTED"],
-        key=lambda item: item.get("decision_id", ""),
-    )
-
-    return {
-        "entities": entities,
-        "facts": facts,
-        "relations": [],
-        "contested": contested,
-        "unresolved": unresolved,
-        "provenance": sorted(provenance, key=lambda item: item.get("provenance_id", "")),
-        "accepted_assertions": sorted([copy.deepcopy(a) for a in accepted_assertions], key=lambda item: item.get("assertion_id", "")),
-        "accepted_reconciliation": accepted_reconciliation,
-    }
-
-
-def write_jsonl(path: Path, records, id_key: str):
-    ordered = sorted(records, key=lambda r: (str(r.get(id_key, "")), canonical(r)))
-    payload = "".join(canonical(r) + "\n" for r in ordered).encode("utf-8")
-    path.write_bytes(payload)
-    return sha256_bytes(payload), len(ordered)
-
-
+ for root in roots:
+  if not root.exists():continue
+  for path in sorted(root.rglob('*.json')):
+   if path.name=='README.json':continue
+   row=json.loads(path.read_text(encoding='utf-8'))
+   if not isinstance(row,dict) or not row.get('record_type'):raise ValueError(f'{path}: governed JSON must be typed object')
+   yield row
+  for path in sorted(root.rglob('*.jsonl')):
+   for line_no,raw in enumerate(path.read_text(encoding='utf-8').splitlines(),1):
+    if not raw.strip():continue
+    row=json.loads(raw)
+    if not isinstance(row,dict) or not row.get('record_type'):raise ValueError(f'{path}:{line_no}: governed JSONL must be typed object')
+    yield row
+def index_unique(records,record_type,id_key):
+ out={}
+ for row in records:
+  if row.get('record_type')!=record_type:continue
+  rid=row.get(id_key)
+  if not rid:raise ValueError(f'{record_type} missing {id_key}')
+  if rid in out:raise ValueError(f'duplicate {record_type} id {rid}')
+  out[rid]=row
+ return out
+def supersession_active(records,id_key='decision_id'):
+ accepted=[r for r in records if r.get('status')=='ACCEPTED']; by_id={r[id_key]:r for r in records if r.get(id_key)}
+ for start in by_id:
+  seen=set(); cur=start
+  while cur:
+   if cur in seen:raise ValueError(f'supersession cycle at {cur}')
+   seen.add(cur); row=by_id.get(cur); cur=row.get('supersedes') if row else None
+ superseded={r.get('supersedes') for r in accepted if r.get('supersedes')}; return [r for r in accepted if r.get(id_key) not in superseded]
+def decision_key(d):
+ t=d.get('decision_type'); p=d.get('payload') or {}; base=(t,d.get('subject_type'),d.get('subject_id'))
+ if t=='ENTITY_LINK':return base+(p.get('relation_predicate'),)
+ if t=='SCOPE_RESOLUTION':return base+(p.get('resolution_key'),)
+ if t in {'ASSERTION_DISPOSITION','ASSERTION_PROJECTION_STATUS'}:return base
+ return None
+def validate_decision(d,predicates,scope_keys,indexes):
+ t=d.get('decision_type'); p=d.get('payload') or {}; st=d.get('subject_type')
+ if t=='OTHER':raise ValueError('accepted OTHER decision is not executable')
+ if t=='ENTITY_LINK':
+  if st!='LOCAL_ENTITY' or set(p)!={'relation_predicate','target_type','target_id'} or p.get('target_type')!='LOCAL_ENTITY':raise ValueError('invalid ENTITY_LINK payload/domain')
+  pred=predicates.get(p.get('relation_predicate'))
+  if not pred or pred.get('semantic_class')!='IDENTITY_RELATION' or pred.get('status')!='ACCEPTED':raise ValueError(f"ENTITY_LINK predicate {p.get('relation_predicate')} is not accepted identity semantics")
+  if d.get('subject_id') not in indexes['local_entity'] or p.get('target_id') not in indexes['local_entity']:raise ValueError('ENTITY_LINK references missing local entity')
+ elif t=='ASSERTION_DISPOSITION':
+  if st!='ASSERTION' or set(p)!={'disposition'} or p.get('disposition') not in DISPOSITIONS:raise ValueError('invalid ASSERTION_DISPOSITION')
+ elif t=='ASSERTION_PROJECTION_STATUS':
+  if st!='ASSERTION' or set(p)!={'projection_status'} or p.get('projection_status') not in PROJECTION_STATUSES:raise ValueError('invalid ASSERTION_PROJECTION_STATUS')
+ elif t=='SCOPE_RESOLUTION':
+  if st not in {'ASSERTION','WORK','LOCAL_ENTITY'} or set(p)!={'resolution_key','resolution'}:raise ValueError('invalid SCOPE_RESOLUTION')
+  entry=scope_keys.get(p.get('resolution_key'))
+  if not entry or st not in set(entry.get('subject_types',[])):raise ValueError(f"ungoverned scope key {p.get('resolution_key')} for {st}")
+ else:raise ValueError(f'unknown reconciliation decision type {t}')
+def active_decision_index(decisions,predicates,scope_keys,indexes):
+ out={}
+ for d in supersession_active([r for r in decisions if r.get('record_type')=='reconciliation_decision']):
+  validate_decision(d,predicates,scope_keys,indexes); key=decision_key(d)
+  if key is None:continue
+  if key in out:raise ValueError(f'multiple active decisions for {key}')
+  out[key]=d
+ return out
+def typed_ref(v):return (v.get('ref_type'),v.get('ref_id')) if isinstance(v,dict) and set(v)=={'ref_type','ref_id'} else None
+def scoped(decisions,subject_type,subject_id):
+ return {k[3]:d for k,d in decisions.items() if len(k)==4 and k[0]=='SCOPE_RESOLUTION' and k[1]==subject_type and k[2]==subject_id}
+def links(decisions,local_id):return sorted([d for k,d in decisions.items() if len(k)==4 and k[0]=='ENTITY_LINK' and k[1]=='LOCAL_ENTITY' and k[2]==local_id],key=lambda d:(d['payload']['relation_predicate'],d['decision_id']))
+def source_lineage(source_id,sources):
+ result=[]; seen=set(); stack=[]
+ def visit(cur):
+  if cur in stack:raise ValueError(f'source derivation cycle at {cur}')
+  if cur in seen:return
+  row=sources.get(cur)
+  if row is None:raise ValueError(f'missing source lineage {cur}')
+  seen.add(cur); stack.append(cur)
+  for parent in sorted(row.get('derived_from',[])):visit(parent)
+  stack.pop()
+  if cur!=source_id:result.append(copy.deepcopy(row))
+ visit(source_id); return sorted(result,key=lambda r:r['source_id'])
+def work_lineage(work_id,works):
+ result=[]; seen=set(); row=works.get(work_id)
+ while row and row.get('parent_work_id'):
+  parent=row['parent_work_id']
+  if parent in seen:raise ValueError(f'work parent cycle at {parent}')
+  seen.add(parent); row=works.get(parent)
+  if row is None:raise ValueError(f'missing parent work {parent}')
+  result.append(copy.deepcopy(row))
+ return result
+def referenced_record(ref_type,ref_id,indexes):
+ mapping={'SOURCE':'source','WORK':'work','LOCAL_ENTITY':'local_entity','EVIDENCE':'evidence','ASSERTION':'assertion','RECONCILIATION_DECISION':'reconciliation_decision'}; rt=mapping.get(ref_type); return copy.deepcopy(indexes.get(rt,{}).get(ref_id)) if rt else None
+def effective_disposition(assertion,decisions,superseded_assertions):
+ aid=assertion['assertion_id']; decision=decisions.get(('ASSERTION_DISPOSITION','ASSERTION',aid)); value=(decision.get('payload') or {}).get('disposition') if decision else assertion.get('status')
+ if aid in superseded_assertions:value='SUPERSEDED'
+ return value,decision
+def projection_status(assertion,decisions):
+ aid=assertion['assertion_id']; decision=decisions.get(('ASSERTION_PROJECTION_STATUS','ASSERTION',aid))
+ if not decision:return 'UNRESOLVED',None,'MISSING_PROJECTION_STATUS'
+ value=decision['payload'].get('projection_status')
+ if value not in PROJECTION_STATUSES:raise ValueError(f'invalid projection status for {aid}')
+ return value,decision,None
+def build_logical_projection(records,reconciliation_decisions):
+ records=[copy.deepcopy(r) for r in records]; reconciliation_decisions=[copy.deepcopy(r) for r in reconciliation_decisions]
+ indexes={'source':index_unique(records,'source','source_id'),'work':index_unique(records,'work','work_id'),'local_entity':index_unique(records,'local_entity','local_entity_id'),'evidence':index_unique(records,'evidence','evidence_id'),'assertion':index_unique(records,'assertion','assertion_id'),'reconciliation_decision':index_unique(reconciliation_decisions,'reconciliation_decision','decision_id')}
+ predicates=load_registry(PREDICATE_REGISTRY,'name'); scope_keys=load_registry(SCOPE_KEY_REGISTRY,'key'); decisions=active_decision_index(reconciliation_decisions,predicates,scope_keys,indexes); assertions=indexes['assertion']; superseded_assertions={a.get('supersedes') for a in assertions.values() if a.get('supersedes')}
+ effective={aid:effective_disposition(a,decisions,superseded_assertions) for aid,a in assertions.items()}
+ for key,d in decisions.items():
+  if key[0]=='ASSERTION_PROJECTION_STATUS' and effective.get(d['subject_id'],(None,None))[0]!='ACCEPTED':raise ValueError(f"projection status targets non-accepted assertion {d['subject_id']}")
+ entities=[]; relations=[]
+ for lid,entity in sorted(indexes['local_entity'].items()):
+  row=copy.deepcopy(entity); ls=links(decisions,lid); sc=scoped(decisions,'LOCAL_ENTITY',lid)
+  if ls:
+   row['identity_links']=[{**copy.deepcopy(d['payload']),'decision_id':d['decision_id']} for d in ls]
+   for d in ls:
+    p=d['payload']; relations.append({'record_type':'projection_relation','relation_id':f"reconciliation:{d['decision_id']}",'relation_kind':'IDENTITY_LINK','subject_type':'LOCAL_ENTITY','subject_id':lid,'predicate':p['relation_predicate'],'target_type':p['target_type'],'target_id':p['target_id'],'reconciliation_decision_id':d['decision_id']})
+  if sc:row['resolved_scope']={k:copy.deepcopy(d['payload']['resolution']) for k,d in sorted(sc.items())}; row['scope_resolution_decision_ids']={k:d['decision_id'] for k,d in sorted(sc.items())}
+  entities.append(row)
+ facts=[]; contested=[]; unresolved=[]; provenance=[]
+ for aid,a in sorted(assertions.items()):
+  eff,disp=effective[aid]
+  if eff!='ACCEPTED':continue
+  row=copy.deepcopy(a); row['effective_assertion_status']='ACCEPTED'
+  if disp:row['assertion_disposition_decision_id']=disp['decision_id']
+  status,sdecision,reason=projection_status(a,decisions); row['projection_status']=status
+  if sdecision:row['projection_status_decision_id']=sdecision['decision_id']
+  if reason:row['projection_reason']=reason
+  sc=scoped(decisions,'ASSERTION',aid)
+  if sc:row['resolved_scope']={k:copy.deepcopy(d['payload']['resolution']) for k,d in sorted(sc.items())}; row['scope_resolution_decision_ids']={k:d['decision_id'] for k,d in sorted(sc.items())}
+  if a.get('subject_type')=='LOCAL_ENTITY':
+   ls=links(decisions,a.get('subject'))
+   if ls:row['subject_identity_links']=[{**copy.deepcopy(d['payload']),'decision_id':d['decision_id']} for d in ls]
+  ssc=scoped(decisions,a.get('subject_type'),a.get('subject'))
+  if ssc:row['subject_resolved_scope']={k:copy.deepcopy(d['payload']['resolution']) for k,d in sorted(ssc.items())}; row['subject_scope_resolution_decision_ids']={k:d['decision_id'] for k,d in sorted(ssc.items())}
+  (facts if status=='STABLE' else contested if status in {'CONTESTED','STRUCTURAL_PARADOX'} else unresolved).append(row)
+  ref=typed_ref(a.get('object'))
+  if ref:
+   relations.append({'record_type':'projection_relation','relation_id':f'assertion:{aid}','relation_kind':'ASSERTION_PREDICATE','assertion_id':aid,'subject_type':a.get('subject_type'),'subject_id':a.get('subject'),'predicate':a.get('predicate'),'target_type':ref[0],'target_id':ref[1],'projection_status':status})
+ for aid,a in sorted(assertions.items()):
+  eff,disp=effective[aid]; status=sdecision=reason=None
+  if eff=='ACCEPTED':status,sdecision,reason=projection_status(a,decisions)
+  sc=scoped(decisions,'ASSERTION',aid); ls=links(decisions,a.get('subject')) if a.get('subject_type')=='LOCAL_ENTITY' else []
+  for evidence_id in sorted(a.get('evidence',[])):
+   ev=indexes['evidence'].get(evidence_id)
+   if ev is None:raise ValueError(f'assertion {aid} references missing evidence {evidence_id}')
+   source=indexes['source'].get(ev.get('source_id')); work=indexes['work'].get(ev.get('work_id'))
+   if source is None or work is None:raise ValueError(f'evidence {evidence_id} has missing source/work')
+   prow={'record_type':'projection_provenance','provenance_id':f'{aid}::{evidence_id}','assertion_id':aid,'evidence_id':evidence_id,'assertion_record':copy.deepcopy(a),'effective_assertion_status':eff,'support_set':sorted(a.get('evidence',[])),'evidence_record':copy.deepcopy(ev),'source_record':copy.deepcopy(source),'source_lineage_records':source_lineage(source['source_id'],indexes['source']),'work_record':copy.deepcopy(work),'work_lineage_records':work_lineage(work['work_id'],indexes['work'])}
+   if disp:prow['assertion_disposition_decision_id']=disp['decision_id']
+   if status:prow['projection_status']=status
+   if sdecision:prow['projection_status_decision_id']=sdecision['decision_id']
+   if reason:prow['projection_reason']=reason
+   if sc:prow['scope_resolution_decision_ids']={k:d['decision_id'] for k,d in sorted(sc.items())}
+   if ls:prow['entity_link_decision_ids']=[d['decision_id'] for d in ls]
+   observer=ev.get('observer_local_entity_id')
+   if observer:
+    record=indexes['local_entity'].get(observer)
+    if record:prow['observer_local_entity_record']=copy.deepcopy(record)
+   subject_record=referenced_record(a.get('subject_type'),a.get('subject'),indexes)
+   if subject_record:prow['subject_record']=subject_record
+   ref=typed_ref(a.get('object'))
+   if ref:
+    obj=referenced_record(ref[0],ref[1],indexes)
+    if obj:prow['object_record']=obj
+   provenance.append(prow)
+ history=sorted([copy.deepcopy(a) for a in assertions.values()],key=lambda r:r['assertion_id']); recon_history=sorted([copy.deepcopy(d) for d in reconciliation_decisions if d.get('record_type')=='reconciliation_decision' and d.get('status') in {'ACCEPTED','SUPERSEDED'}],key=lambda r:r['decision_id'])
+ return {'entities':sorted(entities,key=lambda r:r['local_entity_id']),'facts':sorted(facts,key=lambda r:r['assertion_id']),'relations':sorted(relations,key=lambda r:r['relation_id']),'contested':sorted(contested,key=lambda r:r['assertion_id']),'unresolved':sorted(unresolved,key=lambda r:r['assertion_id']),'provenance':sorted(provenance,key=lambda r:r['provenance_id']),'assertion_history':history,'reconciliation_history':recon_history}
+def write_jsonl(path,rows,id_key):
+ ordered=sorted(rows,key=lambda r:(str(r.get(id_key,'')),canonical(r))); payload=''.join(canonical(r)+'\n' for r in ordered).encode(); path.write_bytes(payload); return sha256_bytes(payload),len(ordered)
+def run_repository_validation():
+ path=Path(__file__).with_name('validate.py'); spec=importlib.util.spec_from_file_location('trek_validate_before_build',path); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); output=io.StringIO()
+ with contextlib.redirect_stdout(output):rc=module.main()
+ if rc:raise ValueError('repository admission validation failed before projection build: '+output.getvalue())
+def verify_written_bundle(out):
+ path=Path(__file__).with_name('projection_bundle.py'); spec=importlib.util.spec_from_file_location('trek_projection_bundle_compiler',path); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); module.verify_projection(out)
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--out", required=True)
-    ap.add_argument("--projection-version", default="0.1.0")
-    ap.add_argument("--schema-version", required=True)
-    ap.add_argument("--methodology-version", required=True)
-    ap.add_argument("--research-head", required=True)
-    ap.add_argument("--reconciliation-head", required=True)
-    ap.add_argument("--compiler-commit", required=True)
-    args = ap.parse_args()
-
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-
-    records = list(iter_typed_records(DATA_ROOTS))
-    decisions = list(iter_typed_records((ROOT / "reconciliation",)))
-    logical = build_logical_projection(records, decisions)
-
-    output_specs = {
-        "entities.jsonl": (logical["entities"], "local_entity_id"),
-        "facts.jsonl": (logical["facts"], "assertion_id"),
-        "relations.jsonl": (logical["relations"], "relation_id"),
-        "contested.jsonl": (logical["contested"], "assertion_id"),
-        "unresolved.jsonl": (logical["unresolved"], "assertion_id"),
-        "provenance.jsonl": (logical["provenance"], "provenance_id"),
-        "accepted_assertions.jsonl": (logical["accepted_assertions"], "assertion_id"),
-        "accepted_reconciliation.jsonl": (logical["accepted_reconciliation"], "decision_id"),
-    }
-
-    outputs = {}
-    for filename, (rows, id_key) in output_specs.items():
-        row_hash, count = write_jsonl(out / filename, rows, id_key)
-        outputs[filename] = {"hash": row_hash, "count": count}
-
-    predicate_registry_hash = canonical_json_hash(PREDICATE_REGISTRY)
-    logical_input_records = [
-        record for record in records
-        if record.get("record_type") in {"source", "work", "local_entity", "evidence"}
-        or (record.get("record_type") == "assertion" and record.get("status") == "ACCEPTED")
-    ]
-    logical_input_hash = sha256_bytes(
-        ("".join(canonical(record) + "\n" for record in sorted(logical_input_records, key=canonical))).encode("utf-8")
-    )
-    accepted_reconciliation_hash = outputs["accepted_reconciliation.jsonl"]["hash"]
-
-    input_identity = {
-        "research_head": args.research_head,
-        "reconciliation_head": args.reconciliation_head,
-        "schema_version": args.schema_version,
-        "methodology_version": args.methodology_version,
-        "predicate_registry_hash": predicate_registry_hash,
-        "compiler_commit": args.compiler_commit,
-        "logical_input_records_hash": logical_input_hash,
-        "accepted_reconciliation_hash": accepted_reconciliation_hash,
-    }
-    input_hash = sha256_bytes(canonical(input_identity).encode("utf-8"))
-
-    projection_material = canonical({filename: metadata["hash"] for filename, metadata in sorted(outputs.items())}).encode("utf-8")
-    projection_hash = sha256_bytes(projection_material)
-
-    manifest = {
-        "record_type": "projection_manifest",
-        "projection_version": args.projection_version,
-        "schema_version": args.schema_version,
-        "methodology_version": args.methodology_version,
-        "compiler_commit": args.compiler_commit,
-        "research_head": args.research_head,
-        "reconciliation_head": args.reconciliation_head,
-        "predicate_registry_hash": predicate_registry_hash,
-        "input_hash": input_hash,
-        "projection_hash": projection_hash,
-        "outputs": outputs,
-    }
-    (out / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(projection_hash)
-
-
-if __name__ == "__main__":
-    main()
+ ap=argparse.ArgumentParser(); ap.add_argument('--out',required=True); ap.add_argument('--projection-version',default='0.2.0'); ap.add_argument('--schema-version',required=True); ap.add_argument('--methodology-version',required=True); ap.add_argument('--research-head',required=True); ap.add_argument('--reconciliation-head',required=True); ap.add_argument('--compiler-commit',required=True); args=ap.parse_args(); run_repository_validation(); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
+ records=list(iter_typed_records(DATA_ROOTS)); decisions=list(iter_typed_records((ROOT/'reconciliation',))); logical=build_logical_projection(records,decisions); specs={'entities.jsonl':(logical['entities'],'local_entity_id'),'facts.jsonl':(logical['facts'],'assertion_id'),'relations.jsonl':(logical['relations'],'relation_id'),'contested.jsonl':(logical['contested'],'assertion_id'),'unresolved.jsonl':(logical['unresolved'],'assertion_id'),'provenance.jsonl':(logical['provenance'],'provenance_id'),'assertion_history.jsonl':(logical['assertion_history'],'assertion_id'),'reconciliation_history.jsonl':(logical['reconciliation_history'],'decision_id')}; outputs={}
+ for name,(rows,key) in specs.items():h,count=write_jsonl(out/name,rows,key); outputs[name]={'role':name.removesuffix('.jsonl'),'hash':h,'count':count}
+ predicate_hash=canonical_json_hash(PREDICATE_REGISTRY); scope_hash=canonical_json_hash(SCOPE_KEY_REGISTRY); logical_input=[r for r in records if r.get('record_type') in {'source','work','local_entity','evidence','assertion'}]; logical_input_hash=sha256_bytes(''.join(canonical(r)+'\n' for r in sorted(logical_input,key=canonical)).encode()); input_identity={'research_head':args.research_head,'reconciliation_head':args.reconciliation_head,'schema_version':args.schema_version,'methodology_version':args.methodology_version,'predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'compiler_commit':args.compiler_commit,'logical_input_records_hash':logical_input_hash,'reconciliation_history_hash':outputs['reconciliation_history.jsonl']['hash']}; input_hash=sha256_bytes(canonical(input_identity).encode()); projection_hash=sha256_bytes(canonical({n:outputs[n]['hash'] for n in CANONICAL_OUTPUTS}).encode()); manifest={'record_type':'projection_manifest','projection_version':args.projection_version,'schema_version':args.schema_version,'methodology_version':args.methodology_version,'compiler_commit':args.compiler_commit,'research_head':args.research_head,'reconciliation_head':args.reconciliation_head,'predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'input_hash':input_hash,'projection_hash':projection_hash,'outputs':outputs}; (out/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n',encoding='utf-8'); verify_written_bundle(out); print(projection_hash)
+if __name__=='__main__':main()

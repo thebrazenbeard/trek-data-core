@@ -1,119 +1,29 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-
-import importlib.util
-import json
+import importlib.util, json, tempfile, unittest
 from pathlib import Path
-import tempfile
-import unittest
 
-MODULE_PATH = Path(__file__).with_name("build_graph_search.py")
-spec = importlib.util.spec_from_file_location("trek_build_graph_search", MODULE_PATH)
-graph_search = importlib.util.module_from_spec(spec)
-if spec.loader is not None:
-    spec.loader.exec_module(graph_search)
-
-
-def write_jsonl(root, filename, rows):
-    (root / filename).write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
-
-
-def write_projection(root, conflicting_evidence=False, domain_relation=False):
-    (root / "manifest.json").write_text(json.dumps({
-        "record_type": "projection_manifest",
-        "projection_version": "0.1.0",
-        "schema_version": "0.1.0",
-        "methodology_version": "0.1.0",
-        "compiler_commit": "fixture",
-        "research_head": "research-fixture",
-        "reconciliation_head": "recon-fixture",
-        "predicate_registry_hash": "sha256:predicate",
-        "input_hash": "sha256:input",
-        "projection_hash": "sha256:projection-fixture",
-        "outputs": {},
-    }) + "\n", encoding="utf-8")
-    write_jsonl(root, "entities.jsonl", [
-        {"record_type": "local_entity", "local_entity_id": "local-1", "work_id": "work-1", "label": "Fixture Entity", "resolved_entity": "global:one"},
-    ])
-    write_jsonl(root, "facts.jsonl", [
-        {"record_type": "assertion", "assertion_id": "a1", "subject": "local-1", "resolved_subject": "global:one", "predicate": "CLAIMS", "object": {"text": "stable fixture"}, "projection_status": "STABLE"},
-    ])
-    write_jsonl(root, "contested.jsonl", [
-        {"record_type": "assertion", "assertion_id": "a2", "subject": "local-1", "predicate": "CLAIMS", "object": {"text": "paradox fixture"}, "projection_status": "STRUCTURAL_PARADOX"},
-    ])
-    write_jsonl(root, "unresolved.jsonl", [])
-    write_jsonl(root, "relations.jsonl", [
-        {"relation_id": "r1", "source": "local-1", "predicate": "CLAIMS", "target": "unknown-shape"}
-    ] if domain_relation else [])
-    provenance = [
-        {"provenance_id": "a1::e1", "assertion_id": "a1", "evidence_id": "e1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "dialogue", "source_content_hash": "sha256:source-a", "work_title": "Fixture Work"},
-        {"provenance_id": "a2::e1", "assertion_id": "a2", "evidence_id": "e1", "source_id": "source-1", "work_id": "work-1", "evidence_kind": "dialogue", "source_content_hash": "sha256:source-a" if not conflicting_evidence else "sha256:source-b", "work_title": "Fixture Work"},
-    ]
-    write_jsonl(root, "provenance.jsonl", provenance)
-    write_jsonl(root, "accepted_reconciliation.jsonl", [])
-
-
-def read_jsonl(path):
-    return [json.loads(raw) for raw in path.read_text(encoding="utf-8").splitlines() if raw.strip()]
-
+def load(name,alias):
+ p=Path(__file__).with_name(name); s=importlib.util.spec_from_file_location(alias,p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+graph=load('build_graph_search.py','trek_graph_search'); fixture=load('test_projection_fixture.py','trek_projection_fixture_graph')
+def read_jsonl(path):return [json.loads(r) for r in Path(path).read_text().splitlines() if r.strip()]
 
 class GraphSearchProjectionTests(unittest.TestCase):
-    def test_graph_contains_only_structural_edges_not_domain_predicate_edges(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection)
-            out = Path(td) / "out"
-            graph_search.build_bundle(projection, out)
-            edges = read_jsonl(out / "graph_edges.jsonl")
-            kinds = {edge["edge_kind"] for edge in edges}
-            self.assertIn("ASSERTION_SUBJECT", kinds)
-            self.assertIn("ASSERTION_EVIDENCE", kinds)
-            self.assertIn("EVIDENCE_SOURCE", kinds)
-            self.assertIn("EVIDENCE_WORK", kinds)
-            self.assertIn("ENTITY_WORK", kinds)
-            self.assertNotIn("CLAIMS", kinds)
-
-    def test_graph_nodes_preserve_projection_status(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection)
-            out = Path(td) / "out"; graph_search.build_bundle(projection, out)
-            nodes = {row["node_id"]: row for row in read_jsonl(out / "graph_nodes.jsonl")}
-            self.assertEqual(nodes["assertion:a2"]["projection_status"], "STRUCTURAL_PARADOX")
-            self.assertEqual(nodes["assertion:a2"]["partition"], "contested")
-
-    def test_search_documents_preserve_literal_content_and_status(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection)
-            out = Path(td) / "out"; graph_search.build_bundle(projection, out)
-            docs = {row["document_id"]: row for row in read_jsonl(out / "search_documents.jsonl")}
-            self.assertEqual(docs["assertion:a2"]["projection_status"], "STRUCTURAL_PARADOX")
-            self.assertIn("paradox fixture", docs["assertion:a2"]["text"])
-            self.assertIn("Fixture Entity", docs["entity:local-1"]["text"])
-
-    def test_bundle_is_deterministic_and_projection_pinned(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection)
-            first = Path(td) / "first"; second = Path(td) / "second"
-            manifest_a = graph_search.build_bundle(projection, first)
-            manifest_b = graph_search.build_bundle(projection, second)
-            self.assertEqual(manifest_a, manifest_b)
-            self.assertEqual(manifest_a["projection_hash"], "sha256:projection-fixture")
-            for filename in ("graph_nodes.jsonl", "graph_edges.jsonl", "search_documents.jsonl", "manifest.json"):
-                self.assertEqual((first / filename).read_bytes(), (second / filename).read_bytes())
-
-    def test_conflicting_structural_metadata_fails_closed(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection, conflicting_evidence=True)
-            out = Path(td) / "out"
-            with self.assertRaises(ValueError):
-                graph_search.build_bundle(projection, out)
-
-    def test_nonempty_domain_relations_fail_closed_until_schema_is_governed(self):
-        with tempfile.TemporaryDirectory() as td:
-            projection = Path(td) / "projection"; projection.mkdir(); write_projection(projection, domain_relation=True)
-            out = Path(td) / "out"
-            with self.assertRaises(ValueError):
-                graph_search.build_bundle(projection, out)
-
-
-if __name__ == "__main__":
-    unittest.main()
+ def test_graph_maps_governed_relation_without_using_predicate_as_edge_kind(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'projection'; fixture.make_projection(root); out=Path(td)/'out'; graph.build_bundle(root,out); edges=read_jsonl(out/'graph_edges.jsonl'); kinds={e['edge_kind'] for e in edges}; self.assertIn('GOVERNED_RELATION',kinds); self.assertNotIn('CLAIMS',kinds); governed=[e for e in edges if e['edge_kind']=='GOVERNED_RELATION'][0]; self.assertEqual(governed['predicate'],'CLAIMS'); self.assertEqual(governed['relation_id'],'assertion:a-stable')
+ def test_graph_contains_structural_provenance_edges_and_history(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'projection'; fixture.make_projection(root); out=Path(td)/'out'; graph.build_bundle(root,out); edges=read_jsonl(out/'graph_edges.jsonl'); kinds={e['edge_kind'] for e in edges}; self.assertTrue({'ASSERTION_SUBJECT','ASSERTION_EVIDENCE','EVIDENCE_SOURCE','EVIDENCE_WORK','ENTITY_WORK','RECONCILIATION_SUBJECT'}.issubset(kinds)); nodes={n['node_id']:n for n in read_jsonl(out/'graph_nodes.jsonl')}; self.assertIn('assertion_history:a-rejected',nodes); self.assertIn('reconciliation:status-1',nodes)
+ def test_graph_nodes_and_search_preserve_projection_status_and_literal_text(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'projection'; fixture.make_projection(root); out=Path(td)/'out'; graph.build_bundle(root,out); nodes={r['node_id']:r for r in read_jsonl(out/'graph_nodes.jsonl')}; docs={r['document_id']:r for r in read_jsonl(out/'search_documents.jsonl')}; self.assertEqual(nodes['assertion:a-paradox']['projection_status'],'STRUCTURAL_PARADOX'); self.assertEqual(nodes['assertion:a-paradox']['partition'],'contested'); self.assertIn('paradox',docs['assertion:a-paradox']['text']); self.assertIn('rejected',docs['assertion_history:a-rejected']['text'])
+ def test_bundle_is_deterministic_and_carries_verification_receipt(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'projection'; manifest=fixture.make_projection(root); a=Path(td)/'a'; b=Path(td)/'b'; ma=graph.build_bundle(root,a); mb=graph.build_bundle(root,b); self.assertEqual(ma,mb); self.assertEqual(ma['projection_hash'],manifest['projection_hash']); self.assertTrue(ma['builder_identity'].startswith('sha256:')); self.assertTrue(ma['verification_receipt_hash'].startswith('sha256:')); self.assertEqual(ma['imported_output_contract'],list(graph.bundle.REQUIRED_OUTPUTS));
+   for name in ('graph_nodes.jsonl','graph_edges.jsonl','search_documents.jsonl','manifest.json'):self.assertEqual((a/name).read_bytes(),(b/name).read_bytes())
+ def test_invalid_projection_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'projection'; fixture.make_projection(root); (root/'relations.jsonl').write_text('');
+   with self.assertRaises(ValueError):graph.build_bundle(root,Path(td)/'out')
+if __name__=='__main__':unittest.main()

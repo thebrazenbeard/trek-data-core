@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://trek-data-core/schema/projection-relation.schema.json",
+  "title":"Projection Relation",
+  "type":"object",
+  "required":["record_type","relation_id","relation_kind","subject_type","subject_id","predicate","target_type","target_id"],
+  "properties":{
+    "record_type":{"const":"projection_relation"},
+    "relation_id":{"type":"string","minLength":1},
+    "relation_kind":{"enum":["ASSERTION_PREDICATE","IDENTITY_LINK"]},
+    "assertion_id":{"type":"string"},
+    "subject_type":{"enum":["SOURCE","WORK","LOCAL_ENTITY","ASSERTION"]},
+    "subject_id":{"type":"string","minLength":1},
+    "predicate":{"type":"string","minLength":1},
+    "target_type":{"enum":["SOURCE","WORK","LOCAL_ENTITY","EVIDENCE","ASSERTION","RECONCILIATION_DECISION"]},
+    "target_id":{"type":"string","minLength":1},
+    "projection_status":{"enum":["STABLE","CONTESTED","UNRESOLVED","STRUCTURAL_PARADOX"]},
+    "reconciliation_decision_id":{"type":"string"}
+  },
+  "additionalProperties":false
+}

@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://trek-data-core/schema/projection-provenance.schema.json",
+  "title":"Projection Provenance",
+  "type":"object",
+  "required":["record_type","provenance_id","assertion_id","evidence_id","assertion_record","effective_assertion_status","support_set","evidence_record","source_record","source_lineage_records","work_record","work_lineage_records"],
+  "properties":{
+    "record_type":{"const":"projection_provenance"},
+    "provenance_id":{"type":"string","minLength":1},
+    "assertion_id":{"type":"string","minLength":1},
+    "evidence_id":{"type":"string","minLength":1},
+    "assertion_record":{"type":"object"},
+    "effective_assertion_status":{"enum":["PROPOSED","ACCEPTED","REJECTED","SUPERSEDED"]},
+    "support_set":{"type":"array","items":{"type":"string"},"minItems":1},
+    "evidence_record":{"type":"object"},
+    "source_record":{"type":"object"},
+    "source_lineage_records":{"type":"array","items":{"type":"object"}},
+    "work_record":{"type":"object"},
+    "work_lineage_records":{"type":"array","items":{"type":"object"}},
+    "projection_status":{"enum":["STABLE","CONTESTED","UNRESOLVED","STRUCTURAL_PARADOX"]},
+    "projection_reason":{"type":"string"},
+    "assertion_disposition_decision_id":{"type":"string"},
+    "projection_status_decision_id":{"type":"string"},
+    "scope_resolution_decision_ids":{"type":"object"},
+    "entity_link_decision_ids":{"type":"array","items":{"type":"string"}},
+    "observer_local_entity_record":{"type":"object"},
+    "subject_record":{"type":"object"},
+    "object_record":{"type":"object"}
+  },
+  "additionalProperties":false
+}

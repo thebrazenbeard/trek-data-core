@@ -1,0 +1,10 @@
+{
+  "registry_version": "0.1.0",
+  "methodology_version": "0.1.0",
+  "scope_keys": [
+    {"key":"CONTINUITY_SCOPE","subject_types":["WORK","LOCAL_ENTITY","ASSERTION"],"definition":"Continuity scope."},
+    {"key":"TIMELINE_SCOPE","subject_types":["WORK","LOCAL_ENTITY","ASSERTION"],"definition":"Timeline or branch scope."},
+    {"key":"NARRATIVE_FRAME","subject_types":["ASSERTION"],"definition":"Narrative or reality frame."},
+    {"key":"TEMPORAL_SCOPE","subject_types":["WORK","LOCAL_ENTITY","ASSERTION"],"definition":"Temporal placement scope."}
+  ]
+}

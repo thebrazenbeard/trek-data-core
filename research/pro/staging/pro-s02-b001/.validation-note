@@ -1,0 +1,9 @@
+manual-staging-validation: PASS
+base-main: 007641c57933dda222489fff56555f6968ff2a53
+scope: research/pro/staging/pro-s02-b001 only
+official-work-titles: Into the Breach Part I; Into the Breach Part II; Who Saves the Saviors; Temporal Mechanics 101; Observer's Paradox
+complete-full-subtitle-reads: 2x01,2x02,2x03,2x04,2x05
+source-filename-variants-preserved: yes
+accepted-coverage-advanced: no
+global-identity-mutated: no
+canonical-source-work-binding: blocked on accepted Librarian state

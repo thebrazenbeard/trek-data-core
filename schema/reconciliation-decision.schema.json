@@ -8,7 +8,7 @@
     "record_type": {"const": "reconciliation_decision"},
     "decision_id": {"type": "string", "minLength": 1},
     "decision_type": {"enum": ["ENTITY_LINK", "ASSERTION_DISPOSITION", "ASSERTION_PROJECTION_STATUS", "SCOPE_RESOLUTION", "OTHER"]},
-    "subject_type": {"enum": ["SOURCE", "WORK", "LOCAL_ENTITY", "EVIDENCE", "ASSERTION", "RECONCILIATION_DECISION", "GLOBAL_ENTITY"]},
+    "subject_type": {"enum": ["SOURCE", "WORK", "LOCAL_ENTITY", "ASSERTION"]},
     "subject_id": {"type": "string", "minLength": 1},
     "payload": {"type": "object"},
     "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "SUPERSEDED"]},

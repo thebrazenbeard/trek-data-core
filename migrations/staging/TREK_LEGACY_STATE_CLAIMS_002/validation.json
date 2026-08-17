@@ -1,0 +1,14 @@
+{
+  "batch_id": "TREK_LEGACY_STATE_CLAIMS_002",
+  "record_type": "migration_validation",
+  "claim_count": 8,
+  "story_fact_assertions_created": 0,
+  "accepted_coverage_promotions": 0,
+  "accepted_work_ids_promoted": 0,
+  "accepted_source_ids_promoted": 0,
+  "model_knowledge_promotions": 0,
+  "preference_weighting_promotions": 0,
+  "historical_counter_policy": "PRESERVE_AS_CLAIM_NOT_CURRENT_ACCEPTED_COVERAGE",
+  "dependency_corroboration_policy": "DOWNSTREAM_ADOPTION_OR_DERIVATION_HAS_ZERO_INDEPENDENT_WEIGHT",
+  "status": "PASS_FAIL_CLOSED"
+}

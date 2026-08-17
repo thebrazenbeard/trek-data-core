@@ -40,28 +40,31 @@ Its enforcement requires workers to:
 - begin no new episode/book close-read tranche;
 - avoid minting local canonical Source/Work/coverage contracts to bypass the shared blocker.
 
-During this synchronization pass, the remaining open DS9 corpus staging PR surfaces were closed without merge, rebase, force-push, rewrite, or branch deletion:
+During this synchronization pass, the remaining/open-or-concurrently-created DS9 corpus staging PR surfaces were closed without merge, rebase, force-push, rewrite, or branch deletion:
 
 - PR #81 — batch 021
 - PR #83 — batch 022
 - PR #85 — batch 023
 - PR #101 — batch 024
 - PR #102 — batch 025
-- PR #103 — batch 026, created concurrently while this sync was being finalized
+- PR #103 — batch 026
+- PR #106 — batch 027
 
 Auditor PRs #41 and #53 remain outside this disposition and were not closed.
 
+Synchronization PR #105 was itself closed by concurrent queue enforcement while this checkpoint was being updated. Its branch `research/ds9/ds9-lane-sync-20260817` remains preserved and is the durable current DS9 handoff. It is not reopened because the Director instruction is to close corpus PR surfaces while preserving branch bytes.
+
 ## Preserved worker-effort inventory
 
-There are 26 preserved DS9 staging branches representing 130 sequential proposal work slots from `Emissary` through `Resurrection`.
+There are 27 preserved DS9 staging branches representing 135 sequential proposal work slots from `Emissary` through `Far Beyond the Stars`.
 
 Of those slots:
 
-- 129 have completed transcript-representation close reads preserved on proposal branches;
+- 134 have completed transcript-representation close reads preserved on proposal branches;
 - 1 (`Shakaar`) remains `SOURCE_RETRIEVAL_BLOCKED` / partial and is not counted as a completed full-source close read;
 - accepted DS9 coverage remains unchanged at zero accepted batch/coverage records on `main`.
 
-This 129/130 count is a **proposal worker-effort inventory**, not accepted coverage and not an accepted corpus denominator.
+This 134/135 count is a **proposal worker-effort inventory**, not accepted coverage and not an accepted corpus denominator.
 
 | Batch | Preserved branch | PR | Preserved head | Worker-effort state |
 |---|---|---:|---|---|
@@ -91,18 +94,19 @@ This 129/130 count is a **proposal worker-effort inventory**, not accepted cover
 | 024 | `research/ds9/ds9-s05-b024-staging` | #101 | `ae2458e1682c7b5e5e4182780e6647885ee6e0f0` | 5 complete |
 | 025 | `research/ds9/ds9-s06-b025-staging` | #102 | `5a0dd8cd28e208d3a7a1cf0cf1cffe5005fa9655` | 5 complete |
 | 026 | `research/ds9/ds9-s06-b026-staging` | #103 | `e1869ed8f62d41c15566eeac6f9725cf8d58a53a` | 5 complete |
+| 027 | `research/ds9/ds9-s06-b027-staging` | #106 | `a03a34918ebfec12a4119532239f59c09a79b82a` | 5 complete |
 
 ## Proposal sequence boundary
 
 The preserved proposal sequence now reaches Season 6 through:
 
-- `Behind the Lines`
-- `Favor the Bold`
-- `Sacrifice of Angels`
-- `You Are Cordially Invited`
-- `Resurrection`
+- `Statistical Probabilities`
+- `The Magnificent Ferengi`
+- `Waltz`
+- `Who Mourns for Morn?`
+- `Far Beyond the Stars`
 
-`Statistical Probabilities` is therefore the next **provisional external sequence title** after the preserved worker-effort frontier.
+`One Little Ship` is therefore the next **provisional external sequence title** after the preserved worker-effort frontier.
 
 That is **not** authorization to begin it. Issue #23 requires the lane to stop, and after the admission gate clears the accepted frontier must be recalculated from `main`; proposal sequence does not automatically become accepted sequence.
 
@@ -143,7 +147,7 @@ Auditor PR #53 found that early corpus research PRs targeting `architecture/v0.1
 
 Preserved research bytes are not rejected, but historical branches must not be merged through that architecture base.
 
-Later DS9 batches 024, 025, and 026 were deliberately based directly on accepted `main`, avoiding that specific topology defect, but they remain proposal-only and still lack the accepted Source↔Work/admission dependencies.
+Later DS9 batches 024 through 027 were deliberately based directly on accepted `main`, avoiding that specific topology defect, but they remain proposal-only and still lack the accepted Source↔Work/admission dependencies.
 
 When normalization becomes legal, the worker should migrate/re-express preserved DS9 records into governed bounded batches from the then-current accepted base rather than rewriting or force-moving the historical proposal branches.
 
@@ -180,7 +184,7 @@ When Director issue #23's resume condition is actually satisfied on accepted `ma
 7. recover and fully process `Shakaar` if it remains unbound/incomplete in accepted state;
 8. only then recalculate the exact next new-work frontier from accepted coverage.
 
-If the accepted inventory and normalized preserved sequence still align, `Statistical Probabilities` is the provisional next new title after `Resurrection`. That conclusion must be recomputed, not assumed.
+If the accepted inventory and normalized preserved sequence still align, `One Little Ship` is the provisional next new title after `Far Beyond the Stars`. That conclusion must be recomputed, not assumed.
 
 ## Authority boundary
 

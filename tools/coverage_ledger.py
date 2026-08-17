@@ -16,7 +16,6 @@ PREDECESSOR={state:STATES[i-1] for i,state in enumerate(STATES) if i>0}
 SOURCE_STATES={'SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED','CLOSE_READ','SEMANTICALLY_ANALYZED'}
 RESEARCH_ROLES={'TOS','TAS','TNG','DS9','VOY','ENT','DIS','SHORT','PIC','LD','PRO','SNW','SFA','FILMS','LIT'}
 
-
 def canonical(v):return schema_tools.canonical(v)
 def read_jsonl(path):
  rows=[]
@@ -27,19 +26,16 @@ def read_jsonl(path):
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
   rows.append(row)
  return rows
-
 def scan_typed_records():
  records=[]
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'coverage',ROOT/'registry'):
   if not base.exists():continue
-  for path in sorted(base.rglob('*.jsonl')):
-   records.extend(read_jsonl(path))
+  for path in sorted(base.rglob('*.jsonl')):records.extend(read_jsonl(path))
   if base.name=='coverage':
    for path in sorted(base.rglob('*.json')):
     row=json.loads(path.read_text(encoding='utf-8'))
     if isinstance(row,dict) and row.get('record_type'):records.append(row)
  return records
-
 def index_records(records,record_type,id_key):
  out={}
  for row in records:
@@ -49,7 +45,6 @@ def index_records(records,record_type,id_key):
   if rid in out:raise ValueError(f'duplicate {record_type} id {rid}')
   out[rid]=row
  return out
-
 def active_events(events):
  superseded={row.get('supersedes') for row in events.values() if row.get('supersedes') and row.get('status') in {'ACCEPTED','REJECTED'}}
  return {eid:row for eid,row in events.items() if row.get('status')=='ACCEPTED' and eid not in superseded}
@@ -61,7 +56,6 @@ def role_errors(row):
  if state in {'ENTITY_LINKED','CROSS_REFERENCED'} and role!='CONSOLIDATOR':errors.append(f'{state} must be produced by CONSOLIDATOR')
  if state=='AUDITED' and role!='AUDITOR':errors.append('AUDITED must be produced by AUDITOR')
  return errors
-
 def validate_coverage(records,works=None,sources=None,bindings=None):
  works=works if works is not None else index_records(records,'work','work_id'); sources=sources if sources is not None else index_records(records,'source','source_id'); bindings=bindings if bindings is not None else index_records(records,'source_work_binding','binding_id')
  events=index_records(records,'coverage_event','coverage_event_id'); schema=json.loads(SCHEMA.read_text(encoding='utf-8')); errors=[]
@@ -80,8 +74,7 @@ def validate_coverage(records,works=None,sources=None,bindings=None):
   while current:
    if current in seen:errors.append(f'coverage supersession cycle at {current}');break
    seen.add(current); row=events.get(current); current=row.get('supersedes') if row else None
- active=active_events(events)
- grouped={}
+ active=active_events(events); grouped={}
  for eid,row in active.items():grouped.setdefault(coverage_key(row),[]).append(eid)
  for key,ids in grouped.items():
   if len(ids)>1:errors.append(f'multiple active accepted coverage events for {key}: {sorted(ids)}')
@@ -97,7 +90,7 @@ def validate_coverage(records,works=None,sources=None,bindings=None):
    if not binding_id:errors.append(f'{eid}: SOURCE_BOUND requires binding_id')
    elif binding is None:errors.append(f'{eid}: SOURCE_BOUND requires governed source_work_binding {binding_id}; Librarian binding surface is unavailable or reference is missing')
    else:
-    if binding.get('status')!='ACCEPTED':errors.append(f'{eid}: SOURCE_BOUND requires ACCEPTED binding {binding_id}')
+    if binding.get('lifecycle')!='ACCEPTED':errors.append(f'{eid}: SOURCE_BOUND requires ACCEPTED binding lifecycle {binding_id}')
     if binding.get('mapping_role')!='EVIDENCE_BEARING':errors.append(f'{eid}: metadata-only binding cannot establish SOURCE_BOUND')
     if binding.get('work_id')!=work_id or binding.get('source_id')!=source_id:errors.append(f'{eid}: binding Source/Work context does not match coverage event')
   if state=='FULL_TEXT_AVAILABLE':
@@ -115,16 +108,14 @@ def validate_coverage(records,works=None,sources=None,bindings=None):
      candidates.append(prereq_id)
    if not candidates:errors.append(f'{eid}: accepted {state} requires active accepted {predecessor_state} prerequisite for the same governed context')
  return errors
-
 def coverage_report(records,works=None):
  works=works if works is not None else index_records(records,'work','work_id'); events=index_records(records,'coverage_event','coverage_event_id'); active=active_events(events)
  result={'denominator_status':'RESOLVED' if works else 'DENOMINATOR_UNRESOLVED','work_denominator':len(works) if works else None,'history_event_count':len(events),'active_accepted_event_count':len(active),'states':{}}
  for state in STATES:
   rows=[r for r in active.values() if r.get('coverage_state')==state]; work_ids=sorted({r.get('work_id') for r in rows if r.get('work_id') in works}); result['states'][state]={'event_count':len(rows),'covered_work_count':len(work_ids),'covered_work_ids':work_ids}
  return result
-
 def main():
- ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest='command',required=True); sub.add_parser('validate'); sub.add_parser('report'); args=sub.parse_args(); records=scan_typed_records()
+ ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest='command',required=True); sub.add_parser('validate'); sub.add_parser('report'); args=ap.parse_args(); records=scan_typed_records()
  if args.command=='validate':
   errors=validate_coverage(records)
   if errors:

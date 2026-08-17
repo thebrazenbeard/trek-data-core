@@ -1,0 +1,20 @@
+{
+  "record_type": "batch_validation_candidate",
+  "batch_id": "PIC-S01-B001",
+  "json_shape_review": "PASS",
+  "required_shape_against_unmerged_v0_1_guidance": "PASS",
+  "local_entity_global_merge_check": "PASS_NO_GLOBAL_SAME_AS",
+  "preference_blind_review": "PASS_NO_USER_PREFERENCE_USED_AS_RESEARCH_EVIDENCE",
+  "explicit_counterevidence_review": "PASS",
+  "copyright_check": "PASS_NO_TRANSCRIPT_TEXT_STORED",
+  "source_work_binding": "BLOCKED_PENDING_LIBRARIAN",
+  "primary_source_binding": "BLOCKED_ONLY_THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_PROCESSED",
+  "source_hash_requirement": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_schema_validation": "NOT_POSSIBLE_ACCEPTED_MAIN_HAS_NO_SCHEMA",
+  "batch_acceptance_ready": false,
+  "validation_notes": [
+    "Evidence records preserve dream, flashback, testimony, depiction, Borg-state, memory, synthetic-origin, and legacy-character distinctions without global identity resolution.",
+    "Assertions are PROPOSED only and use SUPPORTS solely as compatibility guidance from the unmerged architecture proposal.",
+    "Accepted coverage must remain zero until the listed governance/source blockers are resolved."
+  ]
+}

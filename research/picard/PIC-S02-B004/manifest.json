@@ -1,0 +1,29 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "PIC-S02-B004",
+  "schema_version": "PROVISIONAL_COMPAT_V0.1",
+  "worker_id": "PIC",
+  "works": [
+    "PIC-PROV-S02E06",
+    "PIC-PROV-S02E07",
+    "PIC-PROV-S02E08",
+    "PIC-PROV-S02E09",
+    "PIC-PROV-S02E10"
+  ],
+  "source_hashes": [],
+  "record_counts": {
+    "local_entities": 77,
+    "evidence": 52,
+    "assertions": 36
+  },
+  "batch_hash": "52ea1ad7f4be06dae8d46483bb5b70b1a99faed56832d415ba07d0f199154dee",
+  "batch_hash_method": "SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S02-B004 files except manifest.json",
+  "created_at": "2026-08-14T18:49:00-04:00",
+  "status": "RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect": "NONE",
+  "notes": "Five-episode Picard S02E06-S02E10 close-read candidate. Jurati/Queen mental/composite states remain distinct local occurrences; Picard childhood material remains memory-framed; the Elnor combat hologram remains distinct from Elnor; Tallinn's Renée impersonation is not SAME_AS; restored Elnor and the later Jurati-associated Queen remain unresolved identity/continuity relations. No accepted coverage is promoted."
+}

@@ -1,0 +1,36 @@
+{
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "accepted_schema_validation": "BLOCKED_NOT_PRESENT_ON_ACCEPTED_MAIN",
+  "batch_id": "PIC-S03-B006",
+  "checks": {
+    "all_assertions_proposed": true,
+    "assertion_count": 35,
+    "assertion_evidence_references_resolve": true,
+    "assertion_ids_unique": true,
+    "assertion_subjects_resolve_to_local_entities": true,
+    "evidence_count": 50,
+    "evidence_ids_unique": true,
+    "explicit_counterevidence_preserved": true,
+    "identity_ambiguity_preserved": true,
+    "local_entity_count": 75,
+    "local_entity_ids_unique": true,
+    "raw_copyrighted_source_bytes_committed": false,
+    "same_as_assertion_count": 0,
+    "worker_partition_only": true
+  },
+  "librarian_source_work_binding": "BLOCKED_PENDING_LIBRARIAN",
+  "notes": "Validation establishes internal referential/methodological integrity only. It does not establish canonical source authority, global identity, accepted schema validity, or accepted coverage.",
+  "overall_result": "CANDIDATE_VALIDATED_INTERNAL_BLOCKED_FROM_ACCEPTANCE",
+  "record_type": "batch_validation",
+  "regression_cases": [
+    "Current Picard and his stolen former biological body remain distinct local occurrences.",
+    "Hybrid golem body, Data profile, Lore profile, B-4/Soong memory material and post-conflict Data remain distinct local entities until reconciliation.",
+    "Apparent Tuvok presentation and Changeling impersonator are separated; real Tuvok status is not inferred beyond the source.",
+    "Vadic's Project Proteus account remains testimony with institutional-abuse provenance rather than omniscient history.",
+    "Jack's remote-control ability is corroborated but Jack, Võx state, and post-severance Jack remain distinct local states/occurrences.",
+    "Picard's Irumodic diagnosis is treated as superseded/contested by source medical evidence rather than silently rewritten.",
+    "Transporter-mediated Borg genetic alteration and Fleet Formation are separate mechanisms whose interaction is source-supported.",
+    "Q's post-crisis appearance remains temporally unresolved relative to prior death claims."
+  ],
+  "validation_scope": "PROVISIONAL_CANDIDATE_INTERNAL"
+}

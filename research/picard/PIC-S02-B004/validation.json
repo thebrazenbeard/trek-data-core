@@ -1,0 +1,37 @@
+{
+  "record_type": "batch_validation",
+  "batch_id": "PIC-S02-B004",
+  "validation_scope": "PROVISIONAL_CANDIDATE_INTERNAL",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "checks": {
+    "local_entity_count": 77,
+    "evidence_count": 52,
+    "assertion_count": 36,
+    "local_entity_ids_unique": true,
+    "evidence_ids_unique": true,
+    "assertion_ids_unique": true,
+    "assertion_evidence_references_resolve": true,
+    "assertion_subjects_resolve_to_local_entities": true,
+    "all_assertions_proposed": true,
+    "same_as_assertion_count": 0,
+    "worker_partition_only": true,
+    "raw_copyrighted_source_bytes_committed": false,
+    "explicit_counterevidence_preserved": true,
+    "identity_ambiguity_preserved": true
+  },
+  "regression_cases": [
+    "Jurati and Borg Queen body/mental/composite states remain distinct local occurrences with residual Jurati agency preserved as counterevidence.",
+    "Picard childhood material remains framed as memory/unconscious evidence rather than automatically promoted objective history.",
+    "Elnor Emergency Combat Hologram remains a hologram/copied representation; its memory-derived testimony is not treated as Elnor's direct utterance.",
+    "Seven's critical injury and Borg restoration are body/state evidence, not an automatic identity split or merge.",
+    "Tallinn impersonating Renée is an assumed-identity occurrence, not SAME_AS.",
+    "Elnor's post-reset living occurrence remains unresolved relative to the earlier deceased occurrence.",
+    "The anomaly-era Jurati-associated Borg Queen remains a distinct local occurrence whose relation to the 2024 composite is unresolved.",
+    "Q's dying state and motives remain testimony where sourced from Q/Guinan rather than omniscient fact.",
+    "Guinan's account of Rios's later life remains retrospective testimony."
+  ],
+  "accepted_schema_validation": "BLOCKED_NOT_PRESENT_ON_ACCEPTED_MAIN",
+  "librarian_source_work_binding": "BLOCKED_PENDING_LIBRARIAN",
+  "overall_result": "CANDIDATE_VALIDATED_INTERNAL_BLOCKED_FROM_ACCEPTANCE",
+  "notes": "Validation establishes internal referential/methodological integrity only. It does not establish source authority, canonical identity, or accepted coverage."
+}

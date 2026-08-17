@@ -1,0 +1,33 @@
+{
+  "record_type": "proposal_sync_manifest",
+  "sync_id": "PIC-SYNC-001",
+  "lane": "PIC",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "included_batches": [
+    {"batch_id":"PIC-S01-B001","source_branch":"research/picard/pic-s01-b001","batch_tree_sha":"29e19ea513c35bf23c431030294ee4f4cd9db669"},
+    {"batch_id":"PIC-S01-B002","source_branch":"research/picard/pic-s01-b002","source_commit":"26f921a1501f63de9c25d250456533f3c05d80a0","batch_tree_sha":"f1b08ae5baf0b699d7d80ffc5054db3a75c0aee2"},
+    {"batch_id":"PIC-S02-B003","source_branch":"research/picard/pic-s02-b003-r1","source_commit":"37c611593fc3fc31169e6d4daf086741c53c5f41","batch_tree_sha":"c5c4ce77057ac9c291bff32cb82aa87834456135"},
+    {"batch_id":"PIC-S02-B004","source_branch":"research/picard/pic-s02-b004","source_commit":"bbd29f3250ddfd9cdfa1a8bc640f53ff48a0b0c9","batch_tree_sha":"817f9015fa6e727fe5dd93ce157641c9a0ea13f5"},
+    {"batch_id":"PIC-S03-B005","source_branch":"research/picard/pic-s03-b005","source_commit":"f8cfb3b9af5c17d861e0d09086dd29578ded4b06","batch_tree_sha":"1cd969af241e19e26b18ab9405e5aa623704f447"},
+    {"batch_id":"PIC-S03-B006","source_branch":"research/picard/pic-s03-b006","source_commit":"265b29cd7b264939a29d899449d38f1b2e17b322","batch_tree_sha":"bdf0ad1fd28e263917f421467d33efd8acc04e47"}
+  ],
+  "sync_content_hash": "9775d3e18942fb8fc489779abb88291c2757bcc851ee6d7d6fe1f556b6ba7522",
+  "sync_hash_method": "SHA256 over newline-joined lexicographically sorted batch_id=batch_tree_sha pairs",
+  "candidate_episode_count": 30,
+  "candidate_scope": "Star Trek: Picard S01E01 through S03E10",
+  "aggregate_candidate_frontier": "S03E10",
+  "candidate_research_state": ["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],
+  "accepted_picard_episode_count": 0,
+  "accepted_coverage_effect": "NONE",
+  "sync_method": "Non-destructive tree graft of exact immutable candidate batch subtrees onto current accepted main; original batch files and their historical accepted_base_commit metadata are preserved unchanged.",
+  "excluded_stale_proposals": ["research/picard/pic-s02-b003"],
+  "acceptance_blockers": [
+    "Accepted main contains no Picard Source/Work registry.",
+    "Accepted main contains no accepted research schemas/predicate registry.",
+    "Candidate representations are not yet Librarian-bound primary/full sources.",
+    "Source-variant cryptographic hashes and provenance lineage are not yet bound.",
+    "Global identity/reconciliation and audit remain downstream role responsibilities."
+  ],
+  "status": "SYNCHRONIZED_PROPOSAL_BLOCKED_FROM_ACCEPTANCE",
+  "notes": "This sync is a reproducible aggregation checkpoint, not a merge, acceptance decision, canonical identity resolution, or coverage promotion. The stale pre-replay S02-B003 proposal is intentionally excluded in favor of PIC-S02-B003 from pic-s02-b003-r1."
+}

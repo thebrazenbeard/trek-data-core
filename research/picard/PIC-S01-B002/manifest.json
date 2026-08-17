@@ -1,0 +1,29 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "PIC-S01-B002",
+  "schema_version": "PROVISIONAL_COMPAT_V0.1",
+  "worker_id": "PIC",
+  "works": [
+    "PIC-PROV-S01E06",
+    "PIC-PROV-S01E07",
+    "PIC-PROV-S01E08",
+    "PIC-PROV-S01E09",
+    "PIC-PROV-S01E10"
+  ],
+  "source_hashes": [],
+  "record_counts": {
+    "local_entities": 76,
+    "evidence": 50,
+    "assertions": 28
+  },
+  "batch_hash": "2abf981d19490f432fe5aaaf7c70b73ad575c97613e60abf3520bf6d58f3da5b",
+  "batch_hash_method": "SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S01-B002 files except manifest.json",
+  "created_at": "2026-08-14T08:57:00-04:00",
+  "status": "RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "canonical_source_work_binding": "PENDING_LIBRARIAN",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status": "BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect": "NONE",
+  "notes": "Five-episode Picard S01E06-S01E10 close-read candidate. Picard organic body, transferred neural image, and golem embodiment remain distinct local entities; historical Data and the quantum reconstruction remain distinct; Borg collective states and Rios-derived holograms are not silently merged. No accepted coverage is promoted because accepted main lacks Librarian-bound Source/Work records and accepted research schemas."
+}

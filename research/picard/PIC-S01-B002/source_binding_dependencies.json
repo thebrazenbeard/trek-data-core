@@ -1,0 +1,91 @@
+{
+  "accepted_base_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "batch_id": "PIC-S01-B002",
+  "notes": "These are provisional evidence-bearing representations used for close reading. They are not Librarian-bound canonical Source or Work records and confer no accepted coverage.",
+  "record_type": "source_binding_dependencies",
+  "required_before_acceptance": [
+    "Librarian-owned Work IDs for Picard S01E06-S01E10",
+    "Librarian-owned Source IDs and provenance-lineage records",
+    "Accepted schema/methodology/predicate registry present on main",
+    "Primary/full-source authority assessment for each representation",
+    "Stable source hash or approved source fingerprinting method where available"
+  ],
+  "sources": [
+    {
+      "binding_status": "UNBOUND_PROVISIONAL",
+      "completeness_observed": "Page exposes original subtitle sequence from opening recap through episode end with timestamps.",
+      "cryptographic_source_hash": null,
+      "episode": "S01E06",
+      "independence_group": "DERIVATIVE_EPISODE_DIALOGUE_REPRESENTATION_UNVERIFIED_UPSTREAM",
+      "lineage_status": "UPSTREAM_ORIGIN_UNVERIFIED",
+      "provisional_source_id": "PIC-PROV-SRC-S01E06",
+      "provisional_work_id": "PIC-PROV-S01E06",
+      "raw_bytes_available": false,
+      "representation_type": "complete English subtitle/dialogue representation",
+      "source_family": "SubtitleCat user-uploaded subtitle rendering",
+      "title": "The Impossible Box",
+      "url": "https://www.subtitlecat.com/subs/166/Star%20Trek%20Picard%20S01E06%201080p.html"
+    },
+    {
+      "binding_status": "UNBOUND_PROVISIONAL",
+      "completeness_observed": "Single transcript post runs from prior-episode recap through final beam-out scene.",
+      "cryptographic_source_hash": null,
+      "episode": "S01E07",
+      "independence_group": "DERIVATIVE_EPISODE_DIALOGUE_REPRESENTATION_UNVERIFIED_UPSTREAM",
+      "lineage_status": "UPSTREAM_ORIGIN_UNVERIFIED",
+      "provisional_source_id": "PIC-PROV-SRC-S01E07",
+      "provisional_work_id": "PIC-PROV-S01E07",
+      "raw_bytes_available": false,
+      "representation_type": "complete episode transcript representation",
+      "source_family": "Forever Dreaming transcript",
+      "title": "Nepenthe",
+      "url": "https://transcripts.foreverdreaming.org/viewtopic.php?t=40827"
+    },
+    {
+      "binding_status": "UNBOUND_PROVISIONAL",
+      "completeness_observed": "Script page spans episode opening through end with numbered web lines.",
+      "cryptographic_source_hash": null,
+      "episode": "S01E08",
+      "independence_group": "DERIVATIVE_EPISODE_DIALOGUE_REPRESENTATION_UNVERIFIED_UPSTREAM",
+      "lineage_status": "UPSTREAM_ORIGIN_UNVERIFIED",
+      "provisional_source_id": "PIC-PROV-SRC-S01E08",
+      "provisional_work_id": "PIC-PROV-S01E08",
+      "raw_bytes_available": false,
+      "representation_type": "complete episode script/dialogue representation",
+      "source_family": "Springfield! Springfield! script page",
+      "title": "Broken Pieces",
+      "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e08&tv-show=star-trek-picard-2020"
+    },
+    {
+      "binding_status": "UNBOUND_PROVISIONAL",
+      "completeness_observed": "Single transcript post spans episode opening through Romulan-arrival countdown.",
+      "cryptographic_source_hash": null,
+      "episode": "S01E09",
+      "independence_group": "DERIVATIVE_EPISODE_DIALOGUE_REPRESENTATION_UNVERIFIED_UPSTREAM",
+      "lineage_status": "UPSTREAM_ORIGIN_UNVERIFIED",
+      "provisional_source_id": "PIC-PROV-SRC-S01E09",
+      "provisional_work_id": "PIC-PROV-S01E09",
+      "raw_bytes_available": false,
+      "representation_type": "complete episode transcript representation",
+      "source_family": "Forever Dreaming transcript",
+      "title": "Et in Arcadia Ego, Part 1",
+      "url": "https://transcripts.foreverdreaming.org/viewtopic.php?t=40829"
+    },
+    {
+      "binding_status": "UNBOUND_PROVISIONAL",
+      "completeness_observed": "Script page spans opening through final La Sirena departure, including Picard death/simulation/golem sequence.",
+      "cryptographic_source_hash": null,
+      "episode": "S01E10",
+      "independence_group": "DERIVATIVE_EPISODE_DIALOGUE_REPRESENTATION_UNVERIFIED_UPSTREAM",
+      "lineage_status": "UPSTREAM_ORIGIN_UNVERIFIED",
+      "provisional_source_id": "PIC-PROV-SRC-S01E10",
+      "provisional_work_id": "PIC-PROV-S01E10",
+      "raw_bytes_available": false,
+      "representation_type": "complete episode script/dialogue representation",
+      "source_family": "Springfield! Springfield! script page",
+      "title": "Et in Arcadia Ego, Part 2",
+      "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e10&tv-show=star-trek-picard-2020"
+    }
+  ],
+  "status": "PENDING_LIBRARIAN"
+}

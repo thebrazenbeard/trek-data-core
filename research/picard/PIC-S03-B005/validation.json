@@ -1,0 +1,35 @@
+{
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "accepted_schema_validation": "BLOCKED_NOT_PRESENT_ON_ACCEPTED_MAIN",
+  "batch_id": "PIC-S03-B005",
+  "checks": {
+    "all_assertions_proposed": true,
+    "assertion_count": 36,
+    "assertion_evidence_references_resolve": true,
+    "assertion_ids_unique": true,
+    "assertion_subjects_resolve_to_local_entities": true,
+    "evidence_count": 50,
+    "evidence_ids_unique": true,
+    "explicit_counterevidence_preserved": true,
+    "identity_ambiguity_preserved": true,
+    "local_entity_count": 76,
+    "local_entity_ids_unique": true,
+    "raw_copyrighted_source_bytes_committed": false,
+    "same_as_assertion_count": 0,
+    "worker_partition_only": true
+  },
+  "librarian_source_work_binding": "BLOCKED_PENDING_LIBRARIAN",
+  "notes": "Validation establishes internal referential and methodological integrity only; it does not establish canonical source authority, global identity, or accepted coverage.",
+  "overall_result": "CANDIDATE_VALIDATED_INTERNAL_BLOCKED_FROM_ACCEPTANCE",
+  "record_type": "batch_validation",
+  "regression_cases": [
+    "Jack's local kinship evidence is preserved as participant claims/depictions without a worker-level global Picard identity merge.",
+    "Vadic's 'synthetic flesh' line remains testimony rather than independent body-state verification.",
+    "Titus Rikka's Changeling state is local and does not globally identify every related faction occurrence.",
+    "Jack's anomalous voices remain VISION/altered-perception evidence, not objective communication.",
+    "Ro Laren's reappearance in Starfleet remains a local legacy occurrence whose global continuity is not worker-resolved.",
+    "Ro's institutional-compromise account remains intelligence testimony with explicit uncertainty.",
+    "The Titan saboteur is not back-projected into every earlier unidentified attacker merely because shapeshifting later becomes salient."
+  ],
+  "validation_scope": "PROVISIONAL_CANDIDATE_INTERNAL"
+}

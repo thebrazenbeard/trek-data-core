@@ -1,0 +1,33 @@
+{
+  "record_type": "coverage_update_candidate",
+  "batch_id": "PIC-S01-B001",
+  "lane": "picard",
+  "accepted_main_commit_observed": "d58359a207da89e812d0a0330558c66774ed1241",
+  "accepted_picard_partition_present": false,
+  "accepted_picard_batches_before": 0,
+  "accepted_picard_coverage_before": 0,
+  "works_processed_candidate": [
+    "PIC-PROV-S01E01",
+    "PIC-PROV-S01E02",
+    "PIC-PROV-S01E03",
+    "PIC-PROV-S01E04",
+    "PIC-PROV-S01E05"
+  ],
+  "episode_range": "S01E01-S01E05",
+  "research_state_candidate": "CLOSE_READ_OF_FULL_DIALOGUE_REPRESENTATIONS_DERIVED_RECORDS_GENERATED",
+  "accepted_coverage_promotion": "NONE",
+  "source_authority_status": "THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "blockers": [
+    "No accepted Picard Source/Work registry binding exists on main.",
+    "Accepted main lacks the bootstrap schemas/predicate registry; architecture/v0.1-bootstrap remains unmerged.",
+    "Raw source bytes were not exposed by the current web extraction path, so cryptographic source hashes are not available.",
+    "The complete dialogue sources processed in this candidate are third-party transcript/subtitle representations; no accepted primary/full-source binding exists yet."
+  ],
+  "next_episode_candidate": "S01E06",
+  "advance_prohibited_until": [
+    "LIBRARIAN_SOURCE_WORK_BINDING",
+    "ACCEPTED_SCHEMA_OR_EXPLICIT_COMPATIBILITY_DECISION",
+    "SOURCE_HASH_OR_GOVERNED_HASH_EXCEPTION",
+    "ACCEPTED_PRIMARY_OR_GOVERNED_FULL_SOURCE_BINDING"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "accepted_coverage_effect": "NONE",
+  "accepted_picard_episode_count_after": 0,
+  "accepted_picard_episode_count_before": 0,
+  "batch_id": "PIC-S03-B006",
+  "candidate_episodes": [
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S03E06","title":"Bounty","work_id":"PIC-PROV-S03E06"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S03E07","title":"Dominion","work_id":"PIC-PROV-S03E07"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S03E08","title":"Surrender","work_id":"PIC-PROV-S03E08"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S03E09","title":"Võx","work_id":"PIC-PROV-S03E09"},
+    {"candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"],"episode":"S03E10","title":"The Last Generation","work_id":"PIC-PROV-S03E10"}
+  ],
+  "candidate_frontier": "S03E10",
+  "lane": "PIC",
+  "notes": "Candidate processing reaches the end of Star Trek: Picard's three-season episode inventory in this proposal lane. This does not alter accepted coverage.",
+  "promotion_blockers": [
+    "Accepted main contains no Picard Source/Work registry.",
+    "Accepted main contains no accepted research schemas/predicate registry.",
+    "Candidate representations are not yet Librarian-bound primary/full sources.",
+    "Source-variant cryptographic hashes and provenance lineage are not yet bound."
+  ],
+  "record_type": "coverage_update"
+}

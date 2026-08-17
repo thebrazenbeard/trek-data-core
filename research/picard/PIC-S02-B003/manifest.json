@@ -1,0 +1,20 @@
+{
+  "record_type":"batch_manifest",
+  "batch_id":"PIC-S02-B003",
+  "schema_version":"PROVISIONAL_COMPAT_V0.1",
+  "worker_id":"PIC",
+  "works":["PIC-PROV-S02E01","PIC-PROV-S02E02","PIC-PROV-S02E03","PIC-PROV-S02E04","PIC-PROV-S02E05"],
+  "source_hashes":[],
+  "record_counts":{"local_entities":70,"evidence":52,"assertions":33},
+  "batch_hash":"e4a5ee1fe4a817d106b2342b5b2a522d528c3ca97fb05d40a9effd2fca35a4c6",
+  "batch_hash_method":"SHA256 over newline-joined, lexicographically sorted repository-path=Git-blob-SHA pairs for all PIC-S02-B003 files except manifest.json",
+  "created_at":"2026-08-14T10:48:00-04:00",
+  "status":"RESEARCH_CANDIDATE_BLOCKED_FROM_ACCEPTANCE",
+  "accepted_base_commit":"007641c57933dda222489fff56555f6968ff2a53",
+  "replayed_from_stale_base_branch":"research/picard/pic-s02-b003",
+  "canonical_source_work_binding":"PENDING_LIBRARIAN",
+  "source_authority_status":"THIRD_PARTY_FULL_TEXT_REPRESENTATIONS_ONLY",
+  "source_hash_status":"BLOCKED_RAW_BYTES_NOT_AVAILABLE",
+  "accepted_coverage_effect":"NONE",
+  "notes":"Five-episode Picard S02E01-S02E05 close-read candidate replayed onto the current accepted main after base drift was detected during final validation. Baseline and Confederation-role persons remain local occurrences; Queen physical/mental/link states remain distinct; Watcher host, Tallinn, and Laris are not silently merged; temporal restoration remains unresolved where the source leaves it unresolved."
+}

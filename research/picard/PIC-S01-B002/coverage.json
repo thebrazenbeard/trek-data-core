@@ -1,0 +1,23 @@
+{
+  "record_type": "coverage_update",
+  "batch_id": "PIC-S01-B002",
+  "lane": "PIC",
+  "accepted_base_commit": "d58359a207da89e812d0a0330558c66774ed1241",
+  "accepted_picard_episode_count_before": 0,
+  "candidate_episodes": [
+    {"work_id":"PIC-PROV-S01E06","episode":"S01E06","candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"]},
+    {"work_id":"PIC-PROV-S01E07","episode":"S01E07","candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"]},
+    {"work_id":"PIC-PROV-S01E08","episode":"S01E08","candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"]},
+    {"work_id":"PIC-PROV-S01E09","episode":"S01E09","candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"]},
+    {"work_id":"PIC-PROV-S01E10","episode":"S01E10","candidate_states":["FULL_REPRESENTATION_RETRIEVED","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED"]}
+  ],
+  "candidate_frontier": "S01E10",
+  "accepted_coverage_effect": "NONE",
+  "accepted_picard_episode_count_after": 0,
+  "promotion_blockers": [
+    "Accepted main contains no Picard Source/Work registry",
+    "Accepted main contains no accepted research schemas/predicate registry",
+    "Candidate representations are not yet Librarian-bound primary/full sources"
+  ],
+  "notes": "PIC-S01-B002 is an independent proposal from accepted main and does not inherit acceptance from PIC-S01-B001. Candidate processing states describe work actually performed in this proposal only; they do not alter accepted coverage."
+}

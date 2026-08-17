@@ -1,0 +1,77 @@
+{"entity_kind":"person_occurrence","label":"Jean-Luc Picard","local_entity_id":"PIC-B004-E06-LE-01","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Tallinn","local_entity_id":"PIC-B004-E06-LE-02","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Renée Picard","local_entity_id":"PIC-B004-E06-LE-03","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Agnes Jurati","local_entity_id":"PIC-B004-E06-LE-04","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"borg_mental_state_occurrence","label":"Borg Queen mental presence within Jurati","local_entity_id":"PIC-B004-E06-LE-05","notes":"Distinct local state; no global merger asserted.","record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Kore Soong","local_entity_id":"PIC-B004-E06-LE-06","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Adam Soong","local_entity_id":"PIC-B004-E06-LE-07","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Q","local_entity_id":"PIC-B004-E06-LE-08","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"memory_person_occurrence","label":"Yvette Picard in Picard's recovered memory","local_entity_id":"PIC-B004-E06-LE-09","notes":"Occurs within Picard memory/unconscious frame.","record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"memory_person_occurrence","label":"Maurice Picard in Picard's recovered memory","local_entity_id":"PIC-B004-E06-LE-10","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Teresa Ramirez","local_entity_id":"PIC-B004-E06-LE-11","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Cristóbal Rios","local_entity_id":"PIC-B004-E06-LE-12","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Seven of Nine","local_entity_id":"PIC-B004-E06-LE-13","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Raffi Musiker","local_entity_id":"PIC-B004-E06-LE-14","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"event_occurrence","label":"Europa Mission gala","local_entity_id":"PIC-B004-E06-LE-15","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E06"}
+{"entity_kind":"person_occurrence","label":"Jean-Luc Picard","local_entity_id":"PIC-B004-E07-LE-01","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Tallinn","local_entity_id":"PIC-B004-E07-LE-02","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"mental_construct_occurrence","label":"Therapist figure in Picard's unconscious","local_entity_id":"PIC-B004-E07-LE-03","notes":"Presented inside Picard's mind.","record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"memory_person_occurrence","label":"Young Jean-Luc Picard in unconscious memory","local_entity_id":"PIC-B004-E07-LE-04","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"memory_person_occurrence","label":"Yvette Picard in unconscious memory","local_entity_id":"PIC-B004-E07-LE-05","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"memory_person_occurrence","label":"Maurice Picard in unconscious memory","local_entity_id":"PIC-B004-E07-LE-06","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Guinan","local_entity_id":"PIC-B004-E07-LE-07","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Q","local_entity_id":"PIC-B004-E07-LE-08","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Agent Wells","local_entity_id":"PIC-B004-E07-LE-09","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Agnes Jurati","local_entity_id":"PIC-B004-E07-LE-10","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"borg_mental_state_occurrence","label":"Borg Queen mental presence within Jurati","local_entity_id":"PIC-B004-E07-LE-11","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Seven of Nine","local_entity_id":"PIC-B004-E07-LE-12","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Raffi Musiker","local_entity_id":"PIC-B004-E07-LE-13","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Cristóbal Rios","local_entity_id":"PIC-B004-E07-LE-14","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Teresa Ramirez","local_entity_id":"PIC-B004-E07-LE-15","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"vessel_occurrence","label":"La Sirena","local_entity_id":"PIC-B004-E07-LE-16","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E07"}
+{"entity_kind":"person_occurrence","label":"Jean-Luc Picard","local_entity_id":"PIC-B004-E08-LE-01","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Guinan","local_entity_id":"PIC-B004-E08-LE-02","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Agent Wells","local_entity_id":"PIC-B004-E08-LE-03","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"memory_person_occurrence","label":"Young Wells in recalled childhood encounter","local_entity_id":"PIC-B004-E08-LE-04","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"memory_person_occurrence","label":"Vulcan visitor 1 in Wells memory","local_entity_id":"PIC-B004-E08-LE-05","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"memory_person_occurrence","label":"Vulcan visitor 2 in Wells memory","local_entity_id":"PIC-B004-E08-LE-06","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Agnes Jurati","local_entity_id":"PIC-B004-E08-LE-07","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"borg_mental_state_occurrence","label":"Borg Queen dominant mental/personality state within Jurati","local_entity_id":"PIC-B004-E08-LE-08","notes":"Agency boundary remains contested.","record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Seven of Nine","local_entity_id":"PIC-B004-E08-LE-09","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Raffi Musiker","local_entity_id":"PIC-B004-E08-LE-10","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Kore Soong","local_entity_id":"PIC-B004-E08-LE-11","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Adam Soong","local_entity_id":"PIC-B004-E08-LE-12","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Q","local_entity_id":"PIC-B004-E08-LE-13","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"vessel_occurrence","label":"La Sirena","local_entity_id":"PIC-B004-E08-LE-14","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E08"}
+{"entity_kind":"person_occurrence","label":"Jean-Luc Picard","local_entity_id":"PIC-B004-E09-LE-01","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"memory_person_occurrence","label":"Young Jean-Luc Picard in recovered memory","local_entity_id":"PIC-B004-E09-LE-02","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"memory_person_occurrence","label":"Yvette Picard in recovered memory","local_entity_id":"PIC-B004-E09-LE-03","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"memory_person_occurrence","label":"Maurice Picard in recovered memory","local_entity_id":"PIC-B004-E09-LE-04","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"borg_composite_state_occurrence","label":"Agnes Jurati / Queen composite occurrence","local_entity_id":"PIC-B004-E09-LE-05","notes":"Episode depicts contested/composite agency; no global identity resolution.","record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"borg_mental_state_occurrence","label":"Borg Queen agency within Jurati-Queen composite","local_entity_id":"PIC-B004-E09-LE-06","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Seven of Nine","local_entity_id":"PIC-B004-E09-LE-07","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Raffi Musiker","local_entity_id":"PIC-B004-E09-LE-08","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Cristóbal Rios","local_entity_id":"PIC-B004-E09-LE-09","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Teresa Ramirez","local_entity_id":"PIC-B004-E09-LE-10","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"hologram_occurrence","label":"Emergency Combat Hologram using Elnor appearance/memories","local_entity_id":"PIC-B004-E09-LE-11","notes":"Not treated as Elnor's global person identity.","record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Adam Soong","local_entity_id":"PIC-B004-E09-LE-12","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"group_occurrence","label":"Improvised Borg-assimilated assault group","local_entity_id":"PIC-B004-E09-LE-13","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"vessel_occurrence","label":"La Sirena","local_entity_id":"PIC-B004-E09-LE-14","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E09"}
+{"entity_kind":"person_occurrence","label":"Jean-Luc Picard","local_entity_id":"PIC-B004-E10-LE-01","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Tallinn","local_entity_id":"PIC-B004-E10-LE-02","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Renée Picard","local_entity_id":"PIC-B004-E10-LE-03","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"assumed_identity_occurrence","label":"Tallinn impersonating Renée Picard","local_entity_id":"PIC-B004-E10-LE-04","notes":"Disguise/substitution occurrence; not SAME_AS.","record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Adam Soong","local_entity_id":"PIC-B004-E10-LE-05","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Kore Soong","local_entity_id":"PIC-B004-E10-LE-06","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"legacy_character_occurrence","label":"Wesley Crusher / Traveler recruiter occurrence","local_entity_id":"PIC-B004-E10-LE-07","notes":"Picard-local occurrence; no global identity reconciliation.","record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Q","local_entity_id":"PIC-B004-E10-LE-08","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Cristóbal Rios","local_entity_id":"PIC-B004-E10-LE-09","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Teresa Ramirez","local_entity_id":"PIC-B004-E10-LE-10","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Ricardo Ramirez","local_entity_id":"PIC-B004-E10-LE-11","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Seven of Nine","local_entity_id":"PIC-B004-E10-LE-12","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Raffi Musiker","local_entity_id":"PIC-B004-E10-LE-13","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"restored_person_occurrence","label":"Elnor after temporal return","local_entity_id":"PIC-B004-E10-LE-14","notes":"Appears alive after return; relation to deceased occurrence requires reconciliation.","record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"borg_person_occurrence","label":"Jurati-associated Borg Queen at anomaly","local_entity_id":"PIC-B004-E10-LE-15","notes":"Relation to 2024 Jurati-Queen composite is strongly suggested but not globally resolved.","record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"person_occurrence","label":"Guinan","local_entity_id":"PIC-B004-E10-LE-16","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"event_occurrence","label":"Europa Mission","local_entity_id":"PIC-B004-E10-LE-17","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}
+{"entity_kind":"phenomenon","label":"new transwarp conduit","local_entity_id":"PIC-B004-E10-LE-18","notes":null,"record_type":"local_entity","work_id":"PIC-PROV-S02E10"}

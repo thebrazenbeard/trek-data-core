@@ -3,7 +3,7 @@ from __future__ import annotations
 import importlib.util, unittest
 from pathlib import Path
 MODULE_PATH=Path(__file__).with_name('coverage_ledger.py'); spec=importlib.util.spec_from_file_location('trek_coverage_ledger_test',MODULE_PATH); coverage=importlib.util.module_from_spec(spec); spec.loader.exec_module(coverage)
-WORK={'record_type':'work','work_id':'w1','title':'Fixture','medium':'test'}; SOURCE={'record_type':'source','source_id':'s1','source_kind':'transcript','locator':'fixture://s1'}; BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','status':'ACCEPTED','mapping_role':'EVIDENCE_BEARING'}
+WORK={'record_type':'work','work_id':'w1','title':'Fixture','medium':'test'}; SOURCE={'record_type':'source','source_id':'s1','source_kind':'transcript','locator':'fixture://s1'}; BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING'}
 def event(i,state,status='ACCEPTED',role='CONSOLIDATOR',prereqs=None,**extra):
  row={'record_type':'coverage_event','coverage_event_id':i,'coverage_state':state,'status':status,'work_id':'w1','producer_role':role,'producer_ref':'fixture:'+i,'basis_refs':['basis:'+i],'prerequisite_event_ids':prereqs or [],'schema_version':'0.1.0','methodology_version':'0.1.0'}; row.update(extra); return row
 class CoverageLedgerTests(unittest.TestCase):

@@ -1,0 +1,9 @@
+manual-staging-validation: PASS
+base-main: 007641c57933dda222489fff56555f6968ff2a53
+scope: research/pro/staging/pro-s02-b003 only
+official-work-titles: Last Flight of the Protostar Part I; Last Flight of the Protostar Part II; A Tribble Called Quest; Cracked Mirror; Ascension Part I
+complete-full-subtitle-reads: 2x11,2x12,2x13,2x14,2x15
+source-filename-variants-preserved: yes
+accepted-coverage-advanced: no
+global-identity-mutated: no
+canonical-source-work-binding: blocked on accepted Librarian state

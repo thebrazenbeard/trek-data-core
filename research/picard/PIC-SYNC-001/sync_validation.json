@@ -1,0 +1,35 @@
+{
+  "record_type": "proposal_sync_validation",
+  "sync_id": "PIC-SYNC-001",
+  "accepted_base_commit": "007641c57933dda222489fff56555f6968ff2a53",
+  "checks": {
+    "included_batch_count": 6,
+    "candidate_episode_count": 30,
+    "candidate_scope_complete_through_series_end": true,
+    "aggregate_record_counts": {"local_entities":422,"evidence":301,"assertions":188},
+    "all_batch_tree_shas_pinned": true,
+    "all_grafted_paths_within_picard_partition": true,
+    "stale_pre_replay_b003_excluded": true,
+    "accepted_coverage_effect_none": true,
+    "raw_copyrighted_source_bytes_added_by_sync": false,
+    "global_identity_reconciliation_performed_by_sync": false
+  },
+  "branch_accounting": [
+    {"branch":"research/picard/pic-s01-b001","relation_to_current_main":"DIVERGED","ahead_by":12,"behind_by":3,"merge_base":"d58359a207da89e812d0a0330558c66774ed1241","sync_action":"EXACT_BATCH_TREE_GRAFTED; HISTORICAL_BRANCH_LEFT_UNCHANGED"},
+    {"branch":"research/picard/pic-s01-b002","relation_to_current_main":"DIVERGED","ahead_by":1,"behind_by":3,"merge_base":"d58359a207da89e812d0a0330558c66774ed1241","sync_action":"EXACT_BATCH_TREE_GRAFTED; HISTORICAL_BRANCH_LEFT_UNCHANGED"},
+    {"branch":"research/picard/pic-s02-b003-r1","relation_to_current_main":"AHEAD","ahead_by":1,"behind_by":0,"sync_action":"EXACT_BATCH_TREE_GRAFTED"},
+    {"branch":"research/picard/pic-s02-b004","relation_to_current_main":"AHEAD","ahead_by":11,"behind_by":0,"sync_action":"EXACT_BATCH_TREE_GRAFTED"},
+    {"branch":"research/picard/pic-s03-b005","relation_to_current_main":"AHEAD","ahead_by":1,"behind_by":0,"sync_action":"EXACT_BATCH_TREE_GRAFTED"},
+    {"branch":"research/picard/pic-s03-b006","relation_to_current_main":"AHEAD","ahead_by":1,"behind_by":0,"sync_action":"EXACT_BATCH_TREE_GRAFTED"}
+  ],
+  "ci_status_checks_on_initial_sync_commit": [],
+  "accepted_dependencies_still_blocking": [
+    "Librarian-bound Picard Source/Work registry",
+    "accepted research schemas/predicate registry",
+    "governed primary/full source authority and source hashes/provenance lineage",
+    "downstream reconciliation/global identity decisions",
+    "downstream audit"
+  ],
+  "overall_result": "SYNCHRONIZED_PROPOSAL_VERIFIED_BLOCKED_FROM_ACCEPTANCE",
+  "notes": "Validation records synchronization integrity only. It does not transform candidate processing into accepted coverage, rewrite historical branches, merge proposals, or perform downstream reconciliation."
+}

@@ -1,1 +1,7 @@
-temporary marker should not exist
+PRO proposal registration note
+
+This file was initially created as a transient marker during PR registration on the `research/pro/pro-s01-b003-staging` proposal branch. Repository policy does not authorize silent deletion in this session, so the artifact is preserved and corrected in place rather than erased.
+
+Scope impact: none outside PRO staging.
+Research impact: none; it contains no evidence, assertions, Source/Work IDs, or coverage claims.
+Accepted-state impact: none; proposal branch only.

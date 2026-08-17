@@ -14,13 +14,17 @@ No open governance, architecture, registry, reconciliation, coverage, or researc
 
 ### Governance
 
-PR #4 preserves the four Project-supplied governance files with prior byte-identity audit support. PR #92 proposes governance/bootstrap alignment. Neither is accepted state. Governance acceptance remains a separate decision from architecture acceptance.
+PR #4 preserves the four Project-supplied governance files with prior byte-identity audit support. PR #92 is the active governance/bootstrap alignment proposal. Neither is accepted state. Governance acceptance remains a separate decision from architecture acceptance.
+
+PR #92 now includes the corrected canonical flow `SOURCE -> WORK -> LOCAL ENTITY -> EVIDENCE -> ASSERTION -> ACCEPTED RECONCILIATION -> DETERMINISTIC PROJECTION -> QUERY DATABASE`, carries the four root governance files, restores the governed `FULL_TEXT_AVAILABLE` coverage state in implementation methodology, and strengthens the bootstrap validator so governed record schemas are actually enforced. Its head `be957be4a4f893d9467fc0e22cb74f896d20ae08` passed `validate-core` workflow run `32076118155`, including repository validation, two projection builds, and deterministic output diff. This green result does not satisfy the broader architecture admission gate.
+
+A fresh Director audit of PR #92 re-observed the canonical-projection incompleteness already governed by issue #76. Temporary issue #107 was therefore closed as a duplicate of #76 rather than creating competing projection authority.
 
 ### Architecture / Consolidator
 
 Issue #29 is the current architecture admission gate. Material remediation exists across PRs #33, #59, #64, #68, #71, #74 and integrated PR #82.
 
-PR #82 is the preferred integrated execution surface, but its current head `8491ae38219c23d4517c201a1192963104f15b06` is not acceptance-ready. Workflow run `31816707164` fails during the integrated regression suite before repository validation or derived builds execute.
+PR #82 is the preferred integrated execution surface, but its current head `8491ae38219c23d4517c201a1192963104f15b06` is not acceptance-ready. Workflow run `31816707164` still fails during the integrated regression suite before repository validation or derived builds execute.
 
 Observed failing contract areas include:
 - non-ordinal `STATUS_CHANGED` semantics;
@@ -79,8 +83,9 @@ SERIES / FILMS / LITERATURE WORKERS:
 
 DIRECTOR:
 1. keep issue #29 and issue #23 current as shared gate/queue records;
-2. reassess acceptance readiness only after integrated implementation plus Auditor re-review and Librarian/coverage progress;
-3. preserve accepted-state drift as unresolved until explicitly corrected through an authorized path.
+2. keep PR #92 aligned with the current root governance contract while treating #82/successor as the implementation admission surface;
+3. reassess acceptance readiness only after integrated implementation plus Auditor re-review and Librarian/coverage progress;
+4. preserve accepted-state drift as unresolved until explicitly corrected through an authorized path.
 
 ## Protected effects
 

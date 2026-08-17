@@ -1,7 +1,9 @@
 manual-staging-validation: PASS
 base-main: 007641c57933dda222489fff56555f6968ff2a53
 scope: research/pro/staging/pro-s01-b002 only
-complete-full-transcript-reads: 1x07,1x08,1x09,1x10
-source-retrieval-blocked: 1x11 Asylum
+complete-full-transcript-reads: 1x07,1x08,1x09,1x10,1x11
+source-retrieval-blocked: none within B002 after Asylum closure
+asylum-closure-record: ASYLUM_CLOSURE.md
 accepted-coverage-advanced: no
 global-identity-mutated: no
+canonical-source-work-binding: still blocked on accepted Librarian state

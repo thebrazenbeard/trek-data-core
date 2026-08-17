@@ -9,7 +9,7 @@ A provenance-aware research core for indexing, reconciling, and querying the Sta
 - LLMs may propose semantic or identity reconciliations, but projection builds are deterministic.
 - The query database is a generated projection, never the only source of truth.
 - Ambiguity, contradiction, and unresolved identity are preserved rather than forced into false certainty.
-- Routine, uncontested facts can enter a fast consensus projection; weird cases remain attached to the deeper evidence graph.
+- Routine, uncontested facts can enter a fast consensus projection; difficult cases remain attached to the deeper evidence graph.
 - Raw copyrighted transcripts, ebooks, video, and audio are not stored in this public repository.
 
-See `docs/architecture.md` and `docs/worker-contract.md` before adding corpus data.
+See `docs/architecture.md`, `docs/research-methodology.md`, `docs/registry-and-coverage.md`, and `docs/worker-contract.md` before adding corpus data.

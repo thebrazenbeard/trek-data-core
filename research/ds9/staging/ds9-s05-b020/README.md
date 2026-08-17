@@ -7,9 +7,9 @@ Authority status: PROPOSAL ONLY. Accepted `main` remains authoritative. No canon
 2. Apocalypse Rising — COMPLETE transcript-body close read
 3. The Ship — COMPLETE transcript-body close read
 4. Looking for par'Mach in All the Wrong Places — COMPLETE transcript-body close read
-5. Nor the Battle to the Strong — SOURCE_RETRIEVAL_BLOCKED for full-source completion; episode transcript endpoint is currently anti-bot gated, although detailed scene/quotation corroboration is available
+5. Nor the Battle to the Strong — COMPLETE full-subtitle transcript close read
 
-This tranche is therefore NOT claimed complete under batch-honesty rules. Primary audiovisual masters were not directly inspected. Provider independence/source-byte lineage remain UNKNOWN. No copyrighted full transcript text is reproduced.
+All five works now have an actually inspected complete transcript representation. The original `Nor the Battle to the Strong` retrieval block was closed with a complete English subtitle transcript. Primary audiovisual masters were not directly inspected. Provider independence/source-byte lineage remain UNKNOWN. No copyrighted full transcript text is reproduced.
 
 ## Broken Link
 BL01 Odo develops molecular instability that Bashir cannot treat; Founder intervention restores temporary stability and reveals the condition was deliberately induced to force Odo home for judgment.
@@ -50,25 +50,23 @@ PM06 Grilka/Quark pursue their relationship. Worf/Dax separately fight and then 
 PM07 Kira's pregnancy continues to strain Miles/Kira boundaries; the O'Briens and Kira explicitly recognize emotional complications and temporarily create distance rather than reclassifying parentage/romance.
 Assertions: Quark/Grilka's present attraction is distinct from their prior coercive legal marriage; Worf's hidden motor control means observed Quark combat is collaborative/deceptive performance; Worf/Dax relationship emerges independently rather than as a transfer of Worf's attraction from Grilka by rule.
 
-## Nor the Battle to the Strong — SOURCE_RETRIEVAL_BLOCKED
-Available detailed evidence is preserved below but is not promoted to a complete-source batch state until an inspectable full transcript/script body is retrieved.
-NB01 Jake accompanies Bashir while writing a profile and initially romanticizes the prospect of wartime material.
-NB02 They divert to Ajilon Prime after a Klingon attack and enter an improvised frontline hospital where Jake directly witnesses mass injury/death and becomes physically distressed.
-NB03 Bashir tells Jake that simulations do not prepare people for actual battle and rejects the claim that battle is the unique test of character.
-NB04 During shelling while retrieving a generator, Jake panics and runs, separating from Bashir.
-NB05 Jake encounters wounded soldier Burke, who identifies Jake's abandonment of Bashir without accepting Jake's attempt to repair his self-image through helping Burke.
-NB06 Jake later learns Bashir was injured and privately describes himself as a coward, showing self-condemnation rather than an external military judgment.
-NB07 During a Klingon assault Jake again acts from fear, hides, then fires wildly; the resulting ceiling collapse blocks attackers and incidentally aids the evacuation.
-NB08 Others call the result heroic, but Jake rejects a clean hero narrative and writes that fear caused both his flight and his later firing.
-NB09 Sisko praises Jake's willingness to write honestly about fear/cowardice rather than praising the accidental tactical result alone.
-Partial assertions only: Jake's essay is first-person war testimony and self-interpretation, not an omniscient combat record. His actions complicate binary courage/cowardice labeling because the same motive, fear/survival, produces both abandonment and a tactically useful result. Source closure still required.
+## Nor the Battle to the Strong
+Full-source closure: the complete English subtitle transcript was inspected after the original source-blocked staging commit.
+NB01 Jake accompanies Bashir while writing a profile and initially treats a possible emergency as more promising material than Bashir's technical conference account.
+NB02 They divert to Ajilon Prime after a Klingon attack and enter an improvised frontline hospital where Jake directly witnesses mass injury and death.
+NB03 A wounded Starfleet servicemember admits deliberately shooting himself in the foot after becoming terrified under fire, establishing a direct counterexample to idealized combat narratives before Jake's own crisis.
+NB04 During shelling while Jake and Bashir retrieve a generator, Jake panics and runs, separating from Bashir. Bashir is injured but carries the generator back alone; Jake later returns separately.
+NB05 Jake privately condemns himself as a coward and wishes Bashir had witnessed the flight so others would know what he believes himself to be. This is first-person self-judgment, not an institutional finding.
+NB06 Jake later talks with the self-wounded servicemember, who explains that successful battle simulations did not predict his behavior under live fire; both confront a gap between imagined and experienced selves.
+NB07 When Klingons attack the hospital during evacuation, Jake fires from fear. His shots collapse the entrance, delay the attackers, and help more than seventy patients escape.
+NB08 Others call Jake a hero, but Jake explicitly rejects a clean heroic causal narrative: he says the same survival fear drove both his earlier flight and his later firing.
+NB09 The cease-fire is restored and the Klingons withdraw; the battle ends without making Jake's accidental tactical effect proof of fearless courage.
+NB10 Jake's written account concludes that the line between courage and cowardice is thinner than common narratives imply. Sisko praises the honesty and self-examination of the writing rather than converting the experience into a simple hero story.
+Assertions: Jake's essay is first-person war testimony and self-interpretation, not an omniscient combat record. The episode provides direct disconfirming evidence for binary courage/cowardice coding: fear motivates both abandonment and behavior that saves others. Simulated performance is explicitly not equivalent to conduct under live fire.
 
 ## State
-Proposal close-read frontier is non-contiguous:
-- complete through `Looking for par'Mach in All the Wrong Places`;
-- `Nor the Battle to the Strong` remains SOURCE_RETRIEVAL_BLOCKED for full-source completion;
-- earlier `Shakaar` gap remains open.
+Batch 020 is now complete at the transcript-representation close-read level. The earlier `Shakaar` source gap remains open.
 
-Batch 020 is NOT complete under project batch-honesty rules. Accepted DS9 coverage remains unchanged.
+Accepted DS9 coverage remains unchanged. Promotion still requires accepted governance, Librarian Work/Source binding with reproducible lineage/hashes, architecture-audit resolution, formal record conversion, and governed validation.
 
-Next research frontier may continue past the gap: `The Assignment`, `Trials and Tribble-ations`, `Let He Who Is Without Sin...`, `Things Past`, `The Ascent`.
+Next research frontier remains downstream of this repaired batch.

@@ -3,19 +3,7 @@
   "$id": "https://trek-data-core/schema/projection-manifest.schema.json",
   "title": "Projection Manifest",
   "type": "object",
-  "required": [
-    "record_type",
-    "projection_version",
-    "schema_version",
-    "methodology_version",
-    "compiler_commit",
-    "research_head",
-    "reconciliation_head",
-    "predicate_registry_hash",
-    "input_hash",
-    "projection_hash",
-    "outputs"
-  ],
+  "required": ["record_type","projection_version","schema_version","methodology_version","compiler_commit","research_head","reconciliation_head","predicate_registry_hash","scope_key_registry_hash","input_hash","projection_hash","outputs"],
   "properties": {
     "record_type": {"const": "projection_manifest"},
     "projection_version": {"type": "string", "minLength": 1},
@@ -24,10 +12,25 @@
     "compiler_commit": {"type": "string", "minLength": 1},
     "research_head": {"type": "string", "minLength": 1},
     "reconciliation_head": {"type": "string", "minLength": 1},
-    "predicate_registry_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-    "input_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-    "projection_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
-    "outputs": {"type": "object"}
+    "predicate_registry_hash": {"type": "string"},
+    "scope_key_registry_hash": {"type": "string"},
+    "input_hash": {"type": "string"},
+    "projection_hash": {"type": "string"},
+    "outputs": {
+      "type": "object",
+      "required": ["entities.jsonl","facts.jsonl","relations.jsonl","contested.jsonl","unresolved.jsonl","provenance.jsonl","assertion_history.jsonl","reconciliation_history.jsonl"],
+      "properties": {
+        "entities.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"entities"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "facts.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"facts"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "relations.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"relations"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "contested.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"contested"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "unresolved.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"unresolved"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "provenance.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"provenance"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "assertion_history.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"assertion_history"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "reconciliation_history.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"reconciliation_history"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false}
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": true
 }

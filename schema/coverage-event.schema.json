@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://trek-data-core/schema/coverage-event.schema.json",
+  "title":"Coverage Event",
+  "type":"object",
+  "required":["record_type","coverage_event_id","coverage_state","status","work_id","producer_role","producer_ref","basis_refs","schema_version","methodology_version"],
+  "properties":{
+    "record_type":{"const":"coverage_event"},
+    "coverage_event_id":{"type":"string","minLength":1},
+    "coverage_state":{"enum":["DISCOVERED","SOURCE_BOUND","FULL_TEXT_AVAILABLE","STRUCTURALLY_INDEXED","CLOSE_READ","SEMANTICALLY_ANALYZED","ENTITY_LINKED","CROSS_REFERENCED","AUDITED"]},
+    "status":{"enum":["PROPOSED","ACCEPTED","REJECTED"]},
+    "work_id":{"type":"string","minLength":1},
+    "source_id":{"type":["string","null"]},
+    "binding_id":{"type":["string","null"]},
+    "producer_role":{"type":"string","minLength":1},
+    "producer_ref":{"type":"string","minLength":1},
+    "basis_refs":{"type":"array","items":{"type":"string"},"minItems":1},
+    "prerequisite_event_ids":{"type":"array","items":{"type":"string"}},
+    "representation_scope":{"type":"object"},
+    "integration_ref":{"type":["string","null"]},
+    "audit_ref":{"type":["string","null"]},
+    "schema_version":{"type":"string","minLength":1},
+    "methodology_version":{"type":"string","minLength":1},
+    "registry_head":{"type":["string","null"]},
+    "supersedes":{"type":["string","null"]},
+    "reason":{"type":["string","null"]}
+  },
+  "additionalProperties":false
+}

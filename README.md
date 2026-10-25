@@ -24,3 +24,8 @@ The goal is a durable, source-aware guide to the Star Trek setting and its inter
 ## Evidence boundary
 
 A repository entry records what the project currently supports at source level. It does not make an interpretation official franchise canon.
+
+
+## Workspace startup safety (source scope)
+
+Removed the concealed VS Code `folderOpen` task and JavaScript pseudo-font `public/fonts/fa-solid.lkf`, and set automatic tasks to `"off"` on current source. Static tests and read-only CI guard this known startup vector. Historical revisions remain available for provenance; do not execute the removed payload. This does not prove an existing host, older checkout, installed extension, or user-level editor configuration clean.

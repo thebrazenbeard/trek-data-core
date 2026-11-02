@@ -265,6 +265,13 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
   assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
   assert.equal(nodes.get('discovery-list').children[40].attributes.get('tabindex'), '-1', 'new directory row is programmatically focusable');
+  nodes.get('discovery-query').value = 'Voyager';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-summary').textContent, /source-local metadata rows match/);
+  assert.notEqual(nodes.get('discovery-list').children.length, 0, 'full series name searches source-local VOY rows');
+  assert.match(nodes.get('discovery-list').textContent, /VOY/, 'Voyager search includes VOY source-local results');
+  nodes.get('discovery-query').value = '';
+  nodes.get('discovery-filters').fire('input');
   nodes.get('discovery-medium').value = 'SHORT_FORM';
   nodes.get('discovery-filters').fire('change');
   assert.equal(nodes.get('discovery-list').children.length, 15);

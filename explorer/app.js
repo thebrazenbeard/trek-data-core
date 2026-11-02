@@ -191,7 +191,7 @@
     appendDetail(detail, 'Retrieval snapshot', row.snapshot_id);
     card.append(detail);
     const link = el('a', null, 'Open Wikidata item');
-    // The QID was validated against ^Q[1-9][0-9]*$ before this URL is assembled.
+    // The QID was validated against a bounded Wikidata identifier before URL assembly.
     link.href = 'https://www.wikidata.org/wiki/' + row.episode_qid;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
@@ -266,7 +266,7 @@
     const rootKeys = ['coverage_effect', 'data_status', 'lead_count', 'leads', 'sampled_missions_count', 'schema_version', 'source_policy'];
     const rowKeys = ['episode_label', 'episode_qid', 'mission_id', 'query_sha256', 'response_sha256', 'snapshot_id', 'verification_status'];
     const exactKeys = (value, expected) => value && typeof value === 'object' && !Array.isArray(value) &&
-      Object.keys(value).sort().join('|') === expected.slice().sort().join('|');
+      Object.keys(value).length === expected.length && expected.every((key) => Object.hasOwn(value, key));
     const isHash = (value) => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
     if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
         data.data_status !== 'CANDIDATE_DISCOVERY_ONLY' ||
@@ -280,12 +280,12 @@
     const sampled = new Set(), qids = new Set(), leads = [];
     for (const row of data.leads) {
       if (!exactKeys(row, rowKeys) || !missions.has(row.mission_id) ||
-          typeof row.episode_qid !== 'string' || !/^Q[1-9][0-9]{0,19}$/.test(row.episode_qid) ||
+          typeof row.episode_qid !== 'string' || !/^Q[1-9][0-9]{0,15}$/.test(row.episode_qid) ||
           qids.has(row.episode_qid) || typeof row.episode_label !== 'string' ||
           row.episode_label !== row.episode_label.trim() ||
-          !row.episode_label.length || row.episode_label.length > 200 ||
-          /[\u0000-\u001f\u007f]/.test(row.episode_label) ||
-          typeof row.snapshot_id !== 'string' || !/^[A-Za-z0-9_.:-]{1,120}$/.test(row.snapshot_id) ||
+          !row.episode_label.length || row.episode_label.length > 160 ||
+          /[\p{C}<>]/u.test(row.episode_label) ||
+          typeof row.snapshot_id !== 'string' || !/^[A-Za-z0-9_-]{3,100}$/.test(row.snapshot_id) ||
           !isHash(row.query_sha256) || !isHash(row.response_sha256) ||
           row.verification_status !== 'UNVERIFIED_METADATA') {
         throw new Error('Research data contains an invalid, duplicate, or unexpectedly admitted lead.');

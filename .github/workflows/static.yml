@@ -28,7 +28,8 @@ jobs:
         shell: bash
         run: |
           if test -f explorer/index.html && test -f explorer/index.json && \
-             test -f explorer/app.js && test -f explorer/app.css; then
+             test -f explorer/app.js && test -f explorer/app.css && \
+             test -f explorer/trek-data-core-hero.jpg; then
             echo 'ready=true' >> "$GITHUB_OUTPUT"
           else
             echo 'ready=false' >> "$GITHUB_OUTPUT"
@@ -54,8 +55,8 @@ jobs:
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
         run: |
-          # A tracked or working-tree fifth file activates the fail-closed
-          # derivation check. Four-file deployments need no lead generator.
+          # The optional research-leads file activates the fail-closed
+          # derivation check. Core-only deployments need no lead generator.
           if git cat-file -e HEAD:explorer/research-leads.json 2>/dev/null || \
              test -e explorer/research-leads.json || test -L explorer/research-leads.json; then
             test -f explorer/research-leads.json
@@ -71,12 +72,18 @@ jobs:
         shell: bash
         run: |
           # Run this AFTER all repository-controlled tests and generators.
-          # Publish exactly four committed files, plus a verified optional fifth.
+          # Publish five committed core files, plus a verified optional Research Leads index.
           test -d explorer
           test -f explorer/index.html
           test -f explorer/index.json
           test -f explorer/app.js
           test -f explorer/app.css
+          test -f explorer/trek-data-core-hero.jpg
+          test -f docs/assets/trek-data-core-hero.jpg
+          test ! -L docs
+          test ! -L docs/assets
+          test ! -L docs/assets/trek-data-core-hero.jpg
+          cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg
           test ! -L explorer
           if find explorer -type l -print -quit | grep -q .; then
             echo "Refusing to deploy a site containing symlinks" >&2
@@ -89,11 +96,12 @@ jobs:
             ! -path explorer/index.json \
             ! -path explorer/app.js \
             ! -path explorer/app.css \
+            ! -path explorer/trek-data-core-hero.jpg \
             ! -path explorer/research-leads.json -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
-          for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css; do
+          for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css explorer/trek-data-core-hero.jpg; do
             expected="$(git rev-parse "HEAD:$path")"
             actual="$(git hash-object "$path")"
             if test "$actual" != "$expected"; then

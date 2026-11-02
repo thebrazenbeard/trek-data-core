@@ -164,7 +164,10 @@ def active_events(events):
  # Rejection of a proposed correction cannot revoke previously accepted history.
  superseded={row.get('supersedes') for row in events.values() if row.get('supersedes') and row.get('status')=='ACCEPTED'}
  return {eid:row for eid,row in events.items() if row.get('status')=='ACCEPTED' and eid not in superseded}
-def coverage_key(row):return (row.get('coverage_state'),row.get('subject_type'),row.get('subject_id'),row.get('scope_key'))
+def coverage_key(row):
+ # A correction may not transfer accepted coverage to another Work, Source,
+ # or Librarian binding by reusing a subject and a forged scope hash.
+ return (row.get('coverage_state'),row.get('subject_type'),row.get('subject_id'),row.get('work_id'),row.get('source_id'),row.get('binding_id'),row.get('scope_key'))
 def role_errors(row):
  state=row.get('coverage_state');role=row.get('producer_role');errors=[]
  if state in {'DISCOVERED','SOURCE_BOUND'} and role!='LIBRARIAN':errors.append(f'{state} must be produced by LIBRARIAN')
@@ -205,7 +208,7 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
    predecessor=events.get(row['supersedes'])
    if predecessor is None:errors.append(f'{eid}: supersedes missing coverage event {row["supersedes"]}')
    else:
-    if coverage_key(predecessor)!=coverage_key(row):errors.append(f'{eid}: supersession must preserve dimension, subject and scope key')
+    if coverage_key(predecessor)!=coverage_key(row):errors.append(f'{eid}: supersession must preserve Work, Source, binding, dimension, subject and scope key')
     if row.get('status')=='ACCEPTED' and predecessor.get('status')!='ACCEPTED':errors.append(f'{eid}: accepted correction requires accepted predecessor')
     if row.get('status') in {'ACCEPTED','REJECTED'} and (not isinstance(row.get('reason'),str) or not row.get('reason').strip()):errors.append(f'{eid}: correction requires non-empty reason')
   if row.get('status')=='ACCEPTED' and row.get('effect')=='REVOKED':
@@ -223,6 +226,13 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
   if len(ids)>1:errors.append(f'multiple active accepted coverage events for {key}: {sorted(ids)}')
  for eid,row in active.items():
   state=row['coverage_state'];work_id=row['work_id'];source_id=row.get('source_id')
+  governed_scope=row.get('scope')
+  if not isinstance(governed_scope,dict) or governed_scope.get('work_id')!=work_id:
+   errors.append(f'{eid}: accepted {state} governed scope must identify its exact Work')
+  if state in SOURCE_STATES and (not isinstance(governed_scope,dict) or governed_scope.get('source_id')!=source_id):
+   errors.append(f'{eid}: accepted {state} governed scope must identify its exact Source')
+  if state=='DISCOVERED' and (row.get('subject_type')!='WORK' or row.get('subject_id')!=work_id):
+   errors.append(f'{eid}: accepted DISCOVERED subject must identify its exact Work')
   if work_id not in works:errors.append(f'{eid}: accepted coverage references missing Work {work_id}')
   else:
    work=works[work_id]

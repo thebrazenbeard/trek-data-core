@@ -42,6 +42,10 @@ Before showing a numeric denominator, the compiler independently verifies:
    inputs are rejected.
 5. Accepted coverage events likewise reference accepted, non-fixture,
    file-backed authoritative Works before contributing to the numerator.
+6. Each accepted event's governed scope names its exact Work; source-dependent
+   states also name the exact Source, while discovery names its Work as the
+   subject. Supersession cannot transfer attainment across Work, Source, or
+   binding identifiers even when a forged scope and subject happen to match.
 
 When these checks cannot be met, reports remain
 `DENOMINATOR_UNRESOLVED` or refuse the invalid snapshot. The accepted roster

@@ -57,6 +57,26 @@ def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_accepted_discovered_cannot_claim_a_different_work_in_governed_scope(self):
+  discovered=event('forged-scope','DISCOVERED',role='LIBRARIAN',scope={'work_id':'w-different','source_id':None})
+  with self.assertRaisesRegex(ValueError,'scope.*Work|Work.*scope'):
+   make_report([WORK,discovered],works={'w1':WORK})
+ def test_accepted_full_text_cannot_claim_a_different_source_in_governed_scope(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  full=event('f0','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0'],scope={'work_id':'w1','source_id':'s-different'},representation_scope={'representation_type':'synthetic transcript','completeness_scope':'full synthetic fixture'})
+  with self.assertRaisesRegex(ValueError,'scope.*Source|Source.*scope'):
+   make_report([WORK,SOURCE,BINDING,discovered,bound,full])
+ def test_accepted_discovered_requires_its_work_subject_identity(self):
+  discovered=event('forged-subject','DISCOVERED',role='LIBRARIAN',subject_type='WORK',subject_id='w-different')
+  with self.assertRaisesRegex(ValueError,'subject.*Work|Work.*subject'):
+   make_report([WORK,discovered])
+ def test_supersession_cannot_cross_work_with_the_same_forged_subject_and_scope(self):
+  first=event('first','DISCOVERED',role='LIBRARIAN')
+  second=event('second','DISCOVERED',role='LIBRARIAN',work_id='w2',subject_id='w1',supersedes='first',effect='REVOKED',reason='forged correction')
+  other=dict(WORK,work_id='w2',title='Other')
+  errors=coverage.validate_coverage([WORK,other,first,second],works={'w1':WORK,'w2':other})
+  self.assertTrue(any('supersession' in error and 'Work' in error for error in errors),errors)
  def test_source_bound_rejects_proposed_source_with_accepted_binding(self):
   proposed=dict(SOURCE,status='PROPOSED')
   discovered=event('d0','DISCOVERED',role='LIBRARIAN')

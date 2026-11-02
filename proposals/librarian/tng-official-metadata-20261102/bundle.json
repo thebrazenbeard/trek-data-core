@@ -1,0 +1,362 @@
+{
+  "batch_id": "TNG-OFFICIAL-METADATA-20261102-001",
+  "proposal_status": "PROPOSAL_ONLY_NOT_ADMITTED",
+  "sources": [
+    {
+      "record_type": "source",
+      "source_id": "proposal:tng:source:neutral-zone:20261102",
+      "status": "PROPOSED",
+      "source_kind": "OFFICIAL_VIDEO_PAGE_METADATA",
+      "provider": "StarTrek.com",
+      "locator": "https://www.startrek.com/videos/star-trek-the-next-generation-the-neutral-zone",
+      "provider_metadata": {
+        "page_kind": "publisher_video_page",
+        "observed_title": "Star Trek: The Next Generation - The Neutral Zone",
+        "observed_series": "Star Trek: The Next Generation",
+        "observed_season": 1,
+        "observed_episode": 26,
+        "observed_on": "2026-11-02"
+      },
+      "source_version": null,
+      "retrieved_at": null,
+      "content_hash": null,
+      "content_fingerprint": null,
+      "source_variant": "WEB_METADATA_ONLY",
+      "provenance_family": "publisher:startrek.com:official-pages",
+      "independence_group": "publisher:startrek.com",
+      "derived_from": [],
+      "anomalies": ["Page bytes and video content were not acquired or hashed"],
+      "notes": "The page establishes a publisher title, show and episode-slot label, not a reviewed audiovisual work.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source",
+      "source_id": "proposal:tng:source:new-ground:20261102",
+      "status": "PROPOSED",
+      "source_kind": "OFFICIAL_VIDEO_PAGE_METADATA",
+      "provider": "StarTrek.com",
+      "locator": "https://www.startrek.com/videos/watch-star-trek-the-next-generation-new-ground",
+      "provider_metadata": {
+        "page_kind": "publisher_video_page",
+        "observed_title": "Star Trek: The Next Generation - New Ground",
+        "observed_series": "Star Trek: The Next Generation",
+        "observed_season": 5,
+        "observed_episode": 10,
+        "observed_on": "2026-11-02"
+      },
+      "source_version": null,
+      "retrieved_at": null,
+      "content_hash": null,
+      "content_fingerprint": null,
+      "source_variant": "WEB_METADATA_ONLY",
+      "provenance_family": "publisher:startrek.com:official-pages",
+      "independence_group": "publisher:startrek.com",
+      "derived_from": [],
+      "anomalies": ["Page bytes and video content were not acquired or hashed"],
+      "notes": "The page establishes a publisher title, show and episode-slot label, not a reviewed audiovisual work.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source",
+      "source_id": "proposal:tng:source:hide-and-q:20261102",
+      "status": "PROPOSED",
+      "source_kind": "OFFICIAL_PREVIEW_PAGE_METADATA",
+      "provider": "StarTrek.com",
+      "locator": "https://www.startrek.com/videos/episode-preview-hide-and-q",
+      "provider_metadata": {
+        "page_kind": "publisher_episode_preview",
+        "observed_title": "Episode Preview: Hide and Q",
+        "observed_on": "2026-11-02"
+      },
+      "source_version": null,
+      "retrieved_at": null,
+      "content_hash": null,
+      "content_fingerprint": null,
+      "source_variant": "WEB_METADATA_ONLY",
+      "provenance_family": "publisher:startrek.com:official-pages",
+      "independence_group": "publisher:startrek.com",
+      "derived_from": [],
+      "anomalies": ["Preview title alone does not establish the episode's series, slot or audiovisual identity"],
+      "notes": "A publisher preview page, not a direct witness of the full television episode.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source",
+      "source_id": "proposal:tng:source:skin-of-evil:20261102",
+      "status": "PROPOSED",
+      "source_kind": "OFFICIAL_EDITORIAL_RETROSPECTIVE_METADATA",
+      "provider": "StarTrek.com",
+      "locator": "https://www.startrek.com/news/a-look-back-at-skin-of-evil",
+      "provider_metadata": {
+        "page_kind": "publisher_editorial_retrospective",
+        "observed_title": "A Look Back at Skin of Evil",
+        "observed_series": "Star Trek: The Next Generation",
+        "observed_on": "2026-11-02"
+      },
+      "source_version": null,
+      "retrieved_at": null,
+      "content_hash": null,
+      "content_fingerprint": null,
+      "source_variant": "WEB_METADATA_ONLY",
+      "provenance_family": "publisher:startrek.com:official-pages",
+      "independence_group": "publisher:startrek.com",
+      "derived_from": [],
+      "anomalies": ["Editorial retrospective is not source-body evidence; no season/episode ordinal verified"],
+      "notes": "Publisher retrospective mentions the episode; it is secondary editorial metadata.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source",
+      "source_id": "proposal:tng:source:brothers:20261102",
+      "status": "PROPOSED",
+      "source_kind": "OFFICIAL_WATCH_GUIDE_REFERENCE_METADATA",
+      "provider": "StarTrek.com",
+      "locator": "https://www.startrek.com/news/your-ultimate-star-trek-picard-watch-guide",
+      "provider_metadata": {
+        "page_kind": "publisher_watch_guide",
+        "observed_title": "Your Ultimate Star Trek: Picard Watch Guide",
+        "observed_series": "Star Trek: The Next Generation",
+        "observed_on": "2026-11-02"
+      },
+      "source_version": null,
+      "retrieved_at": null,
+      "content_hash": null,
+      "content_fingerprint": null,
+      "source_variant": "WEB_METADATA_ONLY",
+      "provenance_family": "publisher:startrek.com:official-pages",
+      "independence_group": "publisher:startrek.com",
+      "derived_from": [],
+      "anomalies": ["Watch-guide heading is a mention only; no season/episode ordinal verified"],
+      "notes": "Publisher watch-guide reference is not a dedicated full-episode source.",
+      "fixture_only": false
+    }
+  ],
+  "works": [
+    {
+      "record_type": "work",
+      "work_id": "proposal:tng:work:neutral-zone:20261102",
+      "status": "PROPOSED",
+      "title": "The Neutral Zone",
+      "work_type": "EPISODE",
+      "parent_work_id": null,
+      "component_label": null,
+      "notes": "Proposed TNG television-episode identity; no authoritative Mission parent Work has been accepted.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "work",
+      "work_id": "proposal:tng:work:new-ground:20261102",
+      "status": "PROPOSED",
+      "title": "New Ground",
+      "work_type": "EPISODE",
+      "parent_work_id": null,
+      "component_label": null,
+      "notes": "Proposed TNG television-episode identity; no authoritative Mission parent Work has been accepted.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "work",
+      "work_id": "proposal:tng:work:hide-and-q:20261102",
+      "status": "PROPOSED",
+      "title": "Hide and Q",
+      "work_type": "EPISODE",
+      "parent_work_id": null,
+      "component_label": null,
+      "notes": "Proposed TNG episode identity inferred from Wikidata and a publisher preview, not confirmed against audiovisual episode.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "work",
+      "work_id": "proposal:tng:work:skin-of-evil:20261102",
+      "status": "PROPOSED",
+      "title": "Skin of Evil",
+      "work_type": "EPISODE",
+      "parent_work_id": null,
+      "component_label": null,
+      "notes": "Proposed TNG episode identity from secondary publisher editorial reference; no accepted ordinal.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "work",
+      "work_id": "proposal:tng:work:brothers:20261102",
+      "status": "PROPOSED",
+      "title": "Brothers",
+      "work_type": "EPISODE",
+      "parent_work_id": null,
+      "component_label": null,
+      "notes": "Proposed TNG episode identity from publisher watch-guide mention; no accepted ordinal.",
+      "fixture_only": false
+    }
+  ],
+  "bindings": [
+    {
+      "record_type": "source_work_binding",
+      "binding_id": "proposal:tng:binding:neutral-zone:20261102",
+      "source_id": "proposal:tng:source:neutral-zone:20261102",
+      "work_id": "proposal:tng:work:neutral-zone:20261102",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "PUBLISHER_PAGE_TITLE_SERIES_AND_EPISODE_SLOT_METADATA_REVIEW",
+      "basis": [
+        {"kind": "OFFICIAL_PAGE_TITLE", "value": "The Neutral Zone"},
+        {"kind": "OFFICIAL_PAGE_SERIES", "value": "Star Trek: The Next Generation"},
+        {"kind": "OFFICIAL_PAGE_EPISODE_SLOT", "value": "S1E26"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "The official page supports metadata association only; audiovisual bytes were not inspected.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source_work_binding",
+      "binding_id": "proposal:tng:binding:new-ground:20261102",
+      "source_id": "proposal:tng:source:new-ground:20261102",
+      "work_id": "proposal:tng:work:new-ground:20261102",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "PUBLISHER_PAGE_TITLE_SERIES_AND_EPISODE_SLOT_METADATA_REVIEW",
+      "basis": [
+        {"kind": "OFFICIAL_PAGE_TITLE", "value": "New Ground"},
+        {"kind": "OFFICIAL_PAGE_SERIES", "value": "Star Trek: The Next Generation"},
+        {"kind": "OFFICIAL_PAGE_EPISODE_SLOT", "value": "S5E10"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "The official page supports metadata association only; audiovisual bytes were not inspected.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source_work_binding",
+      "binding_id": "proposal:tng:binding:hide-and-q:20261102",
+      "source_id": "proposal:tng:source:hide-and-q:20261102",
+      "work_id": "proposal:tng:work:hide-and-q:20261102",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "PUBLISHER_PREVIEW_TITLE_REFERENCE_METADATA_REVIEW",
+      "basis": [
+        {"kind": "OFFICIAL_PREVIEW_TITLE", "value": "Episode Preview: Hide and Q"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "Preview page title only; page does not itself establish Mission assignment or episode ordinal.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source_work_binding",
+      "binding_id": "proposal:tng:binding:skin-of-evil:20261102",
+      "source_id": "proposal:tng:source:skin-of-evil:20261102",
+      "work_id": "proposal:tng:work:skin-of-evil:20261102",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "PUBLISHER_EDITORIAL_EPISODE_TITLE_REFERENCE_REVIEW",
+      "basis": [
+        {"kind": "OFFICIAL_EDITORIAL_EPISODE_REFERENCE", "value": "Skin of Evil"},
+        {"kind": "OFFICIAL_PAGE_SERIES", "value": "Star Trek: The Next Generation"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "Publisher retrospective is editorial metadata, not the episode or accepted narrative evidence.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "source_work_binding",
+      "binding_id": "proposal:tng:binding:brothers:20261102",
+      "source_id": "proposal:tng:source:brothers:20261102",
+      "work_id": "proposal:tng:work:brothers:20261102",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "PUBLISHER_WATCH_GUIDE_EPISODE_REFERENCE_REVIEW",
+      "basis": [
+        {"kind": "OFFICIAL_WATCH_GUIDE_EPISODE_REFERENCE", "value": "Brothers"},
+        {"kind": "OFFICIAL_PAGE_SERIES", "value": "Star Trek: The Next Generation"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "Watch-guide reference is metadata-only and not a dedicated episode or AV content witness.",
+      "fixture_only": false
+    }
+  ],
+  "crosswalks": [
+    {
+      "record_type": "external_crosswalk",
+      "crosswalk_id": "proposal:tng:crosswalk:neutral-zone:20261102",
+      "target_kind": "WORK",
+      "target_id": "proposal:tng:work:neutral-zone:20261102",
+      "external_system": "WIKIDATA",
+      "external_id": "Q1058477",
+      "snapshot": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "retrieved_at": "2026-11-02T11:46:04Z",
+      "mapping_status": "CANDIDATE",
+      "independence_group": "wikidata:wdqs:tng-q16290:20261102",
+      "lineage_note": "WDQS candidate-only title/QID. Publisher page does not assert Wikidata QID; human identity reconciliation pending.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "external_crosswalk",
+      "crosswalk_id": "proposal:tng:crosswalk:new-ground:20261102",
+      "target_kind": "WORK",
+      "target_id": "proposal:tng:work:new-ground:20261102",
+      "external_system": "WIKIDATA",
+      "external_id": "Q16744120",
+      "snapshot": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "retrieved_at": "2026-11-02T11:46:04Z",
+      "mapping_status": "CANDIDATE",
+      "independence_group": "wikidata:wdqs:tng-q16290:20261102",
+      "lineage_note": "WDQS candidate-only title/QID. Publisher page does not assert Wikidata QID; human identity reconciliation pending.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "external_crosswalk",
+      "crosswalk_id": "proposal:tng:crosswalk:hide-and-q:20261102",
+      "target_kind": "WORK",
+      "target_id": "proposal:tng:work:hide-and-q:20261102",
+      "external_system": "WIKIDATA",
+      "external_id": "Q1102231",
+      "snapshot": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "retrieved_at": "2026-11-02T11:46:04Z",
+      "mapping_status": "CANDIDATE",
+      "independence_group": "wikidata:wdqs:tng-q16290:20261102",
+      "lineage_note": "WDQS candidate-only title/QID. Publisher preview does not assert Wikidata QID or TNG series; human identity reconciliation pending.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "external_crosswalk",
+      "crosswalk_id": "proposal:tng:crosswalk:skin-of-evil:20261102",
+      "target_kind": "WORK",
+      "target_id": "proposal:tng:work:skin-of-evil:20261102",
+      "external_system": "WIKIDATA",
+      "external_id": "Q1392472",
+      "snapshot": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "retrieved_at": "2026-11-02T11:46:04Z",
+      "mapping_status": "CANDIDATE",
+      "independence_group": "wikidata:wdqs:tng-q16290:20261102",
+      "lineage_note": "WDQS candidate-only title/QID. Publisher editorial page does not assert Wikidata QID; human identity reconciliation pending.",
+      "fixture_only": false
+    },
+    {
+      "record_type": "external_crosswalk",
+      "crosswalk_id": "proposal:tng:crosswalk:brothers:20261102",
+      "target_kind": "WORK",
+      "target_id": "proposal:tng:work:brothers:20261102",
+      "external_system": "WIKIDATA",
+      "external_id": "Q14045941",
+      "snapshot": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "retrieved_at": "2026-11-02T11:46:04Z",
+      "mapping_status": "CANDIDATE",
+      "independence_group": "wikidata:wdqs:tng-q16290:20261102",
+      "lineage_note": "WDQS candidate-only title/QID. Publisher watch-guide does not assert Wikidata QID; human identity reconciliation pending.",
+      "fixture_only": false
+    }
+  ],
+  "analysis_passes": []
+}

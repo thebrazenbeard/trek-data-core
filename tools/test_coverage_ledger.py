@@ -33,6 +33,32 @@ def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'definition':'accepted fixture Work registry'},'registry_head':'main:fixture','status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_authoritative_registry_json_works_are_visible_to_coverage(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)
+   try:
+    directory=coverage.ROOT/'registry'/'authoritative';directory.mkdir(parents=True)
+    (directory/'work.json').write_text(json.dumps(WORK),encoding='utf-8')
+    rows=coverage.scan_typed_records()
+    self.assertEqual(coverage.index_records(rows,'work','work_id'),{'w1':WORK})
+   finally:coverage.ROOT=old_root
+ def test_authoritative_registry_json_rejects_untyped_objects(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)
+   try:
+    directory=coverage.ROOT/'registry'/'authoritative';directory.mkdir(parents=True)
+    (directory/'invalid.json').write_text(json.dumps({'work_id':'w1'}),encoding='utf-8')
+    with self.assertRaisesRegex(ValueError,'must be a typed object'):
+     coverage.scan_typed_records()
+   finally:coverage.ROOT=old_root
+ def test_typed_research_json_records_are_visible_to_coverage(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)
+   try:
+    directory=coverage.ROOT/'research'/'tng';directory.mkdir(parents=True)
+    (directory/'work.json').write_text(json.dumps(WORK),encoding='utf-8')
+    self.assertEqual(coverage.index_records(coverage.scan_typed_records(),'work','work_id'),{'w1':WORK})
+   finally:coverage.ROOT=old_root
  def test_direct_report_rejects_self_computed_unverified_denominator(self):
   with self.assertRaisesRegex(ValueError,'unverified denominator snapshot origin'):
    coverage.coverage_report([WORK],denominator_snapshot=denominator())

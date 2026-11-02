@@ -45,6 +45,13 @@ def scan_typed_records(with_paths=False):
     if isinstance(row,dict) and row.get('record_type'):
      records.append(row)
      if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
+ for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'registry'/'authoritative'):
+  for path in sorted(base.rglob('*.json')):
+   row=json.loads(path.read_text(encoding='utf-8'))
+   if not isinstance(row,dict) or not row.get('record_type'):
+    raise ValueError(f'{path}: governed JSON must be a typed object')
+   records.append(row)
+   if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
  return (records,paths) if with_paths else records
 def index_records(records,record_type,id_key):
  out={}

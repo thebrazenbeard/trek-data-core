@@ -43,6 +43,11 @@ jobs:
         run: |
           python tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-ci-index.json"
           cmp "${RUNNER_TEMP}/trek-ci-index.json" explorer/index.json
+      - name: Verify optional Research Leads snapshot against reviewed proposals
+        if: ${{ hashFiles('explorer/research-leads.json') != '' }}
+        run: |
+          test -f tools/build_research_leads.py
+          python tools/build_research_leads.py --check
       - name: Check Explorer interface behavior
         if: ${{ hashFiles('tests/test_explorer.mjs') != '' }}
         run: node tests/test_explorer.mjs

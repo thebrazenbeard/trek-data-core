@@ -1,0 +1,27 @@
+{
+  "schema": "RESEARCH_DISCOVERY_REVIEW_HOLDS_V1",
+  "proposal_only": true,
+  "source_snapshot_id": "WDQS-ENT-Q380519-SIMPLE-P179-20261102-LIMIT20-001",
+  "series_identity_holds": [
+    {
+      "queried_series_qid": "Q134592591",
+      "current_target_qid": "Q117350388",
+      "observed_at": "2026-11-02",
+      "verification_url": "https://www.wikidata.org/wiki/Q134592591",
+      "reason": "The queried Starfleet Academy QID is a Wikidata redirect. The zero-row P179 result is not evidence for absence of episode metadata under the target series item; any follow-up must be separately preregistered and acquired."
+    }
+  ],
+  "exclude_from_public_episode_search_until_review": [
+    {
+      "episode_qid": "Q56247746",
+      "observed_label": "Temporal Cold War arc",
+      "reason": "Series membership alone is not sufficient evidence that this item represents an individual episode; the label strongly indicates a story arc. Hold for Wikidata instance-of and source review."
+    },
+    {
+      "episode_qid": "Q866375",
+      "observed_label": "In a Mirror, Darkly",
+      "reason": "Potential umbrella work beside a separately indexed 'In a Mirror, Darkly, Part II' item; hold until installment identity and multipart policy are resolved."
+    }
+  ],
+  "canonical_admission_effect": "NONE"
+}

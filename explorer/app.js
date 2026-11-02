@@ -214,6 +214,150 @@
     }
   }
 
+  const directoryState = { rows: [], available: false, limit: 40 };
+  const directoryMediums = ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO'];
+  const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
+  const directoryFields = ['row_id', 'medium', 'candidate_kind', 'title', 'context', 'source_group',
+    'source_input', 'source_locator', 'details', 'verification_status', 'identity_scope', 'coverage_effect', 'admission_effect'];
+
+  function setDirectoryAvailability(available, message) {
+    directoryState.available = available;
+    if (!available) directoryState.rows = [];
+    byId('discovery-nav-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
+    byId('discovery-state').textContent = message;
+    if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
+    renderDirectory();
+  }
+
+  function renderDirectory() {
+    const holder = byId('discovery-list');
+    holder.replaceChildren();
+    const empty = byId('discovery-empty');
+    empty.hidden = true;
+    if (!directoryState.available) {
+      byId('discovery-summary').textContent = 'Discovery count unknown; no source-local index is available.';
+      return;
+    }
+    const query = normalize(byId('discovery-query').value.trim());
+    const medium = byId('discovery-medium').value;
+    const lineage = byId('discovery-lineage').value;
+    const terms = query.split(/\s+/).filter(Boolean);
+    const rows = directoryState.rows.filter((item) => {
+      if (medium !== 'all' && item.medium !== medium) return false;
+      if (lineage !== 'all' && item.source_group !== lineage) return false;
+      const body = normalize([item.title, item.context, item.candidate_kind, item.source_group,
+        ...item.details].join(' '));
+      return terms.every((part) => body.includes(part));
+    });
+    const visible = rows.slice(0, directoryState.limit);
+    byId('discovery-summary').textContent = `${rows.length.toLocaleString()} source-local metadata rows match` +
+      (visible.length < rows.length ? ` · Displaying ${visible.length.toLocaleString()}` : '') +
+      '. These are not distinct or admitted Works.';
+    if (!rows.length) { empty.hidden = false; return; }
+    for (const item of visible) {
+      const card = el('article', 'directory-card');
+      card.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
+      card.append(el('h3', null, item.title));
+      card.append(el('p', 'directory-context', item.context));
+      card.append(el('p', 'directory-source', `${item.source_group} · unverified · source-local`));
+      card.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
+      if (item.details.length) card.append(el('p', 'directory-context', item.details.join(' · ')));
+      if (item.source_locator) {
+        const link = el('a', null, 'Inspect attributed source');
+        link.href = item.source_locator;
+        link.rel = 'noopener noreferrer';
+        link.target = '_blank';
+        card.append(link);
+      }
+      holder.append(card);
+    }
+    if (visible.length < rows.length) {
+      const button = el('button', 'directory-more', `Show next ${Math.min(40, rows.length - visible.length)} source rows`);
+      button.type = 'button';
+      button.addEventListener('click', () => { playTone(); directoryState.limit += 40; renderDirectory(); });
+      holder.append(button);
+    }
+  }
+
+  function acceptDirectory(data) {
+    if (!data || typeof data !== 'object' || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'DISCOVERY_ONLY' || data.admission_effect !== 'NONE' ||
+        data.coverage_effect !== 'NONE' || data.denominator_status !== 'NOT_ESTABLISHED' ||
+        data.identity_scope !== 'SOURCE_LOCAL_NOT_DEDUPLICATED' ||
+        !Array.isArray(data.rows) || !Array.isArray(data.source_digests) ||
+        !Number.isSafeInteger(data.row_count) || data.row_count !== data.rows.length ||
+        data.rows.length < 1 || data.rows.length > 5000) {
+      throw new Error('Invalid multimedia discovery envelope.');
+    }
+    const seen = new Set();
+    const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
+    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com']);
+    for (const item of data.rows) {
+      if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
+          typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||
+          !directoryMediums.includes(item.medium) || !directoryKinds.includes(item.candidate_kind) ||
+          typeof item.title !== 'string' || !item.title.trim() || item.title.length > 200 ||
+          typeof item.context !== 'string' || !item.context.trim() || item.context.length > 160 ||
+          typeof item.source_group !== 'string' || item.source_group.length > 120 ||
+          typeof item.source_input !== 'string' || !/^(?:explorer\/|proposals\/)[a-z0-9\/_.-]+\.json$/.test(item.source_input) ||
+          !Array.isArray(item.details) || item.details.length > 8 || item.details.some((x) => typeof x !== 'string' || x.length > 150) ||
+          item.verification_status !== 'UNVERIFIED_METADATA' || item.identity_scope !== 'SOURCE_LOCAL' ||
+          item.coverage_effect !== 'NONE' || item.admission_effect !== 'NONE') {
+        throw new Error('Invalid or promoted multimedia discovery row.');
+      }
+      if (item.source_locator !== null) {
+        let url;
+        try { url = new URL(item.source_locator); } catch (_) { throw new Error('Invalid discovery source URL.'); }
+        if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.port || url.search || url.hash ||
+            url.username || url.password || !url.pathname.startsWith('/')) {
+          throw new Error('Source URL outside the explicit publisher/catalog allowlist.');
+        }
+      }
+      seen.add(item.row_id); counts[item.medium]++;
+    }
+    if (!data.counts_by_medium || directoryMediums.some((key) => data.counts_by_medium[key] !== counts[key]) ||
+        Object.keys(data.counts_by_medium).length !== directoryMediums.length || data.source_digests.length < 4 ||
+        data.source_digests.some((x) => !x || !/^[0-9a-f]{64}$/.test(x.sha256 || '') ||
+          typeof x.path !== 'string' || !/^(?:explorer\/|proposals\/)[a-z0-9\/_.-]+\.(?:json|csv)$/.test(x.path))) {
+      throw new Error('Source digests or medium counts fail validation.');
+    }
+    directoryState.rows = data.rows;
+    directoryState.limit = 40;
+    for (const [selectId, values, label] of [
+      ['discovery-medium', directoryMediums, 'All media'],
+      ['discovery-lineage', [...new Set(data.rows.map((row) => row.source_group))].sort(), 'All sources']
+    ]) {
+      const select = byId(selectId);
+      select.replaceChildren(new Option(label, 'all'));
+      for (const value of values) select.add(new Option(value.replaceAll('_', ' '), value));
+      select.value = 'all';
+    }
+    const metrics = byId('discovery-metrics');
+    metrics.replaceChildren();
+    for (const label of directoryMediums) {
+      const name = {
+        EPISODE: 'Episode refs', FILM: 'Film rows', LITERATURE: 'Literary Works',
+        SHORT_FORM: 'Short-form releases', AUDIO: 'Audio containers'
+      }[label];
+      metrics.append(el('span', null, `${name}: ${counts[label].toLocaleString()}`));
+    }
+    setDirectoryAvailability(true, `${data.rows.length.toLocaleString()} source-local discovery rows loaded; not a franchise total or admitted continuity record count.`);
+  }
+
+  async function loadDirectory() {
+    try {
+      const response = await fetch('./discovery-catalog.json', { cache: 'no-store' });
+      if (response.status === 404) {
+        setDirectoryAvailability(false, 'The optional multimedia directory has not been published yet.');
+        return;
+      }
+      if (!response.ok) throw new Error(`Directory request returned HTTP ${response.status}.`);
+      acceptDirectory(await response.json());
+    } catch (error) {
+      setDirectoryAvailability(false, `Multimedia discovery data rejected: ${error.message || 'Check discovery-catalog.json.'}`);
+    }
+  }
+
   function safeHref(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
     try {
@@ -720,10 +864,17 @@
   filmFilters.addEventListener('change', () => { playTone(); renderFilms(); });
   filmFilters.addEventListener('submit', (event) => { event.preventDefault(); renderFilms(); });
   filmFilters.addEventListener('reset', () => window.requestAnimationFrame(renderFilms));
+  const directoryFilters = byId('discovery-filters');
+  directoryFilters.addEventListener('input', () => { directoryState.limit = 40; renderDirectory(); });
+  directoryFilters.addEventListener('change', () => { playTone(); directoryState.limit = 40; renderDirectory(); });
+  directoryFilters.addEventListener('submit', (event) => { event.preventDefault(); renderDirectory(); });
+  directoryFilters.addEventListener('reset', () => { directoryState.limit = 40; window.requestAnimationFrame(renderDirectory); });
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
+  setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
   loadFilmCatalog();
+  loadDirectory();
   loadIndex();
 })();

@@ -99,6 +99,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/trek-data-core-hero.jpg", text)
         self.assertIn("! -path explorer/research-leads.json", text)
         self.assertIn("! -path explorer/film-catalog.json", text)
+        self.assertIn("! -path explorer/discovery-catalog.json", text)
         self.assertIn("Refusing to publish an unexpected Explorer entry", text)
 
     def test_manual_dispatch_cannot_deploy_a_review_branch(self):
@@ -111,7 +112,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 6)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 7)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -158,6 +159,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertLess(text.index("Verify optional Research Leads index"),
                         text.index("Verify optional Film discovery index"))
         self.assertLess(text.index("Verify optional Film discovery index"),
+                        text.index("Verify optional Multimedia discovery directory"))
+        self.assertLess(text.index("Verify optional Multimedia discovery directory"),
                         text.index("Verify final public artifact boundary"))
         self.assertLess(text.index("Verify final public artifact boundary"),
                         text.index("Upload Explorer only"))
@@ -169,6 +172,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("find explorer -mindepth 1", final)
         self.assertIn("git rev-parse HEAD:explorer/research-leads.json", final)
         self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg", final)
 
     def test_final_barrier_rejects_post_test_modifications_and_new_files(self):
@@ -369,6 +373,47 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
         output.write_text("modified\n", encoding="utf-8")
         self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+
+    def test_unified_directory_requires_committed_unchanged_bytes(self):
+        root = self.fixture()
+        output = root / "explorer/discovery-catalog.json"
+        output.write_text("source-only\n", encoding="utf-8")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        self.commit_fixture(root)
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.write_text("tampered\n", encoding="utf-8")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.unlink()
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+
+    def test_unified_directory_generator_and_symlinks_fail_closed(self):
+        root = self.fixture()
+        output = root / "explorer/discovery-catalog.json"
+        output.symlink_to("index.json")
+        self.assertNotEqual(self.check_step("Verify optional Multimedia discovery directory", root).returncode, 0)
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.unlink()
+        output.write_text("source-only\n", encoding="utf-8")
+        self.commit_fixture(root)
+        self.assertNotEqual(self.check_step("Verify optional Multimedia discovery directory", root).returncode, 0)
+        tool = root / "tools/build_unified_discovery.py"
+        tool.parent.mkdir()
+        tool.write_text(
+            "from pathlib import Path\n"
+            "import sys\n"
+            "assert sys.argv[1:] == ['--check']\n"
+            "assert Path('proposals/discovery/verified.ready').is_file()\n"
+            "assert Path('explorer/discovery-catalog.json').read_bytes() == b'source-only\\n'\n",
+            encoding="utf-8",
+        )
+        self.assertNotEqual(self.check_step("Verify optional Multimedia discovery directory", root).returncode, 0)
+        (root / "proposals/discovery").mkdir(parents=True)
+        (root / "proposals/discovery/verified.ready").touch()
+        self.assertEqual(self.check_step("Verify optional Multimedia discovery directory", root).returncode, 0)
+        tool.unlink()
+        (root / "tools/real_generator.py").write_text("print('ok')\n", encoding="utf-8")
+        tool.symlink_to("real_generator.py")
+        self.assertNotEqual(self.check_step("Verify optional Multimedia discovery directory", root).returncode, 0)
 
     def test_extra_file_hidden_directory_and_fifo_are_forbidden(self):
         root = self.fixture()

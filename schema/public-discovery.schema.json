@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thebrazenbeard/trek-data-core/schema/public-discovery.schema.json",
+  "title": "Source-local multimedia discovery projection, not admitted research",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "data_status", "admission_effect", "coverage_effect", "denominator_status", "identity_scope", "row_count", "counts_by_medium", "source_digests", "rows"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "data_status": { "const": "DISCOVERY_ONLY" },
+    "admission_effect": { "const": "NONE" },
+    "coverage_effect": { "const": "NONE" },
+    "denominator_status": { "const": "NOT_ESTABLISHED" },
+    "identity_scope": { "const": "SOURCE_LOCAL_NOT_DEDUPLICATED" },
+    "row_count": { "type": "integer", "minimum": 1, "maximum": 5000 },
+    "counts_by_medium": {
+      "type": "object", "additionalProperties": false,
+      "required": ["EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO"],
+      "properties": {
+        "EPISODE": { "type": "integer", "minimum": 0 },
+        "FILM": { "type": "integer", "minimum": 0 },
+        "LITERATURE": { "type": "integer", "minimum": 0 },
+        "SHORT_FORM": { "type": "integer", "minimum": 0 },
+        "AUDIO": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "source_digests": {
+      "type": "array", "minItems": 4, "maxItems": 128,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string", "pattern": "^(explorer|proposals)/[a-z0-9_./-]+\\.(json|csv)$" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    },
+    "rows": {
+      "type": "array", "minItems": 1, "maxItems": 5000,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["row_id", "medium", "candidate_kind", "title", "context", "source_group", "source_input", "source_locator", "details", "verification_status", "identity_scope", "coverage_effect", "admission_effect"],
+        "properties": {
+          "row_id": { "type": "string", "pattern": "^[a-z0-9:_.-]{3,210}$" },
+          "medium": { "enum": ["EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO"] },
+          "candidate_kind": { "enum": ["WIKIDATA_EPISODE", "PUBLISHER_EPISODE_SLOT", "PUBLISHER_REFERENCE", "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "SCRIPTED_SHORT", "PROMOTIONAL_ANIMATION", "SCRIPTED_AUDIO_SERIES"] },
+          "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "context": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "source_group": { "type": "string", "minLength": 3, "maxLength": 120 },
+          "source_input": { "type": "string", "pattern": "^(explorer|proposals)/[a-z0-9_./-]+\\.json$" },
+          "source_locator": { "type": ["string", "null"] },
+          "details": { "type": "array", "maxItems": 8, "items": { "type": "string", "maxLength": 150 } },
+          "verification_status": { "const": "UNVERIFIED_METADATA" },
+          "identity_scope": { "const": "SOURCE_LOCAL" },
+          "coverage_effect": { "const": "NONE" },
+          "admission_effect": { "const": "NONE" }
+        }
+      }
+    }
+  }
+}

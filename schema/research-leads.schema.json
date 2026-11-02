@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/research-leads.schema.json",
+  "title": "Unverified Wikidata episode discovery leads (never canonical Mission Briefings)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "data_status",
+    "source_policy",
+    "coverage_effect",
+    "lead_count",
+    "sampled_missions_count",
+    "leads"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "data_status": {"const": "CANDIDATE_DISCOVERY_ONLY"},
+    "source_policy": {"const": "EXTERNAL_METADATA_ONLY"},
+    "coverage_effect": {"const": "NONE"},
+    "lead_count": {"type": "integer", "minimum": 0, "maximum": 100000},
+    "sampled_missions_count": {"type": "integer", "minimum": 0, "maximum": 12},
+    "leads": {
+      "type": "array",
+      "maxItems": 100000,
+      "items": {
+        "type": "object",
+        "required": [
+          "mission_id",
+          "episode_qid",
+          "episode_label",
+          "snapshot_id",
+          "query_sha256",
+          "response_sha256",
+          "verification_status"
+        ],
+        "properties": {
+          "mission_id": {
+            "enum": [
+              "tos", "tas", "tng", "ds9", "voy", "ent",
+              "dis", "pic", "ld", "pro", "snw", "sfa"
+            ]
+          },
+          "episode_qid": {"type": "string", "pattern": "^Q[1-9][0-9]{0,15}$"},
+          "episode_label": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]*$"},
+          "snapshot_id": {"type": "string", "minLength": 3, "maxLength": 100},
+          "query_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "verification_status": {"const": "UNVERIFIED_METADATA"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

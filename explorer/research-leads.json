@@ -1,0 +1,1720 @@
+{
+  "coverage_effect": "NONE",
+  "data_status": "CANDIDATE_DISCOVERY_ONLY",
+  "lead_count": 190,
+  "leads": [
+    {
+      "episode_label": "The Doomsday Machine",
+      "episode_qid": "Q1136071",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Trouble with Tribbles",
+      "episode_qid": "Q1136084",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Corbomite Maneuver",
+      "episode_qid": "Q1187077",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Man Trap",
+      "episode_qid": "Q1287667",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Devil in the Dark",
+      "episode_qid": "Q1315800",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Conscience of the King",
+      "episode_qid": "Q2406293",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Charlie X",
+      "episode_qid": "Q2659593",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mudd's Women",
+      "episode_qid": "Q2664096",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Naked Time",
+      "episode_qid": "Q2984478",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Enemy Within",
+      "episode_qid": "Q2984502",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Dagger of the Mind",
+      "episode_qid": "Q3107459",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Balance of Terror",
+      "episode_qid": "Q3178411",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mirror, Mirror",
+      "episode_qid": "Q3312529",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "By Any Other Name",
+      "episode_qid": "Q3487115",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Taste of Armageddon",
+      "episode_qid": "Q3487125",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Wolf in the Fold",
+      "episode_qid": "Q3487137",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Private Little War",
+      "episode_qid": "Q3487169",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "And the Children Shall Lead",
+      "episode_qid": "Q3487183",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Catspaw",
+      "episode_qid": "Q3487187",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Bread and Circuses",
+      "episode_qid": "Q3487379",
+      "mission_id": "tos",
+      "query_sha256": "fb4c25a625c37eacf3a08e32587ecb5cff7fc4776954853865290b0033e391f4",
+      "response_sha256": "9b65a52eb918f82e5700dcea7f281bf003eca74952fb41e933353641bde1ea6b",
+      "snapshot_id": "WDQS-TOS-Q1077-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Slaver Weapon",
+      "episode_qid": "Q3499413",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Yesteryear",
+      "episode_qid": "Q3499742",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Albatross",
+      "episode_qid": "Q4709451",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Bem",
+      "episode_qid": "Q4884981",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Beyond the Farthest Star",
+      "episode_qid": "Q4900128",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "How Sharper Than a Serpent's Tooth",
+      "episode_qid": "Q5918105",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Ambergris Element",
+      "episode_qid": "Q6273110",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mudd's Passion",
+      "episode_qid": "Q6931590",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Once Upon a Planet",
+      "episode_qid": "Q7091827",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "One of Our Planets Is Missing",
+      "episode_qid": "Q7093540",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Eye of the Beholder",
+      "episode_qid": "Q7732922",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Infinite Vulcan",
+      "episode_qid": "Q7741973",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Jihad",
+      "episode_qid": "Q7743259",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Lorelei Signal",
+      "episode_qid": "Q7748494",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Magicks of Megas-tu",
+      "episode_qid": "Q7749553",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Pirates of Orion",
+      "episode_qid": "Q7757264",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Practical Joker",
+      "episode_qid": "Q7757988",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Survivor",
+      "episode_qid": "Q7767549",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Terratin Incident",
+      "episode_qid": "Q11729803",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "More Tribbles, More Troubles",
+      "episode_qid": "Q11774134",
+      "mission_id": "tas",
+      "query_sha256": "67b238da2ea8055877fab9665732116d8020fc0e6ac844a1dc65f850487c80b2",
+      "response_sha256": "87b5fe5c4b3b4a82d80b8c04b0d574d782e9db4c5766e9a8c0f090cb3acb9bc4",
+      "snapshot_id": "WDQS-TAS-Q20922-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Neutral Zone",
+      "episode_qid": "Q1058477",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Hide and Q",
+      "episode_qid": "Q1102231",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Chain of Command",
+      "episode_qid": "Q1141170",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Skin of Evil",
+      "episode_qid": "Q1392472",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Rightful Heir",
+      "episode_qid": "Q10361338",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Brothers",
+      "episode_qid": "Q14045941",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Half a Life",
+      "episode_qid": "Q16744047",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Silicon Avatar",
+      "episode_qid": "Q16744119",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "New Ground",
+      "episode_qid": "Q16744120",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Hero Worship",
+      "episode_qid": "Q16744121",
+      "mission_id": "tng",
+      "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+      "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+      "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Crossfire",
+      "episode_qid": "Q1027877",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Paradise Lost",
+      "episode_qid": "Q1027888",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Return to Grace",
+      "episode_qid": "Q1092502",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Trials and Tribble-ations",
+      "episode_qid": "Q2158401",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Visitor",
+      "episode_qid": "Q2890937",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Rejoined",
+      "episode_qid": "Q2891237",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Babel",
+      "episode_qid": "Q3507025",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Past Prologue",
+      "episode_qid": "Q3507056",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Man Alone",
+      "episode_qid": "Q3507090",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The House of Quark",
+      "episode_qid": "Q11863377",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Circle",
+      "episode_qid": "Q12031611",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Melora",
+      "episode_qid": "Q12036362",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Meridian",
+      "episode_qid": "Q12036402",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Necessary Evil",
+      "episode_qid": "Q12041492",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Homecoming",
+      "episode_qid": "Q12041709",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Tribunal",
+      "episode_qid": "Q12059643",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Inter Arma Enim Silent Leges",
+      "episode_qid": "Q16744084",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Image in the Sand",
+      "episode_qid": "Q16744156",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "His Way",
+      "episode_qid": "Q16744174",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Favor the Bold",
+      "episode_qid": "Q16744188",
+      "mission_id": "ds9",
+      "query_sha256": "c997b08dd8c9d03ebb9b373df5c6468ad903e475635f06dc8189bc0c09f78e7f",
+      "response_sha256": "c7f0f554ca4d99b744a7b67be8ca0a4464ae2ed1fdd4c63b0b7396951015d53b",
+      "snapshot_id": "WDQS-DS9-Q108774-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Q2",
+      "episode_qid": "Q125917",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Cloud",
+      "episode_qid": "Q1016685",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Omega Directive",
+      "episode_qid": "Q1093269",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Time and Again",
+      "episode_qid": "Q1976840",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Caretaker",
+      "episode_qid": "Q2121683",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "In the Flesh",
+      "episode_qid": "Q10857017",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Initiations",
+      "episode_qid": "Q13115900",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Investigations",
+      "episode_qid": "Q13115914",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Virtuoso",
+      "episode_qid": "Q13403516",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Ashes to Ashes",
+      "episode_qid": "Q13479268",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Jetrel",
+      "episode_qid": "Q13639300",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Q and the Grey",
+      "episode_qid": "Q14476529",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Think Tank",
+      "episode_qid": "Q14643756",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Juggernaut",
+      "episode_qid": "Q16744043",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Infinite Regress",
+      "episode_qid": "Q16744066",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Natural Law",
+      "episode_qid": "Q16744191",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Human Error",
+      "episode_qid": "Q16744675",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Basics, Part II",
+      "episode_qid": "Q25587669",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Future's End, Part II",
+      "episode_qid": "Q25587671",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Year of Hell, Part II",
+      "episode_qid": "Q25587679",
+      "mission_id": "voy",
+      "query_sha256": "4c73930312107008e5d90429737f22703fb466fadcf4dcb79470cffea9abadc3",
+      "response_sha256": "d4dbb3f7f0ff6397385231d8187da3796b17552d0967826487dcdc45bafe7010",
+      "snapshot_id": "WDQS-VOY-Q156329-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Forget Me Not",
+      "episode_qid": "Q100327253",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Die Trying",
+      "episode_qid": "Q100327254",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Scavengers",
+      "episode_qid": "Q100327258",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Unification III",
+      "episode_qid": "Q100327260",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Sanctuary",
+      "episode_qid": "Q100327261",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Terra Firma, Part I",
+      "episode_qid": "Q100327263",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Terra Firma, Part II",
+      "episode_qid": "Q100327265",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Su'Kal",
+      "episode_qid": "Q100327266",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "There Is a Tide...",
+      "episode_qid": "Q100327272",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "That Hope Is You, Part 2",
+      "episode_qid": "Q100327279",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Terra Firma",
+      "episode_qid": "Q104830659",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Kobayashi Maru",
+      "episode_qid": "Q109650166",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Anomaly",
+      "episode_qid": "Q109650195",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Choose to Live",
+      "episode_qid": "Q109906318",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "All Is Possible",
+      "episode_qid": "Q110071412",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Examples",
+      "episode_qid": "Q110221596",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Stormy Weather",
+      "episode_qid": "Q110221606",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "…But to Connect",
+      "episode_qid": "Q110333437",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "All In",
+      "episode_qid": "Q110644284",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Rubicon",
+      "episode_qid": "Q111031106",
+      "mission_id": "dis",
+      "query_sha256": "c442dffbff010586f683c99caac1feb9897f8f9a06b5938d99cc29c9016d1c48",
+      "response_sha256": "d691dd242e50c60afcc263efe9be12c41a994307f1e9d66a647ccaa0a6a19c8b",
+      "snapshot_id": "WDQS-DIS-Q21296543-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Star Gazer",
+      "episode_qid": "Q111127427",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Penance",
+      "episode_qid": "Q111143152",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Assimilation",
+      "episode_qid": "Q111244164",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Watcher",
+      "episode_qid": "Q111342740",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Fly Me to the Moon",
+      "episode_qid": "Q111377671",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Two of One",
+      "episode_qid": "Q111486236",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Monsters",
+      "episode_qid": "Q111585942",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mercy",
+      "episode_qid": "Q111655360",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Hide and Seek",
+      "episode_qid": "Q111813502",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Farewell",
+      "episode_qid": "Q111813621",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Next Generation",
+      "episode_qid": "Q116811302",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Disengage",
+      "episode_qid": "Q116811642",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Seventeen Seconds",
+      "episode_qid": "Q116983264",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "No Win Scenario",
+      "episode_qid": "Q116983277",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Imposters",
+      "episode_qid": "Q117070006",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Bounty",
+      "episode_qid": "Q117288844",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Dominion",
+      "episode_qid": "Q117352742",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Võx",
+      "episode_qid": "Q117716222",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Last Generation",
+      "episode_qid": "Q117716363",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Surrender",
+      "episode_qid": "Q117716386",
+      "mission_id": "pic",
+      "query_sha256": "e1cdd414be7dc20869cd2719f6a34c52f147eb612d7dba89d2059da0085e8a9a",
+      "response_sha256": "20b050932c01f280af6863727b70f5d5dd48145d07e7bccbaa814f7fd4e4cf90",
+      "snapshot_id": "WDQS-PIC-Q62573305-20261102-20ROW-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mining The Mind's Mines",
+      "episode_qid": "Q113861229",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Room for Growth",
+      "episode_qid": "Q113954620",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Reflections",
+      "episode_qid": "Q114158988",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Hear All, Trust Nothing",
+      "episode_qid": "Q114246428",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Mathematically Perfect Redemption",
+      "episode_qid": "Q114388879",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Crisis Point Ⅱ: Paradoxus",
+      "episode_qid": "Q114521738",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Trusted Sources",
+      "episode_qid": "Q114734329",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Stars At Night",
+      "episode_qid": "Q114853420",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Twovix",
+      "episode_qid": "Q122308384",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "I Have No Bones Yet I Must Flee",
+      "episode_qid": "Q122308692",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "In the Cradle of Vexilon",
+      "episode_qid": "Q122451438",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Something Borrowed, Something Green",
+      "episode_qid": "Q122573644",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Parth Ferengi's Heart Place",
+      "episode_qid": "Q122573648",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Few Badgeys More",
+      "episode_qid": "Q122573650",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Empathological Fallacies",
+      "episode_qid": "Q122864100",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Caves",
+      "episode_qid": "Q123032068",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Inner Fight",
+      "episode_qid": "Q123195008",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Old Friends, New Planets",
+      "episode_qid": "Q123286552",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Dos Cerritos",
+      "episode_qid": "Q130736352",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Shades of Green",
+      "episode_qid": "Q130739033",
+      "mission_id": "ld",
+      "query_sha256": "2359d84059583bd1532522cd2367826bbac9d652a1ac173b9ddf64a87b7fd1e2",
+      "response_sha256": "201104200bf77095509aeed2a730007c8aedc2ba645cce27d25660c7da487e9f",
+      "snapshot_id": "WDQS-LD-Q62573569-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Lost and Found",
+      "episode_qid": "Q100456778",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Lost and Found: Part 1",
+      "episode_qid": "Q109320322",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Lost and Found: Part 2",
+      "episode_qid": "Q109320339",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Starstruck",
+      "episode_qid": "Q109342097",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Dream Catcher",
+      "episode_qid": "Q109526795",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Terror Firma",
+      "episode_qid": "Q109614725",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Kobayashi",
+      "episode_qid": "Q110111240",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "First Con-tact",
+      "episode_qid": "Q111232072",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Time Amok",
+      "episode_qid": "Q111232080",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Moral Star, Part 1",
+      "episode_qid": "Q111232084",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Moral Star, Part 2",
+      "episode_qid": "Q111232088",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Asylum",
+      "episode_qid": "Q114956576",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Let Sleeping Borg Lie",
+      "episode_qid": "Q115037011",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "All the World's a Stage",
+      "episode_qid": "Q115157021",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Masquerade",
+      "episode_qid": "Q115625293",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Preludes",
+      "episode_qid": "Q115625325",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Ghost in the Machine",
+      "episode_qid": "Q115687590",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Mindwalk",
+      "episode_qid": "Q115740512",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Supernova, Part 1",
+      "episode_qid": "Q115858305",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Supernova, Part 2",
+      "episode_qid": "Q115858308",
+      "mission_id": "pro",
+      "query_sha256": "30366656549c708204f7a61ec1ec40b4f8212edd6e1fb9ef4b9c30bccce9f8e9",
+      "response_sha256": "fa4d26a9c98b384eeccafbce4b80049b661f07d50a6682ebfd357539b118f68a",
+      "snapshot_id": "WDQS-PRO-Q65250765-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Children of the Comet",
+      "episode_qid": "Q111832729",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Ghosts of Illyria",
+      "episode_qid": "Q111832736",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Memento Mori",
+      "episode_qid": "Q111832741",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Spock Amok",
+      "episode_qid": "Q111832746",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Lift Us Where Suffering Cannot Reach",
+      "episode_qid": "Q112484656",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Elysian Kingdom",
+      "episode_qid": "Q112617713",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "All Those Who Wander",
+      "episode_qid": "Q112728906",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "A Quality of Mercy",
+      "episode_qid": "Q112827299",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "The Broken Circle",
+      "episode_qid": "Q119573093",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Ad Astra per Aspera",
+      "episode_qid": "Q119854836",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Tomorrow and Tomorrow and Tomorrow",
+      "episode_qid": "Q120120958",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Among the Lotus Eaters",
+      "episode_qid": "Q120250904",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Charades",
+      "episode_qid": "Q120648846",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Lost in Translation",
+      "episode_qid": "Q120765463",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Those Old Scientists",
+      "episode_qid": "Q120811681",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Under the Cloak of War",
+      "episode_qid": "Q120968191",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Subspace Rhapsody",
+      "episode_qid": "Q121143343",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Hegemony",
+      "episode_qid": "Q121336651",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "Shuttle to Kenfori",
+      "episode_qid": "Q135016667",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "episode_label": "New Life and New Civilizations",
+      "episode_qid": "Q135016704",
+      "mission_id": "snw",
+      "query_sha256": "fa89e7a384955756c9d13bcc529e6e6879521e5a4e47aa52db60e25f54871069",
+      "response_sha256": "7a98a9b52c0a1fc167ef5d857cfa1d0cfa4616c80b060564d27c29f75a4e2826",
+      "snapshot_id": "WDQS-SNW-Q94527193-20261102-LIMIT20-001",
+      "verification_status": "UNVERIFIED_METADATA"
+    }
+  ],
+  "sampled_missions_count": 10,
+  "schema_version": "1.0.0",
+  "source_policy": "EXTERNAL_METADATA_ONLY"
+}

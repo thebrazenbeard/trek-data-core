@@ -257,7 +257,9 @@
       if (medium !== 'all' && item.medium !== medium) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
-      const body = normalize([item.title, item.context, directorySeriesLabels[seriesCode] || '',
+      const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)
+        ? directorySeriesLabels[seriesCode] : '';
+      const body = normalize([item.title, item.context, seriesLabel,
         item.candidate_kind, item.source_group,
         ...item.details].join(' '));
       return terms.every((part) => body.includes(part));

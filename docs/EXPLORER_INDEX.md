@@ -32,13 +32,19 @@ SHA-256/count receipts, and the aggregate projection hash must match. Each
 indexed assertion must have accepted disposition, at least one attributable
 evidence record, a matching Source and Work, and an **accepted
 `EVIDENCE_BEARING` Source↔Work binding in each provenance row**. Missing
-admission evidence fails the build. The proposal architecture must emit
+admission evidence fails the build. Every Source, Work and binding must
+explicitly be non-fixture; the reviewed projection hash must also appear in
+the separate `registry/approved_projection_hashes.json` allowlist, which is
+**empty until mainline review approves a projection**. An internally
+consistent, self-issued hash is never sufficient. The proposal architecture must emit
 `source_work_binding_record` before it can generate nonempty Explorer records.
 
 Hash receipts alone establish bundle integrity, not independent signoff or
 source licensing. The admission/review process remains governed by
 `TREK_RESEARCH_METHOD.md` and `TREK_REPO_PROTOCOL.md`. The derivative exposes
 only short scalar assertion metadata; it does not copy transcripts or dialogue.
+The builder recognizes both `work_type` and legacy `medium` classification,
+and can resolve parent-series Work titles through provenance ancestry.
 
 The index is intentionally build-time JSON rather than a dynamic hosted API,
 so GitHub Pages can serve the browser interface with no server, secrets, or

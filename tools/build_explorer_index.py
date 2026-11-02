@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL_OUTPUTS = (
@@ -19,6 +20,7 @@ CANONICAL_OUTPUTS = (
     "reconciliation_history.jsonl",
 )
 STATUS_FILES = {"facts.jsonl": "STABLE", "contested.jsonl": "CONTESTED", "unresolved.jsonl": "UNRESOLVED"}
+APPROVED_HASHES = ROOT / "registry" / "approved_projection_hashes.json"
 
 
 def canonical(value: object) -> str:
@@ -77,7 +79,24 @@ def bounded_metadata(value: object) -> str:
     return str(value).replace("\n", " ").replace("\r", " ")
 
 
-def build_index(catalog: Path, projection: Path | None = None) -> dict:
+def approved_hashes(path: Path) -> set[str]:
+    """A projection hash needs an independently reviewed mainline allowlist entry.
+
+    This checked-in receipt is not a digital signature; repository review and
+    branch protection establish its authority outside this offline builder.
+    """
+    record = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(record, dict) or set(record) != {"authority", "projection_hashes"} or record["authority"] != "REVIEWED_MAIN_PROJECTION_HASH_ALLOWLIST":
+        raise ValueError("Unrecognized approved projection receipt")
+    hashes = record["projection_hashes"]
+    if (not isinstance(hashes, list)
+            or any(not isinstance(v, str) or not re.fullmatch(r"sha256:[0-9a-f]{64}", v) for v in hashes)
+            or len(hashes) != len(set(hashes))):
+        raise ValueError("Invalid approved projection hash list")
+    return set(hashes)
+
+
+def build_index(catalog: Path, projection: Path | None = None, approved_receipts: Path = APPROVED_HASHES) -> dict:
     missions = load_missions(catalog)
     index = {
         "schema_version": "1.0.0",
@@ -90,6 +109,8 @@ def build_index(catalog: Path, projection: Path | None = None) -> dict:
         return index
 
     manifest, bundle = verified_projection(projection)
+    if manifest["projection_hash"] not in approved_hashes(approved_receipts):
+        raise ValueError("Projection hash lacks a reviewed mainline admission receipt")
     mission_ids = {m["id"] for m in missions}
     title_ids = {m["title"].casefold(): m["id"] for m in missions}
     # Work metadata comes only from a projected assertion's evidence provenance.
@@ -100,6 +121,7 @@ def build_index(catalog: Path, projection: Path | None = None) -> dict:
             provenance.setdefault(aid, []).append(row)
 
     briefings = {}
+    definitions = {"source": {}, "work": {}, "binding": {}}
     records = []
     seen = set()
     for filename, default_status in STATUS_FILES.items():
@@ -139,28 +161,63 @@ def build_index(catalog: Path, projection: Path | None = None) -> dict:
                         or binding.get("lifecycle") != "ACCEPTED"
                         or binding.get("mapping_role") != "EVIDENCE_BEARING"):
                     raise ValueError(f"Missing accepted Source-to-Work binding for {aid}")
+                if (source.get("status") != "ACCEPTED" or work.get("status") != "ACCEPTED"
+                        or source.get("fixture_only") is not False
+                        or work.get("fixture_only") is not False
+                        or binding.get("fixture_only") is not False
+                        or evidence.get("fixture_only") is True
+                        or (proof.get("assertion_record") or {}).get("fixture_only") is True):
+                    raise ValueError(f"Synthetic or unadmitted Source/Work/evidence for {aid}")
+                if proof.get("effective_assertion_status") != "ACCEPTED":
+                    raise ValueError(f"Provenance assertion disposition mismatch for {aid}")
+                for kind, identity, record in (("source", source["source_id"], source),
+                                               ("work", work["work_id"], work),
+                                               ("binding", binding.get("binding_id"), binding)):
+                    if not identity:
+                        raise ValueError(f"Missing {kind} identity in provenance for {aid}")
+                    old = definitions[kind].setdefault(identity, canonical(record))
+                    if old != canonical(record):
+                        raise ValueError(f"Contradictory {kind} provenance metadata for {identity}")
                 source_ids.add(source["source_id"])
                 work_ids.add(work["work_id"])
                 series = work.get("series")
                 resolved = series if series in mission_ids else title_ids.get(str(series).casefold())
                 if resolved:
                     mission_candidates.add(resolved)
-                if resolved and str(work.get("medium", "")).upper() == "EPISODE":
+                lineage = proof.get("work_lineage_records", [])
+                if not isinstance(lineage, list) or any(not isinstance(v, dict) for v in lineage):
+                    raise ValueError(f"Invalid Work ancestry metadata for {aid}")
+                for ancestor in lineage:
+                    ancestor_id = title_ids.get(str(ancestor.get("title", "")).casefold())
+                    if ancestor_id:
+                        mission_candidates.add(ancestor_id)
+                kind = {str(work.get(k)).upper() for k in ("medium", "work_type") if work.get(k)}
+                if len(kind) > 1:
+                    raise ValueError(f"Conflicting Work media classifications for {aid}")
+                resolved = next(iter(mission_candidates)) if len(mission_candidates) == 1 else None
+                if resolved and "EPISODE" in kind:
                     candidate_id = work["work_id"]
                     briefing_candidates.add(candidate_id)
+                    season, episode = work.get("season"), work.get("episode")
+                    for number in (season, episode):
+                        if number is not None and (type(number) is not int or not 1 <= number <= 9999):
+                            raise ValueError(f"Invalid Mission Briefing numbering for {candidate_id}")
+                    title = bounded_metadata(work.get("title"))
+                    if not title:
+                        raise ValueError(f"Invalid public Mission Briefing title for {candidate_id}")
                     briefings[candidate_id] = {
                         "id": candidate_id,
                         "mission_id": resolved,
-                        "title": str(work.get("title", candidate_id)),
-                        "season": work.get("season"),
-                        "episode": work.get("episode"),
+                        "title": title,
+                        "season": season,
+                        "episode": episode,
                         "work_id": candidate_id,
                         "admission_status": "EVIDENCED_IN_PROJECTION",
                     }
             mission_id = next(iter(mission_candidates)) if len(mission_candidates) == 1 else None
             briefing_id = next(iter(briefing_candidates)) if len(briefing_candidates) == 1 else None
             # Display a bounded scalar object value, not copyrighted passages.
-            title = f"{fact.get('predicate', 'Assertion')} · {fact.get('subject', 'Unknown subject')}"
+            title = f"{bounded_metadata(fact.get('predicate')) or 'Assertion'} · {bounded_metadata(fact.get('subject')) or 'Unknown subject'}"
             records.append({
                 "id": aid, "title": title,
                 "summary": bounded_metadata(fact.get("object")),

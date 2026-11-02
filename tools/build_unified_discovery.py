@@ -21,8 +21,10 @@ from urllib.parse import urlsplit
 if __package__:
     from . import build_film_catalog as films
     from . import build_literary_candidates as literature
+    from . import build_legacy_s1_discovery as legacy1
     from . import build_legacy_s2_discovery as legacy
     from . import build_legacy_s3_discovery as legacy3
+    from . import build_prodigy_publisher_discovery as prodigy
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -30,8 +32,10 @@ if __package__:
 else:
     import build_film_catalog as films
     import build_literary_candidates as literature
+    import build_legacy_s1_discovery as legacy1
     import build_legacy_s2_discovery as legacy
     import build_legacy_s3_discovery as legacy3
+    import build_prodigy_publisher_discovery as prodigy
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -204,7 +208,7 @@ def build_bytes(root: Path) -> bytes:
 
     # Each publisher season is a separate source-observation batch. Preserve
     # repeated titles/identities between seasons and other source families.
-    for builder, season_number, expected_count in ((legacy, 2, 126), (legacy3, 3, 126)):
+    for builder, season_number, expected_count in ((legacy1, 1, 114), (legacy, 2, 126), (legacy3, 3, 126)):
         legacy_index_path = builder.BASE / "index.json"
         legacy_index, legacy_digest = _document(root, legacy_index_path)
         sources[str(legacy_index_path)] = legacy_digest
@@ -246,6 +250,57 @@ def build_bytes(root: Path) -> bytes:
             sources[str(bundle_path)] = bundle_digest
         if legacy_count != expected_count:
             raise ValueError(f"legacy season-{season_number} changed from reviewed {expected_count} source-local listings")
+
+    # The official StarTrek.com Prodigy observations are separate publisher
+    # title-list sources. Season 1 episode slots 1–10 are deliberately absent:
+    # no matching numbered primary publisher list was evidenced in this batch.
+    prodigy_index_path = prodigy.BASE / "index.json"
+    prodigy_index, prodigy_digest = _document(root, prodigy_index_path)
+    sources[str(prodigy_index_path)] = prodigy_digest
+    if (prodigy_index.get("proposal_status") != "DISCOVERY_ONLY" or
+            prodigy_index.get("admission_effect") != "NONE" or
+            prodigy_index.get("coverage_effect") != "NONE" or
+            prodigy_index.get("denominator_effect") != "NONE" or
+            prodigy_index.get("publisher") != "StarTrek.com" or
+            prodigy_index.get("independence_group") != "publisher:paramount" or
+            prodigy_index.get("acknowledged_gaps") != prodigy.index([])["acknowledged_gaps"] or
+            len(prodigy_index.get("source_pages", [])) != len(prodigy.SOURCES)):
+        raise ValueError("Prodigy source observations not bounded candidate-only")
+    prodigy_count = 0
+    for spec, page in zip(prodigy.SOURCES, prodigy_index["source_pages"]):
+        source_id, official_url, season_number, first, last = spec
+        if (not isinstance(page, dict) or set(page) != prodigy.RECEIPT_KEYS or
+                page.get("source_id") != source_id or
+                page.get("official_page") != official_url or
+                page.get("season") != season_number or
+                page.get("observed_episode_range") != [first, last] or
+                not re.fullmatch(r"[0-9a-f]{64}", str(page.get("source_body_sha256"))) or
+                type(page.get("source_body_bytes")) is not int or
+                not 100_000 <= page["source_body_bytes"] <= 3_000_000):
+            raise ValueError("Prodigy source receipt does not match publisher listing")
+        csv_path = prodigy.BASE / f"{source_id}.csv"
+        bundle_path = prodigy.BASE / source_id / "bundle.json"
+        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+        if hashlib.sha256(csv_raw).hexdigest() != page.get("observation_csv_sha256"):
+            raise ValueError("Prodigy publisher observation CSV digest mismatch")
+        rows = prodigy.read_csv(csv_raw, source_id)
+        bundle, bundle_digest = _document(
+            root, bundle_path, prodigy.serialize(prodigy.candidate_bundle(source_id, rows)))
+        roster.validate(bundle, catalog)
+        if (page.get("listed_slot_count") != len(rows) or
+                bundle.get("listed_slot_count") != len(rows) or
+                bundle["observation"]["primary_locator"] != official_url):
+            raise ValueError("Prodigy source and source-local bundle disagree")
+        for idx, (season, episode, title) in enumerate(rows):
+            entries.append(_row(f"prodigy:{source_id}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                title, f"PRO S{season}E{episode}",
+                                prodigy_index["independence_group"], str(bundle_path),
+                                official_url, (f"Official publisher {source_id} listing",)))
+            prodigy_count += 1
+        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+        sources[str(bundle_path)] = bundle_digest
+    if prodigy_count != 30:
+        raise ValueError(f"Prodigy publisher source-local observations changed from 30: {prodigy_count}")
 
     if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
             shorts_catalog.get("admission_effect") != "NONE" or

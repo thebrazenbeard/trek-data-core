@@ -14,6 +14,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class UnifiedDiscoveryTests(unittest.TestCase):
+    def test_human_facing_directory_counts_track_the_exact_artifact(self):
+        artifact = json.loads((ROOT / discovery.OUTPUT).read_bytes())
+        rows = artifact["row_count"]
+        episodes = artifact["counts_by_medium"]["EPISODE"]
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        contract = (ROOT / "docs/UNIFIED_DISCOVERY_DIRECTORY.md").read_text(encoding="utf-8")
+        explorer_contract = (ROOT / "docs/EXPLORER_INDEX.md").read_text(encoding="utf-8")
+        self.assertIn(f"**{rows} source-local metadata observations ({episodes} episode-related", readme)
+        self.assertIn(f"**{rows} source observations** ({episodes} episode-related", readme)
+        self.assertIn("not necessarily been published to Pages", readme)
+        self.assertIn(f"**{rows} source-local rows**: {episodes} episode-related metadata", contract)
+        self.assertIn(f"expanded {rows} rows consist of {episodes} episode-related observations", explorer_contract)
+
     def test_projection_is_deterministic_and_source_attributed(self):
         actual = (ROOT / discovery.OUTPUT).read_bytes()
         self.assertEqual(actual, discovery.build_bytes(ROOT))
@@ -26,15 +39,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 608, "FILM": 14, "LITERATURE": 1,
+            "EPISODE": 752, "FILM": 14, "LITERATURE": 1,
             "SHORT_FORM": 15, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 639)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 783)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 72)
+        self.assertEqual(len(catalog["source_digests"]), 88)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -46,7 +59,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                  for kind in discovery.KINDS}
         self.assertEqual(kinds, {
             "WIKIDATA_EPISODE": 208,
-            "PUBLISHER_EPISODE_SLOT": 385,
+            "PUBLISHER_EPISODE_SLOT": 529,
             "PUBLISHER_REFERENCE": 15,
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
@@ -69,10 +82,19 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         modern = [r for r in rows if r["row_id"].startswith("roster:modern-s")]
         self.assertEqual(len(modern), 108)
         self.assertEqual(len([r for r in modern if r["row_id"].startswith("roster:modern-s3:")]), 43)
-        for season in (2, 3):
+        for season, expected in ((1, 114), (2, 126), (3, 126)):
             legacy = [r for r in rows if r["row_id"].startswith(f"legacy:s{season}:")]
-            self.assertEqual(len(legacy), 126)
+            self.assertEqual(len(legacy), expected)
             self.assertTrue(all(f" S{season}E" in r["context"] for r in legacy))
+        prodigy = [r for r in rows if r["row_id"].startswith("prodigy:")]
+        self.assertEqual(len(prodigy), 30)
+        self.assertEqual(len([r for r in prodigy if r["context"].startswith("PRO S1E")]), 10)
+        self.assertEqual(len([r for r in prodigy if r["context"].startswith("PRO S2E")]), 20)
+        self.assertNotIn("PRO S1E10", {r["context"] for r in prodigy})
+        self.assertIn("PRO S1E11", {r["context"] for r in prodigy})
+        self.assertIn("PRO S2E20", {r["context"] for r in prodigy})
+        self.assertTrue(all(r["source_group"] == "publisher:paramount" for r in prodigy))
+        self.assertEqual({r["source_input"].split("/")[-2] for r in prodigy}, {"s1b", "s2"})
         self.assertEqual(len([r for r in rows if r["medium"] == "AUDIO"]), 1,
                          "one container, no invented audio episodes")
 

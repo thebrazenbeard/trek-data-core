@@ -1,0 +1,187 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "STARTREK-PRODIGY-S2-20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Into the Breach, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Into the Breach, Part II"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Who Saves the Saviors"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Temporal Mechanics 101"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Observer's Paradox"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Imposter Syndrome"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Fast and the Curious"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Is There in Beauty No Truth?"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Devourer of All Things, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Devourer of All Things, Part II"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Last Flight of the Protostar, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Last Flight of the Protostar, Part II"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Tribble Called Quest"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Cracked Mirror"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ascension, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ascension, Part II"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Brink"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Touch of Grey"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ouroboros, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ouroboros, Part II"
+    }
+  ],
+  "listed_slot_count": 20,
+  "mission_id": "pro",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.startrek.com/series/star-trek-prodigy",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.startrek.com/news/star-trek-prodigy-season-2-now-available",
+    "publisher": "StarTrek.com",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

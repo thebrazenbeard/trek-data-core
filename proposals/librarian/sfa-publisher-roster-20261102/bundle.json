@@ -1,0 +1,43 @@
+{
+  "record_type": "publisher_episode_roster_proposal",
+  "schema_version": "1.0.0",
+  "batch_id": "SFA-PUBLISHER-ROSTER-20261102-001",
+  "mission_id": "sfa",
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "roster_completeness": "UNRESOLVED",
+  "listed_slot_count": 10,
+  "observation": {
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/1/",
+    "crosscheck_locator": "https://www.paramountpressexpress.com/paramount-plus/shows/star-trek-starfleet-academy/episodes/",
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY",
+    "response_sha256": null,
+    "publisher_revision": null,
+    "audiovisual_content_inspected": false
+  },
+  "series_qid_redirect": {
+    "system": "Wikidata",
+    "requested_qid": "Q134592591",
+    "displayed_qid": "Q117350388",
+    "locator": "https://www.wikidata.org/wiki/Q134592591",
+    "verification_status": "PAGE_REDIRECT_OBSERVATION_ONLY"
+  },
+  "episode_slots": [
+    {"season": 1, "episode_number": 1, "title": "Kids These Days", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 2, "title": "Beta Test", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 3, "title": "Vitus Reflux", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 4, "title": "Vox in Excelso", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 5, "title": "Series Acclimation Mil", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 6, "title": "Come, Let's Away", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 7, "title": "Ko'Zeine", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 8, "title": "The Life of the Stars", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 9, "title": "300th Night", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 10, "title": "Rubincon", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null}
+  ]
+}

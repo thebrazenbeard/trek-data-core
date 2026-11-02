@@ -33,7 +33,20 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Check whether the Explorer has landed on main
+        id: readiness
+        shell: bash
+        run: |
+          if test -f explorer/index.html && test -f explorer/index.json && \
+             test -f explorer/app.js && test -f explorer/app.css; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'Explorer assets not yet on main; skipping Pages publication.'
+          fi
+
       - name: Verify public artifact boundary
+        if: steps.readiness.outputs.ready == 'true'
         shell: bash
         run: |
           test -f explorer/index.html
@@ -53,25 +66,30 @@ jobs:
           fi
 
       - name: Verify Explorer behavior before deployment
+        if: steps.readiness.outputs.ready == 'true'
         shell: bash
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py' -v
           node tests/test_explorer.mjs
 
       - name: Verify deterministic catalog index
+        if: steps.readiness.outputs.ready == 'true'
         shell: bash
         run: |
           python3 tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-index-expected.json"
           cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json
 
       - name: Configure GitHub Pages
+        if: steps.readiness.outputs.ready == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload Explorer only
+        if: steps.readiness.outputs.ready == 'true'
         uses: actions/upload-pages-artifact@v4
         with:
           path: explorer
 
       - name: Deploy Explorer
+        if: steps.readiness.outputs.ready == 'true'
         id: deployment
         uses: actions/deploy-pages@v4

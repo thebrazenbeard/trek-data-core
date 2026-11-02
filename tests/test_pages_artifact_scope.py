@@ -47,6 +47,13 @@ class PagesArtifactScopeTests(unittest.TestCase):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("if: github.ref == 'refs/heads/main'", text)
 
+    def test_pages_can_land_first_without_publishing_missing_explorer(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("id: readiness", text)
+        self.assertIn("ready=false", text)
+        self.assertIn("skipping Pages publication", text)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 6)
+
 
 if __name__ == "__main__":
     unittest.main()

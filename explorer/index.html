@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="dark">
+  <title>Trek Data Core · Explorer</title>
+  <link rel="stylesheet" href="./app.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to Explorer</a>
+
+  <header class="masthead">
+    <div class="site-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="masthead-copy">
+      <p class="eyebrow">Trek Data Core / Research interface</p>
+      <h1>Chart the known.<br><span>Keep the unknown visible.</span></h1>
+      <p class="lead">A source-aware mission index and continuity explorer. Browse the catalog, inspect admitted research, and follow the evidence without mistaking a proposal for a fact.</p>
+      <div class="mission-flags">
+        <span class="flag">Independent research</span>
+        <span class="flag">Provenance first</span>
+        <span class="flag">No invented canon</span>
+      </div>
+    </div>
+    <div class="celestial-chart" aria-hidden="true">
+      <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
+      <div class="core-star"></div><div class="planet planet-a"></div><div class="planet planet-b"></div>
+      <div class="signal signal-a"></div><div class="signal signal-b"></div><div class="signal signal-c"></div>
+      <div class="chart-axis"></div>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="readout" aria-labelledby="readout-heading">
+      <div class="readout-heading">
+        <p class="eyebrow">Sensor readings / Dataset state</p>
+        <h2 id="readout-heading">Current transmission</h2>
+        <p id="data-state" class="state-note" role="status" aria-live="polite">Attempting local index read…</p>
+      </div>
+      <dl class="stat-grid">
+        <div class="stat"><dt>Missions</dt><dd id="mission-count">—</dd></div>
+        <div class="stat"><dt>Mission Briefings</dt><dd id="briefing-count">—</dd></div>
+        <div class="stat"><dt>Continuity records</dt><dd id="record-count">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="search-panel" aria-labelledby="search-heading">
+      <div class="section-heading compact">
+        <div><p class="eyebrow">Navigation / Local index</p><h2 id="search-heading">Search the archive</h2></div>
+        <p>Search titles, descriptions, identifiers, tags, and source references.</p>
+      </div>
+      <form id="filters" role="search" autocomplete="off">
+        <div class="field search-field">
+          <label for="search-input">Search terms</label>
+          <input id="search-input" name="q" type="search" placeholder="Search the known universe…" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="scope-filter">Display</label>
+          <select id="scope-filter" name="scope">
+            <option value="all">All entries</option>
+            <option value="missions">Missions (series)</option>
+            <option value="briefings">Mission Briefings (episodes)</option>
+            <option value="records">Continuity records</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mission-filter">Mission</label>
+          <select id="mission-filter" name="mission"><option value="all">All Missions</option></select>
+        </div>
+        <div class="field">
+          <label for="kind-filter">Record kind</label>
+          <select id="kind-filter" name="kind"><option value="all">All kinds</option></select>
+        </div>
+        <div class="field">
+          <label for="status-filter">Evidence status</label>
+          <select id="status-filter" name="status"><option value="all">All statuses</option></select>
+        </div>
+        <div class="filter-action"><button type="reset" id="reset-filters">Clear filters</button></div>
+      </form>
+      <p id="result-summary" class="result-summary" aria-live="polite" aria-atomic="true">Waiting for the index.</p>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <section id="missions" class="collection" aria-labelledby="missions-heading">
+      <div class="section-heading"><div><p class="eyebrow">Star chart / Series catalog</p><h2 id="missions-heading">Missions</h2></div><p>Each Mission represents a television series, not an admitted set of episode research.</p></div>
+      <div id="mission-list" class="card-grid"></div>
+      <p id="mission-empty" class="empty-state" hidden>No Missions match the current search.</p>
+    </section>
+
+    <section id="briefings" class="collection" aria-labelledby="briefings-heading">
+      <div class="section-heading"><div><p class="eyebrow">Mission files / Episode research</p><h2 id="briefings-heading">Mission Briefings</h2></div><p>Individual episodes appear only when their research records have been indexed.</p></div>
+      <div id="briefing-list" class="card-grid"></div>
+      <p id="briefing-empty" class="empty-state" hidden>No Mission Briefings are available for these filters.</p>
+    </section>
+
+    <section id="records" class="collection" aria-labelledby="records-heading">
+      <div class="section-heading"><div><p class="eyebrow">Anomaly log / Evidence</p><h2 id="records-heading">Continuity records</h2></div><p>Projection states and source identifiers remain visible; unresolved claims are never silently promoted.</p></div>
+      <div id="record-list" class="record-grid"></div>
+      <p id="record-empty" class="empty-state" hidden>No continuity records are available for these filters.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Research boundary:</strong> A catalog entry is not evidence of a source being read. A proposal, fixture, or unresolved assertion is not accepted franchise canon.</p>
+    <p>Unofficial, independent Star Trek research. Not affiliated with or endorsed by the franchise rights holders. <a href="https://github.com/thebrazenbeard/trek-data-core/blob/main/LICENSE">Repository license</a> · <a href="https://github.com/thebrazenbeard/trek-data-core/blob/main/TREK_RESEARCH_METHOD.md">Research method</a></p>
+  </footer>
+</body>
+</html>

@@ -39,7 +39,7 @@ class FakeNode {
     list.push(listener);
     this.handlers.set(type, list);
   }
-  fire(type) { for (const listener of this.handlers.get(type) || []) listener(); }
+  fire(type, event) { for (const listener of this.handlers.get(type) || []) listener(event); }
   scrollIntoView() {}
   focus() {}
 }
@@ -103,7 +103,7 @@ test('untrusted titles render as literal text; javascript links are not created'
   const attack = '<script>globalThis.pwned=true</script>';
   const nodes = await runWithIndex({
     schema_version: '1.0.0',
-    build: { data_status: 'GOVERNED_PROJECTION', projection_hash: 'sha256:abc' },
+    build: { data_status: 'GOVERNED_PROJECTION', projection_hash: 'sha256:' + 'a'.repeat(64) },
     missions: [{ id: 'tng', title: attack, focus: 'Source check' }],
     briefings: [{ id: 'b1', title: '<img src=x onerror=alert(1)>', mission_id: 'tng', season: 1, episode: 1, admission_status: 'PROPOSED' }],
     records: [{ id: 'r1', title: attack, summary: 'Contested record', kind: 'episode', mission_id: 'tng', briefing_id: 'b1', projection_status: 'CONTESTED', source_ids: ['SRC-1'], source_refs: [
@@ -134,6 +134,24 @@ test('search filters visible cards without changing dataset counts', async () =>
   assert.equal(nodes.get('mission-list').children.length, 1);
   assert.match(nodes.get('result-summary').textContent, /1 matching entry/);
   assert.equal(nodes.get('mission-count').textContent, '2');
+  const event = { prevented: false, preventDefault() { this.prevented = true; } };
+  nodes.get('filters').fire('submit', event);
+  assert.equal(event.prevented, true, 'Enter should not submit and reload the page');
+});
+
+test('large briefing results can be reached with Show next', async () => {
+  const nodes = await runWithIndex({
+    schema_version: '1.0.0',
+    build: { data_status: 'GOVERNED_PROJECTION', projection_hash: 'sha256:' + 'b'.repeat(64) },
+    missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }],
+    briefings: Array.from({ length: 80 }, (_, i) => ({ id: `b${i}`, title: `Episode ${i + 1}`, mission_id: 'tng' })),
+    records: []
+  });
+  const container = nodes.get('briefing-list');
+  assert.equal(container.children.length, 73, '72 briefings and a load-more button');
+  assert.equal(container.children.at(-1).tagName, 'button');
+  container.children.at(-1).fire('click');
+  assert.equal(container.children.length, 80, 'all 80 briefings become reachable');
 });
 
 test('missing or incompatible index gives an honest no-data state', async () => {
@@ -143,4 +161,10 @@ test('missing or incompatible index gives an honest no-data state', async () => 
   const invalid = await runWithIndex({ schema_version: '0.0.1' });
   assert.equal(invalid.get('mission-count').textContent, '0');
   assert.match(invalid.get('notice').textContent, /incompatible schema/);
+  const forged = await runWithIndex({
+    schema_version: '1.0.0', build: { data_status: 'GOVERNED_PROJECTION', projection_hash: 'sha256:abc' },
+    missions: [{ id: 'tng', title: 'TNG' }], briefings: [], records: []
+  });
+  assert.equal(forged.get('record-count').textContent, '0');
+  assert.match(forged.get('notice').textContent, /verified projection hash/);
 });

@@ -19,7 +19,8 @@
     if (['episode', 'tv_episode', 'television_episode'].includes(kind)) return 'Mission Briefing (episode)';
     return humanize(value);
   };
-  const MAX_RENDER = 72;
+  const PAGE_SIZE = 72;
+  const visibleLimits = { missions: PAGE_SIZE, briefings: PAGE_SIZE, records: PAGE_SIZE };
 
   const controls = {
     search: byId('search-input'),
@@ -175,8 +176,18 @@
     const container = byId(listId);
     container.replaceChildren();
     const fragment = document.createDocumentFragment();
-    for (const item of items.slice(0, MAX_RENDER)) fragment.append(makeCard(item));
+    const count = Math.min(items.length, visibleLimits[sectionId]);
+    for (const item of items.slice(0, count)) fragment.append(makeCard(item));
     container.append(fragment);
+    if (count < items.length) {
+      const more = el('button', 'load-more', `Show next ${Math.min(PAGE_SIZE, items.length - count)} of ${items.length} ${sectionId}`);
+      more.type = 'button';
+      more.addEventListener('click', () => {
+        visibleLimits[sectionId] += PAGE_SIZE;
+        render();
+      });
+      container.append(more);
+    }
     const empty = byId(emptyId);
     empty.hidden = items.length !== 0;
     if (!items.length && state.dataStatus === 'MISSION_CATALOG_ONLY' && sectionId !== 'missions') {
@@ -206,10 +217,10 @@
     showList('briefings', 'briefing-list', 'briefing-empty', briefings, makeBriefingCard, showBriefings);
     showList('records', 'record-list', 'record-empty', records, makeRecordCard, showRecords);
     const visibleCount = (showMissions ? missions.length : 0) + (showBriefings ? briefings.length : 0) + (showRecords ? records.length : 0);
-    const renderedCount = (showMissions ? Math.min(missions.length, MAX_RENDER) : 0) +
-      (showBriefings ? Math.min(briefings.length, MAX_RENDER) : 0) + (showRecords ? Math.min(records.length, MAX_RENDER) : 0);
+    const renderedCount = (showMissions ? Math.min(missions.length, visibleLimits.missions) : 0) +
+      (showBriefings ? Math.min(briefings.length, visibleLimits.briefings) : 0) + (showRecords ? Math.min(records.length, visibleLimits.records) : 0);
     byId('result-summary').textContent = `${visibleCount.toLocaleString()} matching ${visibleCount === 1 ? 'entry' : 'entries'}` +
-      (renderedCount < visibleCount ? ` · Showing the first ${renderedCount.toLocaleString()} (refine filters to see more)` : '') + '.';
+      (renderedCount < visibleCount ? ` · Showing ${renderedCount.toLocaleString()} (use Show next to continue)` : '') + '.';
   }
 
   function acceptIndex(data) {
@@ -231,8 +242,18 @@
     state.dataStatus = data.build.data_status;
     state.projectionHash = asString(data.build.projection_hash);
     if (state.dataStatus === 'GOVERNED_PROJECTION') {
+      if (!/^sha256:[a-f0-9]{64}$/.test(state.projectionHash)) {
+        throw new Error('A governed index must provide a complete verified projection hash.');
+      }
       state.briefings = unique(data.briefings);
       state.records = unique(data.records);
+      const missions = new Set(state.missions.map((row) => row.id));
+      const briefings = new Set(state.briefings.map((row) => row.id));
+      if (state.briefings.some((row) => !missions.has(row.mission_id)) ||
+          state.records.some((row) => row.mission_id != null && !missions.has(row.mission_id)) ||
+          state.records.some((row) => row.briefing_id != null && !briefings.has(row.briefing_id))) {
+        throw new Error('The governed index contains an unresolved Mission or Briefing reference.');
+      }
     } else {
       // A mission catalog alone is not evidence of admitted episodes or facts.
       state.briefings = [];
@@ -276,8 +297,13 @@
     }
   }
 
-  byId('filters').addEventListener('input', render);
-  byId('filters').addEventListener('change', render);
-  byId('filters').addEventListener('reset', () => { window.requestAnimationFrame(render); });
+  const resetPageCounts = () => {
+    for (const section of Object.keys(visibleLimits)) visibleLimits[section] = PAGE_SIZE;
+  };
+  const filters = byId('filters');
+  filters.addEventListener('input', () => { resetPageCounts(); render(); });
+  filters.addEventListener('change', () => { resetPageCounts(); render(); });
+  filters.addEventListener('submit', (event) => { event.preventDefault(); render(); });
+  filters.addEventListener('reset', () => { resetPageCounts(); window.requestAnimationFrame(render); });
   loadIndex();
 })();

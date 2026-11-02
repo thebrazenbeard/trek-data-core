@@ -1,0 +1,10 @@
+{
+  "batch_id": "VOY.PPLUS.S1.FIRST5.20261102",
+  "mission_id": "voy",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/series/star-trek-voyager",
+  "csv_sha256": "e9bad425540e9722248a7812deb0c804d11770ab2ae7c78b1d5093339927c5e5"
+}

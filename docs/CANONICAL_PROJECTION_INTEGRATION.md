@@ -32,8 +32,12 @@ python3 -B tools/coverage_ledger.py validate
 python3 -B tools/coverage_ledger.py report
 ```
 
-The local integration snapshot passed **150 tool tests and 3 current source
-startup-safety tests**. Repository validation found **zero governed records**;
+The hardened integration snapshot passed **156 tool tests**, including six
+adversarial regressions independently demonstrated to fail against the prior
+implementation, and the current source startup-safety checks. The admission
+path now rejects forged SHA-256 byte evidence, Source/Work ancestry cycles,
+invented derivative independence groups, symlinked governed inputs, and
+duplicate JSON object keys. Repository validation found **zero governed records**;
 coverage correctly reported `DENOMINATOR_UNRESOLVED`. Two canonical empty
 projections built with identical arguments were byte-identical with projection
 hash `sha256:a3214eb7a9f67c79f46548d0ef19371134ce5fb6b0dfdecb27e34b0726212f4b`.

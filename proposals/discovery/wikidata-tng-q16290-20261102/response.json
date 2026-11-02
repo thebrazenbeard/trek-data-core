@@ -1,0 +1,148 @@
+{
+  "head" : {
+    "vars" : [ "episode", "episodeLabel", "series" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q10361338"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Rightful Heir"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1058477"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "The Neutral Zone"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1102231"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Hide and Q"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1141170"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Chain of Command"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1392472"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Skin of Evil"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q14045941"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Brothers"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16744047"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Half a Life"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16744119"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Silicon Avatar"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16744120"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "New Ground"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    }, {
+      "episode" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16744121"
+      },
+      "episodeLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Hero Worship"
+      },
+      "series" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q16290"
+      }
+    } ]
+  }
+}

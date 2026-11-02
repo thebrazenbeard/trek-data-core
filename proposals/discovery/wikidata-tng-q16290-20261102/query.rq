@@ -1,0 +1,13 @@
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX wdt:  <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?episode ?episodeLabel ?series WHERE {
+  VALUES ?series { wd:Q16290 }
+  ?episode wdt:P179 ?series ;
+           wdt:P31/wdt:P279* wd:Q21191270 ;
+           rdfs:label ?episodeLabel .
+  FILTER(LANG(?episodeLabel) = "en")
+}
+ORDER BY ?episode
+LIMIT 10

@@ -64,6 +64,12 @@ registry-relative `RESOLVED` value as complete series coverage**.
 The current repository has no admitted non-fixture episode roster. Its honest
 state is `DENOMINATOR_UNRESOLVED`, and candidate discovery adds no coverage.
 
+The [Original Series official roster scope comparison](../proposals/discovery/official-tos-roster-scope-20261102/RESEARCH_RECORD.md)
+shows why even first-party catalogs need source-local numbering and explicit
+edition rules: one service includes *The Cage* as S1E1 while another begins
+with *The Man Trap*. These publisher observations remain proposal-only and
+do not change the denominator.
+
 ## Source-bound coverage is independently gated
 
 An accepted coverage-event label is not itself evidence that a Work has a

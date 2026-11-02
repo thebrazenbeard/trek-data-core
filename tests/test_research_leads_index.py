@@ -292,7 +292,7 @@ class ResearchLeadsIndexTests(unittest.TestCase):
 
     def test_rejects_undocumented_publisher_observation_revision(self):
         roster = json.loads(self.roster.read_text(encoding="utf-8"))
-        roster["observation"]["observed_on"] = "2026-11-03"
+        roster["observation"]["observed_on"] = "2026-11-01"
         self.roster.write_text(json.dumps(roster), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "unexpected publisher source"):
             leads.build_bytes(self.root)

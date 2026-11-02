@@ -1,0 +1,95 @@
+{
+  "record_type": "tos_source_relative_metadata_context",
+  "status": "RESEARCH_LEADS_ONLY",
+  "observed_on_utc": "2026-11-02",
+  "accepted_registry_effect": "NONE",
+  "full_audiovisual_episode_inspected": false,
+  "partial_playback_visual_witness": {
+    "title": "The Man Trap",
+    "platform": "Pluto TV free browser playback",
+    "player_time_seen": "00:10 / 50:26",
+    "visual_observation": "One displayed frame showed a starship beside a planet; no frame, audio or media bytes retained",
+    "complete_audio_visual_processing": false,
+    "media_byte_sha256": null,
+    "source_url": "https://pluto.tv/us/shows/2140877/episode/63641f361ac5b40013b2bb17/"
+  },
+  "source_response_sha256": null,
+  "publisher_revision": null,
+  "evidence_class": "PUBLIC_PUBLISHER_PAGE_METADATA_NOT_EPISODE_CONTENT",
+  "statements": [
+    {
+      "id": "tos-cage-original-pilot",
+      "dimension": "PILOT_PRODUCTION_STATUS",
+      "source_attribution": "PARAMOUNT_EDITORIAL",
+      "subject_title": "The Cage",
+      "predicate": "PUBLISHER_DESCRIBES_AS",
+      "object": "original Star Trek pilot; initially unaired",
+      "source_url": "https://www.paramountplus.com/sneak-peak/star-trek-day/",
+      "scope_note": "Publisher historical account, not a scene-level observation or proof of original production archives"
+    },
+    {
+      "id": "tos-cage-pike",
+      "dimension": "PILOT_LEAD_CHARACTER_METADATA",
+      "source_attribution": "PARAMOUNT_EPISODE_GUIDE",
+      "subject_title": "The Cage",
+      "predicate": "PUBLISHER_IDENTIFIES_CAPTAIN",
+      "object": "Capt. Pike, portrayed by Jeffrey Hunter",
+      "source_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+      "scope_note": "Guide label only; no independent audiovisual depiction inspected"
+    },
+    {
+      "id": "tos-second-pilot",
+      "dimension": "PILOT_PRODUCTION_STATUS",
+      "source_attribution": "PARAMOUNT_EDITORIAL",
+      "subject_title": "Where No Man Has Gone Before",
+      "predicate": "PUBLISHER_DESCRIBES_AS",
+      "object": "second pilot, later broadcast after The Man Trap",
+      "source_url": "https://www.paramountplus.com/sneak-peak/star-trek-day/",
+      "scope_note": "Distinct from first pilot or first broadcast episode"
+    },
+    {
+      "id": "tos-first-broadcast",
+      "dimension": "ORIGINAL_TELEVISION_BROADCAST",
+      "source_attribution": "PARAMOUNT_EDITORIAL",
+      "subject_title": "The Man Trap",
+      "predicate": "PUBLISHER_REPORTS_FIRST_TV_BROADCAST",
+      "object": "1966-09-08 on NBC",
+      "source_url": "https://www.paramountplus.com/sneak-peak/star-trek-day/",
+      "scope_note": "This is not a production ordinal or today's streaming slot"
+    },
+    {
+      "id": "tos-paramount-cage-slot",
+      "dimension": "CURRENT_STREAMING_CATALOG_POSITION",
+      "source_attribution": "PARAMOUNT_PLUS_ROSTER",
+      "subject_title": "The Cage",
+      "predicate": "DISPLAYED_AS",
+      "object": "Season 1, Episode 1",
+      "source_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+      "scope_note": "Platform-local position; publisher's generic 1966 dating must not be read as its original broadcast date"
+    },
+    {
+      "id": "tos-paramount-mantrap-slot",
+      "dimension": "CURRENT_STREAMING_CATALOG_POSITION",
+      "source_attribution": "PARAMOUNT_PLUS_ROSTER",
+      "subject_title": "The Man Trap",
+      "predicate": "DISPLAYED_AS",
+      "object": "Season 1, Episode 2",
+      "source_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+      "scope_note": "The first broadcast episode is listed second on this platform"
+    },
+    {
+      "id": "tos-pluto-mantrap-slot",
+      "dimension": "CURRENT_STREAMING_CATALOG_POSITION",
+      "source_attribution": "PLUTO_ROSTER",
+      "subject_title": "The Man Trap",
+      "predicate": "DISPLAYED_AS",
+      "object": "Season 1, Episode 1",
+      "source_url": "https://pluto.tv/us/shows/star-trek-the-original-series/season/1/",
+      "scope_note": "A different streaming-catalog ordinal; the Pluto page says Watch Free but no full episode representation was processed"
+    }
+  ],
+  "lineage_note": "Paramount+ and Pluto are publisher/platform presentations within the same Paramount ownership group; shared branding/content is not independent corroboration of audiovisual events",
+  "identity_reconciliation": "NOT_ATTEMPTED",
+  "acceptance": "NONE",
+  "coverage_effect": "NONE"
+}

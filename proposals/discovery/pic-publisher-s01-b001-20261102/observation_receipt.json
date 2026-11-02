@@ -1,0 +1,10 @@
+{
+  "batch_id": "pic-paramountplus-au-s01-b001-20261102",
+  "mission_id": "pic",
+  "publisher": "Paramount+ Australia",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/au/shows/star-trek-picard/episodes/1/",
+  "crosscheck_locator": "https://www.intl.paramountplus.com/gb/shows/star-trek-picard/episodes/1/",
+  "csv_sha256": "0299c97d4f3140d648a39fea19d6f06c8d3c32cdf577afe1492ef9e0b65de924"
+}

@@ -1,0 +1,10 @@
+{
+  "batch_id": "ld-paramountplus-s01-b001-20261102",
+  "mission_id": "ld",
+  "publisher": "Paramount+",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+  "csv_sha256": "90f50daf8f1c1a2490368f80d6225b50f83ed1996cd0b870298b44d6406c6b26"
+}

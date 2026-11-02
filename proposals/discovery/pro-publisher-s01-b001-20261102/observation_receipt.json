@@ -1,0 +1,10 @@
+{
+  "batch_id": "pro-appletv-us-s01-b001-20261102",
+  "mission_id": "pro",
+  "publisher": "Apple TV US (first-party distributor listing)",
+  "independence_group": "INDEPENDENCE_UNRESOLVED",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://tv.apple.com/us/show/star-trek-prodigy/umc.cmc.1zqk40gcoayvwt9tai2555wkp",
+  "crosscheck_locator": "https://www.startrek.com/en-un/series/star-trek-prodigy",
+  "csv_sha256": "33bb7aa52c892f15c1696a7ffc058f364fa5fbedcda95d7da76141b4954f0100"
+}

@@ -1,0 +1,25 @@
+{
+  "record_type": "episode_review_input",
+  "schema_version": "1.0.0",
+  "packet_id": "TOS-CAGE-PUBLIC-METADATA-20261102",
+  "fixture_only": false,
+  "mission_id": "tos",
+  "episode": {
+    "title": "The Cage",
+    "season": 1,
+    "episode_number": 1,
+    "publisher_roster_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/"
+  },
+  "source": {
+    "kind": "PUBLISHER_METADATA",
+    "locator": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+    "version": "Public Paramount+ S1 episode guide viewed 2026-11-02; page revision unknown",
+    "access_basis": "PUBLISHER_PUBLIC_METADATA",
+    "rights_note": "Publisher listing read in public web view; no episode audiovisual source obtained, streamed or inspected",
+    "inspection": "NOT_INSPECTED",
+    "inspected_on": null,
+    "content_sha256": null
+  },
+  "observations": [],
+  "assertions": []
+}

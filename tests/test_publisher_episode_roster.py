@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from datetime import date, timedelta
 from pathlib import Path
 from unittest import mock
 
@@ -67,6 +68,13 @@ class PublisherRosterTests(unittest.TestCase):
         self.check_rejected(lambda x: x["observation"].__setitem__("audiovisual_content_inspected", True), "must not claim")
         self.check_rejected(lambda x: x["observation"].__setitem__("response_sha256", "a" * 64), "must not claim")
         self.check_rejected(lambda x: x["observation"].__setitem__("publisher_revision", "2026"), "must not claim")
+
+    def test_observation_date_rejects_future_and_noncanonical_calendar_forms(self):
+        tomorrow = (date.today() + timedelta(days=1)).isoformat()
+        self.check_rejected(lambda x: x["observation"].__setitem__("observed_on", tomorrow), "future")
+        self.check_rejected(lambda x: x["observation"].__setitem__("observed_on", "9999-12-31"), "future")
+        self.check_rejected(lambda x: x["observation"].__setitem__("observed_on", "2026-W44-1"), "canonical")
+        self.check_rejected(lambda x: x["observation"].__setitem__("observed_on", "2026-02-30"), "ISO calendar")
 
     def test_extra_fields_are_rejected_in_every_layer(self):
         self.check_rejected(lambda x: x.__setitem__("episode_count", 10), "roster.*keys")

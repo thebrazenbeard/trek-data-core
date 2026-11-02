@@ -1,0 +1,10 @@
+{
+  "batch_id": "ent-paramountplus-s01-b001-20261102",
+  "mission_id": "ent",
+  "publisher": "Paramount+",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/news/star-trek-day-streaming-schedule",
+  "csv_sha256": "99f52545567c85a093dc7741daf0eeabf26887e076f8f1a54933adf21f0aa543"
+}

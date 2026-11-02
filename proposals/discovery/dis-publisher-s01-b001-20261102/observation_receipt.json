@@ -1,0 +1,10 @@
+{
+  "batch_id": "dis-paramountplus-s01-b001-20261102",
+  "mission_id": "dis",
+  "publisher": "Paramount+",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/news/watch-first-four-discovery-episode-titles-revealed",
+  "csv_sha256": "9a0336b3fcf858dbbe2b235c8f23073034bfd567f0140399704b0dc921c7f024"
+}

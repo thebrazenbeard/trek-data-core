@@ -1,0 +1,227 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S7-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Image in the Sand"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Shadows and Symbols"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Afterimage"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Take Me Out to the Holosuite"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Chrysalis"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Treachery, Faith, and the Great River"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Once More Unto the Breach"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Siege of AR-555"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Covenant"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "It's Only A Paper Moon"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Prodigal Daughter"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Emperor's New Cloak"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Field of Fire"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Chimera"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Badda-Bing, Badda-Bang"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Inter Arma Enim Silent Leges"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Penumbra"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "'Til Death Do Us Part"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Strange Bedfellows"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Changing Face of Evil"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "When It Rains..."
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Tacking Into The Wind"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Extreme Measures"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Dogs of War"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 7,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "What You Leave Behind"
+    }
+  ],
+  "listed_slot_count": 25,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

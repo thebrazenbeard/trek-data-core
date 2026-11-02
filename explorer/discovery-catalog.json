@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 1049,
+    "EPISODE": 1123,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 1080,
+  "row_count": 1154,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -17136,6 +17136,1264 @@
     },
     {
       "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Descent - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Liaisons",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Interface",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Gambit - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Gambit - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Phantasms",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Dark Page",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Attached",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Force of Nature",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Inheritance",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Parallels",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "The Pegasus",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Homeward",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Sub Rosa",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Lower Decks",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Thine Own Self",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Masks",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Eye of the Beholder",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Genesis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Journey's End",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Firstborn",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Bloodlines",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Emergence",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "Preemptive Strike",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S7E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:tng:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "title": "All Good Things...",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Image in the Sand",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Shadows and Symbols",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Afterimage",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Take Me Out to the Holosuite",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Chrysalis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Treachery, Faith, and the Great River",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Once More Unto the Breach",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "The Siege of AR-555",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Covenant",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "It's Only A Paper Moon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Prodigal Daughter",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "The Emperor's New Cloak",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Field of Fire",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Chimera",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Badda-Bing, Badda-Bang",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Inter Arma Enim Silent Leges",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Penumbra",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "'Til Death Do Us Part",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Strange Bedfellows",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "The Changing Face of Evil",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "When It Rains...",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Tacking Into The Wind",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "Extreme Measures",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "The Dogs of War",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S7E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:ds9:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "title": "What You Leave Behind",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Unimatrix Zero, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Imperfection",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Drive",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Repression",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Critical Care",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Inside Man",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Body and Soul",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Nightingale",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Flesh & Blood",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Shattered",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Lineage",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Repentance",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Prophecy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "The Void",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Workforce, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Workforce, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Human Error",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Q2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Author, Author",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Friendship One",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Natural Law",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Homestead",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Renaissance Man",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S7E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-7 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s7:voy:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "title": "Endgame Parts 1 and 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
       "candidate_kind": "SCRIPTED_SHORT",
       "context": "short-treks · S1E1",
       "coverage_effect": "NONE",
@@ -18104,6 +19362,34 @@
     {
       "path": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
       "sha256": "77e5ad209593015c3fd842942a3ec6ad204e14c6b007ce4326985115c53a884d"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/ds9.csv",
+      "sha256": "1dbfe6a4b6af54a5eb2831108d358c8c3f984346b1b3a79de6301ccf2dc22aea"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/ds9/bundle.json",
+      "sha256": "454632a2544a67679cff9ce004856401876fd382b326b3a23178cc1ea65ab6a8"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/index.json",
+      "sha256": "2f291ba22b626b4ec474fcb41b7aae37874bf732f55569640793b89f151c2fb4"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/tng.csv",
+      "sha256": "1b66b02df827de8456e0c3af12719da104dd70cde8c30e804e4d3aa2a453fb82"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/tng/bundle.json",
+      "sha256": "ae9583fa00cfc66fca2bca447fa21a51a5507103f9ce53ac117c8c47bccf2a9a"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/voy.csv",
+      "sha256": "e5cb811a636be2fe526e13d19843bad1d235b21d2f25b6ea87096821a9bd632d"
+    },
+    {
+      "path": "proposals/discovery/publisher-season7-20261102/voy/bundle.json",
+      "sha256": "39d495e3c42af6cff99788ee1fe5d46dd52cc9b37446bbd5aa5ef447ba5d170d"
     },
     {
       "path": "proposals/discovery/shorts-audio-20261102/records.json",

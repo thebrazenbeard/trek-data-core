@@ -84,6 +84,8 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .badge.accepted, .badge.stable { border-color: #69c6b7; color: var(--aqua); }
 .badge.fixture { border-color: #a996d4; color: var(--violet); }
 .card button { width: auto; min-height: 36px; margin-top: 11px; }
+.card button.research-shortcut { display: block; border-color: #bc9865; background: #30281e; color: var(--amber); }
+.card button.research-shortcut:hover { background: #483523; }
 .detail-list { margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid #315367; color: #c5dce3; font-size: .82rem; }
 .detail-list dt { color: #9fbcc8; margin-top: 6px; }
 .detail-list dd { margin: 0 0 5px; overflow-wrap: anywhere; }

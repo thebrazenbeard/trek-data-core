@@ -3,7 +3,7 @@ from __future__ import annotations
 import importlib.util, json, tempfile, unittest
 from pathlib import Path
 MODULE_PATH=Path(__file__).with_name('coverage_ledger.py'); spec=importlib.util.spec_from_file_location('trek_coverage_ledger_test',MODULE_PATH); coverage=importlib.util.module_from_spec(spec); spec.loader.exec_module(coverage)
-WORK={'record_type':'work','work_id':'w1','title':'Fixture','medium':'test'}; SOURCE={'record_type':'source','source_id':'s1','source_kind':'transcript','locator':'fixture://s1'}; BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING'}
+WORK={'record_type':'work','work_id':'w1','title':'Fixture','work_type':'EPISODE','parent_work_id':None,'component_label':None,'status':'ACCEPTED','fixture_only':False}; SOURCE={'record_type':'source','source_id':'s1','source_kind':'transcript','locator':'fixture://s1'}; BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING'}
 def event(i,state,status='ACCEPTED',role='CONSOLIDATOR',prereqs=None,**extra):
  scope={'work_id':'w1','source_id':extra.get('source_id'),'fixture_partition':'unit'}
  subject_type='SOURCE_WORK_BINDING' if state in {'SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED'} else 'LOCAL_ENTITY' if state=='ENTITY_LINKED' else 'WORK'
@@ -19,6 +19,14 @@ def make_report(records,**kwargs):
   original_root=coverage.ROOT;coverage.ROOT=Path(tmp)
   try:
    (coverage.ROOT/'coverage'/'events').mkdir(parents=True)
+   authoritative=kwargs.pop('authoritative_works',None)
+   if authoritative is None:
+    candidates=kwargs.get('works') or coverage.index_records(records,'work','work_id')
+    authoritative=[w for w in candidates.values() if w.get('status')=='ACCEPTED' and w.get('fixture_only') is False]
+   if authoritative:
+    authorized_root=coverage.ROOT/'registry'/'authoritative';authorized_root.mkdir(parents=True)
+    for w in authoritative:
+     (authorized_root/f"{w['work_id']}.json").write_text(json.dumps(w),encoding='utf-8')
    paths=record_paths(records)
    for row in records:
     if row.get('record_type')=='coverage_event':paths[row['coverage_event_id']].write_text(json.dumps(row),encoding='utf-8')
@@ -30,9 +38,67 @@ def make_report(records,**kwargs):
    return coverage.coverage_report(records,record_paths=paths,**kwargs)
   finally:coverage.ROOT=original_root
 def denominator(**overrides):
- row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'definition':'accepted fixture Work registry'},'registry_head':'main:fixture','status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
+ row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_resolved_denominator_rejects_proposed_work_even_with_self_hash(self):
+  proposed=dict(WORK,status='PROPOSED')
+  with self.assertRaisesRegex(ValueError,'ACCEPTED|authoritative|registry'):
+   make_report([proposed],works={'w1':proposed},denominator_snapshot=denominator(registry_head='invented:unverified'))
+ def test_resolved_denominator_rejects_forged_registry_head(self):
+  with self.assertRaisesRegex(ValueError,'registry_head|registry'):
+   make_report([WORK],works={'w1':WORK},denominator_snapshot=denominator(registry_head='invented:unverified'))
+ def test_resolved_denominator_rejects_research_only_accepted_work(self):
+  accepted=dict(WORK,status='ACCEPTED',fixture_only=False,work_type='EPISODE')
+  with self.assertRaisesRegex(ValueError,'authoritative|registry'):
+   make_report([accepted],works={'w1':accepted},denominator_snapshot=denominator(),authoritative_works=[])
+ def test_resolved_denominator_rejects_partial_roster(self):
+  with self.assertRaisesRegex(ValueError,'roster|unit_ids|scope'):
+   make_report([WORK],works={'w1':WORK},denominator_snapshot=denominator(unit_ids=[]))
+ def test_accepted_discovered_cannot_count_proposed_work(self):
+  proposed=dict(WORK,status='PROPOSED')
+  discovered=event('accepted_on_proposal','DISCOVERED',role='LIBRARIAN')
+  with self.assertRaisesRegex(ValueError,'ACCEPTED|authoritative|Work'):
+   make_report([proposed,discovered],works={'w1':proposed})
+ def test_accepted_discovered_cannot_count_research_only_accepted_work(self):
+  discovered=event('accepted_from_research','DISCOVERED',role='LIBRARIAN')
+  with self.assertRaisesRegex(ValueError,'disk-backed authoritative'):
+   make_report([WORK,discovered],works={'w1':WORK},authoritative_works=[])
+ def test_resolved_denominator_requires_all_scoped_accepted_works(self):
+  second=dict(WORK,work_id='w2',title='Second fixture')
+  registry_head=coverage.accepted_registry_head({'w1':WORK,'w2':second})
+  snap=denominator(registry_head=registry_head)
+  with self.assertRaisesRegex(ValueError,'complete authoritative accepted Work roster'):
+   make_report([WORK,second],works={'w1':WORK,'w2':second},denominator_snapshot=snap)
+ def test_resolved_denominator_rejects_relabelled_authoritative_work(self):
+  altered=dict(WORK,title='Unreviewed replacement')
+  with self.assertRaisesRegex(ValueError,'registry_head'):
+   make_report([altered],works={'w1':altered},denominator_snapshot=denominator())
+ def test_authoritative_registry_parent_symlink_is_rejected(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    coverage.ROOT.mkdir();outside=Path(tmp)/'outside';outside.mkdir()
+    (coverage.ROOT/'registry').symlink_to(outside,target_is_directory=True)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.authoritative_work_roster()
+   finally:coverage.ROOT=old_root
+ def test_duplicate_json_keys_in_authoritative_work_are_rejected(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)
+   try:
+    registry=coverage.ROOT/'registry'/'authoritative';registry.mkdir(parents=True)
+    (registry/'bad.json').write_text('{"record_type":"work","work_id":"w1","work_id":"w2","status":"ACCEPTED"}',encoding='utf-8')
+    with self.assertRaisesRegex(ValueError,'duplicate JSON key'):
+     coverage.authoritative_work_roster()
+   finally:coverage.ROOT=old_root
+ def test_fixture_only_accepted_work_cannot_resolve_denominator(self):
+  fixture=dict(WORK,fixture_only=True)
+  with self.assertRaisesRegex(ValueError,'no nonfixture ACCEPTED'):
+   make_report([fixture],works={'w1':fixture},denominator_snapshot=denominator(),authoritative_works=[fixture])
+ def test_resolved_denominator_rejects_unscoped_whole_universe_claim(self):
+  with self.assertRaisesRegex(ValueError,'scope|roster|claim'):
+   make_report([WORK],works={'w1':WORK},denominator_snapshot=denominator(scope={'definition':'complete Star Trek episode universe'}))
  def test_authoritative_registry_json_works_are_visible_to_coverage(self):
   with tempfile.TemporaryDirectory() as tmp:
    old_root=coverage.ROOT;coverage.ROOT=Path(tmp)
@@ -140,7 +206,7 @@ class CoverageLedgerTests(unittest.TestCase):
  def test_known_work_records_without_snapshot_still_leave_denominator_unresolved(self):
   report=make_report([WORK],works={'w1':WORK}); self.assertEqual(report['denominator_status'],'DENOMINATOR_UNRESOLVED'); self.assertEqual(report['known_work_record_count'],1); self.assertIsNone(report['denominator']); self.assertIn('No governed denominator snapshot supplied',report['unknowns'])
  def test_explicit_denominator_snapshot_exposes_definition_snapshot_exclusions_and_unknowns(self):
-  discovered=event('d0','DISCOVERED',role='LIBRARIAN'); snap=denominator(exclusions=[{'unit_id':'x','reason':'not in scope'}]); result=make_report([WORK,discovered],works={'w1':WORK},denominator_snapshot=snap); self.assertEqual(result['denominator_status'],'RESOLVED'); self.assertEqual(result['denominator'],1); self.assertEqual(result['denominator_definition'],coverage.canonical({'definition':'accepted fixture Work registry'})); self.assertEqual(result['denominator_snapshot_ref'],'registry:fixture@abc'); self.assertEqual(result['exclusions'],[{'unit_id':'x','reason':'not in scope'}]); self.assertEqual(result['states']['DISCOVERED']['numerator'],1); self.assertEqual(result['states']['DISCOVERED']['denominator'],1); self.assertEqual(result['states']['DISCOVERED']['coverage_fraction'],1.0); self.assertEqual(result['states']['AUDITED']['denominator_status'],'DENOMINATOR_UNRESOLVED')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN'); snap=denominator(exclusions=[{'unit_id':'x','reason':'not in scope'}]); result=make_report([WORK,discovered],works={'w1':WORK},denominator_snapshot=snap); self.assertEqual(result['denominator_status'],'RESOLVED'); self.assertEqual(result['denominator'],1); self.assertEqual(result['denominator_definition'],coverage.canonical({'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None})); self.assertEqual(result['denominator_snapshot_ref'],'registry:fixture@abc'); self.assertEqual(result['exclusions'],[{'unit_id':'x','reason':'not in scope'}]); self.assertEqual(result['states']['DISCOVERED']['numerator'],1); self.assertEqual(result['states']['DISCOVERED']['denominator'],1); self.assertEqual(result['states']['DISCOVERED']['coverage_fraction'],1.0); self.assertEqual(result['states']['AUDITED']['denominator_status'],'DENOMINATOR_UNRESOLVED')
  def test_denominator_snapshot_cannot_reference_missing_work(self):
   with self.assertRaises(ValueError): make_report([WORK],works={'w1':WORK},denominator_snapshot=denominator(unit_ids=['w-missing']))
  def test_rejected_correction_preserves_prior_accepted_history(self):

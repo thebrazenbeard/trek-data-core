@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 SCHEMA=ROOT/'schema'/'coverage-event.schema.json'
 DENOMINATOR_SCHEMA=ROOT/'schema'/'coverage-denominator-snapshot.schema.json'
+LIBRARIAN_CONTRACT=Path(__file__).resolve().parents[1]/'registry'/'librarian_registry_contract.schema.json'
 PB=Path(__file__).with_name('projection_bundle.py'); SPEC=importlib.util.spec_from_file_location('trek_coverage_schema',PB); schema_tools=importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(schema_tools)
 STATES=('DISCOVERED','SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED','CLOSE_READ','SEMANTICALLY_ANALYZED','ENTITY_LINKED','CROSS_REFERENCED','AUDITED')
 PREDECESSOR={state:STATES[i-1] for i,state in enumerate(STATES) if i>0}
@@ -22,12 +23,21 @@ def canonical(v):return schema_tools.canonical(v)
 def content_hash(v):return 'sha256:'+hashlib.sha256(canonical(v).encode('utf-8')).hexdigest()
 def scope_key(v):return content_hash(v)
 
+def reject_duplicate_keys(pairs):
+ result={}
+ for key,value in pairs:
+  if key in result:raise ValueError(f'duplicate JSON key {key}')
+  result[key]=value
+ return result
+def strict_json(raw):
+ return json.loads(raw,object_pairs_hook=reject_duplicate_keys)
+
 def read_jsonl(path):
  rows=[]
  if not Path(path).exists():return rows
  for line_no,raw in enumerate(Path(path).read_text(encoding='utf-8').splitlines(),1):
   if not raw.strip():continue
-  row=json.loads(raw)
+  row=strict_json(raw)
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
   rows.append(row)
  return rows
@@ -41,13 +51,13 @@ def scan_typed_records(with_paths=False):
     if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
   if base.name=='coverage':
    for path in sorted(base.rglob('*.json')):
-    row=json.loads(path.read_text(encoding='utf-8'))
+    row=strict_json(path.read_text(encoding='utf-8'))
     if isinstance(row,dict) and row.get('record_type'):
      records.append(row)
      if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'registry'/'authoritative'):
   for path in sorted(base.rglob('*.json')):
-   row=json.loads(path.read_text(encoding='utf-8'))
+   row=strict_json(path.read_text(encoding='utf-8'))
    if not isinstance(row,dict) or not row.get('record_type'):
     raise ValueError(f'{path}: governed JSON must be a typed object')
    records.append(row)
@@ -62,6 +72,52 @@ def index_records(records,record_type,id_key):
   if rid in out:raise ValueError(f'duplicate {record_type} id {rid}')
   out[rid]=row
  return out
+
+def authoritative_work_roster():
+ """Read the complete accepted, nonfixture Work roster from governed file bytes.
+
+ A reviewable registry-relative denominator is not a claim about all Star Trek
+ installments; it is only a census of accepted Work records in this tree.
+ """
+ root=ROOT/'registry'/'authoritative'
+ if (ROOT/'registry').is_symlink() or root.is_symlink():
+  raise ValueError('authoritative registry root/parent must not be a symlink')
+ if not root.is_dir():return {}
+ work_schema=strict_json(LIBRARIAN_CONTRACT.read_text(encoding='utf-8'))['$defs']['work']
+ items={}
+ for path in sorted(root.rglob('*')):
+  if path.is_symlink():raise ValueError(f'symlinked authoritative registry input {path}')
+  if path.is_dir() or path.suffix not in {'.json','.jsonl'}:continue
+  if not path.is_file():raise ValueError(f'non-file authoritative registry input {path}')
+  try:path.resolve().relative_to(root.resolve())
+  except ValueError:raise ValueError(f'authoritative registry input escapes root: {path}') from None
+  raw=path.read_text(encoding='utf-8')
+  try:rows=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(raw)]
+  except ValueError as exc:raise ValueError(f'invalid authoritative registry bytes at {path}: {exc}') from exc
+  for row in rows:
+   if not isinstance(row,dict):raise ValueError(f'non-object authoritative registry input {path}')
+   if row.get('record_type')!='work':continue
+   work_id=row.get('work_id')
+   if not isinstance(work_id,str) or not work_id:raise ValueError(f'invalid authoritative Work identity in {path}')
+   if work_id in items:raise ValueError(f'duplicate authoritative Work ID {work_id}')
+   if row.get('status')=='ACCEPTED':
+    errors=schema_tools.schema_errors(row,work_schema)
+    if errors:raise ValueError(f'invalid ACCEPTED authoritative Work {work_id}: '+'; '.join(errors))
+   items[work_id]=row
+ accepted={wid:row for wid,row in items.items() if row.get('status')=='ACCEPTED' and row.get('fixture_only') is False}
+ for wid,row in accepted.items():
+  seen={wid};parent=row.get('parent_work_id')
+  while parent is not None:
+   if parent in seen:raise ValueError(f'authoritative Work parent cycle at {wid}')
+   seen.add(parent)
+   target=accepted.get(parent)
+   if target is None:raise ValueError(f'authoritative Work {wid} requires ACCEPTED nonfixture parent Work {parent}')
+   parent=target.get('parent_work_id')
+ return items
+
+def accepted_registry_head(authoritative_works):
+ records=[row for _,row in sorted(authoritative_works.items()) if row.get('status')=='ACCEPTED' and row.get('fixture_only') is False]
+ return content_hash({'record_type':'authoritative_accepted_work_roster','works':records})
 def active_events(events):
  # Rejection of a proposed correction cannot revoke previously accepted history.
  superseded={row.get('supersedes') for row in events.values() if row.get('supersedes') and row.get('status')=='ACCEPTED'}
@@ -76,6 +132,7 @@ def role_errors(row):
  return errors
 def validate_coverage(records,works=None,sources=None,bindings=None,record_paths=None,enforce_origins=False):
  works=works if works is not None else index_records(records,'work','work_id');sources=sources if sources is not None else index_records(records,'source','source_id');bindings=bindings if bindings is not None else index_records(records,'source_work_binding','binding_id')
+ authoritative=authoritative_work_roster() if enforce_origins else {}
  events=index_records(records,'coverage_event','coverage_event_id');schema=json.loads(SCHEMA.read_text(encoding='utf-8'));errors=[]
  for eid,row in events.items():
   for err in schema_tools.schema_errors(row,schema):errors.append(f'{eid}: schema: {err}')
@@ -124,6 +181,12 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
  for eid,row in active.items():
   state=row['coverage_state'];work_id=row['work_id'];source_id=row.get('source_id')
   if work_id not in works:errors.append(f'{eid}: accepted coverage references missing Work {work_id}')
+  else:
+   work=works[work_id]
+   if work.get('status')!='ACCEPTED' or work.get('fixture_only') is not False:
+    errors.append(f'{eid}: accepted coverage requires nonfixture ACCEPTED Work {work_id}')
+   if enforce_origins and (work_id not in authoritative or canonical(authoritative[work_id])!=canonical(work)):
+    errors.append(f'{eid}: accepted coverage Work {work_id} is not an exact disk-backed authoritative registry record')
   errors.extend(f'{eid}: {err}' for err in role_errors(row))
   if state in SOURCE_STATES:
    if not source_id:errors.append(f'{eid}: {state} requires source_id')
@@ -157,10 +220,14 @@ def normalize_denominator_snapshot(snapshot,works,origin_path=None,enforce_origi
  if enforce_origin:
   if origin_path is None:raise ValueError('unverified denominator snapshot origin')
   path=Path(origin_path)
+  if (ROOT/'coverage').is_symlink() or (ROOT/'coverage'/'denominators').is_symlink() or path.is_symlink():
+   raise ValueError('symlinked denominator origin is forbidden')
+  if any(parent.is_symlink() for parent in path.parents if parent!=ROOT.parent and parent!=ROOT):
+   raise ValueError('symlinked denominator parent is forbidden')
   try:path.resolve().relative_to((ROOT/'coverage'/'denominators').resolve())
   except ValueError:raise ValueError('denominator snapshot outside authoritative denominator root') from None
   if path.suffix!='.json' or not path.is_file():raise ValueError('denominator snapshot must be a file under authoritative denominator root')
-  try:origin=json.loads(path.read_text(encoding='utf-8'))
+  try:origin=strict_json(path.read_text(encoding='utf-8'))
   except (OSError,ValueError) as exc:raise ValueError(f'denominator snapshot origin unreadable: {exc}') from exc
   if canonical(origin)!=canonical(snapshot):raise ValueError('denominator snapshot differs from authoritative origin bytes')
  schema=json.loads(DENOMINATOR_SCHEMA.read_text(encoding='utf-8'))
@@ -173,6 +240,21 @@ def normalize_denominator_snapshot(snapshot,works,origin_path=None,enforce_origi
  if snapshot['unit_type']!='WORK':raise ValueError('native-unit denominator reporting is pending; Work denominator cannot represent other unit types')
  missing_works=sorted(set(ids)-set(works))
  if missing_works:raise ValueError(f'denominator snapshot references missing governed Work IDs: {missing_works}')
+ if snapshot['status']=='RESOLVED':
+  scope=snapshot['scope']
+  if not isinstance(scope,dict) or set(scope)!={'claim','work_type','parent_work_id'} or scope.get('claim')!='ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER' or not isinstance(scope.get('work_type'),str) or not scope['work_type'] or not (scope.get('parent_work_id') is None or isinstance(scope.get('parent_work_id'),str) and bool(scope['parent_work_id'])):
+   raise ValueError('RESOLVED scope must select an explicit accepted authoritative Work registry roster, not a complete Mission/series universe')
+  authoritative=authoritative_work_roster()
+  accepted={wid:row for wid,row in authoritative.items() if row.get('status')=='ACCEPTED' and row.get('fixture_only') is False}
+  if not accepted:raise ValueError('no nonfixture ACCEPTED authoritative Work registry available for denominator resolution')
+  actual_head=accepted_registry_head(authoritative)
+  if snapshot['registry_head']!=actual_head:
+   raise ValueError(f'denominator registry_head does not match authoritative accepted Work roster ({actual_head})')
+  scoped_ids=sorted(wid for wid,row in accepted.items() if row.get('work_type')==scope['work_type'] and row.get('parent_work_id')==scope['parent_work_id'])
+  if not scoped_ids:raise ValueError('no ACCEPTED authoritative Works match denominator scope')
+  if ids!=scoped_ids:raise ValueError('denominator unit_ids must equal the complete authoritative accepted Work roster for the declared scope')
+  for wid in ids:
+   if canonical(works[wid])!=canonical(accepted[wid]):raise ValueError(f'denominator Work {wid} does not match ACCEPTED authoritative registry origin')
  if snapshot['status']=='RESOLVED' and snapshot['blockers']:
   raise ValueError('resolved denominator cannot retain unresolved blockers')
  if snapshot['status']=='DENOMINATOR_UNRESOLVED' and not snapshot['blockers']:
@@ -201,7 +283,7 @@ def main():
   if errors:print('COVERAGE VALIDATION FAILED');print('\n'.join('- '+e for e in errors));raise SystemExit(1)
   print('COVERAGE VALIDATION PASSED')
  else:
-  denominator=json.loads(Path(args.denominator_json).read_text(encoding='utf-8')) if args.denominator_json else None
+  denominator=strict_json(Path(args.denominator_json).read_text(encoding='utf-8')) if args.denominator_json else None
   try:report=coverage_report(records,denominator_snapshot=denominator,denominator_path=args.denominator_json,record_paths=paths)
   except ValueError as exc:raise SystemExit(str(exc)) from exc
   print(json.dumps(report,indent=2,sort_keys=True))

@@ -180,21 +180,28 @@ def build_index(catalog: Path, projection: Path | None = None, approved_receipts
                         raise ValueError(f"Contradictory {kind} provenance metadata for {identity}")
                 source_ids.add(source["source_id"])
                 work_ids.add(work["work_id"])
+                # Resolve each proof independently. A cross-Mission assertion may
+                # cite episodes from multiple series without assigning one
+                # series' episode to another or dropping later proofs.
+                proof_missions = set()
                 series = work.get("series")
                 resolved = series if series in mission_ids else title_ids.get(str(series).casefold())
                 if resolved:
-                    mission_candidates.add(resolved)
+                    proof_missions.add(resolved)
                 lineage = proof.get("work_lineage_records", [])
                 if not isinstance(lineage, list) or any(not isinstance(v, dict) for v in lineage):
                     raise ValueError(f"Invalid Work ancestry metadata for {aid}")
                 for ancestor in lineage:
                     ancestor_id = title_ids.get(str(ancestor.get("title", "")).casefold())
                     if ancestor_id:
-                        mission_candidates.add(ancestor_id)
+                        proof_missions.add(ancestor_id)
+                if len(proof_missions) > 1:
+                    raise ValueError(f"Conflicting Mission identity in Work ancestry for {aid}")
+                mission_candidates.update(proof_missions)
                 kind = {str(work.get(k)).upper() for k in ("medium", "work_type") if work.get(k)}
                 if len(kind) > 1:
                     raise ValueError(f"Conflicting Work media classifications for {aid}")
-                resolved = next(iter(mission_candidates)) if len(mission_candidates) == 1 else None
+                resolved = next(iter(proof_missions)) if proof_missions else None
                 if resolved and "EPISODE" in kind:
                     candidate_id = work["work_id"]
                     briefing_candidates.add(candidate_id)
@@ -205,7 +212,7 @@ def build_index(catalog: Path, projection: Path | None = None, approved_receipts
                     title = bounded_metadata(work.get("title"))
                     if not title:
                         raise ValueError(f"Invalid public Mission Briefing title for {candidate_id}")
-                    briefings[candidate_id] = {
+                    briefing = {
                         "id": candidate_id,
                         "mission_id": resolved,
                         "title": title,
@@ -214,8 +221,13 @@ def build_index(catalog: Path, projection: Path | None = None, approved_receipts
                         "work_id": candidate_id,
                         "admission_status": "EVIDENCED_IN_PROJECTION",
                     }
+                    previous = briefings.setdefault(candidate_id, briefing)
+                    if previous != briefing:
+                        raise ValueError(f"Contradictory Mission Briefing identity for {candidate_id}")
             mission_id = next(iter(mission_candidates)) if len(mission_candidates) == 1 else None
             briefing_id = next(iter(briefing_candidates)) if len(briefing_candidates) == 1 else None
+            if briefing_id and (not mission_id or briefings[briefing_id]["mission_id"] != mission_id):
+                briefing_id = None
             # Display a bounded scalar object value, not copyrighted passages.
             title = f"{bounded_metadata(fact.get('predicate')) or 'Assertion'} · {bounded_metadata(fact.get('subject')) or 'Unknown subject'}"
             records.append({

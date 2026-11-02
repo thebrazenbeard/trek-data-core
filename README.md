@@ -51,7 +51,7 @@ The following 12 series are in the current display catalog. This is a **series i
 | **Star Trek: Strange New Worlds** | Pike's Enterprise and its pre-Kirk exploratory voyages |
 | **Star Trek: Starfleet Academy** | Cadet training and life within Starfleet Academy |
 
-This roster follows the [official Star Trek series catalog](https://www.startrek.com/series-and-movies). Films now have a separate discovery-only view. Anthologies such as *Short Treks*, books, comics and games still require their own explicit Work classifications and source-attributed indexes; none are silently treated as television-series episodes.
+This roster follows the [official Star Trek series catalog](https://www.startrek.com/series-and-movies). Films have a separate discovery-only view. The proposed cross-medium directory preserves separate short-form, scripted-audio and literary classifications; comics and games require their own reviewed metadata lanes. None are silently treated as television-series episodes or admitted Briefings.
 
 ## Explore the Mission index
 
@@ -62,12 +62,15 @@ The [live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([
 | **Missions / Briefings / continuity records** | A deterministic catalog and only source-bound, reviewed canonical episode and assertion projections | 12 Missions; **0 admitted Briefings** and **0 accepted records** |
 | **Research Leads** | 208 candidate Wikidata items with offline receipt hashes, plus 10 publisher-listed Starfleet Academy S1 slots without claimed QIDs or webpage hashes | 218 **unverified** leads across 12 Missions; 2 Enterprise arc/umbrella holds excluded; no accepted coverage or denominator effect |
 | **Films** | 13 official directory film titles and *Star Trek: Section 31* from a separate publisher announcement | 14 **discovery-only** film candidates; no admitted film research or exhaustive film-denominator claim |
+| **Universe directory (manual Pages release)** | Filterable source-local metadata across episodes, films, shorts, one audio-series container, and a novel with four distinct ISBN editions | **470 source observations** (439 episode-related, 14 films, 15 shorts, 1 audio container, 1 novel). Some describe the same Work; **not 470 distinct Works** or a franchise census |
 
 Search the Research Leads to find candidate episode titles, Wikidata identifiers or publisher episode slots, but do not treat their presence as an audited episode list. The Paramount+ Academy guide and press site share a single publisher independence group, **not two corroborating sources**; the listing is not a verified season denominator. The separate `explorer/research-leads.json` cannot promote a candidate into a Briefing. The accepted-only `explorer/index.json` requires reviewed projection hashes and evidence-bearing Source↔Work bindings before adding nonfixture records. See the [index contract](docs/EXPLORER_INDEX.md) and [denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md).
 
 Additional **proposal-only, source-local** discovery tranches are recorded under `proposals/`: 15 DS9/Voyager/Animated Series publisher episode slots, 15 TNG/Starfleet Academy publisher references in a separately allowlisted sidecar, 65 modern-series publisher episode slots (Discovery, Picard, Lower Decks, Strange New Worlds), 126 legacy-series Season 2 publisher listing rows (TOS, TNG, DS9, Voyager, Enterprise), 10 *Short Treks* listings, 5 separately classified promotional *very Short Treks*, one *Khan* audio-series container, and one *Strange New Worlds: Ring of Fire* literary Work represented by four publisher edition/ISBN Sources. These are **not** additions to the live 218-item lead index or distinct verified episode counts; source-local references may overlap the same underlying episode. Their paths and deterministic validators are documented in the proposal manifests and [publisher discovery catalog](docs/PUBLISHER_DISCOVERY_CATALOG.md).
 
 The separate `explorer/film-catalog.json` is reproduced by `python3 tools/build_film_catalog.py --check` from the explicit [film discovery manifest](proposals/librarian/films-official-index-20261102/MANIFEST.md). Its entries provide titles and publisher locators only; the same publisher is not an independent second witness. The manifest documents a publisher date error for *The Search for Spock*, deliberately omitted from the public film index until separately reconciled.
+
+The optional [multimedia discovery directory](docs/UNIFIED_DISCOVERY_DIRECTORY.md) is a separate, reproducible source-local search index; it does not change the accepted Mission/Briefing/continuity projection. Its public availability depends on a separately reviewed and dispatched Pages release, even after source files land on main.
 
 To run the Explorer locally, from the repository root:
 

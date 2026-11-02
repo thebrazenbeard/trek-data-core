@@ -81,6 +81,20 @@ jobs:
             python3 tools/build_film_catalog.py --check
           fi
 
+      - name: Verify optional Multimedia discovery directory
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          if git cat-file -e HEAD:explorer/discovery-catalog.json 2>/dev/null || \
+             test -e explorer/discovery-catalog.json || test -L explorer/discovery-catalog.json; then
+            test -f explorer/discovery-catalog.json
+            test ! -L explorer/discovery-catalog.json
+            test ! -L tools
+            test -f tools/build_unified_discovery.py
+            test ! -L tools/build_unified_discovery.py
+            python3 tools/build_unified_discovery.py --check
+          fi
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -112,6 +126,7 @@ jobs:
             ! -path explorer/app.css \
             ! -path explorer/trek-data-core-hero.jpg \
             ! -path explorer/research-leads.json \
+            ! -path explorer/discovery-catalog.json \
             ! -path explorer/film-catalog.json -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
@@ -148,6 +163,19 @@ jobs:
             fi
           elif test -e explorer/film-catalog.json || test -L explorer/film-catalog.json; then
             echo "Refusing to deploy an uncommitted Film discovery index" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/discovery-catalog.json 2>/dev/null; then
+            test -f explorer/discovery-catalog.json
+            test ! -L explorer/discovery-catalog.json
+            expected="$(git rev-parse HEAD:explorer/discovery-catalog.json)"
+            actual="$(git hash-object explorer/discovery-catalog.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified Multimedia directory" >&2
+              exit 1
+            fi
+          elif test -e explorer/discovery-catalog.json || test -L explorer/discovery-catalog.json; then
+            echo "Refusing to deploy uncommitted Multimedia directory" >&2
             exit 1
           fi
 

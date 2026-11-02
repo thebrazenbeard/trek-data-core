@@ -22,6 +22,7 @@
   <nav class="lcars-navigation" aria-label="Explorer sections">
     <span class="navigation-label" aria-hidden="true">Archive stations</span>
     <a href="#main">Status</a>
+    <a class="navigation-primary" href="#discovery-directory">Universe directory <span id="discovery-nav-count">—</span></a>
     <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
     <a href="#films">Films <span id="film-nav-count">—</span></a>
     <a href="#missions">Missions</a>
@@ -57,6 +58,24 @@
         <div class="stat stat-candidates"><dt>Unverified leads</dt><dd id="research-top-count">—</dd></div>
         <div class="stat stat-films"><dt>Film catalog candidates</dt><dd id="film-top-count">—</dd></div>
       </dl>
+    </section>
+
+    <section id="discovery-directory" class="collection discovery-directory" aria-labelledby="discovery-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Multimedia / Source-local discoveries</p><h2 id="discovery-heading">Universe directory</h2></div>
+        <p>Browse television episode references, films, literary editions, short-form releases, and scripted audio containers together. Every row is an <strong>unverified source observation</strong>, not necessarily a distinct Work. Matching titles from different publishers remain separate until reconciled.</p>
+      </div>
+      <p class="directory-state" id="discovery-state" role="status" aria-live="polite">Checking the discovery index…</p>
+      <div class="directory-summary" id="discovery-metrics" aria-label="Discovery source-local row counts">Counts unavailable until index validation.</div>
+      <form id="discovery-filters" class="directory-filters" role="search" aria-label="Search multimedia discovery metadata" autocomplete="off">
+        <div class="field directory-search-field"><label for="discovery-query">Search discoveries</label><input id="discovery-query" type="search" name="discovery-q" placeholder="Title, publisher, source, series…" spellcheck="false"></div>
+        <div class="field"><label for="discovery-medium">Medium</label><select id="discovery-medium" name="medium"><option value="all">All media</option></select></div>
+        <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
+        <div class="filter-action"><button type="reset">Clear directory filters</button></div>
+      </form>
+      <p class="result-summary" id="discovery-summary" aria-live="polite" aria-atomic="true">Waiting for source-local records.</p>
+      <div class="directory-grid" id="discovery-list"></div>
+      <p class="empty-state" id="discovery-empty" hidden>No source-local observations match these filters.</p>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">

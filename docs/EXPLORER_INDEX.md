@@ -94,3 +94,24 @@ content. All entries remain `UNVERIFIED_METADATA`, `DISCOVERY_ONLY`, and have
 Missions, no film is admitted as an episode Briefing, and the entries are not
 an exhaustive franchise denominator. The underlying proposal manifest records
 the conflicting publisher year metadata for *The Search for Spock*.
+
+## Cross-medium discovery index is independent of the admitted projection
+
+`explorer/discovery-catalog.json` is a third optional candidate-only artifact,
+derived by `python3 tools/build_unified_discovery.py --check`. Unlike the
+governed `index.json`, its rows deliberately retain **source-local** identity.
+The expanded 470 rows consist of 439 episode-related observations (many
+potentially overlapping), 14 films, 15 separate short-form releases, one
+scripted audio-series container, and one proposed novel with four editions.
+There is no sum labeled “known universe Works” and no inferred completeness.
+
+The generator checks input derivative bytes against their owning builders,
+validates the DS9/Voyager/TAS, modern-series, and legacy season-two CSV SHA
+receipts and reviewed
+publisher proposals, then
+includes byte digests in the resulting artifact. The browser exposes title,
+source-group and medium filters, never promotes discovery into a Briefing or
+an accepted continuity record, and validates link origins before display.
+GitHub Pages must verify this optional artifact deterministically and allow
+only its exact committed bytes. See
+[the multimedia directory contract](UNIFIED_DISCOVERY_DIRECTORY.md).

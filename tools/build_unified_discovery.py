@@ -1,0 +1,330 @@
+#!/usr/bin/env python3
+"""Deterministic, source-local multimedia discovery index (never admission).
+
+This display-only derivative intentionally counts *source observations*, not
+distinct canonical Works or franchise-wide coverage. Cross-source rows are not
+silently reconciled even if their titles resemble one another.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import io
+import json
+import re
+import sys
+from pathlib import Path
+from urllib.parse import urlsplit
+
+if __package__:
+    from . import build_film_catalog as films
+    from . import build_literary_candidates as literature
+    from . import build_legacy_s2_discovery as legacy
+    from . import build_publisher_catalog as publisher
+    from . import build_research_leads as research
+    from . import build_shorts_audio_candidates as shorts
+    from . import validate_publisher_episode_roster as roster
+else:
+    import build_film_catalog as films
+    import build_literary_candidates as literature
+    import build_legacy_s2_discovery as legacy
+    import build_publisher_catalog as publisher
+    import build_research_leads as research
+    import build_shorts_audio_candidates as shorts
+    import validate_publisher_episode_roster as roster
+
+
+OUTPUT = Path("explorer/discovery-catalog.json")
+INPUTS = (
+    Path("explorer/film-catalog.json"),
+    Path("explorer/research-leads.json"),
+    Path("proposals/discovery/publisher-catalog.json"),
+    Path("proposals/librarian/ring-of-fire-editions-20261102/records.json"),
+)
+EPISODES = Path("proposals/discovery/ds9-voy-episode-slots-20261102")
+ROSTER_BATCHES = (
+    (EPISODES, ("ds9", "voy", "tas"), "roster", 15),
+    (Path("proposals/discovery/modern-paramount-season1-20261102"),
+     ("dis", "pic", "ld", "snw"), "modern-s1", 45),
+    (Path("proposals/discovery/modern-paramount-season2-first5-20261102"),
+     ("dis", "pic", "ld", "snw"), "modern-s2", 20),
+)
+SHORTS_INPUT = Path("proposals/discovery/shorts-audio-20261102/records.json")
+MEDIUMS = ("EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO")
+KINDS = ("WIKIDATA_EPISODE", "PUBLISHER_EPISODE_SLOT", "PUBLISHER_REFERENCE",
+         "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "SCRIPTED_SHORT",
+         "PROMOTIONAL_ANIMATION", "SCRIPTED_AUDIO_SERIES")
+ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com", "www.simonandschuster.com"}
+
+
+def _checked_title(value: object) -> str:
+    if (not isinstance(value, str) or not 1 <= len(value) <= 200 or
+            value != value.strip() or any(ord(char) < 32 for char in value)):
+        raise ValueError("invalid discovery display title")
+    return value
+
+
+def _checked_url(value: object) -> str | None:
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise ValueError("discovery locator must be a URL or null")
+    parsed = urlsplit(value)
+    if (parsed.scheme != "https" or parsed.netloc not in ALLOWED_HOSTS or
+            parsed.username or parsed.password or parsed.query or parsed.fragment or
+            not parsed.path.startswith("/") or ".." in parsed.path):
+        raise ValueError("discovery locator outside approved source domains")
+    return value
+
+
+def _document(root: Path, path: Path, expected: bytes | None = None) -> tuple[dict, str]:
+    raw = research.safe_read(root, path, max_bytes=1_500_000)
+    if expected is not None and raw != expected:
+        raise ValueError(f"stale discovery source derivative: {path}")
+    data = research._strict_json(raw, str(path))
+    if not isinstance(data, dict):
+        raise ValueError(f"discovery source must be an object: {path}")
+    return data, hashlib.sha256(raw).hexdigest()
+
+
+def _row(ident: str, medium: str, kind: str, title: str, context: str,
+         group: str, origin: str, locator: str | None, details: tuple[str, ...] = ()) -> dict:
+    if not re.fullmatch(r"[a-z0-9:_.-]{3,210}", ident) or medium not in MEDIUMS or kind not in KINDS:
+        raise ValueError("invalid discovery local identifier or kind")
+    if not isinstance(group, str) or not 3 <= len(group) <= 120:
+        raise ValueError("invalid source lineage")
+    if not isinstance(context, str) or not 1 <= len(context) <= 160:
+        raise ValueError("invalid display context")
+    if len(details) > 8 or any(not isinstance(d, str) or len(d) > 150 for d in details):
+        raise ValueError("invalid discovery detail list")
+    return {
+        "row_id": ident, "medium": medium, "candidate_kind": kind,
+        "title": _checked_title(title), "context": context,
+        "source_group": group, "source_input": origin,
+        "source_locator": _checked_url(locator), "details": list(details),
+        "verification_status": "UNVERIFIED_METADATA", "identity_scope": "SOURCE_LOCAL",
+        "coverage_effect": "NONE", "admission_effect": "NONE",
+    }
+
+
+def build_bytes(root: Path) -> bytes:
+    sources = {}
+    for path, builder in (
+        (INPUTS[0], films.build(root)),
+        (INPUTS[1], research.build_bytes(root)),
+        (INPUTS[2], publisher.build_bytes(root)),
+        (INPUTS[3], literature.build(root)),
+        (SHORTS_INPUT, shorts.build(root)),
+    ):
+        value, digest = _document(root, path, builder)
+        sources[str(path)] = digest
+        if str(path) == str(INPUTS[0]): film_catalog = value
+        if str(path) == str(INPUTS[1]): leads_catalog = value
+        if str(path) == str(INPUTS[2]): publisher_catalog = value
+        if str(path) == str(INPUTS[3]): novel_catalog = value
+        if path == SHORTS_INPUT: shorts_catalog = value
+
+    if (film_catalog.get("data_status") != "DISCOVERY_ONLY" or
+            film_catalog.get("coverage_effect") != "NONE" or
+            film_catalog.get("film_count") != len(film_catalog.get("films", []))):
+        raise ValueError("film metadata not discovery-only")
+    if (leads_catalog.get("data_status") != "CANDIDATE_DISCOVERY_ONLY" or
+            leads_catalog.get("coverage_effect") != "NONE" or
+            leads_catalog.get("lead_count") != len(leads_catalog.get("leads", []))):
+        raise ValueError("research leads not discovery-only")
+    if (publisher_catalog.get("status") != "UNVERIFIED_PUBLISHER_DISCOVERY_ONLY" or
+            publisher_catalog.get("candidate_row_count") != len(publisher_catalog.get("rows", []))):
+        raise ValueError("publisher sidecar not discovery-only")
+    if (novel_catalog.get("proposal_only") is not True or
+            novel_catalog.get("coverage_effect") != "NONE" or
+            novel_catalog.get("accepted_work_effect") != "NONE"):
+        raise ValueError("literary work not proposal-only")
+
+    entries = []
+    for idx, lead in enumerate(leads_catalog["leads"]):
+        kind = lead["source_type"]
+        if kind not in ("WIKIDATA_METADATA", "PUBLISHER_EPISODE_SLOT_METADATA"):
+            raise ValueError("unexpected episode lead lineage")
+        locator = ("https://www.wikidata.org/wiki/" + lead["episode_qid"]
+                   if kind == "WIKIDATA_METADATA" else lead["source_locator"])
+        source = "WIKIDATA_EPISODE" if kind == "WIKIDATA_METADATA" else "PUBLISHER_EPISODE_SLOT"
+        slot = (f" S{lead['season_number']}E{lead['episode_number']}"
+                if kind != "WIKIDATA_METADATA" else "")
+        entries.append(_row(f"lead:{idx:04d}", "EPISODE", source,
+                            lead["episode_label"], lead["mission_id"].upper() + slot,
+                            lead["independence_group"], str(INPUTS[1]), locator))
+
+    for idx, source in enumerate(publisher_catalog["rows"]):
+        episode = (f" S{source['season_number']}E{source['episode_number']}"
+                   if source["episode_number"] is not None else " · episode unresolved")
+        entries.append(_row(f"publisher:{idx:04d}", "EPISODE", "PUBLISHER_REFERENCE",
+                            source["proposed_title"], source["mission_id"].upper() + episode,
+                            source["independence_group"], str(INPUTS[2]), source["source_locator"]))
+
+    catalog = research._strict_json(research.safe_read(root, Path("registry/mission_catalog.json")), "mission catalog")
+    for folder, missions, batch_id, expected in ROSTER_BATCHES:
+        added = 0
+        for mission in missions:
+            bundle_path = folder / mission / "bundle.json"
+            csv_path = folder / f"{mission}-observed-slots.csv"
+            receipt_path = folder / f"{mission}-observation.json"
+            bundle, bundle_digest = _document(root, bundle_path)
+            receipt, receipt_digest = _document(root, receipt_path)
+            raw = research.safe_read(root, csv_path, max_bytes=128_000)
+            if hashlib.sha256(raw).hexdigest() != receipt.get("csv_sha256"):
+                raise ValueError("publisher observation CSV digest mismatch")
+            source_rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8"))))
+            if (not source_rows or len(source_rows) != len(bundle.get("episode_slots", [])) or
+                    any(set(item) != {"season", "episode_number", "title"} for item in source_rows)):
+                raise ValueError("publisher slot receipt shape mismatch")
+            roster.validate(bundle, catalog)
+            for idx, (observed, slot) in enumerate(zip(source_rows, bundle["episode_slots"])):
+                if (int(observed["season"]) != slot["season"] or
+                        int(observed["episode_number"]) != slot["episode_number"] or
+                        observed["title"] != slot["title"]):
+                    raise ValueError("publisher slot CSV and bundle disagree")
+                ident = (f"roster:{mission}:{idx:03d}" if batch_id == "roster" else
+                         f"roster:{batch_id}:{mission}:{idx:03d}")
+                entries.append(_row(ident, "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                    slot["title"], f"{mission.upper()} S{slot['season']}E{slot['episode_number']}",
+                                    bundle["observation"]["independence_group"], str(bundle_path),
+                                    bundle["observation"]["primary_locator"]))
+                added += 1
+            sources[str(bundle_path)] = bundle_digest
+            sources[str(receipt_path)] = receipt_digest
+            sources[str(csv_path)] = hashlib.sha256(raw).hexdigest()
+        if added != expected:
+            raise ValueError(f"unexpected reviewed episode source-row count in {batch_id}")
+
+    legacy_index_path = legacy.BASE / "index.json"
+    legacy_index, legacy_digest = _document(root, legacy_index_path)
+    sources[str(legacy_index_path)] = legacy_digest
+    if (legacy_index.get("proposal_status") != "DISCOVERY_ONLY" or
+            legacy_index.get("admission_effect") != "NONE" or
+            legacy_index.get("coverage_effect") != "NONE" or
+            legacy_index.get("denominator_effect") != "NONE" or
+            legacy_index.get("publisher") != "Paramount+" or
+            legacy_index.get("independence_group") != "publisher:paramount" or
+            len(legacy_index.get("source_pages", [])) != len(legacy.SLUGS)):
+        raise ValueError("legacy source observations not bounded candidate-only")
+    legacy_count = 0
+    for mission, page in zip(legacy.SLUGS, legacy_index["source_pages"]):
+        if (page.get("mission_id") != mission or
+                page.get("official_page") != legacy.official_url(mission) or
+                not re.fullmatch(r"[a-f0-9]{64}", str(page.get("source_body_sha256"))) or
+                type(page.get("source_body_bytes")) is not int or
+                not 10_000 <= page["source_body_bytes"] <= 3_000_000):
+            raise ValueError("legacy page source receipt not pinned to official episode listing")
+        csv_path = legacy.BASE / f"{mission}.csv"
+        bundle_path = legacy.BASE / mission / "bundle.json"
+        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+        if hashlib.sha256(csv_raw).hexdigest() != page.get("observation_csv_sha256"):
+            raise ValueError("legacy CSV observation digest mismatch")
+        rows = legacy.parse_csv(csv_raw)
+        bundle, bundle_digest = _document(root, bundle_path, legacy.serialized(legacy.bundle(mission, rows)))
+        roster.validate(bundle, catalog)
+        if page.get("listed_slot_count") != len(rows) or bundle["listed_slot_count"] != len(rows):
+            raise ValueError("legacy listed episode count inconsistent")
+        if bundle["observation"]["primary_locator"] != page["official_page"]:
+            raise ValueError("legacy bundle locator disagrees with source receipt")
+        for idx, (season, episode, title) in enumerate(rows):
+            entries.append(_row(f"legacy:s2:{mission}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                title, f"{mission.upper()} S{season}E{episode}",
+                                legacy_index["independence_group"], str(bundle_path),
+                                page["official_page"], ("Official publisher season-two listing",)))
+            legacy_count += 1
+        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+        sources[str(bundle_path)] = bundle_digest
+    if legacy_count != 126:
+        raise ValueError("legacy tranche changed from reviewed 126 source-local listings")
+
+    if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
+            shorts_catalog.get("admission_effect") != "NONE" or
+            shorts_catalog.get("coverage_effect") != "NONE" or
+            shorts_catalog.get("universe_complete") is not False or
+            shorts_catalog.get("short_candidate_count") != 15 or
+            shorts_catalog.get("container_count") != 3):
+        raise ValueError("short-form metadata not discovery-only")
+    for item in shorts_catalog["short_candidates"]:
+        kind = ("SCRIPTED_SHORT" if item["parent_candidate_id"] == "short-treks"
+                else "PROMOTIONAL_ANIMATION" if item["parent_candidate_id"] == "very-short-treks"
+                else None)
+        if kind is None or item["verification_status"] != "UNVERIFIED_METADATA":
+            raise ValueError("unexpected short-form episode promotion")
+        entries.append(_row("short:" + item["candidate_id"], "SHORT_FORM", kind,
+                            item["title"], item["parent_candidate_id"] + " · " + item["source_local_slot"],
+                            shorts_catalog["publisher_independence_group"], str(SHORTS_INPUT),
+                            item["source_url"], ("Official episode slot" if kind == "SCRIPTED_SHORT"
+                                                  else "Announced promotional release order",)))
+    audio = [item for item in shorts_catalog["container_candidates"] if item["medium"] == "SCRIPTED_AUDIO"]
+    if (len(audio) != 1 or audio[0]["candidate_id"] != "khan-audio" or
+            audio[0]["work_type"] != "SCRIPTED_AUDIO_SERIES" or
+            audio[0]["verification_status"] != "UNVERIFIED_METADATA"):
+        raise ValueError("scripted-audio container is not a single source-local candidate")
+    audio_source = {source["id"]: source for source in shorts_catalog["sources"]}[audio[0]["source_id"]]
+    entries.append(_row("audio:" + audio[0]["candidate_id"], "AUDIO", "SCRIPTED_AUDIO_SERIES",
+                        audio[0]["title"], "Scripted audio-series container · zero admitted episodes",
+                        shorts_catalog["publisher_independence_group"], str(SHORTS_INPUT),
+                        audio_source["url"]))
+
+    for film in film_catalog["films"]:
+        kind = "STREAMING_FILM" if film["work_type"] == "STREAMING_ORIGINAL_FILM" else "FEATURE_FILM"
+        entries.append(_row("film:" + film["id"], "FILM", kind, film["title"],
+                            "Star Trek films", film["source_group"], str(INPUTS[0]), film["source_locator"]))
+
+    work = novel_catalog["work"]
+    editions = novel_catalog["edition_candidates"]
+    if len(novel_catalog["sources"]) != len(editions) or len(editions) != 4:
+        raise ValueError("literary edition count inconsistent")
+    source_by_id = {source["source_id"]: source for source in novel_catalog["sources"]}
+    if len(source_by_id) != len(editions):
+        raise ValueError("literary source identifiers duplicated")
+    details = tuple(f"{item['format'].replace('_', ' ').title()} · ISBN {item['isbn13']}"
+                    for item in editions)
+    for edition in editions:
+        if edition["work_id"] != work["work_id"] or edition["source_id"] not in source_by_id:
+            raise ValueError("literary source edition binding unresolved")
+    entries.append(_row("literature:" + work["work_id"], "LITERATURE", "NOVEL",
+                        work["title"], f"{work['creator']} · {len(editions)} publisher editions",
+                        novel_catalog["source_group"], str(INPUTS[3]),
+                        source_by_id[editions[0]["source_id"]]["locator"], details))
+
+    identities = [r["row_id"] for r in entries]
+    if len(set(identities)) != len(identities):
+        raise ValueError("duplicate source-local index identifier")
+    counts = {medium: sum(row["medium"] == medium for row in entries) for medium in MEDIUMS}
+    output = {
+        "schema_version": "1.0.0", "data_status": "DISCOVERY_ONLY",
+        "admission_effect": "NONE", "coverage_effect": "NONE",
+        "denominator_status": "NOT_ESTABLISHED", "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
+        "row_count": len(entries), "counts_by_medium": counts,
+        "source_digests": [{"path": path, "sha256": digest} for path, digest in sorted(sources.items())],
+        "rows": entries,
+    }
+    return (json.dumps(output, sort_keys=True, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args(argv)
+    try:
+        blob = build_bytes(args.repo_root)
+        if args.check:
+            existing = research.safe_read(args.repo_root, OUTPUT, max_bytes=1_500_000)
+            if existing != blob:
+                raise ValueError("public discovery catalog differs from deterministic source")
+        else:
+            publisher.safe_write(args.repo_root, OUTPUT, blob)
+    except (OSError, ValueError, roster.Rejected, UnicodeError) as exc:
+        print(f"PUBLIC_DISCOVERY_REJECTED: {exc}", file=sys.stderr)
+        return 1
+    print(f"PUBLIC_DISCOVERY_OK: {len(json.loads(blob)['rows'])} source-local metadata rows")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

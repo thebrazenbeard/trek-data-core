@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -53,13 +53,15 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
   nodes.get('kind-filter').value = 'all';
   nodes.get('status-filter').value = 'all';
   nodes.get('research-mission').value = 'all';
+  nodes.get('discovery-medium').value = 'all';
+  nodes.get('discovery-lineage').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -77,6 +79,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
+    if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
     assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(SCRIPT, {
@@ -243,6 +246,64 @@ test('separate official film discovery remains unadmitted and strictly source-sc
   duplicate.films[1].source_locator = duplicate.films[0].source_locator;
   const deduped = await runWithIndex(catalog, 200, null, 404, {}, duplicate, 200);
   assert.equal(deduped.get('film-top-count').textContent, '—');
+});
+
+test('multimedia source-local directory is independently searchable, paged, and never admitted', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '470');
+  assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 439/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Literary Works: 1/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Short-form releases: 15/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Audio containers: 1/);
+  assert.match(nodes.get('discovery-list').textContent, /Data receipt: explorer\/research-leads\.json/);
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 470 cards on load');
+  nodes.get('discovery-list').children.at(-1).fire('click');
+  assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
+  assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
+  assert.equal(nodes.get('discovery-list').children[40].attributes.get('tabindex'), '-1', 'new directory row is programmatically focusable');
+  nodes.get('discovery-medium').value = 'SHORT_FORM';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 15);
+  assert.match(nodes.get('discovery-list').textContent, /Announced promotional release order/);
+  nodes.get('discovery-medium').value = 'AUDIO';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 1);
+  assert.match(nodes.get('discovery-list').textContent, /Khan/);
+  nodes.get('discovery-medium').value = 'LITERATURE';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 1);
+  assert.match(nodes.get('discovery-list').textContent, /Ring of Fire/);
+  assert.match(nodes.get('discovery-list').textContent, /ISBN 9781668095898/);
+  nodes.get('discovery-medium').value = 'all';
+  nodes.get('discovery-query').value = 'Section 31';
+  nodes.get('discovery-filters').fire('input');
+  assert.equal(nodes.get('discovery-list').children.length, 1);
+  assert.match(nodes.get('discovery-list').textContent, /Section 31/);
+  assert.equal(nodes.get('mission-count').textContent, '2', 'directory is segregated from Mission catalog');
+});
+
+test('untrusted directory cannot forge admission or publisher navigation', async () => {
+  const catalogData = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const accepted = structuredClone(catalogData);
+  accepted.rows[0].admission_effect = 'ACCEPTED';
+  const blocked = await runWithIndex(catalog, 200, null, 404, {}, null, 404, accepted, 200);
+  assert.equal(blocked.get('discovery-nav-count').textContent, '—');
+  assert.match(blocked.get('discovery-state').textContent, /rejected/);
+  const forged = structuredClone(catalogData);
+  forged.rows[0].source_locator = 'https://www.startrek.com@evil.invalid/bogus';
+  const noLink = await runWithIndex(catalog, 200, null, 404, {}, null, 404, forged, 200);
+  assert.equal(noLink.get('discovery-nav-count').textContent, '—');
+  const duplicate = structuredClone(catalogData);
+  duplicate.rows[1].row_id = duplicate.rows[0].row_id;
+  const noDuplicate = await runWithIndex(catalog, 200, null, 404, {}, null, 404, duplicate, 200);
+  assert.equal(noDuplicate.get('discovery-nav-count').textContent, '—');
+  const absent = await runWithIndex(null, 404, null, 404, {}, null, 404, catalogData, 200);
+  assert.equal(absent.get('discovery-nav-count').textContent, '470', 'discovery does not depend on governed Mission index');
+  assert.equal(absent.get('mission-count').textContent, '—');
 });
 
 test('Research Leads load separately from admitted Mission Briefings and stay searchable', async () => {
@@ -453,6 +514,9 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="film-list"/);
   assert.match(html, /id="film-filters"[^>]*aria-label="Search film discovery titles"/);
   assert.match(html, /id="film-state"[^>]*role="status"/);
+  assert.match(html, /id="discovery-directory"/);
+  assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);
+  assert.match(html, /for="discovery-lineage">Source group<\/label>/, 'source-group labels do not imply independent publishers');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);

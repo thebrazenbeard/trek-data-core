@@ -35,8 +35,10 @@ DC_NS = {
 }
 FIELDS = ("title", "creator", "identifier", "publisher", "date", "language")
 DOCTYPE = re.compile(
-    rb'<!DOCTYPE\s+[a-zA-Z][\w.-]*\s+(?:PUBLIC\s+"[^"<>]*"\s+"[^"<>]*"|SYSTEM\s+"[^"<>]*")\s*>',
-    flags=re.IGNORECASE | re.DOTALL,
+    rb'<!DOCTYPE\s+package\s+'
+    rb'(?:PUBLIC\s+"\+//ISBN 0-9673008-1-9//DTD OEB 1\.0\.1 Package//EN"\s+|SYSTEM\s+)'
+    rb'"http://openebook\.org/dtds/oeb-1\.0\.1/oebpkg101\.dtd"\s*>',
+    flags=re.IGNORECASE,
 )
 
 

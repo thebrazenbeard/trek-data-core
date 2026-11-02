@@ -80,6 +80,13 @@ class PrivateOpfIntakeTests(unittest.TestCase):
         with self.assertRaisesRegex(mod.IntakeError, "entity declarations"):
             mod.opf_metadata(danger)
 
+    def test_unknown_simple_external_doctype_is_not_silently_approved(self):
+        xml = (b'<!DOCTYPE package SYSTEM "file:///synthetic-unknown.dtd">'
+               b'<package xmlns:dc="http://purl.org/dc/elements/1.1/">'
+               b'<metadata><dc:title>Candidate</dc:title></metadata></package>')
+        with self.assertRaisesRegex(mod.IntakeError, "unsupported document type"):
+            mod.opf_metadata(xml)
+
     def test_utf16_utf32_entity_declaration_cannot_bypass_dtd_check(self):
         for encoding in ("UTF-16", "UTF-32"):
             xml = (f'''<?xml version="1.0" encoding="{encoding}"?>

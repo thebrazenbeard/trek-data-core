@@ -247,12 +247,7 @@
         const firstNewCard = count;
         visibleResearchLimit += RESEARCH_PAGE_SIZE;
         renderResearch();
-        // The prior button is removed on re-render; focus the first newly added card.
-        const target = byId('research-list').children[firstNewCard];
-        if (target) {
-          target.setAttribute('tabindex', '-1');
-          target.focus();
-        }
+        focusNewPage(byId('research-list'), firstNewCard);
       });
       container.append(more);
     }
@@ -319,6 +314,16 @@
     }
   }
 
+  // Pagination recreates its button on each render. Give keyboard and screen
+  // reader users a stable next reading position instead of losing focus when
+  // the formerly focused Show next button disappears from the document.
+  function focusNewPage(container, firstNewCard) {
+    const target = container.children[firstNewCard];
+    if (!target) return;
+    target.setAttribute('tabindex', '-1');
+    target.focus();
+  }
+
   function showList(sectionId, listId, emptyId, items, makeCard, enabled) {
     const section = byId(sectionId);
     section.hidden = !enabled;
@@ -333,8 +338,10 @@
       const more = el('button', 'load-more', `Show next ${Math.min(PAGE_SIZE, items.length - count)} of ${items.length} ${sectionId}`);
       more.type = 'button';
       more.addEventListener('click', () => {
+        const firstNewCard = count;
         visibleLimits[sectionId] += PAGE_SIZE;
         render();
+        focusNewPage(byId(listId), firstNewCard);
       });
       container.append(more);
     }

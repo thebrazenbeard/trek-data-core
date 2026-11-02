@@ -39,15 +39,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 874, "FILM": 14, "LITERATURE": 1,
+            "EPISODE": 971, "FILM": 14, "LITERATURE": 1,
             "SHORT_FORM": 15, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 905)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1002)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 101)
+        self.assertEqual(len(catalog["source_digests"]), 112)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -59,7 +59,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                  for kind in discovery.KINDS}
         self.assertEqual(kinds, {
             "WIKIDATA_EPISODE": 208,
-            "PUBLISHER_EPISODE_SLOT": 651,
+            "PUBLISHER_EPISODE_SLOT": 748,
             "PUBLISHER_REFERENCE": 15,
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
@@ -107,6 +107,19 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertIn("DS9 S4E1", ds9_contexts)
         self.assertNotIn("DS9 S4E2", ds9_contexts)
         self.assertIn("DS9 S4E3", ds9_contexts)
+        season5 = [r for r in rows if r["row_id"].startswith("publisher:s5:")]
+        self.assertEqual(len(season5), 97)
+        for mission, count in (("tng", 26), ("ds9", 26), ("voy", 25),
+                               ("dis", 10), ("ld", 10)):
+            observed = [r for r in season5 if r["row_id"].startswith(f"publisher:s5:{mission}:")]
+            self.assertEqual(len(observed), count)
+            self.assertTrue(all(f"{mission.upper()} S5E" in r["context"] for r in observed))
+            self.assertTrue(all(r["source_group"] == "publisher:paramount" for r in observed))
+        voy_s5_contexts = {r["context"] for r in season5 if r["row_id"].startswith("publisher:s5:voy:")}
+        self.assertIn("VOY S5E15", voy_s5_contexts)
+        self.assertNotIn("VOY S5E16", voy_s5_contexts)
+        self.assertIn("VOY S5E17", voy_s5_contexts)
+        self.assertFalse(any(r["row_id"].startswith("publisher:s5:ent:") for r in season5))
         self.assertEqual(len([r for r in rows if r["medium"] == "AUDIO"]), 1,
                          "one container, no invented audio episodes")
 

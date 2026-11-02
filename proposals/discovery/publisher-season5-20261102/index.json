@@ -1,0 +1,53 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 26,
+      "mission_id": "tng",
+      "observation_csv_sha256": "e3ef73cea98cc7f737715e72bb7f514b32963be21934e02b6a93b2bfbb431da7",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "source_body_bytes": 317065,
+      "source_body_sha256": "8545f8456f527c4c253c8ee7f3a4ad51991e42e74faf4591de536a19bbe78644"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "dbb8d35ab01d42b53223a37516993e3266aaf22a39e658a180549d57d42eab88",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "source_body_bytes": 316995,
+      "source_body_sha256": "ca9e0fde0a5ba5988f1c10182748c613643073505edc375838cff0375d38019a"
+    },
+    {
+      "listed_slot_count": 25,
+      "mission_id": "voy",
+      "observation_csv_sha256": "ac8babc95139f223f9de8fa15a821c95a3ee9b204bc035b8f8025b086e999d2a",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "source_body_bytes": 313249,
+      "source_body_sha256": "20a6b7b8af5ec885f75ea9a0460c7dba6fb63623cee3ff63a7d3f6b4788eac92"
+    },
+    {
+      "listed_slot_count": 10,
+      "mission_id": "dis",
+      "observation_csv_sha256": "da53f8a328ea0cc838f9f560b971846fe0d8bc58aeb478b724af25874e267419",
+      "official_page": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "source_body_bytes": 273172,
+      "source_body_sha256": "e10b0ae226ab3f3a7e1cc6bf9bfadff89c05b098cb63467f006121b9d8b92027"
+    },
+    {
+      "listed_slot_count": 10,
+      "mission_id": "ld",
+      "observation_csv_sha256": "500b9c1498c2fb493918d356f4c47ae31eba3c3554ac80ea48db356cb0be1d93",
+      "official_page": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "source_body_bytes": 271253,
+      "source_body_sha256": "0e0deae34aec0e5745d800701b68cf97272877ab08d50212543d47e1f36f2242"
+    }
+  ]
+}

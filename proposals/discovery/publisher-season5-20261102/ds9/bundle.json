@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S5-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Apocalypse Rising"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Ship"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Looking for Par'mach in All the Wrong Places"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "...Nor The Battle To The Strong"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Assignment"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Trials and Tribble-ations"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Let He Who Is Without Sin..."
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Things Past"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Ascent"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rapture"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Darkness and the Light"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Begotten"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "For the Uniform"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "In Purgatory's Shadow"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "By Inferno's Light"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Doctor Bashir, I Presume"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Simple Investigation"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Business As Usual"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ties of Blood and Water"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ferengi Love Songs"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Soldiers of the Empire"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Children of Time"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Blaze of Glory"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Empok Nor"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "In the Cards"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 5,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Call to Arms"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

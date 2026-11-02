@@ -1,0 +1,61 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 26,
+      "mission_id": "tng",
+      "observation_csv_sha256": "709317afb74c9cb6ca1fe2bcf3788ed6ed1449b3437fab556ab46091cae237a2",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "source_body_bytes": 316610,
+      "source_body_sha256": "0cc73489140c6427a0cf0f608483d6d0aa07671596d31e4be6e96dcf285dab95"
+    },
+    {
+      "listed_slot_count": 25,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "2cfd62eef5163f76b521558d06356584166b0d2fb3048ae346754083a3adef0e",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "source_body_bytes": 314852,
+      "source_body_sha256": "3bf6ffc741f20c5a535beed93705cd87a42fcb075d624672c8ea42b10c172554"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "voy",
+      "observation_csv_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "source_body_bytes": 316196,
+      "source_body_sha256": "8bf2dc463f38cfe4b935eec49fb836b960f224d4eca2af89720a9ad781e62d9c"
+    },
+    {
+      "listed_slot_count": 22,
+      "mission_id": "ent",
+      "observation_csv_sha256": "f5b5eff3d35abe1ca7c5b80b4a8d9d25e16a42f7c53d6b86bc7b2a8f79929d82",
+      "official_page": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "source_body_bytes": 300790,
+      "source_body_sha256": "c76f61bea27b48f3b4cb4df9b92efbfcbb4f5436271247e27b6a03c5f99ede33"
+    },
+    {
+      "listed_slot_count": 13,
+      "mission_id": "dis",
+      "observation_csv_sha256": "4d4f241cdb1f97b7d001aa7b47f9e6f5f494a9141a1aeb56a3cb5b12893baf2e",
+      "official_page": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "source_body_bytes": 281855,
+      "source_body_sha256": "afa40cc237ac513993d8d06a43b3bcbd391a809e7454172bef2f869c53d5eb00"
+    },
+    {
+      "listed_slot_count": 10,
+      "mission_id": "ld",
+      "observation_csv_sha256": "7144e93710b7432b369ed4e65f603fe7cdfde67f58fb69679caadc528da523f4",
+      "official_page": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "source_body_bytes": 271612,
+      "source_body_sha256": "d0ee58c66fa1318fb8b1a3bb5c727c8b0f2a160ddded1889f1ae8706c766d47a"
+    }
+  ]
+}

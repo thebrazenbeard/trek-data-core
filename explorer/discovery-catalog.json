@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 752,
+    "EPISODE": 874,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 783,
+  "row_count": 905,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -12087,6 +12087,2080 @@
     },
     {
       "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Best Of Both Worlds, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Family",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Brothers",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Suddenly Human",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Remember Me",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Legacy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Reunion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Future Imperfect",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Final Mission",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Loss",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Data's Day",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Wounded",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Devil's Due",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Clues",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "First Contact",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Galaxy's Child",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Night Terrors",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Identity Crisis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Nth Degree",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Qpid",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Drumhead",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Half a Life",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Host",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "The Mind's Eye",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "In Theory",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S4E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:tng:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+      "title": "Redemption, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "The Way Of The Warrior",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "The Visitor",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Hippocratic Oath",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Indiscretion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Rejoined",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Starship Down",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Little Green Men",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "The Sword Of Kahless",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Our Man Bashir",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Home Front",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Paradise Lost",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Crossfire",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Return To Grace",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Sons Of Mogh",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Bar Association",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Accession",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Rules Of Engagement",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Hard Time",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Shattered Mirror",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "The Muse",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "For The Cause",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "To The Death",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "The Quickening",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Body Parts",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S4E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ds9:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+      "title": "Broken Link",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Scorpion, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "The Gift",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Day Of Honor",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Nemesis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Revulsion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "The Raven",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Scientific Method",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Year Of Hell, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Year Of Hell, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Random Thoughts",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Concerning Flight",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Mortal Coil",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Waking Moment's",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Message In A Bottle",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Hunters",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Prey",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Retrospect",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Killing Game, The, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Killing Game, The, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Vis A Vis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "The Omega Directive",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Unforgettable",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Living Witness",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Demon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "One",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S4E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:voy:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "title": "Hope And Fear",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Storm Front, Pt. 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Storm Front, Pt. 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Home",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Borderland",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Cold Station 12",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "The Augments",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "The Forge",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Awakening",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Kir'Shara",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Daedalus",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Observer Effect",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Babel One",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "United",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "The Aenar",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Affliction",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Divergence",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Bound",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "In a Mirror, Darkly, Pt. 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "In A Mirror, Darkly, Pt 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Demons",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "Terra Prime",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S4E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ent:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/4/",
+      "title": "These Are the Voyages",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Kobayashi Maru",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Anomaly",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Choose to Live",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "All Is Possible",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "The Examples",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Stormy Weather",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "...But to Connect",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "All In",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Rubicon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "The Galactic Barrier",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Rosetta",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Species Ten-C",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S4E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:dis:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+      "title": "Coming Home",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Twovix",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "I Have No Bones Yet I Must Flee",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "In the Cradle of Vexilon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Something Borrowed, Something Green",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Empathalogical Fallacies",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Parth Ferengi's Heart Place",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "A Few Badgeys More",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Caves",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "The Inner Fight",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S4E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-4 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s4:ld:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+      "title": "Old Friends, New Planets",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
       "candidate_kind": "SCRIPTED_SHORT",
       "context": "short-treks · S1E1",
       "coverage_effect": "NONE",
@@ -12931,6 +15005,58 @@
     {
       "path": "proposals/discovery/publisher-catalog.json",
       "sha256": "ff08f8a8be60151f98d37be43441ad107097e33a03a978fd48525db40cfb3e11"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/dis.csv",
+      "sha256": "4d4f241cdb1f97b7d001aa7b47f9e6f5f494a9141a1aeb56a3cb5b12893baf2e"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/dis/bundle.json",
+      "sha256": "f0e6a771e7f4ce7b07123355ac9e9314072317a92f5f714cccf1f4a3860ce2e5"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ds9.csv",
+      "sha256": "2cfd62eef5163f76b521558d06356584166b0d2fb3048ae346754083a3adef0e"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ds9/bundle.json",
+      "sha256": "9816367fe37a2494f0c79b6767aa5f10b6210cfede6997f9141c4eececdb9472"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ent.csv",
+      "sha256": "f5b5eff3d35abe1ca7c5b80b4a8d9d25e16a42f7c53d6b86bc7b2a8f79929d82"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ent/bundle.json",
+      "sha256": "15dcc53ab83df5cf0dcf602a6938588b290c16217c0e36fb0375489b077c0e17"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/index.json",
+      "sha256": "f29e5bda97ea63a85c3a0fa4730238ca3f67535685370732f87fbb4a20977346"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ld.csv",
+      "sha256": "7144e93710b7432b369ed4e65f603fe7cdfde67f58fb69679caadc528da523f4"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/ld/bundle.json",
+      "sha256": "abfd96b019ad794b9719a0eb69067cfe94bbf5c7703fe696865e6e4621760969"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/tng.csv",
+      "sha256": "709317afb74c9cb6ca1fe2bcf3788ed6ed1449b3437fab556ab46091cae237a2"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/tng/bundle.json",
+      "sha256": "631627a240ca997d51c5c6c031dc46aecf23a59350e024474e00caa9eb9f15d9"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
+    },
+    {
+      "path": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
+      "sha256": "281d30ded53e76efbc6b4742df63f44e641f3e555a12756b11c2cccedf3bfe51"
     },
     {
       "path": "proposals/discovery/shorts-audio-20261102/records.json",

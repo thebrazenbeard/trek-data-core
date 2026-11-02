@@ -1,0 +1,107 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S4-20261102-LD",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Twovix"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "I Have No Bones Yet I Must Flee"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "In the Cradle of Vexilon"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Something Borrowed, Something Green"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Empathalogical Fallacies"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Parth Ferengi's Heart Place"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Few Badgeys More"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Caves"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Inner Fight"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Old Friends, New Planets"
+    }
+  ],
+  "listed_slot_count": 10,
+  "mission_id": "ld",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

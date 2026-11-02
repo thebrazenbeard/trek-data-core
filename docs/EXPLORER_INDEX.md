@@ -4,7 +4,7 @@ The browser-facing `explorer/index.json` is a static **derivative**, not an
 authoritative research store. Its labels are deliberately literal:
 
 - **Mission** is a television series in the project's display catalog.
-- **Mission Briefing** is an episode Work whose evidence is present in an
+- **Briefing** is an episode Work whose evidence is present in an
   accepted, source-bound canonical assertion projection.
 - **Record** is a searchable assertion with its source IDs and projection
   status preserved. `STABLE`, `CONTESTED`, and `UNRESOLVED` must remain distinct.
@@ -46,7 +46,7 @@ only short scalar assertion metadata; it does not copy transcripts or dialogue.
 The builder recognizes both `work_type` and legacy `medium` classification,
 and can resolve parent-series Work titles through provenance ancestry.
 
-## Separate Research Leads, not Mission Briefings
+## Separate Research Leads, not Briefings
 
 `explorer/research-leads.json` is independently generated with
 `python3 tools/build_research_leads.py` and verified with `--check`. Its
@@ -79,3 +79,18 @@ The index is intentionally build-time JSON rather than a dynamic hosted API,
 so GitHub Pages can serve the browser interface with no server, secrets, or
 runtime access to research files. The Pages workflow should publish **only
 `explorer/`** after tests pass.
+
+## Separate film discovery catalog
+
+`explorer/film-catalog.json` is another isolated, candidate-only display view,
+deterministically generated from
+`proposals/librarian/films-official-index-20261102/bundle.json` using
+`python3 tools/build_film_catalog.py --check`. It contains 13 films linked
+from the official StarTrek.com directory and a separately announced
+streaming original, *Star Trek: Section 31*. The single publisher lineage is
+`publisher:startrek.com`; link presence is not independently corroborated film
+content. All entries remain `UNVERIFIED_METADATA`, `DISCOVERY_ONLY`, and have
+`coverage_effect: NONE`. No film title is appended to the 12 television-series
+Missions, no film is admitted as an episode Briefing, and the entries are not
+an exhaustive franchise denominator. The underlying proposal manifest records
+the conflicting publisher year metadata for *The Search for Spock*.

@@ -98,6 +98,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/app.css", text)
         self.assertIn("! -path explorer/trek-data-core-hero.jpg", text)
         self.assertIn("! -path explorer/research-leads.json", text)
+        self.assertIn("! -path explorer/film-catalog.json", text)
         self.assertIn("Refusing to publish an unexpected Explorer entry", text)
 
     def test_manual_dispatch_cannot_deploy_a_review_branch(self):
@@ -110,7 +111,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 5)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 6)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -155,6 +156,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertLess(text.index("Verify deterministic catalog index"),
                         text.index("Verify optional Research Leads index"))
         self.assertLess(text.index("Verify optional Research Leads index"),
+                        text.index("Verify optional Film discovery index"))
+        self.assertLess(text.index("Verify optional Film discovery index"),
                         text.index("Verify final public artifact boundary"))
         self.assertLess(text.index("Verify final public artifact boundary"),
                         text.index("Upload Explorer only"))
@@ -165,6 +168,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("Refusing to publish an unexpected Explorer entry", final)
         self.assertIn("find explorer -mindepth 1", final)
         self.assertIn("git rev-parse HEAD:explorer/research-leads.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
         self.assertIn("cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg", final)
 
     def test_final_barrier_rejects_post_test_modifications_and_new_files(self):
@@ -312,6 +316,59 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
         (root / "explorer/research-leads.json").write_text("tampered\n", encoding="utf-8")
         self.assertNotEqual(self.check_step("Verify optional Research Leads index", root).returncode, 0)
+
+    def test_film_index_requires_committed_unchanged_bytes(self):
+        root = self.fixture()
+        output = root / "explorer/film-catalog.json"
+        output.write_text("discovery\n", encoding="utf-8")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        self.commit_fixture(root)
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.write_text("tampered after tests\n", encoding="utf-8")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.write_text("discovery\n", encoding="utf-8")
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.unlink()
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+
+    def test_film_index_and_generator_symlinks_are_refused(self):
+        root = self.fixture()
+        output = root / "explorer/film-catalog.json"
+        output.symlink_to("index.json")
+        self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        output.unlink()
+        output.write_text("discovery\n", encoding="utf-8")
+        self.commit_fixture(root)
+        tool = root / "tools/build_film_catalog.py"
+        tool.parent.mkdir()
+        (tool.parent / "other.py").write_text("print('ok')\n", encoding="utf-8")
+        tool.symlink_to("other.py")
+        self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+
+    def test_optional_film_generator_must_exist_and_pass_its_check(self):
+        root = self.fixture()
+        output = root / "explorer/film-catalog.json"
+        output.write_text("discovery\n", encoding="utf-8")
+        self.commit_fixture(root)
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+        tool = root / "tools/build_film_catalog.py"
+        tool.parent.mkdir()
+        tool.write_text(
+            "from pathlib import Path\n"
+            "import sys\n"
+            "assert sys.argv[1:] == ['--check']\n"
+            "assert Path('proposals/film.ready').exists()\n"
+            "assert Path('explorer/film-catalog.json').read_bytes() == b'discovery\\n'\n",
+            encoding="utf-8",
+        )
+        self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+        (root / "proposals").mkdir()
+        (root / "proposals/film.ready").touch()
+        self.assertEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
+        output.write_text("modified\n", encoding="utf-8")
+        self.assertNotEqual(self.check_step("Verify optional Film discovery index", root).returncode, 0)
 
     def test_extra_file_hidden_directory_and_fifo_are_forbidden(self):
         root = self.fixture()

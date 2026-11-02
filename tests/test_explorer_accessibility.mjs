@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const script = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const ids = [
   'search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
@@ -66,7 +66,9 @@ async function load(researchPayload, researchStatus = 200) {
   };
   const fetch = async (name) => name === './index.json'
     ? { status: 200, ok: true, json: async () => index }
-    : { status: researchStatus, ok: researchStatus === 200, json: async () => researchPayload };
+    : name === './research-leads.json'
+      ? { status: researchStatus, ok: researchStatus === 200, json: async () => researchPayload }
+      : { status: 404, ok: false };
   vm.runInNewContext(script, {
     document, fetch, URL, location: { origin: 'https://example.test' },
     Option: class extends Node { constructor(text, value) { super('option'); this.textContent = text; this.value = value; } },

@@ -1,0 +1,26 @@
+{
+  "proposal_type": "FILM_DISCOVERY_METADATA",
+  "proposal_only": true,
+  "coverage_effect": "NONE",
+  "admission_effect": "NONE",
+  "snapshot_id": "OFFICIAL-TREK-FILMS-20261102-001",
+  "observed_on": "2026-11-02",
+  "source_group": "publisher:startrek.com",
+  "catalog_locator": "https://www.startrek.com/series-and-movies",
+  "films": [
+    {"id":"film-motion-picture","title":"Star Trek: The Motion Picture","source_locator":"https://www.startrek.com/movies/star-trek-i-the-motion-picture","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-wrath-of-khan","title":"Star Trek II: The Wrath of Khan","source_locator":"https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-search-for-spock","title":"Star Trek III: The Search for Spock","source_locator":"https://www.startrek.com/movies/star-trek-iii-the-search-for-spock","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-voyage-home","title":"Star Trek IV: The Voyage Home","source_locator":"https://www.startrek.com/movies/star-trek-iv-the-voyage-home","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-final-frontier","title":"Star Trek V: The Final Frontier","source_locator":"https://www.startrek.com/movies/star-trek-v-the-final-frontier","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-undiscovered-country","title":"Star Trek VI: The Undiscovered Country","source_locator":"https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-generations","title":"Star Trek Generations","source_locator":"https://www.startrek.com/movies/star-trek-generations","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-first-contact","title":"Star Trek: First Contact","source_locator":"https://www.startrek.com/movies/star-trek-viii-first-contact","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-insurrection","title":"Star Trek: Insurrection","source_locator":"https://www.startrek.com/movies/star-trek-ix-insurrection","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-nemesis","title":"Star Trek Nemesis","source_locator":"https://www.startrek.com/movies/star-trek-nemesis","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-2009","title":"Star Trek (2009)","source_locator":"https://www.startrek.com/movies/star-trek-2009","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-into-darkness","title":"Star Trek Into Darkness","source_locator":"https://www.startrek.com/movies/star-trek-into-darkness","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-beyond","title":"Star Trek Beyond","source_locator":"https://www.startrek.com/movies/star-trek-beyond","work_type":"FEATURE_FILM","discovery_source":"OFFICIAL_DIRECTORY"},
+    {"id":"film-section-31","title":"Star Trek: Section 31","source_locator":"https://www.startrek.com/news/star-trek-section-31-premieres-january-24","work_type":"STREAMING_ORIGINAL_FILM","discovery_source":"OFFICIAL_ANNOUNCEMENT"}
+  ]
+}

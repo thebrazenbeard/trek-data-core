@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S6-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Time To Stand"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rocks And Shoals"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sons And Daughters"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Behind The Lines"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Favor The Bold"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sacrifice Of Angels"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "You Are Cordially Invited"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Resurrection"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Statistical Probabilities"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Magnificent Ferengi"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Waltz"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Who Mourns For Morn?"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Far Beyond The Stars"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "One Little Ship"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Honor Among Thieves"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Change Of Heart"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Wrongs Darker Than Death Or Night"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Inquisition"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "In The Pale Moonlight"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "His Way"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Reckoning"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Valiant"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Profit And Lace"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Time's Orphan"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Sound of Her Voice"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 6,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Tears Of The Prophets"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

@@ -1,0 +1,37 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 26,
+      "mission_id": "tng",
+      "observation_csv_sha256": "c1ce8a9e33daf0c03e5e5f7c55055d35b961d650712c11370f6be14438a84ccb",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "source_body_bytes": 317438,
+      "source_body_sha256": "dab2bd6da78959ecbbffa79600ffd8bfab605f8115c9d2def2fff43d8f3d2746"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "328e2df32a5492249a756a23a22eb641d135877cfca930ffc444b005c04b9ef8",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "source_body_bytes": 316252,
+      "source_body_sha256": "976c9c8cfe4bac146f94473f67e5edc2ded997337fd20a058b87211dc45a7ecf"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "voy",
+      "observation_csv_sha256": "393040e711530d4d79dbd0f307251bcd6acabe0ad09fd541e9dc2d4c73177913",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "source_body_bytes": 314234,
+      "source_body_sha256": "9441c3f81e6083d26f2d96086f4876d0fe4d43d1f7d62506140a74ac0da771db"
+    }
+  ]
+}

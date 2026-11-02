@@ -100,13 +100,13 @@ the conflicting publisher year metadata for *The Search for Spock*.
 `explorer/discovery-catalog.json` is a third optional candidate-only artifact,
 derived by `python3 tools/build_unified_discovery.py --check`. Unlike the
 governed `index.json`, its rows deliberately retain **source-local** identity.
-The expanded 1002 rows consist of 971 episode-related observations (many
+The expanded 1080 rows consist of 1049 episode-related observations (many
 potentially overlapping), 14 films, 15 separate short-form releases, one
 scripted audio-series container, and one proposed novel with four editions.
 There is no sum labeled “known universe Works” and no inferred completeness.
 
 The generator checks input derivative bytes against their owning builders,
-validates the DS9/Voyager/TAS, modern-series through season three, legacy seasons one through three, separate Seasons 4 and 5, and Prodigy publisher-list CSV SHA
+validates the DS9/Voyager/TAS, modern-series through season three, legacy seasons one through three, separate Seasons 4, 5 and 6, and Prodigy publisher-list CSV SHA
 receipts and reviewed
 publisher proposals, then
 includes byte digests in the resulting artifact. The browser exposes title,

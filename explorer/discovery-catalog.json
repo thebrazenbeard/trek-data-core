@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 971,
+    "EPISODE": 1049,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 1002,
+  "row_count": 1080,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -15810,6 +15810,1332 @@
     },
     {
       "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Time's Arrow - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Realm of Fear",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Man of the People",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Relics",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Schisms",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "True Q",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Rascals",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "A Fistful of Datas",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "The Quality of Life",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Chain Of Command - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Chain Of Command - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Ship in a Bottle",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Aquiel",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Face of the Enemy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Tapestry",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Birthright - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Birthright - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Starship Mine",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Lessons",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "The Chase",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Frame of Mind",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Suspicions",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Rightful Heir",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Second Chances",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Timescape",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S6E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:tng:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+      "title": "Descent - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "A Time To Stand",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Rocks And Shoals",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Sons And Daughters",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Behind The Lines",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Favor The Bold",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Sacrifice Of Angels",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "You Are Cordially Invited",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Resurrection",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Statistical Probabilities",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "The Magnificent Ferengi",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Waltz",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Who Mourns For Morn?",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Far Beyond The Stars",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "One Little Ship",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Honor Among Thieves",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Change Of Heart",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Wrongs Darker Than Death Or Night",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Inquisition",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "In The Pale Moonlight",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "His Way",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "The Reckoning",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Valiant",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Profit And Lace",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Time's Orphan",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "The Sound of Her Voice",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S6E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:ds9:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+      "title": "Tears Of The Prophets",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Equinox, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Survival Instinct",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Barge of the Dead",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Tinker, Tenor, Doctor, Spy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Alice",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Riddles",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Dragon's Teeth",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "One Small Step",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "The Voyager Conspiracy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Pathfinder",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Fair Haven",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Blink of an Eye",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Virtuoso",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Memorial",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Tsunkatse",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Collective",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Spirit Folk",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Ashes to Ashes",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Child's Play",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Good Shepherd",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Live Fast and Prosper",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "The Muse",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Fury",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Life Line",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "The Haunting of Deck Twelve",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S6E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-6 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s6:voy:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+      "title": "Unimatrix Zero, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
       "candidate_kind": "SCRIPTED_SHORT",
       "context": "short-treks · S1E1",
       "coverage_effect": "NONE",
@@ -16750,6 +18076,34 @@
     {
       "path": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
       "sha256": "20f407c8626d69bbe9e292c67ee743f9a2ee2affa06a43241a9effedf1df5d44"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/ds9.csv",
+      "sha256": "328e2df32a5492249a756a23a22eb641d135877cfca930ffc444b005c04b9ef8"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/ds9/bundle.json",
+      "sha256": "fc42561b24a27b61542004bfb00944d32c52812498d86ac8f344928b608a9db9"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/index.json",
+      "sha256": "d327a32f8b795f51bd53d4b3b3231426f8ebbd0b35c775c55740efb6da25bd11"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/tng.csv",
+      "sha256": "c1ce8a9e33daf0c03e5e5f7c55055d35b961d650712c11370f6be14438a84ccb"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/tng/bundle.json",
+      "sha256": "ff5a8f222400c0432bb1f8bc089fc5aec43852777528ebdeb99449f143d574cf"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/voy.csv",
+      "sha256": "393040e711530d4d79dbd0f307251bcd6acabe0ad09fd541e9dc2d4c73177913"
+    },
+    {
+      "path": "proposals/discovery/publisher-season6-20261102/voy/bundle.json",
+      "sha256": "77e5ad209593015c3fd842942a3ec6ad204e14c6b007ce4326985115c53a884d"
     },
     {
       "path": "proposals/discovery/shorts-audio-20261102/records.json",

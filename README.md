@@ -29,6 +29,29 @@ Trek Data Core aims to connect stories, episodes, films, books, characters, plac
 | **Reconciliation** | Proposed resolutions are reviewable decisions, not unrecorded model guesses. |
 | **Measured coverage** | A title found in an index is not an episode read, reconciled, or independently audited. |
 
+## Mission index: series and episodes
+
+For the human-facing Explorer, a **Mission** means a *Star Trek television series*, and a **Mission Briefing** means an *episode* of that series. Mission Briefings are indexed beneath their parent Mission. These are display labels: the underlying database still stores governed Work types, source identities, evidence and episode relationships.
+
+The following series are in scope for the planned Mission index. This is an indexing roadmap, **not** a claim that every episode has already been researched or admitted:
+
+| Mission (series) | Primary indexing focus |
+| --- | --- |
+| **Star Trek: The Original Series** | Kirk-era Enterprise exploration and its original crew |
+| **Star Trek: The Animated Series** | Animated missions of the original Enterprise crew |
+| **Star Trek: The Next Generation** | Enterprise-D exploration, diplomacy and scientific encounters |
+| **Star Trek: Deep Space Nine** | Station-based stories, interstellar politics and the Dominion conflict |
+| **Star Trek: Voyager** | Voyager's journey and discoveries in the Delta Quadrant |
+| **Star Trek: Enterprise** | Early Human deep-space exploration before the Federation |
+| **Star Trek: Discovery** | The Discovery crew's investigations across different eras |
+| **Star Trek: Picard** | Jean-Luc Picard's later life and continuing relationships |
+| **Star Trek: Lower Decks** | Support-crew operations and second-contact assignments |
+| **Star Trek: Prodigy** | A young crew learning exploration and cooperation |
+| **Star Trek: Strange New Worlds** | Pike's Enterprise and its pre-Kirk exploratory voyages |
+| **Star Trek: Starfleet Academy** | Cadet training and life within Starfleet Academy |
+
+This roster follows the [official Star Trek series catalog](https://www.startrek.com/series-and-movies). Anthologies such as *Short Treks*, films, books, comics and games require their own explicit Work classifications and links; they are not silently treated as television-series episodes.
+
 ## Data model
 
 This is the intended route from a source record to a queryable continuity model. Each transition has an evidence or acceptance gate:

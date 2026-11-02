@@ -15,9 +15,7 @@
 
 > **Project status — foundation in progress.** Governance, the initial Source/Work/binding contract, a fixture validator, and workspace-startup safety checks are on `main`. Integrated canonical projection, reconciliation, query and coverage implementations remain subject to separate acceptance. Synthetic registry fixtures are **not** accepted Star Trek corpus records.
 
-## Mission briefing
-
-The universe rarely comes with a single, uncontested log. Trek Data Core charts how a claim was observed, who reported it, and what the evidence can actually support.
+## Purpose
 
 Every claim should have an origin. Every contradiction should remain visible. Every reconciliation should be reproducible.
 
@@ -25,15 +23,15 @@ Trek Data Core aims to connect stories, episodes, films, books, characters, plac
 
 | Principle | What it means here |
 | --- | --- |
-| **Trace the signal** | Record Source and Work identity, scope, evidence, attribution and provenance. |
-| **Preserve the paradox** | Conflicting or unreliable testimony stays visible; interpretation does not erase evidence. |
-| **Respect the timeline** | Counterparts, copies, simulations and alternate histories must not silently collapse into one identity. |
-| **Reconcile deliberately** | Proposed resolutions are reviewable decisions, not unrecorded model guesses. |
-| **Count what was verified** | A title found in an index is not an episode read, reconciled, or independently audited. |
+| **Provenance** | Record Source and Work identity, scope, evidence, attribution and provenance. |
+| **Conflicting accounts** | Conflicting or unreliable testimony stays visible; interpretation does not erase evidence. |
+| **Identity and timelines** | Counterparts, copies, simulations and alternate histories must not silently collapse into one identity. |
+| **Reconciliation** | Proposed resolutions are reviewable decisions, not unrecorded model guesses. |
+| **Measured coverage** | A title found in an index is not an episode read, reconciled, or independently audited. |
 
-## Navigational chart
+## Data model
 
-This is the intended route from an observed signal to a queryable continuity record. Each transition has an evidence or acceptance gate:
+This is the intended route from a source record to a queryable continuity model. Each transition has an evidence or acceptance gate:
 
 ```mermaid
 flowchart TD
@@ -46,7 +44,9 @@ flowchart TD
 
 An assertion is not automatically accepted merely because a source exists. In particular, evidence from a narrator or character is evidence that the statement was made—not necessarily that the statement is true. The [research method](TREK_RESEARCH_METHOD.md) defines how to distinguish observation, interpretation and speculation.
 
-## Sensor readings — current `main`
+For example, if two episodes give incompatible dates for the same event, the database should preserve both source-backed claims and record any proposed reconciliation separately. It should not silently replace one account with the other.
+
+## Current implementation on `main`
 
 The initial Librarian registry establishes machine-readable shapes for Sources, Works, their evidence-bearing bindings and external crosswalk candidates. Its local validator and tests use synthetic fixture records.
 
@@ -69,7 +69,7 @@ These are **foundation checks**, not a demonstration of an admitted comprehensiv
 
 Development branches and PRs are **proposals**, even when merged into another development branch. A green proposal CI check does not make its contents accepted `main` state.
 
-## Chart the archive
+## Repository guide
 
 | Destination | Purpose |
 | --- | --- |
@@ -81,16 +81,13 @@ Development branches and PRs are **proposals**, even when merged into another de
 | [Proposals](proposals/) | Work awaiting evaluation and explicit acceptance |
 | [Chat starters](CHAT_STARTERS.md) | Ready-made paths into specific research questions |
 
-## Join the research crew
+## Contributing
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), [CLA.md](CLA.md) and the [repository protocol](TREK_REPO_PROTOCOL.md) before proposing material. Prefer verifiable citations, independently attributable analysis and narrow records over bulk transcription. Do not commit complete copyrighted works, extensive copied passages, restricted streams or third-party content without rights.
 
 The repo is **source-visible, not open source**. Original material is proprietary; commercial use, redistribution and hosted services require the permissions described in [LICENSE](LICENSE) and [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md). Third-party content and trademarks retain their own rights. This is an unofficial research project, not affiliated with or endorsed by Star Trek franchise rights holders.
 
-## Security bulletin
+## Workspace security
 
 The current source tree removes a previously identified concealed VS Code `folderOpen` task and a JavaScript pseudo-font executable, disables automatic tasks, and includes a source-tree regression check. That does **not** establish that older checkouts, machines, editor extensions or user-level configurations are clean. Do not execute the removed historical payload; see the current source history and startup-safety test for the exact containment scope.
 
----
-
-<p align="center"><em>Explore boldly. Attribute precisely.</em></p>

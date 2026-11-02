@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 import stat
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from zipfile import ZipFile, ZipInfo
 
 
@@ -78,6 +80,16 @@ class PrivateOpfIntakeTests(unittest.TestCase):
         with self.assertRaisesRegex(mod.IntakeError, "entity declarations"):
             mod.opf_metadata(danger)
 
+    def test_utf16_utf32_entity_declaration_cannot_bypass_dtd_check(self):
+        for encoding in ("UTF-16", "UTF-32"):
+            xml = (f'''<?xml version="1.0" encoding="{encoding}"?>
+<!DOCTYPE package [<!ENTITY injected "SYNTHETIC_ENTITY_VALUE">]>
+<package xmlns:dc="http://purl.org/dc/elements/1.1/">
+<metadata><dc:title>&injected;</dc:title></metadata></package>''')
+            with self.subTest(encoding=encoding):
+                with self.assertRaisesRegex(mod.IntakeError, "unsupported XML encoding"):
+                    mod.opf_metadata(xml.encode(encoding.lower()))
+
     def test_unsafe_zip_paths_and_symlinks_rejected_without_extraction(self):
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "unsafe.zip"
@@ -121,6 +133,50 @@ class PrivateOpfIntakeTests(unittest.TestCase):
             out.write_text("existing", encoding="utf-8")
             with self.assertRaisesRegex(mod.IntakeError, "overwrite"):
                 mod.private_output_path(out)
+
+    def test_parent_symlink_swap_cannot_redirect_output_into_repo(self):
+        with tempfile.TemporaryDirectory() as temp:
+            outer = Path(temp)
+            archive = outer / "converted.zip"
+            zip_fixture(archive, [("books/Book.opf", package())])
+            output_parent = outer / "private-output"
+            output_parent.mkdir()
+            moved = outer / "moved-output"
+            leaf = f"synthetic-race-{outer.name}.json"
+            target = output_parent / leaf
+            escaped = ROOT / leaf
+
+            def race(*args):
+                output_parent.rename(moved)
+                output_parent.symlink_to(ROOT, target_is_directory=True)
+                return original_build(*args)
+
+            original_build = mod.build_inventory
+            try:
+                with mock.patch.object(mod, "build_inventory", side_effect=race):
+                    with mock.patch.object(sys, "argv", ["opf-intake", "--opf-zip", str(archive), "--out", str(target)]):
+                        exit_code = mod.main()
+                self.assertEqual(exit_code, 1, "output path was redirected through a swapped parent")
+                self.assertFalse(escaped.exists(), "private metadata was written to the public checkout")
+            finally:
+                escaped.unlink(missing_ok=True)
+
+    def test_private_output_is_owner_only_with_normal_umask(self):
+        with tempfile.TemporaryDirectory() as temp:
+            outer = Path(temp)
+            archive, output = outer / "converted.zip", outer / "inventory.json"
+            zip_fixture(archive, [("books/Book.opf", package())])
+            previous_umask = os.umask(0o022)
+            try:
+                result = subprocess.run(
+                    [sys.executable, str(ROOT / "tools" / "inventory_opf_metadata.py"),
+                     "--opf-zip", str(archive), "--out", str(output)],
+                    capture_output=True, text=True,
+                )
+            finally:
+                os.umask(previous_umask)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(stat.S_IMODE(output.stat().st_mode), 0o600)
 
     def test_cli_emits_no_public_source_bytes_or_accepted_ids(self):
         with tempfile.TemporaryDirectory() as temp:

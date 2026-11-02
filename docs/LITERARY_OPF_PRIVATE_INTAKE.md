@@ -8,13 +8,17 @@ a filename or an OPF title alone.
 
 `tools/inventory_opf_metadata.py` is a local, offline **candidate inventory**
 for user-supplied ZIPs containing Open eBook/OPF descriptions. It never
-extracts archives onto disk, reads prose chapters/HTML/TXT content, copies
-covers, calls a network service, or writes accepted research state. It parses
+extracts archives onto disk, decompresses or interprets prose chapters/HTML/TXT
+content, copies covers, calls a network service, or writes accepted research
+state. Whole-ZIP SHA-256 receipts do stream opaque archive bytes (including
+compressed member payloads), without extracting their text. It parses
 only small OPF package XML files and reads the ZIP member directory for
 optional `.lit`-filename matching. It exports selected Dublin Core *title,
 creator, identifier, publisher, date and language* fields, not descriptions,
 rights paragraphs or passages. Legacy ReaderWorks namespace variants are
-recognized; invalid, unbound or unsafe XML is flagged for review.
+recognized; invalid, unbound or unsafe XML is flagged for review. XML encodings
+whose markup cannot be safely scanned as bytes (including UTF-16/UTF-32) are
+held for review, not silently admitted.
 
 ## Run privately
 
@@ -28,7 +32,10 @@ python3 tools/inventory_opf_metadata.py \
 ```
 
 The output path **must be outside this public repository** and must not exist.
-The utility will not overwrite. The output is a private file-level inventory,
+The utility will not overwrite, creates an owner-only file (mode 0600), and
+requires OS support for secure directory-relative creation (POSIX `dir_fd`,
+`O_DIRECTORY` and `O_NOFOLLOW`); unsupported platforms fail closed. The output
+is a private file-level inventory,
 not a bibliographic truth source or a catalog safe to publish automatically.
 It records input ZIP hashes, member paths and per-OPF SHA-256 digests; local
 filenames, edition identifiers and possession metadata may themselves be

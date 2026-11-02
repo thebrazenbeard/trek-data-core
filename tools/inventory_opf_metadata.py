@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import stat
@@ -91,6 +92,10 @@ def opf_metadata(raw: bytes) -> dict:
     declarations, and any remaining DOCTYPE are rejected before XML parsing.
     ElementTree never receives a remote DTD reference or external entity.
     """
+    # XML parsers auto-detect UTF-16/32, whose interleaved NUL bytes could
+    # hide entity declarations from the ASCII byte-level security scan.
+    if b"\x00" in raw:
+        raise IntakeError("OPF uses an unsupported XML encoding with NUL bytes")
     upper = raw.upper()
     if b"<!ENTITY" in upper or b"<![" in upper:
         raise IntakeError("OPF contains entity declarations or DTD subsets")
@@ -247,6 +252,24 @@ def private_output_path(path: Path) -> Path:
     return target
 
 
+def open_private_output_parent(target: Path) -> int:
+    """Pin each verified output-directory component without following symlinks."""
+    if (os.open not in os.supports_dir_fd or not hasattr(os, "O_DIRECTORY")
+            or not hasattr(os, "O_NOFOLLOW")):
+        raise IntakeError("secure private output creation is unavailable on this platform")
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    fd = os.open(target.anchor, flags)
+    try:
+        for part in target.parent.parts[1:]:
+            next_fd = os.open(part, flags, dir_fd=fd)
+            os.close(fd)
+            fd = next_fd
+        return fd
+    except BaseException:
+        os.close(fd)
+        raise
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--opf-zip", type=Path, required=True)
@@ -256,13 +279,22 @@ def main() -> int:
     args = parser.parse_args()
     try:
         out = private_output_path(args.out)
-        inventory = build_inventory(args.opf_zip, args.original_zip)
-        payload = json.dumps(inventory, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
-        # Exclusive creation closes the check/write race: even if a second
-        # process creates the target after private_output_path(), never clobber
-        # that file or follow an existing final-component symlink.
-        with out.open("x", encoding="utf-8", errors="strict") as stream:
-            stream.write(payload)
+        parent_fd = open_private_output_parent(out)
+        try:
+            inventory = build_inventory(args.opf_zip, args.original_zip)
+            payload = json.dumps(inventory, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
+            pinned = os.fstat(parent_fd)
+            current = os.stat(out.parent, follow_symlinks=False)
+            if (pinned.st_dev, pinned.st_ino) != (current.st_dev, current.st_ino):
+                raise IntakeError("private output parent changed during inventory")
+            # Exclusive owner-only creation relative to a pinned directory
+            # prevents a swapped parent symlink from redirecting private data.
+            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW
+            fd = os.open(out.name, flags, 0o600, dir_fd=parent_fd)
+            with os.fdopen(fd, "w", encoding="utf-8", errors="strict") as stream:
+                stream.write(payload)
+        finally:
+            os.close(parent_fd)
     except (IntakeError, BadZipFile, OSError, ValueError) as exc:
         print(f"OPF intake refused: {exc}", file=sys.stderr)
         return 1

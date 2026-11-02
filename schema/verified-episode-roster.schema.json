@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thebrazenbeard/trek-data-core/blob/main/schema/verified-episode-roster.schema.json",
+  "title": "Publisher episode metadata review proposal (not admitted)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "schema_version", "candidate_batch_id", "candidate_sha256",
+    "mission_id", "publisher_snapshot", "review", "metadata_status",
+    "canonical_work_effect", "source_binding_effect", "continuity_effect",
+    "coverage_effect", "denominator_effect", "publication_effect"
+  ],
+  "properties": {
+    "record_type": {"const": "publisher_episode_metadata_review"},
+    "schema_version": {"const": "1.0.0"},
+    "candidate_batch_id": {"type": "string", "minLength": 3, "maxLength": 120},
+    "candidate_sha256": {"$ref": "#/$defs/digest"},
+    "mission_id": {"type": "string", "minLength": 2, "maxLength": 30},
+    "publisher_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locator", "independence_group", "retrieved_on", "content_sha256",
+        "representation", "publication"
+      ],
+      "properties": {
+        "locator": {"type": "string", "format": "uri", "maxLength": 500},
+        "independence_group": {"type": "string", "minLength": 1, "maxLength": 100},
+        "retrieved_on": {"type": "string", "format": "date"},
+        "content_sha256": {"$ref": "#/$defs/digest"},
+        "representation": {"const": "PUBLISHER_PAGE_BYTES"},
+        "publication": {"const": "BYTES_EXCLUDED"}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "collector_id", "reviewer_id", "reviewed_on", "attestation", "scope",
+        "checked_episode_slots"
+      ],
+      "properties": {
+        "collector_id": {"type": "string", "minLength": 3, "maxLength": 100},
+        "reviewer_id": {"type": "string", "minLength": 3, "maxLength": 100},
+        "reviewed_on": {"type": "string", "format": "date"},
+        "attestation": {"const": "IDENTITY_FIELDS_MATCH_SNAPSHOT"},
+        "scope": {"const": "PUBLISHER_TITLE_SEASON_EPISODE_ONLY"},
+        "checked_episode_slots": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 500,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["season", "episode_number", "title"],
+            "properties": {
+              "season": {"type": "integer", "minimum": 1, "maximum": 999},
+              "episode_number": {"type": "integer", "minimum": 1, "maximum": 9999},
+              "title": {"type": "string", "minLength": 1, "maxLength": 160}
+            }
+          }
+        }
+      }
+    },
+    "metadata_status": {"const": "REVIEW_PROPOSAL_ONLY"},
+    "canonical_work_effect": {"const": "NONE"},
+    "source_binding_effect": {"const": "NONE"},
+    "continuity_effect": {"const": "NONE"},
+    "coverage_effect": {"const": "NONE"},
+    "denominator_effect": {"const": "NONE"},
+    "publication_effect": {"const": "NONE"}
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

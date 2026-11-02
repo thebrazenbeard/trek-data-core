@@ -258,7 +258,11 @@ def main() -> int:
         out = private_output_path(args.out)
         inventory = build_inventory(args.opf_zip, args.original_zip)
         payload = json.dumps(inventory, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
-        out.write_text(payload, encoding="utf-8", errors="strict")
+        # Exclusive creation closes the check/write race: even if a second
+        # process creates the target after private_output_path(), never clobber
+        # that file or follow an existing final-component symlink.
+        with out.open("x", encoding="utf-8", errors="strict") as stream:
+            stream.write(payload)
     except (IntakeError, BadZipFile, OSError, ValueError) as exc:
         print(f"OPF intake refused: {exc}", file=sys.stderr)
         return 1

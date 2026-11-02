@@ -1,0 +1,208 @@
+{
+  "accepted_corpus_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "artifacts_verified": [
+    {
+      "content_sha256": "1e819b9ed99c509d44961ffb771a4d407fb1765b8549113b3f7a190024a2cbfe",
+      "git_blob_sha1": "fa1a2abb371d9bf00095134667c58d58b6f58784",
+      "historical_path": "research/tng/batches/tng-s01-b001/coverage_update.json"
+    },
+    {
+      "content_sha256": "fd65c4d7cfdef7a91a341051e334ce1b4c4968d299478e64d7703984871d6912",
+      "git_blob_sha1": "68892b8e2f828948f9596910df4f35cc2190cccb",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/01-encounter-at-farpoint.json"
+    },
+    {
+      "content_sha256": "7d53df3dbe724a80adf17772ebaf75c390e4a89330e959982ee415f49c5eb91d",
+      "git_blob_sha1": "dab9822a52ff9ed5045d0a783ee21ba486151b7d",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/02-the-naked-now.json"
+    },
+    {
+      "content_sha256": "eb81316fe7d3edaab736214fa51de64e7d888e9822f6e739ac841bb2e4ac52ac",
+      "git_blob_sha1": "35c869c0a8c5e4ef86734feea402a5a2e0b6599a",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/03-code-of-honor.json"
+    },
+    {
+      "content_sha256": "7f59e6567746715761157a8613a0eab07708d0d085a3cfc001783c0d40d1e8cf",
+      "git_blob_sha1": "236bace4896e32816316d6068e9d25d4fc271c85",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/04-the-last-outpost.json"
+    },
+    {
+      "content_sha256": "4db3a6ce96a3c72ad67bb053f78bd9035f00910c0e687b784b98dd87a6147c1c",
+      "git_blob_sha1": "ddaae7df3719957b65386ea4b5515b430be7c341",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/05a-where-no-one-has-gone-before-core.json"
+    },
+    {
+      "content_sha256": "e05244583bd7f3aa27e0e6063ab8a0066f8b1656a1c4078c3bad39478d8e31e9",
+      "git_blob_sha1": "4e819b9e4bbef90869d89c9ee25cbc26453d2135",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/05b-where-no-one-has-gone-before-evidence-01-03.json"
+    },
+    {
+      "content_sha256": "15d9f71d7139dea42a61db947dfe2a255139bad09bf815903c74e902201c86b2",
+      "git_blob_sha1": "f39982e55e5d4fde9d5d8b2c55e8b78142bfb369",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/05c-where-no-one-has-gone-before-evidence-04-06.json"
+    },
+    {
+      "content_sha256": "e004572759558163eac1232d39c5bedcf2f3de8d8441bba209e94726bfe20adb",
+      "git_blob_sha1": "507e2acaefebc00a095672641024cce167a6cacf",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/05d-where-no-one-has-gone-before-evidence-07-09.json"
+    },
+    {
+      "content_sha256": "5a4feb6a898aff80f24df938665fba6fe548ac512044eb261bc529ac8a31d94e",
+      "git_blob_sha1": "1a11311cf35948b712cb78960c5083c73695fd23",
+      "historical_path": "research/tng/batches/tng-s01-b001/records/05e-where-no-one-has-gone-before-evidence-10-12.json"
+    },
+    {
+      "content_sha256": "da39accce91a321f2ab4ccc2ec1e8a5582bd1882c48373b2c524f51d1786da06",
+      "git_blob_sha1": "986bc3a6ebe73c31991ec79f601ac4e903d3416d",
+      "historical_path": "research/tng/batches/tng-s01-b001/validation.json"
+    }
+  ],
+  "episode_work_candidates": [
+    {
+      "accepted_evidence_ids": [],
+      "candidate_type": "EPISODE_WORK_METADATA",
+      "canonical_source_id": null,
+      "canonical_work_id": null,
+      "historical_airdate_crosscheck": "1987-09-28",
+      "historical_local_work_ref": "tng.s1.airtitle.01.encounter-at-farpoint",
+      "historical_production_code": "101+102",
+      "historical_transcript_index": "s01e01",
+      "source_candidate": {
+        "historical_crosscheck_provider": "Chakoteya",
+        "historical_crosscheck_url": "https://www.chakoteya.net/NextGen/101.htm",
+        "historical_line_extent_note": "13-1006",
+        "historical_provider": "Springfield! Springfield",
+        "historical_representation_type": "complete third-party transcript",
+        "historical_retrieval_date": "2026-08-14",
+        "historical_url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e01&tv-show=star-trek-the-next-generation",
+        "independence_status": "UNKNOWN",
+        "primary_audiovisual_verified": false
+      },
+      "source_work_binding_status": "NOT_ADMITTED",
+      "status": "CANDIDATE",
+      "title": "Encounter at Farpoint"
+    },
+    {
+      "accepted_evidence_ids": [],
+      "candidate_type": "EPISODE_WORK_METADATA",
+      "canonical_source_id": null,
+      "canonical_work_id": null,
+      "historical_airdate_crosscheck": "1987-10-05",
+      "historical_local_work_ref": "tng.s1.airtitle.02.the-naked-now",
+      "historical_production_code": "103",
+      "historical_transcript_index": "s01e03",
+      "source_candidate": {
+        "historical_crosscheck_provider": "Chakoteya",
+        "historical_crosscheck_url": "https://www.chakoteya.net/NextGen/103.htm",
+        "historical_line_extent_note": "13-533",
+        "historical_provider": "Springfield! Springfield",
+        "historical_representation_type": "complete third-party transcript",
+        "historical_retrieval_date": "2026-08-14",
+        "historical_url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e03&tv-show=star-trek-the-next-generation",
+        "independence_status": "UNKNOWN",
+        "primary_audiovisual_verified": false
+      },
+      "source_work_binding_status": "NOT_ADMITTED",
+      "status": "CANDIDATE",
+      "title": "The Naked Now"
+    },
+    {
+      "accepted_evidence_ids": [],
+      "candidate_type": "EPISODE_WORK_METADATA",
+      "canonical_source_id": null,
+      "canonical_work_id": null,
+      "historical_airdate_crosscheck": "1987-10-12",
+      "historical_local_work_ref": "tng.s1.airtitle.03.code-of-honor",
+      "historical_production_code": "104",
+      "historical_transcript_index": "s01e04",
+      "source_candidate": {
+        "historical_crosscheck_provider": "Chakoteya",
+        "historical_crosscheck_url": "https://www.chakoteya.net/NextGen/104.htm",
+        "historical_line_extent_note": "13-509",
+        "historical_provider": "Springfield! Springfield",
+        "historical_representation_type": "complete third-party transcript",
+        "historical_retrieval_date": "2026-08-14",
+        "historical_url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e04&tv-show=star-trek-the-next-generation",
+        "independence_status": "UNKNOWN",
+        "primary_audiovisual_verified": false
+      },
+      "source_work_binding_status": "NOT_ADMITTED",
+      "status": "CANDIDATE",
+      "title": "Code of Honor"
+    },
+    {
+      "accepted_evidence_ids": [],
+      "candidate_type": "EPISODE_WORK_METADATA",
+      "canonical_source_id": null,
+      "canonical_work_id": null,
+      "historical_airdate_crosscheck": "1987-10-19",
+      "historical_local_work_ref": "tng.s1.airtitle.04.the-last-outpost",
+      "historical_production_code": "107",
+      "historical_transcript_index": "s01e05",
+      "source_candidate": {
+        "historical_crosscheck_provider": "Chakoteya",
+        "historical_crosscheck_url": "https://www.chakoteya.net/NextGen/107.htm",
+        "historical_line_extent_note": "13-539",
+        "historical_provider": "Springfield! Springfield",
+        "historical_representation_type": "complete third-party transcript",
+        "historical_retrieval_date": "2026-08-14",
+        "historical_url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e05&tv-show=star-trek-the-next-generation",
+        "independence_status": "UNKNOWN",
+        "primary_audiovisual_verified": false
+      },
+      "source_work_binding_status": "NOT_ADMITTED",
+      "status": "CANDIDATE",
+      "title": "The Last Outpost"
+    },
+    {
+      "accepted_evidence_ids": [],
+      "candidate_type": "EPISODE_WORK_METADATA",
+      "canonical_source_id": null,
+      "canonical_work_id": null,
+      "historical_airdate_crosscheck": "1987-10-26",
+      "historical_local_work_ref": "tng.s1.airtitle.05.where-no-one-has-gone-before",
+      "historical_production_code": "106",
+      "historical_transcript_index": "s01e06",
+      "source_candidate": {
+        "historical_crosscheck_provider": "Chakoteya",
+        "historical_crosscheck_url": "https://www.chakoteya.net/NextGen/106.htm",
+        "historical_line_extent_note": "13-516",
+        "historical_provider": "Springfield! Springfield",
+        "historical_representation_type": "complete third-party transcript",
+        "historical_retrieval_date": "2026-08-14",
+        "historical_url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e06&tv-show=star-trek-the-next-generation",
+        "independence_status": "UNKNOWN",
+        "primary_audiovisual_verified": false
+      },
+      "source_work_binding_status": "NOT_ADMITTED",
+      "status": "CANDIDATE",
+      "title": "Where No One Has Gone Before"
+    }
+  ],
+  "historical_source": {
+    "immutable_commit": "0695fb2d36870e9c156ce7acd16f00f70103b19e",
+    "manifest_git_blob_sha1": "61159536b7a1e0cca85112a00d5b211b55e9c150",
+    "manifest_path": "research/tng/batches/tng-s01-b001/manifest.json",
+    "manifest_sha256": "a5e3270cc5d367739f227b799fd1e50ca808d9840643c4ef4462505ede62dea0",
+    "original_base_main_sha": "d58359a207da89e812d0a0330558c66774ed1241",
+    "original_status": "PROPOSAL_VALIDATED_NOT_CANONICALLY_ADMITTED",
+    "pull_request": 3,
+    "repository": "thebrazenbeard/trek-data-core"
+  },
+  "known_admission_blockers": [
+    "Accepted main has no Librarian-owned Source/Work registry, so SOURCE_BOUND cannot be claimed.",
+    "Primary audiovisual media was not directly verified in this batch; research is grounded in complete third-party transcripts with transcript-provider crosschecks.",
+    "Transcript-provider lineage independence is unresolved.",
+    "Global identity/entity linking is intentionally deferred to reconciliation."
+  ],
+  "numbering_note": "The retrieved transcript/index sources use different conventions around the two-hour premiere. This batch uses provisional aired-title sequence numbers while preserving provider transcript indexes and production-code crosschecks; it does not assert a global canonical numbering resolution.",
+  "original_candidate_counts": {
+    "assertions": 31,
+    "evidence": 58,
+    "local_entities": 69,
+    "works": 5
+  },
+  "proposal_only": true,
+  "proposal_type": "HISTORICAL_TNG_PILOT_CANDIDATES_V1"
+}

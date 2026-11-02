@@ -11,7 +11,7 @@ const ids = [
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
   'research-count', 'research-state', 'research-list', 'research-empty',
-  'research-summary', 'research-heading'
+  'research-summary', 'research-heading', 'tone-toggle'
 ];
 
 class Node {
@@ -79,7 +79,7 @@ async function load(researchPayload, researchStatus = 200) {
 test('Mission card navigates to its unverified leads without promoting them or losing keyboard focus', async () => {
   const nodes = await load(research);
   const missionCard = nodes.get('mission-list').children[0];
-  assert.match(missionCard.textContent, /Indexed Mission Briefings0/);
+  assert.match(missionCard.textContent, /Indexed Briefings0/);
   assert.match(missionCard.textContent, /Unverified research leads1/);
   const shortcut = missionCard.children.find((node) => node.className === 'research-shortcut');
   assert.ok(shortcut, 'candidate-only shortcut exists for a Mission with leads');

@@ -16,13 +16,104 @@
   const kindLabel = (value) => {
     const kind = normalize(asString(value)).replace(/[\s-]+/g, '_');
     if (['series', 'tv_series', 'television_series'].includes(kind)) return 'Mission (series)';
-    if (['episode', 'tv_episode', 'television_episode'].includes(kind)) return 'Mission Briefing (episode)';
+    if (['episode', 'tv_episode', 'television_episode'].includes(kind)) return 'Briefing (episode)';
     return humanize(value);
   };
   const PAGE_SIZE = 72;
   const visibleLimits = { missions: PAGE_SIZE, briefings: PAGE_SIZE, records: PAGE_SIZE };
   const RESEARCH_PAGE_SIZE = 30;
   let visibleResearchLimit = RESEARCH_PAGE_SIZE;
+
+  // Original, short interface signals. Audio is strictly user-opt-in: no
+  // playback or AudioContext construction during startup, loading, or typing.
+  let tonesEnabled = false;
+  let tonePending = false;
+  let toneGeneration = 0;
+  let toneContext = null;
+  const toneToggle = byId('tone-toggle');
+  const updateToneToggle = () => {
+    if (!toneToggle) return;
+    toneToggle.setAttribute('aria-pressed', String(tonesEnabled));
+    toneToggle.setAttribute('aria-label', tonePending ? 'Cancel enabling interface tones' : tonesEnabled ? 'Disable interface tones' : 'Enable interface tones');
+    toneToggle.textContent = `Interface tones: ${tonePending ? 'Starting…' : tonesEnabled ? 'On' : 'Off'}`;
+  };
+  const discardToneContext = () => {
+    const previous = toneContext;
+    toneContext = null;
+    if (!previous) return;
+    try {
+      if (typeof previous.close === 'function') Promise.resolve(previous.close()).catch(() => {});
+    } catch (_) {
+      // A failed close must never block archive navigation.
+    }
+  };
+  const playTone = () => {
+    if (!tonesEnabled || !toneContext || toneContext.state !== 'running') return;
+    try {
+      const start = toneContext.currentTime;
+      [560, 830].forEach((frequency, index) => {
+        const at = start + index * .045;
+        const oscillator = toneContext.createOscillator();
+        const volume = toneContext.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, at);
+        volume.gain.setValueAtTime(.0001, at);
+        volume.gain.exponentialRampToValueAtTime(.018, at + .012);
+        volume.gain.exponentialRampToValueAtTime(.0001, at + .088);
+        oscillator.connect(volume);
+        volume.connect(toneContext.destination);
+        oscillator.start(at);
+        oscillator.stop(at + .09);
+      });
+    } catch (_) {
+      // Sound effects are cosmetic. Never interrupt navigation or research.
+    }
+  };
+  if (toneToggle) {
+    updateToneToggle();
+    toneToggle.addEventListener('click', () => {
+      if (tonesEnabled || tonePending) {
+        toneGeneration++;
+        tonesEnabled = false;
+        tonePending = false;
+        discardToneContext();
+        updateToneToggle();
+        return;
+      }
+      const Context = window.AudioContext || window.webkitAudioContext;
+      if (typeof Context !== 'function') {
+        toneToggle.disabled = true;
+        toneToggle.textContent = 'Interface tones unavailable';
+        toneToggle.setAttribute('aria-label', 'Interface tones unavailable in this browser');
+        return;
+      }
+      try {
+        if (!toneContext) toneContext = new Context();
+        const requestedGeneration = ++toneGeneration;
+        tonePending = true;
+        updateToneToggle();
+        const ready = toneContext.state === 'running' ? Promise.resolve() : toneContext.resume();
+        Promise.resolve(ready).then(() => {
+          if (requestedGeneration !== toneGeneration) return;
+          tonePending = false;
+          tonesEnabled = toneContext.state === 'running';
+          updateToneToggle();
+          playTone();
+        }).catch(() => {
+          if (requestedGeneration !== toneGeneration) return;
+          tonePending = false;
+          tonesEnabled = false;
+          discardToneContext();
+          updateToneToggle();
+        });
+      } catch (_) {
+        tonePending = false;
+        tonesEnabled = false;
+        discardToneContext();
+        updateToneToggle();
+      }
+    });
+  }
 
   const controls = {
     search: byId('search-input'),
@@ -100,15 +191,16 @@
     const detail = el('dl', 'detail-list');
     appendDetail(detail, 'Mission ID', row.id);
     const count = state.briefings.filter((b) => b.mission_id === row.id).length;
-    appendDetail(detail, 'Indexed Mission Briefings', count.toLocaleString());
+    appendDetail(detail, 'Indexed Briefings', count.toLocaleString());
     const leadCount = researchState.available ? researchState.leads.filter((lead) => lead.mission_id === row.id).length : 0;
-    // Candidate counts are never combined with admitted Mission Briefing counts.
+    // Candidate counts are never combined with admitted Briefing counts.
     if (researchState.available) appendDetail(detail, 'Unverified research leads', leadCount.toLocaleString());
     card.append(detail);
     const button = el('button', null, 'Focus this Mission');
     button.type = 'button';
     button.setAttribute('aria-label', 'Filter Explorer to ' + row.title);
     button.addEventListener('click', () => {
+      playTone();
       controls.mission.value = row.id;
       controls.scope.value = 'all';
       render();
@@ -121,6 +213,7 @@
       researchButton.type = 'button';
       researchButton.setAttribute('aria-label', `Inspect ${leadCount.toLocaleString()} unverified Research Leads for ${row.title}`);
       researchButton.addEventListener('click', () => {
+        playTone();
         researchControls.search.value = '';
         researchControls.mission.value = row.id;
         visibleResearchLimit = RESEARCH_PAGE_SIZE;
@@ -136,7 +229,7 @@
   function makeBriefingCard(row) {
     const card = el('article', 'card');
     const top = el('div', 'card-header');
-    top.append(el('span', 'kicker', 'Mission Briefing · episode'));
+    top.append(el('span', 'kicker', 'Briefing · episode'));
     top.append(makeBadge(row.admission_status || 'UNSPECIFIED'));
     card.append(top, el('h3', null, row.title));
     const detail = el('dl', 'detail-list');
@@ -187,7 +280,7 @@
     appendDetail(detail, 'Record ID', row.id);
     appendDetail(detail, 'Predicate', row.predicate);
     appendDetail(detail, 'Mission ID', row.mission_id);
-    appendDetail(detail, 'Mission Briefing ID', row.briefing_id);
+    appendDetail(detail, 'Briefing ID', row.briefing_id);
     card.append(detail);
     addSources(card, row);
     return card;
@@ -199,7 +292,7 @@
     const publisher = row.source_type === 'PUBLISHER_EPISODE_SLOT_METADATA';
     top.append(el('span', 'kicker', publisher ? 'Publisher-listed episode slot · unverified' : 'Wikidata episode metadata · unverified'));
     const badge = el('span', 'badge proposed', 'Candidate · not verified');
-    badge.setAttribute('aria-label', 'Unverified candidate; not an admitted Mission Briefing');
+    badge.setAttribute('aria-label', 'Unverified candidate; not an admitted Briefing');
     top.append(badge);
     card.append(top, el('h3', null, row.episode_label));
     const mission = state.missions.find((item) => item.id === row.mission_id);
@@ -278,6 +371,7 @@
       const more = el('button', 'load-more', `Show next ${Math.min(RESEARCH_PAGE_SIZE, matching.length - count)} research leads`);
       more.type = 'button';
       more.addEventListener('click', () => {
+        playTone();
         const firstNewCard = count;
         visibleResearchLimit += RESEARCH_PAGE_SIZE;
         renderResearch();
@@ -352,7 +446,7 @@
     setSelectOptions(researchControls.mission,
       [...sampled].map((id) => [id, state.missions.find((item) => item.id === id).title]).sort((a, b) => a[1].localeCompare(b[1])),
       'All Missions');
-    setResearchAvailability(true, 'External candidate metadata loaded. These leads have not been admitted as Mission Briefings.');
+    setResearchAvailability(true, 'External candidate metadata loaded. These leads have not been admitted as Briefings.');
   }
 
   async function loadResearchIndex() {
@@ -393,6 +487,7 @@
       const more = el('button', 'load-more', `Show next ${Math.min(PAGE_SIZE, items.length - count)} of ${items.length} ${sectionId}`);
       more.type = 'button';
       more.addEventListener('click', () => {
+        playTone();
         const firstNewCard = count;
         visibleLimits[sectionId] += PAGE_SIZE;
         render();
@@ -403,10 +498,10 @@
     const empty = byId(emptyId);
     empty.hidden = items.length !== 0;
     if (!items.length && state.dataStatus === 'MISSION_CATALOG_ONLY' && sectionId !== 'missions') {
-      empty.textContent = 'Catalog-only mode: no ' + (sectionId === 'briefings' ? 'Mission Briefings' : 'continuity records') + ' have been admitted to this index.';
+      empty.textContent = 'Catalog-only mode: no ' + (sectionId === 'briefings' ? 'Briefings' : 'continuity records') + ' have been admitted to this index.';
     } else {
       empty.textContent = sectionId === 'missions' ? 'No Missions match the current search.' :
-        sectionId === 'briefings' ? 'No Mission Briefings match the current filters.' :
+        sectionId === 'briefings' ? 'No Briefings match the current filters.' :
           'No continuity records match the current filters.';
     }
   }
@@ -476,7 +571,7 @@
     byId('briefing-count').textContent = state.briefings.length.toLocaleString();
     byId('record-count').textContent = state.records.length.toLocaleString();
     byId('data-state').textContent = state.dataStatus === 'MISSION_CATALOG_ONLY'
-      ? 'Catalog-only transmission. Mission names are available; no Mission Briefings or continuity facts are admitted here.'
+      ? 'Catalog-only transmission. Mission names are available; no Briefings or continuity facts are admitted here.'
       : 'The index declares a governed projection' + (state.projectionHash ? ` (${state.projectionHash.slice(0, 24)}…)` : '') + '. Check its build receipt and each record’s status before relying on it.';
     byId('notice').hidden = true;
     render();
@@ -500,7 +595,7 @@
     try {
       const response = await fetch('./index.json', { cache: 'no-store' });
       if (response.status === 404) {
-        showUnavailable('The index has not been built yet. This interface does not invent Missions, Mission Briefings, or facts when index.json is absent.');
+        showUnavailable('The index has not been built yet. This interface does not invent Missions, Briefings, or facts when index.json is absent.');
         return;
       }
       if (!response.ok) throw new Error(`Index request returned HTTP ${response.status}.`);
@@ -516,14 +611,14 @@
   };
   const filters = byId('filters');
   filters.addEventListener('input', () => { resetPageCounts(); render(); });
-  filters.addEventListener('change', () => { resetPageCounts(); render(); });
-  filters.addEventListener('submit', (event) => { event.preventDefault(); render(); });
-  filters.addEventListener('reset', () => { resetPageCounts(); window.requestAnimationFrame(render); });
+  filters.addEventListener('change', () => { playTone(); resetPageCounts(); render(); });
+  filters.addEventListener('submit', (event) => { event.preventDefault(); playTone(); render(); });
+  filters.addEventListener('reset', () => { playTone(); resetPageCounts(); window.requestAnimationFrame(render); });
   const researchFilters = byId('research-filters');
   researchFilters.addEventListener('input', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
-  researchFilters.addEventListener('change', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
-  researchFilters.addEventListener('submit', (event) => { event.preventDefault(); renderResearch(); });
-  researchFilters.addEventListener('reset', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; window.requestAnimationFrame(renderResearch); });
+  researchFilters.addEventListener('change', () => { playTone(); visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
+  researchFilters.addEventListener('submit', (event) => { event.preventDefault(); playTone(); renderResearch(); });
+  researchFilters.addEventListener('reset', () => { playTone(); visibleResearchLimit = RESEARCH_PAGE_SIZE; window.requestAnimationFrame(renderResearch); });
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   loadIndex();
 })();

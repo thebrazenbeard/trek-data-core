@@ -9,7 +9,7 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
-  'research-state', 'research-list', 'research-empty', 'research-summary'];
+  'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -53,7 +53,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
@@ -80,7 +80,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   };
   vm.runInNewContext(SCRIPT, {
     document, fetch, Option: OptionNode, URL, location: { origin: 'https://example.test' },
-    window: { requestAnimationFrame: (fn) => fn() }, console
+    window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
   await new Promise((resolve) => setImmediate(resolve));
   return nodes;
@@ -122,7 +122,7 @@ test('catalog-only payload never admits injected briefings or records', async ()
   assert.equal(nodes.get('briefing-list').children.length, 0);
   assert.equal(nodes.get('record-list').children.length, 0);
   assert.match(nodes.get('data-state').textContent, /Catalog-only transmission/);
-  assert.match(nodes.get('briefing-empty').textContent, /no Mission Briefings/);
+  assert.match(nodes.get('briefing-empty').textContent, /no Briefings/);
 });
 
 test('untrusted titles render as literal text; javascript links are not created', async () => {
@@ -144,7 +144,7 @@ test('untrusted titles render as literal text; javascript links are not created'
   const links = traverse(nodes.get('record-list'), (node) => node.tagName === 'a');
   assert.equal(links.length, 1);
   assert.equal(links[0].href, 'https://example.org/evidence');
-  assert.match(nodes.get('record-list').textContent, /Mission Briefing \(episode\)/);
+  assert.match(nodes.get('record-list').textContent, /Briefing \(episode\)/);
   assert.match(nodes.get('data-state').textContent, /index declares a governed projection/);
 });
 
@@ -320,12 +320,89 @@ test('missing Research Leads index is explained without claiming a zero dataset'
   assert.equal(nodes.get('briefing-count').textContent, '0');
 });
 
+test('interface tones are optional, off by default, and synthesized only after an explicit click', async () => {
+  let contextInstances = 0;
+  let startedOscillators = 0;
+  let closedContexts = 0;
+  class FakeAudioContext {
+    constructor() { contextInstances++; this.state = 'running'; this.currentTime = 1; this.destination = {}; }
+    close() { this.state = 'closed'; closedContexts++; return Promise.resolve(); }
+    createOscillator() {
+      return { frequency: { setValueAtTime() {} }, connect() {}, start() { startedOscillators++; }, stop() {} };
+    }
+    createGain() {
+      return { gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {} };
+    }
+  }
+  const nodes = await runWithIndex(catalog, 200, null, 404, { AudioContext: FakeAudioContext });
+  const toggle = nodes.get('tone-toggle');
+  assert.equal(contextInstances, 0, 'index and candidate loading never initialize audio');
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  nodes.get('search-input').value = 'Voyager';
+  nodes.get('filters').fire('input');
+  assert.equal(startedOscillators, 0, 'typing is silent even before an explicit opt-in');
+  toggle.fire('click');
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(contextInstances, 1);
+  assert.equal(toggle.attributes.get('aria-pressed'), 'true');
+  assert.equal(toggle.textContent, 'Interface tones: On');
+  assert.equal(startedOscillators, 2, 'opt-in confirms with an original two-note signal');
+  nodes.get('filters').fire('change');
+  assert.equal(startedOscillators, 4, 'selection has an optional cue');
+  nodes.get('filters').fire('input');
+  assert.equal(startedOscillators, 4, 'typing remains silent after opt-in');
+  toggle.fire('click');
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  assert.equal(closedContexts, 1, 'disabling tones releases the audio context');
+  nodes.get('filters').fire('change');
+  assert.equal(startedOscillators, 4, 'disabled tones remain silent');
+});
+
+test('cancelling a delayed audio start cannot resurrect interface tones', async () => {
+  let finishResume;
+  let closed = 0;
+  let started = 0;
+  class DelayedAudioContext {
+    constructor() { this.state = 'suspended'; }
+    resume() {
+      return new Promise((resolve) => { finishResume = () => { this.state = 'running'; resolve(); }; });
+    }
+    close() { this.state = 'closed'; closed++; return Promise.resolve(); }
+    createOscillator() { started++; throw new Error('must not play after cancellation'); }
+  }
+  const nodes = await runWithIndex(catalog, 200, null, 404, { AudioContext: DelayedAudioContext });
+  const toggle = nodes.get('tone-toggle');
+  toggle.fire('click');
+  assert.equal(toggle.textContent, 'Interface tones: Starting…');
+  assert.equal(toggle.attributes.get('aria-label'), 'Cancel enabling interface tones');
+  toggle.fire('click');
+  assert.equal(closed, 1);
+  assert.equal(toggle.textContent, 'Interface tones: Off');
+  finishResume();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  assert.equal(started, 0);
+});
+
+test('interface tones fail closed when the browser has no audio support', async () => {
+  const nodes = await runWithIndex(catalog);
+  const toggle = nodes.get('tone-toggle');
+  toggle.fire('click');
+  assert.equal(toggle.disabled, true);
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  assert.equal(toggle.textContent, 'Interface tones unavailable');
+});
+
 test('HTML exposes the separate research search and status elements', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);
-  assert.match(html, /not admitted Mission Briefings or continuity facts/);
+  assert.match(html, /not admitted Briefings or continuity facts/);
+  assert.match(html, /<dt>Briefings<\/dt>/);
+  assert.match(html, /<h2 id="briefings-heading">Briefings<\/h2>/);
+  assert.match(html, /src="\.\/trek-data-core-hero\.jpg"/);
+  assert.match(html, /id="tone-toggle"[^>]*aria-pressed="false"/);
   assert.match(html, /id="filters" role="search" aria-label="Search governed Mission index"/);
   assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
 });

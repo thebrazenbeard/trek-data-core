@@ -56,6 +56,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("test -f explorer/index.html", text)
         self.assertIn("test -f explorer/index.json", text)
+        self.assertIn("test -f explorer/trek-data-core-hero.jpg", text)
 
     def test_drops_unfinished_template_steps(self):
         text = WORKFLOW.read_text(encoding="utf-8")
@@ -95,6 +96,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("python3 -m unittest discover", text)
         self.assertIn("! -path explorer/app.js", text)
         self.assertIn("! -path explorer/app.css", text)
+        self.assertIn("! -path explorer/trek-data-core-hero.jpg", text)
         self.assertIn("! -path explorer/research-leads.json", text)
         self.assertIn("Refusing to publish an unexpected Explorer entry", text)
 
@@ -163,14 +165,18 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("Refusing to publish an unexpected Explorer entry", final)
         self.assertIn("find explorer -mindepth 1", final)
         self.assertIn("git rev-parse HEAD:explorer/research-leads.json", final)
+        self.assertIn("cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg", final)
 
     def test_final_barrier_rejects_post_test_modifications_and_new_files(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             explorer = root / "explorer"
             explorer.mkdir()
-            for name in ("index.html", "index.json", "app.js", "app.css"):
+            for name in ("index.html", "index.json", "app.js", "app.css", "trek-data-core-hero.jpg"):
                 (explorer / name).write_text("accepted bytes\n", encoding="utf-8")
+            art = root / "docs/assets"
+            art.mkdir(parents=True)
+            (art / "trek-data-core-hero.jpg").write_text("accepted bytes\n", encoding="utf-8")
             for command in (
                 ["git", "init", "-q"],
                 ["git", "add", "--", "explorer"],
@@ -220,7 +226,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
 
             explorer = root / "explorer"
             explorer.mkdir()
-            for name in ("index.html", "index.json", "app.js", "app.css"):
+            for name in ("index.html", "index.json", "app.js", "app.css", "trek-data-core-hero.jpg"):
                 (explorer / name).write_text("fixture\n", encoding="utf-8")
             output.unlink()
             ready = check()
@@ -233,8 +239,11 @@ class PagesArtifactScopeTests(unittest.TestCase):
         root = Path(temp.name)
         explorer = root / "explorer"
         explorer.mkdir()
-        for name in ("index.html", "index.json", "app.js", "app.css"):
+        for name in ("index.html", "index.json", "app.js", "app.css", "trek-data-core-hero.jpg"):
             (explorer / name).write_text("verified\n", encoding="utf-8")
+        art = root / "docs/assets"
+        art.mkdir(parents=True)
+        (art / "trek-data-core-hero.jpg").write_text("verified\n", encoding="utf-8")
         self.commit_fixture(root)
         return root
 
@@ -243,7 +252,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
             init = subprocess.run(["git", "init", "-q"], cwd=root, capture_output=True, text=True)
             self.assertEqual(init.returncode, 0, init.stderr)
         for command in (
-            ["git", "add", "--", "explorer"],
+            ["git", "add", "--", "explorer", "docs/assets/trek-data-core-hero.jpg"],
             ["git", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
              "commit", "-qm", "Accepted Explorer fixture"],
         ):
@@ -256,20 +265,20 @@ class PagesArtifactScopeTests(unittest.TestCase):
             cwd=root, capture_output=True, text=True,
         )
 
-    def test_four_file_release_needs_no_research_generator(self):
+    def test_five_file_release_needs_no_research_generator(self):
         root = self.fixture()
         self.assertEqual(self.check_step("Verify optional Research Leads index", root).returncode, 0)
         self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
         self.assertFalse((root / "tools/build_research_leads.py").exists())
 
-    def test_fifth_file_without_generator_fails_closed(self):
+    def test_sixth_research_file_without_generator_fails_closed(self):
         root = self.fixture()
         (root / "explorer/research-leads.json").write_text("verified\n", encoding="utf-8")
         self.commit_fixture(root)
         self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
         self.assertNotEqual(self.check_step("Verify optional Research Leads index", root).returncode, 0)
 
-    def test_fifth_file_must_be_committed_and_byte_identical(self):
+    def test_sixth_research_file_must_be_committed_and_byte_identical(self):
         root = self.fixture()
         fifth = root / "explorer/research-leads.json"
         fifth.write_text("unreviewed\n", encoding="utf-8")
@@ -281,7 +290,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         fifth.unlink()
         self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
 
-    def test_fifth_file_runs_actual_check_command_and_propagates_failures(self):
+    def test_sixth_research_file_runs_actual_check_command_and_propagates_failures(self):
         root = self.fixture()
         (root / "explorer/research-leads.json").write_text("verified\n", encoding="utf-8")
         self.commit_fixture(root)
@@ -318,7 +327,23 @@ class PagesArtifactScopeTests(unittest.TestCase):
         os.mkfifo(fifo)
         self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
 
-    def test_fifth_file_or_generator_symlink_refused(self):
+    def test_hero_artwork_is_required_identical_and_committed(self):
+        root = self.fixture()
+        public = root / "explorer/trek-data-core-hero.jpg"
+        source = root / "docs/assets/trek-data-core-hero.jpg"
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        public.write_bytes(b"altered art")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        public.write_bytes(source.read_bytes())
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        source.write_bytes(b"different original")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        source.write_bytes(public.read_bytes())
+        public.unlink()
+        public.symlink_to("index.html")
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+
+    def test_research_file_or_generator_symlink_refused(self):
         root = self.fixture()
         fifth = root / "explorer/research-leads.json"
         fifth.symlink_to("index.json")

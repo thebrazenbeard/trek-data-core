@@ -128,6 +128,91 @@
     mission: byId('research-mission')
   };
   const researchState = { leads: [], available: false };
+  const filmState = { films: [], available: false };
+
+  function setFilmAvailability(available, message) {
+    filmState.available = available;
+    if (!available) filmState.films = [];
+    const count = available ? filmState.films.length.toLocaleString() : '—';
+    byId('film-top-count').textContent = count;
+    byId('film-nav-count').textContent = count;
+    byId('film-state').textContent = message;
+    renderFilms();
+  }
+
+  function renderFilms() {
+    const container = byId('film-list');
+    container.replaceChildren();
+    if (!filmState.available) {
+      byId('film-summary').textContent = 'Film discovery catalog unavailable; count is unknown.';
+      return;
+    }
+    const search = normalize(byId('film-query').value.trim());
+    const matched = filmState.films.filter((row) => normalize(row.title).includes(search));
+    byId('film-summary').textContent = `${matched.length.toLocaleString()} of ${filmState.films.length.toLocaleString()} publisher-listed film candidates shown · unverified metadata.`;
+    for (const row of matched) {
+      const card = el('article', 'card');
+      card.append(el('span', 'kicker', row.work_type === 'STREAMING_ORIGINAL_FILM' ? 'Streaming movie · discovery' : 'Feature film · discovery'));
+      card.append(el('h3', null, row.title));
+      card.append(el('p', null, 'Publisher-listed title · metadata only · not source-reviewed'));
+      const link = el('a', null, 'Open official source');
+      link.href = row.source_locator;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      card.append(link);
+      container.append(card);
+    }
+  }
+
+  function acceptFilmCatalog(data) {
+    if (!data || typeof data !== 'object' || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'DISCOVERY_ONLY' || data.coverage_effect !== 'NONE' ||
+        data.source_group !== 'publisher:startrek.com' || !Array.isArray(data.films) ||
+        !Number.isSafeInteger(data.film_count) || data.film_count !== data.films.length ||
+        data.films.length < 1 || data.films.length > 500) {
+      throw new Error('Film discovery metadata has an invalid schema or count.');
+    }
+    const used = new Set();
+    const usedLocators = new Set();
+    for (const row of data.films) {
+      if (!row || typeof row !== 'object' || !/^[a-z0-9][a-z0-9-]{1,80}$/.test(row.id) ||
+          used.has(row.id) || typeof row.title !== 'string' || !row.title.trim() || row.title.length > 200 ||
+          row.source_group !== 'publisher:startrek.com' || row.verification_status !== 'UNVERIFIED_METADATA' ||
+          !['FEATURE_FILM', 'STREAMING_ORIGINAL_FILM'].includes(row.work_type) ||
+          !['OFFICIAL_DIRECTORY', 'OFFICIAL_ANNOUNCEMENT'].includes(row.discovery_source) ||
+          ['admission_status', 'canonical_work_id', 'evidence', 'coverage_status', 'accepted'].some((key) => key in row)) {
+        throw new Error('Film discovery record contains invalid or admission-like metadata.');
+      }
+      let source;
+      try { source = new URL(row.source_locator); } catch (_) { throw new Error('Invalid official film locator.'); }
+      const filmPath = /^\/movies\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(source.pathname);
+      const section31 = source.pathname === '/news/star-trek-section-31-premieres-january-24';
+      if (usedLocators.has(row.source_locator) || source.protocol !== 'https:' || source.hostname !== 'www.startrek.com' || source.search || source.hash ||
+          source.port || source.username || source.password || !(filmPath || section31) ||
+          (row.discovery_source === 'OFFICIAL_ANNOUNCEMENT') !== section31 ||
+          (section31 ? row.work_type !== 'STREAMING_ORIGINAL_FILM' : row.work_type !== 'FEATURE_FILM')) {
+        throw new Error('Film discovery link is outside the accepted publisher locator scope.');
+      }
+      used.add(row.id);
+      usedLocators.add(row.source_locator);
+    }
+    filmState.films = data.films;
+    setFilmAvailability(true, 'Publisher film metadata loaded. These films are discovery candidates, not reviewed research.');
+  }
+
+  async function loadFilmCatalog() {
+    try {
+      const response = await fetch('./film-catalog.json', { cache: 'no-store' });
+      if (response.status === 404) {
+        setFilmAvailability(false, 'The separate film discovery catalog has not been published yet.');
+        return;
+      }
+      if (!response.ok) throw new Error(`Film request returned HTTP ${response.status}.`);
+      acceptFilmCatalog(await response.json());
+    } catch (error) {
+      setFilmAvailability(false, `Could not load valid film discovery metadata. ${error.message || 'Check film-catalog.json.'}`);
+    }
+  }
 
   function safeHref(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
@@ -163,11 +248,15 @@
       'All Missions');
     const kinds = [...new Set(state.records.map((r) => asString(r.kind)).filter(Boolean))].sort();
     setSelectOptions(controls.kind, kinds.map((kind) => [kind, kindLabel(kind)]), 'All kinds');
+    controls.kind.disabled = kinds.length === 0;
+    controls.kind.title = kinds.length ? '' : 'No admitted continuity records to filter by kind.';
     const statuses = [...new Set([
       ...state.briefings.map((r) => asString(r.admission_status)),
       ...state.records.map((r) => asString(r.projection_status))
     ].filter(Boolean))].sort();
     setSelectOptions(controls.status, statuses.map((status) => [status, humanize(status)]), 'All statuses');
+    controls.status.disabled = statuses.length === 0;
+    controls.status.title = statuses.length ? '' : 'No admitted research statuses to filter.';
   }
 
   function makeBadge(value) {
@@ -337,6 +426,8 @@
     researchControls.mission.disabled = !available;
     byId('research-reset').disabled = !available;
     byId('research-count').textContent = available ? researchState.leads.length.toLocaleString() : '—';
+    byId('research-top-count').textContent = available ? researchState.leads.length.toLocaleString() : '—';
+    byId('research-nav-count').textContent = available ? researchState.leads.length.toLocaleString() : '—';
     byId('research-state').textContent = message;
     renderResearch();
     // Mission cards must reflect the same validated candidate-only snapshot.
@@ -507,6 +598,11 @@
   }
 
   function render() {
+    if (state.dataStatus === 'NOT_BUILT') {
+      for (const section of ['missions', 'briefings', 'records']) byId(section).hidden = true;
+      byId('result-summary').textContent = 'Catalog unavailable; the number of matching entries is unknown.';
+      return;
+    }
     const search = normalize(controls.search.value.trim());
     const scope = controls.scope.value;
     const mission = controls.mission.value;
@@ -579,9 +675,9 @@
 
   function showUnavailable(message) {
     state.missions = []; state.briefings = []; state.records = []; state.dataStatus = 'NOT_BUILT';
-    byId('mission-count').textContent = '0';
-    byId('briefing-count').textContent = '0';
-    byId('record-count').textContent = '0';
+    byId('mission-count').textContent = '—';
+    byId('briefing-count').textContent = '—';
+    byId('record-count').textContent = '—';
     byId('data-state').textContent = 'No usable local index loaded.';
     const notice = byId('notice');
     notice.textContent = message;
@@ -619,6 +715,15 @@
   researchFilters.addEventListener('change', () => { playTone(); visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
   researchFilters.addEventListener('submit', (event) => { event.preventDefault(); playTone(); renderResearch(); });
   researchFilters.addEventListener('reset', () => { playTone(); visibleResearchLimit = RESEARCH_PAGE_SIZE; window.requestAnimationFrame(renderResearch); });
+  const filmFilters = byId('film-filters');
+  filmFilters.addEventListener('input', renderFilms);
+  filmFilters.addEventListener('change', () => { playTone(); renderFilms(); });
+  filmFilters.addEventListener('submit', (event) => { event.preventDefault(); renderFilms(); });
+  filmFilters.addEventListener('reset', () => window.requestAnimationFrame(renderFilms));
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
+  setFilmAvailability(false, 'Checking the separate film catalog…');
+  // Separate publisher discovery is not an admission lane and must not depend
+  // on an unrelated governed Mission index being available.
+  loadFilmCatalog();
   loadIndex();
 })();

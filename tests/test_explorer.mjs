@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -53,7 +53,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
@@ -76,6 +76,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     assert.equal(opts.cache, 'no-store');
     if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
+    if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
     assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(SCRIPT, {
@@ -105,6 +106,15 @@ const catalog = {
   schema_version: '1.0.0', build: { data_status: 'MISSION_CATALOG_ONLY', projection_hash: null },
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
+};
+
+const filmCatalog = {
+  schema_version: '1.0.0', data_status: 'DISCOVERY_ONLY', coverage_effect: 'NONE',
+  source_group: 'publisher:startrek.com', film_count: 2,
+  films: [
+    { id: 'star-trek-2009', title: 'Star Trek (2009)', source_locator: 'https://www.startrek.com/movies/star-trek-2009', source_group: 'publisher:startrek.com', work_type: 'FEATURE_FILM', verification_status: 'UNVERIFIED_METADATA', discovery_source: 'OFFICIAL_DIRECTORY' },
+    { id: 'section-31', title: 'Star Trek: Section 31', source_locator: 'https://www.startrek.com/news/star-trek-section-31-premieres-january-24', source_group: 'publisher:startrek.com', work_type: 'STREAMING_ORIGINAL_FILM', verification_status: 'UNVERIFIED_METADATA', discovery_source: 'OFFICIAL_ANNOUNCEMENT' }
+  ]
 };
 
 test('catalog-only payload never admits injected briefings or records', async () => {
@@ -184,21 +194,63 @@ test('large briefing results can be reached with Show next', async () => {
 
 test('missing or incompatible index gives an honest no-data state', async () => {
   const missing = await runWithIndex(null, 404);
-  assert.equal(missing.get('record-count').textContent, '0');
+  assert.equal(missing.get('record-count').textContent, '—');
+  assert.equal(missing.get('film-top-count').textContent, '—');
   assert.match(missing.get('notice').textContent, /not been built yet/);
+  assert.match(missing.get('result-summary').textContent, /matching entries is unknown/);
+  assert.equal(missing.get('missions').hidden, true, 'unavailable catalog is not an empty search result');
   const invalid = await runWithIndex({ schema_version: '0.0.1' });
-  assert.equal(invalid.get('mission-count').textContent, '0');
+  assert.equal(invalid.get('mission-count').textContent, '—');
   assert.match(invalid.get('notice').textContent, /incompatible schema/);
   const forged = await runWithIndex({
     schema_version: '1.0.0', build: { data_status: 'GOVERNED_PROJECTION', projection_hash: 'sha256:abc' },
     missions: [{ id: 'tng', title: 'TNG' }], briefings: [], records: []
   });
-  assert.equal(forged.get('record-count').textContent, '0');
+  assert.equal(forged.get('record-count').textContent, '—');
   assert.match(forged.get('notice').textContent, /verified projection hash/);
+});
+
+test('publisher film discovery remains available when the separate Mission index is missing', async () => {
+  const nodes = await runWithIndex(null, 404, null, 404, {}, filmCatalog, 200);
+  assert.equal(nodes.get('film-top-count').textContent, '2');
+  assert.equal(nodes.get('film-list').children.length, 2);
+  assert.equal(nodes.get('mission-count').textContent, '—');
+  assert.match(nodes.get('result-summary').textContent, /unknown/);
+});
+
+test('separate official film discovery remains unadmitted and strictly source-scoped', async () => {
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200);
+  assert.equal(nodes.get('film-top-count').textContent, '2');
+  assert.equal(nodes.get('film-nav-count').textContent, '2');
+  assert.equal(nodes.get('film-list').children.length, 2);
+  assert.match(nodes.get('film-list').textContent, /Star Trek: Section 31/);
+  nodes.get('film-query').value = 'section 31';
+  nodes.get('film-filters').fire('input');
+  assert.equal(nodes.get('film-list').children.length, 1, 'film discovery is separately searchable');
+  assert.match(nodes.get('film-summary').textContent, /1 of 2/);
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'discovered movies do not create Briefings');
+  const forged = structuredClone(filmCatalog);
+  forged.films[0].admission_status = 'ACCEPTED';
+  const rejected = await runWithIndex(catalog, 200, null, 404, {}, forged, 200);
+  assert.equal(rejected.get('film-top-count').textContent, '—');
+  assert.equal(rejected.get('film-list').children.length, 0);
+  assert.equal(rejected.get('mission-count').textContent, '2', 'invalid optional film data does not corrupt governed catalog');
+  const malicious = structuredClone(filmCatalog);
+  malicious.films[0].source_locator = 'https://example.com/movies/star-trek-2009';
+  const quarantined = await runWithIndex(catalog, 200, null, 404, {}, malicious, 200);
+  assert.equal(quarantined.get('film-top-count').textContent, '—');
+  const duplicate = structuredClone(filmCatalog);
+  duplicate.films[1].source_locator = duplicate.films[0].source_locator;
+  const deduped = await runWithIndex(catalog, 200, null, 404, {}, duplicate, 200);
+  assert.equal(deduped.get('film-top-count').textContent, '—');
 });
 
 test('Research Leads load separately from admitted Mission Briefings and stay searchable', async () => {
   const nodes = await runWithIndex(catalog, 200, candidateIndex(3), 200);
+  assert.equal(nodes.get('research-top-count').textContent, '3');
+  assert.equal(nodes.get('research-nav-count').textContent, '3');
+  assert.equal(nodes.get('kind-filter').disabled, true, 'no phantom record-kind filter in catalog mode');
+  assert.equal(nodes.get('status-filter').disabled, true, 'no phantom evidence-status filter in catalog mode');
   assert.equal(nodes.get('mission-count').textContent, '2');
   assert.equal(nodes.get('briefing-count').textContent, '0');
   assert.equal(nodes.get('record-count').textContent, '0');
@@ -395,6 +447,12 @@ test('interface tones fail closed when the browser has no audio support', async 
 
 test('HTML exposes the separate research search and status elements', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<nav class="lcars-navigation" aria-label="Explorer sections">/);
+  assert.match(html, /href="#research-leads">Episode research leads/);
+  assert.match(html, /href="#films">Films/);
+  assert.match(html, /id="film-list"/);
+  assert.match(html, /id="film-filters"[^>]*aria-label="Search film discovery titles"/);
+  assert.match(html, /id="film-state"[^>]*role="status"/);
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);

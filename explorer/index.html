@@ -19,6 +19,16 @@
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
+  <nav class="lcars-navigation" aria-label="Explorer sections">
+    <span class="navigation-label" aria-hidden="true">Archive stations</span>
+    <a href="#main">Status</a>
+    <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
+    <a href="#films">Films <span id="film-nav-count">—</span></a>
+    <a href="#missions">Missions</a>
+    <a href="#briefings">Briefings</a>
+    <a href="#records">Continuity</a>
+  </nav>
+
   <header class="masthead">
     <img class="masthead-art" src="./trek-data-core-hero.jpg" width="1536" height="512" alt="Panoramic starship bridge facing a luminous celestial navigation chart" decoding="async" fetchpriority="high">
     <div class="masthead-copy">
@@ -41,16 +51,18 @@
         <p id="data-state" class="state-note" role="status" aria-live="polite">Attempting local index read…</p>
       </div>
       <dl class="stat-grid">
-        <div class="stat"><dt>Missions</dt><dd id="mission-count">—</dd></div>
+        <div class="stat"><dt>Missions (series)</dt><dd id="mission-count">—</dd></div>
         <div class="stat"><dt>Briefings</dt><dd id="briefing-count">—</dd></div>
         <div class="stat"><dt>Continuity records</dt><dd id="record-count">—</dd></div>
+        <div class="stat stat-candidates"><dt>Unverified leads</dt><dd id="research-top-count">—</dd></div>
+        <div class="stat stat-films"><dt>Film catalog candidates</dt><dd id="film-top-count">—</dd></div>
       </dl>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">
       <div class="section-heading compact">
-        <div><p class="eyebrow">Navigation / Local index</p><h2 id="search-heading">Search the archive</h2></div>
-        <p>Search titles, identifiers, tags, and source references in the governed archive. <a href="#research-leads">Search unverified Research Leads separately</a>.</p>
+        <div><p class="eyebrow">Navigation / Governed index</p><h2 id="search-heading">Search admitted archive</h2></div>
+        <p>Search Missions, admitted Briefings, and governed records only. For additional discoveries, <a href="#research-leads">search episode leads</a> or <a href="#films">browse films</a>.</p>
       </div>
       <form id="filters" role="search" aria-label="Search governed Mission index" autocomplete="off">
         <div class="field search-field">
@@ -84,6 +96,17 @@
     </section>
 
     <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <section id="films" class="collection films-panel" aria-labelledby="films-heading">
+      <div class="section-heading"><div><p class="eyebrow">Film library / Publisher discovery</p><h2 id="films-heading">Films</h2></div><p>Publisher-listed movie titles, indexed for discovery only. These are not independently source-reviewed Works, episode Briefings, or continuity assertions.</p></div>
+      <p id="film-state" class="state-note" role="status" aria-live="polite">Checking the separate film catalog…</p>
+      <form id="film-filters" class="film-filters" role="search" aria-label="Search film discovery titles" autocomplete="off">
+        <label for="film-query">Find a film</label>
+        <input id="film-query" name="film-q" type="search" placeholder="Search the film discovery catalog…" spellcheck="false">
+      </form>
+      <p id="film-summary" class="result-summary" aria-live="polite">Waiting for film metadata.</p>
+      <div id="film-list" class="card-grid film-grid"></div>
+    </section>
 
     <section id="missions" class="collection" aria-labelledby="missions-heading">
       <div class="section-heading"><div><p class="eyebrow">Star chart / Series catalog</p><h2 id="missions-heading">Missions</h2></div><p>Each Mission represents a television series, not an admitted set of episode research. Where candidate metadata exists, use a Mission's unverified-leads shortcut to inspect it separately.</p></div>

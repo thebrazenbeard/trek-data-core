@@ -34,6 +34,15 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("python3 tools/build_explorer_index.py", text)
         self.assertIn('cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json', text)
 
+    def test_deployment_gates_on_behavior_and_exact_allowlist(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("persist-credentials: false", text)
+        self.assertIn("node tests/test_explorer.mjs", text)
+        self.assertIn("python3 -m unittest discover", text)
+        self.assertIn("! -path explorer/app.js", text)
+        self.assertIn("! -path explorer/app.css", text)
+        self.assertIn("Refusing to publish an unexpected Explorer file", text)
+
 
 if __name__ == "__main__":
     unittest.main()

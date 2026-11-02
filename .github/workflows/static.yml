@@ -29,6 +29,8 @@ jobs:
     steps:
       - name: Check out accepted source
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Verify public artifact boundary
         shell: bash
@@ -40,6 +42,20 @@ jobs:
             echo "Refusing to deploy a site containing symlinks" >&2
             exit 1
           fi
+          if find explorer -type f \
+            ! -path explorer/index.html \
+            ! -path explorer/index.json \
+            ! -path explorer/app.js \
+            ! -path explorer/app.css -print -quit | grep -q .; then
+            echo "Refusing to publish an unexpected Explorer file" >&2
+            exit 1
+          fi
+
+      - name: Verify Explorer behavior before deployment
+        shell: bash
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node tests/test_explorer.mjs
 
       - name: Verify deterministic catalog index
         shell: bash

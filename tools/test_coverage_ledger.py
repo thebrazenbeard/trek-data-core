@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import importlib.util, json, tempfile, unittest
+from contextlib import contextmanager
 from pathlib import Path
+from unittest import mock
 MODULE_PATH=Path(__file__).with_name('coverage_ledger.py'); spec=importlib.util.spec_from_file_location('trek_coverage_ledger_test',MODULE_PATH); coverage=importlib.util.module_from_spec(spec); spec.loader.exec_module(coverage)
 WORK={'record_type':'work','work_id':'w1','title':'Fixture','work_type':'EPISODE','parent_work_id':None,'component_label':None,'status':'ACCEPTED','fixture_only':False}
 SOURCE={'record_type':'source','source_id':'s1','status':'ACCEPTED','source_kind':'TRANSCRIPT','provider':'synthetic-test','locator':'fixture://s1','provider_metadata':{},'source_version':'fixture','retrieved_at':'2026-11-02T00:00:00Z','content_hash':'sha256:'+'a'*64,'content_fingerprint':None,'source_variant':'SYNTHETIC','provenance_family':'synthetic-test','independence_group':'synthetic-test','derived_from':[],'fixture_only':False}
@@ -57,6 +59,167 @@ def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_scanner_rejects_final_symlink_swapped_after_enumeration(self):
+  for extension in ('.json','.jsonl'):
+   with self.subTest(extension=extension),tempfile.TemporaryDirectory() as tmp:
+    old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+    try:
+     directory=coverage.ROOT/'coverage'/'events';directory.mkdir(parents=True)
+     target=directory/('event'+extension)
+     target.write_text(json.dumps(event('e0','DISCOVERED',role='LIBRARIAN'))+'\n',encoding='utf-8')
+     outside=Path(tmp)/('untrusted'+extension)
+     outside.write_text(json.dumps({'record_type':'work','work_id':'untrusted'})+'\n',encoding='utf-8')
+     original_scan=coverage.safe_record_files
+     def swapped_scan(base,with_identities=False):
+      result=original_scan(base,with_identities=with_identities)
+      if Path(base)==coverage.ROOT/'coverage':
+       target.rename(directory/('previous'+extension+'.bak'))
+       target.symlink_to(outside)
+      return result
+     with mock.patch.object(coverage,'safe_record_files',side_effect=swapped_scan):
+      with self.assertRaisesRegex(ValueError,'symlink'):
+       coverage.scan_typed_records()
+    finally:coverage.ROOT=old_root
+
+ def test_scanner_rejects_regular_file_replacement_after_enumeration(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    directory=coverage.ROOT/'coverage'/'events';directory.mkdir(parents=True)
+    target=directory/'event.jsonl';target.write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    original_scan=coverage.safe_record_files
+    def swapped_scan(base,with_identities=False):
+     result=original_scan(base,with_identities=with_identities)
+     if Path(base)==coverage.ROOT/'coverage':
+      target.rename(directory/'previous.jsonl.bak')
+      target.write_text(json.dumps(dict(WORK,work_id='changed'))+'\n',encoding='utf-8')
+     return result
+    with mock.patch.object(coverage,'safe_record_files',side_effect=swapped_scan):
+     with self.assertRaisesRegex(ValueError,'changed after enumeration'):
+      coverage.scan_typed_records()
+   finally:coverage.ROOT=old_root
+
+ def test_scanner_rejects_intermediate_directory_swapped_after_enumeration(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    directory=coverage.ROOT/'coverage'/'events';directory.mkdir(parents=True)
+    (directory/'event.jsonl').write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    outside=Path(tmp)/'other';outside.mkdir()
+    (outside/'event.jsonl').write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    original_scan=coverage.safe_record_files
+    def swapped_scan(base,with_identities=False):
+     result=original_scan(base,with_identities=with_identities)
+     if Path(base)==coverage.ROOT/'coverage':
+      directory.rename(coverage.ROOT/'coverage'/'old-events')
+      directory.symlink_to(outside,target_is_directory=True)
+     return result
+    with mock.patch.object(coverage,'safe_record_files',side_effect=swapped_scan):
+     with self.assertRaisesRegex(ValueError,'symlink'):
+      coverage.scan_typed_records()
+   finally:coverage.ROOT=old_root
+
+ def test_reader_rejects_intermediate_symlink_and_missing_nofollow(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    coverage.ROOT.mkdir();outside=Path(tmp)/'other';outside.mkdir()
+    (outside/'event.jsonl').write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    (coverage.ROOT/'events').symlink_to(outside,target_is_directory=True)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.read_jsonl(coverage.ROOT/'events'/'event.jsonl')
+    with mock.patch.object(coverage.os,'O_NOFOLLOW',0):
+     with self.assertRaisesRegex(ValueError,'require O_NOFOLLOW'):
+      coverage.read_jsonl(coverage.ROOT/'events'/'event.jsonl')
+   finally:coverage.ROOT=old_root
+
+ def test_reader_rejects_file_replacement_while_open_descriptor_was_pinned(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    coverage.ROOT.mkdir()
+    target=coverage.ROOT/'event.jsonl';target.write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    original_open=coverage._open_governed;opens=0
+    @contextmanager
+    def after_first_open(path,directory=False):
+     nonlocal opens
+     with original_open(path,directory=directory) as fd:yield fd
+     opens+=1
+     if opens==1:
+      target.rename(coverage.ROOT/'old.jsonl')
+      target.write_text(json.dumps(WORK)+'\n',encoding='utf-8')
+    with mock.patch.object(coverage,'_open_governed',side_effect=after_first_open):
+     with self.assertRaisesRegex(ValueError,'replaced during read'):
+      coverage.read_jsonl(target)
+   finally:coverage.ROOT=old_root
+
+ def test_authoritative_rosters_reject_symlink_swapped_after_enumeration(self):
+  for roster in (coverage.authoritative_work_roster,coverage.authoritative_source_binding_rosters):
+   with self.subTest(roster=roster.__name__),tempfile.TemporaryDirectory() as tmp:
+    old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+    try:
+     directory=coverage.ROOT/'registry'/'authoritative';directory.mkdir(parents=True)
+     target=directory/'origin.json';target.write_text(json.dumps(WORK),encoding='utf-8')
+     outside=Path(tmp)/'untrusted.json';outside.write_text(json.dumps(WORK),encoding='utf-8')
+     original_scan=coverage.safe_record_files
+     def swapped_scan(base,with_identities=False):
+      result=original_scan(base,with_identities=with_identities)
+      if Path(base)==directory:
+       target.rename(directory/'previous.json.bak')
+       target.symlink_to(outside)
+      return result
+     with mock.patch.object(coverage,'safe_record_files',side_effect=swapped_scan):
+      with self.assertRaisesRegex(ValueError,'symlink'):
+       roster()
+    finally:coverage.ROOT=old_root
+
+ def test_denominator_origin_rejects_symlink_and_cli_does_not_read_it(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    directory=coverage.ROOT/'coverage'/'denominators';directory.mkdir(parents=True)
+    target=directory/'snapshot.json';snap=denominator()
+    outside=Path(tmp)/'untrusted.json';outside.write_text(json.dumps(snap),encoding='utf-8')
+    target.symlink_to(outside)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.normalize_denominator_snapshot(snap,{'w1':WORK},target,enforce_origin=True)
+    with mock.patch.object(coverage,'scan_typed_records',return_value=([WORK],{})):
+     with mock.patch('sys.argv',['coverage_ledger.py','report','--denominator-json',str(target)]):
+      with self.assertRaisesRegex(SystemExit,'symlink'):
+       coverage.main()
+   finally:coverage.ROOT=old_root
+
+ def test_scanner_rejects_symlinked_coverage_file_and_root(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    events=coverage.ROOT/'coverage'/'events';events.mkdir(parents=True)
+    (events/'original.jsonl').write_text('{}\n',encoding='utf-8')
+    (events/'alias.jsonl').symlink_to(events/'original.jsonl')
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.scan_typed_records()
+    (events/'alias.jsonl').unlink()
+    outside=Path(tmp)/'outside';outside.mkdir()
+    (coverage.ROOT/'coverage').rename(outside/'coverage-original')
+    (coverage.ROOT/'coverage').symlink_to(outside/'coverage-original',target_is_directory=True)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.scan_typed_records()
+   finally:coverage.ROOT=old_root
+
+ def test_public_report_rejects_symlinked_accepted_event_origin(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    registry=coverage.ROOT/'registry'/'authoritative';registry.mkdir(parents=True)
+    (registry/'w1.json').write_text(json.dumps(WORK),encoding='utf-8')
+    events=coverage.ROOT/'coverage'/'events';events.mkdir(parents=True)
+    discovered=event('via-alias','DISCOVERED',role='LIBRARIAN')
+    direct=events/'direct.jsonl';direct.write_text(json.dumps(discovered)+'\n',encoding='utf-8')
+    alias=events/'alias.jsonl';alias.symlink_to(direct)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.coverage_report([WORK,discovered],record_paths={'via-alias':alias})
+   finally:coverage.ROOT=old_root
+
  def test_accepted_discovered_cannot_claim_a_different_work_in_governed_scope(self):
   discovered=event('forged-scope','DISCOVERED',role='LIBRARIAN',scope={'work_id':'w-different','source_id':None})
   with self.assertRaisesRegex(ValueError,'scope.*Work|Work.*scope'):

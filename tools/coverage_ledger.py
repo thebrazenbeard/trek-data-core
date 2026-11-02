@@ -6,7 +6,8 @@ explicit governed denominator snapshot is supplied; the mere presence of Work re
 not evidence that the corpus denominator is complete.
 """
 from __future__ import annotations
-import argparse, hashlib, importlib.util, json, re
+import argparse, hashlib, importlib.util, json, os, re, stat
+from contextlib import contextmanager
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -32,32 +33,118 @@ def reject_duplicate_keys(pairs):
 def strict_json(raw):
  return json.loads(raw,object_pairs_hook=reject_duplicate_keys)
 
-def read_jsonl(path):
+def _secure_open_flags():
+ """Never silently fall back to pathname-following reads on other platforms."""
+ if not getattr(os,'O_NOFOLLOW',0) or not getattr(os,'O_DIRECTORY',0) or os.open not in os.supports_dir_fd:
+  raise ValueError('governed reads require O_NOFOLLOW, O_DIRECTORY and openat dir_fd support')
+ return os.O_RDONLY|os.O_CLOEXEC|os.O_NOFOLLOW
+
+def _root_relative_parts(path):
+ """Lexical containment only: resolving here would follow attacker-controlled links."""
+ root=Path(os.path.abspath(ROOT));target=Path(os.path.abspath(path))
+ try:return target.relative_to(root).parts
+ except ValueError:raise ValueError(f'{path}: outside authoritative repository root') from None
+
+def _file_identity(info):
+ return (info.st_dev,info.st_ino,info.st_mode,info.st_size,info.st_mtime_ns,info.st_ctime_ns)
+
+@contextmanager
+def _open_governed(path,directory=False):
+ """Open each path component beneath ROOT via directory fds, never via links."""
+ flags=_secure_open_flags();root=Path(os.path.abspath(ROOT));fd=None
+ try:
+  # Even ROOT's own ancestors must not hide a symlink (important for patched ROOT).
+  fd=os.open(root.anchor,flags|os.O_DIRECTORY)
+  for component in root.parts[1:]:
+   next_fd=os.open(component,flags|os.O_DIRECTORY,dir_fd=fd)
+   os.close(fd);fd=next_fd
+  parts=_root_relative_parts(path)
+  for index,component in enumerate(parts):
+   is_dir=directory or index<len(parts)-1
+   next_flags=flags|(os.O_DIRECTORY if is_dir else os.O_NONBLOCK)
+   next_fd=os.open(component,next_flags,dir_fd=fd)
+   os.close(fd);fd=next_fd
+  if directory:
+   if not stat.S_ISDIR(os.fstat(fd).st_mode):raise ValueError(f'{path}: governed directory is not a directory')
+  elif not parts or not stat.S_ISREG(os.fstat(fd).st_mode):
+   raise ValueError(f'{path}: governed input is not a regular file')
+  yield fd
+ except OSError as exc:
+  raise ValueError(f'{path}: unsafe or unreadable governed path (symlink, missing or non-file component): {exc}') from exc
+ finally:
+  if fd is not None:os.close(fd)
+
+def read_governed_text(path,expected_identity=None):
+ """Read stable file bytes with an enumeration-time identity check when available."""
+ with _open_governed(path) as fd:
+  before=_file_identity(os.fstat(fd))
+  if expected_identity is not None and before!=expected_identity:
+   raise ValueError(f'{path}: governed file changed after enumeration')
+  with os.fdopen(os.dup(fd),'r',encoding='utf-8') as stream:raw=stream.read()
+  if _file_identity(os.fstat(fd))!=before:
+   raise ValueError(f'{path}: governed file changed during read')
+ # A rename/replacement during the read leaves the old fd intact, so verify
+ # that the governed pathname still names that inode before using the bytes.
+ with _open_governed(path) as fd:
+  if _file_identity(os.fstat(fd))!=before:
+   raise ValueError(f'{path}: governed file replaced during read')
+ return raw
+
+def read_jsonl(path,expected_identity=None):
  rows=[]
- if not Path(path).exists():return rows
- for line_no,raw in enumerate(Path(path).read_text(encoding='utf-8').splitlines(),1):
+ for line_no,raw in enumerate(read_governed_text(path,expected_identity).splitlines(),1):
   if not raw.strip():continue
   row=strict_json(raw)
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
   rows.append(row)
  return rows
+
+def safe_record_files(base,with_identities=False):
+ """Enumerate via pinned directory fds; optionally retain each file's identity."""
+ _secure_open_flags()
+ base=Path(base);found=[]
+ if not base.exists() and not base.is_symlink():
+  if any(parent.is_symlink() for parent in base.parents):
+   raise ValueError(f'{base}: symlink in governed input parent')
+  return [],[]
+ def visit(fd,directory):
+  with os.scandir(fd) as entries:
+   for entry in sorted(entries,key=lambda item:item.name):
+    path=directory/entry.name
+    info=os.stat(entry.name,dir_fd=fd,follow_symlinks=False)
+    if stat.S_ISLNK(info.st_mode):raise ValueError(f'{path}: symlink in governed input root')
+    if stat.S_ISDIR(info.st_mode):
+     flags=_secure_open_flags()|os.O_DIRECTORY
+     try:child=os.open(entry.name,flags,dir_fd=fd)
+     except OSError as exc:raise ValueError(f'{path}: unsafe governed directory (symlink or swap): {exc}') from exc
+     try:visit(child,path)
+     finally:os.close(child)
+    elif path.suffix in {'.json','.jsonl'}:
+     if not stat.S_ISREG(info.st_mode):raise ValueError(f'{path}: non-file governed input')
+     found.append((path,_file_identity(info)))
+ with _open_governed(base,directory=True) as fd:visit(fd,base)
+ json_files=[item if with_identities else item[0] for item in found if item[0].suffix=='.json']
+ jsonl_files=[item if with_identities else item[0] for item in found if item[0].suffix=='.jsonl']
+ return json_files,jsonl_files
+
 def scan_typed_records(with_paths=False):
  records=[];paths={}
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'coverage',ROOT/'registry'):
-  if not base.exists():continue
-  for path in sorted(base.rglob('*.jsonl')):
-   for row in read_jsonl(path):
+  json_files,jsonl_files=safe_record_files(base,with_identities=True)
+  for path,identity in jsonl_files:
+   for row in read_jsonl(path,identity):
     records.append(row)
     if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
   if base.name=='coverage':
-   for path in sorted(base.rglob('*.json')):
-    row=strict_json(path.read_text(encoding='utf-8'))
+   for path,identity in json_files:
+    row=strict_json(read_governed_text(path,identity))
     if isinstance(row,dict) and row.get('record_type'):
      records.append(row)
      if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'registry'/'authoritative'):
-  for path in sorted(base.rglob('*.json')):
-   row=strict_json(path.read_text(encoding='utf-8'))
+  json_files,_=safe_record_files(base,with_identities=True)
+  for path,identity in json_files:
+   row=strict_json(read_governed_text(path,identity))
    if not isinstance(row,dict) or not row.get('record_type'):
     raise ValueError(f'{path}: governed JSON must be a typed object')
    records.append(row)
@@ -80,19 +167,11 @@ def authoritative_work_roster():
  installments; it is only a census of accepted Work records in this tree.
  """
  root=ROOT/'registry'/'authoritative'
- if (ROOT/'registry').is_symlink() or root.is_symlink():
-  raise ValueError('authoritative registry root/parent must not be a symlink')
- if not root.is_dir():return {}
+ json_files,jsonl_files=safe_record_files(root,with_identities=True)
  work_schema=strict_json(LIBRARIAN_CONTRACT.read_text(encoding='utf-8'))['$defs']['work']
  items={}
- for path in sorted(root.rglob('*')):
-  if path.is_symlink():raise ValueError(f'symlinked authoritative registry input {path}')
-  if path.is_dir() or path.suffix not in {'.json','.jsonl'}:continue
-  if not path.is_file():raise ValueError(f'non-file authoritative registry input {path}')
-  try:path.resolve().relative_to(root.resolve())
-  except ValueError:raise ValueError(f'authoritative registry input escapes root: {path}') from None
-  raw=path.read_text(encoding='utf-8')
-  try:rows=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(raw)]
+ for path,identity in sorted(json_files+jsonl_files):
+  try:rows=read_jsonl(path,identity) if path.suffix=='.jsonl' else [strict_json(read_governed_text(path,identity))]
   except ValueError as exc:raise ValueError(f'invalid authoritative registry bytes at {path}: {exc}') from exc
   for row in rows:
    if not isinstance(row,dict):raise ValueError(f'non-object authoritative registry input {path}')
@@ -122,19 +201,12 @@ def accepted_registry_head(authoritative_works):
 def authoritative_source_binding_rosters():
  """Read exact, nonfixture Librarian Source and binding origins for coverage."""
  root=ROOT/'registry'/'authoritative'
- if (ROOT/'registry').is_symlink() or root.is_symlink():
-  raise ValueError('authoritative Librarian registry root/parent must not be a symlink')
- if not root.is_dir():return {},{}
+ json_files,jsonl_files=safe_record_files(root,with_identities=True)
  contracts=strict_json(LIBRARIAN_CONTRACT.read_text(encoding='utf-8'))['$defs']
  kinds={'source':('source_id','status'), 'source_work_binding':('binding_id','lifecycle')}
  rows={'source':{},'source_work_binding':{}}
- for path in sorted(root.rglob('*')):
-  if path.is_symlink():raise ValueError(f'symlinked authoritative Librarian input {path}')
-  if path.is_dir() or path.suffix not in {'.json','.jsonl'}:continue
-  if not path.is_file():raise ValueError(f'non-file authoritative Librarian input {path}')
-  try:path.resolve().relative_to(root.resolve())
-  except ValueError:raise ValueError(f'authoritative Librarian input escapes root: {path}') from None
-  try:entries=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(path.read_text(encoding='utf-8'))]
+ for path,identity in sorted(json_files+jsonl_files):
+  try:entries=read_jsonl(path,identity) if path.suffix=='.jsonl' else [strict_json(read_governed_text(path,identity))]
   except ValueError as exc:raise ValueError(f'invalid authoritative Librarian bytes at {path}: {exc}') from exc
   for item in entries:
    if not isinstance(item,dict):raise ValueError(f'non-object authoritative Librarian input {path}')
@@ -190,16 +262,15 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
    origin=(record_paths or {}).get(eid)
    if origin is None:errors.append(f'{eid}: unverified accepted event origin')
    else:
-    try:Path(origin).resolve().relative_to((ROOT/'coverage').resolve())
+    path=Path(origin);coverage_root=ROOT/'coverage'
+    try:
+     Path(os.path.abspath(path)).relative_to(Path(os.path.abspath(coverage_root)))
     except ValueError:errors.append(f'{eid}: accepted coverage event outside authoritative coverage root')
     else:
-     path=Path(origin)
-     if not path.is_file():errors.append(f'{eid}: accepted coverage event origin is not a file')
-     else:
-      try:
-       located=read_jsonl(path) if path.suffix=='.jsonl' else [json.loads(path.read_text(encoding='utf-8'))] if path.suffix=='.json' else []
-       if canonical(row) not in {canonical(v) for v in located}:errors.append(f'{eid}: accepted coverage event does not match its authoritative origin bytes')
-      except (ValueError,OSError) as exc:errors.append(f'{eid}: coverage origin unreadable: {exc}')
+     try:
+      located=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(read_governed_text(path))] if path.suffix=='.json' else []
+      if canonical(row) not in {canonical(v) for v in located}:errors.append(f'{eid}: accepted coverage event does not match its authoritative origin bytes')
+     except (ValueError,OSError) as exc:errors.append(f'{eid}: coverage origin unreadable: {exc}')
   prereqs=row.get('prerequisite_event_ids',[])
   if len(prereqs)!=len(set(prereqs)):errors.append(f'{eid}: duplicate prerequisite_event_ids')
   for prereq in prereqs:
@@ -291,14 +362,10 @@ def normalize_denominator_snapshot(snapshot,works,origin_path=None,enforce_origi
  if enforce_origin:
   if origin_path is None:raise ValueError('unverified denominator snapshot origin')
   path=Path(origin_path)
-  if (ROOT/'coverage').is_symlink() or (ROOT/'coverage'/'denominators').is_symlink() or path.is_symlink():
-   raise ValueError('symlinked denominator origin is forbidden')
-  if any(parent.is_symlink() for parent in path.parents if parent!=ROOT.parent and parent!=ROOT):
-   raise ValueError('symlinked denominator parent is forbidden')
-  try:path.resolve().relative_to((ROOT/'coverage'/'denominators').resolve())
+  try:Path(os.path.abspath(path)).relative_to(Path(os.path.abspath(ROOT/'coverage'/'denominators')))
   except ValueError:raise ValueError('denominator snapshot outside authoritative denominator root') from None
-  if path.suffix!='.json' or not path.is_file():raise ValueError('denominator snapshot must be a file under authoritative denominator root')
-  try:origin=strict_json(path.read_text(encoding='utf-8'))
+  if path.suffix!='.json':raise ValueError('denominator snapshot must be a .json file under authoritative denominator root')
+  try:origin=strict_json(read_governed_text(path))
   except (OSError,ValueError) as exc:raise ValueError(f'denominator snapshot origin unreadable: {exc}') from exc
   if canonical(origin)!=canonical(snapshot):raise ValueError('denominator snapshot differs from authoritative origin bytes')
  schema=json.loads(DENOMINATOR_SCHEMA.read_text(encoding='utf-8'))
@@ -354,8 +421,9 @@ def main():
   if errors:print('COVERAGE VALIDATION FAILED');print('\n'.join('- '+e for e in errors));raise SystemExit(1)
   print('COVERAGE VALIDATION PASSED')
  else:
-  denominator=strict_json(Path(args.denominator_json).read_text(encoding='utf-8')) if args.denominator_json else None
-  try:report=coverage_report(records,denominator_snapshot=denominator,denominator_path=args.denominator_json,record_paths=paths)
+  try:
+   denominator=strict_json(read_governed_text(args.denominator_json)) if args.denominator_json else None
+   report=coverage_report(records,denominator_snapshot=denominator,denominator_path=args.denominator_json,record_paths=paths)
   except ValueError as exc:raise SystemExit(str(exc)) from exc
   print(json.dumps(report,indent=2,sort_keys=True))
 if __name__=='__main__':main()

@@ -1,18 +1,20 @@
-# Canonical projection integration — source-only review
+# Canonical projection integration — implemented scaffold
 
-This is a **clean mainline integration proposal** for the canonical data
-compiler, validation and derived query consumers. It intentionally carries
-neither a historical `.vscode` task nor the earlier development branch's
-unreviewed research corpus. It is stacked on the safer coverage-ledger draft.
+The canonical data compiler, bundle verifier and derived query consumers are
+implemented on `main`, independently from the historical development branches.
+The implementation carries neither the historical executable `.vscode` task
+nor the research branches' unreviewed corpus. **Merged code is not accepted
+Star Trek evidence**: the current nonfixture corpus and projection-hash
+allowlist are both empty.
 
 ## Authority boundaries
 
-- The Librarian Source/Work/binding contract on main determines authoritative
+- The Librarian Source/Work/binding contract on `main` determines authoritative
   identities. Accepted non-fixture Source and Work objects belong under
   `registry/authoritative/`; proposal records remain proposals.
 - An Evidence record requires a corresponding accepted **evidence-bearing**
   Source↔Work binding. A metadata-only or crosswalk mapping cannot establish
-  Evidence. The proposal compiler embeds the eligible binding in its
+  Evidence. The canonical compiler embeds the eligible binding in its
   provenance output and hashes it into the logical input identity.
 - Proposed or rejected superseding assertions never silently deactivate an
   accepted predecessor. Reconciliation and active accepted status must be
@@ -20,7 +22,7 @@ unreviewed research corpus. It is stacked on the safer coverage-ledger draft.
 - TNG historical research and Wikidata episode metadata remain discovery
   candidates, not accepted Works or projected claims.
 
-## Verification on the integration tree
+## Verification of the implementation
 
 Run from the repository root with Python 3.12:
 
@@ -32,9 +34,9 @@ python3 -B tools/coverage_ledger.py validate
 python3 -B tools/coverage_ledger.py report
 ```
 
-The hardened integration snapshot passed **156 tool tests**, including six
+The original 2026-11-02 integration snapshot passed **156 tool tests**, including six
 adversarial regressions independently demonstrated to fail against the prior
-implementation, and the current source startup-safety checks. The admission
+implementation, and source startup-safety checks. The admission
 path now rejects forged SHA-256 byte evidence, Source/Work ancestry cycles,
 invented derivative independence groups, symlinked governed inputs, and
 duplicate JSON object keys. Repository validation found **zero governed records**;
@@ -48,14 +50,14 @@ These checks verify contract mechanics on synthetic fixtures and the empty
 repository only. They do **not** establish an admitted Star Trek corpus,
 source licensing, independent research signoff, or live service performance.
 
-## Remaining acceptance tasks
+## Remaining data-admission tasks
 
-1. Independently review exact Git tree hashes and the combined Librarian
-   contract versus the proposal Source/Work schemas. The mainline schema is
-   authoritative for registry entries.
-2. Complete the coverage contract: derived discovery/source-binding states,
-   owner event attestation, full denominator/native-unit rules and accepted
-   head verification.
+1. For each proposed nonfixture batch, independently review exact Git tree
+   hashes, Source/Work/binding origins and the authoritative Librarian schema.
+2. Apply the existing coverage gates to accepted Work/Source/binding events.
+   The resolved accepted-registry roster check does **not** certify a complete
+   Mission episode denominator; an independently reviewed complete roster
+   mechanism remains necessary.
 3. Admit a small, rights-valid Source/Work/Evidence pilot with an accepted
    binding, then verify the full projection and query build against **nonempty**
    output, including contested and unresolved assertions.
@@ -63,5 +65,6 @@ source licensing, independent research signoff, or live service performance.
    in the public Explorer. No hash has yet been added to the Explorer's
    reviewed-hash allowlist.
 
-Keep this pull request in draft until its coverage dependency and these
-acceptance checks are resolved. Do not bulk-merge historical branch heads.
+Review future data admissions and public projections in separate, bounded PRs.
+Do not bulk-merge historical branch heads or promote candidate metadata by
+reclassifying this implemented infrastructure as an admitted corpus.

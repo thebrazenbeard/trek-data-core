@@ -84,6 +84,15 @@ class EpisodeDiscoveryTests(unittest.TestCase):
         self.assertEqual(out["provenance"]["query_sha256"], hashlib.sha256(receipt()["query_text"].encode()).hexdigest())
         self.assertEqual(out["provenance"]["provenance_verification"], "USER_SUPPLIED_OFFLINE_EXPORT_NOT_REMOTE_VERIFIED")
 
+    def test_exact_multiline_query_with_trailing_newline_preserved(self):
+        changed = receipt()
+        changed["query_text"] += "\n"
+        result = build(provenance=changed)
+        self.assertEqual(result["provenance"]["query_sha256"], hashlib.sha256(changed["query_text"].encode()).hexdigest())
+        changed["query_text"] = "\n \t\n"
+        with self.assertRaises(Rejected):
+            build(provenance=changed)
+
     def test_license_and_url_must_be_exact(self):
         for key, value in (("license", "CC-BY-SA-4.0"), ("license_url", "https://example.com"),
                            ("source_url", "http://query.wikidata.org/sparql"),

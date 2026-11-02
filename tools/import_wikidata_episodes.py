@@ -55,10 +55,10 @@ def object_keys(value, keys, name, optional=frozenset()):
 
 
 def clean_text(value, name, max_length=400, multiline=False):
-    if (not isinstance(value, str) or not value or value != value.strip()
+    if (not isinstance(value, str) or not value.strip() or (not multiline and value != value.strip())
             or len(value) > max_length or any(
                 ord(ch) < 32 and (not multiline or ch not in "\r\n\t") for ch in value)):
-        raise Rejected(f"{name} must be a trimmed, nonempty printable string (max {max_length})")
+        raise Rejected(f"{name} must be a nonempty printable string (max {max_length}); single-line values must be trimmed")
     return value
 
 

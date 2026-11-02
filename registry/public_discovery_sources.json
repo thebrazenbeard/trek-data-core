@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "publication_scope": "CANDIDATE_DISCOVERY_ONLY",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "sources": [
+    {
+      "format": "TNG_PUBLISHER_REFERENCES_V1",
+      "path": "proposals/librarian/tng-official-metadata-20261102/bundle.json",
+      "sha256": "622f25232a4bb8dc9c11a21ebff56fbf87240c20523047ac26c569af2449ce12"
+    },
+    {
+      "format": "PUBLISHER_EPISODE_SLOTS_V1",
+      "path": "proposals/librarian/sfa-publisher-roster-20261102/bundle.json",
+      "sha256": "be92c853c5d3c59b0b13810e2a5c9848bc473f8e0c16c77d05e15f785b5b07de"
+    }
+  ]
+}

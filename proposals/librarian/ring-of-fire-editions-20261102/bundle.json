@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "source_group": "publisher:simonandschuster.com",
+  "observed_on": "2026-11-02",
+  "work": {
+    "record_type": "work",
+    "work_id": "proposed-lit-snw-ring-of-fire",
+    "title": "Star Trek: Strange New Worlds: Ring of Fire",
+    "creator": "David Mack",
+    "medium": "LITERATURE",
+    "work_type": "NOVEL",
+    "series": "Star Trek: Strange New Worlds",
+    "status": "PROPOSED"
+  },
+  "editions": [
+    {
+      "isbn13": "9781668095898",
+      "format": "HARDCOVER",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898"
+    },
+    {
+      "isbn13": "9781668095904",
+      "format": "TRADE_PAPERBACK",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095904"
+    },
+    {
+      "isbn13": "9781668095911",
+      "format": "EBOOK",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095911"
+    },
+    {
+      "isbn13": "9781668134559",
+      "format": "UNABRIDGED_AUDIO_DOWNLOAD",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668134559"
+    }
+  ]
+}

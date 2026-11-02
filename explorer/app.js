@@ -274,7 +274,13 @@
     if (visible.length < rows.length) {
       const button = el('button', 'directory-more', `Show next ${Math.min(40, rows.length - visible.length)} source rows`);
       button.type = 'button';
-      button.addEventListener('click', () => { playTone(); directoryState.limit += 40; renderDirectory(); });
+      button.addEventListener('click', () => {
+        playTone();
+        const firstNewCard = visible.length;
+        directoryState.limit += 40;
+        renderDirectory();
+        focusNewPage(holder, firstNewCard);
+      });
       holder.append(button);
     }
   }

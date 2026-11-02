@@ -261,6 +261,10 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.match(nodes.get('discovery-list').textContent, /Data receipt: explorer\/research-leads\.json/);
   assert.equal(nodes.get('briefing-count').textContent, '0');
   assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 470 cards on load');
+  nodes.get('discovery-list').children.at(-1).fire('click');
+  assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
+  assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
+  assert.equal(nodes.get('discovery-list').children[40].attributes.get('tabindex'), '-1', 'new directory row is programmatically focusable');
   nodes.get('discovery-medium').value = 'SHORT_FORM';
   nodes.get('discovery-filters').fire('change');
   assert.equal(nodes.get('discovery-list').children.length, 15);

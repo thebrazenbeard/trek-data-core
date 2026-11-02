@@ -1,0 +1,10 @@
+{
+  "batch_id": "snw-publisher-s01-b001-20261102",
+  "mission_id": "snw",
+  "publisher": "Paramount+",
+  "independence_group": "paramount-franchise-publishing",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/news/recap-star-trek-strange-new-worlds-children-of-the-comet",
+  "csv_sha256": "1c3ecb15fea6a633a6f33cfeff4faab60a96fa5b2ea76be2c7d4b2b427d1f640"
+}

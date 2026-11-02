@@ -1,0 +1,51 @@
+{
+  "record_type": "publisher_episode_roster_proposal",
+  "schema_version": "1.0.0",
+  "batch_id": "TNG-PARAMOUNT-S01-20261102-B001",
+  "mission_id": "tng",
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "roster_completeness": "UNRESOLVED",
+  "listed_slot_count": 3,
+  "observation": {
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+    "crosscheck_locator": "https://www.startrek.com/videos/star-trek-the-next-generation-the-neutral-zone",
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY",
+    "response_sha256": null,
+    "publisher_revision": null,
+    "audiovisual_content_inspected": false
+  },
+  "series_qid_redirect": null,
+  "episode_slots": [
+    {
+      "season": 1,
+      "episode_number": 10,
+      "title": "Hide and \"Q\"",
+      "status": "CANDIDATE",
+      "canonical_work_id": null,
+      "source_binding_id": null
+    },
+    {
+      "season": 1,
+      "episode_number": 23,
+      "title": "Skin of Evil",
+      "status": "CANDIDATE",
+      "canonical_work_id": null,
+      "source_binding_id": null
+    },
+    {
+      "season": 1,
+      "episode_number": 26,
+      "title": "The Neutral Zone",
+      "status": "CANDIDATE",
+      "canonical_work_id": null,
+      "source_binding_id": null
+    }
+  ]
+}

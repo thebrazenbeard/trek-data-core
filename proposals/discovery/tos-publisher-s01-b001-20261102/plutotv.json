@@ -1,0 +1,32 @@
+{
+  "record_type": "publisher_episode_roster_proposal",
+  "schema_version": "1.0.0",
+  "batch_id": "TOS-PUBLISHER-PLUTO-S01-B001-20261102",
+  "mission_id": "tos",
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "roster_completeness": "UNRESOLVED",
+  "listed_slot_count": 5,
+  "observation": {
+    "publisher": "Pluto TV",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://pluto.tv/us/shows/star-trek-the-original-series/season/1/",
+    "crosscheck_locator": "https://pluto.tv/us/shows/star-trek-the-original-series/",
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY",
+    "response_sha256": null,
+    "publisher_revision": null,
+    "audiovisual_content_inspected": false
+  },
+  "series_qid_redirect": null,
+  "episode_slots": [
+    {"season": 1, "episode_number": 1, "title": "The Man Trap", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 2, "title": "Charlie \"X\"", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 3, "title": "Where No Man Has Gone Before", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 4, "title": "The Naked Time", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null},
+    {"season": 1, "episode_number": 5, "title": "The Enemy Within", "status": "CANDIDATE", "canonical_work_id": null, "source_binding_id": null}
+  ]
+}

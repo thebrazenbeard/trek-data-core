@@ -11,22 +11,18 @@ on:
       - ".github/workflows/static.yml"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: trek-explorer-pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+    outputs:
+      ready: ${{ steps.readiness.outputs.ready }}
     steps:
       - name: Check out accepted source
         uses: actions/checkout@v6
@@ -45,26 +41,6 @@ jobs:
             echo 'Explorer assets not yet on main; skipping Pages publication.'
           fi
 
-      - name: Verify public artifact boundary
-        if: steps.readiness.outputs.ready == 'true'
-        shell: bash
-        run: |
-          test -f explorer/index.html
-          test -f explorer/index.json
-          test ! -L explorer
-          if find explorer -type l -print -quit | grep -q .; then
-            echo "Refusing to deploy a site containing symlinks" >&2
-            exit 1
-          fi
-          if find explorer -type f \
-            ! -path explorer/index.html \
-            ! -path explorer/index.json \
-            ! -path explorer/app.js \
-            ! -path explorer/app.css -print -quit | grep -q .; then
-            echo "Refusing to publish an unexpected Explorer file" >&2
-            exit 1
-          fi
-
       - name: Verify Explorer behavior before deployment
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -79,9 +55,37 @@ jobs:
           python3 tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-index-expected.json"
           cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json
 
-      - name: Configure GitHub Pages
+      - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
-        uses: actions/configure-pages@v5
+        shell: bash
+        run: |
+          # Run this AFTER all repository-controlled tests and generators.
+          # Only the exact committed four-file Explorer may be published.
+          test -f explorer/index.html
+          test -f explorer/index.json
+          test -f explorer/app.js
+          test -f explorer/app.css
+          test ! -L explorer
+          if find explorer -type l -print -quit | grep -q .; then
+            echo "Refusing to deploy a site containing symlinks" >&2
+            exit 1
+          fi
+          if find explorer -type f \
+            ! -path explorer/index.html \
+            ! -path explorer/index.json \
+            ! -path explorer/app.js \
+            ! -path explorer/app.css -print -quit | grep -q .; then
+            echo "Refusing to publish an unexpected Explorer file" >&2
+            exit 1
+          fi
+          for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css; do
+            expected="$(git rev-parse "HEAD:$path")"
+            actual="$(git hash-object "$path")"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified Explorer content: $path" >&2
+              exit 1
+            fi
+          done
 
       - name: Upload Explorer only
         if: steps.readiness.outputs.ready == 'true'
@@ -89,7 +93,18 @@ jobs:
         with:
           path: explorer
 
-      - name: Deploy Explorer
-        if: steps.readiness.outputs.ready == 'true'
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.ready == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified Explorer artifact
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

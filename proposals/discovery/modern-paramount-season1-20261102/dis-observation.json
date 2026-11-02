@@ -1,0 +1,10 @@
+{
+  "batch_id": "DIS.PPLUS.S1.DISPLAYED15.20261102",
+  "mission_id": "dis",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+  "csv_sha256": "8b61b653c757e0450b76fa6deaa0341c1509439647b708fb670e56095f295ae8"
+}

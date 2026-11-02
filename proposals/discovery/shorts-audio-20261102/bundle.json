@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "data_status": "DISCOVERY_ONLY",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "universe_complete": false,
+  "observed_on": "2026-11-02",
+  "publisher_independence_group": "publisher:paramount",
+  "sources": [
+    {
+      "id": "short-guide",
+      "source_type": "OFFICIAL_EPISODE_GUIDE",
+      "url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/"
+    },
+    {
+      "id": "very-short-announcement",
+      "source_type": "OFFICIAL_PROMOTIONAL_ANNOUNCEMENT",
+      "url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce"
+    },
+    {
+      "id": "khan-audio-site",
+      "source_type": "OFFICIAL_AUDIO_SERIES_PAGE",
+      "url": "https://www.startrek.com/en-un/podcasts/star-trek-khan"
+    }
+  ],
+  "containers": [
+    {"candidate_id": "short-treks", "title": "Star Trek: Short Treks", "medium": "AUDIOVISUAL", "work_type": "SCRIPTED_SHORT_ANTHOLOGY", "source_id": "short-guide"},
+    {"candidate_id": "very-short-treks", "title": "Star Trek: very Short Treks", "medium": "PROMOTIONAL_ANIMATION", "work_type": "PROMOTIONAL_SHORT_SERIES", "source_id": "very-short-announcement"},
+    {"candidate_id": "khan-audio", "title": "Star Trek: Khan", "medium": "SCRIPTED_AUDIO", "work_type": "SCRIPTED_AUDIO_SERIES", "source_id": "khan-audio-site"}
+  ],
+  "installments": [
+    {"candidate_id": "short-treks-01", "parent_candidate_id": "short-treks", "title": "Runaway", "source_local_slot": "S1E1", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-02", "parent_candidate_id": "short-treks", "title": "Calypso", "source_local_slot": "S1E2", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-03", "parent_candidate_id": "short-treks", "title": "The Brightest Star", "source_local_slot": "S1E3", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-04", "parent_candidate_id": "short-treks", "title": "The Escape Artist", "source_local_slot": "S1E4", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-05", "parent_candidate_id": "short-treks", "title": "Q&A", "source_local_slot": "S1E5", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-06", "parent_candidate_id": "short-treks", "title": "The Trouble with Edward", "source_local_slot": "S1E6", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-07", "parent_candidate_id": "short-treks", "title": "Ask Not", "source_local_slot": "S1E7", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-08", "parent_candidate_id": "short-treks", "title": "The Girl Who Made the Stars", "source_local_slot": "S1E8", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-09", "parent_candidate_id": "short-treks", "title": "Ephraim and Dot", "source_local_slot": "S1E9", "source_id": "short-guide"},
+    {"candidate_id": "short-treks-10", "parent_candidate_id": "short-treks", "title": "Children of Mars", "source_local_slot": "S1E10", "source_id": "short-guide"},
+    {"candidate_id": "very-short-treks-01", "parent_candidate_id": "very-short-treks", "title": "Skin a Cat", "source_local_slot": "ANNOUNCED_RELEASE_01", "source_id": "very-short-announcement"},
+    {"candidate_id": "very-short-treks-02", "parent_candidate_id": "very-short-treks", "title": "Holiday Party", "source_local_slot": "ANNOUNCED_RELEASE_02", "source_id": "very-short-announcement"},
+    {"candidate_id": "very-short-treks-03", "parent_candidate_id": "very-short-treks", "title": "Worst Contact", "source_local_slot": "ANNOUNCED_RELEASE_03", "source_id": "very-short-announcement"},
+    {"candidate_id": "very-short-treks-04", "parent_candidate_id": "very-short-treks", "title": "Holograms, All the Way Down", "source_local_slot": "ANNOUNCED_RELEASE_04", "source_id": "very-short-announcement"},
+    {"candidate_id": "very-short-treks-05", "parent_candidate_id": "very-short-treks", "title": "Walk, Don't Run", "source_local_slot": "ANNOUNCED_RELEASE_05", "source_id": "very-short-announcement"}
+  ]
+}

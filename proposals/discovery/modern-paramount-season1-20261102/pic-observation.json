@@ -1,0 +1,10 @@
+{
+  "batch_id": "PIC.PPLUS.S1.DISPLAYED10.20261102",
+  "mission_id": "pic",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-picard/",
+  "csv_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
+}

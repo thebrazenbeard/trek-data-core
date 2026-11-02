@@ -1,0 +1,10 @@
+{
+  "batch_id": "DIS.PPLUS.S2.FIRST5.20261102",
+  "mission_id": "dis",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/2/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+  "csv_sha256": "39d29cdf0efb485ad708e01a29b24021a1775d13b2c6b23165c2b9fa5787bbbb"
+}

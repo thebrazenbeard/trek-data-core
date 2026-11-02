@@ -1,0 +1,53 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 26,
+      "mission_id": "tos",
+      "observation_csv_sha256": "4fd571a2f9fb77b10076f42af6a21530a0ba798b7b397c37e4c54535f5db7645",
+      "official_page": "https://www.paramountplus.com/shows/star_trek/episodes/2/",
+      "source_body_bytes": 308824,
+      "source_body_sha256": "a7bcdaf86947c784d217e8df4aa480c34feae649c81dfeefa708ade22130cfc4"
+    },
+    {
+      "listed_slot_count": 22,
+      "mission_id": "tng",
+      "observation_csv_sha256": "32b3dffa2afa0ba315ed6ad16e70eec21e2ec50df76eb7d60a039cc88ae4a85d",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+      "source_body_bytes": 307244,
+      "source_body_sha256": "a88ef58f098a7a2f39a7564167a67258ed86a730be159534fc8abe8e0dafd6a3"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "2be449e523f9b4b400937b454fe7ead8f52fe66e95669c3e3e643cc32d0c1c9d",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+      "source_body_bytes": 317183,
+      "source_body_sha256": "ad8779fc9564050c6cbb716c0869a12ca996b95cabcef3a4388d6e00df6b322c"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "voy",
+      "observation_csv_sha256": "192a970935739a618b68609598532443da8fb9de2529d1d53399b323245c0a97",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/2/",
+      "source_body_bytes": 317568,
+      "source_body_sha256": "5c03dcdd4f8ad26edc3b6e918ff1c73685c7d70c6db0f298159e36adbfaa4e44"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "ent",
+      "observation_csv_sha256": "84987904453aee2a129718aaaeb810d64339dfcb87920336556f0e02b7494e67",
+      "official_page": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+      "source_body_bytes": 311938,
+      "source_body_sha256": "a3eb194233e8c1147a1742ff0d19db03708fd625c97042c57f4eb8025f094347"
+    }
+  ]
+}

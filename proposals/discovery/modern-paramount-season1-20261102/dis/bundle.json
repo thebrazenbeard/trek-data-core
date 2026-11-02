@@ -1,0 +1,147 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "DIS.PPLUS.S1.DISPLAYED15.20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Vulcan Hello"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Battle at the Binary Stars"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Context Is For Kings"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Butcher's Knife Cares Not for the Lamb's Cry"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Choose Your Pain"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Lethe"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Magic to Make the Sanest Man Go Mad"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Si Vis Pacem, Para Bellum"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Into the Forest I Go"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Despite Yourself"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Wolf Inside"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Vaulting Ambition"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "What's Past Is Prologue"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The War Without, the War Within"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Will You Take My Hand?"
+    }
+  ],
+  "listed_slot_count": 15,
+  "mission_id": "dis",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+    "independence_group": "publisher:paramountplus.com",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/1/",
+    "publisher": "Paramount+ U.S. episode guide",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

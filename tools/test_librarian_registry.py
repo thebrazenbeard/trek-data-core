@@ -36,4 +36,42 @@ class RegistryTests(unittest.TestCase):
     def test_research_partition_ownership(self):
         rp=list(self.rp)+[(Path("research/tng/bad.jsonl"),self.s[0])]; self.assertTrue(any("under research partition" in e for e in self.validate(rp=rp)))
     def test_analysis_passes_do_not_mint_sources(self): self.assertEqual(len({p["source_id"] for p in self.passes}),1); self.assertEqual(len([x for x in self.s if x["source_id"]==self.passes[0]["source_id"]]),1)
+    def test_schema_rejects_invalid_nested_source_scope(self):
+        b=copy.deepcopy(self.b); b[0]["source_scope"]="INVALID"
+        self.assertTrue(any("source_scope: expected type object" in e for e in self.validate(b=b)))
+    def test_schema_rejects_invalid_nested_scope_enum_and_type(self):
+        b=copy.deepcopy(self.b); b[0]["source_scope"]={"scope_type":"IMPOSSIBLE","locator":42}
+        self.assertTrue(any("source_scope.scope_type: invalid enum" in e for e in self.validate(b=b)))
+        self.assertTrue(any("source_scope.locator: expected type" in e for e in self.validate(b=b)))
+    def test_schema_rejects_unexpected_fields_and_bad_fixture_type(self):
+        s=copy.deepcopy(self.s); s[0]["unapproved_identity"]="silent extension"; s[0]["fixture_only"]="yes"
+        errors=self.validate(s=s)
+        self.assertTrue(any("unexpected field unapproved_identity" in e for e in errors))
+        self.assertTrue(any("fixture_only: expected type boolean" in e for e in errors))
+    def test_schema_rejects_non_object_record(self):
+        s=copy.deepcopy(self.s); s[0]="invalid"
+        self.assertTrue(any("record must be an object" in e for e in self.validate(s=s)))
+    def test_work_parent_cycle(self):
+        w=copy.deepcopy(self.w); w[0]["parent_work_id"]=w[1]["work_id"]; w[1]["parent_work_id"]=w[0]["work_id"]
+        self.assertTrue(any("work parent cycle" in e for e in self.validate(w=w)))
+    def test_accepted_nonfixture_binding_requires_accepted_source_and_work(self):
+        s=copy.deepcopy(self.s); w=copy.deepcopy(self.w); b=copy.deepcopy(self.b)
+        b[0]["fixture_only"]=False
+        next(x for x in s if x["source_id"]==b[0]["source_id"])["fixture_only"]=False
+        next(x for x in w if x["work_id"]==b[0]["work_id"])["fixture_only"]=False
+        self.assertTrue(any("requires ACCEPTED Source and Work" in e for e in self.validate(s=s,w=w,b=b)))
+        next(x for x in s if x["source_id"]==b[0]["source_id"])["status"]="ACCEPTED"
+        next(x for x in w if x["work_id"]==b[0]["work_id"])["status"]="ACCEPTED"
+        self.assertEqual(self.validate(s=s,w=w,b=b),[])
+    def test_fixture_cannot_bind_nonfixture_identity(self):
+        b=copy.deepcopy(self.b); b[0]["fixture_only"]=False
+        self.assertTrue(any("fixture/authoritative identity boundary" in e for e in self.validate(b=b)))
+    def test_accepted_successor_requires_superseded_predecessor(self):
+        b=copy.deepcopy(self.b); b[1]["supersedes_binding_id"]=b[0]["binding_id"]
+        self.assertTrue(any("requires SUPERSEDED predecessor" in e for e in self.validate(b=b)))
+    def test_bounded_scopes_require_locators(self):
+        b=copy.deepcopy(self.b); b[2]["source_scope"]["locator"]=None; b[2]["work_scope"]["component_label"]=None
+        errors=self.validate(b=b)
+        self.assertTrue(any("bounded source scope requires locator" in e for e in errors))
+        self.assertTrue(any("component work scope requires component_label" in e for e in errors))
 if __name__=="__main__": unittest.main(verbosity=2)

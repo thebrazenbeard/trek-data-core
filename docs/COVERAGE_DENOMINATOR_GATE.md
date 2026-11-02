@@ -59,3 +59,27 @@ registry-relative `RESOLVED` value as complete series coverage**.
 
 The current repository has no admitted non-fixture episode roster. Its honest
 state is `DENOMINATOR_UNRESOLVED`, and candidate discovery adds no coverage.
+
+## Source-bound coverage is independently gated
+
+An accepted coverage-event label is not itself evidence that a Work has a
+verified Source. Before `SOURCE_BOUND` can contribute to coverage, the ledger
+requires all of the following:
+
+- The Source and Source↔Work binding are both non-fixture, accepted Librarian
+  records with exact matching, non-symlinked origins under
+  `registry/authoritative/` and valid respective Librarian schemas.
+- The binding is `EVIDENCE_BEARING`, links the event's exact accepted Work and
+  Source IDs, and its `BYTE_HASH` basis exactly matches the Source's declared
+  lowercase SHA-256 content hash. Other methodological bases remain blocked
+  from this coverage gate pending separate authoritative admission review.
+- The event's `subject_type` and `subject_id` identify that same binding, and
+  its governed scope identifies the same Work and Source.
+- The accepted Work itself has already passed the independent authoritative
+  Work-origin and lifecycle checks described above.
+
+The same Source lifecycle/origin rule applies to later source-dependent
+coverage states. These checks establish consistency with accepted registry
+records; they do **not** independently verify remote source bytes or grant
+permission to reproduce copyrighted episodes or transcripts. Nonempty
+canonical admission and research rights review remain separate requirements.

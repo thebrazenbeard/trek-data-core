@@ -6,7 +6,7 @@ explicit governed denominator snapshot is supplied; the mere presence of Work re
 not evidence that the corpus denominator is complete.
 """
 from __future__ import annotations
-import argparse, hashlib, importlib.util, json
+import argparse, hashlib, importlib.util, json, re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -118,6 +118,48 @@ def authoritative_work_roster():
 def accepted_registry_head(authoritative_works):
  records=[row for _,row in sorted(authoritative_works.items()) if row.get('status')=='ACCEPTED' and row.get('fixture_only') is False]
  return content_hash({'record_type':'authoritative_accepted_work_roster','works':records})
+
+def authoritative_source_binding_rosters():
+ """Read exact, nonfixture Librarian Source and binding origins for coverage."""
+ root=ROOT/'registry'/'authoritative'
+ if (ROOT/'registry').is_symlink() or root.is_symlink():
+  raise ValueError('authoritative Librarian registry root/parent must not be a symlink')
+ if not root.is_dir():return {},{}
+ contracts=strict_json(LIBRARIAN_CONTRACT.read_text(encoding='utf-8'))['$defs']
+ kinds={'source':('source_id','status'), 'source_work_binding':('binding_id','lifecycle')}
+ rows={'source':{},'source_work_binding':{}}
+ for path in sorted(root.rglob('*')):
+  if path.is_symlink():raise ValueError(f'symlinked authoritative Librarian input {path}')
+  if path.is_dir() or path.suffix not in {'.json','.jsonl'}:continue
+  if not path.is_file():raise ValueError(f'non-file authoritative Librarian input {path}')
+  try:path.resolve().relative_to(root.resolve())
+  except ValueError:raise ValueError(f'authoritative Librarian input escapes root: {path}') from None
+  try:entries=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(path.read_text(encoding='utf-8'))]
+  except ValueError as exc:raise ValueError(f'invalid authoritative Librarian bytes at {path}: {exc}') from exc
+  for item in entries:
+   if not isinstance(item,dict):raise ValueError(f'non-object authoritative Librarian input {path}')
+   kind=item.get('record_type')
+   if kind not in kinds:continue
+   key,life=kinds[kind];rid=item.get(key)
+   if not isinstance(rid,str) or not rid:raise ValueError(f'invalid authoritative {kind} identity in {path}')
+   if rid in rows[kind]:raise ValueError(f'duplicate authoritative {kind} identity {rid}')
+   if item.get(life)=='ACCEPTED':
+    errors=schema_tools.schema_errors(item,contracts[kind])
+    if errors:raise ValueError(f'invalid ACCEPTED authoritative {kind} {rid}: '+'; '.join(errors))
+   rows[kind][rid]=item
+ return rows['source'],rows['source_work_binding']
+
+def accepted_source_binding_basis(source,binding):
+ """Only exact SHA-256 byte evidence currently establishes SOURCE_BOUND.
+
+ Other evidence methods need the canonical projection/Librarian admission
+ review before they can be counted as coverage. A matching declared digest
+ is consistency evidence, never independent proof of retrieved source bytes.
+ """
+ digest=source.get('content_hash')
+ if not isinstance(digest,str) or re.fullmatch(r'sha256:[0-9a-f]{64}',digest) is None:return False
+ basis=binding.get('basis')
+ return isinstance(basis,list) and any(isinstance(b,dict) and b.get('kind')=='BYTE_HASH' and b.get('value')==digest for b in basis)
 def active_events(events):
  # Rejection of a proposed correction cannot revoke previously accepted history.
  superseded={row.get('supersedes') for row in events.values() if row.get('supersedes') and row.get('status')=='ACCEPTED'}
@@ -133,6 +175,7 @@ def role_errors(row):
 def validate_coverage(records,works=None,sources=None,bindings=None,record_paths=None,enforce_origins=False):
  works=works if works is not None else index_records(records,'work','work_id');sources=sources if sources is not None else index_records(records,'source','source_id');bindings=bindings if bindings is not None else index_records(records,'source_work_binding','binding_id')
  authoritative=authoritative_work_roster() if enforce_origins else {}
+ authoritative_sources,authoritative_bindings=authoritative_source_binding_rosters() if enforce_origins else ({},{})
  events=index_records(records,'coverage_event','coverage_event_id');schema=json.loads(SCHEMA.read_text(encoding='utf-8'));errors=[]
  for eid,row in events.items():
   for err in schema_tools.schema_errors(row,schema):errors.append(f'{eid}: schema: {err}')
@@ -191,14 +234,32 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
   if state in SOURCE_STATES:
    if not source_id:errors.append(f'{eid}: {state} requires source_id')
    elif source_id not in sources:errors.append(f'{eid}: accepted coverage references missing Source {source_id}')
+   else:
+    source=sources[source_id]
+    if source.get('status')!='ACCEPTED' or source.get('fixture_only') is not False:
+     errors.append(f'{eid}: accepted {state} requires nonfixture ACCEPTED Source {source_id}')
+    if enforce_origins and (source_id not in authoritative_sources or canonical(authoritative_sources[source_id])!=canonical(source)):
+     errors.append(f'{eid}: accepted {state} Source {source_id} is not an exact disk-backed authoritative registry record')
   if state=='SOURCE_BOUND':
    binding_id=row.get('binding_id');binding=bindings.get(binding_id) if binding_id else None
+   if row.get('subject_type')!='SOURCE_WORK_BINDING' or row.get('subject_id')!=binding_id:
+    errors.append(f'{eid}: SOURCE_BOUND subject_type and subject_id must identify its exact source_work_binding')
+   if not isinstance(row.get('scope'),dict) or row['scope'].get('work_id')!=work_id or row['scope'].get('source_id')!=source_id:
+    errors.append(f'{eid}: SOURCE_BOUND governed scope must match the bound Source/Work identifiers')
    if not binding_id:errors.append(f'{eid}: SOURCE_BOUND requires binding_id')
    elif binding is None:errors.append(f'{eid}: SOURCE_BOUND requires governed source_work_binding {binding_id}; Librarian binding surface is unavailable or reference is missing')
    else:
     if binding.get('lifecycle')!='ACCEPTED':errors.append(f'{eid}: SOURCE_BOUND requires ACCEPTED binding lifecycle {binding_id}')
     if binding.get('mapping_role')!='EVIDENCE_BEARING':errors.append(f'{eid}: metadata-only binding cannot establish SOURCE_BOUND')
+    if not isinstance(binding.get('method'),str) or not binding['method'].strip():
+     errors.append(f'{eid}: SOURCE_BOUND requires a nonempty Librarian binding method')
+    if binding.get('fixture_only') is not False:errors.append(f'{eid}: SOURCE_BOUND requires nonfixture accepted binding {binding_id}')
     if binding.get('work_id')!=work_id or binding.get('source_id')!=source_id:errors.append(f'{eid}: binding Source/Work context does not match coverage event')
+    if enforce_origins and (binding_id not in authoritative_bindings or canonical(authoritative_bindings[binding_id])!=canonical(binding)):
+     errors.append(f'{eid}: SOURCE_BOUND binding {binding_id} is not an exact disk-backed authoritative Librarian record')
+    source=sources.get(source_id)
+    if source is None or not accepted_source_binding_basis(source,binding):
+     errors.append(f'{eid}: SOURCE_BOUND requires exact accepted Source SHA-256 BYTE_HASH binding basis')
   if state=='FULL_TEXT_AVAILABLE':
    scope=row.get('representation_scope')
    if not isinstance(scope,dict) or not scope.get('representation_type') or not scope.get('completeness_scope'):errors.append(f'{eid}: FULL_TEXT_AVAILABLE requires representation_scope with representation_type and completeness_scope')

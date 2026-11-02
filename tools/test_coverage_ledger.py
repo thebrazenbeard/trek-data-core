@@ -3,7 +3,9 @@ from __future__ import annotations
 import importlib.util, json, tempfile, unittest
 from pathlib import Path
 MODULE_PATH=Path(__file__).with_name('coverage_ledger.py'); spec=importlib.util.spec_from_file_location('trek_coverage_ledger_test',MODULE_PATH); coverage=importlib.util.module_from_spec(spec); spec.loader.exec_module(coverage)
-WORK={'record_type':'work','work_id':'w1','title':'Fixture','work_type':'EPISODE','parent_work_id':None,'component_label':None,'status':'ACCEPTED','fixture_only':False}; SOURCE={'record_type':'source','source_id':'s1','source_kind':'transcript','locator':'fixture://s1'}; BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING'}
+WORK={'record_type':'work','work_id':'w1','title':'Fixture','work_type':'EPISODE','parent_work_id':None,'component_label':None,'status':'ACCEPTED','fixture_only':False}
+SOURCE={'record_type':'source','source_id':'s1','status':'ACCEPTED','source_kind':'TRANSCRIPT','provider':'synthetic-test','locator':'fixture://s1','provider_metadata':{},'source_version':'fixture','retrieved_at':'2026-11-02T00:00:00Z','content_hash':'sha256:'+'a'*64,'content_fingerprint':None,'source_variant':'SYNTHETIC','provenance_family':'synthetic-test','independence_group':'synthetic-test','derived_from':[],'fixture_only':False}
+BINDING={'record_type':'source_work_binding','binding_id':'b1','source_id':'s1','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING','source_scope':{'scope_type':'WHOLE','locator':None},'work_scope':{'scope_type':'WHOLE','component_label':None},'method':'synthetic test only','basis':[{'kind':'BYTE_HASH','value':SOURCE['content_hash']}],'exclusive_scope_key':None,'supersedes_binding_id':None,'notes':'Isolated fixture, never admitted corpus','fixture_only':False}
 def event(i,state,status='ACCEPTED',role='CONSOLIDATOR',prereqs=None,**extra):
  scope={'work_id':'w1','source_id':extra.get('source_id'),'fixture_partition':'unit'}
  subject_type='SOURCE_WORK_BINDING' if state in {'SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED'} else 'LOCAL_ENTITY' if state=='ENTITY_LINKED' else 'WORK'
@@ -27,6 +29,20 @@ def make_report(records,**kwargs):
     authorized_root=coverage.ROOT/'registry'/'authoritative';authorized_root.mkdir(parents=True)
     for w in authoritative:
      (authorized_root/f"{w['work_id']}.json").write_text(json.dumps(w),encoding='utf-8')
+   allowed_sources=kwargs.pop('authoritative_sources',None)
+   if allowed_sources is None:
+    candidates=kwargs.get('sources') or coverage.index_records(records,'source','source_id')
+    allowed_sources=[s for s in candidates.values() if s.get('status')=='ACCEPTED' and s.get('fixture_only') is False]
+   allowed_bindings=kwargs.pop('authoritative_bindings',None)
+   if allowed_bindings is None:
+    candidates=kwargs.get('bindings') or coverage.index_records(records,'source_work_binding','binding_id')
+    allowed_bindings=[b for b in candidates.values() if b.get('lifecycle')=='ACCEPTED' and b.get('fixture_only') is False]
+   if allowed_sources or allowed_bindings:
+    authorized_root=coverage.ROOT/'registry'/'authoritative';authorized_root.mkdir(parents=True,exist_ok=True)
+    for s in allowed_sources:
+     (authorized_root/f"{s['source_id']}.json").write_text(json.dumps(s),encoding='utf-8')
+    for b in allowed_bindings:
+     (authorized_root/f"{b['binding_id']}.json").write_text(json.dumps(b),encoding='utf-8')
    paths=record_paths(records)
    for row in records:
     if row.get('record_type')=='coverage_event':paths[row['coverage_event_id']].write_text(json.dumps(row),encoding='utf-8')
@@ -41,6 +57,47 @@ def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_source_bound_rejects_proposed_source_with_accepted_binding(self):
+  proposed=dict(SOURCE,status='PROPOSED')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'Source|ACCEPTED|authoritative'):
+   make_report([WORK,proposed,BINDING,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_bound_rejects_counterfeit_in_memory_source_binding(self):
+  claimed=dict(SOURCE,status='ACCEPTED')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'authoritative|binding|Source'):
+   make_report([WORK,claimed,BINDING,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator(),authoritative_sources=[],authoritative_bindings=[])
+ def test_source_bound_rejects_unfiled_binding_with_genuine_authoritative_source(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'disk-backed authoritative Librarian'):
+   make_report([WORK,SOURCE,BINDING,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator(),authoritative_sources=[SOURCE],authoritative_bindings=[])
+ def test_source_bound_rejects_mismatched_sha256_binding_basis(self):
+  bad_binding=dict(BINDING,basis=[{'kind':'BYTE_HASH','value':'sha256:'+'b'*64}])
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'exact accepted Source SHA-256 BYTE_HASH'):
+   make_report([WORK,SOURCE,bad_binding,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_bound_rejects_blank_binding_method(self):
+  missing_method=dict(BINDING,method='')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'binding method'):
+   make_report([WORK,SOURCE,missing_method,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_bound_rejects_accepted_binding_without_content_basis(self):
+  claimed=dict(SOURCE,status='ACCEPTED')
+  invalid=dict(BINDING,basis=[])
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'basis|hash|fingerprint|authoritative'):
+   make_report([WORK,claimed,invalid,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_bound_rejects_forged_subject_and_scope(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'],subject_type='WORK',subject_id='forged:subject',scope={'work_id':'w1','source_id':'s-mismatch'})
+  with self.assertRaisesRegex(ValueError,'subject|scope'):
+   make_report([WORK,SOURCE,BINDING,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
  def test_resolved_denominator_rejects_proposed_work_even_with_self_hash(self):
   proposed=dict(WORK,status='PROPOSED')
   with self.assertRaisesRegex(ValueError,'ACCEPTED|authoritative|registry'):

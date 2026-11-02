@@ -1,4 +1,4 @@
-Archived location in this repository: `proposals/discovery/wikidata-tng-q16290-20261102/` (raw response and query bytes unchanged). The commands below record the original acquisition workdir and are not copy/paste paths in a fresh clone.
+Public proposal location in this repository: `proposals/discovery/wikidata-tng-q16290-20261102/`. The exact query, receipt, candidate metadata, and source-response SHA-256 are committed. Original raw response bytes were verified during acquisition and retained **outside the public Git repository** under the source-byte policy in `TREK_REPO_PROTOCOL.md`. The commands below record the original acquisition workdir and are not copy/paste paths in a fresh clone.
 
 # Wikidata bounded episode candidate acquisition — 2026-11-02
 
@@ -43,3 +43,10 @@ Deviations: E2 needed explicitly approved sandbox escalation after proxy failure
 ## Verdict
 
 PASS for bounded, ten-row metadata discovery; independent research admission review remains pending. No episodes are accepted by this record.
+
+The public repository intentionally excludes `response.json`. A fresh clone
+therefore cannot reproduce the original candidate normalization from its
+historical response alone. The raw snapshot remains in a separate research
+archive with its exact SHA-256 recorded above; rerunning the query creates a
+new retrieval, not independent proof of the old result. The receipt is locally
+recorded evidence, not a Wikidata-signed attestation.

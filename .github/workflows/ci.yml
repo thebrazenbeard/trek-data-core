@@ -28,3 +28,11 @@ jobs:
         run: python tools/test_librarian_registry.py
       - name: Validate Librarian fixtures
         run: python tools/validate_librarian_registry.py registry/librarian_registry_fixtures.json
+      - name: Verify generated Mission index matches its catalog
+        if: ${{ hashFiles('tools/build_explorer_index.py') != '' }}
+        run: |
+          python tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-ci-index.json"
+          cmp "${RUNNER_TEMP}/trek-ci-index.json" explorer/index.json
+      - name: Check Explorer interface behavior
+        if: ${{ hashFiles('tests/test_explorer.mjs') != '' }}
+        run: node tests/test_explorer.mjs

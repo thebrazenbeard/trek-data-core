@@ -7,14 +7,14 @@
 <p align="center"><strong>Continuity, with receipts.</strong><br />An evidence-first knowledge and reconciliation workspace for the Star Trek universe.</p>
 
 <p align="center">
-  <a href="explorer/">Mission Explorer</a> ·
+  <a href="https://thebrazenbeard.github.io/trek-data-core/">Live Mission Explorer</a> ·
   <a href="TREK_RESEARCH_METHOD.md">Research method</a> ·
   <a href="registry/README.md">Registry contract</a> ·
   <a href="TREK_REPO_PROTOCOL.md">Repository protocol</a> ·
   <a href="TREK_ROLE_CATALOG.md">Research roles</a>
 </p>
 
-> **Project status — working research infrastructure; corpus admission in progress.** `main` includes a searchable static [Mission Explorer](explorer/), Source/Work validation, coverage gates and deterministic projection/query tooling. The current public index has **12 cataloged Missions, 0 admitted Mission Briefings and 0 accepted continuity records**, alongside **190 separately marked, unverified research leads**. Those leads and synthetic fixtures are **not** accepted Star Trek evidence. The Explorer's files are in the repository; public Pages deployment is a separate manual release step.
+> **Project status — live Explorer; corpus admission in progress.** The [public Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) is deployed through GitHub Pages. `main` also includes Source/Work validation, coverage gates and deterministic projection/query tooling. The deployed index has **12 cataloged Missions, 0 admitted Mission Briefings and 0 accepted continuity records**, alongside **190 separately marked, unverified research leads**. Those leads and synthetic fixtures are **not** accepted Star Trek evidence. Publication is manual-only and does not imply evidence review.
 
 ## Purpose
 
@@ -55,7 +55,7 @@ This roster follows the [official Star Trek series catalog](https://www.startrek
 
 ## Explore the Mission index
 
-The [Mission Explorer](explorer/) is a dependency-free static interface for browsing the series catalog and searching indexed research. It keeps two kinds of results visibly separate:
+The [live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([source files](explorer/)) is a dependency-free static interface for browsing the series catalog and searching indexed research. It keeps two kinds of results visibly separate:
 
 | Explorer view | What it contains | Current state |
 | --- | --- | --- |
@@ -70,7 +70,7 @@ To run the Explorer locally, from the repository root:
 python3 -m http.server 8000 --directory explorer
 ```
 
-Open `http://localhost:8000` in a browser. No database server, account, API key or telemetry service is required. Public GitHub Pages publication is intentionally **manual-only**: the workflow checks the five committed Explorer files, regenerates the candidate index and rejects extra or modified files before deployment.
+Open `http://localhost:8000` in a browser, or use the [public deployment](https://thebrazenbeard.github.io/trek-data-core/). No database server, account, API key or telemetry service is required. Public GitHub Pages publication is intentionally **manual-only**: the workflow checks the five committed Explorer files, regenerates the candidate index and rejects extra or modified files before deployment. The first public release passed these checks in [Actions run #45](https://github.com/thebrazenbeard/trek-data-core/actions/runs/41465590332).
 
 ## Data model
 
@@ -113,7 +113,7 @@ These checks verify code contracts, deterministic derived files and synthetic ca
 | Librarian Source / Work / bindings | Typed schema, validator and synthetic fixtures present | Admit independently checked, nonfixture Source↔Work evidence |
 | Canonical projection, semantic diff and query | Deterministic compilers and query adapters on `main`, tested on fixtures and empty projections | Verify a reviewed nonempty projection with approved hash receipts |
 | Coverage and episode discovery | Fail-closed coverage ledger; 190 candidate leads; denominator unresolved | Reconcile a rights-valid, independently sourced episode roster and evidence batches |
-| Browser Explorer / Pages | Five static public assets on `main`; manual-only guarded deploy workflow | Verify a successful Pages deployment before describing it as live |
+| Browser Explorer / Pages | [Public Explorer](https://thebrazenbeard.github.io/trek-data-core/) deployed; five verified assets; manual-only guarded updates | Re-release after reviewed index/UI changes, then check the live artifact |
 | Literary metadata | Private offline OPF scanner, synthetic tests and rights-safe documentation | Reconcile editions, omnibus/anthology contents and Work identities without uploading ebooks |
 
 Development branches and PRs are **proposals**, even when merged into another development branch. A green proposal CI check does not make its contents accepted `main` state.
@@ -126,7 +126,7 @@ Development branches and PRs are **proposals**, even when merged into another de
 | [Repository protocol](TREK_REPO_PROTOCOL.md) | Authority, acceptance and safe contribution rules |
 | [Role catalog](TREK_ROLE_CATALOG.md) | Director, Librarian, Auditor and bounded research responsibilities |
 | [Registry](registry/README.md) | Source/Work/binding schema, fixtures and validation |
-| [Mission Explorer](explorer/) | Static searchable Missions and segregated candidate Research Leads |
+| [Live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([source](explorer/)) | Public searchable Missions and segregated candidate Research Leads |
 | [Explorer index contract](docs/EXPLORER_INDEX.md) | Acceptance rules for public Briefings and continuity records |
 | [Coverage denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md) | Why a catalog or candidate count is not verified episode coverage |
 | [Private OPF intake](docs/LITERARY_OPF_PRIVATE_INTAKE.md) | Metadata-only, nonpublic book/edition inventory workflow |

@@ -216,6 +216,17 @@
 
   const directoryState = { rows: [], available: false, limit: 40 };
   const directoryMediums = ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO'];
+  // Source-local episode rows use compact catalog codes (for example VOY),
+  // while visitors search for the series name they actually recognize.
+  // This is a display/search alias only, never a Work-identity reconciliation.
+  const directorySeriesLabels = Object.freeze({
+    TOS: 'Star Trek The Original Series', TAS: 'Star Trek The Animated Series',
+    TNG: 'Star Trek The Next Generation', DS9: 'Star Trek Deep Space Nine',
+    VOY: 'Star Trek Voyager', ENT: 'Star Trek Enterprise',
+    DIS: 'Star Trek Discovery', PIC: 'Star Trek Picard',
+    LD: 'Star Trek Lower Decks', SNW: 'Star Trek Strange New Worlds',
+    PRO: 'Star Trek Prodigy', SFA: 'Star Trek Starfleet Academy'
+  });
   const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
   const directoryFields = ['row_id', 'medium', 'candidate_kind', 'title', 'context', 'source_group',
     'source_input', 'source_locator', 'details', 'verification_status', 'identity_scope', 'coverage_effect', 'admission_effect'];
@@ -245,7 +256,11 @@
     const rows = directoryState.rows.filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
-      const body = normalize([item.title, item.context, item.candidate_kind, item.source_group,
+      const seriesCode = item.context.split(/\s+/, 1)[0];
+      const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)
+        ? directorySeriesLabels[seriesCode] : '';
+      const body = normalize([item.title, item.context, seriesLabel,
+        item.candidate_kind, item.source_group,
         ...item.details].join(' '));
       return terms.every((part) => body.includes(part));
     });

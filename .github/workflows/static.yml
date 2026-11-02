@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "explorer/**"
+      - "registry/mission_catalog.json"
+      - "registry/approved_projection_hashes.json"
+      - "tools/build_explorer_index.py"
       - ".github/workflows/static.yml"
   workflow_dispatch:
 
@@ -37,6 +40,12 @@ jobs:
             echo "Refusing to deploy a site containing symlinks" >&2
             exit 1
           fi
+
+      - name: Verify deterministic catalog index
+        shell: bash
+        run: |
+          python3 tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-index-expected.json"
+          cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

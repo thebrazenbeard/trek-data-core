@@ -26,6 +26,14 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertNotIn("actions/setup-dotnet@", text)
         self.assertIn("actions/upload-pages-artifact@v4", text)
 
+    def test_catalog_changes_redeploy_only_after_exact_regeneration(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn('"registry/mission_catalog.json"', text)
+        self.assertIn('"tools/build_explorer_index.py"', text)
+        self.assertIn('"registry/approved_projection_hashes.json"', text)
+        self.assertIn("python3 tools/build_explorer_index.py", text)
+        self.assertIn('cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json', text)
+
 
 if __name__ == "__main__":
     unittest.main()

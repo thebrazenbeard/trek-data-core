@@ -14,7 +14,7 @@
   <a href="TREK_ROLE_CATALOG.md">Research roles</a>
 </p>
 
-> **Project status — live Explorer; corpus admission in progress.** The [public Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) is deployed through GitHub Pages. `main` also includes Source/Work validation, coverage gates and deterministic projection/query tooling. The deployed index has **12 cataloged Missions, 0 admitted Mission Briefings and 0 accepted continuity records**, alongside **190 separately marked, unverified research leads**. Those leads and synthetic fixtures are **not** accepted Star Trek evidence. Publication is manual-only and does not imply evidence review.
+> **Project status — live Explorer; corpus admission in progress.** The [public Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) is deployed through GitHub Pages. The repository's generated index has **12 cataloged Missions, 0 admitted Mission Briefings and 0 accepted continuity records**, alongside **218 separately marked, unverified research leads**. Two additional Enterprise arc/multipart items remain held out of ordinary episode search. Those leads and synthetic fixtures are **not** accepted Star Trek evidence. Publication is manual-only; the live Pages release may lag the committed dataset and does not imply evidence review.
 
 ## Purpose
 
@@ -60,9 +60,9 @@ The [live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([
 | Explorer view | What it contains | Current state |
 | --- | --- | --- |
 | **Missions / Mission Briefings / continuity records** | A deterministic catalog and only source-bound, reviewed canonical episode and assertion projections | 12 Missions; **0 admitted Briefings** and **0 accepted records** |
-| **Research Leads** | Metadata-only episode-title candidates and Wikidata identifiers, with recorded provenance hashes | 190 **unverified** leads across 10 Missions; no accepted coverage effect |
+| **Research Leads** | 208 candidate Wikidata items with offline receipt hashes, plus 10 publisher-listed Starfleet Academy S1 slots without claimed QIDs or webpage hashes | 218 **unverified** leads across 12 Missions; 2 Enterprise arc/umbrella holds excluded; no accepted coverage or denominator effect |
 
-Search the Research Leads to find candidate episode titles or external identifiers, but do not treat their presence as an audited episode list. The separate `explorer/research-leads.json` cannot promote a candidate into a Mission Briefing. The accepted-only `explorer/index.json` requires reviewed projection hashes and evidence-bearing Source↔Work bindings before adding nonfixture records. See the [index contract](docs/EXPLORER_INDEX.md) and [denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md).
+Search the Research Leads to find candidate episode titles, Wikidata identifiers or publisher episode slots, but do not treat their presence as an audited episode list. The Paramount+ Academy guide and press site share a single publisher independence group, **not two corroborating sources**; the listing is not a verified season denominator. The separate `explorer/research-leads.json` cannot promote a candidate into a Mission Briefing. The accepted-only `explorer/index.json` requires reviewed projection hashes and evidence-bearing Source↔Work bindings before adding nonfixture records. See the [index contract](docs/EXPLORER_INDEX.md) and [denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md).
 
 To run the Explorer locally, from the repository root:
 
@@ -112,7 +112,7 @@ These checks verify code contracts, deterministic derived files and synthetic ca
 | Governance and research method | Present | Keep method and roles aligned with executable rules |
 | Librarian Source / Work / bindings | Typed schema, validator and synthetic fixtures present | Admit independently checked, nonfixture Source↔Work evidence |
 | Canonical projection, semantic diff and query | Deterministic compilers and query adapters on `main`, tested on fixtures and empty projections | Verify a reviewed nonempty projection with approved hash receipts |
-| Coverage and episode discovery | Fail-closed coverage ledger; 190 candidate leads; denominator unresolved | Reconcile a rights-valid, independently sourced episode roster and evidence batches |
+| Coverage and episode discovery | Fail-closed coverage ledger; 218 segregated candidate leads (2 additional arc/umbrella holds); denominator unresolved | Reconcile a rights-valid, independently sourced episode roster and evidence batches |
 | Browser Explorer / Pages | [Public Explorer](https://thebrazenbeard.github.io/trek-data-core/) deployed; five verified assets; manual-only guarded updates | Re-release after reviewed index/UI changes, then check the live artifact |
 | Literary metadata | Private offline OPF scanner, synthetic tests and rights-safe documentation | Reconcile editions, omnibus/anthology contents and Work identities without uploading ebooks |
 

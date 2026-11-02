@@ -46,6 +46,35 @@ only short scalar assertion metadata; it does not copy transcripts or dialogue.
 The builder recognizes both `work_type` and legacy `medium` classification,
 and can resolve parent-series Work titles through provenance ancestry.
 
+## Separate Research Leads, not Mission Briefings
+
+`explorer/research-leads.json` is independently generated with
+`python3 tools/build_research_leads.py` and verified with `--check`. Its
+version 2 schema keeps two kinds of **unverified** discoveries separate from
+the accepted-only `explorer/index.json`:
+
+| Research lead kind | Current published candidate source | Provenance and boundaries |
+| --- | --- | --- |
+| `WIKIDATA_METADATA` | 208 candidate items across 11 Missions, including 18 Enterprise P179 leads | Wikidata item QID, query/response SHA-256 receipts from an **offline user-supplied export**, single independence group `wikidata:wdqs`; receipt integrity does not verify remote acquisition or episode identity |
+| `PUBLISHER_EPISODE_SLOT_METADATA` | 10 Starfleet Academy Season 1 slots from one Paramount+ publisher roster | Observed title, season/episode slot, bounded publisher guide locator, observation date and `publisher:paramount` independence group; **no** individual episode QID, webpage response hash, audiovisual inspection, verified completeness or independent corroboration |
+
+The 20 Enterprise snapshot rows contain two extra research-review holds:
+`Q56247746` (*Temporal Cold War arc*) is an arc rather than a clearly
+individual episode; `Q866375` (*In a Mirror, Darkly*) may be a multipart
+umbrella. The generator checks both explicit holds against the source batch
+and **excludes both from public ordinary episode search**. The JSON records
+`held_candidate_count: 2`, not episode counts or accepted omissions.
+
+The total is **218 unverified search leads across all 12 cataloged Missions**,
+not 218 admitted episodes or a verified television-series denominator.
+Paramount+ and its press site share one publisher independence group. A
+Wikidata redirect observation does not independently verify the publisher
+roster. Every roster has `denominator_effect: NONE`; the coverage gate remains
+`DENOMINATOR_UNRESOLVED`. The browser rejects mixed-source rows, unexpected
+admission fields and held Enterprise identifiers. No generated research file
+creates a canonical Work, Source↔Work binding, Evidence, accepted continuity
+record or coverage effect.
+
 The index is intentionally build-time JSON rather than a dynamic hosted API,
 so GitHub Pages can serve the browser interface with no server, secrets, or
 runtime access to research files. The Pages workflow should publish **only

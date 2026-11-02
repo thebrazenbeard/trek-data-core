@@ -88,11 +88,12 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
 
 function candidateIndex(count = 3) {
   return {
-    schema_version: '1.0.0', data_status: 'CANDIDATE_DISCOVERY_ONLY',
+    schema_version: '2.0.0', data_status: 'CANDIDATE_DISCOVERY_ONLY',
     source_policy: 'EXTERNAL_METADATA_ONLY', coverage_effect: 'NONE',
-    lead_count: count, sampled_missions_count: count ? 1 : 0,
+    held_candidate_count: 2, lead_count: count, sampled_missions_count: count ? 1 : 0,
     leads: Array.from({ length: count }, (_, i) => ({
-      mission_id: 'tng', episode_qid: `Q${i + 1}`, episode_label: i === 1 ? 'The Neutral Zone' : `Episode ${i + 1}`,
+      mission_id: 'tng', source_type: 'WIKIDATA_METADATA', independence_group: 'wikidata:wdqs',
+      episode_qid: `Q${i + 1}`, episode_label: i === 1 ? 'The Neutral Zone' : `Episode ${i + 1}`,
       snapshot_id: 'WDQS-TNG-Q16290-20261102-10ROW-001',
       query_sha256: 'a'.repeat(64), response_sha256: 'b'.repeat(64),
       verification_status: 'UNVERIFIED_METADATA'
@@ -239,6 +240,51 @@ test('long Research Leads lists paginate and restore keyboard focus', async () =
   assert.match(nodes.get('research-summary').textContent, /Showing 60/);
   for (let remaining = 130; remaining > 0; remaining -= 30) list.children.at(-1).fire('click');
   assert.equal(list.children.length, 190, 'all candidates reachable');
+});
+
+test('Academy publisher slots are searchable metadata, not canonical Briefings or a verified denominator', async () => {
+  const payload = candidateIndex(1);
+  payload.leads.push({
+    mission_id: 'sfa', source_type: 'PUBLISHER_EPISODE_SLOT_METADATA',
+    independence_group: 'publisher:paramount', episode_label: 'Kids These Days',
+    season_number: 1, episode_number: 1,
+    source_locator: 'https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/1/',
+    snapshot_id: 'SFA-PUBLISHER-ROSTER-20261102-001', observed_on: '2026-11-02',
+    verification_status: 'UNVERIFIED_METADATA'
+  });
+  payload.lead_count = 2;
+  payload.sampled_missions_count = 2;
+  const academyCatalog = { ...catalog, missions: [
+    ...catalog.missions, { id: 'sfa', title: 'Star Trek: Starfleet Academy' }
+  ]};
+  const nodes = await runWithIndex(academyCatalog, 200, payload, 200);
+  assert.equal(nodes.get('research-count').textContent, '2');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+  assert.match(nodes.get('research-list').textContent, /publisher-listed slot/i);
+  assert.match(nodes.get('research-list').textContent, /Season 1, episode 1/);
+  assert.match(nodes.get('research-list').textContent, /publisher:paramount/);
+  const links = traverse(nodes.get('research-list'), (node) => node.tagName === 'a');
+  assert.equal(links[1].href, payload.leads[1].source_locator);
+  nodes.get('research-query').value = 's1e1';
+  nodes.get('research-filters').fire('input');
+  assert.equal(nodes.get('research-list').children.length, 1);
+  assert.match(nodes.get('research-list').textContent, /Kids These Days/);
+});
+
+test('held Enterprise arc/umbrella and false publisher provenance fail closed', async () => {
+  const wrongs = [
+    (p) => { p.leads[0].mission_id = 'ent'; p.leads[0].episode_qid = 'Q56247746'; },
+    (p) => { p.leads[0].mission_id = 'ent'; p.leads[0].episode_qid = 'Q866375'; },
+    (p) => { p.leads[0].independence_group = 'publisher:paramount'; },
+    (p) => { p.held_candidate_count = 0; },
+    (p) => { p.leads[0].source_type = 'PUBLISHER_EPISODE_SLOT_METADATA'; },
+  ];
+  for (const mutate of wrongs) {
+    const payload = candidateIndex(1);
+    mutate(payload);
+    const nodes = await runWithIndex(catalog, 200, payload, 200);
+    assert.equal(nodes.get('research-count').textContent, '—');
+  }
 });
 
 test('malformed or injected Research Leads fail closed without affecting canonical index', async () => {

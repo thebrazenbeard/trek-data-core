@@ -2,8 +2,8 @@
 """Build an isolated, unverified episode discovery index from reviewed proposals.
 
 This is *not* the canonical Explorer index. It cannot admit Works, Evidence,
-Mission Briefings, continuity assertions, or coverage. The ten reviewed input
-snapshots are explicitly enumerated and the output is deliberately separate.
+Mission Briefings, continuity assertions, denominators, or coverage. Explicitly
+allowlisted Wikidata snapshots and one publisher roster remain separate.
 """
 
 from __future__ import annotations
@@ -16,6 +16,11 @@ import re
 import tempfile
 import unicodedata
 from pathlib import Path
+
+if __package__:
+    from . import validate_publisher_episode_roster as publisher_roster
+else:
+    import validate_publisher_episode_roster as publisher_roster
 
 
 MISSION_ORDER = (
@@ -61,6 +66,16 @@ RECEIPT_FIELDS = {
     "snapshot_id", "query_text",
 }
 OUTPUT_PATH = Path("explorer/research-leads.json")
+ENT_FOLDER = Path("proposals/discovery/wikidata-ent-sfa-second-pass-20261102")
+ENT_HOLDS_PATH = ENT_FOLDER / "REVIEW_HOLDS.json"
+ENT_REVIEW_HOLDS = {
+    "Q56247746": "Temporal Cold War arc",
+    "Q866375": "In a Mirror, Darkly",
+}
+SFA_ROSTER_PATH = Path("proposals/librarian/sfa-publisher-roster-20261102/bundle.json")
+SFA_BATCH = "SFA-PUBLISHER-ROSTER-20261102-001"
+SFA_LOCATOR = "https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/1/"
+SFA_CROSSCHECK = "https://www.paramountpressexpress.com/paramount-plus/shows/star-trek-starfleet-academy/episodes/"
 
 
 def _no_duplicates(items: list[tuple[str, object]]) -> dict:
@@ -138,6 +153,8 @@ def _checked_title(value: object) -> str:
 
 
 def _source_paths(group: str, key: str, proposal_stem: str) -> tuple[Path, Path, Path]:
+    if group == "enterprise-second-pass":
+        return ENT_FOLDER / "queries/ent.rq", ENT_FOLDER / "receipts/ent.json", ENT_FOLDER / "proposals/ent.json"
     if group == "tng":
         folder = Path("proposals/discovery/wikidata-tng-q16290-20261102")
         return folder / "query.rq", folder / "receipt.json", folder / "candidates.json"
@@ -254,6 +271,8 @@ def _load_batch(
             raise ValueError(f"{proposal_path}: unsupported candidate detail")
         leads.append({
             "mission_id": mission_id,
+            "source_type": "WIKIDATA_METADATA",
+            "independence_group": "wikidata:wdqs",
             "episode_qid": episode_qid,
             "episode_label": _checked_title(row["episode_label"]),
             "snapshot_id": snapshot,
@@ -264,6 +283,83 @@ def _load_batch(
     return leads
 
 
+def _load_enterprise_holds(root: Path, snapshot: str, enterprise_leads: list[dict]) -> set[str]:
+    holds = _required_object(
+        _strict_json(safe_read(root, ENT_HOLDS_PATH), str(ENT_HOLDS_PATH)),
+        {"schema", "proposal_only", "source_snapshot_id", "series_identity_holds",
+         "exclude_from_public_episode_search_until_review", "canonical_admission_effect"},
+        "Enterprise review holds",
+    )
+    if (holds["schema"] != "RESEARCH_DISCOVERY_REVIEW_HOLDS_V1"
+            or holds["proposal_only"] is not True
+            or holds["canonical_admission_effect"] != "NONE"
+            or holds["source_snapshot_id"] != snapshot):
+        raise ValueError("Enterprise review holds: unsafe source or admission metadata")
+    # The series redirect observation must remain explicit but cannot create a
+    # Starfleet Academy episode or independently corroborate its publisher roster.
+    redirects = holds["series_identity_holds"]
+    if not isinstance(redirects, list) or len(redirects) != 1:
+        raise ValueError("Enterprise review holds: unexpected series identity review")
+    redirect = _required_object(redirects[0],
+        {"queried_series_qid", "current_target_qid", "observed_at", "verification_url", "reason"},
+        "series identity hold")
+    if (redirect["queried_series_qid"] != "Q134592591"
+            or redirect["current_target_qid"] != "Q117350388"
+            or redirect["verification_url"] != "https://www.wikidata.org/wiki/Q134592591"
+            or redirect["observed_at"] != "2026-11-02"
+            or not isinstance(redirect["reason"], str) or not redirect["reason"].strip()):
+        raise ValueError("Enterprise review holds: unsupported series redirect")
+    rows = holds["exclude_from_public_episode_search_until_review"]
+    if not isinstance(rows, list) or len(rows) != len(ENT_REVIEW_HOLDS):
+        raise ValueError("Enterprise review holds: expected two explicit episode holds")
+    observed = {}
+    for row in rows:
+        _required_object(row, {"episode_qid", "observed_label", "reason"}, "episode review hold")
+        qid = row["episode_qid"]
+        if (not isinstance(qid, str) or qid in observed or qid not in ENT_REVIEW_HOLDS
+                or row["observed_label"] != ENT_REVIEW_HOLDS[qid]
+                or not isinstance(row["reason"], str) or not row["reason"].strip()):
+            raise ValueError("Enterprise review holds: unexpected arc/umbrella identity")
+        observed[qid] = row["observed_label"]
+    if observed != ENT_REVIEW_HOLDS:
+        raise ValueError("Enterprise review holds: missing required arc/umbrella hold")
+    from_batch = {lead["episode_qid"]: lead["episode_label"] for lead in enterprise_leads}
+    if any(from_batch.get(qid) != label for qid, label in observed.items()):
+        raise ValueError("Enterprise review holds: source batch no longer matches held labels")
+    return set(observed)
+
+
+def _load_academy_roster(root: Path) -> list[dict]:
+    catalog = _strict_json(safe_read(root, Path("registry/mission_catalog.json")), "mission catalog")
+    roster = _strict_json(safe_read(root, SFA_ROSTER_PATH, max_bytes=256_000), str(SFA_ROSTER_PATH))
+    publisher_roster.validate(roster, catalog)
+    observation = roster["observation"]
+    if (roster["mission_id"] != "sfa" or roster["batch_id"] != SFA_BATCH
+            or roster["listed_slot_count"] != 10
+            or observation["publisher"] != "Paramount+"
+            or observation["independence_group"] != "publisher:paramount"
+            or observation["observed_on"] != "2026-11-02"
+            or observation["primary_locator"] != SFA_LOCATOR
+            or observation["crosscheck_locator"] != SFA_CROSSCHECK):
+        raise ValueError("Starfleet Academy roster: unexpected publisher source or batch")
+    if [(row["season"], row["episode_number"]) for row in roster["episode_slots"]] != [
+        (1, episode) for episode in range(1, 11)
+    ]:
+        raise ValueError("Starfleet Academy roster: unexpected Season 1 candidate slot sequence")
+    return [{
+        "mission_id": "sfa",
+        "source_type": "PUBLISHER_EPISODE_SLOT_METADATA",
+        "independence_group": observation["independence_group"],
+        "episode_label": _checked_title(row["title"]),
+        "season_number": row["season"],
+        "episode_number": row["episode_number"],
+        "source_locator": observation["primary_locator"],
+        "snapshot_id": roster["batch_id"],
+        "observed_on": observation["observed_on"],
+        "verification_status": "UNVERIFIED_METADATA",
+    } for row in roster["episode_slots"]]
+
+
 def build_bytes(repo_root: Path) -> bytes:
     """Return canonical, byte-deterministic output without modifying files."""
     root = _validate_root(Path(repo_root))
@@ -272,15 +368,27 @@ def build_bytes(repo_root: Path) -> bytes:
     all_leads = []
     for batch in SOURCE_BATCHES:
         all_leads.extend(_load_batch(root, *batch, seen_qids, seen_snapshots))
+    enterprise = _load_batch(
+        root, "enterprise-second-pass", "ent", "ent", "Q380519", "ent", 20,
+        seen_qids, seen_snapshots,
+    )
+    holds = _load_enterprise_holds(root, enterprise[0]["snapshot_id"], enterprise)
+    all_leads.extend(row for row in enterprise if row["episode_qid"] not in holds)
+    all_leads.extend(_load_academy_roster(root))
     mission_index = {mission: i for i, mission in enumerate(MISSION_ORDER)}
-    all_leads.sort(key=lambda row: (mission_index[row["mission_id"]], int(row["episode_qid"][1:])))
+    all_leads.sort(key=lambda row: (
+        mission_index[row["mission_id"]],
+        (0, int(row["episode_qid"][1:])) if row["source_type"] == "WIKIDATA_METADATA"
+        else (1, row["season_number"], row["episode_number"]),
+    ))
     document = {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "data_status": "CANDIDATE_DISCOVERY_ONLY",
         "source_policy": "EXTERNAL_METADATA_ONLY",
         "coverage_effect": "NONE",
         "lead_count": len(all_leads),
         "sampled_missions_count": len({row["mission_id"] for row in all_leads}),
+        "held_candidate_count": len(holds),
         "leads": all_leads,
     }
     return (json.dumps(document, sort_keys=True, indent=2, ensure_ascii=False) + "\n").encode("utf-8")

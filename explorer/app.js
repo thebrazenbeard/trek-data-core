@@ -101,6 +101,9 @@
     appendDetail(detail, 'Mission ID', row.id);
     const count = state.briefings.filter((b) => b.mission_id === row.id).length;
     appendDetail(detail, 'Indexed Mission Briefings', count.toLocaleString());
+    const leadCount = researchState.available ? researchState.leads.filter((lead) => lead.mission_id === row.id).length : 0;
+    // Candidate counts are never combined with admitted Mission Briefing counts.
+    if (researchState.available) appendDetail(detail, 'Unverified research leads', leadCount.toLocaleString());
     card.append(detail);
     const button = el('button', null, 'Focus this Mission');
     button.type = 'button';
@@ -113,6 +116,20 @@
       controls.search.focus();
     });
     card.append(button);
+    if (leadCount > 0) {
+      const researchButton = el('button', 'research-shortcut', `Inspect ${leadCount.toLocaleString()} unverified ${leadCount === 1 ? 'lead' : 'leads'}`);
+      researchButton.type = 'button';
+      researchButton.setAttribute('aria-label', `Inspect ${leadCount.toLocaleString()} unverified Research Leads for ${row.title}`);
+      researchButton.addEventListener('click', () => {
+        researchControls.search.value = '';
+        researchControls.mission.value = row.id;
+        visibleResearchLimit = RESEARCH_PAGE_SIZE;
+        renderResearch();
+        byId('research-heading').scrollIntoView({ block: 'start' });
+        researchControls.search.focus();
+      });
+      card.append(researchButton);
+    }
     return card;
   }
 
@@ -229,6 +246,8 @@
     byId('research-count').textContent = available ? researchState.leads.length.toLocaleString() : '—';
     byId('research-state').textContent = message;
     renderResearch();
+    // Mission cards must reflect the same validated candidate-only snapshot.
+    render();
   }
 
   function renderResearch() {

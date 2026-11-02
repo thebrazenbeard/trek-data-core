@@ -61,7 +61,18 @@ class PagesArtifactScopeTests(unittest.TestCase):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertNotIn("actions/cache@", text)
         self.assertNotIn("actions/setup-dotnet@", text)
-        self.assertIn("actions/upload-pages-artifact@v4", text)
+        self.assertIn("actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b", text)
+
+    def test_external_actions_are_pinned_to_immutable_commit_ids(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        actions = re.findall(r"(?m)^\s+uses:\s+(actions/[\w-]+)@([^\s#]+)", text)
+        expected = {
+            "actions/checkout": "d23441a48e516b6c34aea4fa41551a30e30af803",
+            "actions/upload-pages-artifact": "7b1f4a764d45c48632c6b24a0339c27f5614fb0b",
+            "actions/deploy-pages": "368f82528645a54fb793d4d04e342629a3f51346",
+        }
+        self.assertEqual(dict(actions), expected)
+        self.assertEqual(len(actions), len(expected))
 
     def test_publication_requires_explicit_manual_dispatch(self):
         source = WORKFLOW.read_text(encoding="utf-8")
@@ -116,7 +127,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("python3 -m unittest discover", build)
         self.assertIn("node tests/test_explorer.mjs", build)
         self.assertIn("python3 tools/build_explorer_index.py", build)
-        self.assertIn("actions/upload-pages-artifact@v4", build)
+        self.assertIn("actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b", build)
         self.assertNotIn("actions/deploy-pages@", build)
         self.assertIn("python3 tools/build_research_leads.py --check", build)
 
@@ -125,7 +136,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertRegex(deploy, r"(?m)^    permissions:\n      pages: write\n      id-token: write$")
         self.assertIn("needs: build", deploy)
         self.assertIn("if: needs.build.outputs.ready == 'true'", deploy)
-        self.assertIn("uses: actions/deploy-pages@v5", deploy)
+        self.assertIn("uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346", deploy)
         self.assertNotIn("actions/checkout@", deploy)
         self.assertNotIn("actions/upload-pages-artifact@", deploy)
         self.assertNotIn("actions/configure-pages@", deploy)

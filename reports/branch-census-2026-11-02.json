@@ -1,0 +1,1818 @@
+{
+  "base_ref": "refs/remotes/origin/main",
+  "base_sha": "4681b637ec9052b704283a83ec5d8d07d3fa6a79",
+  "contested_historical_pr_paths": {
+    ".github/workflows/validate.yml": [
+      {
+        "blob_sha": "32438a3cc34a48faef48e6b8cdd24d86e24679ca",
+        "pr_heads": [
+          "64"
+        ]
+      },
+      {
+        "blob_sha": "5e7de3b42cec9fc589038a2261e1a93f5f0bf16d",
+        "pr_heads": [
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "63ab6651f0c74846476ff168ab1f06d87052d0a9",
+        "pr_heads": [
+          "1"
+        ]
+      },
+      {
+        "blob_sha": "801d32f9b18e9aad5c7a4d15f71918a8e28a60ec",
+        "pr_heads": [
+          "59"
+        ]
+      },
+      {
+        "blob_sha": "acbf95f9ba8513ea7aff74ba7ba2dea7b9729421",
+        "pr_heads": [
+          "138"
+        ]
+      },
+      {
+        "blob_sha": "dc0fdac970925c775d11bc793dadb6032027847f",
+        "pr_heads": [
+          "82",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "f295a211a97bf452e17cdecdfc77fb76132deb6c",
+        "pr_heads": [
+          "2",
+          "9",
+          "10",
+          "20",
+          "30",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "60",
+          "63",
+          "66",
+          "70",
+          "73",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "f3ac149819d148c74fb9ef0815b39091e21c3c14",
+        "pr_heads": [
+          "33"
+        ]
+      },
+      {
+        "blob_sha": "f6877e1c46c1fd7d14d34bbd800ee8b3002ed00e",
+        "pr_heads": [
+          "68",
+          "71"
+        ]
+      },
+      {
+        "blob_sha": "f80d5515496ebca7840dcd302e4d387c51d10b86",
+        "pr_heads": [
+          "8"
+        ]
+      }
+    ],
+    "README.md": [
+      {
+        "blob_sha": "31ba4d70efa57eb8a21e44c54ff3b2687d294461",
+        "pr_heads": [
+          "155"
+        ]
+      },
+      {
+        "blob_sha": "66f6bcc467054b6925157a32e445adf407cf6fbb",
+        "pr_heads": [
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "82",
+          "83",
+          "85",
+          "92",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "9ac73a82b171bcff32740bac78bd6dc803a1da73",
+        "pr_heads": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "11",
+          "12",
+          "13",
+          "16",
+          "17",
+          "18",
+          "19",
+          "21",
+          "22",
+          "24",
+          "26",
+          "27",
+          "32",
+          "34",
+          "36",
+          "37",
+          "38",
+          "41",
+          "44",
+          "45",
+          "47",
+          "49",
+          "53",
+          "54",
+          "58",
+          "62",
+          "69",
+          "75",
+          "80",
+          "84",
+          "86",
+          "87",
+          "88",
+          "89",
+          "93",
+          "94",
+          "95",
+          "96",
+          "97",
+          "98",
+          "99",
+          "100",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "109",
+          "110",
+          "111",
+          "112",
+          "113",
+          "114",
+          "115",
+          "117",
+          "118",
+          "119",
+          "120",
+          "121",
+          "122",
+          "123",
+          "124",
+          "125",
+          "126",
+          "127",
+          "128",
+          "129",
+          "130",
+          "131",
+          "132",
+          "133",
+          "134",
+          "135",
+          "136",
+          "137",
+          "139",
+          "140",
+          "141",
+          "142",
+          "143",
+          "144",
+          "145",
+          "146",
+          "147",
+          "148",
+          "149",
+          "150",
+          "154"
+        ]
+      },
+      {
+        "blob_sha": "bbed4caccd6f766bf23567dc628adccb5ed26fe0",
+        "pr_heads": [
+          "1"
+        ]
+      }
+    ],
+    "coordination/README.md": [
+      {
+        "blob_sha": "52d3ab0ded27a58376966b76fdca035a67bfadf1",
+        "pr_heads": [
+          "26"
+        ]
+      },
+      {
+        "blob_sha": "54b87b10c2b6f0e31f1e8cbd4ae926cf3c127c9b",
+        "pr_heads": [
+          "24"
+        ]
+      },
+      {
+        "blob_sha": "cac333510befc223740cd895967b384e0f36b61c",
+        "pr_heads": [
+          "32"
+        ]
+      }
+    ],
+    "docs/architecture.md": [
+      {
+        "blob_sha": "36f1cd1a4ab5f406f497ed037f7356f1357b7f12",
+        "pr_heads": [
+          "1",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "60",
+          "63",
+          "66",
+          "70",
+          "73",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "b7e3d6c838b7ac833d7b0df431577320a024d730",
+        "pr_heads": [
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "59",
+          "64",
+          "68",
+          "71",
+          "74",
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "docs/research-methodology.md": [
+      {
+        "blob_sha": "03fcf2f47bad5d55f42b58ad385c686055cc4c99",
+        "pr_heads": [
+          "1"
+        ]
+      },
+      {
+        "blob_sha": "2f4023af8892ad00050cebf103ae21219aa33370",
+        "pr_heads": [
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "987f268e3e83f948435864fddc31c48e2d346f52",
+        "pr_heads": [
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "82",
+          "83",
+          "85",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "registry/predicates.json": [
+      {
+        "blob_sha": "9affad6c478b62f826f693aa687c8d8c344e0ece",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "ba25af9e716ff26f2f76c66463103cba673227d1",
+        "pr_heads": [
+          "1",
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      }
+    ],
+    "research/README.md": [
+      {
+        "blob_sha": "73a80941c954dd2975659a58b4fee90fbc2d5d38",
+        "pr_heads": [
+          "1"
+        ]
+      },
+      {
+        "blob_sha": "83f7e148c50169bae3f23542c235919edecbd103",
+        "pr_heads": [
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "82",
+          "83",
+          "85",
+          "92",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "schema/assertion.schema.json": [
+      {
+        "blob_sha": "3bf470de880a62be41f32d1670b1ed307f1cb3bf",
+        "pr_heads": [
+          "1",
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "f3078d5a5e95def27ebbaad3645e25c645727fce",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "schema/projection-manifest.schema.json": [
+      {
+        "blob_sha": "129836f052a931518102feecb14d03fb8bf441c2",
+        "pr_heads": [
+          "1",
+          "2",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "60",
+          "63",
+          "66",
+          "70",
+          "73",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "4f08f368674bab3e411852c05e50b04f149de857",
+        "pr_heads": [
+          "8",
+          "59",
+          "64",
+          "68",
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "ac583d701badc4c4b797d9ccf8faeaed6a504105",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "schema/reconciliation-decision.schema.json": [
+      {
+        "blob_sha": "484d48589ac4acd9d70f4dd3c044fd2bf7cce31d",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "e714f27457898a0dc7d923edd439607a6b7bcd6b",
+        "pr_heads": [
+          "1",
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      }
+    ],
+    "tools/build_graph_search.py": [
+      {
+        "blob_sha": "8771644cce643eec1945d89827c42a97fbd17486",
+        "pr_heads": [
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "d1e75df1d6ee106dec8d3cbba6dcbfb579174693",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/build_postgres.py": [
+      {
+        "blob_sha": "083122c7709c14f961d171803f81becf48cf909c",
+        "pr_heads": [
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "1662576fbd4bb1f4b2b1ff82df947132b90392c7",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/build_projection.py": [
+      {
+        "blob_sha": "136f980f728be1b532632f5cf1a0335577ebee39",
+        "pr_heads": [
+          "8"
+        ]
+      },
+      {
+        "blob_sha": "1f600634cf99b4eb8a970749290c318c01a4f838",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "6324bf9b1c16ff284fd90b682eef7aafda4af190",
+        "pr_heads": [
+          "59",
+          "64",
+          "68",
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "ea37f5de386fa33c4e6b427c40b27e912803ae76",
+        "pr_heads": [
+          "1",
+          "2",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "60",
+          "63",
+          "66",
+          "70",
+          "73",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      }
+    ],
+    "tools/build_sqlite.py": [
+      {
+        "blob_sha": "b3e32c364201d60641c8a5bac8c7ab9f38756e17",
+        "pr_heads": [
+          "68",
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "bab9d171750c40012033d466966926ee61727445",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/coverage_ledger.py": [
+      {
+        "blob_sha": "072066ee3b0133bbf2e6af3424b339e97abbad41",
+        "pr_heads": [
+          "138"
+        ]
+      },
+      {
+        "blob_sha": "8553cdb6ab92b5d3119e9628c9de695c6c713dfa",
+        "pr_heads": [
+          "82",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/diff_projection.py": [
+      {
+        "blob_sha": "47f3335a77b9b5c9586a5ab0402f942519b2c48e",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "c31714316bbcfe36663c23eff7703a3dc800e775",
+        "pr_heads": [
+          "1",
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "33",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "66",
+          "70",
+          "73",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85",
+          "92"
+        ]
+      },
+      {
+        "blob_sha": "c7ec838d4225dc3d5aafa41bd6a2b7ed07757eea",
+        "pr_heads": [
+          "64",
+          "68",
+          "71",
+          "74"
+        ]
+      }
+    ],
+    "tools/test_build_projection.py": [
+      {
+        "blob_sha": "711c0e327054b9095b0bef3ca3b15a0d41040070",
+        "pr_heads": [
+          "59",
+          "64",
+          "68",
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "d2872af430e2fe9417b0980272453663290231fd",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/test_coverage_ledger.py": [
+      {
+        "blob_sha": "16b7c25623854bdfbabc66d49a4651be040cda34",
+        "pr_heads": [
+          "82",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "c402c3527cc799d97764fb3800802fddaa52b0ef",
+        "pr_heads": [
+          "138"
+        ]
+      }
+    ],
+    "tools/test_diff_projection.py": [
+      {
+        "blob_sha": "3c733cd60f8e30825305a34db2e255270f7262d7",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "8b55bd5fee10fa3065ef7f5b45a066c47e02ba7a",
+        "pr_heads": [
+          "64",
+          "68",
+          "71",
+          "74"
+        ]
+      }
+    ],
+    "tools/test_graph_search_projection.py": [
+      {
+        "blob_sha": "6325557222799616d37ccfda982ecdbd46defb70",
+        "pr_heads": [
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "8b3a0bc46c6975876fe96873d8ed4119ba7dc271",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/test_postgres_projection.py": [
+      {
+        "blob_sha": "a14ff79b9a2aeef63b2edc19cc4366a62ec41ae1",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "aa12807275dc8941eb37d0dfaa2c0bc40d0d6603",
+        "pr_heads": [
+          "71",
+          "74"
+        ]
+      }
+    ],
+    "tools/test_reconciliation_validation.py": [
+      {
+        "blob_sha": "b960a3d3f3ee8b1e14daab385b82d4c26785d386",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "eef6e4d7e2f08205050be6b4d45bdb66735afc3c",
+        "pr_heads": [
+          "33"
+        ]
+      }
+    ],
+    "tools/test_sqlite_projection.py": [
+      {
+        "blob_sha": "5ae646013601373bb3b73d3b3234e24a170a787c",
+        "pr_heads": [
+          "68",
+          "71",
+          "74"
+        ]
+      },
+      {
+        "blob_sha": "9263e0eac956217ed98708b9751430bc409acef8",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      }
+    ],
+    "tools/test_validate.py": [
+      {
+        "blob_sha": "13b6518ffea088acec01cb3cb92512400a616720",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "f12484f09762969db8239d28c1ed3afa7dbe9502",
+        "pr_heads": [
+          "33"
+        ]
+      }
+    ],
+    "tools/validate.py": [
+      {
+        "blob_sha": "3fa8ce0bbe7d5956fde070638e1690783c42a28f",
+        "pr_heads": [
+          "82",
+          "138",
+          "152",
+          "153"
+        ]
+      },
+      {
+        "blob_sha": "510cd3cebeb9c92fd552d6bd04af7ac023497a53",
+        "pr_heads": [
+          "33"
+        ]
+      },
+      {
+        "blob_sha": "62f6147007b9f3442d408d0fe9d391337b366cc4",
+        "pr_heads": [
+          "1"
+        ]
+      },
+      {
+        "blob_sha": "67dfc4a746f4bb16a0952d69816e196795a39ed8",
+        "pr_heads": [
+          "2",
+          "8",
+          "9",
+          "10",
+          "20",
+          "30",
+          "35",
+          "39",
+          "42",
+          "46",
+          "48",
+          "50",
+          "51",
+          "56",
+          "57",
+          "59",
+          "60",
+          "63",
+          "64",
+          "66",
+          "68",
+          "70",
+          "71",
+          "73",
+          "74",
+          "77",
+          "79",
+          "81",
+          "83",
+          "85"
+        ]
+      },
+      {
+        "blob_sha": "ae31a17c9150afe1f0197e9fbd6bc21ab8d5cc95",
+        "pr_heads": [
+          "92"
+        ]
+      }
+    ]
+  },
+  "head_groups": [
+    {
+      "branch_count": 170,
+      "branch_only_commits": 1,
+      "branches": [
+        "architecture/query-db-postgres-v0.1",
+        "architecture/query-db-sqlite-v0.1",
+        "architecture/semantic-diff-v0.1",
+        "architecture/v0.1-bootstrap",
+        "external/librarian/crosswalk-intake-v1",
+        "external/librarian/source-work-binding-v1",
+        "fix/remove-accepted-x-artifact-20260901",
+        "migration/legacy-artifact-inventory-003",
+        "migration/legacy-state-claims-002",
+        "migration/startup-readiness-001",
+        "migration/startup-readiness-002",
+        "migration/trek-legacy-migration-batch-001",
+        "reconciliation/audit-ds9-source-offset-001",
+        "reconciliation/audit-governance-001",
+        "reconciliation/audit-pro-segmentation-001",
+        "reconciliation/audit-sfa-convergence-001",
+        "reconciliation/audit-stacked-base-001",
+        "reconciliation/audit-tng-b001-001",
+        "research/dis/dis-lane-sync-20260817",
+        "research/dis/dis-s01-b001",
+        "research/dis/dis-s01-b002",
+        "research/dis/dis-s01-b003",
+        "research/dis/dis-s02-b001",
+        "research/dis/dis-s02-b002",
+        "research/ds9/ds9-lane-sync-20260817",
+        "research/ds9/ds9-s01-b002-staging",
+        "research/ds9/ds9-s01-b003-staging",
+        "research/ds9/ds9-s01-b004-staging",
+        "research/ds9/ds9-s02-b005-staging",
+        "research/ds9/ds9-s02-b006-staging",
+        "research/ds9/ds9-s02-b007-staging",
+        "research/ds9/ds9-s02-b008-staging",
+        "research/ds9/ds9-s02-b009-staging",
+        "research/ds9/ds9-s03-b010-staging",
+        "research/ds9/ds9-s03-b011-staging",
+        "research/ds9/ds9-s03-b012-staging",
+        "research/ds9/ds9-s03-b013-staging",
+        "research/ds9/ds9-s03-b014-staging",
+        "research/ds9/ds9-s04-b015-staging",
+        "research/ds9/ds9-s04-b016-staging",
+        "research/ds9/ds9-s04-b017-staging",
+        "research/ds9/ds9-s04-b018-staging",
+        "research/ds9/ds9-s04-b019-staging",
+        "research/ds9/ds9-s05-b020-staging",
+        "research/ds9/ds9-s05-b021-staging",
+        "research/ds9/ds9-s05-b022-staging",
+        "research/ds9/ds9-s05-b023-staging",
+        "research/ds9/ds9-s05-b024-staging",
+        "research/ds9/ds9-s06-b025-staging",
+        "research/ds9/ds9-s06-b026-staging",
+        "research/ds9/ds9-s06-b027-staging",
+        "research/ds9/ds9-s06-b028-staging",
+        "research/ds9/ds9-s06-b029-staging",
+        "research/ds9/ds9-s07-b030-staging",
+        "research/ds9/ds9-s07-b031-staging",
+        "research/ds9/ds9-s07-b032-staging",
+        "research/ds9/s1-opening-five-staging",
+        "research/enterprise/ent-lane-sync-20260817",
+        "research/enterprise/ent-s01-b002-staging",
+        "research/enterprise/ent-s1-broken-bow-staging",
+        "research/films/films-lane-sync-20260817",
+        "research/films/startup-audit-001",
+        "research/ld/ld-s01-b001",
+        "research/ld/ld-s01-b002",
+        "research/ld/ld-s02-b003",
+        "research/ld/ld-s02-b004",
+        "research/ld/ld-s03-b005",
+        "research/ld/ld-s03-b006",
+        "research/ld/ld-s04-b007",
+        "research/ld/ld-s04-b008",
+        "research/ld/ld-s05-b009",
+        "research/ld/ld-s05-b010",
+        "research/lit/lit-sync-002",
+        "research/lit/startup-audit-001",
+        "research/picard/pic-s01-b001",
+        "research/picard/pic-s01-b002",
+        "research/picard/pic-s02-b003",
+        "research/picard/pic-s02-b003-r1",
+        "research/picard/pic-s02-b004",
+        "research/picard/pic-s03-b005",
+        "research/picard/pic-s03-b006",
+        "research/picard/pic-sync-001",
+        "research/pro/pro-s01-b001-staging",
+        "research/pro/pro-s01-b002-staging",
+        "research/pro/pro-s01-b003-staging",
+        "research/pro/pro-s01-b004-staging",
+        "research/pro/pro-s01-opening-five-staging",
+        "research/pro/pro-s02-b001-staging",
+        "research/pro/pro-s02-b002-staging",
+        "research/pro/pro-s02-b003-staging",
+        "research/pro/pro-s02-b004-staging",
+        "research/pro/pro-staging-sync-001",
+        "research/sfa/sfa-s01-b001-staging",
+        "research/sfa/sfa-s01-b002-staging",
+        "research/sfa/sfa-s01-b003-staging",
+        "research/sfa/sfa-s01-b004-staging",
+        "research/sfa/sfa-s01-season-synthesis-001",
+        "research/sfa/startup-audit-001",
+        "research/short/short-s01-b001-staging",
+        "research/snw/snw-s01-b001",
+        "research/snw/snw-s01-catchup-b007",
+        "research/snw/snw-s02-b002",
+        "research/snw/snw-s02-s03-b003",
+        "research/snw/snw-s03-b004",
+        "research/snw/snw-s03-s04-b005",
+        "research/snw/snw-s04-b006",
+        "research/tas/TAS-B001-S01E01-E05",
+        "research/tas/TAS-B002-S01E06-E10",
+        "research/tas/TAS-B003-S01E11-E15",
+        "research/tas/TAS-B004-S01E16-S02E04",
+        "research/tas/TAS-B005-S02E05-E06",
+        "research/tas/TAS-X001-TRANSCRIPT-CORPUS-SYNTHESIS",
+        "research/tas/tas-lane-sync-20260817",
+        "research/tng/tng-s01-b001",
+        "research/tng/tng-s01-b002-staging",
+        "research/tng/tng-s01-b003-staging",
+        "research/tng/tng-s01-b004-staging",
+        "research/tng/tng-s01-b004-staging-2",
+        "research/tng/tng-s01-b005-staging",
+        "research/tng/tng-s02-b001-staging",
+        "research/tng/tng-s02-b002-staging",
+        "research/tng/tng-s02-b003-staging",
+        "research/tng/tng-s02-b004-staging",
+        "research/tng/tng-s02-b005-staging",
+        "research/tng/tng-s03-b001-staging",
+        "research/tng/tng-s03-b002-staging",
+        "research/tng/tng-s03-b003-staging",
+        "research/tng/tng-s03-b004-staging",
+        "research/tng/tng-s03-b005-staging",
+        "research/tng/tng-s03-b006-staging",
+        "research/tng/tng-s04-b001-staging",
+        "research/tng/tng-s04-b002-staging",
+        "research/tng/tng-s04-b003-staging",
+        "research/tng/tng-s04-b004-staging",
+        "research/tng/tng-s04-b005-staging",
+        "research/tng/tng-s04-b006-staging",
+        "research/tng/tng-s05-b001-partial-staging",
+        "research/tng/tng-s05-b002-staging",
+        "research/tng/tng-s05-b003-staging",
+        "research/tng/tng-s05-b004-staging",
+        "research/tng/tng-s05-b005-staging",
+        "research/tng/tng-s05-b006-staging",
+        "research/tng/tng-s06-b001-staging",
+        "research/tng/tng-s06-b002-staging",
+        "research/tng/tng-s06-b003-staging",
+        "research/tng/tng-s06-b004-staging",
+        "research/tng/tng-s06-b005-staging",
+        "research/tng/tng-s06-b006-staging",
+        "research/tng/tng-s07-b001-staging",
+        "research/tng/tng-s07-b002-staging",
+        "research/tng/tng-s07-b003-staging",
+        "research/tng/tng-s07-b004-staging",
+        "research/tng/tng-s07-b005-staging",
+        "research/tos/startup-audit-001",
+        "research/tos/tos-lane-sync-20260817",
+        "research/voy/voy-s01-b001",
+        "research/voy/voy-s01-b002",
+        "research/voy/voy-s01-b003",
+        "research/voy/voy-s02-b004",
+        "research/voy/voy-s02-b005",
+        "research/voy/voy-s02-b005-clean",
+        "research/voy/voy-s02-b006",
+        "research/voy/voy-s02-b007",
+        "research/voy/voy-s02-b008",
+        "research/voy/voy-s02-s03-b009",
+        "research/voy/voy-s03-b009",
+        "research/voy/voy-s03-b010",
+        "research/voy/voy-s03-b011",
+        "research/voy/voy-s03-b012",
+        "research/voy/voy-s03-b013"
+      ],
+      "contains_folder_open_task": true,
+      "main_only_commits": 6,
+      "sha": "a9ebf9e4d7e1645e3d9c7be2c6766cd3b04bfc86",
+      "tree_sha": "4c58fa7da5d24f46bd57291d7bf95156e36f6cc7"
+    },
+    {
+      "branch_count": 12,
+      "branch_only_commits": 1,
+      "branches": [
+        "architecture/director-gate-002",
+        "architecture/director-gate-003",
+        "architecture/director-gate-004",
+        "architecture/director-state-001",
+        "architecture/director-sync-20260817",
+        "architecture/foundation-gates-v0.2-integration",
+        "architecture/governance-alignment-001",
+        "architecture/graph-search-projections-v0.1",
+        "architecture/librarian-bootstrap-route-001",
+        "architecture/logical-projection-v0.1",
+        "architecture/predicate-usage-levels-v0.1",
+        "architecture/projection-input-identity-v0.1"
+      ],
+      "contains_folder_open_task": true,
+      "main_only_commits": 6,
+      "sha": "e710a8b7d29de8f3afe1c1b91d3ffbb8518c8761",
+      "tree_sha": "c03f6f706021db1fede387ab12945d15fb5795f8"
+    },
+    {
+      "branch_count": 4,
+      "branch_only_commits": 0,
+      "branches": [
+        "architecture/admission-validation-v0.1",
+        "architecture/consolidator-v0.1-integration",
+        "architecture/director-checkpoint-001",
+        "security/editor-startup-remediation-20261025"
+      ],
+      "contains_folder_open_task": true,
+      "main_only_commits": 5,
+      "sha": "104f0813fe29517e3b8900ad0d8e5f4dfd2bebe6",
+      "tree_sha": "874e56c714a6ea536b8209a6277f7ced43f76260"
+    },
+    {
+      "branch_count": 2,
+      "branch_only_commits": 1,
+      "branches": [
+        "architecture/bootstrap-governance",
+        "architecture/coverage-ledger-v0.1"
+      ],
+      "contains_folder_open_task": true,
+      "main_only_commits": 6,
+      "sha": "7b4782f88558b9b9c51a775d4abef159a920252c",
+      "tree_sha": "bf0a5de7883973fef1835d983a056f9a5db095e4"
+    },
+    {
+      "branch_count": 1,
+      "branch_only_commits": 6,
+      "branches": [
+        "security/contain-editor-startup-loader-20261025"
+      ],
+      "contains_folder_open_task": false,
+      "main_only_commits": 5,
+      "sha": "e9f1fa806449532b52deea6ad6c6d6956becfa56",
+      "tree_sha": "60f6d3d83ac2f1367c536c433ad160994a3c1814"
+    }
+  ],
+  "pr_head_refs": [
+    {
+      "number": "1",
+      "sha": "e20bf6797cc22bdc5211794ac0627fdb129fb592"
+    },
+    {
+      "number": "10",
+      "sha": "b9ed5e34c9fe4b6025b972d947ccee5c5e41d0a0"
+    },
+    {
+      "number": "100",
+      "sha": "e0c7150817b9a4a353ed4327d7fb59e7e1b7b6a7"
+    },
+    {
+      "number": "101",
+      "sha": "ae2458e1682c7b5e5e4182780e6647885ee6e0f0"
+    },
+    {
+      "number": "102",
+      "sha": "5a0dd8cd28e208d3a7a1cf0cf1cffe5005fa9655"
+    },
+    {
+      "number": "103",
+      "sha": "e1869ed8f62d41c15566eeac6f9725cf8d58a53a"
+    },
+    {
+      "number": "104",
+      "sha": "5388b34966919064d101b6f8ff378d41057e0874"
+    },
+    {
+      "number": "105",
+      "sha": "71c42117b26e3d15c819928756272b6f81373807"
+    },
+    {
+      "number": "106",
+      "sha": "a03a34918ebfec12a4119532239f59c09a79b82a"
+    },
+    {
+      "number": "109",
+      "sha": "2d4df887da490384a8c3c2675371fb3ee42efb92"
+    },
+    {
+      "number": "11",
+      "sha": "04c39135a1db7506277a8516bbb0beaf32d40c8d"
+    },
+    {
+      "number": "110",
+      "sha": "032a6aed68f849809b257d538bc954dfe5d39c93"
+    },
+    {
+      "number": "111",
+      "sha": "7daa23c4c52fa1bb76e0f982326f452c285942cd"
+    },
+    {
+      "number": "112",
+      "sha": "bdaefbc1eb77151a3de89e0b4e3c64f2e9ee2b6c"
+    },
+    {
+      "number": "113",
+      "sha": "07cfebdac57bf3a50d8f17412a6233e756b448d2"
+    },
+    {
+      "number": "114",
+      "sha": "1f0aaa9ec0abf00208d7aecf8421f0a4fce34fd4"
+    },
+    {
+      "number": "115",
+      "sha": "363fe1ff97b24b22758492ac1ea440b0873325ac"
+    },
+    {
+      "number": "117",
+      "sha": "080bb0c2ff7e3b1f304705c2171fadb1f01c1f2e"
+    },
+    {
+      "number": "118",
+      "sha": "0803862d868d66e61c42f7fb27c9a9407fea5024"
+    },
+    {
+      "number": "119",
+      "sha": "ff274a25a43eb7362381af9c5391665a3c45fba0"
+    },
+    {
+      "number": "12",
+      "sha": "e4c891b26622ae08eac346a55059a58f687d064c"
+    },
+    {
+      "number": "120",
+      "sha": "5ff1e78056145a3375890959544c3b5ef9cfbd95"
+    },
+    {
+      "number": "121",
+      "sha": "32440b4f2c132937a79c71c4efdba61f0b34bfe2"
+    },
+    {
+      "number": "122",
+      "sha": "6919cac91273b2c3a22a480193906cbbcd684d3c"
+    },
+    {
+      "number": "123",
+      "sha": "495fbb66bd32ecdf14e7d991265b856b76ed5740"
+    },
+    {
+      "number": "124",
+      "sha": "e3a46e8a3d5a4c8693c39e1af596d7514b21aa02"
+    },
+    {
+      "number": "125",
+      "sha": "4ccc10b84e2a9896f80fa4822cf67d9c709335b9"
+    },
+    {
+      "number": "126",
+      "sha": "c3e26cfe89522045912e5a56ca19321362d66bb4"
+    },
+    {
+      "number": "127",
+      "sha": "0e3077f0a0fc16237b9fd08f2e515a6942ef76ba"
+    },
+    {
+      "number": "128",
+      "sha": "6aef417752635897d51e70acd7c603ac6da96eac"
+    },
+    {
+      "number": "129",
+      "sha": "097bb702ce495363b2e5d7c2876d8e6c5e46ac44"
+    },
+    {
+      "number": "13",
+      "sha": "b3588db9c2f1dfc0d8310d281b588b7b72db4860"
+    },
+    {
+      "number": "130",
+      "sha": "30cd439dfa3cc7124959473a2f9e0e5f42bcf76b"
+    },
+    {
+      "number": "131",
+      "sha": "8b4cd5b8b791a50c88c0ed9a32312582078bf621"
+    },
+    {
+      "number": "132",
+      "sha": "012587666f9e06f7cb53d416331e9accfda75f1e"
+    },
+    {
+      "number": "133",
+      "sha": "f9f593c84d7bf0f380807c49e9fe463317357296"
+    },
+    {
+      "number": "134",
+      "sha": "d2b531d33895665cb630136e1d94673d5291e210"
+    },
+    {
+      "number": "135",
+      "sha": "d3db47332d9f23ebb96a08da4bcb2a908137203d"
+    },
+    {
+      "number": "136",
+      "sha": "d24d2a719627215585b0f6d24891cfe94ebe833d"
+    },
+    {
+      "number": "137",
+      "sha": "19dacf4238dfa5788922273be102bcf2b4260ded"
+    },
+    {
+      "number": "138",
+      "sha": "146db295a9097cd078f879b1832426d37f874c44"
+    },
+    {
+      "number": "139",
+      "sha": "670bcde7f0c95d94bbd77e7c1f760defed0ae5d7"
+    },
+    {
+      "number": "140",
+      "sha": "bfe3346530fd92f363450188d6477b521533b253"
+    },
+    {
+      "number": "141",
+      "sha": "e4bc3ec260ac09dad2d2e0366183f17b7ff8a4da"
+    },
+    {
+      "number": "142",
+      "sha": "3351f05150bc822ca483c1895098a52346a6d84c"
+    },
+    {
+      "number": "143",
+      "sha": "35e3f62ba8658491cf1e2df38e10d3ea8fd35520"
+    },
+    {
+      "number": "144",
+      "sha": "dd575e3c884782193b18d271a48432a25f97e1f0"
+    },
+    {
+      "number": "145",
+      "sha": "be7bdf41d37400b6cdbed206ed16b910ab6717fc"
+    },
+    {
+      "number": "146",
+      "sha": "437775d77c8d3e84d461e1481902fa39861b5b8a"
+    },
+    {
+      "number": "147",
+      "sha": "5be2d3496fd57b45aa1b77d2786a265f93235207"
+    },
+    {
+      "number": "148",
+      "sha": "b3201a0abd8605e106ae8ef6b7f7945e5b82da87"
+    },
+    {
+      "number": "149",
+      "sha": "7f8f144b20dd29b2337b981c4e28a477b5210a06"
+    },
+    {
+      "number": "150",
+      "sha": "9e10798b4edfb9b731501bc68ec8c3ee09f01622"
+    },
+    {
+      "number": "152",
+      "sha": "41616e95c335a7242f674a8ea988a22c822af652"
+    },
+    {
+      "number": "153",
+      "sha": "089de6edd674100edf28fe22171c8fd731d4f376"
+    },
+    {
+      "number": "154",
+      "sha": "b107a4b50ebec3b818a680a35b0dfcabc8344af6"
+    },
+    {
+      "number": "155",
+      "sha": "e9f1fa806449532b52deea6ad6c6d6956becfa56"
+    },
+    {
+      "number": "16",
+      "sha": "8cf40ee17c0938271f00beade7311c7662883f3f"
+    },
+    {
+      "number": "17",
+      "sha": "530dffab7a2e8d30d95acbacdb58873f53175a21"
+    },
+    {
+      "number": "18",
+      "sha": "281550c47f77b18d8fffaba74c83e2d0518d5889"
+    },
+    {
+      "number": "19",
+      "sha": "a1c6402ec3320a31b2a33e498cad0f5701f248e8"
+    },
+    {
+      "number": "2",
+      "sha": "114d96b41865eff37a309fea747e8a6404c3a512"
+    },
+    {
+      "number": "20",
+      "sha": "f2b4e74252e9e57913e756495f9a041f92ed99c7"
+    },
+    {
+      "number": "21",
+      "sha": "b84bdbe07c26d32ccda9bd5c0f8492df0f0fe1c8"
+    },
+    {
+      "number": "22",
+      "sha": "bcbf16e23a137b91ea242c51ae0a8ae4783cb157"
+    },
+    {
+      "number": "24",
+      "sha": "f11ee949cb576e129b69e96ba587cb5c92f0c53b"
+    },
+    {
+      "number": "26",
+      "sha": "aebb6fc860ed227e2dd8df5cfaf6df18cb76a91d"
+    },
+    {
+      "number": "27",
+      "sha": "f82fd3380655288e04dd66b7dc8dede9785959f7"
+    },
+    {
+      "number": "3",
+      "sha": "0695fb2d36870e9c156ce7acd16f00f70103b19e"
+    },
+    {
+      "number": "30",
+      "sha": "5b93e75cc54fdf84afe30d6d4d9c7db931eb828f"
+    },
+    {
+      "number": "32",
+      "sha": "8c25c0516c20fb2e557bb72ac4d7ddef43e2058c"
+    },
+    {
+      "number": "33",
+      "sha": "bfe5515eeae65194e087d4b99fc5d378e38e16e7"
+    },
+    {
+      "number": "34",
+      "sha": "ab599b913bc23118237cf17a3217fa1c431af529"
+    },
+    {
+      "number": "35",
+      "sha": "6e964c60a8fca16a1c3e5f74d1f12aba98a5ad0b"
+    },
+    {
+      "number": "36",
+      "sha": "75f8ad666bdc4b4eebcfcd96ba6dfdf0dea7851c"
+    },
+    {
+      "number": "37",
+      "sha": "7addd7ea5413e986500147f8a24241c891876923"
+    },
+    {
+      "number": "38",
+      "sha": "485548b4ea58cb343d5e73b88a513d1ee943904d"
+    },
+    {
+      "number": "39",
+      "sha": "4ab3b99ce413fd868d065964f4188d462337994c"
+    },
+    {
+      "number": "4",
+      "sha": "6019ff5b96feaf4a1ca4a1d3f0ea95b5ea979b95"
+    },
+    {
+      "number": "41",
+      "sha": "62eca43e2607c7e7533e20f6ff837312bd3380ca"
+    },
+    {
+      "number": "42",
+      "sha": "e44d78a87fe10e237bce58087162689d62461d20"
+    },
+    {
+      "number": "44",
+      "sha": "97d0d8f9e656c76e233d5be7311b2d80021eb003"
+    },
+    {
+      "number": "45",
+      "sha": "b663e2abb46e2ef86152faa764c86d8c56c6a250"
+    },
+    {
+      "number": "46",
+      "sha": "0fc99a5b8c7f1750557e3370f7485cbab5f81b96"
+    },
+    {
+      "number": "47",
+      "sha": "24754d5acd135e16fc1b372b24930638497d181c"
+    },
+    {
+      "number": "48",
+      "sha": "107551e91bb823d591dc857e255d88726a917eba"
+    },
+    {
+      "number": "49",
+      "sha": "5358e77ffea26294ef1506636cfe5a59185b4d9f"
+    },
+    {
+      "number": "5",
+      "sha": "f826981de983c886186c15d6b7dc5923937f2eef"
+    },
+    {
+      "number": "50",
+      "sha": "d53913a539a13465a9848658f14e81e502a54335"
+    },
+    {
+      "number": "51",
+      "sha": "7946a10938bec021c92e1f79111bb22c6a1ff455"
+    },
+    {
+      "number": "53",
+      "sha": "598994c912aaa43060c80689205b3145a3133e93"
+    },
+    {
+      "number": "54",
+      "sha": "5e32dbc73ef1e28de107de5564123a8340a6ce26"
+    },
+    {
+      "number": "56",
+      "sha": "96a1fa64d1fb5a54655a80973bd1bdf4729bcf4e"
+    },
+    {
+      "number": "57",
+      "sha": "a693bd26009aaa522b26673cc3bb485f1950149d"
+    },
+    {
+      "number": "58",
+      "sha": "7e31f4c916226a2986a91017f724e4bb5987b1b1"
+    },
+    {
+      "number": "59",
+      "sha": "c05fb23895248f2123ac4f96cdfe13703bb7d923"
+    },
+    {
+      "number": "6",
+      "sha": "e1275c872f9ad3104697bb86a273b155f8416943"
+    },
+    {
+      "number": "60",
+      "sha": "870a947d4b525968a4da51097f6aa8531f07b2d3"
+    },
+    {
+      "number": "62",
+      "sha": "58648cfbb7d525d34200d7a4950037676ac4bbab"
+    },
+    {
+      "number": "63",
+      "sha": "b01e33caecd1d535a82abbac694372ec281df9d0"
+    },
+    {
+      "number": "64",
+      "sha": "492968b4e6a1bee27237c8ed19a41b572ed80b1f"
+    },
+    {
+      "number": "66",
+      "sha": "03ff6df1afddd47f1470045397158dd992b0e7e6"
+    },
+    {
+      "number": "68",
+      "sha": "2e948b3e352a8025c600180fd167b8bbf775e693"
+    },
+    {
+      "number": "69",
+      "sha": "52899cc3fac5e363234abf5ee6f3e142e7321b21"
+    },
+    {
+      "number": "7",
+      "sha": "3f6c07c4e453b00711cb3aadf4cb18f6389ba470"
+    },
+    {
+      "number": "70",
+      "sha": "29b647115f148244d3aa4cfc809b6911ec31babb"
+    },
+    {
+      "number": "71",
+      "sha": "b1146824d418cb30ec5461f628105d3ecf5d7287"
+    },
+    {
+      "number": "73",
+      "sha": "4ebb3349967a7cf7170fc3c3d80960a0bf67202f"
+    },
+    {
+      "number": "74",
+      "sha": "bf82c55eb764ccac2d4f253fe7f977df8a2f5b80"
+    },
+    {
+      "number": "75",
+      "sha": "1a6bcb1cde12191724b3ec083790ee8f8b54f7c2"
+    },
+    {
+      "number": "77",
+      "sha": "c560cde832a804b3ea6c7beb0d302e61b818427c"
+    },
+    {
+      "number": "79",
+      "sha": "becc3910d375a718f0bc34abb44265711229aa4d"
+    },
+    {
+      "number": "8",
+      "sha": "16d38c9bf355616650602b3b34914a54f9bf3fc8"
+    },
+    {
+      "number": "80",
+      "sha": "d9e1e16dc170f23942ad35f255987f5ed9ebf5d1"
+    },
+    {
+      "number": "81",
+      "sha": "80aa671835636ae3820d77731fd95469c90fcd00"
+    },
+    {
+      "number": "82",
+      "sha": "65923758bee8c0db0c620fb1833adf258a529d21"
+    },
+    {
+      "number": "83",
+      "sha": "057f52c8ac087aa867703fc256da4548cde1bc4b"
+    },
+    {
+      "number": "84",
+      "sha": "07d7b464065397d3b7deb8bc2f979d8060aad850"
+    },
+    {
+      "number": "85",
+      "sha": "341686699413f4e1fe4602bfa61c1c3aa1efb02c"
+    },
+    {
+      "number": "86",
+      "sha": "10c93bfa1aeb567ac3a12896765a1b773ecd32c3"
+    },
+    {
+      "number": "87",
+      "sha": "d7200832a6aaa3ee2eeb4cae09d40ccad6e711d4"
+    },
+    {
+      "number": "88",
+      "sha": "12d000ff95d5521bf627754fed7c596c1f0e9412"
+    },
+    {
+      "number": "89",
+      "sha": "61ec7d0435fa5ae838e63da19be86e1e29efb67b"
+    },
+    {
+      "number": "9",
+      "sha": "84d208dc222117cbf9befdd44bc486013f7811a3"
+    },
+    {
+      "number": "92",
+      "sha": "be957be4a4f893d9467fc0e22cb74f896d20ae08"
+    },
+    {
+      "number": "93",
+      "sha": "cd259fb61c51a2803ce76d8bd6d18e2d8024f827"
+    },
+    {
+      "number": "94",
+      "sha": "ffbfe80bd83788a6c4d638a50159a4aed20979f1"
+    },
+    {
+      "number": "95",
+      "sha": "c4b3f59520d8ac050fd751fda8f8ebe2d784c2d6"
+    },
+    {
+      "number": "96",
+      "sha": "4aacd0be9075f71ade9a0906e8ee2f55d387a3a7"
+    },
+    {
+      "number": "97",
+      "sha": "dd03626af5b88016b59b967419ade2ccc8e2ed7e"
+    },
+    {
+      "number": "98",
+      "sha": "9573ef48f8fe1dfa08bc64d12b29e5a2460bf219"
+    },
+    {
+      "number": "99",
+      "sha": "c0d4762a588be27d4b190a90a9e79681ce616c95"
+    }
+  ],
+  "schema_version": "trek-branch-census-v1",
+  "summary": {
+    "accessible_pr_head_refs": 132,
+    "by_family": {
+      "architecture": 21,
+      "external": 2,
+      "fix": 1,
+      "migration": 5,
+      "reconciliation": 6,
+      "research": 152,
+      "security": 2
+    },
+    "contested_historical_pr_paths": 25,
+    "distinct_historical_pr_paths": 593,
+    "distinct_non_main_heads": 5,
+    "historical_research_paths_by_lane": {
+      "README.md": 1,
+      "dis": 1,
+      "ds9": 33,
+      "enterprise": 4,
+      "films": 1,
+      "literature": 5,
+      "pro": 21,
+      "short": 13,
+      "starfleet-academy": 18,
+      "tas": 1,
+      "tng": 297,
+      "tos": 3
+    },
+    "non_main_branches": 189,
+    "research_paths_in_pr_heads": 398,
+    "total_branches_including_main": 190
+  }
+}

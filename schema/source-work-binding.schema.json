@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/source-work-binding.schema.json",
+  "title": "Librarian Source to Work Binding",
+  "type": "object",
+  "required": ["record_type", "binding_id", "source_id", "work_id", "lifecycle", "mapping_role", "source_scope", "work_scope", "method", "basis", "exclusive_scope_key", "supersedes_binding_id", "fixture_only"],
+  "properties": {
+    "record_type": {"const": "source_work_binding"},
+    "binding_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "lifecycle": {"enum": ["PROPOSED", "ACCEPTED", "CONTESTED", "SUPERSEDED"]},
+    "mapping_role": {"enum": ["EVIDENCE_BEARING", "METADATA_ONLY", "CROSSWALK_ONLY"]},
+    "source_scope": {"type": "object", "required": ["scope_type", "locator"], "properties": {"scope_type": {"enum": ["WHOLE", "SLICE", "COMPONENT"]}, "locator": {"type": ["string", "null"]}}, "additionalProperties": false},
+    "work_scope": {"type": "object", "required": ["scope_type", "component_label"], "properties": {"scope_type": {"enum": ["WHOLE", "COMPONENT"]}, "component_label": {"type": ["string", "null"]}}, "additionalProperties": false},
+    "method": {"type": "string"},
+    "basis": {"type": "array", "items": {"type": "object", "required": ["kind", "value"], "properties": {"kind": {"type": "string", "minLength": 1}, "value": {"type": "string", "minLength": 1}}, "additionalProperties": false}},
+    "exclusive_scope_key": {"type": ["string", "null"]},
+    "supersedes_binding_id": {"type": ["string", "null"]},
+    "fixture_only": {"type": "boolean"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

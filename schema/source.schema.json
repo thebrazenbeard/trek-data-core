@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/source.schema.json",
+  "title": "Source (proposal-compatible shape; authoritative records also follow the Librarian contract)",
+  "type": "object",
+  "required": ["record_type", "source_id", "source_kind", "locator"],
+  "properties": {
+    "record_type": {"const": "source"},
+    "source_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PROPOSED", "ACCEPTED", "CONTESTED", "SUPERSEDED"]},
+    "source_kind": {"type": "string", "minLength": 1},
+    "provider": {"type": "string", "minLength": 1},
+    "locator": {"type": "string", "minLength": 1},
+    "provider_metadata": {"type": "object"},
+    "source_version": {"type": ["string", "null"]},
+    "content_hash": {"type": ["string", "null"]},
+    "content_fingerprint": {"type": ["string", "null"]},
+    "retrieved_at": {"type": ["string", "null"]},
+    "source_variant": {"type": ["string", "null"]},
+    "provenance_family": {"type": ["string", "null"]},
+    "independence_group": {"type": "string", "minLength": 1},
+    "derived_from": {"type": "array", "items": {"type": "string"}, "default": []},
+    "anomalies": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "string"},
+    "fixture_only": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

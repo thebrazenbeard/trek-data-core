@@ -26,15 +26,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 439, "FILM": 14, "LITERATURE": 1,
+            "EPISODE": 608, "FILM": 14, "LITERATURE": 1,
             "SHORT_FORM": 15, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 470)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 639)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 49)
+        self.assertEqual(len(catalog["source_digests"]), 72)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -46,7 +46,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                  for kind in discovery.KINDS}
         self.assertEqual(kinds, {
             "WIKIDATA_EPISODE": 208,
-            "PUBLISHER_EPISODE_SLOT": 216,
+            "PUBLISHER_EPISODE_SLOT": 385,
             "PUBLISHER_REFERENCE": 15,
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
@@ -67,10 +67,12 @@ class UnifiedDiscoveryTests(unittest.TestCase):
             self.assertNotIn(f"{show} S1E2", observed)
         self.assertGreater(catalog["counts_by_medium"]["EPISODE"], 218)
         modern = [r for r in rows if r["row_id"].startswith("roster:modern-s")]
-        self.assertEqual(len(modern), 65)
-        legacy = [r for r in rows if r["row_id"].startswith("legacy:s2:")]
-        self.assertEqual(len(legacy), 126)
-        self.assertTrue(all(" S2E" in r["context"] for r in legacy))
+        self.assertEqual(len(modern), 108)
+        self.assertEqual(len([r for r in modern if r["row_id"].startswith("roster:modern-s3:")]), 43)
+        for season in (2, 3):
+            legacy = [r for r in rows if r["row_id"].startswith(f"legacy:s{season}:")]
+            self.assertEqual(len(legacy), 126)
+            self.assertTrue(all(f" S{season}E" in r["context"] for r in legacy))
         self.assertEqual(len([r for r in rows if r["medium"] == "AUDIO"]), 1,
                          "one container, no invented audio episodes")
 

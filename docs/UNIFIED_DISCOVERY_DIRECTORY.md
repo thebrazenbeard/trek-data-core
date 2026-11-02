@@ -10,13 +10,14 @@ continuity assertions, canonical Work IDs, or episode denominators.
 - `explorer/research-leads.json` — 218 existing candidate observations, mostly archived Wikidata sample rows, including ten SFA publisher slots.
 - `proposals/discovery/publisher-catalog.json` — 15 source-local references from two explicitly allowlisted publisher batches. Some may describe the same episode as the above sample; no cross-source deduplication occurs.
 - `proposals/discovery/ds9-voy-episode-slots-20261102/` — five publisher-listed season-one slots each for DS9, Voyager and TAS. CSV bytes must match their SHA-256 receipts and generated bundles. DS9 and Voyager preserve first-party S1E1 then S1E3 numbering gaps.
-- `proposals/discovery/modern-paramount-season1-20261102/` and `modern-paramount-season2-first5-20261102/` — 65 separate source-local slots across four Paramount+ modern-series listings; metadata-only, not 65 independently verified Works.
+- `proposals/discovery/modern-paramount-season1-20261102/`, `modern-paramount-season2-first5-20261102/`, and `modern-paramount-season3-20261102/` — 108 separate source-local publisher slots across four modern series; metadata-only, not 108 independently verified Works. The third-season tranche contributes 43 observations.
 - `proposals/discovery/legacy-paramount-season2-20261102/` — 126 publisher season-two episode-listing rows across TOS, TNG, DS9, VOY, ENT, with source-body SHA-256 **receipts** and exact CSV observations. The original publisher HTML bodies stay outside Git; source hashes do not independently authenticate a live web response.
+- `proposals/discovery/legacy-paramount-season3-20261102/` — 126 additional official Paramount+ season-three listing rows in the same five series. Each has a source-body SHA-256 receipt and an exact normalized CSV observation; the source bodies remain outside Git.
 - `proposals/discovery/shorts-audio-20261102/records.json` — 10 *Short Treks* guide slots, five **promotional** *very Short Treks* releases, and one *Khan* audio-series container. The audio listing represents **zero evidenced audio episodes**. It is not merged with possible later literary/audio references under the same title.
 - `explorer/film-catalog.json` — 14 publisher film metadata candidates.
 - `proposals/librarian/ring-of-fire-editions-20261102/records.json` — one proposed literary Work with four publisher editions, not four novels.
 
-The reviewed expansion has **470 source-local rows**: 439 episode-related metadata
+The reviewed expansion has **639 source-local rows**: 608 episode-related metadata
 references, 14 films, one literary Work with four editions, 15 short-form
 releases and one audio-series container. These numbers
 are not a count of distinct Star Trek Works, complete episodes, admitted

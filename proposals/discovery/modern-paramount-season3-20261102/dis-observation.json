@@ -1,0 +1,10 @@
+{
+  "batch_id": "DIS.PPLUS.S3.20261102",
+  "mission_id": "dis",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+  "csv_sha256": "d21d82f0d79136abf75767fc23c1dafb3f2142a5bf9274d3666fa4c908ef7a29"
+}

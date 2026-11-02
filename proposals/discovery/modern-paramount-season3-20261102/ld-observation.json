@@ -1,0 +1,10 @@
+{
+  "batch_id": "LD.PPLUS.S3.20261102",
+  "mission_id": "ld",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+  "csv_sha256": "51687fbbeec8ef721c053f5f96d65724ccb23262f5464229757616870bc1690e"
+}

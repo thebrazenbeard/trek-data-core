@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 439,
+    "EPISODE": 608,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 470,
+  "row_count": 639,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -4711,10 +4711,655 @@
     {
       "admission_effect": "NONE",
       "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E1",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:000",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "That Hope Is You, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E2",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:001",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Far From Home",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E3",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:002",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "People of Earth",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E4",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:003",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Forget Me Not",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E5",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:004",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Die Trying",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E6",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:005",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Scavengers",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E7",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:006",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Unification III",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E8",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:007",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "The Sanctuary",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E9",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:008",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Terra Firma, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E10",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:009",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Terra Firma, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E11",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:010",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "Su'Kal",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E12",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:011",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "There Is A Tide...",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S3E13",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:dis:012",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+      "title": "That Hope Is You, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E1",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:000",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "The Next Generation",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E2",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:001",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Disengage",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E3",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:002",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Seventeen Seconds",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E4",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:003",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "No Win Scenario",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E5",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:004",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Imposters",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E6",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:005",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "The Bounty",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E7",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:006",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Dominion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E8",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:007",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Surrender",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E9",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:008",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "Võx",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PIC S3E10",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:pic:009",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+      "title": "The Last Generation",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E1",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:000",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Grounded",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E2",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:001",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "The Least Dangerous Game",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E3",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:002",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Mining the Mind's Mines",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E4",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:003",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Room for Growth",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E5",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:004",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Reflections",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E6",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:005",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Hear All, Trust Nothing",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E7",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:006",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "A Mathematically Perfect Redemption",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E8",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:007",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Crisis Point 2: Paradoxus",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E9",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:008",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "Trusted Sources",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S3E10",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:ld:009",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+      "title": "The Stars at Night",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E1",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:000",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Hegemony, Part II",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E2",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:001",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Wedding Bell Blues",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E3",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:002",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Shuttle to Kenfori",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E4",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:003",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "A Space Adventure Hour",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E5",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:004",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Through the Lens of Time",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E6",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:005",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "The Sehlat Who Ate Its Tail",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E7",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:006",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "What is Starfleet?",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E8",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:007",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Four-and-a-Half Vulcans",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E9",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:008",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "Terrarium",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "SNW S3E10",
+      "coverage_effect": "NONE",
+      "details": [],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "roster:modern-s3:snw:009",
+      "source_group": "publisher:paramountplus.com",
+      "source_input": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+      "title": "New Life and New Civilizations",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
       "context": "TOS S2E1",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4731,7 +5376,7 @@
       "context": "TOS S2E2",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4748,7 +5393,7 @@
       "context": "TOS S2E3",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4765,7 +5410,7 @@
       "context": "TOS S2E4",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4782,7 +5427,7 @@
       "context": "TOS S2E5",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4799,7 +5444,7 @@
       "context": "TOS S2E6",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4816,7 +5461,7 @@
       "context": "TOS S2E7",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4833,7 +5478,7 @@
       "context": "TOS S2E8",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4850,7 +5495,7 @@
       "context": "TOS S2E9",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4867,7 +5512,7 @@
       "context": "TOS S2E10",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4884,7 +5529,7 @@
       "context": "TOS S2E11",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4901,7 +5546,7 @@
       "context": "TOS S2E12",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4918,7 +5563,7 @@
       "context": "TOS S2E13",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4935,7 +5580,7 @@
       "context": "TOS S2E14",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4952,7 +5597,7 @@
       "context": "TOS S2E15",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4969,7 +5614,7 @@
       "context": "TOS S2E16",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -4986,7 +5631,7 @@
       "context": "TOS S2E17",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5003,7 +5648,7 @@
       "context": "TOS S2E18",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5020,7 +5665,7 @@
       "context": "TOS S2E19",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5037,7 +5682,7 @@
       "context": "TOS S2E20",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5054,7 +5699,7 @@
       "context": "TOS S2E21",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5071,7 +5716,7 @@
       "context": "TOS S2E22",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5088,7 +5733,7 @@
       "context": "TOS S2E23",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5105,7 +5750,7 @@
       "context": "TOS S2E24",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5122,7 +5767,7 @@
       "context": "TOS S2E25",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5139,7 +5784,7 @@
       "context": "TOS S2E26",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5156,7 +5801,7 @@
       "context": "TNG S2E1",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5173,7 +5818,7 @@
       "context": "TNG S2E2",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5190,7 +5835,7 @@
       "context": "TNG S2E3",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5207,7 +5852,7 @@
       "context": "TNG S2E4",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5224,7 +5869,7 @@
       "context": "TNG S2E5",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5241,7 +5886,7 @@
       "context": "TNG S2E6",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5258,7 +5903,7 @@
       "context": "TNG S2E7",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5275,7 +5920,7 @@
       "context": "TNG S2E8",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5292,7 +5937,7 @@
       "context": "TNG S2E9",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5309,7 +5954,7 @@
       "context": "TNG S2E10",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5326,7 +5971,7 @@
       "context": "TNG S2E11",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5343,7 +5988,7 @@
       "context": "TNG S2E12",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5360,7 +6005,7 @@
       "context": "TNG S2E13",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5377,7 +6022,7 @@
       "context": "TNG S2E14",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5394,7 +6039,7 @@
       "context": "TNG S2E15",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5411,7 +6056,7 @@
       "context": "TNG S2E16",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5428,7 +6073,7 @@
       "context": "TNG S2E17",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5445,7 +6090,7 @@
       "context": "TNG S2E18",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5462,7 +6107,7 @@
       "context": "TNG S2E19",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5479,7 +6124,7 @@
       "context": "TNG S2E20",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5496,7 +6141,7 @@
       "context": "TNG S2E21",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5513,7 +6158,7 @@
       "context": "TNG S2E22",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5530,7 +6175,7 @@
       "context": "DS9 S2E1",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5547,7 +6192,7 @@
       "context": "DS9 S2E2",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5564,7 +6209,7 @@
       "context": "DS9 S2E3",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5581,7 +6226,7 @@
       "context": "DS9 S2E4",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5598,7 +6243,7 @@
       "context": "DS9 S2E5",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5615,7 +6260,7 @@
       "context": "DS9 S2E6",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5632,7 +6277,7 @@
       "context": "DS9 S2E7",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5649,7 +6294,7 @@
       "context": "DS9 S2E8",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5666,7 +6311,7 @@
       "context": "DS9 S2E9",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5683,7 +6328,7 @@
       "context": "DS9 S2E10",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5700,7 +6345,7 @@
       "context": "DS9 S2E11",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5717,7 +6362,7 @@
       "context": "DS9 S2E12",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5734,7 +6379,7 @@
       "context": "DS9 S2E13",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5751,7 +6396,7 @@
       "context": "DS9 S2E14",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5768,7 +6413,7 @@
       "context": "DS9 S2E15",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5785,7 +6430,7 @@
       "context": "DS9 S2E16",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5802,7 +6447,7 @@
       "context": "DS9 S2E17",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5819,7 +6464,7 @@
       "context": "DS9 S2E18",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5836,7 +6481,7 @@
       "context": "DS9 S2E19",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5853,7 +6498,7 @@
       "context": "DS9 S2E20",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5870,7 +6515,7 @@
       "context": "DS9 S2E21",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5887,7 +6532,7 @@
       "context": "DS9 S2E22",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5904,7 +6549,7 @@
       "context": "DS9 S2E23",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5921,7 +6566,7 @@
       "context": "DS9 S2E24",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5938,7 +6583,7 @@
       "context": "DS9 S2E25",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5955,7 +6600,7 @@
       "context": "DS9 S2E26",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5972,7 +6617,7 @@
       "context": "VOY S2E1",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -5989,7 +6634,7 @@
       "context": "VOY S2E2",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6006,7 +6651,7 @@
       "context": "VOY S2E3",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6023,7 +6668,7 @@
       "context": "VOY S2E4",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6040,7 +6685,7 @@
       "context": "VOY S2E5",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6057,7 +6702,7 @@
       "context": "VOY S2E6",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6074,7 +6719,7 @@
       "context": "VOY S2E7",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6091,7 +6736,7 @@
       "context": "VOY S2E8",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6108,7 +6753,7 @@
       "context": "VOY S2E9",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6125,7 +6770,7 @@
       "context": "VOY S2E10",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6142,7 +6787,7 @@
       "context": "VOY S2E11",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6159,7 +6804,7 @@
       "context": "VOY S2E12",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6176,7 +6821,7 @@
       "context": "VOY S2E13",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6193,7 +6838,7 @@
       "context": "VOY S2E14",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6210,7 +6855,7 @@
       "context": "VOY S2E15",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6227,7 +6872,7 @@
       "context": "VOY S2E16",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6244,7 +6889,7 @@
       "context": "VOY S2E17",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6261,7 +6906,7 @@
       "context": "VOY S2E18",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6278,7 +6923,7 @@
       "context": "VOY S2E19",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6295,7 +6940,7 @@
       "context": "VOY S2E20",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6312,7 +6957,7 @@
       "context": "VOY S2E21",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6329,7 +6974,7 @@
       "context": "VOY S2E22",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6346,7 +6991,7 @@
       "context": "VOY S2E23",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6363,7 +7008,7 @@
       "context": "VOY S2E24",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6380,7 +7025,7 @@
       "context": "VOY S2E25",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6397,7 +7042,7 @@
       "context": "VOY S2E26",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6414,7 +7059,7 @@
       "context": "ENT S2E1",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6431,7 +7076,7 @@
       "context": "ENT S2E2",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6448,7 +7093,7 @@
       "context": "ENT S2E3",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6465,7 +7110,7 @@
       "context": "ENT S2E4",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6482,7 +7127,7 @@
       "context": "ENT S2E5",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6499,7 +7144,7 @@
       "context": "ENT S2E6",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6516,7 +7161,7 @@
       "context": "ENT S2E7",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6533,7 +7178,7 @@
       "context": "ENT S2E8",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6550,7 +7195,7 @@
       "context": "ENT S2E9",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6567,7 +7212,7 @@
       "context": "ENT S2E10",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6584,7 +7229,7 @@
       "context": "ENT S2E11",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6601,7 +7246,7 @@
       "context": "ENT S2E12",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6618,7 +7263,7 @@
       "context": "ENT S2E13",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6635,7 +7280,7 @@
       "context": "ENT S2E14",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6652,7 +7297,7 @@
       "context": "ENT S2E15",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6669,7 +7314,7 @@
       "context": "ENT S2E16",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6686,7 +7331,7 @@
       "context": "ENT S2E17",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6703,7 +7348,7 @@
       "context": "ENT S2E18",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6720,7 +7365,7 @@
       "context": "ENT S2E19",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6737,7 +7382,7 @@
       "context": "ENT S2E20",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6754,7 +7399,7 @@
       "context": "ENT S2E21",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6771,7 +7416,7 @@
       "context": "ENT S2E22",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6788,7 +7433,7 @@
       "context": "ENT S2E23",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6805,7 +7450,7 @@
       "context": "ENT S2E24",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6822,7 +7467,7 @@
       "context": "ENT S2E25",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6839,7 +7484,7 @@
       "context": "ENT S2E26",
       "coverage_effect": "NONE",
       "details": [
-        "Official publisher season-two listing"
+        "Official publisher season-2 listing"
       ],
       "identity_scope": "SOURCE_LOCAL",
       "medium": "EPISODE",
@@ -6848,6 +7493,2148 @@
       "source_input": "proposals/discovery/legacy-paramount-season2-20261102/ent/bundle.json",
       "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
       "title": "The Expanse",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Spock's Brain",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Enterprise Incident",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Paradise Syndrome",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "And the Children Shall Lead",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Is There in Truth No Beauty?",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Spectre of the Gun",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Day of the Dove",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "For the World Is Hollow and I Have Touched the Sky",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Tholian Web",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Plato's Stepchildren",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Wink of an Eye",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Empath",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Elaan of Troyius",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Whom Gods Destroy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Let That Be Your Last Battlefield",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Mark of Gideon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "That Which Survives",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Lights of Zetar",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Requiem for Methuselah",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Way to Eden",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Cloud Minders",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "The Savage Curtain",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "All Our Yesterdays",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TOS S3E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tos:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "title": "Turnabout Intruder",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Evolution",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Ensigns of Command",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Survivors",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Who Watches the Watchers",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Bonding",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Booby Trap",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Enemy",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Price",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Vengeance Factor",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Defector",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Hunted",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The High Ground",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Deja Q",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "A Matter of Perspective",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Yesterday's Enterprise",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Offspring",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Sins of the Father",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Allegiance",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Captain's Holiday",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Tin Man",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Hollow Pursuits",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Most Toys",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Sarek",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Ménage à Troi",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "Transfigurations",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S3E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:tng:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "title": "The Best Of Both Worlds, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The Search, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The Search, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The House Of Quark",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Equilibrium",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Second Skin",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The Abandoned",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Civil Defense",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Meridian",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Defiant",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Fascination",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Past Tense, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Past Tense, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Life Support",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Heart Of Stone",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Destiny",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Prophet Motive",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Visionary",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Distant Voices",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Through The Looking Glass",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Improbable Cause",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The Die Is Cast",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Explorers",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Family Business",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Shakaar",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "Facets",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S3E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ds9:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "title": "The Adversary",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Basics, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Flashback",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "The Chute",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "The Swarm",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "False Profits",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Remember",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Sacred Ground",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Future's End, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Future's End, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Warlord",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "The Q and the Grey",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Macrocosm",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Fair Trade",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Alter Ego",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Coda",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Blood Fever",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Unity",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Darkling",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Rise!",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Favorite Son",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Before and After",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Real Life",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Distant Origin",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Displaced",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Worst Case Scenario",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S3E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:voy:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "title": "Scorpion, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "The Xindi",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Anomaly",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Extinction",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Rajiin",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Impulse",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Exile",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "The Shipment",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Twilight",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "North Star",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Similitude",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Carpenter Street",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Chosen Realm",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Proving Ground",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Strategem",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Harbinger",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Doctor's Orders",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Hatchery",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Azati Prime",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Damage",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "The Forgotten",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "E (squared)",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "The Council",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Countdown",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "ENT S3E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-3 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "legacy:s3:ent:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "title": "Zero Hour",
       "verification_status": "UNVERIFIED_METADATA"
     },
     {
@@ -7442,6 +10229,50 @@
       "sha256": "d9bc2e66f5a07e6b461a9d9fbf02aca7f8aaa5f3b9af4240c268e8df6db84edb"
     },
     {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/ds9.csv",
+      "sha256": "588e7c308b75e0d90889d5607dff9921d6c6bcb226eb4d7c24fbe8341253c9d0"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/ds9/bundle.json",
+      "sha256": "ca0f965ab78fc273895e595ae02c206eb63a8155725bd99d7e11405cf58dc97b"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/ent.csv",
+      "sha256": "fd727b281b75ddce05162d994df93e9b0642a3009d59b4ef2217a1368baedb59"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+      "sha256": "ae106b332e3e2c4d966b544ad6c31d9deb04c7f6843533519d79f93c2ebc9358"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/index.json",
+      "sha256": "452574d2f012c16ccf33583435ba1059b13f674dbba4ff53ea8056ac95f3afbf"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/tng.csv",
+      "sha256": "b7d9718f20c9c74d0552483b99accb66c48d1d62fd22864febf14ae0f5a6b514"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/tng/bundle.json",
+      "sha256": "cd38dbdd2095585736a25b4a3821d80ad7f3150e31914330e936b0c5e224ebf4"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/tos.csv",
+      "sha256": "76b3670661d6b1bfb0f2c5e30e16751061f2706d2cdcc8035bbcc2580db1e94c"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/tos/bundle.json",
+      "sha256": "2af47de8174a26b35b5c7c31726337d678c04e6d9628f9e06f12497593da7739"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/voy.csv",
+      "sha256": "143edf83ac31e6781c53363bd1d99a67f3c1d97a98728d1980cbbd4b0ff500d5"
+    },
+    {
+      "path": "proposals/discovery/legacy-paramount-season3-20261102/voy/bundle.json",
+      "sha256": "a10be15de8482cb0a47c036a039454cfd229a6bdbd713c931eb82a39d5924c78"
+    },
+    {
       "path": "proposals/discovery/modern-paramount-season1-20261102/dis-observation.json",
       "sha256": "e1414bf70c383db39826592a957e2632d5ee86e229e6f42d8dfc3288fc185f57"
     },
@@ -7536,6 +10367,54 @@
     {
       "path": "proposals/discovery/modern-paramount-season2-first5-20261102/snw/bundle.json",
       "sha256": "afabf94b2d05ed47920a19224b86e2e4f91a8b4ae5572c74c4f9a26efc0acd10"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/dis-observation.json",
+      "sha256": "c4a9354e911571f8657ac34a5a31c7d67a2cc52c57b3c2dab8d4186ad5bce0b7"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/dis-observed-slots.csv",
+      "sha256": "d21d82f0d79136abf75767fc23c1dafb3f2142a5bf9274d3666fa4c908ef7a29"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/dis/bundle.json",
+      "sha256": "a207b1b77ecf187e45b5de0e7b5cdf87d2dddde949498ee478d4d6f58ac54e12"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/ld-observation.json",
+      "sha256": "91d03eb0ea5fe65675f6e7602af738cf288ad1bafc77eb67477268abab229bcf"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/ld-observed-slots.csv",
+      "sha256": "51687fbbeec8ef721c053f5f96d65724ccb23262f5464229757616870bc1690e"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/ld/bundle.json",
+      "sha256": "1c23cb2c7ca77089deeb2191447bc9ab5241d1103750105c1ef6e23032e41dbd"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/pic-observation.json",
+      "sha256": "152b82e171aa98c9d62eec4799d6537d225783d03ae0daacd4f15401b5df98d5"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/pic-observed-slots.csv",
+      "sha256": "033f18a51a5ea16c452aab27bbcdd3373ed321f97bf38bd994d813b5edbb6fe0"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+      "sha256": "d8cd6e1edbb3c592acd5561904af323c53692d09f8945af399a2b4a3cf9d677a"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/snw-observation.json",
+      "sha256": "a60e5f48e0901ced3a8f292f19b69c1820ff2eb0b642de38c97aa9e35891eb4e"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/snw-observed-slots.csv",
+      "sha256": "f339723c467a2246f873d7e3f19793519b9b300300f0090413cfeb0af700a308"
+    },
+    {
+      "path": "proposals/discovery/modern-paramount-season3-20261102/snw/bundle.json",
+      "sha256": "0bb782819f5c1e25c300f88868f2322eef37d450b75c71dc9d0673adbf009f95"
     },
     {
       "path": "proposals/discovery/publisher-catalog.json",

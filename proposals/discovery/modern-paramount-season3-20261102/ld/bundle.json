@@ -1,0 +1,107 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "LD.PPLUS.S3.20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Grounded"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Least Dangerous Game"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Mining the Mind's Mines"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Room for Growth"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Reflections"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Hear All, Trust Nothing"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Mathematically Perfect Redemption"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Crisis Point 2: Paradoxus"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Trusted Sources"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Stars at Night"
+    }
+  ],
+  "listed_slot_count": 10,
+  "mission_id": "ld",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+    "independence_group": "publisher:paramountplus.com",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/",
+    "publisher": "Paramount+ U.S. episode guide",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

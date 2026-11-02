@@ -1,0 +1,10 @@
+{
+  "batch_id": "PIC.PPLUS.S3.20261102",
+  "mission_id": "pic",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-picard/",
+  "csv_sha256": "033f18a51a5ea16c452aab27bbcdd3373ed321f97bf38bd994d813b5edbb6fe0"
+}

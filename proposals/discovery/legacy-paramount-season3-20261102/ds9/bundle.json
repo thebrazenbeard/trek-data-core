@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S3-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Search, Part 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Search, Part 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The House Of Quark"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Equilibrium"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Second Skin"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Abandoned"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Civil Defense"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Meridian"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Defiant"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Fascination"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Past Tense, Part 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Past Tense, Part 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Life Support"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Heart Of Stone"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Destiny"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Prophet Motive"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Visionary"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Distant Voices"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Through The Looking Glass"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Improbable Cause"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Die Is Cast"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Explorers"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Family Business"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Shakaar"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Facets"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Adversary"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

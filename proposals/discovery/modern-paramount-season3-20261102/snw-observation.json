@@ -1,0 +1,10 @@
+{
+  "batch_id": "SNW.PPLUS.S3.20261102",
+  "mission_id": "snw",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/",
+  "csv_sha256": "f339723c467a2246f873d7e3f19793519b9b300300f0090413cfeb0af700a308"
+}

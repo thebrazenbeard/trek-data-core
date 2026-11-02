@@ -1,0 +1,227 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S4-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Way Of The Warrior"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Visitor"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Hippocratic Oath"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Indiscretion"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rejoined"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Starship Down"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Little Green Men"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Sword Of Kahless"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Our Man Bashir"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Home Front"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Paradise Lost"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Crossfire"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Return To Grace"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sons Of Mogh"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Bar Association"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Accession"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rules Of Engagement"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Hard Time"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Shattered Mirror"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Muse"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "For The Cause"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "To The Death"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Quickening"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Body Parts"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Broken Link"
+    }
+  ],
+  "listed_slot_count": 25,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

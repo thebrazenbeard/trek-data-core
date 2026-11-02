@@ -1,0 +1,131 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S4-20261102-DIS",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Kobayashi Maru"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Anomaly"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Choose to Live"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "All Is Possible"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Examples"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Stormy Weather"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "...But to Connect"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "All In"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rubicon"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Galactic Barrier"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rosetta"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Species Ten-C"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Coming Home"
+    }
+  ],
+  "listed_slot_count": 13,
+  "mission_id": "dis",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/4/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

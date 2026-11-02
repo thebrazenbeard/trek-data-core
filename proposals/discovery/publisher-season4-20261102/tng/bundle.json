@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S4-20261102-TNG",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Best Of Both Worlds, Part 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Family"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Brothers"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Suddenly Human"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Remember Me"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Legacy"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Reunion"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Future Imperfect"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Final Mission"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Loss"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Data's Day"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Wounded"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Devil's Due"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Clues"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "First Contact"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Galaxy's Child"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Night Terrors"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Identity Crisis"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Nth Degree"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Qpid"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Drumhead"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Half a Life"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Host"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Mind's Eye"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "In Theory"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 4,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Redemption, Part 1"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "tng",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

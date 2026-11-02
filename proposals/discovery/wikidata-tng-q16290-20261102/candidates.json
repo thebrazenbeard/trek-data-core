@@ -1,0 +1,139 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "candidates": [
+    {
+      "canonical_work_id": null,
+      "episode_label": "The Neutral Zone",
+      "episode_number": null,
+      "episode_qid": "Q1058477",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Hide and Q",
+      "episode_number": null,
+      "episode_qid": "Q1102231",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Chain of Command",
+      "episode_number": null,
+      "episode_qid": "Q1141170",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Skin of Evil",
+      "episode_number": null,
+      "episode_qid": "Q1392472",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Rightful Heir",
+      "episode_number": null,
+      "episode_qid": "Q10361338",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Brothers",
+      "episode_number": null,
+      "episode_qid": "Q14045941",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Half a Life",
+      "episode_number": null,
+      "episode_qid": "Q16744047",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Silicon Avatar",
+      "episode_number": null,
+      "episode_qid": "Q16744119",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "New Ground",
+      "episode_number": null,
+      "episode_qid": "Q16744120",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_label": "Hero Worship",
+      "episode_number": null,
+      "episode_qid": "Q16744121",
+      "evidence_status": "EXTERNAL_DISCOVERY_METADATA_ONLY",
+      "record_type": "episode_discovery_candidate",
+      "season_number": null,
+      "series_label": null,
+      "series_qid": "Q16290",
+      "status": "CANDIDATE"
+    }
+  ],
+  "coverage_effect": "NONE",
+  "proposal_only": true,
+  "proposal_type": "WIKIDATA_EPISODE_DISCOVERY_V1",
+  "provenance": {
+    "license": "CC0-1.0",
+    "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+    "provenance_verification": "USER_SUPPLIED_OFFLINE_EXPORT_NOT_REMOTE_VERIFIED",
+    "query_sha256": "10ff1070c9196ed80f90b8d2e95d29a6328d9501ce49a7a72d81f98ab7164b71",
+    "response_sha256": "ea959ea993f21bb1de28ac955319a03f7024c37449a09c35129a795076d77499",
+    "retrieved_at_epoch": 1793619964,
+    "snapshot_id": "WDQS-TNG-Q16290-20261102-10ROW-001",
+    "source_url": "https://query.wikidata.org/sparql"
+  }
+}

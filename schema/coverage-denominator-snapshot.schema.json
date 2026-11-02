@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trek-data-core/schema/coverage-denominator-snapshot.schema.json",
+  "title": "Governed Coverage Denominator Snapshot",
+  "type": "object",
+  "required": ["record_type", "snapshot_id", "dimension", "unit_type", "scope", "registry_head", "status", "unit_ids", "exclusions", "blockers", "schema_version", "methodology_version", "snapshot_hash"],
+  "properties": {
+    "record_type": {"const": "coverage_denominator_snapshot"},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "dimension": {"enum": ["DISCOVERED", "SOURCE_BOUND", "FULL_TEXT_AVAILABLE", "STRUCTURALLY_INDEXED", "CLOSE_READ", "SEMANTICALLY_ANALYZED", "ENTITY_LINKED", "CROSS_REFERENCED", "AUDITED"]},
+    "unit_type": {"enum": ["WORK", "SOURCE_WORK_BINDING", "LOCAL_ENTITY", "RESEARCH_BATCH", "RECONCILIATION_DECISION"]},
+    "scope": {"type": "object"},
+    "registry_head": {"type": "string", "minLength": 1},
+    "status": {"enum": ["RESOLVED", "DENOMINATOR_UNRESOLVED"]},
+    "unit_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "exclusions": {"type": "array", "items": {"type": "object"}},
+    "blockers": {"type": "array", "items": {"type": "string"}},
+    "schema_version": {"const": "0.2.0"},
+    "methodology_version": {"type": "string", "minLength": 1},
+    "snapshot_hash": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

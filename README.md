@@ -7,13 +7,14 @@
 <p align="center"><strong>Continuity, with receipts.</strong><br />An evidence-first knowledge and reconciliation workspace for the Star Trek universe.</p>
 
 <p align="center">
+  <a href="explorer/">Mission Explorer</a> ·
   <a href="TREK_RESEARCH_METHOD.md">Research method</a> ·
   <a href="registry/README.md">Registry contract</a> ·
   <a href="TREK_REPO_PROTOCOL.md">Repository protocol</a> ·
   <a href="TREK_ROLE_CATALOG.md">Research roles</a>
 </p>
 
-> **Project status — foundation in progress.** Governance, the initial Source/Work/binding contract, a fixture validator, and workspace-startup safety checks are on `main`. Integrated canonical projection, reconciliation, query and coverage implementations remain subject to separate acceptance. Synthetic registry fixtures are **not** accepted Star Trek corpus records.
+> **Project status — working research infrastructure; corpus admission in progress.** `main` includes a searchable static [Mission Explorer](explorer/), Source/Work validation, coverage gates and deterministic projection/query tooling. The current public index has **12 cataloged Missions, 0 admitted Mission Briefings and 0 accepted continuity records**, alongside **190 separately marked, unverified research leads**. Those leads and synthetic fixtures are **not** accepted Star Trek evidence. The Explorer's files are in the repository; public Pages deployment is a separate manual release step.
 
 ## Purpose
 
@@ -33,7 +34,7 @@ Trek Data Core aims to connect stories, episodes, films, books, characters, plac
 
 For the human-facing Explorer, a **Mission** means a *Star Trek television series*, and a **Mission Briefing** means an *episode* of that series. Mission Briefings are indexed beneath their parent Mission. These are display labels: the underlying database still stores governed Work types, source identities, evidence and episode relationships.
 
-The following series are in scope for the planned Mission index. This is an indexing roadmap, **not** a claim that every episode has already been researched or admitted:
+The following 12 series are in the current display catalog. This is a **series index**, not a claim that every episode has been researched or admitted:
 
 | Mission (series) | Primary indexing focus |
 | --- | --- |
@@ -51,6 +52,25 @@ The following series are in scope for the planned Mission index. This is an inde
 | **Star Trek: Starfleet Academy** | Cadet training and life within Starfleet Academy |
 
 This roster follows the [official Star Trek series catalog](https://www.startrek.com/series-and-movies). Anthologies such as *Short Treks*, films, books, comics and games require their own explicit Work classifications and links; they are not silently treated as television-series episodes.
+
+## Explore the Mission index
+
+The [Mission Explorer](explorer/) is a dependency-free static interface for browsing the series catalog and searching indexed research. It keeps two kinds of results visibly separate:
+
+| Explorer view | What it contains | Current state |
+| --- | --- | --- |
+| **Missions / Mission Briefings / continuity records** | A deterministic catalog and only source-bound, reviewed canonical episode and assertion projections | 12 Missions; **0 admitted Briefings** and **0 accepted records** |
+| **Research Leads** | Metadata-only episode-title candidates and Wikidata identifiers, with recorded provenance hashes | 190 **unverified** leads across 10 Missions; no accepted coverage effect |
+
+Search the Research Leads to find candidate episode titles or external identifiers, but do not treat their presence as an audited episode list. The separate `explorer/research-leads.json` cannot promote a candidate into a Mission Briefing. The accepted-only `explorer/index.json` requires reviewed projection hashes and evidence-bearing Source↔Work bindings before adding nonfixture records. See the [index contract](docs/EXPLORER_INDEX.md) and [denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md).
+
+To run the Explorer locally, from the repository root:
+
+```bash
+python3 -m http.server 8000 --directory explorer
+```
+
+Open `http://localhost:8000` in a browser. No database server, account, API key or telemetry service is required. Public GitHub Pages publication is intentionally **manual-only**: the workflow checks the five committed Explorer files, regenerates the candidate index and rejects extra or modified files before deployment.
 
 ## Data model
 
@@ -71,24 +91,30 @@ For example, if two episodes give incompatible dates for the same event, the dat
 
 ## Current implementation on `main`
 
-The initial Librarian registry establishes machine-readable shapes for Sources, Works, their evidence-bearing bindings and external crosswalk candidates. Its local validator and tests use synthetic fixture records.
+The infrastructure is implemented, but the research corpus is not yet complete. The Librarian contract defines Sources, Works and evidence-bearing bindings; canonical projection, semantic diff, SQLite/PostgreSQL and graph/search builders derive query views from explicitly admitted data. Coverage checks require an accepted Work roster and authoritative source bindings. There are currently **no nonfixture governed records** to project, and the episode denominator remains `DENOMINATOR_UNRESOLVED`.
 
-From the repository root, with Python 3:
+From the repository root, with Python 3 and Node.js for the browser behavior test:
 
 ```bash
 python3 tools/validate_librarian_registry.py registry/librarian_registry_fixtures.json
 python3 tools/test_librarian_registry.py
-python3 -m unittest discover -s tests -p 'test_workspace_startup_safety.py' -v
+python3 tools/validate.py
+python3 tools/coverage_ledger.py report
+python3 tools/build_research_leads.py --check
+python3 -m unittest discover -s tests -p 'test_*.py'
+node tests/test_explorer.mjs
 ```
 
-These are **foundation checks**, not a demonstration of an admitted comprehensive database or an operational research service. Before trusting data as accepted, verify the exact contracts, source/binding authority, reconciliations and build receipts—not just a successful command.
+These checks verify code contracts, deterministic derived files and synthetic cases. They do **not** establish that all Star Trek episodes have been ingested, that a source was watched or read, or that copyrighted source text may be republished.
 
 | Lane | Accepted `main` state | Next acceptance milestone |
 | --- | --- | --- |
 | Governance and research method | Present | Keep method and roles aligned with executable rules |
-| Librarian Source / Work / bindings | Schema, validator and fixtures present | Stronger schema enforcement and authoritative admission |
-| Canonical projection and semantic diff | Development proposals exist | Clean contract convergence, verified inputs and independent review |
-| Coverage and research corpus | No comprehensive accepted corpus established | Governed typed coverage and source-binding admission |
+| Librarian Source / Work / bindings | Typed schema, validator and synthetic fixtures present | Admit independently checked, nonfixture Source↔Work evidence |
+| Canonical projection, semantic diff and query | Deterministic compilers and query adapters on `main`, tested on fixtures and empty projections | Verify a reviewed nonempty projection with approved hash receipts |
+| Coverage and episode discovery | Fail-closed coverage ledger; 190 candidate leads; denominator unresolved | Reconcile a rights-valid, independently sourced episode roster and evidence batches |
+| Browser Explorer / Pages | Five static public assets on `main`; manual-only guarded deploy workflow | Verify a successful Pages deployment before describing it as live |
+| Literary metadata | Private offline OPF scanner, synthetic tests and rights-safe documentation | Reconcile editions, omnibus/anthology contents and Work identities without uploading ebooks |
 
 Development branches and PRs are **proposals**, even when merged into another development branch. A green proposal CI check does not make its contents accepted `main` state.
 
@@ -100,6 +126,10 @@ Development branches and PRs are **proposals**, even when merged into another de
 | [Repository protocol](TREK_REPO_PROTOCOL.md) | Authority, acceptance and safe contribution rules |
 | [Role catalog](TREK_ROLE_CATALOG.md) | Director, Librarian, Auditor and bounded research responsibilities |
 | [Registry](registry/README.md) | Source/Work/binding schema, fixtures and validation |
+| [Mission Explorer](explorer/) | Static searchable Missions and segregated candidate Research Leads |
+| [Explorer index contract](docs/EXPLORER_INDEX.md) | Acceptance rules for public Briefings and continuity records |
+| [Coverage denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md) | Why a catalog or candidate count is not verified episode coverage |
+| [Private OPF intake](docs/LITERARY_OPF_PRIVATE_INTAKE.md) | Metadata-only, nonpublic book/edition inventory workflow |
 | [Reconciliation](reconciliation/) | Candidate continuity and consistency work |
 | [Proposals](proposals/) | Work awaiting evaluation and explicit acceptance |
 | [Chat starters](CHAT_STARTERS.md) | Ready-made paths into specific research questions |

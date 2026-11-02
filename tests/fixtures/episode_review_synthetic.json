@@ -1,0 +1,42 @@
+{
+  "record_type": "episode_review_input",
+  "schema_version": "1.0.0",
+  "packet_id": "TEST-TRAINING-001",
+  "fixture_only": true,
+  "mission_id": "tng",
+  "episode": {
+    "title": "Invented laboratory exercise (not a real episode)",
+    "season": 1,
+    "episode_number": 1,
+    "publisher_roster_url": "https://example.org/fictional-test"
+  },
+  "source": {
+    "kind": "EPISODE_CONTENT",
+    "locator": "https://example.org/fictional-test",
+    "version": "Nonexistent synthetic training artifact",
+    "access_basis": "OWNED_COPY",
+    "rights_note": "Synthetic dummy receipt only; no real episode media was inspected",
+    "inspection": "RESEARCHER_REPORTED",
+    "inspected_on": "2026-11-02",
+    "content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "observations": [
+    {
+      "evidence_id": "TEST-EV-001",
+      "cue_start_seconds": 10,
+      "cue_end_seconds": 20,
+      "kind": "depiction",
+      "epistemic_status": "DIRECT",
+      "original_note": "Invented simulation of a technician checking a calibration dial"
+    }
+  ],
+  "assertions": [
+    {
+      "assertion_id": "TEST-AS-001",
+      "subject": "Fictional test technician",
+      "predicate": "performs calibration",
+      "object": "Invented instrument",
+      "evidence_ids": ["TEST-EV-001"]
+    }
+  ]
+}

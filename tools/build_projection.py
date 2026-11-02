@@ -12,21 +12,26 @@ CANONICAL_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.j
 
 def canonical(v):return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"))
 def sha256_bytes(data):return 'sha256:'+hashlib.sha256(data).hexdigest()
-def canonical_json_hash(path):return sha256_bytes(canonical(json.loads(Path(path).read_text(encoding='utf-8'))).encode())
+def admission_io():
+ """Projection and validator share the same strict parsing and path rules."""
+ path=Path(__file__).with_name('validate.py');spec=importlib.util.spec_from_file_location('trek_projection_admission_io',path)
+ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
+def canonical_json_hash(path):return sha256_bytes(canonical(admission_io().strict_json(Path(path).read_text(encoding='utf-8'))).encode())
 def load_registry(path,key):
- data=json.loads(Path(path).read_text(encoding='utf-8')); return {r[key]:r for r in data.get('predicates' if key=='name' else 'scope_keys',[]) if r.get(key)}
+ data=admission_io().strict_json(Path(path).read_text(encoding='utf-8')); return {r[key]:r for r in data.get('predicates' if key=='name' else 'scope_keys',[]) if r.get(key)}
 def iter_typed_records(roots):
+ admission=admission_io()
  for root in roots:
-  if not root.exists():continue
-  for path in sorted(root.rglob('*.json')):
+  json_files,jsonl_files=admission.governed_paths(root)
+  for path in json_files:
    if path.name=='README.json':continue
-   row=json.loads(path.read_text(encoding='utf-8'))
+   row=admission.strict_json(path.read_text(encoding='utf-8'))
    if not isinstance(row,dict) or not row.get('record_type'):raise ValueError(f'{path}: governed JSON must be typed object')
    yield row
-  for path in sorted(root.rglob('*.jsonl')):
+  for path in jsonl_files:
    for line_no,raw in enumerate(path.read_text(encoding='utf-8').splitlines(),1):
     if not raw.strip():continue
-    row=json.loads(raw)
+    row=admission.strict_json(raw)
     if not isinstance(row,dict) or not row.get('record_type'):raise ValueError(f'{path}:{line_no}: governed JSONL must be typed object')
     yield row
 def index_unique(records,record_type,id_key):
@@ -117,7 +122,9 @@ def projection_status(assertion,decisions):
 def build_logical_projection(records,reconciliation_decisions):
  records=[copy.deepcopy(r) for r in records]; reconciliation_decisions=[copy.deepcopy(r) for r in reconciliation_decisions]
  indexes={'source':index_unique(records,'source','source_id'),'work':index_unique(records,'work','work_id'),'source_work_binding':index_unique(records,'source_work_binding','binding_id'),'local_entity':index_unique(records,'local_entity','local_entity_id'),'evidence':index_unique(records,'evidence','evidence_id'),'assertion':index_unique(records,'assertion','assertion_id'),'reconciliation_decision':index_unique(reconciliation_decisions,'reconciliation_decision','decision_id')}
- validator_path=Path(__file__).with_name('validate.py'); validator_spec=importlib.util.spec_from_file_location('trek_binding_validator',validator_path);validator=importlib.util.module_from_spec(validator_spec);validator_spec.loader.exec_module(validator)
+ validator=admission_io()
+ lineage_errors=[];validator.validate_source_work_lineage(indexes,lineage_errors)
+ if lineage_errors:raise ValueError('invalid Source/Work lineage: '+'; '.join(lineage_errors))
  predicates=load_registry(PREDICATE_REGISTRY,'name'); scope_keys=load_registry(SCOPE_KEY_REGISTRY,'key'); decisions=active_decision_index(reconciliation_decisions,predicates,scope_keys,indexes); assertions=indexes['assertion']
  dispositions={d['subject_id']:d['payload']['disposition'] for k,d in decisions.items() if k[0]=='ASSERTION_DISPOSITION' and k[1]=='ASSERTION'}
  superseded_assertions=validator.effectively_superseded_assertions(assertions,dispositions)

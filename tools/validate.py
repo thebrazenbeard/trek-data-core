@@ -14,6 +14,7 @@ REFERENCE_TYPES={'SOURCE':'source','WORK':'work','LOCAL_ENTITY':'local_entity','
 COUNT_KEYS={'sources':'source','works':'work','local_entities':'local_entity','evidence':'evidence','assertions':'assertion','reconciliation_decisions':'reconciliation_decision'}
 REQUIRED_BATCH_COUNTS=('local_entities','evidence','assertions'); WORKER_FORBIDDEN_RECORD_TYPES={'source','work','source_work_binding','reconciliation_decision'}
 CONTENT_BASIS_KINDS={'CONTENT_BODY_AUDIT','CONTENT_FINGERPRINT','BYTE_HASH','NORMALIZED_PASSAGE_FINGERPRINT','CONTAINER_MANIFEST'}
+SHA256_PATTERN=re.compile(r'sha256:[0-9a-f]{64}\Z')
 PROJECTION_STATUSES={'STABLE','CONTESTED','UNRESOLVED','STRUCTURAL_PARADOX'}; DISPOSITIONS={'PROPOSED','ACCEPTED','REJECTED'}
 USAGE_LEVELS={'RESEARCH_ASSERTION','RECONCILIATION_RELATION','EXTERNAL_CROSSWALK','EVIDENCE_ANNOTATION'}
 PREDICATE_METADATA_REQUIRED={'name','status','definition','semantic_class','usage_levels','subject_types','object_mode','object_ref_types','symmetry','inverse','transitive','projection_eligibility','examples','near_miss','supersedes','superseded_by','methodology_version','introduced_in_registry'}
@@ -23,26 +24,41 @@ def canonical(v):return json.dumps(v,ensure_ascii=False,sort_keys=True,separator
 def sha256_canonical(v):return 'sha256:'+hashlib.sha256(canonical(v).encode()).hexdigest()
 def physical_path(path):
  m=re.match(r'^(.*\.jsonl):\d+$',str(path)); return Path(m.group(1)) if m else Path(path)
+def unique_json_pairs(pairs):
+ result={}
+ for key,value in pairs:
+  if key in result:raise ValueError(f'duplicate JSON key: {key}')
+  result[key]=value
+ return result
+def strict_json(raw):return json.loads(raw,object_pairs_hook=unique_json_pairs)
+def governed_paths(base):
+ """Never read through symlinked governed files, directories, or roots."""
+ if not base.exists() and not base.is_symlink():return [],[]
+ if base.is_symlink() or not base.is_dir():raise ValueError(f'{base}: unsafe symlink or non-directory governed root')
+ for item in sorted(base.rglob('*')):
+  if item.is_symlink():raise ValueError(f'{item}: symlink in governed input root')
+  if not item.resolve().is_relative_to(base.resolve()):raise ValueError(f'{item}: path escapes governed input root')
+ return sorted(p for p in base.rglob('*.json') if p.is_file()),sorted(p for p in base.rglob('*.jsonl') if p.is_file())
 def iter_records():
  for base in DATA_ROOTS:
-  if not base.exists():continue
-  for path in sorted(base.rglob('*.json')):
+  json_files,jsonl_files=governed_paths(base)
+  for path in json_files:
    if path.name=='README.json':continue
-   try:row=json.loads(path.read_text(encoding='utf-8'))
+   try:row=strict_json(path.read_text(encoding='utf-8'))
    except Exception as exc:raise ValueError(f'{path}: invalid JSON: {exc}') from exc
    if not isinstance(row,dict):raise ValueError(f'{path}: governed JSON artifact must be an object record')
    yield path,row
-  for path in sorted(base.rglob('*.jsonl')):
+  for path in jsonl_files:
    for line_no,raw in enumerate(path.read_text(encoding='utf-8').splitlines(),1):
     if not raw.strip():continue
-    try:row=json.loads(raw)
+    try:row=strict_json(raw)
     except Exception as exc:raise ValueError(f'{path}:{line_no}: invalid JSONL: {exc}') from exc
     if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: record must be an object')
     yield Path(f'{path}:{line_no}'),row
-def load_schemas():return {rt:json.loads((SCHEMA_ROOT/fn).read_text(encoding='utf-8')) for rt,fn in SCHEMA_FILES.items()}
+def load_schemas():return {rt:strict_json((SCHEMA_ROOT/fn).read_text(encoding='utf-8')) for rt,fn in SCHEMA_FILES.items()}
 def load_authoritative_librarian_schemas():
  """Reuse the main Librarian registry contract, not a looser duplicate."""
- registry=json.loads(LIBRARIAN_SCHEMA.read_text(encoding='utf-8'))
+ registry=strict_json(LIBRARIAN_SCHEMA.read_text(encoding='utf-8'))
  defs=registry.get('$defs',{})
  required={'source','work','source_work_binding'}
  if not required.issubset(defs):raise ValueError('Librarian registry contract lacks canonical Source/Work/binding definitions')
@@ -53,7 +69,7 @@ def is_authoritative_librarian_path(path):
  if p.is_relative_to(ROOT/'registry'/'authoritative'):return True
  return any(p.parts[i:i+2]==('registry','authoritative') for i in range(len(p.parts)-1))
 def load_predicate_registry():
- registry=json.loads(PREDICATE_REGISTRY.read_text(encoding='utf-8')); entries={}; errors=[]
+ registry=strict_json(PREDICATE_REGISTRY.read_text(encoding='utf-8')); entries={}; errors=[]
  if not registry.get('registry_version'):errors.append('predicate registry missing registry_version')
  if not registry.get('schema_version'):errors.append('predicate registry missing schema_version')
  for item in registry.get('predicates',[]):
@@ -82,7 +98,7 @@ def load_predicate_registry():
    if target and target not in entries:errors.append(f'predicate {name} {field} references unknown predicate {target}')
  return entries,errors
 def load_scope_key_registry():
- registry=json.loads(SCOPE_KEY_REGISTRY.read_text(encoding='utf-8')); entries={}; errors=[]
+ registry=strict_json(SCOPE_KEY_REGISTRY.read_text(encoding='utf-8')); entries={}; errors=[]
  if not registry.get('registry_version'):errors.append('scope-key registry missing registry_version')
  if not registry.get('methodology_version'):errors.append('scope-key registry missing methodology_version')
  for item in registry.get('scope_keys',[]):
@@ -185,6 +201,53 @@ def validate_references(records,index,errors):
    if row.get('supersedes'):add_missing_reference(errors,path,'supersedes','RECONCILIATION_DECISION',row['supersedes'],index)
    if row.get('subject_type') in REFERENCE_TYPES:add_missing_reference(errors,path,'subject',row['subject_type'],row.get('subject_id'),index)
 
+def validate_source_work_lineage(index,errors):
+ """Detect every Source DAG and Work ancestry cycle, not only evidence-reachable ones."""
+ sources=index.get('source',{});works=index.get('work',{})
+ for sid,source in sources.items():
+  parents=source.get('derived_from',[])
+  if not isinstance(parents,list):continue
+  for parent_id in parents:
+   parent=sources.get(parent_id)
+   if not parent:continue  # Dangling reference is checked elsewhere.
+   child_group=source.get('independence_group');parent_group=parent.get('independence_group')
+   if child_group and parent_group and child_group!=parent_group:
+    errors.append(f'source {sid}: derived Source cannot mint new independence_group distinct from {parent_id}')
+
+ def detect_cycles(rows,edges,label):
+  done=set()
+  for start in rows:
+   if start in done:continue
+   stack=[(start,False)];active=set()
+   while stack:
+    current,closing=stack.pop()
+    if closing:
+     active.discard(current);done.add(current);continue
+    if current in active:
+     errors.append(f'{label} cycle at {current}');continue
+    if current in done or current not in rows:continue
+    active.add(current);stack.append((current,True))
+    for parent in reversed(edges(rows[current])):
+     if isinstance(parent,str) and parent:stack.append((parent,False))
+ detect_cycles(sources,lambda r:r.get('derived_from',[]) if isinstance(r.get('derived_from',[]),list) else [],'source derivation')
+ detect_cycles(works,lambda r:[r['parent_work_id']] if isinstance(r.get('parent_work_id'),str) and r['parent_work_id'] else [],'work parent')
+
+def content_basis_errors(binding,source):
+ errors=[];basis=binding.get('basis') or []
+ if not isinstance(basis,list):return ['basis must be a list']
+ for item in basis:
+  if not isinstance(item,dict):continue
+  if item.get('kind')=='BYTE_HASH':
+   value=item.get('value')
+   if not isinstance(value,str) or not SHA256_PATTERN.fullmatch(value):
+    errors.append('BYTE_HASH basis must be lowercase sha256:<64-hex>')
+   elif value!=source.get('content_hash'):
+    errors.append('BYTE_HASH basis must equal the bound Source.content_hash')
+ if not any(isinstance(x,dict) and x.get('kind') in CONTENT_BASIS_KINDS
+            and isinstance(x.get('value'),str) and x['value'].strip() for x in basis):
+  errors.append('binding lacks content/hash/manifest basis')
+ return errors
+
 def eligible_evidence_binding(evidence,index):
  """Resolve one active, content-grounded Librarian binding; never infer a scoped match."""
  sources=index.get('source',{});works=index.get('work',{});bindings=index.get('source_work_binding',{})
@@ -201,7 +264,7 @@ def eligible_evidence_binding(evidence,index):
   if b.get('source_id')!=evidence.get('source_id') or b.get('work_id')!=evidence.get('work_id'):continue
   basis=b.get('basis') or []
   if not isinstance(basis,list):continue
-  if not isinstance(b.get('method'),str) or not b['method'].strip() or not any(isinstance(x,dict) and x.get('kind') in CONTENT_BASIS_KINDS and isinstance(x.get('value'),str) and x['value'].strip() for x in basis):continue
+  if not isinstance(b.get('method'),str) or not b['method'].strip() or content_basis_errors(b,source):continue
   src_scope=b.get('source_scope') or {};work_scope=b.get('work_scope') or {}
   if not isinstance(src_scope,dict) or not isinstance(work_scope,dict):continue
   if src_scope.get('scope_type') not in {'WHOLE','SLICE','COMPONENT'} or work_scope.get('scope_type') not in {'WHOLE','COMPONENT'}:continue
@@ -231,9 +294,8 @@ def validate_binding_integrity(records,index,errors):
     errors.append(f'binding {bid}: accepted binding successor requires SUPERSEDED predecessor {predecessor}')
    if b.get('mapping_role')=='EVIDENCE_BEARING':
     if not isinstance(b.get('method'),str) or not b['method'].strip():errors.append(f'binding {bid}: evidence-bearing binding requires method')
-    basis=b.get('basis') or []
-    if not isinstance(basis,list):basis=[]
-    if not any(isinstance(x,dict) and x.get('kind') in CONTENT_BASIS_KINDS and isinstance(x.get('value'),str) and x['value'].strip() for x in basis):errors.append(f'binding {bid}: lacks content/hash/manifest basis')
+    for issue in content_basis_errors(b,sources.get(b.get('source_id'),{})):
+     errors.append(f'binding {bid}: {issue}')
    if sources.get(b.get('source_id'),{}).get('status')!='ACCEPTED' or works.get(b.get('work_id'),{}).get('status')!='ACCEPTED':errors.append(f'binding {bid}: Source and Work must be ACCEPTED')
    source_scope=b.get('source_scope') or {};work_scope=b.get('work_scope') or {}
    if not isinstance(source_scope,dict):source_scope={}
@@ -400,7 +462,7 @@ def main():
    if not rid:errors.append(f'{path}: {rt} missing {id_field}')
    elif (rt,rid) in seen:errors.append(f'duplicate {rt} id {rid}: {seen[(rt,rid)]} and {path}')
    else:seen[(rt,rid)]=path;index[rt][rid]=row
- validate_partition_ownership(records,errors);validate_references(records,index,errors);validate_binding_integrity(records,index,errors)
+ validate_partition_ownership(records,errors);validate_references(records,index,errors);validate_source_work_lineage(index,errors);validate_binding_integrity(records,index,errors)
  for path,row in records:
   if row.get('record_type')=='assertion':validate_predicate_assertion(path,row,registry,index,errors)
  validate_assertion_lineage(index,errors);validate_batch_integrity(records,index,errors);validate_reconciliation_integrity(index,registry,scope_keys,errors)

@@ -12,7 +12,7 @@ def base_records():
   {'record_type':'source','source_id':'s3','source_kind':'conversion','locator':'fixture://three','content_hash':'sha256:three','derived_from':['s1','s2'],'status':'ACCEPTED','fixture_only':False},
   {'record_type':'work','work_id':'w1','title':'Work One','medium':'test','status':'ACCEPTED','fixture_only':False},
   {'record_type':'work','work_id':'w2','title':'Work Two','medium':'test'},
-  {'record_type':'source_work_binding','binding_id':'b1','source_id':'s3','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING','source_scope':{'scope_type':'WHOLE','locator':None},'work_scope':{'scope_type':'WHOLE','component_label':None},'method':'synthetic fixture','basis':[{'kind':'BYTE_HASH','value':'sha256:three'}],'exclusive_scope_key':None,'supersedes_binding_id':None,'fixture_only':False},
+  {'record_type':'source_work_binding','binding_id':'b1','source_id':'s3','work_id':'w1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING','source_scope':{'scope_type':'WHOLE','locator':None},'work_scope':{'scope_type':'WHOLE','component_label':None},'method':'synthetic fixture','basis':[{'kind':'CONTENT_FINGERPRINT','value':'fixture fingerprint'}],'exclusive_scope_key':None,'supersedes_binding_id':None,'fixture_only':False},
   {'record_type':'local_entity','local_entity_id':'l1','work_id':'w1','label':'Same Name'},
   {'record_type':'local_entity','local_entity_id':'l2','work_id':'w2','label':'Same Name'},
   {'record_type':'evidence','evidence_id':'e1','source_id':'s3','work_id':'w1','evidence_kind':'testimony','locator':{'line':1},'observed':{'utterance':'X'},'frame':'TESTIMONY','epistemic_status':'UNKNOWN'},

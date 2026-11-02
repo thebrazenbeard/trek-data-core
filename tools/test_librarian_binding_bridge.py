@@ -29,7 +29,7 @@ def records():
     return [
         {'record_type': 'source', 'source_id': 's1', 'status': 'ACCEPTED', 'source_kind': 'transcript',
          'locator': 'fixture://s1', 'provider': 'synthetic test source', 'provider_metadata': {},
-         'source_version': None, 'retrieved_at': None, 'content_hash': 'sha256:fixture',
+         'source_version': None, 'retrieved_at': None, 'content_hash': 'sha256:' + 'f' * 64,
          'content_fingerprint': None, 'source_variant': 'original',
          'provenance_family': 'synthetic', 'independence_group': 'synthetic',
          'derived_from': [], 'fixture_only': False},
@@ -39,7 +39,7 @@ def records():
          'lifecycle': 'ACCEPTED', 'mapping_role': 'EVIDENCE_BEARING',
          'source_scope': {'scope_type': 'WHOLE', 'locator': None},
          'work_scope': {'scope_type': 'WHOLE', 'component_label': None},
-         'method': 'synthetic content check', 'basis': [{'kind': 'BYTE_HASH', 'value': 'sha256:fixture'}],
+         'method': 'synthetic content check', 'basis': [{'kind': 'BYTE_HASH', 'value': 'sha256:' + 'f' * 64}],
          'exclusive_scope_key': None, 'supersedes_binding_id': None, 'notes': '', 'fixture_only': False},
         {'record_type': 'local_entity', 'local_entity_id': 'l1', 'work_id': 'w1', 'label': 'Synthetic'},
         {'record_type': 'evidence', 'evidence_id': 'e1', 'source_id': 's1', 'work_id': 'w1',
@@ -182,7 +182,7 @@ class LibrarianBindingBridgeTests(unittest.TestCase):
         self.assertEqual(first['source_work_binding_record']['binding_id'], 'b1')
         self.assertEqual(first['source_work_binding_record']['basis'][0]['kind'], 'BYTE_HASH')
         updated = copy.deepcopy(rows)
-        updated[2]['basis'][0]['value'] = 'sha256:changed'
+        updated[2]['method'] = 'changed but still evidence-bearing synthetic method'
         second = projection.build_logical_projection(updated, [])['provenance'][0]
         self.assertNotEqual(projection.canonical(first), projection.canonical(second))
 

@@ -87,6 +87,8 @@ python3 -m unittest discover -s tests -p 'test_first_episode_readiness.py' -v
 
 The test records are deliberately synthetic and cannot count as real corpus
 admission. For system contracts, see
+[`EPISODE_REVIEW_PACKET.md`](EPISODE_REVIEW_PACKET.md) for the offline,
+proposal-only source/evidence/claim review handoff,
 [`COVERAGE_DENOMINATOR_GATE.md`](COVERAGE_DENOMINATOR_GATE.md),
 [`CANONICAL_PROJECTION_INTEGRATION.md`](CANONICAL_PROJECTION_INTEGRATION.md)
 and the [Librarian registry guide](../registry/README.md).

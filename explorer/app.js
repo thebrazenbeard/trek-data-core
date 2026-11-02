@@ -179,7 +179,8 @@
   function makeResearchCard(row) {
     const card = el('article', 'card research-card');
     const top = el('div', 'card-header');
-    top.append(el('span', 'kicker', 'External episode metadata'));
+    const publisher = row.source_type === 'PUBLISHER_EPISODE_SLOT_METADATA';
+    top.append(el('span', 'kicker', publisher ? 'Publisher-listed episode slot · unverified' : 'Wikidata episode metadata · unverified'));
     const badge = el('span', 'badge proposed', 'Candidate · not verified');
     badge.setAttribute('aria-label', 'Unverified candidate; not an admitted Mission Briefing');
     top.append(badge);
@@ -187,20 +188,33 @@
     const mission = state.missions.find((item) => item.id === row.mission_id);
     card.append(el('p', null, mission?.title || row.mission_id));
     const detail = el('dl', 'detail-list');
-    appendDetail(detail, 'Wikidata episode ID', row.episode_qid);
+    if (publisher) {
+      appendDetail(detail, 'Publisher-listed slot', `Season ${row.season_number}, episode ${row.episode_number}`);
+      appendDetail(detail, 'Observed on', row.observed_on);
+    } else {
+      appendDetail(detail, 'Wikidata item ID', row.episode_qid);
+    }
+    appendDetail(detail, 'Source independence group', row.independence_group);
     appendDetail(detail, 'Retrieval snapshot', row.snapshot_id);
     card.append(detail);
-    const link = el('a', null, 'Open Wikidata item');
-    // The QID was validated against a bounded Wikidata identifier before URL assembly.
-    link.href = 'https://www.wikidata.org/wiki/' + row.episode_qid;
+    const link = el('a', null, publisher ? 'Open publisher episode guide' : 'Open Wikidata item');
+    // The source locator is exact-allowlisted; QIDs are bounded before URL assembly.
+    link.href = publisher ? row.source_locator : 'https://www.wikidata.org/wiki/' + row.episode_qid;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     card.append(link);
     const provenance = el('details');
-    provenance.append(el('summary', null, 'View recorded provenance hashes'));
+    provenance.append(el('summary', null, publisher ? 'View source limitations' : 'View recorded provenance hashes'));
     const hashes = el('dl', 'detail-list');
-    appendDetail(hashes, 'Query SHA-256', row.query_sha256);
-    appendDetail(hashes, 'Response SHA-256', row.response_sha256);
+    if (publisher) {
+      appendDetail(hashes, 'Scope', 'Publisher page title and episode slot only; not a verified season roster.');
+      appendDetail(hashes, 'Page-response hash', 'Not captured — no publisher revision attested.');
+      appendDetail(hashes, 'Independent corroboration', 'Not established; publisher pages share one independence group.');
+    } else {
+      appendDetail(hashes, 'Query SHA-256', row.query_sha256);
+      appendDetail(hashes, 'Response SHA-256', row.response_sha256);
+      appendDetail(hashes, 'Retrieval verification', 'Offline receipt; not remotely verified.');
+    }
     provenance.append(hashes);
     card.append(provenance);
     return card;
@@ -233,7 +247,8 @@
     const matching = researchState.leads.filter((row) => {
       if (mission !== 'all' && row.mission_id !== mission) return false;
       if (!search) return true;
-      const haystack = normalize([row.episode_label, row.episode_qid, row.mission_id, missionNames.get(row.mission_id)].join(' '));
+      const slot = row.source_type === 'PUBLISHER_EPISODE_SLOT_METADATA' ? `s${row.season_number}e${row.episode_number} season ${row.season_number} episode ${row.episode_number}` : '';
+      const haystack = normalize([row.episode_label, row.episode_qid || '', slot, row.mission_id, missionNames.get(row.mission_id)].join(' '));
       return search.split(/\s+/).every((term) => haystack.includes(term));
     });
     const count = Math.min(matching.length, visibleResearchLimit);
@@ -258,34 +273,55 @@
   }
 
   function acceptResearchIndex(data) {
-    const rootKeys = ['coverage_effect', 'data_status', 'lead_count', 'leads', 'sampled_missions_count', 'schema_version', 'source_policy'];
-    const rowKeys = ['episode_label', 'episode_qid', 'mission_id', 'query_sha256', 'response_sha256', 'snapshot_id', 'verification_status'];
+    const rootKeys = ['coverage_effect', 'data_status', 'held_candidate_count', 'lead_count', 'leads', 'sampled_missions_count', 'schema_version', 'source_policy'];
+    const wikidataKeys = ['episode_label', 'episode_qid', 'independence_group', 'mission_id', 'query_sha256', 'response_sha256', 'snapshot_id', 'source_type', 'verification_status'];
+    const publisherKeys = ['episode_label', 'episode_number', 'independence_group', 'mission_id', 'observed_on', 'season_number', 'snapshot_id', 'source_locator', 'source_type', 'verification_status'];
     const exactKeys = (value, expected) => value && typeof value === 'object' && !Array.isArray(value) &&
       Object.keys(value).length === expected.length && expected.every((key) => Object.hasOwn(value, key));
     const isHash = (value) => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
-    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '2.0.0' ||
         data.data_status !== 'CANDIDATE_DISCOVERY_ONLY' ||
         data.source_policy !== 'EXTERNAL_METADATA_ONLY' || data.coverage_effect !== 'NONE' ||
         !Array.isArray(data.leads) || data.leads.length > 10000 ||
         !Number.isInteger(data.lead_count) || data.lead_count !== data.leads.length ||
-        !Number.isInteger(data.sampled_missions_count)) {
+        !Number.isInteger(data.sampled_missions_count) || data.held_candidate_count !== 2) {
       throw new Error('Research data does not have the candidate-only schema and boundaries.');
     }
     const missions = new Set(state.missions.map((row) => row.id));
-    const sampled = new Set(), qids = new Set(), leads = [];
+    const sampled = new Set(), leadIds = new Set(), leads = [];
     for (const row of data.leads) {
-      if (!exactKeys(row, rowKeys) || !missions.has(row.mission_id) ||
-          typeof row.episode_qid !== 'string' || !/^Q[1-9][0-9]{0,15}$/.test(row.episode_qid) ||
-          qids.has(row.episode_qid) || typeof row.episode_label !== 'string' ||
+      const publisher = row?.source_type === 'PUBLISHER_EPISODE_SLOT_METADATA';
+      const wikidata = row?.source_type === 'WIKIDATA_METADATA';
+      if ((!wikidata && !publisher) || !exactKeys(row, publisher ? publisherKeys : wikidataKeys) ||
+          !missions.has(row.mission_id) || typeof row.episode_label !== 'string' ||
           row.episode_label !== row.episode_label.trim() ||
           !row.episode_label.length || row.episode_label.length > 160 ||
           /[\p{C}<>]/u.test(row.episode_label) ||
           typeof row.snapshot_id !== 'string' || !/^[A-Za-z0-9_-]{3,100}$/.test(row.snapshot_id) ||
-          !isHash(row.query_sha256) || !isHash(row.response_sha256) ||
           row.verification_status !== 'UNVERIFIED_METADATA') {
         throw new Error('Research data contains an invalid, duplicate, or unexpectedly admitted lead.');
       }
-      qids.add(row.episode_qid);
+      let leadId;
+      if (wikidata) {
+        if (row.independence_group !== 'wikidata:wdqs' || !/^Q[1-9][0-9]{0,15}$/.test(row.episode_qid) ||
+            !isHash(row.query_sha256) || !isHash(row.response_sha256) ||
+            (row.mission_id === 'ent' && ['Q56247746', 'Q866375'].includes(row.episode_qid))) {
+          throw new Error('Research data contains unreviewed Wikidata provenance or a held arc/umbrella.');
+        }
+        leadId = `wikidata:${row.episode_qid}`;
+      } else {
+        if (row.mission_id !== 'sfa' || row.independence_group !== 'publisher:paramount' ||
+            row.source_locator !== 'https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/1/' ||
+            row.snapshot_id !== 'SFA-PUBLISHER-ROSTER-20261102-001' ||
+            row.observed_on !== '2026-11-02' ||
+            !Number.isInteger(row.season_number) || row.season_number !== 1 ||
+            !Number.isInteger(row.episode_number) || row.episode_number < 1 || row.episode_number > 10) {
+          throw new Error('Research data contains an unreviewed publisher source or season slot.');
+        }
+        leadId = `publisher:${row.mission_id}:${row.season_number}:${row.episode_number}`;
+      }
+      if (leadIds.has(leadId)) throw new Error('Research data contains duplicate candidate identities.');
+      leadIds.add(leadId);
       sampled.add(row.mission_id);
       leads.push({ ...row });
     }

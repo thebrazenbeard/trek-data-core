@@ -1,55 +1,80 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://trek-data-core/schema/research-leads.schema.json",
-  "title": "Unverified Wikidata episode discovery leads (never canonical Mission Briefings)",
+  "title": "Separate, unverified episode research leads (never canonical Mission Briefings)",
   "type": "object",
   "required": [
-    "schema_version",
-    "data_status",
-    "source_policy",
-    "coverage_effect",
-    "lead_count",
-    "sampled_missions_count",
-    "leads"
+    "schema_version", "data_status", "source_policy", "coverage_effect",
+    "lead_count", "sampled_missions_count", "held_candidate_count", "leads"
   ],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"const": "2.0.0"},
     "data_status": {"const": "CANDIDATE_DISCOVERY_ONLY"},
     "source_policy": {"const": "EXTERNAL_METADATA_ONLY"},
     "coverage_effect": {"const": "NONE"},
-    "lead_count": {"type": "integer", "minimum": 0, "maximum": 100000},
+    "lead_count": {"type": "integer", "minimum": 0, "maximum": 10000},
     "sampled_missions_count": {"type": "integer", "minimum": 0, "maximum": 12},
+    "held_candidate_count": {"const": 2},
     "leads": {
       "type": "array",
-      "maxItems": 100000,
-      "items": {
-        "type": "object",
-        "required": [
-          "mission_id",
-          "episode_qid",
-          "episode_label",
-          "snapshot_id",
-          "query_sha256",
-          "response_sha256",
-          "verification_status"
-        ],
-        "properties": {
-          "mission_id": {
-            "enum": [
-              "tos", "tas", "tng", "ds9", "voy", "ent",
-              "dis", "pic", "ld", "pro", "snw", "sfa"
-            ]
-          },
-          "episode_qid": {"type": "string", "pattern": "^Q[1-9][0-9]{0,15}$"},
-          "episode_label": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]*$"},
-          "snapshot_id": {"type": "string", "minLength": 3, "maxLength": 100},
-          "query_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "verification_status": {"const": "UNVERIFIED_METADATA"}
-        },
-        "additionalProperties": false
-      }
+      "maxItems": 10000,
+      "items": {"oneOf": [
+        {"$ref": "#/$defs/wikidata_lead"},
+        {"$ref": "#/$defs/publisher_slot_lead"}
+      ]}
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "mission_id": {
+      "enum": ["tos", "tas", "tng", "ds9", "voy", "ent", "dis", "pic", "ld", "pro", "snw", "sfa"]
+    },
+    "label": {
+      "type": "string", "minLength": 1, "maxLength": 160,
+      "pattern": "^[^<>\\u0000-\\u001f\\u007f-\\u009f\\u00ad\\u061c\\u180e\\u200b-\\u200f\\u202a-\\u202e\\u2060-\\u206f\\ud800-\\udfff\\ufeff]*$"
+    },
+    "snapshot": {"type": "string", "pattern": "^[A-Za-z0-9_-]{3,100}$"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "wikidata_lead": {
+      "type": "object",
+      "required": [
+        "mission_id", "source_type", "independence_group", "episode_qid",
+        "episode_label", "snapshot_id", "query_sha256", "response_sha256",
+        "verification_status"
+      ],
+      "properties": {
+        "mission_id": {"$ref": "#/$defs/mission_id"},
+        "source_type": {"const": "WIKIDATA_METADATA"},
+        "independence_group": {"const": "wikidata:wdqs"},
+        "episode_qid": {"type": "string", "pattern": "^Q[1-9][0-9]{0,15}$"},
+        "episode_label": {"$ref": "#/$defs/label"},
+        "snapshot_id": {"$ref": "#/$defs/snapshot"},
+        "query_sha256": {"$ref": "#/$defs/hash"},
+        "response_sha256": {"$ref": "#/$defs/hash"},
+        "verification_status": {"const": "UNVERIFIED_METADATA"}
+      },
+      "additionalProperties": false
+    },
+    "publisher_slot_lead": {
+      "type": "object",
+      "required": [
+        "mission_id", "source_type", "independence_group", "episode_label",
+        "season_number", "episode_number", "source_locator", "snapshot_id",
+        "observed_on", "verification_status"
+      ],
+      "properties": {
+        "mission_id": {"const": "sfa"},
+        "source_type": {"const": "PUBLISHER_EPISODE_SLOT_METADATA"},
+        "independence_group": {"const": "publisher:paramount"},
+        "episode_label": {"$ref": "#/$defs/label"},
+        "season_number": {"type": "integer", "minimum": 1, "maximum": 999},
+        "episode_number": {"type": "integer", "minimum": 1, "maximum": 9999},
+        "source_locator": {"const": "https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/1/"},
+        "snapshot_id": {"const": "SFA-PUBLISHER-ROSTER-20261102-001"},
+        "observed_on": {"type": "string", "format": "date"},
+        "verification_status": {"const": "UNVERIFIED_METADATA"}
+      },
+      "additionalProperties": false
+    }
+  }
 }

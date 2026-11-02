@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -16,7 +17,7 @@ class ResearchLeadsIndexTests(unittest.TestCase):
         self.root = Path(self.scratch.name)
         (self.root / "registry").mkdir()
         (self.root / "explorer").mkdir()
-        catalog = {"admission_status": "DISPLAY_CATALOG_ONLY", "missions": [
+        catalog = {"catalog_version": "1.0.0", "authority": "https://www.startrek.com/series-and-movies", "admission_status": "DISPLAY_CATALOG_ONLY", "missions": [
             {"id": m, "title": m.upper(), "focus": "Sample"}
             for m in leads.MISSION_ORDER
         ]}
@@ -24,9 +25,14 @@ class ResearchLeadsIndexTests(unittest.TestCase):
             json.dumps(catalog), encoding="utf-8"
         )
         self.files = []
-        for group, query_name, proposal_name, series_qid, mission_id, n in leads.SOURCE_BATCHES:
+        for group, query_name, proposal_name, series_qid, mission_id, n in (
+            *leads.SOURCE_BATCHES,
+            ("enterprise-second-pass", "ent", "ent", "Q380519", "ent", 20),
+        ):
             if group == "tng":
                 folder = self.root / "proposals/discovery/wikidata-tng-q16290-20261102"
+            elif group == "enterprise-second-pass":
+                folder = self.root / leads.ENT_FOLDER
             else:
                 folder = self.root / f"proposals/discovery/wikidata-mission-samples-20261102/{group}"
             (folder / "queries").mkdir(parents=True, exist_ok=True)
@@ -42,7 +48,8 @@ class ResearchLeadsIndexTests(unittest.TestCase):
                 ppath = folder / "proposals" / f"{proposal_name}.json"
             query = f"SELECT ?episode WHERE {{ wd:{series_qid} ?p ?episode }} LIMIT {n}\n"
             qpath.write_text(query, encoding="utf-8")
-            stamp = f"WDQS-{mission_id.upper()}-20261102"
+            stamp = ("WDQS-ENT-Q380519-SIMPLE-P179-20261102-LIMIT20-001"
+                     if group == "enterprise-second-pass" else f"WDQS-{mission_id.upper()}-20261102")
             receipt = {
                 "source_url": leads.EXPECTED_SOURCE_URL,
                 "license": "CC0-1.0",
@@ -68,6 +75,9 @@ class ResearchLeadsIndexTests(unittest.TestCase):
                 }
                 for j in range(1, n + 1)
             ]
+            if group == "enterprise-second-pass":
+                candidates[0].update(episode_qid="Q56247746", episode_label="Temporal Cold War arc")
+                candidates[1].update(episode_qid="Q866375", episode_label="In a Mirror, Darkly")
             proposal = {
                 "accepted_source_binding_effect": "NONE",
                 "accepted_work_effect": "NONE",
@@ -88,6 +98,14 @@ class ResearchLeadsIndexTests(unittest.TestCase):
             }
             ppath.write_text(json.dumps(proposal), encoding="utf-8")
             self.files.append((qpath, rpath, ppath))
+        repo = Path(__file__).resolve().parents[1]
+        holds = self.root / leads.ENT_HOLDS_PATH
+        shutil.copyfile(repo / leads.ENT_HOLDS_PATH, holds)
+        roster = self.root / leads.SFA_ROSTER_PATH
+        roster.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(repo / leads.SFA_ROSTER_PATH, roster)
+        self.holds = holds
+        self.roster = roster
 
     def mutate(self, index, fn):
         ppath = self.files[index][2]
@@ -95,7 +113,7 @@ class ResearchLeadsIndexTests(unittest.TestCase):
         fn(proposal)
         ppath.write_text(json.dumps(proposal), encoding="utf-8")
 
-    def test_190_leads_sorted_deterministically_without_touching_canon(self):
+    def test_218_leads_two_holds_twelve_missions_without_touching_canon(self):
         canon = self.root / "explorer/index.json"
         canon.write_bytes(b'{"do_not_change":true}\n')
         first = leads.build_bytes(self.root)
@@ -103,19 +121,30 @@ class ResearchLeadsIndexTests(unittest.TestCase):
         doc = json.loads(first)
         self.assertEqual(doc["data_status"], "CANDIDATE_DISCOVERY_ONLY")
         self.assertEqual(doc["coverage_effect"], "NONE")
-        self.assertEqual(doc["lead_count"], 190)
-        self.assertEqual(doc["sampled_missions_count"], 10)
-        self.assertEqual(len(doc["leads"]), 190)
+        self.assertEqual(doc["schema_version"], "2.0.0")
+        self.assertEqual(doc["lead_count"], 218)
+        self.assertEqual(doc["sampled_missions_count"], 12)
+        self.assertEqual(doc["held_candidate_count"], 2)
+        self.assertEqual(len(doc["leads"]), 218)
         self.assertEqual(set(doc), {
             "schema_version", "data_status", "source_policy", "coverage_effect",
-            "lead_count", "sampled_missions_count", "leads",
+            "lead_count", "sampled_missions_count", "held_candidate_count", "leads",
         })
         self.assertEqual(set(doc["leads"][0]), {
             "mission_id", "episode_qid", "episode_label", "snapshot_id",
             "query_sha256", "response_sha256", "verification_status",
+            "source_type", "independence_group",
         })
         self.assertFalse(any("canonical_work_id" in r for r in doc["leads"]))
         self.assertEqual({r["verification_status"] for r in doc["leads"]}, {"UNVERIFIED_METADATA"})
+        self.assertEqual(sum(r["mission_id"] == "ent" for r in doc["leads"]), 18)
+        self.assertEqual(sum(r["mission_id"] == "sfa" for r in doc["leads"]), 10)
+        self.assertFalse(any(r.get("episode_qid") in leads.ENT_REVIEW_HOLDS for r in doc["leads"]))
+        self.assertEqual({r["source_type"] for r in doc["leads"]},
+                         {"WIKIDATA_METADATA", "PUBLISHER_EPISODE_SLOT_METADATA"})
+        self.assertTrue(all(r["independence_group"] == "publisher:paramount" and
+                            "episode_qid" not in r and "response_sha256" not in r
+                            for r in doc["leads"] if r["mission_id"] == "sfa"))
         out = leads.write_or_check(self.root, check=False)
         self.assertEqual(out.read_bytes(), first)
         leads.write_or_check(self.root, check=True)
@@ -213,7 +242,81 @@ class ResearchLeadsIndexTests(unittest.TestCase):
     def test_ignores_unreviewed_historical_proposal_file(self):
         unreviewed = self.root / "proposals/discovery/unreviewed.json"
         unreviewed.write_text('{"accepted_work_effect":"ACCEPTED"}', encoding="utf-8")
-        self.assertEqual(len(json.loads(leads.build_bytes(self.root))["leads"]), 190)
+        self.assertEqual(len(json.loads(leads.build_bytes(self.root))["leads"]), 218)
+
+    def test_rejects_removed_arc_hold(self):
+        holds = json.loads(self.holds.read_text(encoding="utf-8"))
+        holds["exclude_from_public_episode_search_until_review"].pop()
+        self.holds.write_text(json.dumps(holds), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "two explicit episode holds"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_mismatched_held_label(self):
+        self.mutate(-1, lambda p: p["candidates"][0].update(episode_label="Episode 1"))
+        with self.assertRaisesRegex(ValueError, "source batch no longer matches"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_held_arc_as_ordinary_episode(self):
+        self.mutate(-1, lambda p: p["candidates"][0].update(episode_qid="Q999999"))
+        with self.assertRaisesRegex(ValueError, "source batch no longer matches"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_publisher_claim_of_verified_coverage(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["denominator_effect"] = "ACCEPTED"
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "accepted state"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_publisher_claim_of_independent_second_source(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["observation"]["independence_group"] = "publisher:independently-verified"
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unexpected publisher source"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_duplicate_publisher_slot(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["episode_slots"][1]["episode_number"] = 1
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "strictly sorted"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_unreviewed_publisher_season_expansion(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        for row in roster["episode_slots"]:
+            row["season"] = 2
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "Season 1 candidate slot sequence"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_undocumented_publisher_observation_revision(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["observation"]["observed_on"] = "2026-11-03"
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unexpected publisher source"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_publisher_fabricated_response_digest(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["observation"]["response_sha256"] = "a" * 64
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "response or audiovisual verification"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_publisher_unicode_format_control(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["episode_slots"][0]["title"] = "Kids\u202eThese Days"
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unsafe episode_label"):
+            leads.build_bytes(self.root)
+
+    def test_rejects_publisher_lone_surrogate(self):
+        roster = json.loads(self.roster.read_text(encoding="utf-8"))
+        roster["episode_slots"][0]["title"] = "Kids\ud800These Days"
+        self.roster.write_text(json.dumps(roster), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unsafe episode_label"):
+            leads.build_bytes(self.root)
 
     def test_rejects_symlinked_public_output_directory(self):
         leads_dir = self.root / "other"

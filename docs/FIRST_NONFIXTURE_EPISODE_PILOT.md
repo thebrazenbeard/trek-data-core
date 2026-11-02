@@ -53,7 +53,11 @@ are deliberately `PROPOSED / METADATA_ONLY`. Two publisher pages display
 season/episode slot labels, while the other three are narrower preview or
 editorial mentions. These are useful **research starting points**, but they
 provide no accepted Source↔Work content binding, full episode witness, or
-coverage event. Likewise the 190 Wikidata research leads remain candidates.
+coverage event. Likewise, the 208 Wikidata candidate items and 10 separate
+publisher-listed Starfleet Academy episode slots in the public Research Leads
+index remain **unverified**; the two Enterprise arc/umbrella holds are omitted
+from ordinary episode search. None of these leads establishes episode
+identity, accepted coverage, or a verified series/season denominator.
 
 ## Safe minimum first pass
 

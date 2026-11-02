@@ -31,6 +31,37 @@ def tree(*entries: tuple[str, str, str, str]) -> bytes:
 
 
 class InventoryTest(unittest.TestCase):
+    def test_root_research_readme_is_documentation_not_a_lane_record(self):
+        snapshot = tree(
+            ("100644", "blob", ONE, "research/README.md"),
+            ("100644", "blob", TWO, "research/tng/batches/s01/manifest.json"),
+        )
+        self.assertEqual(
+            MODULE.parse_research_tree(snapshot),
+            [("research/tng/batches/s01/manifest.json", "100644", "blob", TWO)],
+        )
+        report = MODULE.inventory(
+            MAIN,
+            tree(("100644", "blob", ONE, "research/README.md")),
+            [("17", THREE, snapshot)],
+        )
+        self.assertEqual(report["summary"]["research_paths"], 1)
+        self.assertEqual(report["paths"][0]["path"], "research/tng/batches/s01/manifest.json")
+        self.assertEqual(report["acceptance_effect"], "NONE")
+
+    def test_root_research_exception_does_not_hide_unsafe_or_unknown_entries(self):
+        for entry in (
+            ("120000", "blob", ONE, "research/README.md"),
+            ("100755", "blob", ONE, "research/README.md"),
+            ("160000", "commit", ONE, "research/README.md"),
+            ("100644", "blob", ONE, "research/README.json"),
+            ("100644", "blob", ONE, "research/other.md"),
+            ("100644", "blob", ONE, "research/"),
+            ("100644", "blob", ONE, "research/./README.md"),
+        ):
+            with self.subTest(entry=entry), self.assertRaises(MODULE.InventoryError):
+                MODULE.parse_research_tree(tree(entry))
+
     def test_deduplicates_same_blob_but_keeps_contested_proposals(self):
         original = tree(
             ("100644", "blob", ONE, "research/tos/episode.json"),

@@ -14,7 +14,7 @@
   <a href="TREK_ROLE_CATALOG.md">Research roles</a>
 </p>
 
-> **Project status — live Explorer; corpus admission in progress.** The [public Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) is deployed through GitHub Pages. The accepted-only research index has **12 television-series Missions, 0 admitted Briefings and 0 accepted continuity records**. Separately, discovery views contain **218 unverified episode research leads** and a proposal-only **14-film publisher metadata catalog** (13 directory films plus *Section 31* from a separate official announcement). None of these discovered entries establishes reviewed episode/film coverage or a complete franchise denominator. Publication is manual-only; the live Pages release may lag the committed dataset.
+> **Project status — live Explorer; corpus admission in progress.** The [public Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) is deployed through GitHub Pages. Its accepted-only index has **12 television-series Missions (not 12 episodes), 0 admitted Briefings and 0 accepted continuity records**. Separately, the latest published discovery views contain **218 unverified episode research leads** and **14 film metadata candidates** (13 directory films plus *Section 31* from a separate official announcement). Further publisher episode rosters, literary editions and other source-local proposals live in the repository, not necessarily the public Explorer. These counts measure different things and cannot be summed into a franchise-wide episode or Work total. Pages publication is manual-only and may lag committed source.
 
 ## Purpose
 
@@ -57,13 +57,15 @@ This roster follows the [official Star Trek series catalog](https://www.startrek
 
 The [live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([source files](explorer/)) is a dependency-free static interface for browsing the series catalog and searching indexed research. Its source data separates admitted research, episode discovery, and film discovery:
 
-| Explorer view | What it contains | Current state |
+| Explorer view | What it contains | Committed source state (check Pages release separately) |
 | --- | --- | --- |
 | **Missions / Briefings / continuity records** | A deterministic catalog and only source-bound, reviewed canonical episode and assertion projections | 12 Missions; **0 admitted Briefings** and **0 accepted records** |
 | **Research Leads** | 208 candidate Wikidata items with offline receipt hashes, plus 10 publisher-listed Starfleet Academy S1 slots without claimed QIDs or webpage hashes | 218 **unverified** leads across 12 Missions; 2 Enterprise arc/umbrella holds excluded; no accepted coverage or denominator effect |
 | **Films** | 13 official directory film titles and *Star Trek: Section 31* from a separate publisher announcement | 14 **discovery-only** film candidates; no admitted film research or exhaustive film-denominator claim |
 
 Search the Research Leads to find candidate episode titles, Wikidata identifiers or publisher episode slots, but do not treat their presence as an audited episode list. The Paramount+ Academy guide and press site share a single publisher independence group, **not two corroborating sources**; the listing is not a verified season denominator. The separate `explorer/research-leads.json` cannot promote a candidate into a Briefing. The accepted-only `explorer/index.json` requires reviewed projection hashes and evidence-bearing Source↔Work bindings before adding nonfixture records. See the [index contract](docs/EXPLORER_INDEX.md) and [denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md).
+
+Additional **proposal-only, source-local** discovery tranches are recorded under `proposals/`: 15 DS9/Voyager/Animated Series publisher episode slots, 15 TNG/Starfleet Academy publisher references in a separately allowlisted sidecar, 65 modern-series publisher episode slots (Discovery, Picard, Lower Decks, Strange New Worlds), 126 legacy-series Season 2 publisher listing rows (TOS, TNG, DS9, Voyager, Enterprise), 10 *Short Treks* listings, 5 separately classified promotional *very Short Treks*, one *Khan* audio-series container, and one *Strange New Worlds: Ring of Fire* literary Work represented by four publisher edition/ISBN Sources. These are **not** additions to the live 218-item lead index or distinct verified episode counts; source-local references may overlap the same underlying episode. Their paths and deterministic validators are documented in the proposal manifests and [publisher discovery catalog](docs/PUBLISHER_DISCOVERY_CATALOG.md).
 
 The separate `explorer/film-catalog.json` is reproduced by `python3 tools/build_film_catalog.py --check` from the explicit [film discovery manifest](proposals/librarian/films-official-index-20261102/MANIFEST.md). Its entries provide titles and publisher locators only; the same publisher is not an independent second witness. The manifest documents a publisher date error for *The Search for Spock*, deliberately omitted from the public film index until separately reconciled.
 
@@ -73,7 +75,7 @@ To run the Explorer locally, from the repository root:
 python3 -m http.server 8000 --directory explorer
 ```
 
-Open `http://localhost:8000` in a browser, or use the [public deployment](https://thebrazenbeard.github.io/trek-data-core/). No database server, account, API key or telemetry service is required. Public GitHub Pages publication is intentionally **manual-only**: the workflow checks five required core files and independently verifies optional episode-lead and film-discovery indexes; extra, uncommitted or modified files fail the deployment gate. The earlier LCARS release passed in [Actions run #41531397771](https://github.com/thebrazenbeard/trek-data-core/actions/runs/41531397771); this film expansion requires its own successful release before it appears live.
+Open `http://localhost:8000` in a browser, or use the [public deployment](https://thebrazenbeard.github.io/trek-data-core/). No database server, account, API key or telemetry service is required. Public GitHub Pages publication is intentionally **manual-only**: the workflow checks five required core files and independently verifies optional episode-lead and film-discovery indexes; extra, uncommitted or modified files fail the deployment gate. The film-aware Explorer was successfully deployed and HTTP-checked after [Actions run #41539764586](https://github.com/thebrazenbeard/trek-data-core/actions/runs/41539764586). Newer source proposals are not automatically visible there.
 
 ## Data model
 
@@ -115,9 +117,9 @@ These checks verify code contracts, deterministic derived files and synthetic ca
 | Governance and research method | Present | Keep method and roles aligned with executable rules |
 | Librarian Source / Work / bindings | Typed schema, validator and synthetic fixtures present | Admit independently checked, nonfixture Source↔Work evidence |
 | Canonical projection, semantic diff and query | Deterministic compilers and query adapters on `main`, tested on fixtures and empty projections | Verify a reviewed nonempty projection with approved hash receipts |
-| Coverage and episode discovery | Fail-closed coverage ledger; 218 segregated candidate leads (2 additional arc/umbrella holds); denominator unresolved | Reconcile a rights-valid, independently sourced episode roster and evidence batches |
-| Browser Explorer / Pages | [Public Explorer](https://thebrazenbeard.github.io/trek-data-core/) deployed; five required assets plus verified optional Research Leads JSON; manual-only guarded updates | Re-release after reviewed index/UI changes, then check the live artifact |
-| Literary metadata | Private offline OPF scanner, synthetic tests and rights-safe documentation | Reconcile editions, omnibus/anthology contents and Work identities without uploading ebooks |
+| Coverage and episode discovery | Fail-closed coverage ledger; 218 segregated public candidate leads (2 additional arc/umbrella holds); additional 15 initial, 65 modern and 126 legacy TV publisher slot proposals, plus separately classified short-form listings; denominator unresolved | Integrate additional candidate lanes into a searchable discovery projection; reconcile source identity and gather actual evidence |
+| Browser Explorer / Pages | [Public Explorer](https://thebrazenbeard.github.io/trek-data-core/) deployed; five required assets plus verified optional Research Leads and Film JSON; manual-only guarded updates | Build a cross-medium discovery view without promoting proposals to admitted evidence |
+| Literary metadata | Private offline OPF scanner; one proposed *Ring of Fire* Work with four publisher metadata edition/source bindings; synthetic and adversarial tests | Reconcile editions, omnibus/anthology contents and Work identities without uploading ebooks |
 
 Development branches and PRs are **proposals**, even when merged into another development branch. A green proposal CI check does not make its contents accepted `main` state.
 
@@ -129,7 +131,7 @@ Development branches and PRs are **proposals**, even when merged into another de
 | [Repository protocol](TREK_REPO_PROTOCOL.md) | Authority, acceptance and safe contribution rules |
 | [Role catalog](TREK_ROLE_CATALOG.md) | Director, Librarian, Auditor and bounded research responsibilities |
 | [Registry](registry/README.md) | Source/Work/binding schema, fixtures and validation |
-| [Live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([source](explorer/)) | Public searchable Missions and segregated candidate Research Leads |
+| [Live Mission Explorer](https://thebrazenbeard.github.io/trek-data-core/) ([source](explorer/)) | Public searchable series Missions, separate candidate episode leads and film discovery; proposal-only research files may not appear yet |
 | [Explorer index contract](docs/EXPLORER_INDEX.md) | Acceptance rules for public Briefings and continuity records |
 | [Coverage denominator gate](docs/COVERAGE_DENOMINATOR_GATE.md) | Why a catalog or candidate count is not verified episode coverage |
 | [Private OPF intake](docs/LITERARY_OPF_PRIVATE_INTAKE.md) | Metadata-only, nonpublic book/edition inventory workflow |

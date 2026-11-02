@@ -1,0 +1,10 @@
+{
+  "batch_id": "PIC.PPLUS.S2.FIRST5.20261102",
+  "mission_id": "pic",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/2/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-picard/",
+  "csv_sha256": "1ebab18e8e0ca4dc6a4204ddd6e68e338d8d346df5569a867f797b1dcbbeb78a"
+}

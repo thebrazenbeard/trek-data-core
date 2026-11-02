@@ -1,0 +1,67 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PIC.PPLUS.S2.FIRST5.20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Star Gazer"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Penance"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Assimilation"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Watcher"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Fly Me to the Moon"
+    }
+  ],
+  "listed_slot_count": 5,
+  "mission_id": "pic",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-picard/",
+    "independence_group": "publisher:paramountplus.com",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-picard/episodes/2/",
+    "publisher": "Paramount+ U.S. episode guide",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

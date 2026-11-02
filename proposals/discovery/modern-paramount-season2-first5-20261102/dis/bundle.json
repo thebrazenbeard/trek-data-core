@@ -1,0 +1,67 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "DIS.PPLUS.S2.FIRST5.20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Brother"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "New Eden"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Point of Light"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "An Obol For Charon"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Saints of Imperfection"
+    }
+  ],
+  "listed_slot_count": 5,
+  "mission_id": "dis",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-discovery/",
+    "independence_group": "publisher:paramountplus.com",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/2/",
+    "publisher": "Paramount+ U.S. episode guide",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

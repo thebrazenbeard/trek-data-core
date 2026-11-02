@@ -1,0 +1,206 @@
+{
+  "admission_effect": "NONE",
+  "container_candidates": [
+    {
+      "candidate_id": "khan-audio",
+      "medium": "SCRIPTED_AUDIO",
+      "source_id": "khan-audio-site",
+      "title": "Star Trek: Khan",
+      "verification_status": "UNVERIFIED_METADATA",
+      "work_type": "SCRIPTED_AUDIO_SERIES"
+    },
+    {
+      "candidate_id": "short-treks",
+      "medium": "AUDIOVISUAL",
+      "source_id": "short-guide",
+      "title": "Star Trek: Short Treks",
+      "verification_status": "UNVERIFIED_METADATA",
+      "work_type": "SCRIPTED_SHORT_ANTHOLOGY"
+    },
+    {
+      "candidate_id": "very-short-treks",
+      "medium": "PROMOTIONAL_ANIMATION",
+      "source_id": "very-short-announcement",
+      "title": "Star Trek: very Short Treks",
+      "verification_status": "UNVERIFIED_METADATA",
+      "work_type": "PROMOTIONAL_SHORT_SERIES"
+    }
+  ],
+  "container_count": 3,
+  "coverage_effect": "NONE",
+  "data_status": "DISCOVERY_ONLY",
+  "observed_on": "2026-11-02",
+  "publisher_independence_group": "publisher:paramount",
+  "schema_version": "1.0.0",
+  "short_candidate_count": 15,
+  "short_candidates": [
+    {
+      "candidate_id": "short-treks-01",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E1",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Runaway",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-02",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E2",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Calypso",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-03",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E3",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "The Brightest Star",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-04",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E4",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "The Escape Artist",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-05",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E5",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Q&A",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-06",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E6",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "The Trouble with Edward",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-07",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E7",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Ask Not",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-08",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E8",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "The Girl Who Made the Stars",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-09",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E9",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Ephraim and Dot",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "short-treks-10",
+      "parent_candidate_id": "short-treks",
+      "slot_meaning": "OFFICIAL_EPISODE_GUIDE",
+      "source_id": "short-guide",
+      "source_local_slot": "S1E10",
+      "source_url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "title": "Children of Mars",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "very-short-treks-01",
+      "parent_candidate_id": "very-short-treks",
+      "slot_meaning": "ANNOUNCED_RELEASE_ORDER",
+      "source_id": "very-short-announcement",
+      "source_local_slot": "ANNOUNCED_RELEASE_01",
+      "source_url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce",
+      "title": "Skin a Cat",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "very-short-treks-02",
+      "parent_candidate_id": "very-short-treks",
+      "slot_meaning": "ANNOUNCED_RELEASE_ORDER",
+      "source_id": "very-short-announcement",
+      "source_local_slot": "ANNOUNCED_RELEASE_02",
+      "source_url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce",
+      "title": "Holiday Party",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "very-short-treks-03",
+      "parent_candidate_id": "very-short-treks",
+      "slot_meaning": "ANNOUNCED_RELEASE_ORDER",
+      "source_id": "very-short-announcement",
+      "source_local_slot": "ANNOUNCED_RELEASE_03",
+      "source_url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce",
+      "title": "Worst Contact",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "very-short-treks-04",
+      "parent_candidate_id": "very-short-treks",
+      "slot_meaning": "ANNOUNCED_RELEASE_ORDER",
+      "source_id": "very-short-announcement",
+      "source_local_slot": "ANNOUNCED_RELEASE_04",
+      "source_url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce",
+      "title": "Holograms, All the Way Down",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "candidate_id": "very-short-treks-05",
+      "parent_candidate_id": "very-short-treks",
+      "slot_meaning": "ANNOUNCED_RELEASE_ORDER",
+      "source_id": "very-short-announcement",
+      "source_local_slot": "ANNOUNCED_RELEASE_05",
+      "source_url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce",
+      "title": "Walk, Don't Run",
+      "verification_status": "UNVERIFIED_METADATA"
+    }
+  ],
+  "sources": [
+    {
+      "id": "khan-audio-site",
+      "source_type": "OFFICIAL_AUDIO_SERIES_PAGE",
+      "url": "https://www.startrek.com/en-un/podcasts/star-trek-khan"
+    },
+    {
+      "id": "short-guide",
+      "source_type": "OFFICIAL_EPISODE_GUIDE",
+      "url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/"
+    },
+    {
+      "id": "very-short-announcement",
+      "source_type": "OFFICIAL_PROMOTIONAL_ANNOUNCEMENT",
+      "url": "https://www.startrek.com/en-un/news/star-trek-very-short-treks-announce"
+    }
+  ],
+  "universe_complete": false
+}

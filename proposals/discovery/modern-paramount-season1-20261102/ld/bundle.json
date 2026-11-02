@@ -1,0 +1,107 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "LD.PPLUS.S1.DISPLAYED10.20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Second Contact"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Envoys"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Temporal Edict"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Moist Vessel"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Cupid's Errant Arrow"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Terminal Provocations"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Much Ado About Boimler"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Veritas"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Crisis Point"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "No Small Parts"
+    }
+  ],
+  "listed_slot_count": 10,
+  "mission_id": "ld",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+    "independence_group": "publisher:paramountplus.com",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/1/",
+    "publisher": "Paramount+ U.S. episode guide",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

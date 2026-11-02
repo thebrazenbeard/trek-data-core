@@ -1,0 +1,10 @@
+{
+  "batch_id": "SNW.PPLUS.S1.DISPLAYED10.20261102",
+  "mission_id": "snw",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/",
+  "csv_sha256": "de5d9cb4da5f07930c1d3983a81887c20e29a8b5aa300e1a20a013bf8aeec52e"
+}

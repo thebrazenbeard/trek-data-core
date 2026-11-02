@@ -1,0 +1,10 @@
+{
+  "batch_id": "LD.PPLUS.S1.DISPLAYED10.20261102",
+  "mission_id": "ld",
+  "publisher": "Paramount+ U.S. episode guide",
+  "independence_group": "publisher:paramountplus.com",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/",
+  "csv_sha256": "435dde1dc5e62b8298e1f38bca1e57413f25e9dc1e9acc323603b185220a6132"
+}

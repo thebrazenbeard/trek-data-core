@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S2-20261102-DS9",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Homecoming"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Circle"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Siege"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Invasive Procedures"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Cardassians"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Melora"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rules Of Acquisition"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Necessary Evil"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Second Sight"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sanctuary"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Rivals"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Alternate"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Armageddon Game"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Whispers"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Paradise"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Shadowplay"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Playing God"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Profit And Loss"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Blood Oath"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Maquis, Part 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Maquis, Part 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Wire"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Crossover"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Collaborator"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Tribunal"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 2,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Jem'hadar"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "ds9",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

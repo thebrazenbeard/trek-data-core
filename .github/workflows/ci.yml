@@ -1,0 +1,53 @@
+name: Core Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-stdlib:
+    name: Python 3.12 repository checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out current revision without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Select Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run repository regression tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Run Librarian adversarial tests
+        run: python tools/test_librarian_registry.py
+      - name: Validate Librarian fixtures
+        run: python tools/validate_librarian_registry.py registry/librarian_registry_fixtures.json
+      - name: Verify coverage safety when the ledger is present
+        if: ${{ hashFiles('tools/coverage_ledger.py') != '' }}
+        run: |
+          python -m unittest discover -s tools -p 'test_coverage_ledger.py' -v
+          python tools/coverage_ledger.py validate
+      - name: Verify canonical architecture when present
+        if: ${{ hashFiles('tools/validate.py') != '' }}
+        run: |
+          python -m unittest discover -s tools -p 'test_*.py' -v
+          python tools/validate.py
+      - name: Verify generated Mission index matches its catalog
+        if: ${{ hashFiles('tools/build_explorer_index.py') != '' }}
+        run: |
+          python tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-ci-index.json"
+          cmp "${RUNNER_TEMP}/trek-ci-index.json" explorer/index.json
+      - name: Verify optional Research Leads snapshot against reviewed proposals
+        if: ${{ hashFiles('explorer/research-leads.json') != '' }}
+        run: |
+          test -f tools/build_research_leads.py
+          python tools/build_research_leads.py --check
+      - name: Check Explorer interface behavior
+        if: ${{ hashFiles('tests/test_explorer.mjs') != '' }}
+        run: node tests/test_explorer.mjs

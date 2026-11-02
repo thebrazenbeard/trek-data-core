@@ -26,6 +26,7 @@ if __package__:
     from . import build_legacy_s3_discovery as legacy3
     from . import build_prodigy_publisher_discovery as prodigy
     from . import build_publisher_s4_discovery as season4
+    from . import build_publisher_s5_discovery as season5
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -38,6 +39,7 @@ else:
     import build_legacy_s3_discovery as legacy3
     import build_prodigy_publisher_discovery as prodigy
     import build_publisher_s4_discovery as season4
+    import build_publisher_s5_discovery as season5
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -350,6 +352,53 @@ def build_bytes(root: Path) -> bytes:
         sources[str(bundle_path)] = bundle_digest
     if season4_count != 122:
         raise ValueError(f"Season 4 publisher observation count changed from reviewed 122: {season4_count}")
+
+    # Season 5 forms an additional source-local publisher tranche, not a
+    # deduplicated episode count or a canonical Work reconciliation. Voyager's
+    # absent publisher ordinal S5E16 is left absent, never synthesized.
+    season5_index_path = season5.BASE / "index.json"
+    season5_index, season5_digest = _document(root, season5_index_path)
+    sources[str(season5_index_path)] = season5_digest
+    expected_s5 = {"tng": 26, "ds9": 26, "voy": 25, "dis": 10, "ld": 10}
+    if (set(season5_index) != season5.INDEX_KEYS or
+            {key: season5_index[key] for key in season5.INDEX_KEYS - {"source_pages"}}
+            != {key: season5.source_index([])[key] for key in season5.INDEX_KEYS - {"source_pages"}} or
+            not isinstance(season5_index.get("source_pages"), list) or
+            len(season5_index["source_pages"]) != len(season5.SLUGS)):
+        raise ValueError("Season 5 source index is not bounded candidate-only metadata")
+    season5_count = 0
+    for mission, page in zip(season5.SLUGS, season5_index["source_pages"]):
+        if (not isinstance(page, dict) or set(page) != season5.PAGE_KEYS or
+                page["mission_id"] != mission or
+                page["official_page"] != season5.official_url(mission) or
+                not re.fullmatch(r"[a-f0-9]{64}", str(page["source_body_sha256"])) or
+                type(page["source_body_bytes"]) is not int or
+                not 10_000 <= page["source_body_bytes"] <= 3_000_000):
+            raise ValueError("Season 5 publisher page receipt invalid or misbound")
+        csv_path = season5.BASE / f"{mission}.csv"
+        bundle_path = season5.BASE / mission / "bundle.json"
+        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+        if hashlib.sha256(csv_raw).hexdigest() != page["observation_csv_sha256"]:
+            raise ValueError("Season 5 source CSV receipt digest mismatch")
+        rows = season5.parse_csv(csv_raw)
+        bundle, bundle_digest = _document(
+            root, bundle_path, season5.source_tools.serialized(season5.bundle(mission, rows)))
+        roster.validate(bundle, catalog)
+        if (len(rows) != expected_s5[mission] or
+                page["listed_slot_count"] != len(rows) or
+                bundle["listed_slot_count"] != len(rows) or
+                bundle["observation"]["primary_locator"] != page["official_page"]):
+            raise ValueError("Season 5 publisher CSV, source or bundle changed")
+        for idx, (season, episode, title) in enumerate(rows):
+            entries.append(_row(f"publisher:s5:{mission}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                title, f"{mission.upper()} S{season}E{episode}",
+                                season5_index["independence_group"], str(bundle_path),
+                                page["official_page"], ("Official publisher season-5 listing",)))
+            season5_count += 1
+        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+        sources[str(bundle_path)] = bundle_digest
+    if season5_count != 97:
+        raise ValueError(f"Season 5 publisher observation count changed from reviewed 97: {season5_count}")
 
     if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
             shorts_catalog.get("admission_effect") != "NONE" or

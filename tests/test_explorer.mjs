@@ -251,16 +251,16 @@ test('separate official film discovery remains unadmitted and strictly source-sc
 test('multimedia source-local directory is independently searchable, paged, and never admitted', async () => {
   const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
-  assert.equal(nodes.get('discovery-nav-count').textContent, '905');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,002');
   assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
-  assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 874/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 971/);
   assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
   assert.match(nodes.get('discovery-metrics').textContent, /Literary Works: 1/);
   assert.match(nodes.get('discovery-metrics').textContent, /Short-form releases: 15/);
   assert.match(nodes.get('discovery-metrics').textContent, /Audio containers: 1/);
   assert.match(nodes.get('discovery-list').textContent, /Data receipt: explorer\/research-leads\.json/);
   assert.equal(nodes.get('briefing-count').textContent, '0');
-  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 905 cards on load');
+  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 1,002 cards on load');
   nodes.get('discovery-list').children.at(-1).fire('click');
   assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
   assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
@@ -309,7 +309,7 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   const noDuplicate = await runWithIndex(catalog, 200, null, 404, {}, null, 404, duplicate, 200);
   assert.equal(noDuplicate.get('discovery-nav-count').textContent, '—');
   const absent = await runWithIndex(null, 404, null, 404, {}, null, 404, catalogData, 200);
-  assert.equal(absent.get('discovery-nav-count').textContent, '905', 'discovery does not depend on governed Mission index');
+  assert.equal(absent.get('discovery-nav-count').textContent, '1,002', 'discovery does not depend on governed Mission index');
   assert.equal(absent.get('mission-count').textContent, '—');
 });
 

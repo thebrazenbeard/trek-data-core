@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 874,
+    "EPISODE": 971,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 905,
+  "row_count": 1002,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -14161,6 +14161,1655 @@
     },
     {
       "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Redemption, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Darmok",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Ensign Ro",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Silicon Avatar",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Disaster",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Game",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Unification - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Unification - Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "A Matter of Time",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "New Ground",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Hero Worship",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Violations",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Masterpiece Society",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Conundrum",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Power Play",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Ethics",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Outcast",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Cause and Effect",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The First Duty",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Cost of Living",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Perfect Mate",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Imaginary Friend",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "I, Borg",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Next Phase",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "The Inner Light",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TNG S5E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:tng:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+      "title": "Time's Arrow - Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Apocalypse Rising",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "The Ship",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Looking for Par'mach in All the Wrong Places",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "...Nor The Battle To The Strong",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "The Assignment",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Trials and Tribble-ations",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Let He Who Is Without Sin...",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Things Past",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "The Ascent",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Rapture",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "The Darkness and the Light",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "The Begotten",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "For the Uniform",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "In Purgatory's Shadow",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "By Inferno's Light",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Doctor Bashir, I Presume",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "A Simple Investigation",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Business As Usual",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Ties of Blood and Water",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Ferengi Love Songs",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Soldiers of the Empire",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Children of Time",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Blaze of Glory",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Empok Nor",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "In the Cards",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DS9 S5E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ds9:025",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+      "title": "Call to Arms",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Night",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Drone",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Extreme Risk",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "In the Flesh",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Once Upon a Time",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Timeless",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Infinite Regress",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Nothing Human",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Thirty Days",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Counterpoint",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Latent Image",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Bride of Chaotica!",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Gravity",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Bliss",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Dark Frontier",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E17",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "The Disease",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E18",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:016",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Course: Oblivion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E19",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:017",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "The Fight",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E20",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:018",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Think Tank",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E21",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:019",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Juggernaut",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E22",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:020",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Someone to Watch Over Me",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E23",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:021",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Eleven Fifty-Nine",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E24",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:022",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Relativity",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E25",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:023",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Warhead",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "VOY S5E26",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:voy:024",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "title": "Equinox, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Red Directive",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Under the Twin Moons",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Jinaal",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Face The Strange",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Mirrors",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Whistlespeak",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Erigah",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Labyrinths",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Lagrange Point",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "DIS S5E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:dis:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/5/",
+      "title": "Life, Itself",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Dos Cerritos",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Shades of Green",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "The Best Exotic Nanite Hotel",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "A Farewell to Farms",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Starbase 80?!",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Of Gods and Angles",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Fully Dilated",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Upper Decks",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "Fissure Quest",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "LD S5E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Official publisher season-5 listing"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:s5:ld:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/5/",
+      "title": "The New Next Generation",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
       "candidate_kind": "SCRIPTED_SHORT",
       "context": "short-treks · S1E1",
       "coverage_effect": "NONE",
@@ -15057,6 +16706,50 @@
     {
       "path": "proposals/discovery/publisher-season4-20261102/voy/bundle.json",
       "sha256": "281d30ded53e76efbc6b4742df63f44e641f3e555a12756b11c2cccedf3bfe51"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/dis.csv",
+      "sha256": "da53f8a328ea0cc838f9f560b971846fe0d8bc58aeb478b724af25874e267419"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/dis/bundle.json",
+      "sha256": "db3761f3c25e1c17ab1095a87bb846bd91b60bf8402a24814947db8f07ed9dcb"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/ds9.csv",
+      "sha256": "dbb8d35ab01d42b53223a37516993e3266aaf22a39e658a180549d57d42eab88"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/ds9/bundle.json",
+      "sha256": "97b481f289b5df0728e82743bcc1094643a806404b47d96c881a1fad4f246a71"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/index.json",
+      "sha256": "7eec39af66a3240316c77da7e6d83fb2886dc5c327d61412e04e2d012ab26ca7"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/ld.csv",
+      "sha256": "500b9c1498c2fb493918d356f4c47ae31eba3c3554ac80ea48db356cb0be1d93"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/ld/bundle.json",
+      "sha256": "49c52ca05f91373cd146039df14cefb9bfba0ee839a68034ec77297df0e2fc28"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/tng.csv",
+      "sha256": "e3ef73cea98cc7f737715e72bb7f514b32963be21934e02b6a93b2bfbb431da7"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/tng/bundle.json",
+      "sha256": "968f48a0a623f05a5cac8971d2075050c08ccb347c60b8ff23e53f148477e992"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/voy.csv",
+      "sha256": "ac8babc95139f223f9de8fa15a821c95a3ee9b204bc035b8f8025b086e999d2a"
+    },
+    {
+      "path": "proposals/discovery/publisher-season5-20261102/voy/bundle.json",
+      "sha256": "20f407c8626d69bbe9e292c67ee743f9a2ee2affa06a43241a9effedf1df5d44"
     },
     {
       "path": "proposals/discovery/shorts-audio-20261102/records.json",

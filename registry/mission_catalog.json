@@ -1,0 +1,19 @@
+{
+  "catalog_version": "1.0.0",
+  "authority": "https://www.startrek.com/series-and-movies",
+  "admission_status": "DISPLAY_CATALOG_ONLY",
+  "missions": [
+    {"id": "tos", "title": "Star Trek: The Original Series", "focus": "Exploration and discoveries of the original Enterprise crew"},
+    {"id": "tas", "title": "Star Trek: The Animated Series", "focus": "Animated voyages of the original Enterprise crew"},
+    {"id": "tng", "title": "Star Trek: The Next Generation", "focus": "Enterprise-D exploration, diplomacy and scientific encounters"},
+    {"id": "ds9", "title": "Star Trek: Deep Space Nine", "focus": "Station-based exploration and the Dominion conflict"},
+    {"id": "voy", "title": "Star Trek: Voyager", "focus": "Voyager's journey through the Delta Quadrant"},
+    {"id": "ent", "title": "Star Trek: Enterprise", "focus": "Human deep-space exploration before the Federation"},
+    {"id": "dis", "title": "Star Trek: Discovery", "focus": "The Discovery crew across different eras"},
+    {"id": "pic", "title": "Star Trek: Picard", "focus": "Jean-Luc Picard's later life and relationships"},
+    {"id": "ld", "title": "Star Trek: Lower Decks", "focus": "Support-crew operations and second-contact assignments"},
+    {"id": "pro", "title": "Star Trek: Prodigy", "focus": "A young crew learning exploration and cooperation"},
+    {"id": "snw", "title": "Star Trek: Strange New Worlds", "focus": "Pike's Enterprise and its exploratory voyages"},
+    {"id": "sfa", "title": "Star Trek: Starfleet Academy", "focus": "Cadet training and Starfleet Academy life"}
+  ]
+}

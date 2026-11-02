@@ -1,0 +1,71 @@
+{
+  "briefings": [],
+  "build": {
+    "data_status": "MISSION_CATALOG_ONLY",
+    "projection_hash": null
+  },
+  "missions": [
+    {
+      "focus": "Station-based exploration and the Dominion conflict",
+      "id": "ds9",
+      "title": "Star Trek: Deep Space Nine"
+    },
+    {
+      "focus": "The Discovery crew across different eras",
+      "id": "dis",
+      "title": "Star Trek: Discovery"
+    },
+    {
+      "focus": "Human deep-space exploration before the Federation",
+      "id": "ent",
+      "title": "Star Trek: Enterprise"
+    },
+    {
+      "focus": "Support-crew operations and second-contact assignments",
+      "id": "ld",
+      "title": "Star Trek: Lower Decks"
+    },
+    {
+      "focus": "Jean-Luc Picard's later life and relationships",
+      "id": "pic",
+      "title": "Star Trek: Picard"
+    },
+    {
+      "focus": "A young crew learning exploration and cooperation",
+      "id": "pro",
+      "title": "Star Trek: Prodigy"
+    },
+    {
+      "focus": "Cadet training and Starfleet Academy life",
+      "id": "sfa",
+      "title": "Star Trek: Starfleet Academy"
+    },
+    {
+      "focus": "Pike's Enterprise and its exploratory voyages",
+      "id": "snw",
+      "title": "Star Trek: Strange New Worlds"
+    },
+    {
+      "focus": "Animated voyages of the original Enterprise crew",
+      "id": "tas",
+      "title": "Star Trek: The Animated Series"
+    },
+    {
+      "focus": "Enterprise-D exploration, diplomacy and scientific encounters",
+      "id": "tng",
+      "title": "Star Trek: The Next Generation"
+    },
+    {
+      "focus": "Exploration and discoveries of the original Enterprise crew",
+      "id": "tos",
+      "title": "Star Trek: The Original Series"
+    },
+    {
+      "focus": "Voyager's journey through the Delta Quadrant",
+      "id": "voy",
+      "title": "Star Trek: Voyager"
+    }
+  ],
+  "records": [],
+  "schema_version": "1.0.0"
+}

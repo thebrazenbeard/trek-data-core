@@ -1,0 +1,8 @@
+{
+  "source_url": "https://query.wikidata.org/sparql",
+  "license": "CC0-1.0",
+  "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+  "retrieved_at_epoch": 1793624650,
+  "snapshot_id": "WDQS-ENT-Q380519-SIMPLE-P179-20261102-LIMIT20-001",
+  "query_text": "PREFIX wd:   <http://www.wikidata.org/entity/>\nPREFIX wdt:  <http://www.wikidata.org/prop/direct/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT ?episode ?episodeLabel ?series WHERE {\n  VALUES ?series { wd:Q380519 }\n  ?episode wdt:P179 ?series ;\n           rdfs:label ?episodeLabel .\n  FILTER(LANG(?episodeLabel) = \"en\")\n}\nLIMIT 20\n"
+}

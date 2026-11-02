@@ -177,6 +177,8 @@ test('large briefing results can be reached with Show next', async () => {
   assert.equal(container.children.at(-1).tagName, 'button');
   container.children.at(-1).fire('click');
   assert.equal(container.children.length, 80, 'all 80 briefings become reachable');
+  assert.equal(container.children[72].focused, true, 'focus first newly shown briefing after Show next');
+  assert.equal(container.children[72].attributes.get('tabindex'), '-1', 'temporary reading target is programmatically focusable');
 });
 
 test('missing or incompatible index gives an honest no-data state', async () => {
@@ -278,4 +280,6 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);
   assert.match(html, /not admitted Mission Briefings or continuity facts/);
+  assert.match(html, /id="filters" role="search" aria-label="Search governed Mission index"/);
+  assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
 });

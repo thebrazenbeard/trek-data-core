@@ -67,6 +67,7 @@ input, select { width: 100%; min-height: 46px; border: 1px solid #4c7283; border
 input::placeholder { color: #8faab8; }
 button { min-height: 46px; border: 1px solid #77d9ce; border-radius: 7px; padding: 9px 14px; font: inherit; font-size: .86rem; font-weight: 740; background: #143c49; color: #d7fcf8; cursor: pointer; }
 button:hover { background: #1c5361; }
+button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity: .7; }
 .result-summary { color: var(--aqua); font-size: .89rem; margin: 17px 0 0; }
 .notice, .empty-state { border: 1px dashed #5e8593; border-radius: 10px; padding: 22px; color: #d1e4ec; background: #112737; }
 .notice { margin: 0 0 28px; border-style: solid; border-color: #9a774b; background: #2d251d; }

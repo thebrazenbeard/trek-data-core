@@ -1,0 +1,107 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "STARTREK-PRODIGY-S1B-20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Asylum"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Let Sleeping Borg Lie"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "All the World's a Stage"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Crossroads"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Masquerade"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Preludes"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ghost in the Machine"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Mindwalk"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Supernova, Part 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Supernova, Part 2"
+    }
+  ],
+  "listed_slot_count": 10,
+  "mission_id": "pro",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.startrek.com/series/star-trek-prodigy",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.startrek.com/news/star-trek-prodigy-season-1-episodes-11-20-release",
+    "publisher": "StarTrek.com",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

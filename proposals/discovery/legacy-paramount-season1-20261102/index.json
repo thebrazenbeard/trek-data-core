@@ -1,0 +1,53 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 30,
+      "mission_id": "tos",
+      "observation_csv_sha256": "b0055cd053941bc0f822ebe2738286e44e40ddb301134c6c6bcf448f42fe7859",
+      "official_page": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+      "source_body_bytes": 319956,
+      "source_body_sha256": "4e1252ee0573d3fc12a771bc9f88a1840eaa5c05ea254b2ab85901b312e33fc1"
+    },
+    {
+      "listed_slot_count": 25,
+      "mission_id": "tng",
+      "observation_csv_sha256": "2e8fef9517a27e8a3680614ae5834c23c9345621cffb7ad7115bbfae260ae9ae",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+      "source_body_bytes": 316209,
+      "source_body_sha256": "23373fc9b7844268802ccab06a602c746303c312fed990d837ff5502510bd8b6"
+    },
+    {
+      "listed_slot_count": 19,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "e63fe2c9df3198d1dfd9b173b8ec310b1b2bd159585b6bd3b47d1428e76ad14b",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+      "source_body_bytes": 298872,
+      "source_body_sha256": "598fc000921ca586356cd9e6562901292a994e9358dc6c9974d08b9d7686e81e"
+    },
+    {
+      "listed_slot_count": 15,
+      "mission_id": "voy",
+      "observation_csv_sha256": "3fc6440aa77bd43b249b37008a34834239200b7a29ce96c19c2b898e931a9909",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+      "source_body_bytes": 291493,
+      "source_body_sha256": "639c05f5c3031af720c69521c2c2c6a0a17cef761fae5e1ed1a095b2466c2a63"
+    },
+    {
+      "listed_slot_count": 25,
+      "mission_id": "ent",
+      "observation_csv_sha256": "11cfee11fefb8e0378dc07227bbe57e9f903d8be08a0dce973c7c4a73dfed391",
+      "official_page": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+      "source_body_bytes": 311044,
+      "source_body_sha256": "8c2141d5cd42ca3730276b90d8e1737959ccc1ba17bd6ccfe5478feac74cc59c"
+    }
+  ]
+}

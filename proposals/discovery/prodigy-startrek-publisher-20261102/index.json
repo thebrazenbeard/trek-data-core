@@ -1,0 +1,42 @@
+{
+  "acknowledged_gaps": [
+    "Season 1 episodes 1–10 lack a numbered, complete publisher title listing in this batch; no absence or completeness claim is made."
+  ],
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "StarTrek.com",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 10,
+      "observation_csv_sha256": "0eaf68b297b0a774ab5a54a1ae79401d73b569c31fcd20f23c3eeb69b56a6e27",
+      "observed_episode_range": [
+        11,
+        20
+      ],
+      "official_page": "https://www.startrek.com/news/star-trek-prodigy-season-1-episodes-11-20-release",
+      "season": 1,
+      "source_body_bytes": 1244213,
+      "source_body_sha256": "a2daa5e3c88061efdb3fccbd13a3c97bf0f6571c9f28222c7cb623acce71b5d1",
+      "source_id": "s1b"
+    },
+    {
+      "listed_slot_count": 20,
+      "observation_csv_sha256": "ceef5c8760b1f9089e1f034e48f62f062215a7e36549340c8b0134e000e1eb19",
+      "observed_episode_range": [
+        1,
+        20
+      ],
+      "official_page": "https://www.startrek.com/news/star-trek-prodigy-season-2-now-available",
+      "season": 2,
+      "source_body_bytes": 1234690,
+      "source_body_sha256": "453aeb5dc7f69ff005f3da70f41a43d4755f4157253e0bba3f5d76d54a57b12a",
+      "source_id": "s2"
+    }
+  ]
+}

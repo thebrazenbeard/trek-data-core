@@ -1,0 +1,227 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S1-20261102-TNG",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Encounter At Farpoint Part 1 and 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Naked Now"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Code of Honor"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Last Outpost"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Where No One Has Gone Before"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Lonely Among Us"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Justice"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Battle"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Hide and \"Q\""
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Haven"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Big Goodbye"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Datalore"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Angel One"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "11001001"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Too Short a Season"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "When the Bough Breaks"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Home Soil"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Coming of Age"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Heart of Glory"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Arsenal of Freedom"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Symbiosis"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Skin of Evil"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "We'll Always Have Paris"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Conspiracy"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Neutral Zone"
+    }
+  ],
+  "listed_slot_count": 25,
+  "mission_id": "tng",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

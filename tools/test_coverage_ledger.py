@@ -57,6 +57,37 @@ def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
 class CoverageLedgerTests(unittest.TestCase):
+ def test_scanner_rejects_symlinked_coverage_file_and_root(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    events=coverage.ROOT/'coverage'/'events';events.mkdir(parents=True)
+    (events/'original.jsonl').write_text('{}\n',encoding='utf-8')
+    (events/'alias.jsonl').symlink_to(events/'original.jsonl')
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.scan_typed_records()
+    (events/'alias.jsonl').unlink()
+    outside=Path(tmp)/'outside';outside.mkdir()
+    (coverage.ROOT/'coverage').rename(outside/'coverage-original')
+    (coverage.ROOT/'coverage').symlink_to(outside/'coverage-original',target_is_directory=True)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.scan_typed_records()
+   finally:coverage.ROOT=old_root
+
+ def test_public_report_rejects_symlinked_accepted_event_origin(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    registry=coverage.ROOT/'registry'/'authoritative';registry.mkdir(parents=True)
+    (registry/'w1.json').write_text(json.dumps(WORK),encoding='utf-8')
+    events=coverage.ROOT/'coverage'/'events';events.mkdir(parents=True)
+    discovered=event('via-alias','DISCOVERED',role='LIBRARIAN')
+    direct=events/'direct.jsonl';direct.write_text(json.dumps(discovered)+'\n',encoding='utf-8')
+    alias=events/'alias.jsonl';alias.symlink_to(direct)
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     coverage.coverage_report([WORK,discovered],record_paths={'via-alias':alias})
+   finally:coverage.ROOT=old_root
+
  def test_accepted_discovered_cannot_claim_a_different_work_in_governed_scope(self):
   discovered=event('forged-scope','DISCOVERED',role='LIBRARIAN',scope={'work_id':'w-different','source_id':None})
   with self.assertRaisesRegex(ValueError,'scope.*Work|Work.*scope'):

@@ -41,22 +41,36 @@ def read_jsonl(path):
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
   rows.append(row)
  return rows
+
+def safe_record_files(base):
+ """List governed input files without following links to other authority roots."""
+ base=Path(base)
+ if not base.exists() and not base.is_symlink():return [],[]
+ if base.is_symlink() or not base.is_dir():raise ValueError(f'{base}: symlink or non-directory governed root')
+ entries=sorted(base.rglob('*'))
+ for item in entries:
+  if item.is_symlink():raise ValueError(f'{item}: symlink in governed input root')
+  if not item.resolve().is_relative_to(base.resolve()):raise ValueError(f'{item}: governed input escapes its root')
+ return ([p for p in entries if p.is_file() and p.suffix=='.json'],
+         [p for p in entries if p.is_file() and p.suffix=='.jsonl'])
+
 def scan_typed_records(with_paths=False):
  records=[];paths={}
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'coverage',ROOT/'registry'):
-  if not base.exists():continue
-  for path in sorted(base.rglob('*.jsonl')):
+  json_files,jsonl_files=safe_record_files(base)
+  for path in jsonl_files:
    for row in read_jsonl(path):
     records.append(row)
     if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
   if base.name=='coverage':
-   for path in sorted(base.rglob('*.json')):
+   for path in json_files:
     row=strict_json(path.read_text(encoding='utf-8'))
     if isinstance(row,dict) and row.get('record_type'):
      records.append(row)
      if row.get('record_type')=='coverage_event' and row.get('coverage_event_id'):paths[row['coverage_event_id']]=path
  for base in (ROOT/'research',ROOT/'external',ROOT/'migrations',ROOT/'registry'/'authoritative'):
-  for path in sorted(base.rglob('*.json')):
+  json_files,_=safe_record_files(base)
+  for path in json_files:
    row=strict_json(path.read_text(encoding='utf-8'))
    if not isinstance(row,dict) or not row.get('record_type'):
     raise ValueError(f'{path}: governed JSON must be a typed object')
@@ -190,14 +204,18 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
    origin=(record_paths or {}).get(eid)
    if origin is None:errors.append(f'{eid}: unverified accepted event origin')
    else:
-    try:Path(origin).resolve().relative_to((ROOT/'coverage').resolve())
+    path=Path(origin);coverage_root=ROOT/'coverage'
+    try:
+     path.absolute().relative_to(coverage_root.absolute())
+     path.resolve().relative_to(coverage_root.resolve())
     except ValueError:errors.append(f'{eid}: accepted coverage event outside authoritative coverage root')
     else:
-     path=Path(origin)
-     if not path.is_file():errors.append(f'{eid}: accepted coverage event origin is not a file')
+     if any(item.is_symlink() for item in (path,*path.parents) if item==coverage_root or item.is_relative_to(coverage_root)):
+      errors.append(f'{eid}: symlinked accepted coverage event origin is forbidden')
+     elif not path.is_file():errors.append(f'{eid}: accepted coverage event origin is not a file')
      else:
       try:
-       located=read_jsonl(path) if path.suffix=='.jsonl' else [json.loads(path.read_text(encoding='utf-8'))] if path.suffix=='.json' else []
+       located=read_jsonl(path) if path.suffix=='.jsonl' else [strict_json(path.read_text(encoding='utf-8'))] if path.suffix=='.json' else []
        if canonical(row) not in {canonical(v) for v in located}:errors.append(f'{eid}: accepted coverage event does not match its authoritative origin bytes')
       except (ValueError,OSError) as exc:errors.append(f'{eid}: coverage origin unreadable: {exc}')
   prereqs=row.get('prerequisite_event_ids',[])

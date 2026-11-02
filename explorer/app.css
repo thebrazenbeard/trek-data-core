@@ -92,8 +92,34 @@ button:hover { background: #1c5361; }
 .footer { border-top: 1px solid #345364; padding: 28px max(28px, calc((100vw - 1180px) / 2)) 38px; color: #aac1cb; font-size: .82rem; }
 .footer p { max-width: 1050px; margin: 0 0 13px; }
 
+/* Research metadata stays outside the governed Mission Briefing/record views. */
+.research-leads { border: 2px solid #a88553; border-top: 4px solid var(--amber); border-radius: 12px; background: #0b1d2b; padding: 26px; }
+.research-header { display: flex; align-items: start; justify-content: space-between; gap: 25px; }
+.research-header > div:first-child { min-width: 0; }
+.research-eyebrow { color: var(--amber); }
+.research-intro { color: var(--muted); max-width: 72ch; margin: 12px 0 0; }
+.research-intro strong { color: var(--text); }
+.research-counter { flex: 0 0 160px; border: 1px solid #a88553; background: #201f20; border-radius: 9px; padding: 12px 15px; text-align: right; }
+.research-counter span { display: block; color: var(--amber); text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; }
+.research-counter strong { display: block; color: var(--text); font-size: 2.1rem; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.research-state { color: var(--amber); margin: 19px 0 0; }
+.research-filters { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr) auto; align-items: end; gap: 13px; margin: 18px 0 0; }
+.research-result-summary { margin: 14px 0 20px; color: var(--amber); }
+.research-grid .card { border-color: #80684a; background: #152634; }
+.research-grid .card:hover { border-color: var(--amber); }
+.research-grid .card-header { flex-wrap: wrap; }
+.research-grid .kicker { color: var(--amber); }
+.research-grid .badge { border-color: var(--amber); color: var(--amber); white-space: normal; }
+.research-grid .card a { overflow-wrap: anywhere; }
+.research-grid .card details { margin-top: 9px; }
+.research-grid .card summary { color: var(--amber); cursor: pointer; font-size: .86rem; }
+.research-grid .card .detail-list { border-top-color: #655740; }
+.research-grid .card .detail-list dd { overflow-wrap: anywhere; }
+.research-grid .load-more { grid-column: 1/-1; justify-self: start; }
+.research-empty { border-color: #a88553; }
+
 [hidden] { display: none !important; }
 @media (max-width: 1130px) { #filters { grid-template-columns: repeat(3, minmax(0, 1fr)); } .search-field { grid-column: span 2; }.filter-action { grid-column: auto; } }
-@media (max-width: 760px) { .masthead { min-height: 0; padding-top: 88px; } .celestial-chart { width: 74vw; right: -44%; opacity: .4; } .readout { grid-template-columns: 1fr; padding: 22px; } .section-heading { display: block; }.section-heading > p { margin-top: 8px; } #filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } .search-field { grid-column: span 2; } .filter-action { align-self: end; } }
-@media (max-width: 460px) { .page-content { padding: 25px 16px 55px; }.masthead { padding-right: 20px; padding-left: 20px; }.site-mark { left: 20px; }.stat-grid { grid-template-columns: 1fr 1fr 1fr; }.stat { padding: 12px 8px; }.stat dt { font-size: .64rem; }.stat dd { font-size: 1.35rem; }.search-panel { padding: 18px; } #filters { grid-template-columns: 1fr; } .search-field { grid-column: auto; } }
+@media (max-width: 760px) { .masthead { min-height: 0; padding-top: 88px; } .celestial-chart { width: 74vw; right: -44%; opacity: .4; } .readout { grid-template-columns: 1fr; padding: 22px; } .section-heading { display: block; }.section-heading > p { margin-top: 8px; } #filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } .search-field { grid-column: span 2; } .filter-action { align-self: end; } .research-header { display: block; }.research-counter { max-width: 200px; text-align: left; margin-top: 19px; }.research-filters { grid-template-columns: repeat(2, minmax(0,1fr)); }.research-search-field { grid-column: span 2; } }
+@media (max-width: 460px) { .page-content { padding: 25px 16px 55px; }.masthead { padding-right: 20px; padding-left: 20px; }.site-mark { left: 20px; }.stat-grid { grid-template-columns: 1fr 1fr 1fr; }.stat { padding: 12px 8px; }.stat dt { font-size: .64rem; }.stat dd { font-size: 1.35rem; }.search-panel { padding: 18px; } #filters { grid-template-columns: 1fr; } .search-field { grid-column: auto; } .research-leads { padding: 18px; }.research-filters { grid-template-columns: 1fr; }.research-search-field { grid-column: auto; }.research-counter { max-width: 100%; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

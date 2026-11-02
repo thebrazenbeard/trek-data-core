@@ -21,6 +21,8 @@
   };
   const PAGE_SIZE = 72;
   const visibleLimits = { missions: PAGE_SIZE, briefings: PAGE_SIZE, records: PAGE_SIZE };
+  const RESEARCH_PAGE_SIZE = 30;
+  let visibleResearchLimit = RESEARCH_PAGE_SIZE;
 
   const controls = {
     search: byId('search-input'),
@@ -30,6 +32,11 @@
     status: byId('status-filter')
   };
   const state = { missions: [], briefings: [], records: [], dataStatus: 'NOT_BUILT', projectionHash: null };
+  const researchControls = {
+    search: byId('research-query'),
+    mission: byId('research-mission')
+  };
+  const researchState = { leads: [], available: false };
 
   function safeHref(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
@@ -169,6 +176,149 @@
     return card;
   }
 
+  function makeResearchCard(row) {
+    const card = el('article', 'card research-card');
+    const top = el('div', 'card-header');
+    top.append(el('span', 'kicker', 'External episode metadata'));
+    const badge = el('span', 'badge proposed', 'Candidate · not verified');
+    badge.setAttribute('aria-label', 'Unverified candidate; not an admitted Mission Briefing');
+    top.append(badge);
+    card.append(top, el('h3', null, row.episode_label));
+    const mission = state.missions.find((item) => item.id === row.mission_id);
+    card.append(el('p', null, mission?.title || row.mission_id));
+    const detail = el('dl', 'detail-list');
+    appendDetail(detail, 'Wikidata episode ID', row.episode_qid);
+    appendDetail(detail, 'Retrieval snapshot', row.snapshot_id);
+    card.append(detail);
+    const link = el('a', null, 'Open Wikidata item');
+    // The QID was validated against ^Q[1-9][0-9]*$ before this URL is assembled.
+    link.href = 'https://www.wikidata.org/wiki/' + row.episode_qid;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    card.append(link);
+    const provenance = el('details');
+    provenance.append(el('summary', null, 'View recorded provenance hashes'));
+    const hashes = el('dl', 'detail-list');
+    appendDetail(hashes, 'Query SHA-256', row.query_sha256);
+    appendDetail(hashes, 'Response SHA-256', row.response_sha256);
+    provenance.append(hashes);
+    card.append(provenance);
+    return card;
+  }
+
+  function setResearchAvailability(available, message) {
+    researchState.available = available;
+    if (!available) researchState.leads = [];
+    researchControls.search.disabled = !available;
+    researchControls.mission.disabled = !available;
+    byId('research-reset').disabled = !available;
+    byId('research-count').textContent = available ? researchState.leads.length.toLocaleString() : '—';
+    byId('research-state').textContent = message;
+    renderResearch();
+  }
+
+  function renderResearch() {
+    const container = byId('research-list');
+    container.replaceChildren();
+    const empty = byId('research-empty');
+    if (!researchState.available) {
+      empty.hidden = false;
+      empty.textContent = 'Research Leads are not available in this Explorer. The Mission catalog above remains separate.';
+      byId('research-summary').textContent = 'Research dataset unavailable.';
+      return;
+    }
+    const search = normalize(researchControls.search.value.trim());
+    const mission = researchControls.mission.value;
+    const missionNames = new Map(state.missions.map((item) => [item.id, item.title]));
+    const matching = researchState.leads.filter((row) => {
+      if (mission !== 'all' && row.mission_id !== mission) return false;
+      if (!search) return true;
+      const haystack = normalize([row.episode_label, row.episode_qid, row.mission_id, missionNames.get(row.mission_id)].join(' '));
+      return search.split(/\s+/).every((term) => haystack.includes(term));
+    });
+    const count = Math.min(matching.length, visibleResearchLimit);
+    const fragment = document.createDocumentFragment();
+    for (const row of matching.slice(0, count)) fragment.append(makeResearchCard(row));
+    container.append(fragment);
+    if (count < matching.length) {
+      const more = el('button', 'load-more', `Show next ${Math.min(RESEARCH_PAGE_SIZE, matching.length - count)} research leads`);
+      more.type = 'button';
+      more.addEventListener('click', () => {
+        const firstNewCard = count;
+        visibleResearchLimit += RESEARCH_PAGE_SIZE;
+        renderResearch();
+        // The prior button is removed on re-render; focus the first newly added card.
+        const target = byId('research-list').children[firstNewCard];
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus();
+        }
+      });
+      container.append(more);
+    }
+    empty.hidden = matching.length !== 0;
+    empty.textContent = 'No unverified Research Leads match these filters. Clear lead filters to see all published candidates.';
+    byId('research-summary').textContent = `${matching.length.toLocaleString()} matching unverified ${matching.length === 1 ? 'lead' : 'leads'}` +
+      (count < matching.length ? ` · Showing ${count.toLocaleString()} (use Show next research leads to continue)` : '') + '.';
+  }
+
+  function acceptResearchIndex(data) {
+    const rootKeys = ['coverage_effect', 'data_status', 'lead_count', 'leads', 'sampled_missions_count', 'schema_version', 'source_policy'];
+    const rowKeys = ['episode_label', 'episode_qid', 'mission_id', 'query_sha256', 'response_sha256', 'snapshot_id', 'verification_status'];
+    const exactKeys = (value, expected) => value && typeof value === 'object' && !Array.isArray(value) &&
+      Object.keys(value).sort().join('|') === expected.slice().sort().join('|');
+    const isHash = (value) => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'CANDIDATE_DISCOVERY_ONLY' ||
+        data.source_policy !== 'EXTERNAL_METADATA_ONLY' || data.coverage_effect !== 'NONE' ||
+        !Array.isArray(data.leads) || data.leads.length > 10000 ||
+        !Number.isInteger(data.lead_count) || data.lead_count !== data.leads.length ||
+        !Number.isInteger(data.sampled_missions_count)) {
+      throw new Error('Research data does not have the candidate-only schema and boundaries.');
+    }
+    const missions = new Set(state.missions.map((row) => row.id));
+    const sampled = new Set(), qids = new Set(), leads = [];
+    for (const row of data.leads) {
+      if (!exactKeys(row, rowKeys) || !missions.has(row.mission_id) ||
+          typeof row.episode_qid !== 'string' || !/^Q[1-9][0-9]{0,19}$/.test(row.episode_qid) ||
+          qids.has(row.episode_qid) || typeof row.episode_label !== 'string' ||
+          row.episode_label !== row.episode_label.trim() ||
+          !row.episode_label.length || row.episode_label.length > 200 ||
+          /[\u0000-\u001f\u007f]/.test(row.episode_label) ||
+          typeof row.snapshot_id !== 'string' || !/^[A-Za-z0-9_.:-]{1,120}$/.test(row.snapshot_id) ||
+          !isHash(row.query_sha256) || !isHash(row.response_sha256) ||
+          row.verification_status !== 'UNVERIFIED_METADATA') {
+        throw new Error('Research data contains an invalid, duplicate, or unexpectedly admitted lead.');
+      }
+      qids.add(row.episode_qid);
+      sampled.add(row.mission_id);
+      leads.push({ ...row });
+    }
+    if (sampled.size !== data.sampled_missions_count) {
+      throw new Error('Research lead Mission totals do not match their declared count.');
+    }
+    researchState.leads = leads;
+    visibleResearchLimit = RESEARCH_PAGE_SIZE;
+    setSelectOptions(researchControls.mission,
+      [...sampled].map((id) => [id, state.missions.find((item) => item.id === id).title]).sort((a, b) => a[1].localeCompare(b[1])),
+      'All Missions');
+    setResearchAvailability(true, 'External candidate metadata loaded. These leads have not been admitted as Mission Briefings.');
+  }
+
+  async function loadResearchIndex() {
+    try {
+      const response = await fetch('./research-leads.json', { cache: 'no-store' });
+      if (response.status === 404) {
+        setResearchAvailability(false, 'The separate Research Leads index has not been published yet.');
+        return;
+      }
+      if (!response.ok) throw new Error(`Research request returned HTTP ${response.status}.`);
+      acceptResearchIndex(await response.json());
+    } catch (error) {
+      setResearchAvailability(false, `Could not load a valid Research Leads file. ${error.message || 'Check research-leads.json.'}`);
+    }
+  }
+
   function showList(sectionId, listId, emptyId, items, makeCard, enabled) {
     const section = byId(sectionId);
     section.hidden = !enabled;
@@ -281,6 +431,7 @@
     notice.hidden = false;
     refreshOptions();
     render();
+    setResearchAvailability(false, 'Research Leads require a valid Mission catalog.');
   }
 
   async function loadIndex() {
@@ -292,6 +443,7 @@
       }
       if (!response.ok) throw new Error(`Index request returned HTTP ${response.status}.`);
       acceptIndex(await response.json());
+      await loadResearchIndex();
     } catch (error) {
       showUnavailable(`Could not load a valid local index. ${error.message || 'Check index.json.'} Serve the explorer over HTTP rather than opening the file directly.`);
     }
@@ -305,5 +457,11 @@
   filters.addEventListener('change', () => { resetPageCounts(); render(); });
   filters.addEventListener('submit', (event) => { event.preventDefault(); render(); });
   filters.addEventListener('reset', () => { resetPageCounts(); window.requestAnimationFrame(render); });
+  const researchFilters = byId('research-filters');
+  researchFilters.addEventListener('input', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
+  researchFilters.addEventListener('change', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; renderResearch(); });
+  researchFilters.addEventListener('submit', (event) => { event.preventDefault(); renderResearch(); });
+  researchFilters.addEventListener('reset', () => { visibleResearchLimit = RESEARCH_PAGE_SIZE; window.requestAnimationFrame(renderResearch); });
+  setResearchAvailability(false, 'Checking for a separate research-leads index…');
   loadIndex();
 })();

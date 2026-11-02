@@ -50,7 +50,7 @@
     <section class="search-panel" aria-labelledby="search-heading">
       <div class="section-heading compact">
         <div><p class="eyebrow">Navigation / Local index</p><h2 id="search-heading">Search the archive</h2></div>
-        <p>Search titles, descriptions, identifiers, tags, and source references.</p>
+        <p>Search titles, identifiers, tags, and source references in the governed archive. <a href="#research-leads">Search unverified Research Leads separately</a>.</p>
       </div>
       <form id="filters" role="search" autocomplete="off">
         <div class="field search-field">
@@ -102,10 +102,36 @@
       <div id="record-list" class="record-grid"></div>
       <p id="record-empty" class="empty-state" hidden>No continuity records are available for these filters.</p>
     </section>
+
+    <section id="research-leads" class="collection research-leads" aria-labelledby="research-heading">
+      <div class="research-header">
+        <div>
+          <p class="eyebrow research-eyebrow">External catalog / Unverified metadata</p>
+          <h2 id="research-heading">Research Leads</h2>
+          <p class="research-intro">Episode titles found in external catalogs, awaiting independent verification. These are <strong>not admitted Mission Briefings or continuity facts</strong>. Samples are incomplete and must not be used as episode counts.</p>
+        </div>
+        <div class="research-counter" aria-label="Unverified research lead count"><span>Unverified leads</span><strong id="research-count">—</strong></div>
+      </div>
+      <p id="research-state" class="research-state" role="status" aria-live="polite">Checking for a separate research-leads index…</p>
+      <form id="research-filters" class="research-filters" role="search" aria-label="Search unverified research leads" autocomplete="off">
+        <div class="field research-search-field">
+          <label for="research-query">Search research leads</label>
+          <input id="research-query" name="research-q" type="search" placeholder="Episode title or Wikidata ID" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="research-mission">Mission (series)</label>
+          <select id="research-mission" name="research-mission"><option value="all">All Missions</option></select>
+        </div>
+        <div class="filter-action"><button type="reset" id="research-reset">Clear lead filters</button></div>
+      </form>
+      <p id="research-summary" class="result-summary research-result-summary" aria-live="polite" aria-atomic="true">Waiting for research data.</p>
+      <div id="research-list" class="card-grid research-grid"></div>
+      <p id="research-empty" class="empty-state research-empty" hidden>No research leads match these filters.</p>
+    </section>
   </main>
 
   <footer class="footer">
-    <p><strong>Research boundary:</strong> A catalog entry is not evidence of a source being read. A proposal, fixture, or unresolved assertion is not accepted franchise canon.</p>
+    <p><strong>Research boundary:</strong> A catalog entry is not evidence of a source being read. Research Leads, proposals, fixtures, and unresolved assertions are not accepted franchise canon.</p>
     <p>Unofficial, independent Star Trek research. Not affiliated with or endorsed by the franchise rights holders. <a href="https://github.com/thebrazenbeard/trek-data-core/blob/main/LICENSE">Repository license</a> · <a href="https://github.com/thebrazenbeard/trek-data-core/blob/main/TREK_RESEARCH_METHOD.md">Research method</a></p>
   </footer>
 </body>

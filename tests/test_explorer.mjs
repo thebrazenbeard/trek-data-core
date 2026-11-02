@@ -7,7 +7,9 @@ const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
-  'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading'];
+  'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
+  'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
+  'research-state', 'research-list', 'research-empty', 'research-summary'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -19,6 +21,7 @@ class FakeNode {
     this.value = '';
     this.hidden = false;
     this.className = '';
+    this.focused = false;
   }
 
   set textContent(value) { this._text = String(value); this.children = []; }
@@ -41,7 +44,7 @@ class FakeNode {
   }
   fire(type, event) { for (const listener of this.handlers.get(type) || []) listener(event); }
   scrollIntoView() {}
-  focus() {}
+  focus() { this.focused = true; }
 }
 
 function traverse(node, predicate) {
@@ -50,12 +53,13 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
   nodes.get('kind-filter').value = 'all';
   nodes.get('status-filter').value = 'all';
+  nodes.get('research-mission').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -69,9 +73,10 @@ async function runWithIndex(index, status = 200) {
     createDocumentFragment: () => new FakeNode('#fragment')
   };
   const fetch = async (path, opts) => {
-    assert.equal(path, './index.json');
     assert.equal(opts.cache, 'no-store');
-    return { status, ok: status >= 200 && status < 300, json: async () => index };
+    if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
+    if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
+    assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(SCRIPT, {
     document, fetch, Option: OptionNode, URL, location: { origin: 'https://example.test' },
@@ -80,6 +85,26 @@ async function runWithIndex(index, status = 200) {
   await new Promise((resolve) => setImmediate(resolve));
   return nodes;
 }
+
+function candidateIndex(count = 3) {
+  return {
+    schema_version: '1.0.0', data_status: 'CANDIDATE_DISCOVERY_ONLY',
+    source_policy: 'EXTERNAL_METADATA_ONLY', coverage_effect: 'NONE',
+    lead_count: count, sampled_missions_count: count ? 1 : 0,
+    leads: Array.from({ length: count }, (_, i) => ({
+      mission_id: 'tng', episode_qid: `Q${i + 1}`, episode_label: i === 1 ? 'The Neutral Zone' : `Episode ${i + 1}`,
+      snapshot_id: 'WDQS-TNG-Q16290-20261102-10ROW-001',
+      query_sha256: 'a'.repeat(64), response_sha256: 'b'.repeat(64),
+      verification_status: 'UNVERIFIED_METADATA'
+    }))
+  };
+}
+
+const catalog = {
+  schema_version: '1.0.0', build: { data_status: 'MISSION_CATALOG_ONLY', projection_hash: null },
+  missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
+  briefings: [], records: []
+};
 
 test('catalog-only payload never admits injected briefings or records', async () => {
   const nodes = await runWithIndex({
@@ -167,4 +192,90 @@ test('missing or incompatible index gives an honest no-data state', async () => 
   });
   assert.equal(forged.get('record-count').textContent, '0');
   assert.match(forged.get('notice').textContent, /verified projection hash/);
+});
+
+test('Research Leads load separately from admitted Mission Briefings and stay searchable', async () => {
+  const nodes = await runWithIndex(catalog, 200, candidateIndex(3), 200);
+  assert.equal(nodes.get('mission-count').textContent, '2');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+  assert.equal(nodes.get('record-count').textContent, '0');
+  assert.equal(nodes.get('research-count').textContent, '3');
+  assert.equal(nodes.get('research-list').children.length, 3);
+  assert.match(nodes.get('research-list').textContent, /Candidate · not verified/);
+  assert.match(nodes.get('research-state').textContent, /not been admitted/);
+  const links = traverse(nodes.get('research-list'), (node) => node.tagName === 'a');
+  assert.equal(links[1].href, 'https://www.wikidata.org/wiki/Q2');
+  assert.equal(links[1].rel, 'noopener noreferrer');
+
+  nodes.get('research-query').value = 'neutral zone';
+  nodes.get('research-filters').fire('input');
+  assert.equal(nodes.get('research-list').children.length, 1);
+  assert.match(nodes.get('research-summary').textContent, /1 matching unverified lead/);
+  assert.equal(nodes.get('research-count').textContent, '3', 'filter must not change dataset count');
+  nodes.get('research-query').value = 'Q3';
+  nodes.get('research-filters').fire('input');
+  assert.equal(nodes.get('research-list').children.length, 1, 'QID search succeeds');
+  nodes.get('research-query').value = '';
+  nodes.get('research-mission').value = 'voy';
+  nodes.get('research-filters').fire('change');
+  assert.equal(nodes.get('research-list').children.length, 0, 'a distinct Mission filter cannot relabel TNG leads');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+
+  const event = { prevented: false, preventDefault() { this.prevented = true; } };
+  nodes.get('research-filters').fire('submit', event);
+  assert.equal(event.prevented, true, 'Enter must not reload research search');
+});
+
+test('long Research Leads lists paginate and restore keyboard focus', async () => {
+  const nodes = await runWithIndex(catalog, 200, candidateIndex(190), 200);
+  const list = nodes.get('research-list');
+  assert.equal(list.children.length, 31, 'first 30 cards plus load-more control');
+  list.children.at(-1).fire('click');
+  assert.equal(list.children.length, 61);
+  assert.equal(list.children[30].focused, true, 'focus first newly rendered candidate card');
+  assert.equal(list.children[30].attributes.get('tabindex'), '-1');
+  assert.match(nodes.get('research-summary').textContent, /Showing 60/);
+  for (let remaining = 130; remaining > 0; remaining -= 30) list.children.at(-1).fire('click');
+  assert.equal(list.children.length, 190, 'all candidates reachable');
+});
+
+test('malformed or injected Research Leads fail closed without affecting canonical index', async () => {
+  const cases = [
+    (p) => { p.data_status = 'GOVERNED_PROJECTION'; },
+    (p) => { p.leads[0].canonical_work_id = 'unapproved-work'; },
+    (p) => { p.leads[0].episode_qid = 'javascript:alert(1)'; },
+    (p) => { p.leads[0].response_sha256 = 'unverified'; },
+    (p) => { p.leads[0].mission_id = 'not-a-known-mission'; },
+    (p) => { p.leads[1].episode_qid = p.leads[0].episode_qid; },
+    (p) => { p.lead_count = 9999; },
+    (p) => { p.leads[0].episode_label = '<script>'.repeat(40); }
+  ];
+  for (const mutate of cases) {
+    const payload = candidateIndex();
+    mutate(payload);
+    const nodes = await runWithIndex(catalog, 200, payload, 200);
+    assert.equal(nodes.get('research-count').textContent, '—');
+    assert.equal(nodes.get('research-list').children.length, 0);
+    assert.match(nodes.get('research-state').textContent, /Could not load/);
+    assert.equal(nodes.get('briefing-count').textContent, '0');
+    assert.equal(nodes.get('mission-count').textContent, '2');
+    assert.equal(nodes.get('research-query').disabled, true);
+  }
+});
+
+test('missing Research Leads index is explained without claiming a zero dataset', async () => {
+  const nodes = await runWithIndex(catalog);
+  assert.equal(nodes.get('research-count').textContent, '—');
+  assert.match(nodes.get('research-state').textContent, /has not been published yet/);
+  assert.equal(nodes.get('research-query').disabled, true);
+  assert.equal(nodes.get('mission-count').textContent, '2');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+});
+
+test('HTML exposes the separate research search and status elements', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="research-leads"/);
+  assert.match(html, /id="research-filters"/);
+  assert.match(html, /id="research-state"/);
+  assert.match(html, /not admitted Mission Briefings or continuity facts/);
 });

@@ -1,5 +1,6 @@
 """Source-only safety checks for the public Pages artifact boundary."""
 
+import hashlib
 import os
 import re
 import subprocess
@@ -46,6 +47,13 @@ def workflow_step(name: str) -> str:
 
 
 class PagesArtifactScopeTests(unittest.TestCase):
+    def test_browser_assets_use_exact_content_hash_cache_versions(self):
+        """A stale browser cache must not pair old JS/CSS with a new index."""
+        html = (ROOT / "explorer" / "index.html").read_text(encoding="utf-8")
+        for name in ("app.js", "app.css", "trek-data-core-hero.jpg"):
+            digest = hashlib.sha256((ROOT / "explorer" / name).read_bytes()).hexdigest()
+            self.assertIn(f'./{name}?v={digest}', html, name)
+
     def test_artifact_is_only_the_explorer_directory(self):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("path: explorer", text)

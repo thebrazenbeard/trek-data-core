@@ -1,0 +1,53 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 24,
+      "mission_id": "tos",
+      "observation_csv_sha256": "76b3670661d6b1bfb0f2c5e30e16751061f2706d2cdcc8035bbcc2580db1e94c",
+      "official_page": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "source_body_bytes": 304541,
+      "source_body_sha256": "26abc33c4bc42e3f48462a2263a13ece0efb18c229c4e2658622f880ffcd4a7c"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "tng",
+      "observation_csv_sha256": "b7d9718f20c9c74d0552483b99accb66c48d1d62fd22864febf14ae0f5a6b514",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+      "source_body_bytes": 317083,
+      "source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "588e7c308b75e0d90889d5607dff9921d6c6bcb226eb4d7c24fbe8341253c9d0",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+      "source_body_bytes": 317153,
+      "source_body_sha256": "a407d78f0c8e96ed2643af45beae6fc013a04fd939d44e219d3dde12ffeb50fe"
+    },
+    {
+      "listed_slot_count": 26,
+      "mission_id": "voy",
+      "observation_csv_sha256": "143edf83ac31e6781c53363bd1d99a67f3c1d97a98728d1980cbbd4b0ff500d5",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "source_body_bytes": 319858,
+      "source_body_sha256": "245fbe52fc90c074db75c1a53a00e5ce804521db9aa63bc082fd72bc3edeba50"
+    },
+    {
+      "listed_slot_count": 24,
+      "mission_id": "ent",
+      "observation_csv_sha256": "fd727b281b75ddce05162d994df93e9b0642a3009d59b4ef2217a1368baedb59",
+      "official_page": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+      "source_body_bytes": 307374,
+      "source_body_sha256": "612f06fc81eb57eb9f5ca7fcb40a44f0686f03a38d7dba5ff0e6223a014290a9"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "PARAMOUNT-S3-20261102-TNG",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Evolution"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Ensigns of Command"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Survivors"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Who Watches the Watchers"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Bonding"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Booby Trap"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Enemy"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Price"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Vengeance Factor"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Defector"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 11,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Hunted"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 12,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The High Ground"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 13,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Deja Q"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 14,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Matter of Perspective"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 15,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Yesterday's Enterprise"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 16,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Offspring"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 17,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sins of the Father"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 18,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Allegiance"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 19,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Captain's Holiday"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 20,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Tin Man"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 21,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Hollow Pursuits"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 22,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Most Toys"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 23,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Sarek"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 24,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Ménage à Troi"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 25,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Transfigurations"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 26,
+      "season": 3,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "The Best Of Both Worlds, Part 1"
+    }
+  ],
+  "listed_slot_count": 26,
+  "mission_id": "tng",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

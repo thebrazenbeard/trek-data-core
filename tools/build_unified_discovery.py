@@ -22,6 +22,7 @@ if __package__:
     from . import build_film_catalog as films
     from . import build_literary_candidates as literature
     from . import build_legacy_s2_discovery as legacy
+    from . import build_legacy_s3_discovery as legacy3
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -30,6 +31,7 @@ else:
     import build_film_catalog as films
     import build_literary_candidates as literature
     import build_legacy_s2_discovery as legacy
+    import build_legacy_s3_discovery as legacy3
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -50,6 +52,8 @@ ROSTER_BATCHES = (
      ("dis", "pic", "ld", "snw"), "modern-s1", 45),
     (Path("proposals/discovery/modern-paramount-season2-first5-20261102"),
      ("dis", "pic", "ld", "snw"), "modern-s2", 20),
+    (Path("proposals/discovery/modern-paramount-season3-20261102"),
+     ("dis", "pic", "ld", "snw"), "modern-s3", 43),
 )
 SHORTS_INPUT = Path("proposals/discovery/shorts-audio-20261102/records.json")
 MEDIUMS = ("EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO")
@@ -198,47 +202,50 @@ def build_bytes(root: Path) -> bytes:
         if added != expected:
             raise ValueError(f"unexpected reviewed episode source-row count in {batch_id}")
 
-    legacy_index_path = legacy.BASE / "index.json"
-    legacy_index, legacy_digest = _document(root, legacy_index_path)
-    sources[str(legacy_index_path)] = legacy_digest
-    if (legacy_index.get("proposal_status") != "DISCOVERY_ONLY" or
-            legacy_index.get("admission_effect") != "NONE" or
-            legacy_index.get("coverage_effect") != "NONE" or
-            legacy_index.get("denominator_effect") != "NONE" or
-            legacy_index.get("publisher") != "Paramount+" or
-            legacy_index.get("independence_group") != "publisher:paramount" or
-            len(legacy_index.get("source_pages", [])) != len(legacy.SLUGS)):
-        raise ValueError("legacy source observations not bounded candidate-only")
-    legacy_count = 0
-    for mission, page in zip(legacy.SLUGS, legacy_index["source_pages"]):
-        if (page.get("mission_id") != mission or
-                page.get("official_page") != legacy.official_url(mission) or
-                not re.fullmatch(r"[a-f0-9]{64}", str(page.get("source_body_sha256"))) or
-                type(page.get("source_body_bytes")) is not int or
-                not 10_000 <= page["source_body_bytes"] <= 3_000_000):
-            raise ValueError("legacy page source receipt not pinned to official episode listing")
-        csv_path = legacy.BASE / f"{mission}.csv"
-        bundle_path = legacy.BASE / mission / "bundle.json"
-        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
-        if hashlib.sha256(csv_raw).hexdigest() != page.get("observation_csv_sha256"):
-            raise ValueError("legacy CSV observation digest mismatch")
-        rows = legacy.parse_csv(csv_raw)
-        bundle, bundle_digest = _document(root, bundle_path, legacy.serialized(legacy.bundle(mission, rows)))
-        roster.validate(bundle, catalog)
-        if page.get("listed_slot_count") != len(rows) or bundle["listed_slot_count"] != len(rows):
-            raise ValueError("legacy listed episode count inconsistent")
-        if bundle["observation"]["primary_locator"] != page["official_page"]:
-            raise ValueError("legacy bundle locator disagrees with source receipt")
-        for idx, (season, episode, title) in enumerate(rows):
-            entries.append(_row(f"legacy:s2:{mission}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
-                                title, f"{mission.upper()} S{season}E{episode}",
-                                legacy_index["independence_group"], str(bundle_path),
-                                page["official_page"], ("Official publisher season-two listing",)))
-            legacy_count += 1
-        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
-        sources[str(bundle_path)] = bundle_digest
-    if legacy_count != 126:
-        raise ValueError("legacy tranche changed from reviewed 126 source-local listings")
+    # Each publisher season is a separate source-observation batch. Preserve
+    # repeated titles/identities between seasons and other source families.
+    for builder, season_number, expected_count in ((legacy, 2, 126), (legacy3, 3, 126)):
+        legacy_index_path = builder.BASE / "index.json"
+        legacy_index, legacy_digest = _document(root, legacy_index_path)
+        sources[str(legacy_index_path)] = legacy_digest
+        if (legacy_index.get("proposal_status") != "DISCOVERY_ONLY" or
+                legacy_index.get("admission_effect") != "NONE" or
+                legacy_index.get("coverage_effect") != "NONE" or
+                legacy_index.get("denominator_effect") != "NONE" or
+                legacy_index.get("publisher") != "Paramount+" or
+                legacy_index.get("independence_group") != "publisher:paramount" or
+                len(legacy_index.get("source_pages", [])) != len(builder.SLUGS)):
+            raise ValueError("legacy source observations not bounded candidate-only")
+        legacy_count = 0
+        for mission, page in zip(builder.SLUGS, legacy_index["source_pages"]):
+            if (page.get("mission_id") != mission or
+                    page.get("official_page") != builder.official_url(mission) or
+                    not re.fullmatch(r"[a-f0-9]{64}", str(page.get("source_body_sha256"))) or
+                    type(page.get("source_body_bytes")) is not int or
+                    not 10_000 <= page["source_body_bytes"] <= 3_000_000):
+                raise ValueError("legacy page source receipt not pinned to official episode listing")
+            csv_path = builder.BASE / f"{mission}.csv"
+            bundle_path = builder.BASE / mission / "bundle.json"
+            csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+            if hashlib.sha256(csv_raw).hexdigest() != page.get("observation_csv_sha256"):
+                raise ValueError("legacy CSV observation digest mismatch")
+            rows = builder.parse_csv(csv_raw)
+            bundle, bundle_digest = _document(root, bundle_path, builder.serialized(builder.bundle(mission, rows)))
+            roster.validate(bundle, catalog)
+            if page.get("listed_slot_count") != len(rows) or bundle["listed_slot_count"] != len(rows):
+                raise ValueError("legacy listed episode count inconsistent")
+            if bundle["observation"]["primary_locator"] != page["official_page"]:
+                raise ValueError("legacy bundle locator disagrees with source receipt")
+            for idx, (season, episode, title) in enumerate(rows):
+                entries.append(_row(f"legacy:s{season_number}:{mission}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                    title, f"{mission.upper()} S{season}E{episode}",
+                                    legacy_index["independence_group"], str(bundle_path),
+                                    page["official_page"], (f"Official publisher season-{season_number} listing",)))
+                legacy_count += 1
+            sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+            sources[str(bundle_path)] = bundle_digest
+        if legacy_count != expected_count:
+            raise ValueError(f"legacy season-{season_number} changed from reviewed {expected_count} source-local listings")
 
     if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
             shorts_catalog.get("admission_effect") != "NONE" or

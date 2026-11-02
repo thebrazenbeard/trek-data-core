@@ -1,0 +1,10 @@
+# Modern Paramount+ Season 3 source-local episode candidates
+
+- Batch: `modern-paramount-season3-20261102`, checked against accepted `main@441289e2521f1cb529a7a3343b5064184a713e8f`.
+- Date of source guide reads: 2026-11-02.
+- Publisher: Paramount+ U.S., one **shared** source independence group. Four episode guide pages observed: Discovery S3 (13 titles), Picard S3 (10), Lower Decks S3 (10), and Strange New Worlds S3 (10). The source-local numbered rows are recorded in four CSV files with SHA-256 receipts; generated proposal bundles must match their observations byte-for-byte.
+- Source URLs: [Discovery](https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/), [Picard](https://www.paramountplus.com/shows/star-trek-picard/episodes/3/), [Lower Decks](https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/3/), [Strange New Worlds](https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/).
+- **Caveat:** Picard's unparameterized guide URL returned HTTP 404 in one research retrieval; a search result's query-qualified variant was accessible. The clean locator is recorded as the canonical guide location but not asserted to be currently directly retrievable. No publisher HTML bytes or authenticated response digests were retained. No audiovisual stories were watched.
+- 43 **publisher listing observations** only; not 43 newly admitted or necessarily distinct Works. These are source-bound discovery leads, not complete narrative evidence. No canonical ID, Source binding, coverage advancement, transcript, research Briefing, or franchise denominator.
+- The earlier Season 2 tranche deliberately indexes only five titles per series; Season 3 observations do not close Season 2 gaps.
+- Generate bundles with `python tools/normalize_episode_roster.py` from the pinned CSV and receipt. Verify using the same tool's `--check` mode and `tools/validate_publisher_episode_roster.py`. The accepted projection and published Explorer are unchanged until separately integrated and reviewed.

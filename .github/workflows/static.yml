@@ -1,87 +1,110 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy Trek Explorer to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [main]
+    paths:
+      - "explorer/**"
+      - "registry/mission_catalog.json"
+      - "registry/approved_projection_hashes.json"
+      - "tools/build_explorer_index.py"
+      - ".github/workflows/static.yml"
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: trek-explorer-pages
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      ready: ${{ steps.readiness.outputs.ready }}
+    steps:
+      - name: Check out accepted source
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check whether the Explorer has landed on main
+        id: readiness
+        shell: bash
+        run: |
+          if test -f explorer/index.html && test -f explorer/index.json && \
+             test -f explorer/app.js && test -f explorer/app.css; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'Explorer assets not yet on main; skipping Pages publication.'
+          fi
+
+      - name: Verify Explorer behavior before deployment
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node tests/test_explorer.mjs
+
+      - name: Verify deterministic catalog index
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          python3 tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-index-expected.json"
+          cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json
+
+      - name: Verify final public artifact boundary
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Run this AFTER all repository-controlled tests and generators.
+          # Only the exact committed four-file Explorer may be published.
+          test -f explorer/index.html
+          test -f explorer/index.json
+          test -f explorer/app.js
+          test -f explorer/app.css
+          test ! -L explorer
+          if find explorer -type l -print -quit | grep -q .; then
+            echo "Refusing to deploy a site containing symlinks" >&2
+            exit 1
+          fi
+          if find explorer -type f \
+            ! -path explorer/index.html \
+            ! -path explorer/index.json \
+            ! -path explorer/app.js \
+            ! -path explorer/app.css -print -quit | grep -q .; then
+            echo "Refusing to publish an unexpected Explorer file" >&2
+            exit 1
+          fi
+          for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css; do
+            expected="$(git rev-parse "HEAD:$path")"
+            actual="$(git hash-object "$path")"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified Explorer content: $path" >&2
+              exit 1
+            fi
+          done
+
+      - name: Upload Explorer only
+        if: steps.readiness.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: explorer
+
+
   deploy:
+    needs: build
+    if: needs.build.outputs.ready == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
+      - name: Deploy verified Explorer artifact
         id: deployment
         uses: actions/deploy-pages@v5
-      - name: Cache
-        uses: actions/cache@v5.1.0
-        with:
-        # A list of files, directories, and wildcard patterns to cache and restore
-        path: 
-        # An explicit key for restoring and saving the cache
-        key: 
-        # An ordered multiline string listing the prefix-matched keys, that are used for restoring stale cache if no cache hit occurred for key. Note `cache-hit` returns false in this case.
-        restore-keys: # optional
-        # The chunk size used to split up large files during upload, in bytes
-        upload-chunk-size: # optional
-        # An optional boolean when enabled, allows windows runners to save or restore caches that can be restored or saved respectively on other platforms
-        enableCrossOsArchive: # optional, default is false
-        # Fail the workflow if cache entry is not found
-        fail-on-cache-miss: # optional, default is false
-        # Check if a cache entry exists for the given input(s) (key, restore-keys) without downloading the cache
-        lookup-only: # optional, default is false
-        # Run the post step to save the cache even if another step before fails
-        save-always: # optional, default is false
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v6.0.0
-        with:
-        # Optional SDK version(s) to use. If not provided, will install global.json version when available. Examples: 2.2.104, 3.1, 3.1.x, 3.x, 6.0.2xx, latest
-        dotnet-version: # optional
-        # Optional quality of the build. The possible values are: daily, preview, ga.
-        dotnet-quality: # optional
-        # Optional channel for the installation. The possible values are: STS, LTS, A.B (e.g. 8.0), A.B.Cxx (e.g. 8.0.1xx, available since 5.0). To be used with "dotnet-version: latest".
-        dotnet-channel: # optional
-        # Optional global.json location, if your global.json isn't located in the root of the repo.
-        global-json-file: # optional
-        # Optional package source for which to set up authentication. Will consult any existing NuGet.config in the root of the repo and provide a temporary NuGet.config using the NUGET_AUTH_TOKEN environment variable as a ClearTextPassword
-        source-url: # optional
-        # Optional OWNER for using packages from GitHub Package Registry organizations/users other than the current repository's owner. Only used if a GPR URL is also provided in source-url
-        owner: # optional
-        # Optional NuGet.config location, if your NuGet.config isn't located in the root of the repo.
-        config-file: # optional
-        # Optional input to enable caching of the NuGet global-packages folder
-        cache: # optional
-        # Used to specify the path to a dependency file: packages.lock.json. Supports wildcards or a list of file names for caching multiple dependencies.
-        cache-dependency-path: # optional
-        # Optional SDK workloads to install for additional platform support. Examples: wasm-tools, maui, aspire.
-        workloads: # optional
-        # Optional architecture for the .NET install. Supported values: x64, x86, arm64, amd64, arm, s390x, ppc64le, riscv64. If not set, the installer auto-detects the current system architecture.
-        architecture: # optional

@@ -120,6 +120,39 @@ class ExplorerIndexTests(unittest.TestCase):
         self.assertEqual(module.bounded_metadata("x" * 161), "")
         self.assertEqual(module.bounded_metadata({"dialogue": "x"}), "")
 
+    def test_cross_mission_proofs_preserve_briefings_without_false_links(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            facts = [{"assertion_id": "a1", "effective_assertion_status": "ACCEPTED", "projection_status": "STABLE"}]
+            proofs = []
+            for mission in ("tos", "tng"):
+                source_id, work_id = "source-" + mission, "episode-" + mission
+                proofs.append({
+                    "assertion_id": "a1", "effective_assertion_status": "ACCEPTED",
+                    "evidence_record": {"source_id": source_id, "work_id": work_id},
+                    "source_record": {"source_id": source_id, "status": "ACCEPTED", "fixture_only": False},
+                    "work_record": {"work_id": work_id, "status": "ACCEPTED", "fixture_only": False,
+                                    "series": mission, "work_type": "EPISODE", "title": "Episode " + mission},
+                    "source_work_binding_record": {"binding_id": "binding-" + mission,
+                        "source_id": source_id, "work_id": work_id, "lifecycle": "ACCEPTED",
+                        "mapping_role": "EVIDENCE_BEARING", "fixture_only": False},
+                })
+            for ordered in (proofs, list(reversed(proofs))):
+                outputs = {}
+                for name in module.CANONICAL_OUTPUTS:
+                    rows = facts if name == "facts.jsonl" else ordered if name == "provenance.jsonl" else []
+                    data = ("\n".join(module.canonical(row) for row in rows) + ("\n" if rows else "")).encode()
+                    (root / name).write_bytes(data)
+                    outputs[name] = {"hash": module.sha256(data), "count": len(rows)}
+                manifest = {"record_type": "projection_manifest", "outputs": outputs,
+                            "projection_hash": module.sha256(module.canonical({k: v["hash"] for k, v in outputs.items()}).encode())}
+                (root / "manifest.json").write_text(json.dumps(manifest))
+                result = module.build_index(ROOT / "registry" / "mission_catalog.json", root, self.approved(root, manifest))
+                self.assertEqual({(b["id"], b["mission_id"]) for b in result["briefings"]},
+                                 {("episode-tos", "tos"), ("episode-tng", "tng")})
+                self.assertIsNone(result["records"][0]["mission_id"])
+                self.assertIsNone(result["records"][0]["briefing_id"])
+
 
 if __name__ == "__main__":
     unittest.main()

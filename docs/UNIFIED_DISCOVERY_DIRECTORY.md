@@ -22,6 +22,8 @@ releases and one audio-series container. These numbers
 are not a count of distinct Star Trek Works, complete episodes, admitted
 Briefings, verified sources, or a denominator for the universe. The same Work
 can appear multiple times under independent and dependent publisher snapshots.
+Source-group labels are navigation aids, **not** claims of independent
+corroboration. Paramount and Paramount+ labels may share corporate lineage.
 
 ## Safety and provenance
 

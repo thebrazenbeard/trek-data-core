@@ -516,6 +516,7 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="film-state"[^>]*role="status"/);
   assert.match(html, /id="discovery-directory"/);
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);
+  assert.match(html, /for="discovery-lineage">Source group<\/label>/, 'source-group labels do not imply independent publishers');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);

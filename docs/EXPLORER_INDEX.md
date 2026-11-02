@@ -110,7 +110,7 @@ validates the DS9/Voyager/TAS, modern-series, and legacy season-two CSV SHA
 receipts and reviewed
 publisher proposals, then
 includes byte digests in the resulting artifact. The browser exposes title,
-source-family and medium filters, never promotes discovery into a Briefing or
+source-group and medium filters, never promotes discovery into a Briefing or
 an accepted continuity record, and validates link origins before display.
 GitHub Pages must verify this optional artifact deterministically and allow
 only its exact committed bytes. See

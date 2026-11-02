@@ -43,6 +43,10 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/app.css", text)
         self.assertIn("Refusing to publish an unexpected Explorer file", text)
 
+    def test_manual_dispatch_cannot_deploy_a_review_branch(self):
+        text = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("if: github.ref == 'refs/heads/main'", text)
+
 
 if __name__ == "__main__":
     unittest.main()

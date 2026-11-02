@@ -1,0 +1,30 @@
+name: Core Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-stdlib:
+    name: Python 3.12 repository checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out current revision without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Select Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run repository regression tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Run Librarian adversarial tests
+        run: python tools/test_librarian_registry.py
+      - name: Validate Librarian fixtures
+        run: python tools/validate_librarian_registry.py registry/librarian_registry_fixtures.json

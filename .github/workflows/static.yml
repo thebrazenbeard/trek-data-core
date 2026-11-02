@@ -1,14 +1,8 @@
 name: Deploy Trek Explorer to Pages
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "explorer/**"
-      - "registry/mission_catalog.json"
-      - "registry/approved_projection_hashes.json"
-      - "tools/build_explorer_index.py"
-      - ".github/workflows/static.yml"
+  # Merging repository code must not implicitly publish a public site.
+  # Only an explicit dispatch against the accepted main branch may deploy.
   workflow_dispatch:
 
 concurrency:
@@ -55,12 +49,29 @@ jobs:
           python3 tools/build_explorer_index.py --out "${RUNNER_TEMP}/trek-index-expected.json"
           cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json
 
+      - name: Verify optional Research Leads index
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # A tracked or working-tree fifth file activates the fail-closed
+          # derivation check. Four-file deployments need no lead generator.
+          if git cat-file -e HEAD:explorer/research-leads.json 2>/dev/null || \
+             test -e explorer/research-leads.json || test -L explorer/research-leads.json; then
+            test -f explorer/research-leads.json
+            test ! -L explorer/research-leads.json
+            test ! -L tools
+            test -f tools/build_research_leads.py
+            test ! -L tools/build_research_leads.py
+            python3 tools/build_research_leads.py --check
+          fi
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
         run: |
           # Run this AFTER all repository-controlled tests and generators.
-          # Only the exact committed four-file Explorer may be published.
+          # Publish exactly four committed files, plus a verified optional fifth.
+          test -d explorer
           test -f explorer/index.html
           test -f explorer/index.json
           test -f explorer/app.js
@@ -70,12 +81,15 @@ jobs:
             echo "Refusing to deploy a site containing symlinks" >&2
             exit 1
           fi
-          if find explorer -type f \
+          # Include directories and special entries, not just regular files:
+          # no surprise files, FIFOs, nested folders or hidden content.
+          if find explorer -mindepth 1 \
             ! -path explorer/index.html \
             ! -path explorer/index.json \
             ! -path explorer/app.js \
-            ! -path explorer/app.css -print -quit | grep -q .; then
-            echo "Refusing to publish an unexpected Explorer file" >&2
+            ! -path explorer/app.css \
+            ! -path explorer/research-leads.json -print -quit | grep -q .; then
+            echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
           for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css; do
@@ -86,6 +100,19 @@ jobs:
               exit 1
             fi
           done
+          if git cat-file -e HEAD:explorer/research-leads.json 2>/dev/null; then
+            test -f explorer/research-leads.json
+            test ! -L explorer/research-leads.json
+            expected="$(git rev-parse HEAD:explorer/research-leads.json)"
+            actual="$(git hash-object explorer/research-leads.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified Research Leads content" >&2
+              exit 1
+            fi
+          elif test -e explorer/research-leads.json || test -L explorer/research-leads.json; then
+            echo "Refusing to deploy an uncommitted Research Leads index" >&2
+            exit 1
+          fi
 
       - name: Upload Explorer only
         if: steps.readiness.outputs.ready == 'true'

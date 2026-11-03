@@ -1,0 +1,56 @@
+{
+  "proposal_type": "HISTORICAL_TNG_STAGING_METADATA_V1",
+  "proposal_only": true,
+  "admission_status": "NOT_ADMITTED",
+  "accepted_corpus_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "source_content_retrieved_by_this_migration": false,
+  "primary_audiovisual_verified": false,
+  "historical_source": {
+    "repository": "thebrazenbeard/trek-data-core",
+    "pr_number": 12,
+    "immutable_commit": "e4c891b26622ae08eac346a55059a58f687d064c",
+    "reported_base_main_sha": "d58359a207da89e812d0a0330558c66774ed1241",
+    "staging_id": "tng-s01-b002-staging",
+    "reported_status": "proposal_staging_only",
+    "reported_counts": {
+      "works": 5,
+      "evidence": 50,
+      "staging_assertions": 25
+    },
+    "reported_reading": "FIVE_THIRD_PARTY_TRANSCRIPT_PAGES_HISTORICALLY_REPORTED_NOT_REVERIFIED",
+    "historical_provider": "Springfield! Springfield",
+    "transcript_lineage_independence": "UNKNOWN"
+  },
+  "historical_artifacts": [
+    {"path": "research/tng/staging/tng-s01-b002/00-overview.md", "git_blob_sha1": "14f13d0e255f467260f3713d78ac934057febc9c", "sha256": "9be7d48d8751936c71817ef7f06d045ee9b59764911fb7ddd53a5cac1df2b376"},
+    {"path": "research/tng/staging/tng-s01-b002/01-lonely-among-us.md", "git_blob_sha1": "43c84929a0c3c24eb005f037f10a198fcdfcf595", "sha256": "a4918fd51b9d2d1841b68308a1fb9b036e75903522a1b93682bdc42605f5f1fd"},
+    {"path": "research/tng/staging/tng-s01-b002/02-justice.md", "git_blob_sha1": "54a713ebd5b6e3833c9296fd8482a91bf384a06b", "sha256": "c8e5d341dc5e220e5d0dc4747d04a6b0a7aa20b71c1c32b10237223aab430b07"},
+    {"path": "research/tng/staging/tng-s01-b002/03-the-battle.md", "git_blob_sha1": "07f3f7aa0e4430f7014615ea4f776f5dd3c3ae95", "sha256": "31bced671db8af24180a00f9bd51e9c48e06af4da0da785e5fbea11f9853c1be"},
+    {"path": "research/tng/staging/tng-s01-b002/04-hide-and-q.md", "git_blob_sha1": "34ecda212f5bbb93213fab75a8b3eb0da0fefcda", "sha256": "a1dffeeb7e2a6af77f03096c79eff990b85157aa65ba31f6584a055b25fcba05"},
+    {"path": "research/tng/staging/tng-s01-b002/05-haven.md", "git_blob_sha1": "d71aa4fdd5c1e655cbe76e3ea91c3f1bdd0b74dc", "sha256": "e0aa8c9231d22d540e05e4049912e99944ec0ae7581d518f5c9500aa1cbef72e"},
+    {"path": "research/tng/staging/tng-s01-b002/06-status-and-frontier.md", "git_blob_sha1": "f0d336c533c0d737fa9ac0715381c68dbdece048", "sha256": "8becb7ccc97460980979e0554fadc02a14dd8d30a2f987ac22d8fff4f24af77d"},
+    {"path": "research/tng/staging/tng-s01-b002/validation.json", "git_blob_sha1": "e0ac40683765a79345f39a7a666624527e292ca4", "sha256": "69e84bdcfb88601fa1c1c9b54863c8760f61a96a03fc59e501070426b162f0e2"}
+  ],
+  "publisher_crosswalk_candidate": {
+    "path": "proposals/discovery/legacy-paramount-season1-20261102/tng.csv",
+    "sha256": "2e8fef9517a27e8a3680614ae5834c23c9345621cffb7ad7115bbfae260ae9ae",
+    "source_role": "DISCOVERY_METADATA_ONLY",
+    "status": "PROPOSED_UNRESOLVED",
+    "identity_effect": "NONE"
+  },
+  "episode_candidates": [
+    {"historical_local_sequence": 6, "title": "Lonely Among Us", "production_code_reported": "108", "historical_transcript_index": "s01e07", "transcript_lines_reported": [13, 500], "historical_transcript_locator": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e07&tv-show=star-trek-the-next-generation", "historical_crosscheck_locator": "https://www.chakoteya.net/NextGen/108.htm", "publisher_season": 1, "publisher_episode_number": 7, "publisher_title": "Lonely Among Us", "title_match_status": "EXACT_CASE_INSENSITIVE", "canonical_work_id": null, "canonical_source_id": null, "accepted_evidence_ids": [], "binding_status": "NOT_ADMITTED"},
+    {"historical_local_sequence": 7, "title": "Justice", "production_code_reported": "109", "historical_transcript_index": "s01e08", "transcript_lines_reported": [13, 598], "historical_transcript_locator": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e08&tv-show=star-trek-the-next-generation", "historical_crosscheck_locator": "https://www.chakoteya.net/NextGen/109.htm", "publisher_season": 1, "publisher_episode_number": 8, "publisher_title": "Justice", "title_match_status": "EXACT_CASE_INSENSITIVE", "canonical_work_id": null, "canonical_source_id": null, "accepted_evidence_ids": [], "binding_status": "NOT_ADMITTED"},
+    {"historical_local_sequence": 8, "title": "The Battle", "production_code_reported": "110", "historical_transcript_index": "s01e09", "transcript_lines_reported": [13, 565], "historical_transcript_locator": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e09&tv-show=star-trek-the-next-generation", "historical_crosscheck_locator": "https://www.chakoteya.net/NextGen/110.htm", "publisher_season": 1, "publisher_episode_number": 9, "publisher_title": "The Battle", "title_match_status": "EXACT_CASE_INSENSITIVE", "canonical_work_id": null, "canonical_source_id": null, "accepted_evidence_ids": [], "binding_status": "NOT_ADMITTED"},
+    {"historical_local_sequence": 9, "title": "Hide and Q", "production_code_reported": "111", "historical_transcript_index": "s01e10", "transcript_lines_reported": [13, 463], "historical_transcript_locator": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e10&tv-show=star-trek-the-next-generation", "historical_crosscheck_locator": "https://www.chakoteya.net/NextGen/111.htm", "publisher_season": 1, "publisher_episode_number": 10, "publisher_title": "Hide and \"Q\"", "title_match_status": "PUNCTUATION_VARIANT_REVIEW", "canonical_work_id": null, "canonical_source_id": null, "accepted_evidence_ids": [], "binding_status": "NOT_ADMITTED"},
+    {"historical_local_sequence": 10, "title": "Haven", "production_code_reported": "105", "historical_transcript_index": "s01e11", "transcript_lines_reported": [13, 527], "historical_transcript_locator": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e11&tv-show=star-trek-the-next-generation", "historical_crosscheck_locator": "https://www.chakoteya.net/NextGen/105.htm", "publisher_season": 1, "publisher_episode_number": 11, "publisher_title": "Haven", "title_match_status": "EXACT_CASE_INSENSITIVE", "canonical_work_id": null, "canonical_source_id": null, "accepted_evidence_ids": [], "binding_status": "NOT_ADMITTED"}
+  ],
+  "unresolved": [
+    "Historical claims of complete transcript reading were not independently reverified against the current source bytes.",
+    "Historical staging evidence and assertion counts are preserved as reported values, not accepted evidence coverage.",
+    "Transcript provider lineage and rights are unresolved; Chakoteya crosschecks are not independent story confirmation.",
+    "Publisher numbering differs from historical local aired-title order due to two-part premiere treatment.",
+    "No authenticated audiovisual source, governed Source-Work binding or independent semantic audit is present for these five Works."
+  ]
+}

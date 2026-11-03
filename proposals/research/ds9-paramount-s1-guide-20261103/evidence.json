@@ -1,0 +1,19 @@
+{
+  "record_type": "PROPOSED_SOURCE_RELATIVE_EVIDENCE",
+  "source_local_id": "paramount-ds9-s1-guide-20261103",
+  "source_scope": "PUBLISHER_SEASON_GUIDE_TEXT_AND_INDEXED_VIDEO_PAGE_LABELS",
+  "evidence": [
+    {"id": "e01", "slot_id": "ds9-s1-e01-guide", "entity_ids": ["slot-e01"], "kind": "PUBLISHER_SYNOPSIS", "locator": "guide rendered lines 113-117", "observation": "Paramount's card presents the pilot as one S1E1 combined Parts I–II item and describes an untested crew beginning its assignment at a remote outpost; no episode was watched."},
+    {"id": "e03", "slot_id": "ds9-s1-e03-guide", "entity_ids": ["slot-e03", "kira-mentioned"], "kind": "PUBLISHER_SYNOPSIS", "locator": "guide rendered lines 118-122", "observation": "Paramount's card frames a decision for Kira between loyalty to her people and Federation duty. It is publisher synopsis language, not independently observed dialogue or plot."},
+    {"id": "e04", "slot_id": "ds9-s1-e04-guide", "entity_ids": ["slot-e04", "odo-mentioned"], "kind": "PUBLISHER_SYNOPSIS", "locator": "guide rendered lines 124-128", "observation": "Paramount's card presents Odo as needing to clear suspicion after a murder associated with a holosuite. No character testimony or depicted crime scene was read."},
+    {"id": "e05", "slot_id": "ds9-s1-e05-guide", "entity_ids": ["slot-e05", "kira-mentioned"], "kind": "PUBLISHER_SYNOPSIS", "locator": "guide rendered lines 130-134", "observation": "Paramount's card describes a stationwide infectious threat and Kira's search for a remedy. Neither diagnosis nor outcome is independently established."},
+    {"id": "e06", "slot_id": "ds9-s1-e06-guide", "entity_ids": ["slot-e06", "obrien-mentioned"], "kind": "PUBLISHER_SYNOPSIS", "locator": "guide rendered lines 135-139", "observation": "Paramount's card describes O'Brien befriending a hunted being and an attempted rescue from captivity; this is a publisher's description only."},
+    {"id": "d01", "slot_id": "ds9-s1-e01-guide", "entity_ids": ["slot-e01"], "kind": "DATE_LABEL_SEARCH_INDEX_CONFLICT", "locator": "Publisher season guide and individual video URL indexed excerpts (2026-11-03)", "observation": "Indexed guide label 1993-01-04 versus indexed video-page label 1993-01-03; individual page raw response unavailable."},
+    {"id": "d03", "slot_id": "ds9-s1-e03-guide", "entity_ids": ["slot-e03"], "kind": "DATE_LABEL_SEARCH_INDEX_CONFLICT", "locator": "Publisher season guide and individual video URL indexed excerpts (2026-11-03)", "observation": "Indexed guide label 1993-01-11 versus indexed video-page label 1993-01-10; individual page raw response unavailable."},
+    {"id": "d04", "slot_id": "ds9-s1-e04-guide", "entity_ids": ["slot-e04"], "kind": "DATE_LABEL_SEARCH_INDEX_CONFLICT", "locator": "Publisher season guide and individual video URL indexed excerpts (2026-11-03)", "observation": "Indexed guide label 1993-01-18 versus indexed video-page label 1993-01-17; individual page raw response unavailable."},
+    {"id": "d05", "slot_id": "ds9-s1-e05-guide", "entity_ids": ["slot-e05"], "kind": "DATE_LABEL_SEARCH_INDEX_CONFLICT", "locator": "Publisher season guide and individual video URL indexed excerpts (2026-11-03)", "observation": "Indexed guide label 1993-01-25 versus indexed video-page label 1993-01-24; individual page raw response unavailable."},
+    {"id": "d06", "slot_id": "ds9-s1-e06-guide", "entity_ids": ["slot-e06"], "kind": "DATE_LABEL_SEARCH_INDEX_CONFLICT", "locator": "Publisher season guide and individual video URL indexed excerpts (2026-11-03)", "observation": "Indexed guide label 1993-02-01 versus indexed video-page label 1993-01-31; individual page raw response unavailable."}
+  ],
+  "audiovisual_evidence_count": 0,
+  "publisher_metadata_evidence_count": 10
+}

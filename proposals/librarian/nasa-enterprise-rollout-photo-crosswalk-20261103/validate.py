@@ -26,6 +26,7 @@ EXPECTED_IMAGE_BYTES = 165312
 EXPECTED_IMAGE_DIMENSIONS = (1041, 833)
 MAX_DOWNLOAD_BYTES = 4_000_000
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"}
+ALLOWED_PACKET_FILES = {"MANIFEST.md", "packet.json", "validate.py", "test_validate.py"}
 SOF_MARKERS = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
 
 
@@ -139,10 +140,29 @@ def validate(packet: dict, *, directory: Path = HERE) -> None:
             raise ValueError(f"protected source/rights/fictional-work invariant changed: {key}")
     if len(packet["open_falsifiers"]) != 5:
         raise ValueError("material falsifier set changed")
-    if directory.is_symlink() or any(
-        child.suffix.lower() in IMAGE_EXTENSIONS for child in directory.iterdir()
-    ):
-        raise ValueError("image binary or symlink found in nonpublishing source packet")
+    if directory.is_symlink():
+        raise ValueError("symlinked nonpublishing source packet")
+    # This packet intentionally has only four reviewed files. Search every
+    # descendant, not just the immediate children: payload/hidden.jpg or a
+    # symlinked nested payload previously evaded the claimed zero-binary guard.
+    # Permit only Python's local, ignored bytecode cache from test execution.
+    for child in directory.rglob("*"):
+        rel = child.relative_to(directory)
+        if child.is_symlink():
+            raise ValueError("symlink found in nonpublishing source packet")
+        if child.suffix.lower() in IMAGE_EXTENSIONS:
+            raise ValueError("image binary found in nonpublishing source packet")
+        if child.is_dir():
+            if rel.parts != ("__pycache__",):
+                raise ValueError("unexpected nested directory in flat source packet")
+            continue
+        if child.is_file():
+            if len(rel.parts) == 1 and rel.name in ALLOWED_PACKET_FILES:
+                continue
+            if (len(rel.parts) == 2 and rel.parts[0] == "__pycache__"
+                    and child.suffix == ".pyc"):
+                continue
+        raise ValueError("unreviewed file or unexpected nested content in source packet")
     accepted = read_json(ACCEPTED_DECISION)
     if (accepted.get("historical_source_og_image_exact_url") != EXPECTED_IMAGE_URL
             or accepted.get("historical_source_image_sha256") != EXPECTED_IMAGE_SHA256

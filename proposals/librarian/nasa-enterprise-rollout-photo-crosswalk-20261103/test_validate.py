@@ -27,6 +27,37 @@ class TestNasaPhotoCrosswalk(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "image binary"):
                 guard.validate(self.packet, directory=directory)
 
+    def test_nested_image_suffix_cannot_escape_flat_packet_guard(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "payload").mkdir()
+            (directory / "payload" / "hidden.jpg").write_bytes(b"unapproved photo")
+            with self.assertRaisesRegex(ValueError, "image binary|unexpected nested"):
+                guard.validate(self.packet, directory=directory)
+
+    def test_nested_symlink_escape_cannot_escape_guard(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "payload").mkdir()
+            outside = directory.parent / "not_in_packet_photo.jpg"
+            (directory / "payload" / "linked.jpg").symlink_to(outside)
+            with self.assertRaisesRegex(ValueError, "symlink|unexpected nested"):
+                guard.validate(self.packet, directory=directory)
+
+    def test_binary_disguised_as_textless_extension_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "payload").write_bytes(b"unreviewed binary payload")
+            with self.assertRaisesRegex(ValueError, "unreviewed file"):
+                guard.validate(self.packet, directory=directory)
+
+    def test_local_python_bytecode_cache_is_not_mistaken_for_media(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "__pycache__").mkdir()
+            (directory / "__pycache__" / "validate.cpython-312.pyc").write_bytes(b"test cache only")
+            guard.validate(self.packet, directory=directory)
+
     def test_rejects_any_changed_source_or_release_field(self) -> None:
         falsifiers = (
             ("nasa_exact_jpeg_sha256", "0" * 64),

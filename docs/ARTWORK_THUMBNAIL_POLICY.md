@@ -43,7 +43,7 @@ An authorized release may carry exactly the following keys:
 
 | Field | Requirement |
 | --- | --- |
-| `schema_version` | `1.1.0` |
+| `schema_version` | `1.2.0` (older artwork sidecars are rejected) |
 | `data_status` | `PROVENANCE_REVIEWED_ARTWORK` |
 | `coverage_effect` | `NONE` |
 | `rights_policy` | `PER_ENTRY_DISPLAY_GATE` |
@@ -72,6 +72,12 @@ rights gates:
   `https://covers.openlibrary.org/b/id/<id>-S.jpg?default=false` itself.
 - `isbn`: exact 13-digit edition ISBN; `attribution_url` must be
   `https://openlibrary.org/isbn/<isbn>`.
+- The ISBN must independently match a complete `Format · ISBN <isbn>` item
+  in the corresponding source-local `LITERATURE` discovery row's `details`
+  array. A matching artwork `row_id` and `source_locator` are not sufficient:
+  an unrelated book's cover cannot inherit another Work's card. This
+  version-1.2 gate uses the current deterministic directory compiler's
+  edition-list format; rows without that format remain in placeholder mode.
 - `edition_metadata_sha256`: SHA-256 of the exact Open Library edition
   metadata used for the ISBN-to-cover crosswalk (64 lowercase hex).
 - `rights_status`:
@@ -85,6 +91,10 @@ must be updated and rerun before adding any actual sidecar or image binaries.
 The JavaScript validator is a defense-in-depth contract, **not** a legal
 license examiner; an attacker cannot make unlawful art lawful by supplying
 syntactically valid hash strings.
+The edition check likewise cannot prove an external cover-ID-to-ISBN match:
+that requires independent edition metadata review against the pinned source
+receipt. It only blocks a cross-Work mismatch using the separate directory
+edition list already accepted into the candidate-only build.
 
 On approval, images remain **off by default**. A visitor can choose
 `Show sourced artwork` to load the current visible cards' allowed assets and

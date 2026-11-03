@@ -230,7 +230,7 @@
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
     const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator', 'rights_status', 'rights_receipt_sha256'];
     const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
-    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.1.0' ||
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.2.0' ||
         data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
         data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
         !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
@@ -248,8 +248,15 @@
         throw new Error('Artwork references an unknown or mismatched source record.');
       }
       if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
+        const literaryRow = sourceRows.get(item.row_id);
+        // The ISBN must come from the independently built discovery record,
+        // not solely from this potentially mismatched artwork sidecar.
+        const editionListed = Array.isArray(literaryRow.details) && literaryRow.details.some((detail) => {
+          const match = typeof detail === 'string' && /^\S.* · ISBN (97[89][0-9]{10})$/.exec(detail);
+          return match && match[1] === item.isbn;
+        });
         if (!exactKeys(item, openLibraryKeys) ||
-            sourceRows.get(item.row_id).medium !== 'LITERATURE' ||
+            literaryRow.medium !== 'LITERATURE' || !editionListed ||
             !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
             typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
             item.attribution_url !== `https://openlibrary.org/isbn/${item.isbn}` ||

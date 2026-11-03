@@ -129,7 +129,7 @@ const filmCatalog = {
 };
 
 const licensedArtwork = {
-  schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+  schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
   rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
   artwork: [{
     row_id: 'film:star-trek-2009', image_path: './licensed-artwork/verified-film-cover.webp',
@@ -186,6 +186,7 @@ test('malicious, unreviewed, duplicated or off-origin artwork records are reject
     (r) => { r.artwork[0].row_id = 'film:unknown'; },
     (r) => { r.artwork.push(structuredClone(r.artwork[0])); r.artwork_count = 2; },
     (r) => { r.coverage_effect = 'AUDITED'; },
+    (r) => { r.schema_version = '1.1.0'; },
   ];
   for (const change of changes) {
     const bad = structuredClone(licensedArtwork);
@@ -208,12 +209,12 @@ test('documented Open Library API cover stays tied to its ISBN and only loads af
   directory.rows.push({ ...original,
     row_id: 'fixture:last-best-hope-not-published', title: 'Fixture novel — not a public Work',
     context: 'TEST FIXTURE ONLY — literature', source_locator: lastBestHopeUrl,
-    source_input: 'proposals/fixtures/artwork-test.json', details: ['No real release from this test']
+    source_input: 'proposals/fixtures/artwork-test.json', details: ['Hardcover · ISBN 9781982142186']
   });
   directory.row_count++;
   directory.counts_by_medium.LITERATURE++;
   const apiArtwork = {
-    schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+    schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
     rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
     artwork: [{ row_id: 'directory:fixture:last-best-hope-not-published', provider: 'OPEN_LIBRARY_COVERS_API',
       cover_id: 10157401, isbn: '9781982142186', alt_text: 'Cover image for a fixture novel, via Open Library',
@@ -240,6 +241,12 @@ test('documented Open Library API cover stays tied to its ISBN and only loads af
   forged.artwork[0].row_id = `directory:${original.row_id}`;
   const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forged, 200);
   assert.equal(rejected.get('artwork-toggle').disabled, true, 'different novel may never inherit this cover');
+  const matchedLocatorForgery = structuredClone(apiArtwork);
+  matchedLocatorForgery.artwork[0].row_id = `directory:${original.row_id}`;
+  matchedLocatorForgery.artwork[0].source_locator = original.source_locator;
+  const rejectedEdition = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, matchedLocatorForgery, 200);
+  assert.equal(rejectedEdition.get('artwork-toggle').disabled, true,
+    'a correctly matched row and locator cannot attach another book edition’s cover');
 });
 
 test('Open Library variant fails closed for forged URL, identifier, medium and rights', async () => {

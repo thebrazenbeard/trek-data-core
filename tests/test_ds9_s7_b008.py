@@ -1,4 +1,4 @@
-"""Hostile source-relative DS9 S7E7-E16 publisher-card validation."""
+"""Hostile source-relative DS9 S7E12-E16 nonduplicate publisher-card validation."""
 
 import copy
 import json
@@ -25,8 +25,8 @@ class DS9PublisherCards(unittest.TestCase):
     def setUpClass(cls):
         cls.base = json.loads((HERE / "observations.json").read_text(encoding="utf-8"))
 
-    def test_exact_ten_held_records_pass_without_admission(self):
-        self.assertEqual(validate(self.base), 10)
+    def test_exact_five_held_records_pass_without_admission(self):
+        self.assertEqual(validate(self.base), 5)
         self.assertEqual(self.base["coverage_effect"], "NONE")
         self.assertEqual(self.base["public_synopsis_effect"], "NONE")
         for optimized in (False, True):
@@ -54,10 +54,11 @@ class DS9PublisherCards(unittest.TestCase):
             (("records", 1, "synopsis_status"), "APPROVED_FOR_PUBLICATION"),
             (("records", 1, "source_local_row_id"), "publisher:s7:ds9:006"),
             (("records", 1, "source_body_verified"), True),
-            (("unresolved_same_publisher_title_conflict", "global_work_title_decision"),
-             "AR-558_CANONICAL"),
-            (("unresolved_same_publisher_title_conflict", "source_independence"),
-             "INDEPENDENT_CORROBORATION"),
+            (("unaccepted_overlap_hold", "prior_draft_pr"), 0),
+            (("unaccepted_overlap_hold", "new_records_from_excluded_rows"), 1),
+            (("unaccepted_overlap_hold", "excluded_source_local_row_ids"),
+             ["publisher:s7:ds9:011"]),
+            (("unaccepted_overlap_hold", "prior_draft_status"), "ACCEPTED_EVIDENCE"),
         )
         for path, replacement in cases:
             mutated = copy.deepcopy(self.base)

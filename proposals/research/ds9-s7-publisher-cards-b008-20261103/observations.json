@@ -19,23 +19,20 @@
   "public_synopsis_effect": "NONE",
   "publisher_description_policy": "BLOCKS_SEEN_BUT_NO_TEXT_OR_PARAPHRASES_RELEASED",
   "records": [
-    {"observation_id":"ds9-b008-p01","source_local_row_id":"publisher:s7:ds9:006","publisher_season":7,"publisher_episode":7,"publisher_card_title":"Once More Unto the Breach","publisher_card_locator":"Season 7 Episode Guide > S7 E7 > Once More Unto the Breach","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p02","source_local_row_id":"publisher:s7:ds9:007","publisher_season":7,"publisher_episode":8,"publisher_card_title":"The Siege of AR-555","publisher_card_locator":"Season 7 Episode Guide > S7 E8 > The Siege of AR-555","title_slot_status":"SAME_PUBLISHER_FAMILY_TITLE_CONFLICT_UNRESOLVED","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p03","source_local_row_id":"publisher:s7:ds9:008","publisher_season":7,"publisher_episode":9,"publisher_card_title":"Covenant","publisher_card_locator":"Season 7 Episode Guide > S7 E9 > Covenant","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p04","source_local_row_id":"publisher:s7:ds9:009","publisher_season":7,"publisher_episode":10,"publisher_card_title":"It's Only A Paper Moon","publisher_card_locator":"Season 7 Episode Guide > S7 E10 > It's Only A Paper Moon","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p05","source_local_row_id":"publisher:s7:ds9:010","publisher_season":7,"publisher_episode":11,"publisher_card_title":"Prodigal Daughter","publisher_card_locator":"Season 7 Episode Guide > S7 E11 > Prodigal Daughter","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p06","source_local_row_id":"publisher:s7:ds9:011","publisher_season":7,"publisher_episode":12,"publisher_card_title":"The Emperor's New Cloak","publisher_card_locator":"Season 7 Episode Guide > S7 E12 > The Emperor's New Cloak","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p07","source_local_row_id":"publisher:s7:ds9:012","publisher_season":7,"publisher_episode":13,"publisher_card_title":"Field of Fire","publisher_card_locator":"Season 7 Episode Guide > S7 E13 > Field of Fire","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p08","source_local_row_id":"publisher:s7:ds9:013","publisher_season":7,"publisher_episode":14,"publisher_card_title":"Chimera","publisher_card_locator":"Season 7 Episode Guide > S7 E14 > Chimera","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p09","source_local_row_id":"publisher:s7:ds9:014","publisher_season":7,"publisher_episode":15,"publisher_card_title":"Badda-Bing, Badda-Bang","publisher_card_locator":"Season 7 Episode Guide > S7 E15 > Badda-Bing, Badda-Bang","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
-    {"observation_id":"ds9-b008-p10","source_local_row_id":"publisher:s7:ds9:015","publisher_season":7,"publisher_episode":16,"publisher_card_title":"Inter Arma Enim Silent Leges","publisher_card_locator":"Season 7 Episode Guide > S7 E16 > Inter Arma Enim Silent Leges","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null}
+    {"observation_id":"ds9-b008-p01","source_local_row_id":"publisher:s7:ds9:011","publisher_season":7,"publisher_episode":12,"publisher_card_title":"The Emperor's New Cloak","publisher_card_locator":"Season 7 Episode Guide > S7 E12 > The Emperor's New Cloak","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b008-p02","source_local_row_id":"publisher:s7:ds9:012","publisher_season":7,"publisher_episode":13,"publisher_card_title":"Field of Fire","publisher_card_locator":"Season 7 Episode Guide > S7 E13 > Field of Fire","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b008-p03","source_local_row_id":"publisher:s7:ds9:013","publisher_season":7,"publisher_episode":14,"publisher_card_title":"Chimera","publisher_card_locator":"Season 7 Episode Guide > S7 E14 > Chimera","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b008-p04","source_local_row_id":"publisher:s7:ds9:014","publisher_season":7,"publisher_episode":15,"publisher_card_title":"Badda-Bing, Badda-Bang","publisher_card_locator":"Season 7 Episode Guide > S7 E15 > Badda-Bing, Badda-Bang","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b008-p05","source_local_row_id":"publisher:s7:ds9:015","publisher_season":7,"publisher_episode":16,"publisher_card_title":"Inter Arma Enim Silent Leges","publisher_card_locator":"Season 7 Episode Guide > S7 E16 > Inter Arma Enim Silent Leges","title_slot_status":"MATCHES_PRIOR_SAME_PUBLISHER_DIRECTORY","synopsis_status":"HELD_NO_PUBLIC_COPY_OR_PARAPHRASE","accepted_work_id":null}
   ],
-  "unresolved_same_publisher_title_conflict": {
-    "observation_id":"ds9-b008-p02",
-    "paramount_plus_guide_title":"The Siege of AR-555",
-    "star_trek_franchise_page_title":"The Siege of AR-558",
-    "star_trek_franchise_page_url":"https://www.startrek.com/videos/episode-preview-the-siege-of-ar-558",
-    "source_independence":"SAME_CORPORATE_FAMILY_NOT_INDEPENDENT_CORROBORATION",
-    "global_work_title_decision":"UNRESOLVED"
+  "unaccepted_overlap_hold": {
+    "prior_draft_pr":326,
+    "prior_draft_status":"UNACCEPTED_PROPOSAL_NOT_ADMITTED_EVIDENCE",
+    "excluded_source_local_row_ids":[
+      "publisher:s7:ds9:006", "publisher:s7:ds9:007", "publisher:s7:ds9:008",
+      "publisher:s7:ds9:009", "publisher:s7:ds9:010"
+    ],
+    "source_family":"paramount_corporate_publisher_family",
+    "new_records_from_excluded_rows":0
   }
 }

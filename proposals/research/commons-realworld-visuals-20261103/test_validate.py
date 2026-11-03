@@ -100,6 +100,39 @@ class CommonsRealworldSourceHoldTests(unittest.TestCase):
         self.packet["candidates"][0]["new_permission"] = "YES"
         self.check_bad("candidate shape")
 
+    def test_coordinated_plausible_source_identity_spoof_is_not_admitted(self):
+        # Independent hostile-review PoC: all fields retain plausible types,
+        # hosts and shapes, but rewrite the convention attendee into a scene.
+        record = self.packet["candidates"][0]
+        record["subject_label"] = "Captain James T Kirk"
+        record["source_described_context"] = "Official film scene portrait from the 1960s"
+        record["commons_pinned_revision"] = record["commons_pinned_revision"].replace(
+            "oldid=1107732292", "oldid=1107732293")
+        record["commons_page_html_sha256"] = "f" * 64
+        record["imageinfo_api_response_sha256"] = "d" * 64
+        record["original_jpeg_sha1"] = "e" * 40
+        record["original_jpeg_sha256"] = "a" * 64
+        record["photographer"] = "Joe Ross"
+        record["photographer_source"] = "https://www.flickr.com/photos/joeross/not_real/"
+        record["attribution_text"] = "Captain James T Kirk film portrait — photo by Joe Ross, CC BY-SA 2.0"
+        self.check_bad("candidate identity/source/rights tuple")
+
+    def test_individual_plausible_snapshot_or_subject_rewrite_must_fail_pin(self):
+        for key, value in (("subject_label", "Captain Kirk actor"),
+                           ("commons_page_html_sha256", "f" * 64),
+                           ("original_jpeg_sha1", "e" * 40),
+                           ("photographer", "Joe Ross"),
+                           ("commons_flickr_license_review",
+                            "FLICKREVIEWR_2_CONFIRMED_CC_BY_SA_2_0_ON_2023_06_15")):
+            with self.subTest(key=key):
+                self.packet = gate.load_packet()
+                self.packet["candidates"][0][key] = value
+                if key == "photographer":
+                    self.packet["candidates"][0]["attribution_text"] = (
+                        self.packet["candidates"][0]["attribution_text"].replace(
+                            "Gage Skidmore", "Joe Ross"))
+                self.check_bad("candidate identity/source/rights tuple")
+
 
 if __name__ == "__main__":
     unittest.main()

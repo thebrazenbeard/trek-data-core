@@ -5,6 +5,7 @@ Rechecking the pinned Commons revisions and JPEG bytes is a separate live probe.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -30,6 +31,20 @@ RECORD_KEYS = {
     "photographer_source", "photo_license", "photo_license_url", "commons_flickr_license_review",
     "attribution_text", "subject_rights_status", "copyright_scope", "proposed_display_role",
     "release_status", "public_asset_path", "public_image_url",
+}
+
+# Accepted candidate bytes are pinned independently of the records.json
+# envelope. The exact source-described subject, creator, original Flickr URL,
+# Commons revision, image/page/API digests and rights HOLD are one atomic tuple.
+# Plausible-looking fields, or a coordinated rewrite of every field, cannot
+# silently transform a real convention photo into a fictional scene still.
+REVIEWED_CANDIDATE_SHA256 = {
+    "commons-shatner-2016-sdcc-gage-skidmore":
+        "09e6ac6969885b454fce206bfb4b32591a26aab0c6b92148762ed6993622ebdd",
+    "commons-joe-ross-tng-enterprise-filming-model-henry-ford-2019":
+        "9309323cfef965b38b9d0a07017fad2d566cbfeed7d8de9a90e0772fbf2b4795",
+    "commons-joe-ross-tos-tricorder-henry-ford-2019":
+        "02920a31dde53408e643b41d1a451b76b1c095358d10f0926e91d03ebe672c8e",
 }
 
 
@@ -152,11 +167,16 @@ def validate(data) -> dict:
                     "MUSEUM_OBJECT_PHOTO_NOT_EPISODE_STILL_OR_CANON_ASSERTION") and
                 row["public_asset_path"] is None and row["public_image_url"] is None,
                 "candidate cannot self-authorize public display or source assertion")
+        canonical = json.dumps(row, sort_keys=True, separators=(",", ":"),
+                               ensure_ascii=False).encode("utf-8")
+        require(hashlib.sha256(canonical).hexdigest() == REVIEWED_CANDIDATE_SHA256.get(candidate_id),
+                "candidate identity/source/rights tuple diverges from independently reviewed pin")
         seen_ids.add(candidate_id)
         seen_digests.add(row["original_jpeg_sha256"])
         kinds.add(kind)
     require(kinds == {"REAL_WORLD_PERFORMER_AT_EVENT", "EXHIBITED_PRODUCTION_OBJECT"},
             "real-world subject-class diversity lost")
+    require(seen_ids == set(REVIEWED_CANDIDATE_SHA256), "candidate inventory differs from review pins")
     return {"status": "PROPOSAL_ONLY", "candidates": len(rows), "release": 0, "coverage": 0}
 
 

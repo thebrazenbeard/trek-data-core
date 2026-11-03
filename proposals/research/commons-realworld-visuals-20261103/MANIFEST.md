@@ -42,6 +42,14 @@ remain unresolved; all three records are held from public display.
   exhibit terms, or other separately held rights. Independent source-specific
   rights and visual/subject audit is needed before any display approval.
 
+The proposal validator additionally owns immutable SHA-256 pins for the
+**complete canonical JSON tuple** of each of these three records. This prevents
+a coordinated substitution of plausible-looking subject labels, historical
+context, Commons oldid, author/Flickr link and hash-looking strings from
+passing merely because their field types still look valid. Those code pins
+certify internal immutability of this review packet, **not** independent
+photographic authenticity, publicity rights, or a license to underlying IP.
+
 The first candidate's publisher/actor connection must never imply Shatner is
 appearing as Captain Kirk in this real-world convention photograph. Similarly,
 the two museum images must not be silently used as visual covers for a TNG/TOS

@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=cdc3340a39c76bff0100ff808ac9121815efb3aeb3065e0dd2d38ad248d25d04">
-  <script src="./app.js?v=cea2a3cd9f582539d61c184b358489e4d13f746ec83569cb5bf6663ac7210e93" defer></script>
+  <link rel="stylesheet" href="./app.css?v=79b8a7be28adf5e2f9aa0bdaae96f66ac489c62ef4850c728b239d729925c4f4">
+  <script src="./app.js?v=88745df9e465ca392b596efaaeaa13e1c028aa59f0ea89c89396c3f9a1fa208d" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -88,11 +88,14 @@
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
         <div class="field"><label for="discovery-overview">Publisher overview (loaded)</label><select id="discovery-overview" name="overview"><option value="all">All overview states</option><option value="reviewed">Reviewed description loaded</option><option value="not-loaded">No reviewed description loaded</option></select></div>
         <div class="field"><label for="discovery-verification">Official metadata check</label><select id="discovery-verification" name="verification"><option value="all">All check statuses</option><option value="rechecked_exact">Exact title recheck</option><option value="rechecked_unresolved">Unresolved recheck</option><option value="not_rechecked">Not rechecked</option></select></div>
+        <div class="field"><label for="discovery-publisher-check">Additional publisher-card read (source-local)</label><select id="discovery-publisher-check" name="publisher-check"><option value="all">All publisher-card states</option><option value="title_exact">Publisher card title string match</option><option value="held_unresolved">Held title / split unresolved</option><option value="not_in_batch">No accepted card in this batch</option></select></div>
         <div class="field"><label for="discovery-synopsis">Synopsis status</label><select id="discovery-synopsis" name="synopsis"><option value="all">All synopses</option><option value="reviewed_publisher_paraphrase">Reviewed publisher paraphrase</option><option value="pending">Pending</option></select></div>
         <div class="field"><label for="discovery-tag">Structural tag</label><select id="discovery-tag" name="tag"><option value="all">All source-grounded tags</option></select></div>
         <div class="filter-action"><button type="reset">Clear directory filters</button></div>
       </form>
       <p class="directory-state">Machine-readable <a href="./search-catalog.json" download="trek-source-local-search.json">source-local JSON index</a> is available for offline query. It represents unadmitted observations, not unique works, canon, or completed coverage.</p>
+      <p class="directory-state publisher-card-state" id="publisher-card-state" role="status" aria-live="polite">Checking the additional 61-row publisher-card source-only projection…</p>
+      <p class="directory-state"><a id="publisher-card-download" href="./accepted-source-card-rechecks.json" download="trek-accepted-publisher-card-rechecks.json" hidden>Download accepted publisher-card metadata JSON (61 source-local checks)</a></p>
       <p class="result-summary" id="discovery-summary" aria-live="polite" aria-atomic="true">Waiting for source-local records.</p>
       <div class="directory-grid" id="discovery-list"></div>
       <p class="empty-state" id="discovery-empty" hidden>No source-local observations match these filters.</p>

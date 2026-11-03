@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import vm from 'node:vm';
-import { webcrypto } from 'node:crypto';
+import { webcrypto, createHash } from 'node:crypto';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -60,7 +60,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -76,6 +76,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-lineage').value = 'all';
   nodes.get('discovery-overview').value = 'all';
   nodes.get('discovery-verification').value = 'all';
+  nodes.get('discovery-publisher-check').value = 'all';
   nodes.get('discovery-synopsis').value = 'all';
   nodes.get('discovery-tag').value = 'all';
   nodes.get('publisher-edition-tag').value = 'all';
@@ -114,6 +115,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: publisherStatus, ok: publisherStatus >= 200 && publisherStatus < 300,
       arrayBuffer: async () => publisherBytes.buffer.slice(publisherBytes.byteOffset, publisherBytes.byteOffset + publisherBytes.byteLength)
     };
+    if (path === './accepted-source-card-rechecks.json') return {
+      status: sourceCardStatus, ok: sourceCardStatus >= 200 && sourceCardStatus < 300,
+      arrayBuffer: async () => sourceCardBytes.buffer.slice(sourceCardBytes.byteOffset, sourceCardBytes.byteOffset + sourceCardBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   const deterministicCrypto = {
@@ -141,7 +146,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   // without a guessed fixed delay or swallowing a rejected request.
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
     './artwork-catalog.json', './synopsis-catalog.json',
-    './metadata-rechecks.json', './short-synopsis-catalog.json'];
+    './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json'];
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
@@ -173,6 +178,105 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+test('61 first-party source-card observations are searchable without inflating 56 checks, 37 synopses, or 3 ISBN leads', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const metadata = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const sidecar = readFileSync(new URL('../explorer/accepted-source-card-rechecks.json', import.meta.url));
+  const publisher = readFileSync(new URL('../explorer/lit-publisher-edition-leads.json', import.meta.url));
+  const synopses = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const shorts = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    null, 404, synopses, 200, SCRIPT, metadata, 200, shorts, 200, false, publisher, 200, sidecar, 200);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+  assert.equal(nodes.get('publisher-edition-nav-count').textContent, '3');
+  assert.match(nodes.get('discovery-metrics').textContent, /metadata rechecked: 56 \/ 1,214/i);
+  assert.match(nodes.get('discovery-metrics').textContent, /Additional source-local publisher cards: 61 \(46 title matches · 15 held\)/);
+  assert.match(nodes.get('publisher-card-state').textContent, /61 additional accepted publisher-card reads/);
+  assert.match(nodes.get('publisher-card-state').textContent, /10 SNW cards unjoined/);
+  assert.equal(nodes.get('publisher-card-download').hidden, false);
+  assert.equal(nodes.get('publisher-card-download').getAttribute('href'), null, 'download URL is static HTML, never injected via source JSON');
+
+  nodes.get('discovery-publisher-check').value = 'held_unresolved';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^15 source-local metadata rows match/);
+  assert.match(nodes.get('discovery-list').textContent, /HELD \/ UNRESOLVED publisher card title or split/);
+  assert.match(nodes.get('discovery-list').textContent, /No audiovisual close read, raw publisher page custody, Work identity admission, or approved synopsis/);
+  assert.ok(nodes.get('discovery-list').textContent.includes('Broken Bow - Part 1 and 2'));
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'directory-publisher-card held').length, 15);
+  nodes.get('discovery-query').value = 'broken bow';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-summary').textContent, /^2 source-local metadata rows match/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'directory-publisher-card held').length, 2);
+  nodes.get('discovery-query').value = 'juggernaut';
+  nodes.get('discovery-publisher-check').value = 'title_exact';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-summary').textContent, /^1 source-local metadata rows match/);
+  assert.match(nodes.get('discovery-list').textContent, /Publisher card title string match/);
+  nodes.get('discovery-query').value = '';
+  nodes.get('discovery-publisher-check').value = 'all';
+  nodes.get('discovery-tag').value = 'publisher-card:held_unresolved';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^15 source-local metadata rows match/);
+  assert.equal(nodes.get('publisher-edition-list').children.length, 3);
+  assert.equal(synopses.synopsis_count + JSON.parse(shorts.toString('utf8')).synopsis_count, 37);
+});
+
+test('publisher-card sidecar absent, tampered, or digest-failed leaves existing Explorer states intact', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const metadata = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const valid = readFileSync(new URL('../explorer/accepted-source-card-rechecks.json', import.meta.url));
+  const altered = Buffer.from(valid.toString('utf8').replace('Forget Me Not', 'Forget All Evidence'));
+  for (const [bytes, status] of [[valid, 404], [altered, 200]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+      null, 404, null, 404, SCRIPT, metadata, 200, null, 404, false, null, 404, bytes, status);
+    assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+    assert.match(nodes.get('discovery-metrics').textContent, /metadata rechecked: 56 \/ 1,214/i);
+    assert.doesNotMatch(nodes.get('discovery-metrics').textContent, /Additional source-local publisher cards: 61/);
+    assert.match(nodes.get('publisher-card-state').textContent, /unavailable or rejected/);
+    assert.match(nodes.get('publisher-card-state').textContent, /not loaded, not zero/);
+    assert.equal(nodes.get('publisher-card-download').hidden, true);
+    nodes.get('discovery-publisher-check').value = 'held_unresolved';
+    nodes.get('discovery-filters').fire('change');
+    assert.match(nodes.get('discovery-summary').textContent, /^0 source-local metadata rows match/);
+  }
+});
+
+test('repinned malicious publisher-card labels, admission, URLs, and IDs still fail semantic verification', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const original = JSON.parse(readFileSync(new URL('../explorer/accepted-source-card-rechecks.json', import.meta.url), 'utf8'));
+  const acceptedDigest = '4ff4246f772117d847ed939a40218679fe6d1621c2c422f539d9c177971804a6';
+  const mutations = [
+    (data) => { data.rows[0].publisher_title_check = 'AUDITED_WORK_ADMITTED_FULL_TEXT_AVAILABLE_UNRESOLVED'; },
+    (data) => { data.rows[0].original_resolution = 'AUDITED_WORK_ADMITTED_FULL_TEXT_AVAILABLE_UNRESOLVED'; },
+    (data) => { data.rows[0].publisher_family = 'independent:other'; },
+    (data) => { data.rows[0].admission_effect = 'WORK_ADMITTED'; },
+    (data) => { data.rows[0].source_local_title = '<img src=x onerror=alert(1)>'; },
+    (data) => { data.rows[0].row_id = 'lead:0900'; },
+    (data) => { data.rows[0].publisher_guide_url = 'https://evil.example.test/episodes'; },
+    (data) => { data.rows[0].publisher_card_title = '<script>alert(1)</script>'; },
+    (data) => { data.new_publisher_card_source_local_lead_count = 62; },
+    (data) => { data.rows[60].publisher_title_check = 'EXACT'; },
+    (data) => { data.rows[60].synopsis_publication_effect = 'APPROVED'; }
+  ];
+  for (const mutate of mutations) {
+    const forged = structuredClone(original);
+    mutate(forged);
+    const bytes = Buffer.from(JSON.stringify(forged));
+    const digest = createHash('sha256').update(bytes).digest('hex');
+    const repinned = SCRIPT.replace(acceptedDigest, digest);
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+      null, 404, null, 404, repinned, null, 404, null, 404, false, null, 404, bytes, 200);
+    assert.match(nodes.get('publisher-card-state').textContent, /unavailable or rejected/);
+    assert.doesNotMatch(nodes.get('discovery-metrics').textContent, /Additional source-local publisher cards: 61/);
+    // The renderer uses textContent; these assertions check that a rejected
+    // sidecar adds no forged card text. They are not HTML filtering logic.
+    const visibleText = nodes.get('discovery-list').textContent;
+    for (const rejectedLiteral of ['AUDITED_WORK_ADMITTED', '<script>', '<img']) {
+      assert.equal(visibleText.includes(rejectedLiteral), false);
+    }
+  }
+});
 
 test('accepted publisher editions appear as three searchable metadata-only cards without inflating universe or synopsis counts', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));

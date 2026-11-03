@@ -1,0 +1,33 @@
+{
+  "schema_version": "trek-lit-source-local-correction-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "correction_id": "lit-eternal-tide-9781668288559-unexpected-return-modal-20261103",
+  "superseded_source_path": "proposals/research/lit-three-publisher-overviews-20261103/observations.json",
+  "superseded_source_sha256": "3989c480061492453b2b905c14e2b1b61014f9d379d9b0e8ea0d7afe3019f85f",
+  "superseded_candidate_id": "lit-source-local-sns-voy-eternal-tide-20261103",
+  "superseded_field": "original_overview",
+  "publisher_title": "The Eternal Tide",
+  "publisher_creator": "Kirsten Beyer",
+  "publisher_edition_isbn13": "9781668288559",
+  "official_publisher_url": "https://www.simonandschuster.com/books/The-Eternal-Tide/Kirsten-Beyer/Star-Trek-Voyager/9781668288559",
+  "source_reader": "DIRECT_RENDERED_FIRST_PARTY_ABOUT_THE_BOOK_NO_RAW_HTML_CUSTODY",
+  "source_independence_group": "publisher:simonandschuster.com",
+  "source_issue": "The existing candidate called a leader's return anticipated; the official publisher description explicitly presents it as unforeseen by the fleet.",
+  "source_assertion_scope": "PUBLISHER_DESCRIPTION_NOT_VERIFIED_BOOK_EVENTS",
+  "replacement_original_overview": "The publisher follows a Voyager fleet survey of formerly Borg-controlled regions in the Delta Quadrant. As the vessels investigate, Fleet Commander Afsarah Eden receives further clues to her obscured origins. A revered Starfleet leader's unexpected return, unforeseen by the fleet, may have consequences far beyond the expedition.",
+  "source_relative_tags": [
+    "series:star-trek-voyager",
+    "setting:delta-quadrant",
+    "context:former-borg-sectors",
+    "character:afsarah-eden",
+    "plot:unexpected-starfleet-leader-return"
+  ],
+  "global_work_identity_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "image_or_ebook_bytes_retrieved": false,
+  "publisher_html_sha256": null,
+  "close_read": false
+}

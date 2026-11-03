@@ -1,0 +1,6236 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-OPF-METADATA-20261103",
+  "baseline_accepted_main": "4e75c2ba45a9ce8d1537497052007cd215ab0bef",
+  "observation_date_utc": "2026-11-03",
+  "source_kind": "OWNER_PRIVATE_OPF_XML_METADATA",
+  "source_container": {
+    "opaque_id": "OWNER_PRIVATE_ST_OPF_ARCHIVE_A",
+    "sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+    "bytes": 95673655,
+    "zip_members": 3846,
+    "opf_members": 347,
+    "image_members_unread": 1910
+  },
+  "related_unread_text_container": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "lit_members_unread": 347,
+    "txt_members_unread": 220
+  },
+  "private_member_paths_exported": false,
+  "private_identifier_guids_exported": false,
+  "copyrighted_text_or_images_exported": false,
+  "opf_xml_metadata_elements_read": true,
+  "ebook_full_text_read": false,
+  "edition_binding_verified": false,
+  "public_synopsis_approved": false,
+  "work_admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "source_local_id": "opf-local:0001",
+      "opf_entry_sha256": "9303fa230d12144ddb90dbae556248f0bc6ac9586048716ae12cd6561af30a16",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek Gateways - 1of7 - One Small Step"
+      ],
+      "creator": [
+        "John"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0002",
+      "opf_entry_sha256": "56b8ff04f7394d677641eeddbabd95daf66ca71f708aa5670345486d19c7ae83",
+      "parse_status": "PARSED",
+      "title": [
+        "Diane Carey - Star Trek - Gateways 2 - Chainmail"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0003",
+      "opf_entry_sha256": "38b169b1b8571ed6a08deb4eb75df3a81e8a9ee6814de22d8071a91a37e28e40",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek Gateways 3of7 Doors Into Chaos"
+      ],
+      "creator": [
+        "John"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0004",
+      "opf_entry_sha256": "f6fd51a8643009b87a16ff020f0c24e04340f9817921fdd9bcda55d8b3a5f618",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 Relaunch 04 - Gateways - 4 of 7 - Demons Of Air And Darkness"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0005",
+      "opf_entry_sha256": "57502ebf8e22c86eef530378ea2ce16617d956070aacfb938a4d74b526161ac8",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Gateways 5 - No Man's Land"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0006",
+      "opf_entry_sha256": "0867e0337dc55eb60e729f7be35554ebc1607b196f64edcafe36552b21fda619",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - New Frontier - 11 - Gateways - 6 of 7 - Cold_Wars"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0007",
+      "opf_entry_sha256": "ff84da33b51df8d7be8d32dfac0d9cdfd3be93118552bca6d68f2947eef4ef9f",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Gateways 7 - WHAT LAY BEYOND"
+      ],
+      "creator": [
+        "Various"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0008",
+      "opf_entry_sha256": "c305d874f06fb77951715a4f670c2995d0a140418306f2b3d3e32478f5d6c68e",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 10 - Gateways Epilogue Here There Be Monsters"
+      ],
+      "creator": [
+        "Keith DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0009",
+      "opf_entry_sha256": "24a77698008a1e36611862ae418196e85b2a270f27863753aaeee7112dd6c6a3",
+      "parse_status": "PARSED",
+      "title": [
+        "Have Tech, Will Travel"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido",
+        "Kevin Dilmore",
+        "Christie Golden",
+        "Dean Wesley Smith"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743439961"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0010",
+      "opf_entry_sha256": "e86f66ddf0924e317717a5559ac6ecbc540fd084a8a10710758ebd2c2b7124c8",
+      "parse_status": "PARSED",
+      "title": [
+        "THE BELLY OF THE BEAST"
+      ],
+      "creator": [
+        "Dean Wesley Smith"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743419014"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0011",
+      "opf_entry_sha256": "ba13ca61c7f2e9671d1e6a409e9ba9c55f6dbab6efbbd5f4a505c7f92c45a1ca",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 02 - Fatal Error 1"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0012",
+      "opf_entry_sha256": "3891568cc1517d65b1ba9bb4c80c3eed4393e51cd2edea0dde204497de982f2c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 03 - Hard Crash"
+      ],
+      "creator": [
+        "Christie Golden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0013",
+      "opf_entry_sha256": "6d2030d6755e05130166dc22b748d896b93c4a31114abc7447a6252c005825b5",
+      "parse_status": "PARSED",
+      "title": [
+        "Starfleet Corps of Engineers - Interphase - Book 1"
+      ],
+      "creator": [
+        "Dayton Ward &Kevin Dilmore"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0014",
+      "opf_entry_sha256": "501176457e48d8f1d7144df4a9c9a7f6d5e6c0ecd02c9439592ed45ea22356c7",
+      "parse_status": "PARSED",
+      "title": [
+        "Starfleet Corps of Engineers - Interphase - Book 2"
+      ],
+      "creator": [
+        "Dayton Ward &Kevin Dilmore"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0015",
+      "opf_entry_sha256": "64dd25266361dd2772fa76d051cfb74278e823f3ce62b3096b622f93bacb458b",
+      "parse_status": "PARSED",
+      "title": [
+        "Miracle Workers"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido",
+        "Kevin Dilmore",
+        "David Mack",
+        "Dayton Ward"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002-02-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743444124"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0016",
+      "opf_entry_sha256": "2265fe6f23777ad66e7a4b87b082863659f7cae83fc4b33691c04478ac71e427",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 06 - Cold Fusion"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0017",
+      "opf_entry_sha256": "d4f2e5797e69d75630e3b13611e7d88e5e1f8261094c86878967d474ff7a2d01",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 07 - Invincible Book 1"
+      ],
+      "creator": [
+        "David Mack &Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0018",
+      "opf_entry_sha256": "9579da3bd161e62e4598a2ed80c9e5bc616b2abcdfaa8f6153c4f0e93cd0ee6d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 08 - Invincible Book 2"
+      ],
+      "creator": [
+        "David Mack &Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0019",
+      "opf_entry_sha256": "67d1314e0884ccffdc8ae1bb22a4bf834fceedbeed22cf81cd100c6a8d5d1a9b",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trekr - SCE 09 - The Riddled Post"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0020",
+      "opf_entry_sha256": "8c7028d9dd6654d9ae93a72fdba74c6f228a77be11ea2636175348fc6cb97c49",
+      "parse_status": "PARSED",
+      "title": [
+        "SCE Omnibus Book 3"
+      ],
+      "creator": [
+        "Greg Brodeur, Scott Ciencin, Keith R.A. DeCandido, Dave Galanter, Dan Jolley, and Aaron Rosenberg"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0021",
+      "opf_entry_sha256": "4555bf0a091eec309ada5b535d0b0726411937a910a81d1a2ae61407d20f56b7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 11 - Ambush"
+      ],
+      "creator": [
+        "Dave Galanter &Greg Brodeur"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0022",
+      "opf_entry_sha256": "ff7aa3c8f4741f188a2cbb42a18afa477d42bb34607f3ad9f34f40322b12a7c0",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 12 - Some Assembly Required"
+      ],
+      "creator": [
+        "Scott Ciencin &Dan Jolley"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0023",
+      "opf_entry_sha256": "257ac6f14691663a0461c83663f636d9e57652d46c0a85a5d18cf30b44f44499",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 13 No Surrender"
+      ],
+      "creator": [
+        "Jeff Mariotte"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0024",
+      "opf_entry_sha256": "870398cbb24623293dce5fae66d4fb2c140cd208537bb54446c4086e034a9ec8",
+      "parse_status": "PARSED",
+      "title": [
+        "No Surrender"
+      ],
+      "creator": [
+        "Mike Collins, Ian Edginton, Robert Greenberger, Glenn Hauman, and Jeff Mariotte"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0025",
+      "opf_entry_sha256": "085c8aac32c76706e0c792b29252299750a551970f133bc28b387ed7a18bccc5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 14 - Caveat Emptor"
+      ],
+      "creator": [
+        "Scott Ciencin &Dan Jolley"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0026",
+      "opf_entry_sha256": "28635d3e8f21cbf5c44e398238d9f2a76ecff08de73321a364a7584c3508c904",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 15 - Past Life"
+      ],
+      "creator": [
+        "Robert Greenberger"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0027",
+      "opf_entry_sha256": "6b2fc08c5e22f03b35f055a92b0be17cc8a4151268d81f8982f92eb8896af190",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - SCE - 16 - Oaths"
+      ],
+      "creator": [
+        "Glenn Hauman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0028",
+      "opf_entry_sha256": "763135052d663b69cf8d535d72915f4eb48d4288da9be4779f670b90d44fe476",
+      "parse_status": "PARSED",
+      "title": [
+        "Foundations Book One"
+      ],
+      "creator": [
+        "Dayton Ward",
+        "Kevin Dilmore"
+      ],
+      "publisher": [],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743456726"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0029",
+      "opf_entry_sha256": "87b54e9d35f770d5d78c246ad361966b34f748aa67503fa6e161d85bd4c42664",
+      "parse_status": "PARSED",
+      "title": [
+        "Foundations Book Two"
+      ],
+      "creator": [
+        "Dayton Ward, Kevin Dilmore"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743456734"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0030",
+      "opf_entry_sha256": "0c1dc7ad81f09aabfc3c021d5b0a2212b9ae0e1b7e23a93d1e0b10df56ef4f40",
+      "parse_status": "PARSED",
+      "title": [
+        "Foundations Book Three"
+      ],
+      "creator": [
+        "Dayton Ward, Kevin Dilmore"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0031",
+      "opf_entry_sha256": "e5f46b1ea2deb41867d3ffb2270bb3d87a3fbc88c1383dde0dd3379dd6e410e4",
+      "parse_status": "PARSED",
+      "title": [
+        "Enigma Ship"
+      ],
+      "creator": [
+        "J. Steven York, Christina F. York"
+      ],
+      "publisher": [
+        "Simon and Schuster"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743456750"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0032",
+      "opf_entry_sha256": "a0822509bc6103e05773125ee4716ef964d16a7b1f577fbb3cd814d0a646e6a6",
+      "parse_status": "PARSED",
+      "title": [
+        "War Stories: Book One"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0033",
+      "opf_entry_sha256": "200e6074959997a195faef6731e8ea78e9453d747466495c095cac666d8d8cda",
+      "parse_status": "PARSED",
+      "title": [
+        "War Stories: Book Two"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0034",
+      "opf_entry_sha256": "0606dc7ad6123f45d568c7f8aceb1eb0c2e7cd373c387b65e507fb1111966417",
+      "parse_status": "PARSED",
+      "title": [
+        "WildFire Book One"
+      ],
+      "creator": [
+        "David Mack"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743456785"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0035",
+      "opf_entry_sha256": "b9f2731b2e3f85619b722e8e209d0e11f4c0e523b2479dbac28f8e612cce6914",
+      "parse_status": "PARSED",
+      "title": [
+        "WildFire Book Two"
+      ],
+      "creator": [
+        "David Mack"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0036",
+      "opf_entry_sha256": "700ebe7328ca95748411c2e5f8ef2b352306cd636c5097e3717c9a9c93fcfbee",
+      "parse_status": "PARSED",
+      "title": [
+        "Home Fires"
+      ],
+      "creator": [
+        "Dayton Ward & Kevin Dilmore"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0037",
+      "opf_entry_sha256": "36f08bb89b7d969b6947db20da5961a1e82dfd82a701ef793b7db1077c56ea85",
+      "parse_status": "PARSED",
+      "title": [
+        "Age of Unreason"
+      ],
+      "creator": [
+        "Scott Ciencin"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743475925"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0038",
+      "opf_entry_sha256": "fcae83b5e93d629eb2e1ed996e0e92cddd49f277a878bab68aa220d757d42cc0",
+      "parse_status": "PARSED",
+      "title": [
+        "Balance of Nature"
+      ],
+      "creator": [
+        "Heather Jarman"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743475933"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0039",
+      "opf_entry_sha256": "ee48affacd685444fbc03f8fde7de942e42bef68da03adf5d4f1995a60b4abd0",
+      "parse_status": "PARSED",
+      "title": [
+        "Breakdowns"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0040",
+      "opf_entry_sha256": "a21c8347635f455d4d9b1e2636eb91bd75dbb34548b72580873320bc70ec3d02",
+      "parse_status": "PARSED",
+      "title": [
+        "Aftermath"
+      ],
+      "creator": [
+        "Christopher L. Bennett"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0041",
+      "opf_entry_sha256": "ffbcfde66501dc1bdf5edd4fac0f849f36d2b2833025a6f822bcd02b6f380de2",
+      "parse_status": "PARSED",
+      "title": [
+        "Ishtar Rising Book 1"
+      ],
+      "creator": [
+        "Michael A. Martin & Andy Mangels"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0042",
+      "opf_entry_sha256": "7749c8a215e18e6aac1ed172597a9f56f0b2df3a9ef24e7a11209db2655c5f1a",
+      "parse_status": "PARSED",
+      "title": [
+        "Ishtar Rising BOOK 2"
+      ],
+      "creator": [
+        "Michael A. Martin & Andy Mangels"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0043",
+      "opf_entry_sha256": "9171b169ced838b3500f5e081cf6addcf4abaaa71c95447c72202e3e544fca2d",
+      "parse_status": "PARSED",
+      "title": [
+        "Buying Time"
+      ],
+      "creator": [
+        "Robert Greenberger"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0044",
+      "opf_entry_sha256": "66c8bb7c52f374d4df87a0fcb03d827feaa34f5f5d1d8e3fa18f91f45d609fc5",
+      "parse_status": "PARSED",
+      "title": [
+        "Collective Hindsight Book 1"
+      ],
+      "creator": [
+        "Aaron Rosenberg"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0045",
+      "opf_entry_sha256": "ca025b2d11a8982524e89a97e1e454340ae639c1b6a38f4f1eebbb09b07e2706",
+      "parse_status": "PARSED",
+      "title": [
+        "Collective Hindsight Book 2"
+      ],
+      "creator": [
+        "Aaron Rosenberg"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0046",
+      "opf_entry_sha256": "d263edc0cc885417a73b27ebcd8057ebb26a956cb095d887f85d4ad5292f8eed",
+      "parse_status": "PARSED",
+      "title": [
+        "The Demon Book 1"
+      ],
+      "creator": [
+        "Loren L. Coleman & Randall N. Bills"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0047",
+      "opf_entry_sha256": "7d0bbdd715aefcb480a76b0c075e5b6903a318ae40f654e4bf6cc3f21b53ffe9",
+      "parse_status": "PARSED",
+      "title": [
+        "The Demon Book 2"
+      ],
+      "creator": [
+        "Loren L. Coleman & Randall N. Bills"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0048",
+      "opf_entry_sha256": "392224d17900b9dd6293d1a83936a56b1fa4642c86d59168a913b83fc29d76f8",
+      "parse_status": "PARSED",
+      "title": [
+        "Ring Around the Sky"
+      ],
+      "creator": [
+        "Allyn Gibson"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0049",
+      "opf_entry_sha256": "08973c9c47009f53ee32947b38a0eef8a0e84d102321252f721a3e63872e3190",
+      "parse_status": "PARSED",
+      "title": [
+        "Strange New Worlds VII"
+      ],
+      "creator": [
+        "Dean Wesley Smith with John J. Ordover, Elisa J. Kassin, and Paula M. Block"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0050",
+      "opf_entry_sha256": "0135412260edc89eb865167e1ebf8336c891d9f27575eb0b28a8fad6c094784c",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "GHOST SHIP"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412133"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0051",
+      "opf_entry_sha256": "a0b564feea17f252c8c2cd7464123a9b6dcacfced554f3aabf9062fe0fc97087",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE PEACEKEEPERS"
+      ],
+      "creator": [
+        "Gene Deweese"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412141"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0052",
+      "opf_entry_sha256": "281c7026d5d57f13bb77ebf0dae116ad1c95f1154b51a70e2f15608cf94b07f3",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE CHILDREN OF HAMLIN"
+      ],
+      "creator": [
+        "Carmen Carter"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "074341215X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0053",
+      "opf_entry_sha256": "9caac6f27be03aef13a0fdd99d54dbaac3fdb2f0618896cb89af72810d7bb30e",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "SURVIVORS"
+      ],
+      "creator": [
+        "Jean Lorrah"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412168"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0054",
+      "opf_entry_sha256": "da6cdbb23d99b13935015e56fbd9eb7b200c2f7e3dc27dcaf96d75e46737c800",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "STRIKE ZONE"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412176"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0055",
+      "opf_entry_sha256": "35221986d1e393481525b4710abcc83e15c3ed1dd56caafb6f86df00f3f05c8a",
+      "parse_status": "PARSED",
+      "title": [
+        "POWER HUNGRY"
+      ],
+      "creator": [
+        "Howard Weinstein"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-27"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420861"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0056",
+      "opf_entry_sha256": "df5fc69fea62c180f470f1f3801fd98a72d22558bb334c2bf3547a5b7dd814e2",
+      "parse_status": "PARSED",
+      "title": [
+        "MASKS"
+      ],
+      "creator": [
+        "JOHN VORNHOLT"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-03"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074342087X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0057",
+      "opf_entry_sha256": "81889d8fe757c96433220e1bc3776dd209e1d2954de33c64b11da81dffec1e27",
+      "parse_status": "PARSED",
+      "title": [
+        "A CALL TO DARKNESS"
+      ],
+      "creator": [
+        "MICHAEL JAN FRIEDMAN"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2000-08-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420896"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0058",
+      "opf_entry_sha256": "2e2f647a247fa7a105a61429639a7aa91a9875fae05d00036397f1c7475764bf",
+      "parse_status": "PARSED",
+      "title": [
+        "A ROCK AND A HARD PLACE"
+      ],
+      "creator": [
+        "PETER DAVID"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/29/2000"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074342090X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0059",
+      "opf_entry_sha256": "b2f17c79cce4f72d86507cc47f64479dd24886d1806fa6372cb0cc78b8638349",
+      "parse_status": "PARSED",
+      "title": [
+        "GULLIVER'S FUGITIVES"
+      ],
+      "creator": [
+        "KEITH SHAREE"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420918"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0060",
+      "opf_entry_sha256": "caa77b36f24b432a6b62271fcbacbec37224fc4da24c89d93f16f31f2d8ad28f",
+      "parse_status": "PARSED",
+      "title": [
+        "DOOMSDAY WORLD"
+      ],
+      "creator": [
+        "CARMEN CARTER, PETER DAVID, MICHAEL JAN FRIEDMAN AND ROBERT GREENBERGER"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420926"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0061",
+      "opf_entry_sha256": "3d064640f39a71fd5b544066731e1f71445f479ba1a134e4862cffd600e7995a",
+      "parse_status": "PARSED",
+      "title": [
+        "THE EYES OF THE BEHOLDERS"
+      ],
+      "creator": [
+        "A.C. Crispin"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/29/00"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420934"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0062",
+      "opf_entry_sha256": "f042691095b1f3748bfe8b02def014e43e59ef24d08d6030602f1c349844569b",
+      "parse_status": "PARSED",
+      "title": [
+        "EXILES"
+      ],
+      "creator": [
+        "HOWARD WEINSTEIN"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420942"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0063",
+      "opf_entry_sha256": "9ad2237695254b413ddde3f1475db69a67289cf21e7db9a5e50e7ceeefba18f0",
+      "parse_status": "PARSED",
+      "title": [
+        "FORTUNE'S LIGHT"
+      ],
+      "creator": [
+        "MICHAEL JAN FRIEDMAN"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420950"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0064",
+      "opf_entry_sha256": "eba472b619da851af64b7e0c7b06eae80159ceaf3fdf6ac1ec6101be4c0bbea2",
+      "parse_status": "PARSED",
+      "title": [
+        "CONTAMINATION"
+      ],
+      "creator": [
+        "JOHN VORNHOLT"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420969"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0065",
+      "opf_entry_sha256": "1d89a9e32a90d6f0153d3daa6cc9b7cc801bd27858db2ef6e35a0d813ae2d492",
+      "parse_status": "PARSED",
+      "title": [
+        "BOOGEYMEN"
+      ],
+      "creator": [
+        "Mel Gilden"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/29/00"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420977"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0066",
+      "opf_entry_sha256": "932eb1aec317bd3f8574d18e5be45797f30cb86ff4a0cf1ab8f474e1a1dca119",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Q-In-Law"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0067",
+      "opf_entry_sha256": "6f0771e9c3b95181a2e9bb657c18c5e2943644b68bac5831ccd534d58bf1959b",
+      "parse_status": "PARSED",
+      "title": [
+        "PRECHANCE TO DREAM"
+      ],
+      "creator": [
+        "HOWARD WEINSTEIN"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743420993"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0068",
+      "opf_entry_sha256": "de54cf31b71cc8cf4524ec0e08083f09989bd3523960ac241d3afdf0a4172731",
+      "parse_status": "PARSED",
+      "title": [
+        "SPARTACUS"
+      ],
+      "creator": [
+        "T.L. MANCOUR"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421000"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0069",
+      "opf_entry_sha256": "ce3fe5bcf214cf7792ae8ffcebff06f7a847e48f1beeb5660f87b00e6b8c56c7",
+      "parse_status": "PARSED",
+      "title": [
+        "CHAINS OF COMMAND"
+      ],
+      "creator": [
+        "W. A. McCAY and E. L. FLOOD"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/29/00"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421019"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0070",
+      "opf_entry_sha256": "78cc06cf049770cf8abec0c79802a20f485b8349c80f32c2ad587bd27d6435b2",
+      "parse_status": "PARSED",
+      "title": [
+        "IMBALANCE"
+      ],
+      "creator": [
+        "V.E. Mitchell"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421027"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0071",
+      "opf_entry_sha256": "cfcd6e8d270af781fba6e7c48f7b41e65512dca77c75284c22fe98ff055331b4",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - War Drums"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0072",
+      "opf_entry_sha256": "32015f0833007a8b73b2da2e68fec0a0acd8c6346831233df07f3b10797bb4cf",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - 24 - Nightshade"
+      ],
+      "creator": [
+        "Laurell K. Hamilton"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0073",
+      "opf_entry_sha256": "4af4ad023315791b0c17e90422de4895260171fe8af90df2f8ca8302c4188913",
+      "parse_status": "PARSED",
+      "title": [
+        "GROUNDED"
+      ],
+      "creator": [
+        "DAVID BISCHOFF"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421086"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0074",
+      "opf_entry_sha256": "c511cdfedfedda9c489583b448eb2bf63e4ca9d8db8baae3587334b6add2acfc",
+      "parse_status": "PARSED",
+      "title": [
+        "THE ROMULAN PRIZE"
+      ],
+      "creator": [
+        "SIMON HAWKE"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421094"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0075",
+      "opf_entry_sha256": "f9b296cf765060e02a145caf939fc3a92bab21ee8843f2ec7783c36173f3e285",
+      "parse_status": "PARSED",
+      "title": [
+        "GUISES OF THE MIND"
+      ],
+      "creator": [
+        "REBECCA NEASON"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421108"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0076",
+      "opf_entry_sha256": "cc092c539158cbb2ec28eda7a850aa3a0adf4ffc65812f70acffd620dd5b752c",
+      "parse_status": "PARSED",
+      "title": [
+        "HERE THERE BE DRAGONS"
+      ],
+      "creator": [
+        "JOHN PEEL"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421116"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0077",
+      "opf_entry_sha256": "99d06eca59fc7e187610747a8b48f134335a5e8545e7a36dcb999651f8705efb",
+      "parse_status": "PARSED",
+      "title": [
+        "SINS OF COMMISSION"
+      ],
+      "creator": [
+        "SUSAN WRIGHT"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421124"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0078",
+      "opf_entry_sha256": "cb4c5dd123c64562ee5852f323f697170b19fa29d40eb59afc630a2998f80212",
+      "parse_status": "PARSED",
+      "title": [
+        "DEBTOR'S PLANET"
+      ],
+      "creator": [
+        "W.R. THOMPSON"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421132"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0079",
+      "opf_entry_sha256": "b23446811129fdf4b42e55b8b1c80e5573c71abae84899f400546d0f8aa1b85d",
+      "parse_status": "PARSED",
+      "title": [
+        "FOREIGN FOES"
+      ],
+      "creator": [
+        "Dave Galanter and Greg Brodeur"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/29/00"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421140"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0080",
+      "opf_entry_sha256": "08a9aeedd2a9f3d5a706f801dc17735bd90d4a0afdc2aec6dcd4a49ed89c8150",
+      "parse_status": "PARSED",
+      "title": [
+        "REQUIEM"
+      ],
+      "creator": [
+        "MICHEAL JAN FRIEDMAN AND KEVIN RYAN"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421159"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0081",
+      "opf_entry_sha256": "6a5d66b7b19e9b1a2de7c581ffdb118969079488dd0d70163aff0567b03ad9cd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 033 - Balance Of Power"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0082",
+      "opf_entry_sha256": "9ccf4e83c5d59a246587ea8c18f7b1e78597a0c4c1643f28af3b832ccb6840b2",
+      "parse_status": "PARSED",
+      "title": [
+        "BLAZE OF GLORY"
+      ],
+      "creator": [
+        "SIMON HAWKE"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074342123X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0083",
+      "opf_entry_sha256": "6d1cdfc418f85c09646f8fbd38c9abeca148d7d191bc16e4a0c2a9fce70f8b5c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - The Romulan Stratagem"
+      ],
+      "creator": [
+        "Robert Greenberger"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0084",
+      "opf_entry_sha256": "bb7821ca32ac41563b7b8c58c715bdb1595d04204ac15fdf734737356d9b3e65",
+      "parse_status": "PARSED",
+      "title": [
+        "INTO THE NEBULA"
+      ],
+      "creator": [
+        "GENE DeWEESE"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074342137X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0085",
+      "opf_entry_sha256": "a38dee56e21f0f5387bbf12cb0a309a9b6bfc1b1ad80a1788cc70900a74d4cb8",
+      "parse_status": "PARSED",
+      "title": [
+        "THE LAST STAND"
+      ],
+      "creator": [
+        "BRAD FERGUSON"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421396"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0086",
+      "opf_entry_sha256": "c85539a16e80baee58d03c36cc79ba5d59016b4280695ef7570a889cd5f313c1",
+      "parse_status": "PARSED",
+      "title": [
+        "DRAGONS'S HONOR"
+      ],
+      "creator": [
+        "KIJ JOHNSON AND GREG COX"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421418"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0087",
+      "opf_entry_sha256": "7dd13961bfa77fa9d7ab623cf87106cb385293c44fd9bdd84300224f8da0fb6e",
+      "parse_status": "PARSED",
+      "title": [
+        "ROGUE SAUCER"
+      ],
+      "creator": [
+        "JOHN VORNHOLT"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-07"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421167"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0088",
+      "opf_entry_sha256": "2e71bf4f1362956cc5b3a2b03bc2386e25789960e84b557d7a53ed474c4c8cd3",
+      "parse_status": "PARSED",
+      "title": [
+        "POSSESSION"
+      ],
+      "creator": [
+        "J. M. Dillard and Kathleen O'Malley"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "07/27/00"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421175"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0089",
+      "opf_entry_sha256": "73b2ed96170cdbd7f0db2ddebf4b9d1f6aad0d6011c07aec3c48022c6109b1f1",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Infiltrator"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0090",
+      "opf_entry_sha256": "9f3e9472ff7685f5436d2b7052d794da9d07b91235a57caf4b7263fcb7a619a5",
+      "parse_status": "PARSED",
+      "title": [
+        "A FURY SCORNED"
+      ],
+      "creator": [
+        "PAMELA SARGENT AND GEORGE ZEBROWSKI"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421213"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0091",
+      "opf_entry_sha256": "11d97f45a723d8dd0dad9adb517027b5a4b183b18ca8216ff667d05512ed25ab",
+      "parse_status": "PARSED",
+      "title": [
+        "THE DEATH OF PRINCES"
+      ],
+      "creator": [
+        "JOHN PEEL"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421221"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0092",
+      "opf_entry_sha256": "bc9ab5d3e99f28d15c6cdcba53574370092120dbce144a4f4a78d6ce095c4b3d",
+      "parse_status": "PARSED",
+      "title": [
+        "INTELLIVORE"
+      ],
+      "creator": [
+        "DIANE DUANE"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2000-07-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421248"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0093",
+      "opf_entry_sha256": "09eaf2d182439bd4807ed3d5c67d2ef9858602d5537e4e1f4d030a3165e7fb35",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 046 - To Storm Heaven"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0094",
+      "opf_entry_sha256": "f5bdf4488021037d1f644c4fb729a6a3ad478c4253cd6c4c271ee53cab7102ef",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 047 - Q-Space"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0095",
+      "opf_entry_sha256": "5879cbaef3658465656ff5b248f21f85a8c0fcb90aea89d62728ca3e43cacb95",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 046 - Q-Zone"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0096",
+      "opf_entry_sha256": "b837518b08addbbd6e390b9de29d9942a3a41c19080cf2c0bc0cb91b38c151fc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - The Q Continuum 3 - Q-Strike"
+      ],
+      "creator": [
+        "William C. Deets &Dean Williams"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0097",
+      "opf_entry_sha256": "a63954755e0798cefe170e3a92dba1007e59fe090c3a919294bef06cb251c5fd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 050 - Dyson Sphere"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0098",
+      "opf_entry_sha256": "609ba09e38ea4a1fbbd600749521ba808a972bc00b5c0d88a817492af88e429d",
+      "parse_status": "PARSED",
+      "title": [
+        "Vectors"
+      ],
+      "creator": [
+        "Dean W. Smith & Kristine K. Rusch"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0099",
+      "opf_entry_sha256": "7ecabc5e573be4e788e65b466068a6a371e184f3b32764f0d015870fde530105",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 053 - Double Helix Red Sector"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0100",
+      "opf_entry_sha256": "1cdedb9093639f7b09060cde66b20c7d91b5938bd5ea0652d0d3a8cc668ebcdf",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Double Helix - Quarantine"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0101",
+      "opf_entry_sha256": "5fa9101419cbecab0100b1a5e788a3ac9be854419f5e8b59fcc8e856543c2d06",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG 056 Double Helix - The First Virtue"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0102",
+      "opf_entry_sha256": "6b4f81d288cf444718f12b28d7fea39a005da4df581fdd8b990100549be54d01",
+      "parse_status": "PARSED",
+      "title": [
+        "THE FORGOTTEN WAR"
+      ],
+      "creator": [
+        "William R. Forstchen"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000/07/30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421388"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0103",
+      "opf_entry_sha256": "ece62ca7ad023352cf9848b4c1755bfa90cc3a332ffd81dc85501b610ffddbd8",
+      "parse_status": "PARSED",
+      "title": [
+        "GEMWORLD: BOOK ONE OF TWO"
+      ],
+      "creator": [
+        "JOHN VORNHOLT"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-08-05"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074342140X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0104",
+      "opf_entry_sha256": "e8edf2ed4aca1fce9558eef0d0b37c79652c75ce89f271ba58ed8ee36cd9f321",
+      "parse_status": "PARSED",
+      "title": [
+        "GEMWORLD: BOOK TWO OF TWO"
+      ],
+      "creator": [
+        "JOHN VORNHOLT"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421426"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0105",
+      "opf_entry_sha256": "03b31ee32cd4b0a877a94550bf6ae1d60776fa8f3ba3c261b43958431f8fcb43",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek -Next Generation - Tooth and Claw."
+      ],
+      "creator": [
+        "Doranna Durgin"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0106",
+      "opf_entry_sha256": "2076dc39dd52f3a2aeb294ec106e94c949dc67ad5179314f4adb238e61f4784d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek Next Generations - Diplomatic Implausibility"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0107",
+      "opf_entry_sha256": "7115d4a45325acc036f652f420e4fdc5789269b8e452553bd2b68c99856bb9c5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - 62 - Maximum Warp, Book One"
+      ],
+      "creator": [
+        "Dave Galanter and Greg Brodeur"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0108",
+      "opf_entry_sha256": "e03d412dabef021e598911eac4a0ea51bfdc633bf6ccb985c977ef186a8fff32",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - 63 - Maximum Warp, Book Two"
+      ],
+      "creator": [
+        "Dave Galanter and Greg Brodeur"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0109",
+      "opf_entry_sha256": "8a50a443847d3070603913935d33f8f96aa0c9b4067689d4259e0403c2a99231",
+      "parse_status": "PARSED",
+      "title": [
+        "A Hard Rain"
+      ],
+      "creator": [
+        "Dean Wesley Smith"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002-03-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074341926X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0110",
+      "opf_entry_sha256": "4c35fb7b4991d34add2e92c450475edda12e77b773d99de2e14bcab33d16b0aa",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time for War, A Time for Peace"
+      ],
+      "creator": [
+        "Keith R.A. DeCandido"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0111",
+      "opf_entry_sha256": "a2660c9683466d906b4b2d7a5e87cdc49c32d8e8497dc116aef59cd06e8293d9",
+      "parse_status": "PARSED",
+      "title": [
+        "ATimetoBeBorn"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0112",
+      "opf_entry_sha256": "ddac9ce74e3afd13a78d5f79594c8cced86f1c813acf9813ce5056a91a817486",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Die"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0113",
+      "opf_entry_sha256": "1ba6c3d1dff75eab00cfd84038958516582c9b4e59430027fa2e54bfaac97b28",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Harvest"
+      ],
+      "creator": [
+        "Dayton Ward & Kevin Dilmore"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0114",
+      "opf_entry_sha256": "d430ad30b69de2a19e607275d9a7d01eaff47f1696a65308721585eeb2f9a2a5",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Hate"
+      ],
+      "creator": [
+        "Robert Greenberger"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0115",
+      "opf_entry_sha256": "36c23dc2c9ff5e1ebc3d7009dcff503ac5b42661c5c6376e5e787b49fb562322",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Kill"
+      ],
+      "creator": [
+        "David Mack"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0116",
+      "opf_entry_sha256": "8a3ee2427039a8bf388c2bb5e7a59e99cb4306b4147fc999c0ad5187c3c798b7",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Love"
+      ],
+      "creator": [
+        "Robert Greenberger"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0117",
+      "opf_entry_sha256": "d5c4e8a328b8abfa9b8ae7b33798499ccf66bb4e5bf66d9eca773301d02b4b9f",
+      "parse_status": "PARSED",
+      "title": [
+        "A Time to Sow"
+      ],
+      "creator": [
+        "Dayton Ward & Kevin Dilmore"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0118",
+      "opf_entry_sha256": "976d229bd71558da7cf63f4b8f60fdbc5d1623262186ce6b155d17028777fde1",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - [TNG] - All Good Things..."
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0119",
+      "opf_entry_sha256": "580ef8e210101bd936aadfca1a3c71bab43bcdb26aeaa478547e2b2a6d4f0a1c",
+      "parse_status": "PARSED",
+      "title": [
+        "The Battle of Betazed"
+      ],
+      "creator": [
+        "Charlotte Douglas",
+        "Susan Kearney"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002-04-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074343434X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0120",
+      "opf_entry_sha256": "4f67d91aef53a4cd3eadc42cadc7a56d0022f2a81a475b9422f4e228fa169aac",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Beginning"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0121",
+      "opf_entry_sha256": "018355be2990d4b15537e5aaa610c7984af3dd33d3099a2b875bc4e9a5534f5d",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - Do Comets Dream?"
+      ],
+      "creator": [
+        "S.P. Somtow"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0122",
+      "opf_entry_sha256": "567dbb4b7f6bcdb19c23906604b2045c3336761886cee17222bae20cc653355d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Generations"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0123",
+      "opf_entry_sha256": "ebdcd080bc3f59f8a716d418b2a98458e9d258cbb8cf4167bb05a07cf0155677",
+      "parse_status": "PARSED",
+      "title": [
+        "Immortal Coil"
+      ],
+      "creator": [
+        "Jeffrey Lang"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2/1/02"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743405927"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0124",
+      "opf_entry_sha256": "cf4eff2eb4e0479479b924a69ab1ce0f93d3878d48819727a94a6442cebe23a3",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Kahless"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0125",
+      "opf_entry_sha256": "fc8ab12c2b7ebc456de650f0f1d86a28d3f3829fac62483fe71d9d7956ded853",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Nemesis"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0126",
+      "opf_entry_sha256": "f1f2f9d4ad7da61259dcb99422641141852f0b0e1bdd8db01f4664d53eabf066",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Q-Squared"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0127",
+      "opf_entry_sha256": "af5c31fb9df38f51c7a8a327d11454612638bf67ded37aa0b36c5414a9ccc6e3",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - The Next Generation - Relics"
+      ],
+      "creator": [
+        "MICHAEL JAN FRIEDMAN"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0128",
+      "opf_entry_sha256": "f36bfb5d8c37a5045d24298385c629d08cb064d8e6228acd7bd96dc6eb074232",
+      "parse_status": "PARSED",
+      "title": [
+        "Imzadi Forever"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0129",
+      "opf_entry_sha256": "10960d908288f5e009cbdf5c3a8d1f4fc3211a97f71da989d1ed0042a2aee4e2",
+      "parse_status": "PARSED",
+      "title": [
+        "Pantheon"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0130",
+      "opf_entry_sha256": "6f55e2e4ec234fa7f5fa975ea2cb7cd39612a4da6df7799326ca41bd73e93843",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - Stargazer: Three"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0131",
+      "opf_entry_sha256": "8db6a55aeee048e305133037123ac04bb9dafaaa59ee9be94ccae7bdd450fe46",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - The Devil's Heart"
+      ],
+      "creator": [
+        "Carmen Carter"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0132",
+      "opf_entry_sha256": "46ec1ff812400330e2415b0635d5bf56b455222597b4d8ef00b3d8bf1a8d5de7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek: The Five Enterprises"
+      ],
+      "creator": [
+        "Kenneth A. Lowenberg"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0133",
+      "opf_entry_sha256": "761a256535940a4987d0541868339c09977fe1fdd6d2265e300efc85f46af873",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - The Genesis Wave, Book One"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0134",
+      "opf_entry_sha256": "f8db3c3c9374241ecea7c8fe021c25940af745da2fcdf22cac30cd6a63e5ace3",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - The Genesis Wave, Book Two"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0135",
+      "opf_entry_sha256": "e50f6cb14cfe7e5903f261dfb55e1b000a847746596ba86c1dcd09474accd2e0",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - The Genesis Wave, Book Three"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0136",
+      "opf_entry_sha256": "7a4ff9ceb8643f0fdf467f8e67fc2f965f32f0f9c683c5274d9e4e04b4a06078",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TNG - The Genesis Wave, Book Four - Genesis Force"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0137",
+      "opf_entry_sha256": "421815afd1c02cd8da0701401187af61ded8dbe5b18b3a2cc8348a58e3c84afd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - The Valiant"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0138",
+      "opf_entry_sha256": "4ae81c582fa71ad0b829cc90c5694c08776d66d9ad0d6e3562158d17c433b731",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Unification"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0139",
+      "opf_entry_sha256": "d7765f72a50ce934562eaa840c5103c8346fd8ac3ff9932b14dd0071c19e1ffb",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek 1"
+      ],
+      "creator": [
+        "James Blish"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0140",
+      "opf_entry_sha256": "b815b98f15098b44c4e75aef3bc006feabd9f3e671bb4586566c48140ee8b248",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE MOTION PICTURE™"
+      ],
+      "creator": [
+        "Gene Roddenberry"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412087"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0141",
+      "opf_entry_sha256": "6e6f27345bbafb2b1d63bbe6bef0818fc2849d8d25debd0e68a02619807317c0",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE ENTROPY EFFECT"
+      ],
+      "creator": [
+        "Vonda N. McIntyre"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412095"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0142",
+      "opf_entry_sha256": "854a310ff066bcb99d90973174b8bc3707b7eaf9e45bccd49f6301885da50b38",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE KLINGON GAMBIT"
+      ],
+      "creator": [
+        "Robert E. Vardeman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412109"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0143",
+      "opf_entry_sha256": "45b8f1483fb1bd498d756d02a2aa93401f4c0acf833f5837c46fe5addc064680",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE COVENANT OF THE CROWN"
+      ],
+      "creator": [
+        "Howard Weinstein"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412117"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0144",
+      "opf_entry_sha256": "41ad1973190c50af5e321a1c1d54ab052e69aaace35602f36dd8f7d4724ef5d9",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE PROMETHEUS DESIGN"
+      ],
+      "creator": [
+        "Sondra Marshak",
+        "Myrna Culbreath"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412125"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0145",
+      "opf_entry_sha256": "393b0771a09e478f1cb545d50c68a9b7a8b924548cd910d7a028d87efa618508",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek-TOS-006-The Abode of Life"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0146",
+      "opf_entry_sha256": "5f5d3a7396c02ba5d801d7c475b895a1bb520beec3fe81b899d99ff22ed77c27",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #7 - Star Trek II: The Wrath of Khan"
+      ],
+      "creator": [
+        "Vonda N. McIntyre (Novelization)"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0147",
+      "opf_entry_sha256": "c0eb2d7ec4fb467438a637e6121725fd1692fb9dd3a9c6fb1a752160190bafd3",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Black Fire"
+      ],
+      "creator": [
+        "Sonni Cooper"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0148",
+      "opf_entry_sha256": "ea4077599a68952cc06c7e378b0403721590969c7352f36c49c7071c74cead6c",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #9 - Triangle"
+      ],
+      "creator": [
+        "Sondra Marshak & Myrna Culbreath"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0149",
+      "opf_entry_sha256": "7d33b6010db28ddbd0fefbc96be0d851e05a143c528a3d901b4dbdbec6e9a879",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #10 - Web of the Romulans"
+      ],
+      "creator": [
+        "M. S. Murdock"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0150",
+      "opf_entry_sha256": "ba238b8040af11e78ac19447a000dd43b9fb67c131d306d7a5ddacc1d10a1613",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #11 - The Yesterday Saga I - Yesterday's Son"
+      ],
+      "creator": [
+        "A.C. Crispin"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0151",
+      "opf_entry_sha256": "20b398b342207e226564fda9c40dda1014f5505dea252dbc5d4102d3a8cace80",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #12 - Mutiny on the Enterprise"
+      ],
+      "creator": [
+        "Robert E. Vardeman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0152",
+      "opf_entry_sha256": "67da0c2d8d3b73cea0662f9708fa0d13762a390e6af70e2b646797a9f979b8eb",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 013 - The Wounded Sky"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0153",
+      "opf_entry_sha256": "f35a891917ff626a8b7b17e8e8ae738bbc4120df8b85591fa5aa288caaeae2fa",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 14 - The Trellisane Confrontation"
+      ],
+      "creator": [
+        "DAVID DVORKIN"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0154",
+      "opf_entry_sha256": "4a3cb3568a4991ad7a23610ccce5f80983da8e69a82c4154d06ad09787cc2d15",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Corona"
+      ],
+      "creator": [
+        "Greg Bear"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0155",
+      "opf_entry_sha256": "f9cbe34eaa8871465e50bfe0fe9cd3aaef101fcc1dc5254f83d9d526f890500a",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #16 - World's Apart, Book One - The Final Reflection"
+      ],
+      "creator": [
+        "John M. Ford"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0156",
+      "opf_entry_sha256": "f1c79e6cb65d346ce44a30b4de5062309bf690a01011d853dbdc0823454c6d36",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 17 - Star Trek III - The Search For Spock"
+      ],
+      "creator": [
+        "Vonda N. McIntyre"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0157",
+      "opf_entry_sha256": "51a4d117d2b84258618f6d6921fc9742c2ac7dab7f82f7c399068f5690b0daef",
+      "parse_status": "PARSED",
+      "title": [
+        "Rihannsu #1 - My Enemy, My Ally"
+      ],
+      "creator": [
+        "Diane Duane"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0158",
+      "opf_entry_sha256": "758b70de8d71ba4b882a302da866c1e48f06a9d996d8b3dba4ca8becdf0b82c2",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - The Tears Of The Singers"
+      ],
+      "creator": [
+        "Melinda Snodgrass"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0159",
+      "opf_entry_sha256": "ee981786b04fd8e5defeea8ea32b153378c911757e249efb2462423644bdb9c7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 020 - Vulcan Academy Murders"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0160",
+      "opf_entry_sha256": "19645704a586ebcf63db7c86f25b93b6e77bf616f1aee9f0ee7b29baf0eae3ea",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 021 - Uhura's Song"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0161",
+      "opf_entry_sha256": "5fc475e359ce8c0e650373a75d9c463fba3a8d3351dc1b69a21618a5d7dcea45",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #22 - Shadow Lord"
+      ],
+      "creator": [
+        "Laurence Yep"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0162",
+      "opf_entry_sha256": "addd87696e566b7755f0e3e450da7ee7a5efa8cf1f9fc0929ff1d28c25715e31",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #23 - Ishmael"
+      ],
+      "creator": [
+        "Barbara Hambly"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0163",
+      "opf_entry_sha256": "5bae9fdbe3fcd4238badd6e3f4df47a7af2454dc81fef19503085490e9b384b7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek-TOS-027-Mindshadow"
+      ],
+      "creator": [
+        "Kevin Underwood"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0164",
+      "opf_entry_sha256": "878f60802df1a527edd156500bce351b3f02f4169873b40423cbcb773b2a1b31",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek Dreadnought"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0165",
+      "opf_entry_sha256": "c12c379b2701e2eefb187e2d18d33699fca0367e26e5247506beeef3cfb55758",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 30 - DEMONS"
+      ],
+      "creator": [
+        "J. M. DILLARD"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0166",
+      "opf_entry_sha256": "2ca3761d1be18616e650b9d83dd389c7caa24e3fac2d3b3328c61ba1ed2ad64f",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Battlestations"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0167",
+      "opf_entry_sha256": "3371b3d0c2a2982510e604e18aa0adfdf98579c6096da3e3cade5d4144673efe",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Chain of Attack"
+      ],
+      "creator": [
+        "Gene Deweese"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0168",
+      "opf_entry_sha256": "89884d55953aeb531f50cd82071f9d938c8eaf8e3bddfc1ec95bbd5503fcc56a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 033 - The Deep Domain"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0169",
+      "opf_entry_sha256": "b4dbc74f536129fa7a3a9ddc1b6cda1dd59040b48aa509bcaf449579cd10665c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Dreams Of The Raven"
+      ],
+      "creator": [
+        "Carmen Carter"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0170",
+      "opf_entry_sha256": "fa612e4b548b1c4527fd1e09a8fd30e6c951cb31666216fc23f50f0509963376",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 035 - Romulan Way"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0171",
+      "opf_entry_sha256": "b582746d5e96057ccbbd6fbbc26c6793d8d7529870a9b921bd0b27b59ce29ecb",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - How Much For Just The Planet"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0172",
+      "opf_entry_sha256": "91ff65ad98af24bc4e3609be5e3096ee7db89660909c38f86250cd916327cc28",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 037 - Bloodthirst"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0173",
+      "opf_entry_sha256": "f87542f42f7225df5eeee077774db55eef6bd480ca5d4cc62340ef5771ec5d66",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 038 - Idic Plan"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0174",
+      "opf_entry_sha256": "1168e37c8c7374df7efdeff2e92aa78833a1608d5884859edf91f91760417ee4",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Time For Yesterday"
+      ],
+      "creator": [
+        "Ann Crispin -"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0175",
+      "opf_entry_sha256": "0fef184448d7757b4aba404198eaaa2863744e35a852db66142a6ad5b7c8e06d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Timetrap"
+      ],
+      "creator": [
+        "David Dvorkin"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0176",
+      "opf_entry_sha256": "acb5f455deff98a74c16e7241a6f4bdc2992ee4b2f3c7c6f5212badb42e0c046",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 042 - Memory Prime"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0177",
+      "opf_entry_sha256": "6827e7ac4c9107d262165f76f7324dc81f08855ff457f798c770067823bff383",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #44 - Vulcan's Glory"
+      ],
+      "creator": [
+        "D. C. Fontana"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0178",
+      "opf_entry_sha256": "2dde366d89d4aa96b603171cc3ca0498eb3fff28ae54c0304c81392a7bff9d5a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 47 - The Kobayashi Maru"
+      ],
+      "creator": [
+        "Julia Ecklar"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0179",
+      "opf_entry_sha256": "75f7231776b5944e130ecd3dae70d50131d6c5612f29e40ac798ecbc2d2b2ea3",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 48 - Rules of Engagement"
+      ],
+      "creator": [
+        "Peter Morwood"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0180",
+      "opf_entry_sha256": "559a8f5b1bc6fa16ababd5303c22cd785c755ad0f67d75ea4fa096071167e254",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Pandora Principle"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0181",
+      "opf_entry_sha256": "28d7f88ac5ea3663dc5102bded625ddc583a9d0103ca410ee241ad7c00bbc21c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 50 - Doctor's Orders"
+      ],
+      "creator": [
+        "Diane Duane"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0182",
+      "opf_entry_sha256": "b8f0e42709d1934e1e46ffed13d518d3e26bf52e2beb6d7847b9d4655b7ffc0c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 51 - Enemy Unseen"
+      ],
+      "creator": [
+        "V.E. Mitchell"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0183",
+      "opf_entry_sha256": "40994bcd642f3a05ac06735be04cecd343f2ad77ea570698d6ada5f5c8166dc0",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 53 - Home Is the Hunter"
+      ],
+      "creator": [
+        "Dana Kramer-Rolls"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0184",
+      "opf_entry_sha256": "57ad2077de2ac9beaede254d9a0db1d0495bce389d6029caa2f3d068e330246d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 53 - Ghost Walker"
+      ],
+      "creator": [
+        "Barbara Hambly"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0185",
+      "opf_entry_sha256": "8b2bc510a8a0304d0f5758dd1278c76fed8755c153d207d4a79bc3e898a8f045",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Flag Full Of Stars"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0186",
+      "opf_entry_sha256": "be34a6283cb323e96ba9de273be9c14168866ca7b12d075a23f662f1f468d2d3",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 55 - Renegade"
+      ],
+      "creator": [
+        "Gene DeWeese"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0187",
+      "opf_entry_sha256": "1d32a3a436a3e0d97700337ee8d89a7d8988b0c191c1e40f05ebe1c8e82ee3fb",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Legacy"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0188",
+      "opf_entry_sha256": "02b0225e5d6783658519bac9524a37b902e03b8693645e3835c409c674976d99",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 57 - The Rift"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0189",
+      "opf_entry_sha256": "a4fb3f6298a4f6c7b35880ca28154e8ac813a311e37264e2ebd3361a1103cc00",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 59 - The Disinherited"
+      ],
+      "creator": [
+        "Peter David, Michael Jan Friedman, Robert Greenberger"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0190",
+      "opf_entry_sha256": "606b0f2f06f0f2768429cbdb347e3ca52dda29e9a48d41d2a7774852f0253f3b",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Ice Trap"
+      ],
+      "creator": [
+        "L A Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0191",
+      "opf_entry_sha256": "5af9dfa0dfcf73cb79624b2e462409188e8abbbfd96d806eb258b69fc48ce8e9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 61 - Sanctuary"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0192",
+      "opf_entry_sha256": "8674eb9909faaa28243ea5217bcf68425b3624772a46bb31df4be68815b4632b",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Death Count"
+      ],
+      "creator": [
+        "L.A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0193",
+      "opf_entry_sha256": "702bc2adca16195df08a052398a6ed42cb5a7e7311429b3e52dc55b575f519e0",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 64- The Starship Trap"
+      ],
+      "creator": [
+        "Mel Gilden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0194",
+      "opf_entry_sha256": "13a39a2392042683d8ef64eb5c3ce297b7a07eda5e6dd2b669a36cadcacd3513",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 65 - Windows on a Lost World"
+      ],
+      "creator": [
+        "V.E. Mitchell"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0195",
+      "opf_entry_sha256": "06b0e330d840e169cd0a8946a36dbb7085c36011097d5660356ce55a8083c39f",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 66 - From the Depths"
+      ],
+      "creator": [
+        "Victor Milan"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0196",
+      "opf_entry_sha256": "420a78ccbfca50a09331b86fcf0fc48facd56bddc56483dcf134ccf393314abc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 67 - The Great Starship Race"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0197",
+      "opf_entry_sha256": "9b7ce8d771e2bfd67c431cda5fb1b78711da46d20a05fffb56b4283c6cff04f6",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Patrian Transgression"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0198",
+      "opf_entry_sha256": "6b39b19e3cb61af86e4d5229def02edd3fa782cf84e95fd5aff2ce9c6da0f6ab",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Traitor Winds"
+      ],
+      "creator": [
+        "L.A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0199",
+      "opf_entry_sha256": "b460d51fa77a7c9bea3a57188942d7bfcbfecb553df7b3d05ebb6e4febd3cba7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 077 - Twilight's End"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0200",
+      "opf_entry_sha256": "1030a9e4c56e3694d1758d16bb44866da8379805117d59831f3b8f1b58f6ae73",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 78 - The Rings of Tautee"
+      ],
+      "creator": [
+        "Dean Wesley Smith, Kristine Kathryn Rusch"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0201",
+      "opf_entry_sha256": "f1f6089b0fdd455d0588ebf67fa3e4f7d2b7c6c216c136550d3979e21c73b28f",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 79 - Invasion 1 - First Strike"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0202",
+      "opf_entry_sha256": "9a31f6b8ac301d8ded59e595a9e5ab557e5e31fd678ec45faa2acf25d3fc6d88",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #80 - The Joy Machine"
+      ],
+      "creator": [
+        "James Gunn"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0203",
+      "opf_entry_sha256": "93feee5df709e213b098a0b3de8ae04a3c5a85ba83963a63f5698646fc7913c0",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #83 - Heart of the Sun"
+      ],
+      "creator": [
+        "Pamela Sargent & George Zebrowsi"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0204",
+      "opf_entry_sha256": "1ec86a9b969d5b4c76f86cf5c8a1555ef079e57850ac16cc3d028ebb9bf74c24",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 84 - Assignment Eternity"
+      ],
+      "creator": [
+        "Greg Cox"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0205",
+      "opf_entry_sha256": "5d83fa917aa738ccdbeb8bf24ed7d19d1f1420849f07020b8c73519dc4ed1e3c",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #85 - My Brother's Keeper, Book One - Republic"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0206",
+      "opf_entry_sha256": "ff46731ff3225064412084c6de75f54d924159a91a41b9467db1c9e0ed9a92f8",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #86 - My Brother's Keeper, Book Two - Constitution"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0207",
+      "opf_entry_sha256": "f7c80ab7a557be76ff74a560dd45c3a2f68e51e97800d636c15524f138251d19",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS #87 - My Brother's Keeper, Book Three - Enterprise"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0208",
+      "opf_entry_sha256": "a952d9f6b37349e820e10625f337d07d0c4eb77e8da3b4efbd928796243c31fd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - 88 - Across The Universe"
+      ],
+      "creator": [
+        "Pamela Sargent, George Zebrowski"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0209",
+      "opf_entry_sha256": "a79828c4792a090dd840533eb412371f3bd0196d0bfb58c1113c54f4b9ef86b2",
+      "parse_status": "PARSED",
+      "title": [
+        "STARTREK®: NEW EARTH - WAGON TRAIN TO THE STARS"
+      ],
+      "creator": [
+        "DIANE CAREY"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-01-31"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743411145"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0210",
+      "opf_entry_sha256": "de7d1c8f2af01c27a7f622dd2c3da0336bab25eccd98fb668a51ea67d36fb6bf",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK®: NEW EARTH - BELLE TERRE"
+      ],
+      "creator": [
+        "DEAN WESLEY SMITH",
+        "DIANE CAREY"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-02-13"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743411153"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0211",
+      "opf_entry_sha256": "2f486f002cf6dbd8c3d50d5ecb5a0e5044f09cdf4e9a5a6db2ab22a7ab3997a9",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK®: NEW EARTH - ROUGH TRAILS"
+      ],
+      "creator": [
+        "L. A. GRAF"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-03-27"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "074341117X"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0212",
+      "opf_entry_sha256": "92542af6a52dd3c290ad065134a1013d12ec82e948074ee0786578ec90f18ac1",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK®: NEW EARTH - THE FLAMING ARROW"
+      ],
+      "creator": [
+        "KATHY OLTION",
+        "JERRY OLTION"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-03-15"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743411188"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0213",
+      "opf_entry_sha256": "034b7ea7682b98bf9b0fef6a9ba2f24b2dac53424b7fa0a444e584a00c8715a6",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK®: NEW EARTH - THIN AIR"
+      ],
+      "creator": [
+        "KRISTINE KATHRYN RUSCH",
+        "DEAN WESLEY SMITH"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-02-13"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743422236"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0214",
+      "opf_entry_sha256": "8b1d0fa0d2ac82e5a9c1d020a0ca8ec976c97f79a60a74913c38121309a7fb25",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: NEW EARTH - CHALLENGER"
+      ],
+      "creator": [
+        "DIANE CAREY"
+      ],
+      "publisher": [
+        "POCKET BOOKS"
+      ],
+      "date": [
+        "2001-01-25"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743422244"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0215",
+      "opf_entry_sha256": "3f4eac1f5003a7b0d27b64441f17db452d8c4614304a6cdbbd9ab9de945ec44a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 095 - Swordhunt, Rihannsu 3"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0216",
+      "opf_entry_sha256": "f7939c643259f191a516cb4baee19a4094332ec2c877f29beca787d8f731f2f9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS 096 - Honor Blade, Rihannsu 4"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0217",
+      "opf_entry_sha256": "98e9c3ca4d9b460527454ffe1fcacd4032874992414b02bd38715627a78c241a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Ashes Of Eden"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0218",
+      "opf_entry_sha256": "27ac9b7e0f6812bca04d971cffb7343f6b2e445d7f8445a263329f7360d53250",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - BEST DESTINY"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0219",
+      "opf_entry_sha256": "411e6f75556d3d3521d012d8b64108829984db99b3b18dd0fb922980ad287130",
+      "parse_status": "PARSED",
+      "title": [
+        "The Brave and the Bold"
+      ],
+      "creator": [
+        "Keith R. A. DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0220",
+      "opf_entry_sha256": "0ebf82f17a6d44b32161c062142da7bb8751d825bc932b82051039b98aebad2e",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Death's Angel"
+      ],
+      "creator": [
+        "Kathleen Sky"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0221",
+      "opf_entry_sha256": "0e3c71f13080545e4b9c5f61a8a8276eb36d00da525955e090556fac3539e9b6",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Devil World"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0222",
+      "opf_entry_sha256": "89b0f889854b661a585002056308a8173f74d38130e3633a3f2bdd10b6c3ab17",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Enterprise, The First Adventure"
+      ],
+      "creator": [
+        "Vonda N. McIntyre"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0223",
+      "opf_entry_sha256": "f481d60fdf85c6f604bd984d97e6b0fb7f04f559b578696daa5e3432150bfe63",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Errand of Vengeance, Book One - The Edge of the Sword"
+      ],
+      "creator": [
+        "Kevin Ryan"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0224",
+      "opf_entry_sha256": "ad27c8a665727cb3e31b3bb8209ab5ea44eacf1d5bcf5da55cd4dfe452e9fde8",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Errand of Vengeance, Book Two - Killing Blow"
+      ],
+      "creator": [
+        "Kevin Ryan"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0225",
+      "opf_entry_sha256": "3286a6dd3320e88ada8e379318fafaaf5292d7aaed43ac3c8f908e44644c93c5",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Errand of Vengeance, Book Three - River of Blood"
+      ],
+      "creator": [
+        "Kevin Ryan"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0226",
+      "opf_entry_sha256": "2e786e2ca33f9a3a1eb2e3f74f2d390bbe8f6246027d59dc7723235f91ad21d2",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Federation"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0227",
+      "opf_entry_sha256": "aaaae64f1da240e97e6b942707060bc4d5499e99fc06e08a753735a0a4444156",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Final Frontier"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0228",
+      "opf_entry_sha256": "92e17abdc852b38fb2b593148f7b30b57b37831567becdc459d65dc7dd092e69",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Garth Of Izar"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0229",
+      "opf_entry_sha256": "3f29e99c52bff1a4b4495b0da6c96853a80205ab154cbcd75663e781582cc0f3",
+      "parse_status": "PARSED",
+      "title": [
+        "Music of the Spheres"
+      ],
+      "creator": [
+        "Margaret Wander"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0230",
+      "opf_entry_sha256": "51291692c5ad2e92a91801d41bcb5f14593d41ebfa2137c0be392308f14b25a4",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek-The New Voyages"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0231",
+      "opf_entry_sha256": "9f053c046ead8af538dbfaaa4d8d037814b3ba06e87afaa778280326b81309c7",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - Prime Directive"
+      ],
+      "creator": [
+        "Judith & Garfield Reeves-Stevens"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0232",
+      "opf_entry_sha256": "5d636328f46e4c269b850be1f7e6178ff36e0406435eed52bc3bd917c492b0ca",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Probe"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0233",
+      "opf_entry_sha256": "bd4c4b65e72d78281dadf2ec4600f44c362652108d8ebcd1afb455c8bcf9ac34",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Sarek"
+      ],
+      "creator": [
+        "A. C. Crispin"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0234",
+      "opf_entry_sha256": "7cebe16f2a722fb28dd781792ea6f55e60e5072956f444554de336dc68a7c52e",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Shadows of the Sun"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0235",
+      "opf_entry_sha256": "4765384f5344725ad00ab00a6a440ac8075c7e905ca192eb4e3090a8bb5817f6",
+      "parse_status": "PARSED",
+      "title": [
+        "Worlds in Collision"
+      ],
+      "creator": [
+        "Judith & Garfield Reeves-Stevens"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0236",
+      "opf_entry_sha256": "89d7b7a21d381018ab3be724b54e98c676fe64e31600ab2184644d0d97232b31",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Spock's World"
+      ],
+      "creator": [
+        "Diane Duane"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0237",
+      "opf_entry_sha256": "e5c1ea273103c475d6516ecc04e44e53540716d37d4feca781c55ac45f253836",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Spock, Messiah"
+      ],
+      "creator": [
+        "Theodore R. Cogswell"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0238",
+      "opf_entry_sha256": "565611c90b3ac8d90e168e10ca0afe550104abb9d543ecc0754f237f5cde2cea",
+      "parse_status": "PARSED",
+      "title": [
+        "The Aliens Are Coming!"
+      ],
+      "creator": [
+        "Dayton Ward"
+      ],
+      "publisher": [],
+      "date": [
+        "2000"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743464540"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0239",
+      "opf_entry_sha256": "0a4e87e887990365a5daaaabb3c2c58d3cff29452a1871d168f19eae23e5f02b",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK - The Brave and the Bold Book One"
+      ],
+      "creator": [
+        "Keith R A DeCandido"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0240",
+      "opf_entry_sha256": "8928864f1084eb9a4b8fea75d2697b9a602b7b4fbe55d7e31ba0e41331db04b2",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - The Eugenics Wars, Volume One"
+      ],
+      "creator": [
+        "Greg Cox"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0241",
+      "opf_entry_sha256": "3f1d5b11aca4d693a688efbd8e3bed789389cde9185d74eb1b1e7db895c97b58",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - The Eugenics Wars, Volume Two"
+      ],
+      "creator": [
+        "Greg Cox"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0242",
+      "opf_entry_sha256": "93160e91b97b9ffc48d9b1959530ec49d0ea5effdd30f060d75230be521baedc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek (TOS) - The Galactic Whirlpool"
+      ],
+      "creator": [
+        "David Gerrold"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0243",
+      "opf_entry_sha256": "82a124f30ea57f9c39ddea9f3f1a5d4c6afe910da979aafb880c784e4f4af5e5",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - The Janus Gate, Book One - Present Tense"
+      ],
+      "creator": [
+        "L. A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0244",
+      "opf_entry_sha256": "b5b2d598d9caf10f21931023f3a13c863c9ba90db3f9fc2c056089e99156bbe7",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - The Janus Gate, Book Two - Future Imperfect"
+      ],
+      "creator": [
+        "L. A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0245",
+      "opf_entry_sha256": "b7b42ebe24bc22ee4b11f9d44daa244773dff51507a458659a2eb23ede68562e",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: TOS - The Janus Gate, Book Three - Past Prologue"
+      ],
+      "creator": [
+        "L. A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0246",
+      "opf_entry_sha256": "2eb1dbc355a780872bbf9889f460009ba08a6d7dd0dc29f1c255cc1cb74afb86",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: The Original Series - The Last Roundup"
+      ],
+      "creator": [
+        "Christie Golden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0247",
+      "opf_entry_sha256": "43e207d3bafc67d0f363d6ce958f7f76f741dcf6db7c27cc36ff34b2066bd177",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Trek to Madworld"
+      ],
+      "creator": [
+        "Stephen Goldin"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0248",
+      "opf_entry_sha256": "33b83638f3cdf517809ee885c496055e1a767b9854bb6e9008a8206d7b20f1d9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Vulcan's Heart"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0249",
+      "opf_entry_sha256": "1139c2f6212d788a2b9ada971d999fdb361eab31f743253ec041407a02870074",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TOS - Vulcans Forge"
+      ],
+      "creator": [
+        "Josepha Sherman, Susan Shwartz"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0250",
+      "opf_entry_sha256": "a23dd325001d70fb7e4def5e1e824dda1dc0057eadb261ff42adee2a26edb8b5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 001 -The Caretaker"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0251",
+      "opf_entry_sha256": "042a6d5e1f84cc03ddc2b918c14ca47eb3f4d3d1726033676ab872bfe200f844",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 002 -The Escape"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0252",
+      "opf_entry_sha256": "cfc04d0cabfecbc2cd98d80756fc6e91d12ed50a463a2e91b37b68dd86c55b9e",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 003 - Ragnarok"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0253",
+      "opf_entry_sha256": "9bc37f41e103f41bfef56d3dfeb2a8514ae9ad5e53995638e4da94a8c7f8d1bc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 004 - Violations"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0254",
+      "opf_entry_sha256": "51a3669536ab7acebaf8571f2566fd884b138e7c5c8ba286dea6267a0af81e9d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 005 - Incident At Arbuk"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0255",
+      "opf_entry_sha256": "e04054c5097fc7eebb5c23f1c45a44cb2cc46cb7632ede1976a893756d3a1c76",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 006 - The Murdered Sun"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0256",
+      "opf_entry_sha256": "1aa4a9860ccf0edff3e1850b75bab2dee0361169f7155aa45bab6ee8537aa083",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 007 - Ghost Of A Chance"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0257",
+      "opf_entry_sha256": "06a8b008d726602896ae573af5514fa2cc91d24f2cd6da84d9fc9e5bded212a5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 008 - Cybersong"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0258",
+      "opf_entry_sha256": "0b1d05e36962ae484bcfa7629541b6aa7ff313f342cdb53caf590dec977a2c96",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 009 - Invasion, Book 4 Of 4 - The Final Fury"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0259",
+      "opf_entry_sha256": "222e14bf9baa435234506e6a4b2fcb61340d5425dcbf46380e58780782195b91",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - 10 - Bless The Beasts"
+      ],
+      "creator": [
+        "Karen Haber"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0260",
+      "opf_entry_sha256": "42424b62cb3de3f03eff0bf557b08c88c5864580be10991e343ba25412171b4d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - 11 - The Garden"
+      ],
+      "creator": [
+        "Melissa Scott"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0261",
+      "opf_entry_sha256": "ca256b47dd18ed7a19652d06a23cfbf338bdd6b6c6dbb46235fc9cfd96190917",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - 12 - Chrysalis"
+      ],
+      "creator": [
+        "David Niel Wilson"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0262",
+      "opf_entry_sha256": "3f20329e16fcf8cb84a3b7a3aebb4499752077903c8b57a5a756975e779e2439",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - 13 - The Black Shore"
+      ],
+      "creator": [
+        "Greg Cox"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0263",
+      "opf_entry_sha256": "bc50952cd4f9757f1ccc880ed6b7368127acb88a75a179873c113f816eb6bfd0",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 014 - Marooned"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0264",
+      "opf_entry_sha256": "81d792691f4408a4f8aaaf5189db43ea90ab145e493b03c1b3361e30e410f9c4",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - 15 - Echoes"
+      ],
+      "creator": [
+        "Dean Wesley Smith, &Kristine Kathryn Rusch"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0265",
+      "opf_entry_sha256": "44a922cc4caf9924daa00425e7fa95e458418b04f3ba3bc3144e49e34aeed94e",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 016 - Seven Of Nine"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0266",
+      "opf_entry_sha256": "a02fba1107af9ee223dc99e8c875dc095d6b50f2e2c6593fa75ae791e077b048",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 017 - Death Of A Neutron Star"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0267",
+      "opf_entry_sha256": "932d32d67e023e13570aa897def8829eb48d7bf0de520aa81df084d65edc36aa",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 018 - Battle Lines"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0268",
+      "opf_entry_sha256": "d5ab4d89c46acfe49243b8f39a2b64863b00fb7b77520c2e36c64164c23a61b7",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 019 - Cloak And Dagger"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0269",
+      "opf_entry_sha256": "465228c5cbfecb527241cbe0c2c2c6471a2775fec8e3376e006a7ea6c16dcfd5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 020 - Ghost Dance"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0270",
+      "opf_entry_sha256": "e614db92d5043ced55de62e26d3b4066894e45a04dd39432b6326aa2a814ed45",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - 021 - Shadow Of Heaven"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0271",
+      "opf_entry_sha256": "ff8846f921d6d5ca52f5c7fc2710254520d557d7462b7f7ed626e20b9dec405b",
+      "parse_status": "PARSED",
+      "title": [
+        "Captain Proton"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0272",
+      "opf_entry_sha256": "d5a34426c1d5577b31adcceb22fe8ac8f1b261163e95fd704ad114dd37aa0b42",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - Endgame"
+      ],
+      "creator": [
+        "Diane Carey, &Christie Golden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0273",
+      "opf_entry_sha256": "40203eb2466ecec238f958922276b74a142028c2eee76c4305d6e691989f6565",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - Equinox"
+      ],
+      "creator": [
+        "Diane Carey, Brannon Braga, Joe Menosky, Rick Berman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0274",
+      "opf_entry_sha256": "78f4849e87f51b02eb39747e44ecd4d4ec5258e23df991fb19e9a9a6b6584acc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - Flashback"
+      ],
+      "creator": [
+        "Diane Carey, &Brannon Braga"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0275",
+      "opf_entry_sha256": "7fd5029be27563a68f4a2a8a0fbc416b1b61f24ee83c3294d0d8e0f781180f83",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: VOY - Homecoming, Book One"
+      ],
+      "creator": [
+        "Christie Golden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0276",
+      "opf_entry_sha256": "f7e479485d2bcad69249e35cfefebf98741dfad7990e3ac1438774711c8fe41e",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: VOY - Homecoming, Book Two - The Farther Shore"
+      ],
+      "creator": [
+        "Christie Golden"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0277",
+      "opf_entry_sha256": "83b56196f5f14b95285b9500d5a2f875a39ebb7c3bd58a892298dc777b83e8cc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - Mosaic"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0278",
+      "opf_entry_sha256": "c5f0a5143ebbc8280e99bbb77fb8c051d63880283fcce0712d26a92ead01c19c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voyager - The Nanotech War"
+      ],
+      "creator": [
+        "Steven Piziks"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0279",
+      "opf_entry_sha256": "49961077151825ef1d7b70b3ef4497caa2ede447ec1eaf29eee16409f6615080",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Day of Honor II - Armageddon Sky"
+      ],
+      "creator": [
+        "L.A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0280",
+      "opf_entry_sha256": "539723ef0ceb20fd54217c71a02e79842c3a6c5f31e36545e6b99c97c3053cfe",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Voy - Day Of Honor, Book 3 Of 4 - Her Klingon Soul"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0281",
+      "opf_entry_sha256": "d8d74e3b10604c97fe80fcad8c48e098a3ea24d7e1bcc3191f11db509c0b0db9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Avatar - Book One of Two.htm"
+      ],
+      "creator": [
+        "Emily & Jane"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0282",
+      "opf_entry_sha256": "14883f8832ab71b7be4837116472bec3d467f329244111ac2ec8d7f54e017539",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "EMISSARY"
+      ],
+      "creator": [
+        "J.M. Dillard"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412206"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0283",
+      "opf_entry_sha256": "8110877530e109cef62de1378c3e04ec4d0cc7349dded8bc7ea0ab4dbd3be551",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE SIEGE"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412214"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0284",
+      "opf_entry_sha256": "033cf00ffde43b426006483d7c32936be7e6f10136876bbe7ae986a1428c046e",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "BLOODLETTER"
+      ],
+      "creator": [
+        "K.W. Jeter"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412222"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0285",
+      "opf_entry_sha256": "cd7e8ce305b183d3ae2b8c3affd08da5ae4ecdc41085c665a39cbab913731048",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "THE BIG GAME"
+      ],
+      "creator": [
+        "Sandy Schofield"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412230"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0286",
+      "opf_entry_sha256": "89bb3a8f499fa40c1d986143c1cc6a0d05bf19676e155915935e9913013d5f2a",
+      "parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "title": [
+        "FALLEN HEROES"
+      ],
+      "creator": [
+        "Dafydd ab Hugh"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743412249"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0287",
+      "opf_entry_sha256": "ba68ad8782b5f823fca210a851918caf0ec31e90ea7eba516872162c18ee04e2",
+      "parse_status": "PARSED",
+      "title": [
+        "Betrayal"
+      ],
+      "creator": [
+        "Lois Tilton"
+      ],
+      "publisher": [
+        "Simon & Schuster Inc."
+      ],
+      "date": [
+        "2000-08"
+      ],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0288",
+      "opf_entry_sha256": "f11a34ab973d6fcc191c8e5450989d8bb32e95c6ece64ee14fca7b8fcac2a6fa",
+      "parse_status": "PARSED",
+      "title": [
+        "Warchild"
+      ],
+      "creator": [
+        "Esther Friesner"
+      ],
+      "publisher": [
+        "Simon & Schuster Inc."
+      ],
+      "date": [
+        "2000-07"
+      ],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743420381"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0289",
+      "opf_entry_sha256": "4126c6bb35d5374318e69666c65aca9c6a697d8ea951b9bdeb8713b1dbe91ee4",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Antimatter"
+      ],
+      "creator": [
+        "John Vornholt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0290",
+      "opf_entry_sha256": "267c75ab42d9e281d2229af07916e1cf179a4b578ed6362d30251c125c7b22b5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - 09 - Proud Helios"
+      ],
+      "creator": [
+        "Melissa Scott"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0291",
+      "opf_entry_sha256": "88585a28a1050d23ffe24bdff6b9a90a63bc36e96af30236308d78cc22833014",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 10 - Valhalla"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0292",
+      "opf_entry_sha256": "d8c63c3a6f18d258265f415dffcd606db0b51639f8dd6f5244b8cea6cb399e0f",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 011 - Devil In The Sky"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0293",
+      "opf_entry_sha256": "d5cb6b9ca97b1816318a6ca0627d07fcb66e19dcc8a459a5a9eb44e828a63854",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 012 - The Laertian Gamble"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0294",
+      "opf_entry_sha256": "0479ab5f3242fd8ade6a2291027a98d66199d7f6cb5d0a04a34ec0def5da3dce",
+      "parse_status": "PARSED",
+      "title": [
+        "Station Rage"
+      ],
+      "creator": [
+        "Diane Carey"
+      ],
+      "publisher": [
+        "Simon & Schuster Inc."
+      ],
+      "date": [
+        "2000-07"
+      ],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0743420446"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0295",
+      "opf_entry_sha256": "3b606c298006737daa339fdf7252e970999f5c7ac0f1e02afb0a28e020d7b44d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Invasion! 3 - Time's Enemy"
+      ],
+      "creator": [
+        "L.A. Graf"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0296",
+      "opf_entry_sha256": "573a64c3e659a3aaee2aedbd5d7d2ca62eb22ac5feb11465e573c1d73d2eb9bf",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Heart Of The Warrior - Book 17"
+      ],
+      "creator": [
+        "John Gregory Betancourt"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0297",
+      "opf_entry_sha256": "561d29c9c6d70ef8a099830f35081380e5df223a372c740c8b75712e4e899e4c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Saratoga - Book 18"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0298",
+      "opf_entry_sha256": "6554f9bab6253fc4a9f5073ee6c693d14a574b2ad7d6149df8d839a5a506a8ae",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 019 - Tempest"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0299",
+      "opf_entry_sha256": "cf6a362ffe74972518a275ea44e109ab66c0b4913ea7c591724326bba6b6fc01",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 021 - Trial By Error"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0300",
+      "opf_entry_sha256": "c226865957d5722034669d501058cecfe693deecca9daa04718c527dcee04e63",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Vengeance"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0301",
+      "opf_entry_sha256": "a5b7691a285b76a03f350c329b4442a580c8dc315474198a26d02597255eec91",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - The 34th Rule - 23"
+      ],
+      "creator": [
+        "Armin Shimerman, David R. George III"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0302",
+      "opf_entry_sha256": "0a50dbaf9cb0c0ac36760749dbc8a84357d7bda82c27fc2f5c3be3909aaea864",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 024 - Conquered"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0303",
+      "opf_entry_sha256": "4dce338358c301d12095b2a974445735a3424dddba85ec65feb9a89b0399e2ea",
+      "parse_status": "PARSED",
+      "title": [
+        "Deep Space Nine : The Rebels ( All Three Books)"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0304",
+      "opf_entry_sha256": "08ff3610a538f8125199db2a6691635a920495c27781d8c8e926ddc06a994046",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 025 - Courageous"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0305",
+      "opf_entry_sha256": "5497fc1a29017d6dd749192853bd28c58600baac07e9ebae7caa471488d83c8c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 026 - Rebels Liberated"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0306",
+      "opf_entry_sha256": "1423d1acef8b68bc859e0174b2d75ccba702fc93150e2baa65b7ad764aaceb12",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek: Deep Space Nine Companion"
+      ],
+      "creator": [
+        "Terry J. Erdmann",
+        "Paula M. Block"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": [
+        "0671501062"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0307",
+      "opf_entry_sha256": "2da79566cbf4055967011370b76e40621c7aaa073010610256a7f8d24dd4b8cc",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek: Dark Passions volume 1."
+      ],
+      "creator": [
+        "Susan Wright."
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0308",
+      "opf_entry_sha256": "970c52ca8e7ef9b0b5b46b7c3e4ab160cfdbbffc0bfc0528d7b2be83fe0b9d1b",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek: Dark Passions vol 2"
+      ],
+      "creator": [
+        "Susan Wright"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0309",
+      "opf_entry_sha256": "551c7d2fd020ccb2a736a8c4a8af53bfa8463518dd5cb54c4c56b2e38274288c",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Dominion War 1 - Behind Enemy Lines"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0310",
+      "opf_entry_sha256": "80b5137f9c672ccfb00a80029cc6523ac23c632f36eff00a43580a769617f9dd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Dominion War 2 - Call To Arms"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0311",
+      "opf_entry_sha256": "4e5864d812d46cd2cfbffa57bc8d68a95dd4c0f8f802434422ce80de4eae637a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Dominion War 3 - Tunnel Through The Stars"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0312",
+      "opf_entry_sha256": "4cd7b22819ba77825f59833b89733a33de634e2d21256f6bf8e1303a96627cee",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - TNG - Dominion War 4 - Sacrafice Of Angels"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0313",
+      "opf_entry_sha256": "0a7ad5169c87fda2e9f1c013b6d6167a865dbe8fee2a5fd69bf3546049fc64ef",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Fall of Terok Nor"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0314",
+      "opf_entry_sha256": "862fd344814d2c7f67c0a2a826f342ca74a6c9819a638c97fffdf8808f2fece5",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: DS9 - Prophecy and Change"
+      ],
+      "creator": [
+        "Marco Palmieri, Editor"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0315",
+      "opf_entry_sha256": "6ba1191a9aa25f38a5aaa933b2187bb3894d1529841cff4f3563e91a291f77b1",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Search"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0316",
+      "opf_entry_sha256": "999867186c987ca3e956487849b94d72422002046bff9de92dd12ac08f37efb5",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek Dominion War ( All Four Books)"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0317",
+      "opf_entry_sha256": "652516742908eec387322769734ada91237cc0d89afa9f7ccdc9c9f12a2e3be4",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: DS9 - The Left Hand of Destiny, Book One"
+      ],
+      "creator": [
+        "J.G. Hertzler & Jeffrey Lang"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0318",
+      "opf_entry_sha256": "2fe784780e78329cb6a192286cb6ec367edb532a5a6d371c223c7a4da4fff167",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: DS9 - The Left Hand of Destiny, Book Two"
+      ],
+      "creator": [
+        "J.G. Hertzler & Jeffrey Lang"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0319",
+      "opf_entry_sha256": "e667f3fe8ec280e93d9b5a8e35c0b33508bf7ece0aebf0ebb3d068e6b2178285",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: DS9 - The Lives of Dax"
+      ],
+      "creator": [
+        "Marco Palmieri, Editor"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0320",
+      "opf_entry_sha256": "2f28f94e0e743a13ba119fc018b345447f8a76f721db13f2bd9a3ca6f175592d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Twilight"
+      ],
+      "creator": [
+        "David R.George 3"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0321",
+      "opf_entry_sha256": "903e5c44f72532d954c87ee6280ae8bdd830efc4ea579b10369467bfa84c269a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - DS9 - Warped"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0322",
+      "opf_entry_sha256": "00406fc2a0637c7755de6d5c0ff01370bdd31c7eb452f729e6090f9bcb496fa6",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: Enterprise - Broken Bow"
+      ],
+      "creator": [
+        "Diane Carey (Novelization)"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0323",
+      "opf_entry_sha256": "4916ce6dbd778f619f0a186469bc5a4daa147d7ae1c49079649494e21e6f2e8d",
+      "parse_status": "PARSED",
+      "title": [
+        "Enterprise: By the Book"
+      ],
+      "creator": [
+        "Dean Wesley Smith & Kristine Kathryn Rusch"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": [
+        "0743448723"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0324",
+      "opf_entry_sha256": "2bf11f12390eaecb648b448985ed67dfa85011349324fb9188b105c283e8ffbf",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - Enterprise 4 - Daedalus, Part One"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0325",
+      "opf_entry_sha256": "8fa8b572100b2a7e21ae2971fa61694e223a96ff7b4a0c52dbb5c811ca81c2dd",
+      "parse_status": "PARSED",
+      "title": [
+        "Daedalus's Children"
+      ],
+      "creator": [
+        "Dave Stern"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2004"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0326",
+      "opf_entry_sha256": "06714cc85df622f06529f1a8ac50b8aee1297cd461845637365c21d9fce6ccc3",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: Enterprise - Shockwave"
+      ],
+      "creator": [
+        "Paul Ruditis (Novelization)"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0327",
+      "opf_entry_sha256": "1813be5748ff7e7e5c29f6db81a1fbad5b28582d9afca1f09f5d7923be2fd846",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek: Enterprise - Surak's Soul"
+      ],
+      "creator": [
+        "J.M. Dillard"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0328",
+      "opf_entry_sha256": "5f8cda21077de60f5ab0cd828e9eb83bcdfccde00081d7387e9ccfae78b4d1b4",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: Enterprise - The Expanse"
+      ],
+      "creator": [
+        "J. M. Dillard (Novelization)"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0329",
+      "opf_entry_sha256": "480d9359cccb158478157d0ceda796d45b54b4679701594930d2c8d2b9314ec0",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: Enterprise - What Price Honor?"
+      ],
+      "creator": [
+        "Dave Stern"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0330",
+      "opf_entry_sha256": "3e82eaeefd9be915b20952f3224726f5d3613c4e2e1a79faa41d0e4f0484b1f9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - New Frontier 01 - House of Cards"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0331",
+      "opf_entry_sha256": "141e81792a9492649135285a699e6f41976cdccfad289fc92567736d341e7ccd",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - New Frontier 02 - Into The Void"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0332",
+      "opf_entry_sha256": "c63d564572f4585b46a55cb4e1382c374513896e5a310a40281c22e8d1296259",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 03 - The Two-Front War"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0333",
+      "opf_entry_sha256": "bdee34aa26d165c67b828a179f2c280e2fabae35e5c508bd35e33108d8be2a17",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - New Frontier - End Game"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0334",
+      "opf_entry_sha256": "fd930525e8b04af9293cea095983829d0ceb0015bf112aa4dde172e10559980d",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 005 - Martyr"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0335",
+      "opf_entry_sha256": "7872c09ec06d03fada78612d3e9d109499b5f8cf794fc148aaf914b7b4ff6b5b",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - New Frontiers - Fire On High - Book 6"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0336",
+      "opf_entry_sha256": "3222e65942e66dfc104527e8e9426fed2883c3674c58730c98cf318e35d48f54",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 07 - The Quiet Place"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0337",
+      "opf_entry_sha256": "4a45766123a6d519ef6d49c03e114ee56bf336b01fb5ed8424dcbc10ad3e0f08",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF 08 - Dark Allies"
+      ],
+      "creator": [],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en-us"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0338",
+      "opf_entry_sha256": "3b498be9bc09aa5155443c4ee913e45ed0dec5584c336f0d9f8b44e15739220a",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 09 - Excalibur 1 - Requiem"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0339",
+      "opf_entry_sha256": "12b07a4193e6a041620484b85fd7579517408f1c447570c533c40406334bfeb9",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 10 - Excalibur 2 - Renaissance"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0340",
+      "opf_entry_sha256": "4975386d6bfbf34f3af0cb6ab72476d986fa4d3430f0a581b0e23529f1e2d738",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 11 - Excalibur 3 - Restoration"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0341",
+      "opf_entry_sha256": "75b6c3eeb1ea6cd56639f595a2d5f83f4b7f8257cae1e3115d27eaeed2936c60",
+      "parse_status": "PARSED",
+      "title": [
+        "Star Trek - NF - 12 - Being Human"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0342",
+      "opf_entry_sha256": "2fa10ba4ea579fd2ae712872942c25bcf3bd1ab535517d919b9034e1e8bab89c",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: NF 13 - Gods Above"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0343",
+      "opf_entry_sha256": "b785617c12938477681bcab10fc45d189082be3898469dbc860deb5e343c426e",
+      "parse_status": "PARSED",
+      "title": [
+        "Stone and Anvil"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0344",
+      "opf_entry_sha256": "8cdb43b55f70c1e8b70e96f2be1b1837ca1a66bf24d51ee90ff164c81b94ea79",
+      "parse_status": "PARSED",
+      "title": [
+        "No Limits"
+      ],
+      "creator": [
+        "Peter David"
+      ],
+      "publisher": [
+        "Pocket Books"
+      ],
+      "date": [
+        "2003"
+      ],
+      "language": [
+        "en-us",
+        "en"
+      ],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0345",
+      "opf_entry_sha256": "c6311ceac179c13a377447ca58dfd390927c53424e5e30bd5f2bd66e32f98a14",
+      "parse_status": "PARSED",
+      "title": [
+        "STAR TREK: The Lost Era - 2336 - Well of Souls"
+      ],
+      "creator": [
+        "Ilsa J. Bick"
+      ],
+      "publisher": [],
+      "date": [],
+      "language": [],
+      "isbn_checksum_valid": []
+    },
+    {
+      "source_local_id": "opf-local:0346",
+      "opf_entry_sha256": "32090d7e0c90e69cbcde0de2b6fc86d96457d6a023910824491cb8c6cba3f596",
+      "parse_status": "PARSED",
+      "title": [
+        "Gauntlet"
+      ],
+      "creator": [
+        "Michael Jan Friedman"
+      ],
+      "publisher": [
+        "Simon & Schuster"
+      ],
+      "date": [
+        "2002-05-01"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743427920"
+      ]
+    },
+    {
+      "source_local_id": "opf-local:0347",
+      "opf_entry_sha256": "a73997fca0a51c6f1f884c9d796faa1ed0f5fada0f51d01a2c6784435c6d9ef2",
+      "parse_status": "PARSED",
+      "title": [
+        "INVASION!, BOOK TWO: THE SOLDIERS OF FEAR"
+      ],
+      "creator": [
+        "DEAN WESLEY SMITH AND KRISTINE KATHRYN RUSCH"
+      ],
+      "publisher": [
+        "Pocket Books."
+      ],
+      "date": [
+        "2000-07-30"
+      ],
+      "language": [
+        "en-us",
+        "English"
+      ],
+      "isbn_checksum_valid": [
+        "0743421191"
+      ]
+    }
+  ]
+}

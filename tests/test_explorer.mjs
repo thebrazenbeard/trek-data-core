@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import vm from 'node:vm';
+import { webcrypto } from 'node:crypto';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
@@ -57,7 +58,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
@@ -91,10 +92,15 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
     if (path === './synopsis-catalog.json') return { status: synopsisStatus, ok: synopsisStatus >= 200 && synopsisStatus < 300, json: async () => synopsis };
+    if (path === './metadata-rechecks.json') return {
+      status: metadataStatus, ok: metadataStatus >= 200 && metadataStatus < 300,
+      arrayBuffer: async () => metadataBytes.buffer.slice(metadataBytes.byteOffset, metadataBytes.byteOffset + metadataBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(appScript, {
-    document, fetch, Option: OptionNode, URL, location: { origin: 'https://example.test' },
+    document, fetch, Option: OptionNode, URL, crypto: webcrypto, TextDecoder,
+    location: { origin: 'https://example.test' },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
   await new Promise((resolve) => setImmediate(resolve));
@@ -158,6 +164,42 @@ const synopsisRelease = {
     admission_effect: 'NONE', coverage_effect: 'NONE'
   }]
 };
+
+test('accepted B001–B004 rendered metadata checks add 56 source-local badges, not research admission', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const bytes = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const source = JSON.parse(bytes.toString('utf8'));
+  assert.equal(source.rendered_metadata_rechecks, 56);
+  assert.equal(source.embedded_research_leads_rechecked, 51);
+  assert.equal(source.literary_directory_rows_rechecked, 5);
+  assert.equal(source.unresolved_title_or_multipart_cases, 4);
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    null, 404, null, 404, SCRIPT, bytes, 200);
+  assert.match(nodes.get('discovery-metrics').textContent, /Official rendered metadata rechecked: 56 \/ 1,214/);
+  assert.match(nodes.get('discovery-metrics').textContent, /51 \/ 218 embedded research leads/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'directory-recheck').length, 40);
+  assert.match(nodes.get('discovery-list').textContent, /no raw-page custody, full-work read or identity admission/);
+  nodes.get('discovery-query').value = 'Hide and Q';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-list').textContent, /title\/identity unresolved punctuation/);
+  nodes.get('discovery-query').value = 'Chain of Command';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-list').textContent, /title\/identity unresolved multipart/);
+  assert.match(nodes.get('discovery-list').textContent, /Synopsis pending source verification/);
+});
+
+test('tampered or absent metadata-recheck projection cannot give unadmitted cards a rechecked badge', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const bytes = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const altered = Buffer.from(bytes.toString('utf8').replace('"rendered_metadata_rechecks": 56', '"rendered_metadata_rechecks": 99'));
+  const cases = [[bytes, 404], [altered, 200]];
+  for (const [payload, status] of cases) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+      null, 404, null, 404, SCRIPT, payload, status);
+    assert.doesNotMatch(nodes.get('discovery-metrics').textContent, /Official rendered metadata rechecked/);
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'directory-recheck').length, 0);
+  }
+});
 
 test('reviewed publisher release renders exactly nine literary and fourteen film overviews in both source surfaces', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));

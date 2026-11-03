@@ -204,6 +204,32 @@
     ['snw-s3-e09-pplus', 'Terrarium'],
     ['snw-s3-e10-pplus', 'New Life and New Civilizations']
   ]);
+  // Separate from source_row_sha256 (which binds private source fragments),
+  // these *code-owned* SHA-256 values bind the complete PUBLIC row, including
+  // utterance labels and tags. A forged JSON + updated whole-artifact digest
+  // cannot silently rewrite a label into a fabricated publisher statement.
+  const episodePublicRowPins = new Map([
+    ['episode-publisher-card:pic-s1-e01-pplus-guide', '4b99c107d44ee2f3200a369043b126f16c6fe5918cd4f190dd9481cdf39fdbab'],
+    ['episode-publisher-card:pic-s1-e02-pplus-guide', 'd802a1fa8521ecf95ab5f9a173b0365e32b001c96aabc63d74e2cf9ac224093e'],
+    ['episode-publisher-card:pic-s1-e03-pplus-guide', '208935c3d66d135e46399eab0c6195df283d76266e0eb508944c7753a874d19d'],
+    ['episode-publisher-card:pic-s1-e04-pplus-guide', '4a31d3c04bccb597a49118ab05a5d18e42241a4d2245ed65800a0d97883bc406'],
+    ['episode-publisher-card:pic-s1-e05-pplus-guide', 'b283254a83dd7d4b8235644b067cdbf09599474dfd89d19e9f544ac1bf166a7e'],
+    ['episode-publisher-card:pic-s1-e06-pplus-guide', 'f9e4cea60d2c89f14e5bdc7b4d33fbc2ed854127e1d76dce788f293f44a9b50b'],
+    ['episode-publisher-card:pic-s1-e07-pplus-guide', '122b8e67b1c8f0142f8df5d6537c715479491a600c41de489f6758cd78d9e125'],
+    ['episode-publisher-card:pic-s1-e08-pplus-guide', '4a1d5be16a99e6c5269be35c0bb1e61c2f2de52f4a0c613693e12f99d94eab07'],
+    ['episode-publisher-card:pic-s1-e09-pplus-guide', 'dba360c488a15acd70e7ef70d841d9d4a095727c4676fcc901e7dddf6c01b7be'],
+    ['episode-publisher-card:pic-s1-e10-pplus-guide', '3b2afe59ffc068f89a941e32909e7d4444f8e80e2de09ffb7bf359d2186b07bc'],
+    ['episode-publisher-card:snw-s3-e01-pplus', 'df7ad399aac6456fefbbeb471ca9c5ab96d62741b7b0e85b312930f73917ea79'],
+    ['episode-publisher-card:snw-s3-e02-pplus', 'ea475fbce4070ef97ddf350a0736647e11204b06c18490d814045250a3bfc6e5'],
+    ['episode-publisher-card:snw-s3-e03-pplus', '265d5fe7f0dfa31987997dda84f32a87032e40e9c5b5da0c4ca5d405e381df6a'],
+    ['episode-publisher-card:snw-s3-e04-pplus', 'c21fca17e8eff220f45fa5e2649743055f802e88adc575563358bd8f1d21dc50'],
+    ['episode-publisher-card:snw-s3-e05-pplus', '3dc463d1d9194f414d289e9b30f0fc7fb8d2901725297b3cc7512a31758049ef'],
+    ['episode-publisher-card:snw-s3-e06-pplus', 'f605ad0422a1106491bd88a56a55bddf962ef66bed95cf816113c6d26a73a450'],
+    ['episode-publisher-card:snw-s3-e07-pplus', 'c2709ed5194476cdd3bef68fe2e0914af451c1e42d0e8a7f98da0d23edd5416a'],
+    ['episode-publisher-card:snw-s3-e08-pplus', 'c59b77cdd4f56113d2208aebded6926ffb9eef695b476e45e5ae993a12e1069e'],
+    ['episode-publisher-card:snw-s3-e09-pplus', 'c8fd93614a034f62db440074d6f6199c09049e8bbe05e1aaa165ade627405e7e'],
+    ['episode-publisher-card:snw-s3-e10-pplus', '9ceb38c8d5a62fa2b6959c8105ba1d4bc8cb7b9d999c6dd45ec9868a0fa0de0b']
+  ]);
   // Independent from the 1,214 multimedia directory and governed Work index.
   // The code-owned digest binds EVERY publisher-edition field and tag, not a
   // self-declared source hash in an untrusted JSON response.
@@ -1009,7 +1035,7 @@
     }
   }
 
-  function acceptEpisodeSourceCards(data) {
+  async function acceptEpisodeSourceCards(data) {
     const exact = (obj, keys) => obj && typeof obj === 'object' && !Array.isArray(obj) &&
       Object.keys(obj).length === keys.length && keys.every((key) => Object.hasOwn(obj, key));
     const rootKeys = ['schema_version', 'data_status', 'row_count', 'series_count',
@@ -1021,6 +1047,13 @@
       'source_input', 'source_input_sha256', 'publisher_family', 'source_status',
       'source_identity_scope', 'full_episode_read', 'work_admission_effect', 'coverage_effect',
       'synopsis_release_effect', 'artwork_release_effect', 'source_row_sha256'];
+    const canonical = (value) => {
+      if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+      if (value !== null && typeof value === 'object') {
+        return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonical(value[key])}`).join(',')}}`;
+      }
+      return JSON.stringify(value);
+    };
     if (!exact(data, rootKeys) || data.schema_version !== '1.0.0' ||
         data.data_status !== 'HELD_SOURCE_LOCAL_PUBLISHER_EPISODE_CARDS' || data.row_count !== 20 ||
         data.series_count !== 2 || data.publisher_independence_group_count !== 1 ||
@@ -1045,6 +1078,16 @@
       const batch = episodeSourceBatches.get(row?.source_batch);
       if (!exact(row, rowKeys) || !batch || seen.has(row.row_id)) {
         throw new Error('Duplicate or unrecognized publisher card.');
+      }
+      const codePin = episodePublicRowPins.get(row.row_id);
+      if (!codePin || typeof TextEncoder !== 'function') {
+        throw new Error('Unpinned episode card or WebCrypto encoding unavailable.');
+      }
+      const bytes = new TextEncoder().encode(canonical(row));
+      const digestBytes = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const actualRowHash = Array.from(new Uint8Array(digestBytes), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (actualRowHash !== codePin) {
+        throw new Error('Episode card full public-row evidence pin differs from reviewed source.');
       }
       const [path, sha, series, expectedEpisodes] = batch;
       const season = series === 'PIC' ? 1 : 3;
@@ -1099,7 +1142,7 @@
       const hash = await globalThis.crypto.subtle.digest('SHA-256', bytes);
       const hex = Array.from(new Uint8Array(hash), (n) => n.toString(16).padStart(2, '0')).join('');
       if (hex !== episodeSourceSha256) throw new Error('Episode guide shelf differs from code-pinned accepted source snapshot.');
-      acceptEpisodeSourceCards(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+      await acceptEpisodeSourceCards(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
     } catch (error) {
       setEpisodeSourceAvailability(false,
         `Episode publisher card shelf withheld: ${error.message || 'Source validation failed.'} Unavailable is not verified zero.`);

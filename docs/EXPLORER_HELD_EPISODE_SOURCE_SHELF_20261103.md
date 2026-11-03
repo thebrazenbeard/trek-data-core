@@ -24,6 +24,7 @@ All four derive from **one publisher family**, `publisher:paramountplus.com`; th
 - No synopsis prose, guide blurb, episode stream URL, image URL, thumbnail, video, transcript, copyrighted long passage, global entity ID, full episode text or media asset is copied into this public shelf. The signed-in player/thumbnail URL candidates remain only in the accepted original research records and per-row evidence hashes.
 - Every row marks `HELD_PUBLISHER_GUIDE_ONLY`, `SOURCE_LOCAL_CARD_NOT_ADMITTED_WORK`, and all Work, coverage, synopsis, artwork effects `NONE`. A future rights/admission review is a separate step.
 - The code-owned card SHA binds the entire original card fragment—including nonpublic video/image references and evidence/utterance provenance—not just the subset rendered. Same-host video rebindings or held-status changes are not masked by preserved totals or an updated whole-packet source SHA.
+- A **second, independent code-owned set of twenty SHA-256 pins in browser source** binds every complete published JSON row, including all label/tag pairs, title, source locator and held effects. Before anything is displayed, the browser canonicalizes each row and checks it with WebCrypto; no cards are visible until **all twenty** row pins and the enclosing sidecar SHA pass. A forged label *plus* forged matching facet tag *plus* repinned whole-file hash must still be withheld. Missing WebCrypto/TextEncoder is fail-closed.
 - The Pages workflow calls all four original accepted validators, rebuilt deterministic sidecar and query CLI, then checks Git object fingerprints for exactly permitted Explorer artifacts. This is a **manual-release gate only**; merging does not deploy.
 
 ## Searches
@@ -42,7 +43,7 @@ python tools/query_episode_source_cards.py --status HELD_PUBLISHER_GUIDE_ONLY --
 
 ## Hostile tests
 
-`tests/test_episode_source_cards.py` exercises accepted source pinning, all four original validators, duplicate JSON keys, real full-source fragments, same-host video-link swaps under a forged full-file SHA, code-owned per-row evidence pins, public artifact status/rights/title/tag/URL poison, and query bounds. `tests/test_explorer.mjs` repeats malicious row changes after deliberately recomputing the **entire browser artifact hash**, ensuring semantic fail-closed behavior beyond hash-only protection. `tests/test_explorer_accessibility.mjs` checks labels/status/UI; `tests/test_pages_artifact_scope.py` enforces Pages allowlist and mandatory original validators.
+`tests/test_episode_source_cards.py` exercises accepted source pinning, all four original validators, duplicate JSON keys, real full-source fragments, same-host video-link swaps under a forged full-file SHA, code-owned per-row source-evidence pins, *browser code-owned public-row digest pins*, public artifact status/rights/title/tag/URL poison, and query bounds. `tests/test_explorer.mjs` repeats malicious row changes after deliberately recomputing the **entire browser artifact hash**—including the paired publisher utterance label/tag attack—ensuring semantic fail-closed behavior beyond hash-only protection. `tests/test_explorer_accessibility.mjs` checks labels/status/UI; `tests/test_pages_artifact_scope.py` enforces Pages allowlist and mandatory original validators.
 
 ```bash
 python -m unittest tests.test_episode_source_cards tests.test_pages_artifact_scope -q

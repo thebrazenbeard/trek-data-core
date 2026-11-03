@@ -3,6 +3,7 @@
 import copy
 import hashlib
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -48,6 +49,15 @@ class EpisodeSourceCardTests(unittest.TestCase):
             query(data, series="INCORRECT")
         with self.assertRaises(ValueError):
             query(data, limit=21)
+
+    def test_browser_code_owned_public_row_sha_pins_bind_all_published_fields(self):
+        script = (builder.ROOT / "explorer/app.js").read_text(encoding="utf-8")
+        pinned = dict(re.findall(r"\['(episode-publisher-card:[^']+)', '([a-f0-9]{64})'\]", script))
+        rows = builder.build()["rows"]
+        self.assertEqual(len(pinned), len(rows))
+        for row in rows:
+            canonical = json.dumps(row, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+            self.assertEqual(pinned[row["row_id"]], hashlib.sha256(canonical).hexdigest())
 
     def test_same_count_public_status_url_and_tags_forgery_rejected(self):
         valid = builder.encode(builder.build())

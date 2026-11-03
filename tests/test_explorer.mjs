@@ -164,7 +164,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     }
   };
   vm.runInNewContext(appScript, {
-    document, fetch, Option: OptionNode, URL, crypto: deterministicCrypto, TextDecoder,
+    document, fetch, Option: OptionNode, URL, crypto: deterministicCrypto, TextDecoder, TextEncoder,
     location: { origin: 'https://example.test' },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
@@ -261,6 +261,13 @@ test('episode card shelf fails closed on absent, altered and rehashed source/rig
     (d) => { d.rows[0].artwork_release_effect = 'CLEARED'; },
     (d) => { d.rows[0].publisher_guide_url = 'https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/'; },
     (d) => { d.rows[0].title = d.rows[1].title; },
+    (d) => {
+      const row = d.rows[0];
+      const previous = row.publisher_utterance_labels[0];
+      row.publisher_utterance_labels[0] = 'False Entity Added';
+      row.tags = row.tags.map((tag) => tag === `publisher-utterance:${previous.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
+        ? 'publisher-utterance:false-entity-added' : tag).sort();
+    },
     (d) => { d.rows[0].tags.push('publisher-utterance:forged'); },
     (d) => { d.rows[0].source_input_sha256 = '0'.repeat(64); },
     (d) => { d.rows[1] = d.rows[0]; },

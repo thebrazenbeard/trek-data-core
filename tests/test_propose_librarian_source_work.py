@@ -103,6 +103,8 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
             ("work_identity_note", r"C:\Users\Example\Private\source.mp4"),
             ("work_identity_note", "/home/example/private/episode.mkv"),
             ("work_title", r"Work C:\Users\Example\Private\source.mp4"),
+            ("work_title", "Memo /etc/passwd"),
+            ("work_title", "/opt/secret"),
         ):
             self.decl = declaration()
             self.decl[key] = value

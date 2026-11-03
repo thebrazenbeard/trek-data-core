@@ -36,7 +36,7 @@ def proposed_work(item: dict) -> dict:
         if key == "work_title":
             # Slash is legitimate punctuation in some titles; block path-shaped
             # spans rather than every title with a separator.
-            if re.search(r"(?i)(?:[a-z]:[\\/]|\\\\|/(?:users|home|private|mnt|var|tmp)/|file://|\.\.[\\/])", value):
+            if re.search(r"(?i)(?:[a-z]:[\\/]|\\\\|(?:^|\s)/[a-z0-9._-]+(?:/[a-z0-9._-]+)*|file://|\.\.[\\/])", value):
                 raise custody.Rejected("work_title must not embed a private or relative file path")
         elif "/" in value or "\\" in value:
             raise custody.Rejected(f"{key} must not contain paths or path separators")

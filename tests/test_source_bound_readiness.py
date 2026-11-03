@@ -131,6 +131,24 @@ class SourceBoundReadinessTests(unittest.TestCase):
         self.assertIn('BINDING_CONTEXT_MISMATCH', result['blockers'])
         self.assertNotIn('PRIVATE_BYTE_CUSTODY_REPLAY_OR_SOURCE_MATCH_FAILED', result['blockers'])
 
+    def test_work_roster_key_cannot_mask_wrong_row_identity(self):
+        self.works[WORK['work_id']]['work_id'] = 'different-episode'
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('WORK_IDENTITY_MISMATCH', result['blockers'])
+
+    def test_source_roster_key_cannot_mask_wrong_row_identity(self):
+        self.sources[SOURCE['source_id']]['source_id'] = 'different-source'
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('SOURCE_IDENTITY_MISMATCH', result['blockers'])
+
+    def test_binding_roster_key_cannot_mask_wrong_row_identity(self):
+        self.bindings[BINDING['binding_id']]['binding_id'] = 'different-binding'
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('BINDING_IDENTITY_MISMATCH', result['blockers'])
+
     def test_replayed_receipt_with_duplicate_json_key_is_rejected(self):
         receipt = self.receipt_path.read_text(encoding='utf-8')
         self.receipt_path.write_text(receipt[:-1] + ',"receipt_id":"ForgedReceipt"}', encoding='utf-8')

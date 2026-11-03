@@ -1,5 +1,6 @@
 """Source-only checks for the proposed, non-admitted Explorer directory."""
 
+import copy
 import hashlib
 import json
 import tempfile
@@ -39,15 +40,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 1155, "FILM": 14, "LITERATURE": 1,
+            "EPISODE": 1155, "FILM": 14, "LITERATURE": 9,
             "SHORT_FORM": 35, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1206)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1214)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 136)
+        self.assertEqual(len(catalog["source_digests"]), 140)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -63,16 +64,33 @@ class UnifiedDiscoveryTests(unittest.TestCase):
             "PUBLISHER_REFERENCE": 15,
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
-            "NOVEL": 1,
+            "NOVEL": 4,
+            "FICTIONAL_MEMOIR": 5,
             "SCRIPTED_SHORT": 30,
             "PROMOTIONAL_ANIMATION": 5,
             "SCRIPTED_AUDIO_SERIES": 1,
         })
         # These are separate source-local attestations, not a deduplicated Work count.
         self.assertEqual(len({r["source_group"] for r in rows}) < len(rows), True)
-        novel = next(r for r in rows if r["medium"] == "LITERATURE")
+        novel = next(r for r in rows if r["row_id"] == "literature:proposed-lit-snw-ring-of-fire")
         self.assertEqual(len(novel["details"]), 4)
         self.assertEqual(len({part.split("ISBN ", 1)[1] for part in novel["details"]}), 4)
+        new_novels = [r for r in rows if r["source_input"].endswith("simon-schuster-three-novels-20261103/records.json")]
+        self.assertEqual({r["row_id"] for r in new_novels}, {
+            "literature:proposed-lit-picard-second-self",
+            "literature:proposed-lit-snw-high-country",
+            "literature:proposed-lit-discovery-enterprise-war",
+        })
+        self.assertTrue(all(r["candidate_kind"] == "NOVEL" and len(r["details"]) == 3 and
+                            r["coverage_effect"] == r["admission_effect"] == "NONE"
+                            for r in new_novels))
+        self.assertEqual(len({detail.split("ISBN ", 1)[1]
+                              for novel in new_novels for detail in novel["details"]}), 9)
+        memoirs = [r for r in rows if r["candidate_kind"] == "FICTIONAL_MEMOIR"]
+        self.assertEqual(len(memoirs), 5)
+        self.assertTrue(all(r["source_locator"].startswith("https://www.penguinrandomhouse.com/books/")
+                            for r in memoirs))
+        self.assertFalse(any("Captains - The Autobiographies" == r["title"] for r in memoirs))
         for show in ("DS9", "VOY"):
             observed = [r["context"] for r in rows if r["row_id"].startswith(f"roster:{show.lower()}:")]
             self.assertIn(f"{show} S1E1", observed)
@@ -191,6 +209,54 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         with patch.object(discovery.films, "build", return_value=b"{}"):
             with self.assertRaisesRegex(ValueError, "stale discovery source derivative"):
                 discovery.build_bytes(ROOT)
+
+    def test_three_novel_source_promotion_and_cross_edition_forgery_rejected(self):
+        path = ROOT / "proposals/librarian/simon-schuster-three-novels-20261103/records.json"
+        source = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(len(discovery._three_novel_rows(source)), 3)
+        changes = (
+            lambda d: d["accepted_effects"].__setitem__("works", "ACCEPTED"),
+            lambda d: d["works"][1].__setitem__("status", "ACCEPTED"),
+            lambda d: d["editions"][0].__setitem__("isbn13", "9781982194834"),
+            lambda d: d["editions"][0].__setitem__("candidate_work_id", d["works"][1]["candidate_work_id"]),
+            lambda d: d["editions"][3].__setitem__("format", "EBOOK"),
+            lambda d: d["editions"][2].__setitem__("raw_response_sha256", "0" * 64),
+            lambda d: d["editions"][0].__setitem__("publisher_product_url",
+                                                       d["editions"][1]["publisher_product_url"]),
+            lambda d: d["works"][1].__setitem__("title", "Star Trek: Strange New Worlds: False Title"),
+        )
+        for mutate in changes:
+            with self.subTest(mutate=mutate.__code__.co_firstlineno):
+                altered = copy.deepcopy(source)
+                mutate(altered)
+                with self.assertRaises(ValueError):
+                    discovery._three_novel_rows(altered)
+
+    def test_accepted_picard_and_new_three_novel_metadata_share_one_source_lineage(self):
+        new_source = json.loads((ROOT / discovery.INPUTS[4]).read_text(encoding="utf-8"))
+        accepted_source = json.loads((ROOT / discovery.PICARD_COMPANIONS).read_text(encoding="utf-8"))
+        discovery._check_picard_publisher_overlap(new_source, accepted_source)
+
+        # This product was already proposed on accepted main. A conflicting
+        # title, publisher family, or Work/ISBN pairing must fail closed.
+        changes = (
+            lambda d: d["sources"][2]["provider_metadata"].__setitem__("title", "Wrong novel"),
+            lambda d: d.__setitem__("source_group", "publisher:unrelated.example"),
+            lambda d: d["edition_candidates"][2].__setitem__("work_id", "proposed-lit-picard-the-dark-veil"),
+            lambda d: d["bindings"][2].__setitem__("source_id", "proposed-picard-publisher-source-9781982154073"),
+            lambda d: d.__setitem__("accepted_work_effect", "ACCEPTED"),
+        )
+        for mutate in changes:
+            with self.subTest(mutate=mutate.__code__.co_firstlineno):
+                altered = copy.deepcopy(accepted_source)
+                mutate(altered)
+                with self.assertRaises(ValueError):
+                    discovery._check_picard_publisher_overlap(new_source, altered)
+
+        wrong_new = copy.deepcopy(new_source)
+        wrong_new["editions"][0]["publisher_extent"] = "999 pages"
+        with self.assertRaises(ValueError):
+            discovery._check_picard_publisher_overlap(wrong_new, accepted_source)
 
     def test_output_symlink_parent_fails_closed(self):
         with tempfile.TemporaryDirectory() as tmp:

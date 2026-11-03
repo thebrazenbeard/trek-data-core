@@ -380,6 +380,37 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
         art.check_static_startup(self.root)
 
+    def test_masthead_cannot_be_reparented_inside_any_forged_media_card(self):
+        # Independent hostile QA found that direct-child hero checks alone
+        # accepted an <article> wrapping the *whole* legitimate masthead.
+        # Exercise several ancestor labels/HTML container types so the gate
+        # enforces actual parentage, not a class-name blacklist.
+        html = (ROOT / "explorer/index.html").read_text()
+        start = html.index('<header class="masthead">')
+        end = html.index('</header>', start) + len('</header>')
+        masthead = html[start:end]
+        wrappers = (
+            ('article', 'episode-card'),
+            ('article', 'film-card'),
+            ('div', 'episode-screenshot'),
+            ('div', 'unrecognized-image-host'),
+            ('section', 'publisher-cover'),
+            ('aside', 'visual-gallery'),
+            ('figure', 'artwork-frame'),
+            ('main', 'masquerade'),
+        )
+        for tag, kind in wrappers:
+            with self.subTest(parent=tag, class_name=kind):
+                attack = (f'<{tag} class="{kind}">'
+                          '<h2>Official episode screenshot</h2>'
+                          + masthead + f'</{tag}>')
+                (self.root / "explorer/index.html").write_text(
+                    html.replace(masthead, attack, 1))
+                with self.assertRaisesRegex(art.ArtworkRejected, "masthead|body"):
+                    art.check_static_startup(self.root)
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
     def test_svg_descendant_href_cannot_fetch_or_launder_remote_art_before_opt_in(self):
         # A clean outer <svg> is not evidence that nested SVG tags are inert.
         # SVG <textPath> and <a> can carry external href references.

@@ -476,6 +476,7 @@ class _StartupHTML(HTMLParser):
         super().__init__()
         self.in_style = False
         self.svg_stack: list[str] = []
+        self.element_stack: list[str] = []
         self.in_masthead = False
         self.masthead_stack: list[str] = []
         self.masthead_count = 0
@@ -485,12 +486,19 @@ class _StartupHTML(HTMLParser):
         values = dict(attrs)
         _ensure(len(values) == len(attrs), "duplicate HTML attributes")
         if tag == "header" and values.get("class") == "masthead":
+            # The masthead itself must remain a top-level child of <body>.
+            # Without this, an attacker can wrap the *entire* intact hero in
+            # an episode-card <article> and label it a screenshot.
+            _ensure(self.element_stack == ["html", "body"],
+                    "decorative masthead must be a direct body child")
             self.masthead_count += 1
             _ensure(self.masthead_count == 1, "duplicate decorative masthead")
             self.in_masthead = True
             self.masthead_stack.append("header")
         elif self.in_masthead and tag not in self.VOID_HTML:
             self.masthead_stack.append(tag)
+        if tag not in self.VOID_HTML:
+            self.element_stack.append(tag)
         if tag == "svg" or self.svg_stack:
             # Every SVG descendant may be an external-resource reference,
             # including <textPath>, <a>, and unfamiliar future SVG tags.
@@ -535,6 +543,7 @@ class _StartupHTML(HTMLParser):
         if tag == "img":
             self.hero_count += 1
             _ensure(self.hero_count == 1 and self.masthead_stack == ["header"] and
+                    self.element_stack == ["html", "body", "header"] and
                     set(values) == {"class", "src", "width", "height", "alt", "decoding", "fetchpriority"} and
                     values["class"] == "masthead-art" and values["width"] == "1536" and
                     values["height"] == "512" and values["decoding"] == "async" and
@@ -546,6 +555,9 @@ class _StartupHTML(HTMLParser):
             raise ArtworkRejected("automatic HTML redirect/preload denied")
 
     def handle_endtag(self, tag):
+        _ensure(bool(self.element_stack) and self.element_stack[-1] == tag,
+                "malformed HTML nesting (resource scope ambiguous)")
+        self.element_stack.pop()
         if self.svg_stack:
             _ensure(tag == self.svg_stack[-1], "malformed or unbalanced SVG markup")
             self.svg_stack.pop()
@@ -571,7 +583,7 @@ def check_static_startup(root: Path = ROOT) -> None:
     parser.close()
     _ensure(not parser.svg_stack, "unclosed SVG markup")
     _ensure(parser.masthead_count == 1 and parser.hero_count == 1 and
-            not parser.in_masthead and not parser.masthead_stack,
+            not parser.in_masthead and not parser.masthead_stack and not parser.element_stack,
             "exactly one scoped decorative masthead hero must exist")
 
 

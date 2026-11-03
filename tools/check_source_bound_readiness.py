@@ -28,6 +28,15 @@ def assess(work_id, source_id, binding_id, works, sources, bindings, records,
     source = sources.get(source_id)
     binding = bindings.get(binding_id)
 
+    # Caller-provided roster indexes are not evidence that the indexed rows
+    # actually identify the requested Work, Source, or binding.
+    if work is not None and work.get('work_id') != work_id:
+        blockers.append('WORK_IDENTITY_MISMATCH')
+    if source is not None and source.get('source_id') != source_id:
+        blockers.append('SOURCE_IDENTITY_MISMATCH')
+    if binding is not None and binding.get('binding_id') != binding_id:
+        blockers.append('BINDING_IDENTITY_MISMATCH')
+
     if not work or work.get('status') != 'ACCEPTED' or work.get('fixture_only') is not False:
         blockers.append('NO_ACCEPTED_NONFIXTURE_WORK')
     elif work.get('work_type') != 'EPISODE':

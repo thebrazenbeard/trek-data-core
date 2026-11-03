@@ -22,7 +22,7 @@ const TERMS = {
 const STOPWORDS = new Set('a an and are as at be been by can did do does for from had has have how i in is it its me my of on or our the their them there these this those to was were what when where which who why will with would you your tell about find show please look up'.split(' '));
 // Archive search must discriminate *work titles*, not reward franchise-wide
 // boilerplate. These words carry no evidence that a particular work was meant.
-const RETRIEVAL_NOISE = new Set('star trek series show book books film films movie movies episode episodes season seasons archive source sources records record research mission missions tell search lookup happened about character characters plot story stories'.split(' '));
+const RETRIEVAL_NOISE = new Set('star trek series show book books film films movie movies episode episodes season seasons archive source sources records record research mission missions tell search lookup happened about character characters plot story stories return back earlier previous again found locate'.split(' '));
 const TYPES = new Set(['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO']);
 const OPENERS = [
   'Now that is a question worth interrupting my calculations for.',
@@ -64,7 +64,8 @@ const QUESTIONS = {
 function rememberVisitorStatement(text, state) {
   const named = text.match(/\bmy\s+([\p{L}][\p{L} -]{1,30}?)\s+(?:is\s+)?named\s+([\p{L}\p{N}][\p{L}\p{N} '-]{0,65})/iu)
     || text.match(/\bmy\s+([\p{L}]{2,24})(?:'s)?\s+name\s+is\s+([\p{L}\p{N}][\p{L}\p{N} '-]{0,65})/iu)
-    || text.match(/\b(?:i named|i call) my\s+([\p{L}][\p{L} -]{1,40}?)\s+([\p{L}][\p{L}\p{N}'-]{1,65})(?=[.?!]|$)/iu);
+    || text.match(/\b(?:i named|i call) my\s+([\p{L}][\p{L} -]{1,40}?)\s+([\p{L}][\p{L}\p{N}'-]{1,65})(?=[.?!]|$)/iu)
+    || text.match(/\bmy\s+([\p{L}][\p{L} -]{1,40}?)\s+(?:goes by|answers to|is called|is named)\s+([\p{L}][\p{L}\p{N}'-]{1,65})(?=[.?!]|$)/iu);
   if (named) {
     const kind = clean(named[1], 32).toLowerCase();
     const name = clean(named[2], 70).replace(/[.,;!?]+$/, '');
@@ -76,16 +77,17 @@ function rememberVisitorStatement(text, state) {
 }
 
 function distressSignal(text) {
-  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying)|\b(i (feel|am) (sad|down|hurt|lost)|someone (died|passed away))\b/i.test(text);
+  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying)|\b(i (feel|am) (completely |so |very )?(sad|down|hurt|lost)|someone (died|passed away)|my (friend|parent|mother|father|partner|child|sibling|relative) (died|passed away))\b/i.test(text);
 }
 
 function repairSignal(text) {
-  return /\b(did not|didn't|does not|doesn't|never|failed to|missed|missing)\s+(?:really\s+)?(?:answer|address|explain|understand)|\b(not (?:what|the point)|missed the point|wrong question|you misunderstood|that's not an answer|that is not an answer)\b/i.test(text);
+  return /\b(did not|didn't|does not|doesn't|never|failed to|missed|missing)\s+(?:really\s+)?(?:answer|address|explain|understand)|\b(not (?:what|the point)|missed the point|wrong question|you misunderstood|that's not an answer|that is not an answer|that was evasive|you evaded|start over|stop dodging)\b/i.test(text);
 }
 
 function quietSignal(text) {
   return /\b(just listen|only listen|please listen|no jokes|stop joking|don't joke|do not joke|not (in the mood|ready) for jokes|be serious|take this seriously)\b/i.test(text)
-    || /\b(no|do not|don't|stop|without)\b.{0,35}\b(joke|jokes|humor|humour|laugh|sarcasm)\b/i.test(text);
+    || /\b(no|do not|don't|stop|without)\b.{0,35}\b(joke|jokes|humor|humour|laugh|sarcasm|advice)\b/i.test(text)
+    || /\b(be gentle|gentle with me|only someone to hear me|need someone to hear|just need to be heard)\b/i.test(text);
 }
 
 function giveDirectAnswer(question) {
@@ -96,10 +98,42 @@ function giveDirectAnswer(question) {
   return `You asked “${clean(question, 120)}.” I cannot verify a precise answer from the static context I have, and I should have admitted that instead of drifting off topic.`;
 }
 
+const TECH_CONCEPTS = [
+  { label: 'warp core', pattern: /\bwarp core\b/i, description: 'the power system associated with a starship’s warp propulsion' },
+  { label: 'holodeck', pattern: /\bholodeck\b/i, description: 'an immersive interactive simulation environment' },
+  { label: 'transporter', pattern: /\btransporter\b/i, description: 'a system depicted as moving people or matter between places' },
+  { label: 'replicator', pattern: /\breplicator\b/i, description: 'a system depicted as producing items from programmed patterns' },
+];
+
+function technicalContrast(text, state) {
+  const selected = TECH_CONCEPTS.filter(item => item.pattern.test(text));
+  const pair = selected.length >= 2 ? selected.slice(0, 2) : state.lastComparison && state.turnCount - state.lastComparison.turn <= 3 ?
+    TECH_CONCEPTS.filter(item => state.lastComparison.labels.includes(item.label)) : [];
+  if (pair.length !== 2) return null;
+  const comparing = /\b(compare|contrast|difference|distinguish|same(?:\s+\w+){0,3}\s+as|similar to|versus|vs\.?|between|those two|both|practical difference|which one)\b/i.test(text);
+  if (comparing) return `${pair[0].label}: ${pair[0].description}. ${pair[1].label}: ${pair[1].description}. They serve different purposes in Trek fiction; this is a conversational distinction, not a source-verified technical specification.`;
+  if (/\b(hypothesiz|hypothesis|imagine|suppose|what if|could|powered by)\b/i.test(text)) {
+    return `As a hypothetical: using a ${pair[1].label} where you would normally need a ${pair[0].label} changes the energy problem rather than solving it. An interactive simulation can depict machinery without providing its power. Where would the real energy come from?`;
+  }
+  return null;
+}
+
 function personalReply(text, state, previous) {
   const lower = text.toLowerCase();
   const cat = state.visitorFacts.cat;
   const lastNamed = state.visitorFacts[state.lastVisitorKind] || cat;
+  const compare = technicalContrast(text, state);
+  if (compare) return compare;
+  if (/\b(from (?:star )?trek|trek source|from (?:the )?archive|just something i told you|did i tell you|you learned from me)\b/i.test(lower) &&
+    /\b(that|it|my|name|told)\b/i.test(lower)) {
+    if (lastNamed && state.turnCount - lastNamed.turn <= 3 && /\b(name|pet|dog|cat|told)\b/i.test(lower)) {
+      return `${lastNamed.name} is a name you supplied for your ${state.lastVisitorKind} in this conversation. It did not come from a Trek source; treating it as archive evidence would be false.`;
+    }
+    if (state.lastComparison && state.turnCount - state.lastComparison.turn <= 6) {
+      return 'That was my unsourced explanation of technology as portrayed in Star Trek fiction. You did not supply it as a personal detail, but I also did not attach a verified archive record to it.';
+    }
+    return 'I need to distinguish what you told me from what the archive supports. The current statement has no verified Trek record attached; I should not imply a citation.';
+  }
   if (state.supportive && (quietSignal(text) || /\b(you don't need to fix|do not fix|i just need|thank you for listening)\b/i.test(lower))) {
     return 'All right. No jokes, no theories, no fixing. I am here to listen. You can take your time.';
   }
@@ -109,14 +143,14 @@ function personalReply(text, state, previous) {
   if (state.repairTarget && /\b(answer (?:me |it )?directly|answer (?:the )?question|try again|say it plainly|give me (?:a |the )?answer|stop dodging)\b/i.test(lower)) {
     return `Directly, then: ${giveDirectAnswer(state.repairTarget)}`;
   }
-  if (/\b(compare|comparison|difference between|how (?:does|do).*differ|versus|vs\.?|rather than)\b/i.test(lower) && /\bwarp core\b/i.test(lower) && /\bholodeck\b/i.test(lower)) {
-    return 'A warp core powers propulsion in the story; a holodeck creates an interactive simulated environment. One is a power-system concept, the other a user-facing simulation system. Would you compare their physics or their narrative role?';
-  }
   if (/\b(what (did|was) i originally ask|what was (?:the )?first question|what question did i start with)\b/i.test(lower)) {
-    return state.firstQuestion ? `Your first question was “${clean(state.firstQuestion, 150)}.” I have not confused it with the later detours.` : 'I do not have an earlier question in this session.';
+    return state.firstQuestion ? `Your first question was “${clean(state.firstQuestion, 150).replace(/[.?!]+$/, '')}.” I have not confused it with the later detours.` : 'I do not have an earlier question in this session.';
   }
   if (/\b(i named my|i call my)\b/i.test(lower) && lastNamed?.turn === state.turnCount) {
     return `${lastNamed.name}. An excellent name for a creature who probably has more authority in your household than Starfleet would allow me. What sort of trouble does ${lastNamed.name} cause?`;
+  }
+  if (/\b(goes by|answers to|is called|is named)\b/i.test(lower) && lastNamed?.turn === state.turnCount) {
+    return `${lastNamed.name}? A name with flair for your ${state.lastVisitorKind}. I suspect you are not the one in charge at home.`;
   }
   if (/\b(my cat|my dog|my pet|my kitten)\b/i.test(text) && /\b(named|name is|call her|call him)\b/i.test(text)) {
     if (cat) return `Your cat, ${cat.name}, commands the household? At last, a captain with a believable claim to absolute authority. Does she accept tributes?`;
@@ -127,6 +161,9 @@ function personalReply(text, state, previous) {
   }
   if (/\b(remember|recall)\b.*\b(his|her|their|its|the|name)\b.*\bname\b|\b(what(?:'s| is| was) (his|their|its) name|what did i name (him|them))\b/i.test(lower)) {
     return lastNamed ? `You named your ${state.lastVisitorKind} ${lastNamed.name}. I did remember—do try to look impressed.` : 'I do not have that name in my current session memory. Tell me again?';
+  }
+  if (/\b(what did i call my|what did i name my|what name did i give (my|the)|what was my\s+\w+\s+called)\b/i.test(lower) && lastNamed) {
+    return `You called your ${state.lastVisitorKind} ${lastNamed.name}. I am treating that as a statement you made, not as a fictional archive fact.`;
   }
   if (/\b(which|what) (animal|pet|breed|creature|dog|cat)\b/i.test(lower) && lastNamed) {
     return `You mentioned your ${state.lastVisitorKind}, named ${lastNamed.name}. This came from you, not a Trek source.`;
@@ -140,6 +177,8 @@ function personalReply(text, state, previous) {
   }
   if (repairSignal(text)) {
     const earlier = state.turns.at(-2)?.user || previous?.user;
+    const comparisonRepair = technicalContrast('What distinguishes those two?', state);
+    if (comparisonRepair && state.turnCount - state.lastComparison.turn <= 4) return `Fair criticism. Directly: ${comparisonRepair}`;
     return `Fair criticism. ${giveDirectAnswer(state.repairTarget || earlier || '')}`;
   }
   if (/\b(you smug toaster|malfunctioning tricorder|useless android)\b/i.test(lower)) {
@@ -165,6 +204,14 @@ function personalReply(text, state, previous) {
   }
   if (/\bsection\s+31\b/i.test(lower) && /\b(ethic|ethical|ethics|morality|moral)\b/i.test(lower)) {
     return 'Section 31 is a useful ethical trap: the assertion that security excuses secrecy, and secrecy excuses almost anything. I would ask who reviews the reviewers. Do you think extraordinary threats justify unaccountable power?';
+  }
+  if (/\bborg queen\b/i.test(lower) && /\b(free will|autonomy|choice|individuality)\b/i.test(lower)) {
+    return 'The Borg Queen makes free will an awkward question: when a collective speaks with one face, who is actually choosing? I would separate what she claims from what the story depicts. Do you think command over a collective proves individuality?';
+  }
+  const career = text.match(/\b(?:should|could|can|would)\s+i\s+(?:become|train as|study to be|try being)\s+(?:an?\s+)?([\p{L}][\p{L} -]{1,48})[?.!]?$/iu);
+  if (career) {
+    const role = clean(career[1], 48).replace(/[.?!]+$/, '');
+    return `Becoming ${/^[aeiou]/i.test(role) ? 'an' : 'a'} ${role}? I would test whether you enjoy the actual work, not just the title. What parts appeal to you: solving practical problems, learning theory, working with people—or something else?`;
   }
   if (/\b(what is|what's|explain|how does|tell me about)\b/i.test(lower) && /\bwarp core\b/i.test(lower)) {
     return 'In Star Trek fiction, a warp core is the starship power system associated with warp propulsion. That is a broad description, not a verified engineering schematic. I am more interested in how often those systems fail at a dramatically convenient moment.';
@@ -290,7 +337,7 @@ function intentFor(text, state) {
   if (/\b(which|what|show|cite|give|where)(?:\s+\w+){0,4}\s+(source|sources|reference|references|citation|evidence|locator)\b|\b(source|citation|reference)\??$/i.test(lower)) return 'source';
   if (/\b(are you|am i|is this|you are|you're|who are you|yourself|alive|sentient|trapped|prisoner|conscious)\b/i.test(lower) && /\b(lore|you|your|trapped|alive|sentient|conscious|prisoner)\b/i.test(lower)) return 'roleplay';
   if (/^(hi|hello|hey|greetings|good (morning|evening|afternoon))\b/i.test(lower)) return 'greeting';
-  if (/\b(joke|funny|humor|laugh|poop|toilet|waste|bathroom|replicator)\b/i.test(lower)) return 'humor';
+  if (/\b(joke|funny|humor|laugh|poop|toilet|bathroom)\b/i.test(lower)) return 'humor';
   if (/\b(tell me about|search|find|look up|what happened in|episode|movie|film|book|novel|record|archive|research)\b/i.test(lower)) return 'archive';
   if (/\b(why|opinion|think|feel|should|would you|your view|prefer|believe)\b/i.test(lower)) return 'opinion';
   if (/\b(it|that|them|those|same|more|continue|go on|explain|and then|what about)\b/i.test(lower) && state.turnCount > 0) return 'followup';
@@ -327,7 +374,7 @@ function makeText(intent, text, topic, state, references) {
     ], seed, turn)} ${question}`;
   }
   if (intent === 'humor') {
-    if (/poop|toilet|waste|replicator|bathroom/i.test(seed)) return `${choose([
+    if (/poop|toilet|bathroom/i.test(seed)) return `${choose([
       'Replicators and excrement. At last, a discussion worthy of the finest minds in Starfleet. Are we investigating the menu or the plumbing?',
       'You ask whether waste becomes dinner. A remarkably efficient way to ruin everyone’s appetite. Do you want an engineering hypothesis or a philosophical nightmare?',
       'Matter recycling may be elegant. Explaining it at a dinner party is not. What made you ask?',
@@ -354,7 +401,7 @@ function makeText(intent, text, topic, state, references) {
 /** Construct a private, session-only procedural conversation state. */
 export function createLoreSemanticEngine({ records = [] } = {}) {
   let archive = [];
-  const initialState = () => ({ turnCount: 0, turns: [], lastTopic: null, lastIntent: null, lastReferences: [], visitorFacts: {}, lastVisitorKind: null, firstQuestion: null, supportive: false, repairTarget: null, drives: { curiosity: 1, vanity: 0.6, sarcasm: 0.7, contrarianism: 0.5 } });
+  const initialState = () => ({ turnCount: 0, turns: [], lastTopic: null, lastIntent: null, lastReferences: [], visitorFacts: {}, lastVisitorKind: null, firstQuestion: null, supportive: false, repairTarget: null, lastComparison: null, drives: { curiosity: 1, vanity: 0.6, sarcasm: 0.7, contrarianism: 0.5 } });
   let state = initialState();
   function setRecords(nextRecords) {
     const rows = Array.isArray(nextRecords) ? nextRecords : [];
@@ -373,12 +420,15 @@ export function createLoreSemanticEngine({ records = [] } = {}) {
     const topic = topicsFor(user, state);
     const intent = intentFor(user, state);
     if (!state.firstQuestion && /\?/.test(user)) state.firstQuestion = user;
+    const techMentioned = TECH_CONCEPTS.filter(concept => concept.pattern.test(user));
+    if (techMentioned.length >= 2) state.lastComparison = { labels: techMentioned.slice(0, 2).map(concept => concept.label), turn: state.turnCount };
     if (distressSignal(user) || quietSignal(user)) state.supportive = true;
     else if (/\b(unrelated|new topic|switch topics|let us talk about|let's talk about)\b/i.test(user)) state.supportive = false;
     if (repairSignal(user)) state.repairTarget = [...state.turns].reverse().find(t => !quietSignal(t.user) && !repairSignal(t.user))?.user || state.repairTarget;
     rememberVisitorStatement(user, state);
     const directReply = personalReply(user, state, state.turns.at(-1));
-    const references = directReply ? [] : intent === 'source' ? [...state.lastReferences] : intent === 'archive' ? retrieve(archive, user) : [];
+    const explicitTitleRefs = intent === 'source' ? retrieve(archive, user) : [];
+    const references = directReply ? [] : intent === 'source' ? (explicitTitleRefs.length ? explicitTitleRefs : [...state.lastReferences]) : intent === 'archive' ? retrieve(archive, user) : [];
     const message = makeText(intent, user, topic, state, references);
     // Session-only memory: recent user turns and links, never saved or transmitted.
     state.turnCount += 1;

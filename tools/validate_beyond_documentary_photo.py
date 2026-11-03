@@ -211,17 +211,14 @@ def validate(root: Path = ROOT) -> dict:
     require(markup.panels == markup.buttons == 1 and markup.images_before_consent == 0,
             "premiere DOM must have one disabled consent gate and zero startup image nodes")
     require(markup.csp is not None, "missing CSP")
-    # The public Lore model is loaded only after an explicit visitor action.
-    # Its non-image CDN connections do not authorize held photo image loads.
-    # Reject any widened image scope or unreviewed connection origin here.
+    # The default procedural Lore character is wholly same-origin and does
+    # not require a CDN or WebGPU model. Preserve the separately gated legacy
+    # loopback companion and reject widening image or connection permissions.
     chat_connections = markup.csp.split("connect-src ", 1)[1].split(";", 1)[0] if "connect-src " in markup.csp else ""
     require("img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org;" in markup.csp and
             "https://thumb.wikimedia.org" not in markup.csp and
             "https://upload.wikimedia.org" not in markup.csp and
-            chat_connections == ("'self' http://127.0.0.1:9877 https://cdn.jsdelivr.net "
-                                 "https://huggingface.co https://*.huggingface.co https://*.hf.co "
-                                 "https://raw.githubusercontent.com https://*.githubusercontent.com "
-                                 "https://challenges.cloudflare.com"),
+            chat_connections == "'self' http://127.0.0.1:9877",
             "premiere photo must not extend image network CSP before public release")
     require(DIGEST in js and DECISION_DIGEST in js and
             "fetch('./beyond-premiere-photo.json'" in js and

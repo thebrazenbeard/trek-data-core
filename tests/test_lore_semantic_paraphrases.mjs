@@ -55,3 +55,50 @@ test('archive lead cannot survive a personal topic change and indirect citation 
   assert.deepEqual(source.references, []);
   assert.doesNotMatch(source.text, /darmok/i);
 });
+
+test('alternate pet phrasing, attribution, and memory are not recast as Trek records', () => {
+  const engine = createLoreSemanticEngine();
+  assert.match(engine.ask('My rescue beagle goes by Nebula-88.').text, /Nebula-88/);
+  assert.match(engine.ask('What did I call my pup?').text, /Nebula-88/);
+  const origin = engine.ask('Is that from Star Trek, or just something I told you?');
+  assert.match(origin.text, /you supplied|you told|did not come from a Trek source/i);
+  assert.deepEqual(origin.references, []);
+});
+
+test('grief and requested gentleness suppress ordinary character sarcasm', () => {
+  const engine = createLoreSemanticEngine();
+  const grief = engine.ask('My friend died yesterday. I feel completely lost.');
+  assert.match(grief.text, /difficult|listen|sorry|take your time/i);
+  for (const prompt of ['Please be gentle.', 'I do not need advice, only someone to hear me.']) {
+    const response = engine.ask(prompt);
+    assert.match(response.text, /listen|no jokes|take your time/i);
+    assert.doesNotMatch(response.text, /laugh|catastroph|entertaining|poop/i);
+  }
+});
+
+test('two technical concepts keep distinction through pronoun, repair and source-origin followups', () => {
+  const engine = createLoreSemanticEngine();
+  const first = engine.ask('Can you contrast a transporter and a replicator?');
+  assert.match(first.text, /transport.*replicat/i);
+  assert.doesNotMatch(first.text, /poop|dinner|excrement/i);
+  assert.match(engine.ask('What is the practical difference?').text, /transporter.*replicator/i);
+  assert.match(engine.ask('That was evasive. Start over.').text, /transporter.*replicator/i);
+  assert.match(engine.ask('Is that from Star Trek, or just something I told you?').text, /unsourced|did not attach/i);
+  assert.match(engine.ask('New subject: should I become an engineer?').text, /engineer.*work/i);
+});
+
+test('named previous source can be retrieved anew after unrelated turns', () => {
+  const engine = createLoreSemanticEngine({ records: [{ row_id: 'tng:darmok', title: 'Darmok', medium: 'EPISODE', verification_status: 'UNVERIFIED_METADATA' }] });
+  engine.ask('Tell me about Darmok');
+  engine.ask('Should I become an engineer?');
+  assert.equal(engine.ask('Which source?').references.length, 0);
+  const resumed = engine.ask('Return to Darmok. Which archive record did you find?');
+  assert.equal(resumed.references[0]?.row_id, 'tng:darmok');
+});
+
+test('less literal comparison requests still distinguish warp core and holodeck', () => {
+  const engine = createLoreSemanticEngine();
+  assert.match(engine.ask('Is a warp core basically the same thing as a holodeck?').text, /warp core.*holodeck/i);
+  assert.match(engine.ask('What distinguishes those two?').text, /warp core.*holodeck/i);
+  assert.match(engine.ask('Hypothesize a ship powered by a holodeck.').text, /hypothetical|imaginary|energy/i);
+});

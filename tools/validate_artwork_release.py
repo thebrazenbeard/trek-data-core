@@ -555,6 +555,7 @@ class _StartupHTML(HTMLParser):
         self.masthead_stack: list[str] = []
         self.masthead_count = 0
         self.hero_count = 0
+        self.script_sources: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
@@ -612,8 +613,16 @@ class _StartupHTML(HTMLParser):
                     re.fullmatch(r"\./app\.css\?v=[a-f0-9]{64}", values.get("href", "")) is not None,
                     "unexpected HTML preloading or stylesheet URL")
         if tag == "script":
-            _ensure(re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", values.get("src", "")) is not None,
-                    "unexpected script URL")
+            source = values.get("src", "")
+            self.script_sources.append(source)
+            if re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", source):
+                _ensure(set(values) == {"src", "defer"} and values["defer"] is None,
+                        "unexpected main script attributes")
+            elif re.fullmatch(r"\./(?:lore-web-model|lore-public-chat|lore-semantic-chat)\.js\?v=[a-f0-9]{64}", source):
+                _ensure(set(values) == {"src", "type"} and values["type"] == "module",
+                        "unexpected Lore module attributes")
+            else:
+                raise ArtworkRejected("unexpected script URL")
         if tag == "img":
             self.hero_count += 1
             _ensure(self.hero_count == 1 and self.masthead_stack == ["header"] and
@@ -656,6 +665,21 @@ def check_static_startup(root: Path = ROOT) -> None:
     parser.feed(html)
     parser.close()
     _ensure(not parser.svg_stack, "unclosed SVG markup")
+    for source in parser.script_sources:
+        name, claimed = source[2:].split("?v=", 1)
+        actual = hashlib.sha256(_file_bytes(root, f"explorer/{name}", 300_000)).hexdigest()
+        _ensure(claimed == actual, f"stale or unverified Explorer script fingerprint: {name}")
+    _ensure(len(parser.script_sources) == len(set(parser.script_sources)) and
+            any(path.startswith("./app.js?v=") for path in parser.script_sources) and
+            any(path.startswith("./lore-public-chat.js?v=") for path in parser.script_sources),
+            "Explorer needs unique approved entry scripts")
+    # The primary module's only same-origin dependency is pinned too. This is
+    # the static semantic character engine, never a runtime model download.
+    lore_module = _file_bytes(root, "explorer/lore-public-chat.js", 300_000).decode("utf-8")
+    semantic = re.search(r"from ['\"]\./lore-semantic-chat\.js\?v=([a-f0-9]{64})['\"]", lore_module)
+    _ensure(semantic is not None, "Lore static semantic module import must be pinned")
+    expected_semantic = hashlib.sha256(_file_bytes(root, "explorer/lore-semantic-chat.js", 300_000)).hexdigest()
+    _ensure(semantic.group(1) == expected_semantic, "Lore static semantic module import integrity mismatch")
     _ensure(parser.masthead_count == 1 and parser.hero_count == 1 and
             not parser.in_masthead and not parser.masthead_stack and not parser.element_stack,
             "exactly one scoped decorative masthead hero must exist")

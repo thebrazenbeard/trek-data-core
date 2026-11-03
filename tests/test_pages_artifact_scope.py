@@ -258,7 +258,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
             root = Path(temp)
             explorer = root / "explorer"
             explorer.mkdir()
-            for name in ("index.html", "index.json", "app.js", "app.css", "trek-data-core-hero.jpg"):
+            for name in ("index.html", "index.json", "app.js", "app.css", "lore-public-chat.js",
+                         "lore-semantic-chat.js", "lore-web-model.js", "trek-data-core-hero.jpg"):
                 (explorer / name).write_text("accepted bytes\n", encoding="utf-8")
             art = root / "docs/assets"
             art.mkdir(parents=True)
@@ -398,7 +399,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         root = Path(temp.name)
         explorer = root / "explorer"
         explorer.mkdir()
-        for name in ("index.html", "index.json", "app.js", "app.css", "trek-data-core-hero.jpg"):
+        for name in ("index.html", "index.json", "app.js", "app.css", "lore-public-chat.js",
+                     "lore-semantic-chat.js", "lore-web-model.js", "trek-data-core-hero.jpg"):
             (explorer / name).write_text("verified\n", encoding="utf-8")
         art = root / "docs/assets"
         art.mkdir(parents=True)

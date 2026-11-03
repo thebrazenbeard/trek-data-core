@@ -1881,6 +1881,30 @@
     return directoryState.available ? [...directoryState.rows, ...picardLiteratureSupplement.rows] : [];
   }
 
+  // A source-local, read-only snapshot for the optional procedural Lore
+  // conversation. Consumers never receive the mutable Explorer registry or
+  // gain authority to promote discovery rows into admitted Trek evidence.
+  function publishLoreArchiveRows() {
+    const rows = searchableDirectoryRows().slice(0, 1500).map((row) => Object.freeze({
+      row_id: row.row_id,
+      medium: row.medium,
+      candidate_kind: row.candidate_kind,
+      title: row.title,
+      context: row.context,
+      details: Object.freeze(Array.isArray(row.details) ? row.details.slice(0, 8) : []),
+      source_group: row.source_group,
+      source_locator: row.source_locator,
+      verification_status: row.verification_status,
+      identity_scope: row.identity_scope,
+    }));
+    window.TrekLoreArchiveRows = Object.freeze(rows);
+    if (typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      window.dispatchEvent(new CustomEvent('trek-archive-rows-ready', {
+        detail: { rows: window.TrekLoreArchiveRows },
+      }));
+    }
+  }
+
   function updateDirectoryCounts() {
     const rows = searchableDirectoryRows();
     const available = directoryState.available;
@@ -1910,6 +1934,7 @@
     if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
     renderDirectory();
     window.requestAnimationFrame(updateNavigationHint);
+    publishLoreArchiveRows();
   }
 
   function renderDirectory() {
@@ -2213,6 +2238,7 @@
     byId('discovery-state').textContent =
       '1,214 original source-local rows + 2 separately pinned Picard metadata proposals; no Work admission or full-book read.';
     renderDirectory();
+    publishLoreArchiveRows();
   }
 
   async function loadPicardSupplement() {
@@ -2976,7 +3002,7 @@
     lorePanel.hidden = !open;
     loreToggle.setAttribute('aria-expanded', String(open));
     loreToggle.textContent = open ? 'Close Lore console' : 'Open Lore console';
-    if (open) loreQuery.focus();
+    if (open) byId('lore-web-input').focus();
     else loreToggle.focus();
   };
   loreToggle.addEventListener('click', () => { playTone(); setLoreOpen(lorePanel.hidden); });

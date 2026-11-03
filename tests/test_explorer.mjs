@@ -12,7 +12,7 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
-  'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
+  'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer', 'lore-web-input',
   'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
   'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
   'discovery-directory', 'episode-source-cards',
@@ -106,7 +106,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const chatRequests = [];
   nodes.chatRequests = chatRequests;
   const inFlightDigests = new Set();
-  nodes.get('lore-console').hidden = true;
+  // Match the shipped HTML: the zero-setup Lore station starts visible.
+  nodes.get('lore-console').hidden = false;
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
@@ -2451,27 +2452,30 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
 });
 
-test('optional fictional Lore console opens outside hero, restores focus, and closes with Escape', async () => {
+test('walk-up fictional Lore console starts open, focuses chat input, and closes with Escape', async () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
-  assert.match(html, /id="lore-toggle"[^>]*aria-expanded="false"[^>]*aria-controls="lore-console"/);
-  assert.match(html, /<main id="main"[\s\S]*?<section id="lore-console"[^>]*hidden>/);
-  assert.match(html, /Fictional simulation/);
-  assert.match(html, /Fictional Lore/);
+  assert.match(html, /id="lore-toggle"[^>]*aria-expanded="true"[^>]*aria-controls="lore-console"/);
+  assert.match(html, /<main id="main"[\s\S]*?<section id="lore-console"[^>]*>/);
+  assert.doesNotMatch(html, /<section id="lore-console"[^>]*hidden>/);
+  assert.match(html, /Fictional character/);
+  assert.match(html, /Fictional, procedural dialogue/);
   assert.match(html, /id="lore-chat-token" type="password"/);
   assert.match(html, /id="lore-chat-consent" type="checkbox" required/);
-  assert.match(html, /Archive Search \/\/ Scripted index lookup/);
-  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877;/);
+  assert.match(html, /Archive Search \/\/ Independent source lookup/);
+  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877(?:\s|;)/);
   assert.doesNotMatch(html, /connect-src[^;]*9876/);
   assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
 
   const nodes = await runWithIndex(catalog);
   const toggle = nodes.get('lore-toggle');
   const panel = nodes.get('lore-console');
+  assert.equal(panel.hidden, false);
+  toggle.fire('click');
   assert.equal(panel.hidden, true);
   toggle.fire('click');
   assert.equal(panel.hidden, false);
   assert.equal(toggle.attributes.get('aria-expanded'), 'true');
-  assert.equal(nodes.get('lore-query').focused, true);
+  assert.equal(nodes.get('lore-web-input').focused, true);
   let prevented = false;
   panel.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
   assert.equal(prevented, true);

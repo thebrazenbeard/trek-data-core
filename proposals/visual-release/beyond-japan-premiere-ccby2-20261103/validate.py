@@ -7,10 +7,10 @@ publication permission or substitute for independent review or browser QA.
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import json
 from pathlib import Path
 import re
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -67,18 +67,21 @@ def validate(root: Path = ROOT) -> str:
         relative = path.relative_to(folder)
         _require(not path.is_symlink(), "Symlink in release packet")
         if relative.parts[0] == "__pycache__":
-            # Importlib may generate *untracked*, non-source bytecode in local
-            # test runs. It is not part of the Git packet or review material.
-            if relative.parts == ("__pycache__",):
-                _require(path.is_dir(), "Python cache path changed type")
-            else:
-                _require(len(relative.parts) == 2 and path.is_file() and
-                         re.fullmatch(r"(?:validate|test_validate)\.cpython-\d+\.pyc", path.name) is not None and
-                         path.read_bytes().startswith(importlib.util.MAGIC_NUMBER),
-                         "Unexpected data or executable in Python cache directory")
+            # Python tooling may create untracked bytecode. It is never a
+            # release artifact: require a real Git checkout AND prove nothing
+            # within the cache is tracked before excluding it from the packet.
+            _require((root / ".git").exists(), "Python cache in non-Git release packet")
+            _require(relative.parts == ("__pycache__",) and path.is_dir() or
+                     len(relative.parts) == 2 and path.is_file() and
+                     re.fullmatch(r"(?:validate|test_validate)\.cpython-\d+\.pyc", path.name) is not None,
+                     "Unexpected cache content")
+            checked = subprocess.run(["git", "ls-files", "--error-unmatch", "--",
+                                      path.relative_to(root).as_posix()], cwd=root,
+                                     capture_output=True, check=False)
+            _require(checked.returncode == 1, "Tracked cache/binary not allowed in release packet")
             continue
         _require(path.is_file() and len(relative.parts) == 1,
-                 "Nested directories or payloads not permitted in text-only release packet")
+                 "Nested directory or unreviewed payload in release packet")
         authored.append(path)
     _require({p.name for p in authored} == expected_files,
              "Unexpected/missing file in four-file text-only release packet")

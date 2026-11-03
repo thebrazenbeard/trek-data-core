@@ -1,17 +1,21 @@
 """Hostile path/rights/authorization falsifiers for held photo decision proposal."""
 
-import importlib.util
 import json
+import importlib.util
 import shutil
+import subprocess
 import tempfile
+import types
 import unittest
 from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
-SPEC = importlib.util.spec_from_file_location("beyond_release_proposal_validate", HERE / "validate.py")
-MODULE = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(MODULE)
+# Execute the plain-text validator without writing an untracked Python cache
+# inside the strictly flat, four-file release packet under inspection.
+MODULE = types.ModuleType("beyond_release_proposal_validate")
+MODULE.__file__ = str(HERE / "validate.py")
+exec(compile((HERE / "validate.py").read_text(encoding="utf-8"), MODULE.__file__, "exec"), MODULE.__dict__)
 
 
 class PhotoReleaseProposalTests(unittest.TestCase):
@@ -139,6 +143,17 @@ class PhotoReleaseProposalTests(unittest.TestCase):
         cache = self.root / MODULE.FOLDER / "__pycache__"
         cache.mkdir()
         (cache / "validate.cpython-312.pyc").write_bytes(b"\xff\xd8\xff\xe0JFIF")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_git_tracked_magic_prefix_cache_jpeg_rejected(self):
+        cache = self.root / MODULE.FOLDER / "__pycache__"
+        cache.mkdir()
+        forged = cache / "validate.cpython-312.pyc"
+        forged.write_bytes(importlib.util.MAGIC_NUMBER + b"\xff\xd8\xff\xe0JFIFimagebytes")
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "-f", "--", str(forged.relative_to(self.root))],
+                       cwd=self.root, check=True)
         with self.assertRaises(MODULE.ReleaseProposalRejected):
             MODULE.validate(self.root)
 

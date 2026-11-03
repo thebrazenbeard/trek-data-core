@@ -12,8 +12,8 @@ def make_projection(root, stable_value='stable', include_relation=True, inactive
  compiler_fields={'effective_assertion_status','projection_status','projection_status_decision_id','projection_reason'}
  history=[{k:v for k,v in row.items() if k not in compiler_fields} for row in (stable,paradox,unresolved)]
  if inactive_history: history.append({'record_type':'assertion','assertion_id':'a-rejected','subject_type':'LOCAL_ENTITY','subject':'local-1','predicate':'CLAIMS','object':{'value':'rejected'},'evidence':['e1'],'status':'REJECTED'})
- source={'record_type':'source','source_id':'source-1','source_kind':'transcript','locator':'fixture://source','content_hash':'sha256:source','source_variant':'v1','provenance_family':'fam','derived_from':[]}
- work={'record_type':'work','work_id':'work-1','title':'Fixture Work','medium':'test'}
+ source={'record_type':'source','source_id':'source-1','source_kind':'transcript','locator':'fixture://source','content_hash':'sha256:source','source_variant':'v1','provenance_family':'fam','derived_from':[],'status':'ACCEPTED','fixture_only':False}
+ work={'record_type':'work','work_id':'work-1','title':'Fixture Work','medium':'test','status':'ACCEPTED','fixture_only':False}
  binding={'record_type':'source_work_binding','binding_id':'binding-1','source_id':'source-1','work_id':'work-1','lifecycle':'ACCEPTED','mapping_role':'EVIDENCE_BEARING','source_scope':{'scope_type':'WHOLE','locator':None},'work_scope':{'scope_type':'WHOLE','component_label':None},'method':'synthetic fixture','basis':[{'kind':'CONTENT_FINGERPRINT','value':'synthetic'}],'exclusive_scope_key':None,'supersedes_binding_id':None,'fixture_only':False}
  evidence={'record_type':'evidence','evidence_id':'e1','source_id':'source-1','work_id':'work-1','evidence_kind':'depiction','locator':{'line':1},'observed':{'text':"It's a fixture\\path\nnext"},'frame':'PRIMARY','epistemic_status':'DIRECT'}
  provenance=[]
@@ -28,11 +28,15 @@ def make_projection(root, stable_value='stable', include_relation=True, inactive
  relations=[{'record_type':'projection_relation','relation_id':'assertion:a-stable','relation_kind':'ASSERTION_PREDICATE','assertion_id':'a-stable','subject_type':'LOCAL_ENTITY','subject_id':'local-1','predicate':'CLAIMS','target_type':'WORK','target_id':'work-1','projection_status':'STABLE'}] if include_relation else []
  recon=[{'record_type':'reconciliation_decision','decision_id':'status-1','decision_type':'ASSERTION_PROJECTION_STATUS','subject_type':'ASSERTION','subject_id':'a-stable','payload':{'projection_status':'STABLE'},'status':'ACCEPTED','evidence':['e1'],'method':'fixture'},
         {'record_type':'reconciliation_decision','decision_id':'status-paradox','decision_type':'ASSERTION_PROJECTION_STATUS','subject_type':'ASSERTION','subject_id':'a-paradox','payload':{'projection_status':'STRUCTURAL_PARADOX'},'status':'ACCEPTED','evidence':['e1'],'method':'fixture'}]
- rows={'entities.jsonl':[{'record_type':'local_entity','local_entity_id':'local-1','work_id':'work-1','label':'Fixture'}],'facts.jsonl':[stable],'relations.jsonl':relations,'contested.jsonl':[paradox],'unresolved.jsonl':[unresolved],'provenance.jsonl':provenance,'assertion_history.jsonl':history,'reconciliation_history.jsonl':recon}
+ rows={'sources.jsonl':[source],'works.jsonl':[work],'source_work_bindings.jsonl':[binding],'evidence.jsonl':[evidence],
+       'entities.jsonl':[{'record_type':'local_entity','local_entity_id':'local-1','work_id':'work-1','label':'Fixture'}],
+       'facts.jsonl':[stable],'relations.jsonl':relations,'contested.jsonl':[paradox],'unresolved.jsonl':[unresolved],
+       'provenance.jsonl':provenance,'assertion_history.jsonl':history,'reconciliation_history.jsonl':recon}
  outputs={}
  for name,data in rows.items():
   key=bundle.ID_KEYS[name]; ordered=sorted(data,key=lambda r:(str(r.get(key,'')),bundle.canonical(r))); payload=''.join(bundle.canonical(r)+'\n' for r in ordered).encode('utf-8'); (root/name).write_bytes(payload); outputs[name]={'role':name.removesuffix('.jsonl'),'hash':bundle.sha256_bytes(payload),'count':len(ordered)}
  predicate_hash=bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'predicates.json').read_text())).encode())
  scope_hash=bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'scope_keys.json').read_text())).encode())
- manifest={'record_type':'projection_manifest','projection_version':'0.2.0','schema_version':'0.2.0','methodology_version':'0.1.0','compiler_commit':'fixture','research_head':'research-fixture','reconciliation_head':'recon-fixture','predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'input_hash':'sha256:'+'3'*64,'projection_hash':bundle.compute_projection_hash(outputs),'outputs':outputs}
+ manifest={'record_type':'projection_manifest','projection_version':'0.3.0','schema_version':'0.2.0','methodology_version':'0.1.0','compiler_commit':'fixture','research_head':'research-fixture','reconciliation_head':'recon-fixture','predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'input_hash':None,'projection_hash':bundle.compute_projection_hash(outputs),'outputs':outputs}
+ manifest['input_hash']=bundle.compute_input_hash(manifest,rows)
  (root/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n',encoding='utf-8'); return manifest

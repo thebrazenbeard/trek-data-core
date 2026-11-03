@@ -27,7 +27,7 @@ An optional admitted projection can later be supplied:
 python3 tools/build_explorer_index.py --projection-dir path/to/verified-projection
 ```
 
-All eight canonical projection output files must exist with matching
+All twelve canonical projection output files must exist with matching
 SHA-256/count receipts, and the aggregate projection hash must match. Each
 indexed assertion must have accepted disposition, at least one attributable
 evidence record, a matching Source and Work, and an **accepted

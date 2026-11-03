@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="card-title card-desc">
+  <title id="card-title">Living Witness — Voyager, season 4 episode 23</title>
+  <desc id="card-desc">Original text-only LCARS-inspired reference card. No episode frame, scene photograph, character portrait or official insignia.</desc>
+  <rect width="960" height="540" fill="#090e1c" />
+  <rect x="27" y="30" width="84" height="480" rx="38" fill="#83bcd3" />
+  <rect x="130" y="30" width="295" height="29" rx="14" fill="#dcab75" />
+  <rect x="438" y="30" width="495" height="29" rx="14" fill="#d79fbf" />
+  <rect x="130" y="465" width="452" height="45" rx="21" fill="#a99edb" />
+  <rect x="595" y="465" width="338" height="45" rx="21" fill="#efac85" />
+  <text x="136" y="124" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" fill="#86cae0" letter-spacing="4">SOURCE-BOUND EPISODE LEAD</text>
+  <text x="136" y="255" font-family="Arial, Helvetica, sans-serif" font-size="77" font-weight="800" fill="#f4c9a3" letter-spacing="1">LIVING WITNESS</text>
+  <text x="139" y="324" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#d5afe6" letter-spacing="3">VOY / SEASON 04 / EPISODE 23</text>
+  <rect x="137" y="354" width="791" height="3" fill="#768ab8" />
+  <text x="139" y="406" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#eee8e3">REFERENCE CARD — NOT A SCENE STILL</text>
+</svg>

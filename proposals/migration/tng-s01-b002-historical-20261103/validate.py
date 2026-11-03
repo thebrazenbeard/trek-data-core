@@ -16,6 +16,10 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 COMMIT = "e4c891b26622ae08eac346a55059a58f687d064c"
 HISTORICAL_PREFIX = "research/tng/staging/tng-s01-b002/"
+# This migration is a preservation receipt, not a mutable admission feed.
+# Pin the complete previously accepted packet so standalone checks cannot be
+# fooled by altered historical blob IDs, self-reported reads, or extra effects.
+EXPECTED_RECORDS_SHA256 = "4380678662fcf1dff991874044b1908eb92e3c7f428dfbbe49bb79fe1255b6c8"
 SHA1 = re.compile(r"[a-f0-9]{40}\Z")
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 
@@ -46,7 +50,10 @@ def read_historical(repo: Path, path: str, blob_sha: str) -> bytes:
 
 
 def validate(historical_repo: Path | None) -> None:
-    data = json.loads((HERE / "records.json").read_text(encoding="utf-8"))
+    raw = (HERE / "records.json").read_bytes()
+    check(hashlib.sha256(raw).hexdigest() == EXPECTED_RECORDS_SHA256,
+          "historical migration packet bytes changed")
+    data = json.loads(raw)
     check(data["proposal_type"] == "HISTORICAL_TNG_STAGING_METADATA_V1", "proposal type")
     check(data["proposal_only"] is True and data["admission_status"] == "NOT_ADMITTED", "not proposal-only")
     check(data["accepted_corpus_effect"] == data["accepted_coverage_effect"] == "NONE", "accepted effect")

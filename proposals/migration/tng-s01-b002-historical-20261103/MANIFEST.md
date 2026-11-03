@@ -35,6 +35,8 @@ python3 proposals/migration/tng-s01-b002-historical-20261103/validate.py --histo
 
 The second command requires the exact old PR #12 Git objects to be fetched into a read-only audit object store; it performs no checkout or historical code execution and fails closed if those objects are absent. Both commands check the accepted discovery CSV hash. `records.json` contains the eight original Git object IDs plus SHA-256 receipts and the five metadata rows.
 
+The standalone validator additionally pins the complete byte identity of `records.json` (`SHA-256 4380678662fcf1dff991874044b1908eb92e3c7f428dfbbe49bb79fe1255b6c8`). This detects edits to reported source reads, historical blob receipts, or added acceptance-effect fields even when historical Git blobs are unavailable. The local packet hash does **not** authenticate the third-party transcripts or substitute for the optional historical Git-object replay.
+
 ## Exact next frontier
 
 The TNG researcher and Librarian must independently qualify edition-specific full-source evidence and an accepted Source↔Work roster, then re-code the historical observations into the current typed model, with explicit counterevidence and a fresh Auditor review. The next *unrecovered* historical TNG tranche would need separate immutable-path and source-lineage review; do not treat an old PR number or staging title as completed coverage.

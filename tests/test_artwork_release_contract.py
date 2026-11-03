@@ -354,6 +354,63 @@ class ArtworkReleaseContractTests(unittest.TestCase):
                 with self.assertRaises(art.ArtworkRejected):
                     art.check_static_startup(self.root)
 
+    def test_first_party_hero_cannot_be_laundered_as_episode_screenshot(self):
+        # Literal-compliance falsifier: the current startup allowlist admits
+        # the hero URL anywhere, regardless of how the image is described.
+        html = (ROOT / "explorer/index.html").read_text()
+        hero_start = html.index('<img class="masthead-art"')
+        hero_end = html.index('>', hero_start) + 1
+        hero = html[hero_start:hero_end]
+        fake_episode = hero.replace('class="masthead-art"', 'class="episode-screenshot"').replace(
+            'alt="Panoramic starship bridge facing a luminous celestial navigation chart"',
+            'alt="Official episode screenshot"')
+        for attack in (
+            html.replace('</body>', f'<article class="episode-card">{hero}</article></body>'),
+            html.replace(hero, '').replace('</body>',
+                f'<article class="episode-card">{fake_episode}</article></body>'),
+            # Hostile QA: exact permitted hero under a forged episode card,
+            # nested *within* masthead, defeated the boolean in_masthead gate.
+            html.replace(hero, '<article class="episode-card"><h2>Official episode screenshot</h2>'
+                         + hero + '</article>'),
+        ):
+            with self.subTest(attack=attack[-300:]):
+                (self.root / "explorer/index.html").write_text(attack)
+                with self.assertRaisesRegex(art.ArtworkRejected, "masthead|hero"):
+                    art.check_static_startup(self.root)
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
+    def test_masthead_cannot_be_reparented_inside_any_forged_media_card(self):
+        # Independent hostile QA found that direct-child hero checks alone
+        # accepted an <article> wrapping the *whole* legitimate masthead.
+        # Exercise several ancestor labels/HTML container types so the gate
+        # enforces actual parentage, not a class-name blacklist.
+        html = (ROOT / "explorer/index.html").read_text()
+        start = html.index('<header class="masthead">')
+        end = html.index('</header>', start) + len('</header>')
+        masthead = html[start:end]
+        wrappers = (
+            ('article', 'episode-card'),
+            ('article', 'film-card'),
+            ('div', 'episode-screenshot'),
+            ('div', 'unrecognized-image-host'),
+            ('section', 'publisher-cover'),
+            ('aside', 'visual-gallery'),
+            ('figure', 'artwork-frame'),
+            ('main', 'masquerade'),
+        )
+        for tag, kind in wrappers:
+            with self.subTest(parent=tag, class_name=kind):
+                attack = (f'<{tag} class="{kind}">'
+                          '<h2>Official episode screenshot</h2>'
+                          + masthead + f'</{tag}>')
+                (self.root / "explorer/index.html").write_text(
+                    html.replace(masthead, attack, 1))
+                with self.assertRaisesRegex(art.ArtworkRejected, "masthead|body"):
+                    art.check_static_startup(self.root)
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
     def test_svg_descendant_href_cannot_fetch_or_launder_remote_art_before_opt_in(self):
         # A clean outer <svg> is not evidence that nested SVG tags are inert.
         # SVG <textPath> and <a> can carry external href references.

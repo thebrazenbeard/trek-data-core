@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const script = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const ids = [
   'search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
@@ -115,4 +115,14 @@ test('Missing or rejected research data never creates misleading candidate short
     assert.equal(nodes.get('mission-list').children[0].textContent.includes('Unverified research leads'), false);
     assert.equal(nodes.get('briefing-count').textContent, '0');
   }
+});
+
+test('publisher-card filter and availability use explicit accessible source-only labels', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<label for="discovery-publisher-check">Additional publisher-card read \(source-local\)<\/label>/);
+  assert.match(html, /<select id="discovery-publisher-check" name="publisher-check">/);
+  assert.match(html, /<p class="directory-state publisher-card-state" id="publisher-card-state" role="status" aria-live="polite">/);
+  assert.match(html, /id="publisher-card-download"[^>]*hidden>/);
+  assert.match(html, /Publisher card title string match/);
+  assert.match(html, /Held title \/ split unresolved/);
 });

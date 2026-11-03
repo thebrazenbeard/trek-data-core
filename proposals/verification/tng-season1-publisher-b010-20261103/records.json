@@ -1,0 +1,327 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "combined_multipart_identity_holds": 1,
+  "coverage_effect": "NONE",
+  "data_status": "B010-TNG-S1-PUBLISHER_SOURCE_RECHECK_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "observations_sha256": "50ceb0bbdf9ee6de654dae576ebf5bb218eb1a73215c26b0e2272e2bd9019f77",
+  "original_synopsis_drafts_held": 10,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 10,
+  "publisher_card_slots_read": 10,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "COMBINED_PART_1_AND_2_PUBLISHER_CARD_NO_PART_SPLIT",
+      "original_synopsis_draft": "A mysterious judge puts humanity on trial as the new Enterprise crew begins its mission.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 1,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "6c154fb038c5059de5a40b42d20b7b02312b9cf34c3b73dc5ddc3db7b9804be8",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Encounter At Farpoint Part 1 and 2 > S1 E1 > short description",
+        "title": "Encounter At Farpoint Part 1 and 2"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/10/30/1813765187999/CBS_STAR_TREK_TNG_101_102_0721_HD_1920x1080_1122557_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E1",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:000",
+      "source_local_title": "Encounter At Farpoint Part 1 and 2",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Q"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "An unfamiliar contaminant causes intoxication and disorder throughout the Enterprise.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 3,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "29bcb303adf5eb8c44680fda1d3e09b1a90973404beb70f537e3b730f1c60665",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > The Naked Now > S1 E3 > short description",
+        "title": "The Naked Now"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843630/CBS_TNG_103_HD_IMAGE_CIAN_1122579_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E3",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:001",
+      "source_local_title": "The Naked Now",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "After Ligonians abduct Tasha Yar, she must fight for freedom while a Federation planet faces a medical crisis.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 4,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "8a74dcefebcda160462d8f72261a7c3524133149f8b8228e77995d30dbc60a7b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Code of Honor > S1 E4 > short description",
+        "title": "Code of Honor"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26440771931/CBS_TNG_104_HD_IMAGE_CIAN_1122566_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E4",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:002",
+      "source_local_title": "Code of Honor",
+      "source_relative_entity_mentions": [
+        "Ligonians",
+        "Tasha Yar",
+        "Federation"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Enterprise and Ferengi crews find themselves detained over a planet and subjected to a mysterious alien trial.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 5,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "647db450e72d8644fbd70ec6a35dcd8fdc1fda4722a476fd188caa021ec45d24",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > The Last Outpost > S1 E5 > short description",
+        "title": "The Last Outpost"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26444355671/CBS_TNG_107_HD_IMAGE_CIAN_1122564_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E5",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:003",
+      "source_local_title": "The Last Outpost",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Ferengi"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Wesley Crusher and an ailing alien offer the crew hope of escaping a distant realm where thoughts take shape.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 6,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "6e32b4046dc9f67dc1e7f4626d945105b294bb68506209f486a04f7ae686da79",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Where No One Has Gone Before > S1 E6 > short description",
+        "title": "Where No One Has Gone Before"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443331944/CBS_TNG_106_HD_IMAGE_CIAN_1122576_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E6",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:004",
+      "source_local_title": "Where No One Has Gone Before",
+      "source_relative_entity_mentions": [
+        "Wesley Crusher"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A death and troubling changes in crew behavior follow the Enterprise's passage through an energy field.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 7,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "dd8d258e3775ddd37becc73c6fb63abca2265ac63d93625a5c743f630ec56f0b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Lonely Among Us > S1 E7 > short description",
+        "title": "Lonely Among Us"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843933/CBS_TNG_108_HD_IMAGE_CIAN_1122580_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E7",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:005",
+      "source_local_title": "Lonely Among Us",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "After Wesley faces execution for breaking a local rule, Picard must weigh his rescue against a rule barring interference with another civilization.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 8,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "cea8637109a9333c6ce66aee4e2a8cd8095acbc877f79b0bfff3d46fc0b62418",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Justice > S1 E8 > short description",
+        "title": "Justice"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843966/CBS_TNG_109_HD_IMAGE_CIAN_R_3164061_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E8",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:006",
+      "source_local_title": "Justice",
+      "source_relative_entity_mentions": [
+        "Wesley",
+        "Captain Picard",
+        "Federation"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A vengeful Ferengi captain targets Picard and the Enterprise with a device that alters thought.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 9,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "e6d7cb86434e62e97960ca689e720b5fe6cf2bf8c545f9404f30ef2c6427fe62",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > The Battle > S1 E9 > short description",
+        "title": "The Battle"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26445891797/CBS_TNG_110_HD_IMAGE_CIAN_1122578_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E9",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:007",
+      "source_local_title": "The Battle",
+      "source_relative_entity_mentions": [
+        "Ferengi",
+        "Picard",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Deanna Troi faces an arranged marriage despite her feelings for Riker.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 11,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "10e9d9e1223b7e27c2bd66d04b8a41c7e7312bb7729ac17b9253a3d35c4c0c1b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Haven > S1 E11 > short description",
+        "title": "Haven"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26442819828/CBS_TNG_105_HD_IMAGE_CIAN_1122572_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E11",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:009",
+      "source_local_title": "Haven",
+      "source_relative_entity_mentions": [
+        "Deanna Troi",
+        "Riker"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A holodeck malfunction traps the captain and three crewmates among dangerous gangsters in 1941 San Francisco.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 12,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "1502728b12bcc254844b63360761c07146eff441a2873ea73d67ac9d04cc6d0d",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > The Big Goodbye > S1 E12 > short description",
+        "title": "The Big Goodbye"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035698/CBS_TNG_113_HD_IMAGE_CIAN_R_3164056_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E12",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:010",
+      "source_local_title": "The Big Goodbye",
+      "source_relative_entity_mentions": [
+        "Captain",
+        "San Francisco"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_rows_rechecked": 10
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-s7-e07-e11-label-conflict-20261103",
+  "accepted_assertions": 0,
+  "projection_effect": "NONE",
+  "assertions": [
+    {
+      "id": "ds9-s7e07-11-a01",
+      "predicate": "PUBLISHER_FAMILY_TITLE_LABEL_DISAGREEMENT_UNRESOLVED",
+      "subject_source_local_row_id": "publisher:s7:ds9:007",
+      "supporting_evidence_ids": ["ds9-s7e07-11-p02"],
+      "status": "PROPOSED_UNRESOLVED",
+      "claim": "Paramount+ labels the Season 7 Episode 8 card as The Siege of AR-555 while StarTrek.com labels the apparent episode reference AR-558. These pages are within one corporate family. No canonical title or global Work decision follows.",
+      "counter_evidence_locator": "https://www.startrek.com/en-un/news/fan-favorite-deep-space-nine-quotes",
+      "falsifier": "Governed source-version and Work binding, with authenticated episode title/edition evidence and an explicit reviewed reconciliation decision, could establish which labels apply to which source versions."
+    }
+  ]
+}

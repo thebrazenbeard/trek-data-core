@@ -14,6 +14,12 @@ import re
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKET = Path(__file__).with_name("records.json")
+EXPECTED_PACKET_FILES = {"MANIFEST.md", "records.json", "validate.py", "test_validate.py"}
+MANIFEST_SHA256 = "0b8b8452a493001b5c9eb118544d22d1e13082b5304d9e82974b3c816bb05802"
+MEDIA_OR_EMBED_RE = re.compile(
+    r"!\s*\[|<\s*/?\s*[a-z][^>]*>|<\s*!|\bdata\s*:\s*(?:image|audio|video|text/html)\s*/",
+    re.IGNORECASE,
+)
 ROW_SET_DIGEST = "58a2fc334d40aacee8b0f4d3354350cf9fedc78fd79ac866238cf318e784f6f3"
 BASELINE = "4b047d014c57b7fd4a56628acb6c9a631cc21c74"
 EXPECTED_COVERS = {
@@ -77,7 +83,29 @@ def _expected_isbn(isbn: str):
         raise ValueError("ISBN13 check digit mismatch")
 
 
+def _validate_source_only_packet(root: Path):
+    """Hold is a *whole-packet* property, not just records.json fields.
+
+    Reject surprise trees, symlinks and media before reading any other receipt.
+    Markdown is additionally byte-pinned and prohibited from embedding media/HTML.
+    """
+    folder = root / PACKET.relative_to(ROOT).parent
+    if not folder.is_dir() or folder.is_symlink():
+        raise ValueError("missing or redirected held packet")
+    children = list(folder.iterdir())
+    if {p.name for p in children} != EXPECTED_PACKET_FILES:
+        raise ValueError("unreviewed packet file, directory or media payload")
+    if any(not p.is_file() or p.is_symlink() for p in children):
+        raise ValueError("redirected, nested or nonregular held packet member")
+    manifest = folder / "MANIFEST.md"
+    if _sha(manifest) != MANIFEST_SHA256:
+        raise ValueError("reviewed source-only manifest bytes changed")
+    if MEDIA_OR_EMBED_RE.search(manifest.read_text("utf-8")):
+        raise ValueError("executable or hotlinked media markup in held manifest")
+
+
 def validate(data=None, root: Path = ROOT):
+    _validate_source_only_packet(root)
     data = _load(root / PACKET.relative_to(ROOT)) if data is None else data
     if not isinstance(data, dict) or set(data) != ROOT_KEYS:
         raise ValueError("unreviewed packet envelope")

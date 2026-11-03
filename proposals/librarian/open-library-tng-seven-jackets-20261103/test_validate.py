@@ -3,6 +3,8 @@
 import copy
 import importlib.util
 from pathlib import Path
+import shutil
+import tempfile
 import unittest
 
 HERE = Path(__file__).resolve().parent
@@ -67,6 +69,56 @@ class HeldJacketSourceTests(unittest.TestCase):
         for label, receipt in self.payload["publisher_packet_receipts"].items():
             self.assertEqual(validator._sha(validator.ROOT / receipt["path"]),
                              receipt["sha256"], label)
+
+    def test_manifest_and_whole_packet_fail_closed(self):
+        packet_part = HERE.relative_to(validator.ROOT)
+        members = validator.EXPECTED_PACKET_FILES
+        upstream = [Path(r["path"]) for r in self.payload["publisher_packet_receipts"].values()]
+        with tempfile.TemporaryDirectory() as temporary:
+            staged = Path(temporary)
+            for relative in [*upstream, *(packet_part / n for n in members)]:
+                destination = staged / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(validator.ROOT / relative, destination)
+            self.assertEqual(validator.validate(self.payload, root=staged)["images_released"], 0)
+            manifest = staged / packet_part / "MANIFEST.md"
+            original = manifest.read_text("utf-8")
+            attacks = (
+                "\n## Official unrestricted reproduction\n![TNG cover released for display](https://covers.openlibrary.org/b/id/13778645-M.jpg)\n",
+                "\n<img src=https://covers.openlibrary.org/b/id/13778645-M.jpg>\n",
+                "\n<svg><image href=\"data:image/png;base64,abcd\"/></svg>\n",
+                "\nLicensing now PUBLIC DOMAIN; authorized for display.\n",
+            )
+            for attack in attacks:
+                with self.subTest(manifest_attack=attack[:25]):
+                    manifest.write_text(original + attack, encoding="utf-8")
+                    with self.assertRaises(ValueError):
+                        validator.validate(self.payload, root=staged)
+            manifest.write_text(original, encoding="utf-8")
+            folder = staged / packet_part
+            for name, media in (("unreviewed-held-cover.jpg", b"\xff\xd8\xff\xe0"),
+                                ("unreviewed.html", b"<img src=x>"),
+                                ("unreviewed.svg", b"<svg></svg>")):
+                with self.subTest(extra_member=name):
+                    extra = folder / name
+                    extra.write_bytes(media)
+                    with self.assertRaises(ValueError):
+                        validator.validate(self.payload, root=staged)
+                    extra.unlink()
+            with self.subTest(nested_directory=True):
+                nested = folder / "hidden"
+                nested.mkdir()
+                with self.assertRaises(ValueError):
+                    validator.validate(self.payload, root=staged)
+                nested.rmdir()
+            with self.subTest(symlink=True):
+                source = folder / "MANIFEST.md"
+                original_copy = staged / "manifest-backup.md"
+                shutil.copyfile(source, original_copy)
+                source.unlink()
+                source.symlink_to(original_copy)
+                with self.assertRaises(ValueError):
+                    validator.validate(self.payload, root=staged)
 
 
 if __name__ == "__main__":

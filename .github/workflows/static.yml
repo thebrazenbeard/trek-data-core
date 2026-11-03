@@ -248,6 +248,11 @@ jobs:
           test -f tools/validate_artwork_release.py
           test ! -L tools/validate_artwork_release.py
           python3 tools/validate_artwork_release.py --check --verify-git
+          # Report source-local visual gaps without treating rows as Works or
+          # treating missing imagery as a rights refusal or admission status.
+          test -f tools/report_artwork_coverage.py
+          test ! -L tools/report_artwork_coverage.py
+          python3 tools/report_artwork_coverage.py --check --verify-git
 
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'

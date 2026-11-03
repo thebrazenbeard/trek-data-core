@@ -1,0 +1,20 @@
+{
+  "batch_id": "lead-qualification-tos-s1-20261103",
+  "scope": "FIVE_ARCHIVED_WIKIDATA_TOS_SEASON1_LEADS",
+  "selection_basis": "Five exact-title TOS Season 1 matches chosen to exercise early, middle, and late publisher ordinals; this selection does not imply sample representativeness",
+  "publisher_page_rendered_recheck": {
+    "retrieved_by": "PUBLIC_WEB_READER",
+    "observed_utc_date": "2026-11-03",
+    "official_page": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+    "raw_html_retrieved_in_this_batch": false,
+    "new_raw_response_sha256": null,
+    "web_reader_line_numbers_are_durable_source_locators": false
+  },
+  "selected": [
+    {"qid": "Q1287667", "season": 1, "publisher_episode_number": 2, "publisher_rendered_heading_locator": "Season 1 / The Man Trap / S1 E2"},
+    {"qid": "Q1187077", "season": 1, "publisher_episode_number": 11, "publisher_rendered_heading_locator": "Season 1 / The Corbomite Maneuver / S1 E11"},
+    {"qid": "Q1315800", "season": 1, "publisher_episode_number": 26, "publisher_rendered_heading_locator": "Season 1 / The Devil in the Dark / S1 E26"},
+    {"qid": "Q2406293", "season": 1, "publisher_episode_number": 14, "publisher_rendered_heading_locator": "Season 1 / The Conscience of the King / S1 E14"},
+    {"qid": "Q2984478", "season": 1, "publisher_episode_number": 5, "publisher_rendered_heading_locator": "Season 1 / The Naked Time / S1 E5"}
+  ]
+}

@@ -25,7 +25,9 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = "explorer/beyond-premiere-photo.json"
 DIGEST = "bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634"
 DECISION = "explorer/beyond-premiere-release-decision.json"
-DECISION_DIGEST = "d294aacd6ed83276083a4299577eefcd369cf47ab4b213b037c7d342f6a7222b"
+DECISION_DIGEST = "b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89"
+ACCEPTED_HELD_CONTRACT = "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json"
+ACCEPTED_HELD_CONTRACT_SHA = "9ed8d519d8bba7ef7e605ad0d09bdcf74dd7f48c9f9c1ef829dc28772ab8e4a5"
 FUTURE_LOCAL_ASSET = "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
 PHOTO_SHA = "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f"
 ORIGINAL_SHA = "7fd481633086f97e7b05e0eccbd3515a90d44f4fa7ce1255180007d9d13b4250"
@@ -63,12 +65,26 @@ class PremiereMarkup(HTMLParser):
         self.buttons = 0
         self.panels = 0
         self.csp = None
+        self.svg_depth = None
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
         require(len(values) == len(attrs), "duplicate HTML attributes")
         require(not (set(values) & {"srcset", "poster", "background", "ping"}),
                 "unreviewed HTML resource-loading attribute")
+        if tag == "svg":
+            require(self.svg_depth is None, "nested SVG requires separate review")
+            self.svg_depth = self.depth
+        if self.svg_depth is not None:
+            require(tag in {"svg", "g", "path", "polygon", "rect", "circle", "ellipse", "line", "polyline", "title", "desc"},
+                    "unreviewed SVG image, animation or embedded resource element")
+            require(not ({"href", "xlink:href", "src", "xlink:actuate", "xlink:show"} & set(values)),
+                    "SVG external resource link denied")
+            for value in values.values():
+                require(not isinstance(value, str) or
+                        ("\\" not in value and "/*" not in value and "*/" not in value and
+                         re.search(r"u\s*r\s*l\s*\(|(?:https?:)?//", value, re.IGNORECASE) is None),
+                        "SVG external paint/resource reference denied")
         if "style" in values:
             try:
                 check_css_no_pre_opt_in_network(values["style"] or "")
@@ -99,7 +115,7 @@ class PremiereMarkup(HTMLParser):
             require(tag == "script" and
                     re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", values["src"] or "") is not None,
                     "unreviewed HTML src resource before visitor opt-in")
-        if tag in {"picture", "source", "video", "iframe", "object", "embed"}:
+        if tag in {"picture", "source", "video", "iframe", "object", "embed", "image", "feimage", "use", "foreignobject"}:
             raise ReleaseRejected("unreviewed pre-consent image-capable HTML element")
         if self.panel_depth is not None and tag == "img":
             self.images_before_consent += 1
@@ -113,6 +129,8 @@ class PremiereMarkup(HTMLParser):
             self.depth -= 1
             if self.panel_depth is not None and self.depth == self.panel_depth:
                 self.panel_depth = None
+            if self.svg_depth is not None and self.depth == self.svg_depth:
+                self.svg_depth = None
 
 
 def validate(root: Path = ROOT) -> dict:
@@ -137,6 +155,21 @@ def validate(root: Path = ROOT) -> dict:
             "4552×3035 to 960×640" in source["changes_notice"] and "endorsement" in source["nonendorsement_notice"] and
             "publicity/privacy" in source["rights_limit"] and "not a frame from the film" in source["caption"],
             "required photo attribution/change notice or qualification absent")
+    source_contract_raw = read_regular(root, ACCEPTED_HELD_CONTRACT)
+    require(hashlib.sha256(source_contract_raw).hexdigest() == ACCEPTED_HELD_CONTRACT_SHA,
+            "accepted source-only display criteria have changed")
+    source_contract = json.loads(source_contract_raw)
+    require(source_contract["status"] == "HELD_PHOTO_SPECIFIC_EDITORIAL_DISPLAY_CONTRACT" and
+            source_contract["public_image_display_authorized"] is False and
+            source_contract["image_bytes_committed"] == 0 and
+            source_contract["site_effect"] == "NONE" and
+            source_contract["film_id_context_only"] == "film:film-beyond" and
+            source_contract["commons_page"] == SOURCE_URL and
+            source_contract["original_image_sha256"] == ORIGINAL_SHA and
+            source_contract["license"] == "CC_BY_2_0_GENERIC" and
+            source_contract["photographer"] == "Dick Thomas Johnson" and
+            source_contract["work_or_coverage_admission"] == "NONE",
+            "accepted PR442 source-only authorization cannot be silently promoted")
     decision_raw = read_regular(root, DECISION)
     require(len(decision_raw) < 8192 and hashlib.sha256(decision_raw).hexdigest() == DECISION_DIGEST,
             "release decision differs from code-owned held decision bytes")
@@ -146,6 +179,8 @@ def validate(root: Path = ROOT) -> dict:
             decision["decision_status"] == "HELD_PENDING_INDEPENDENT_RELEASE_REVIEW" and
             decision["public_image_display_authorized"] is False and
             decision["source_local_film_id"] == "film-beyond" and
+            decision["accepted_held_source_contract"] == ACCEPTED_HELD_CONTRACT and
+            decision["accepted_held_source_contract_sha256"] == ACCEPTED_HELD_CONTRACT_SHA and
             decision["photo_manifest_sha256"] == DIGEST and
             decision["observed_rendition_sha256"] == PHOTO_SHA and
             decision["observed_rendition_bytes"] == 116536 and

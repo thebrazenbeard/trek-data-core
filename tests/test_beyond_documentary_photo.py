@@ -22,6 +22,10 @@ class PremiereReleaseContractTests(unittest.TestCase):
             dest = self.root / "explorer" / filename
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, dest)
+        accepted_rel = Path("proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json")
+        accepted_dest = self.root / accepted_rel
+        accepted_dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / accepted_rel, accepted_dest)
 
     def test_exact_candidate_passes_without_claiming_film_admission(self):
         self.assertEqual(self.expected["status"], "HELD_SOURCE_BOUND_DOCUMENTARY_PHOTO_CANDIDATE")
@@ -57,6 +61,17 @@ class PremiereReleaseContractTests(unittest.TestCase):
         with self.assertRaises(ReleaseRejected):
             validate(self.root)
 
+    def test_accepted_source_contract_missing_or_forged_permission_is_rejected(self):
+        contract = self.root / "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json"
+        contract.unlink()
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+        shutil.copyfile(ROOT / "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json", contract)
+        contract.write_text(contract.read_text().replace('"public_image_display_authorized": false',
+                                                         '"public_image_display_authorized": true'))
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+
     def test_provenance_gated_image_never_preloads_from_markup_or_css(self):
         html = self.root / "explorer" / "index.html"
         html.write_text(html.read_text().replace(
@@ -85,6 +100,16 @@ class PremiereReleaseContractTests(unittest.TestCase):
         with self.assertRaises(ReleaseRejected):
             validate(self.root)
         shutil.copyfile(ROOT / "explorer" / "index.html", html)
+        for attack in (
+            '<svg><image href="https://covers.openlibrary.org/b/id/1-M.jpg"></image></svg>',
+            '<svg><image href="./licensed-artwork/beyond-premiere-japan-2016-960.jpg"></image></svg>',
+            '<svg><use href="https://thumb.wikimedia.org/fake.svg#art"></use></svg>',
+            '<svg><path fill="url(https://covers.openlibrary.org/b/id/1-M.jpg)"></path></svg>',
+        ):
+            html.write_text(html.read_text().replace("</head>", f"{attack}</head>"))
+            with self.assertRaises(ReleaseRejected):
+                validate(self.root)
+            shutil.copyfile(ROOT / "explorer" / "index.html", html)
         css = self.root / "explorer" / "app.css"
         css.write_text(css.read_text().replace(
             ".beyond-premiere-panel[hidden] { display: none; }",

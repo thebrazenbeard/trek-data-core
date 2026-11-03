@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const script = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const ids = [
   'search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
@@ -121,6 +121,10 @@ test('Mission card navigates to its unverified leads without promoting them or l
 
 test('Missing or rejected research data never creates misleading candidate shortcuts', async () => {
   const missing = await load(null, 404);
+  assert.equal(missing.get('beyond-premiere-panel').hidden, true,
+    'a discovery-only Mission test with no film source must never show a documentary photo');
+  assert.equal(missing.get('beyond-premiere-toggle').disabled, true,
+    'missing independently reviewed release keeps image activation disabled');
   const bad = structuredClone(research);
   bad.leads[0].verification_status = 'ACCEPTED';
   const rejected = await load(bad);

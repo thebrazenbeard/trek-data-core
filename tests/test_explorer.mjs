@@ -949,7 +949,7 @@ test('hypothetical independently approved exact decision keeps image local and o
   approved.owner_release_disposition = 'RELEASE_AUTHORIZED';
   const bytes = Buffer.from(JSON.stringify(approved));
   const decisionSha = createHash('sha256').update(bytes).digest('hex');
-  const patched = SCRIPT.replace('d294aacd6ed83276083a4299577eefcd369cf47ab4b213b037c7d342f6a7222b', decisionSha);
+  const patched = SCRIPT.replace('b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89', decisionSha);
   const nodes = await premiereNodes(premiereBytes, 200, beyondFilmCatalog, patched, bytes);
   const button = nodes.get('beyond-premiere-toggle');
   const holder = nodes.get('beyond-premiere-image');

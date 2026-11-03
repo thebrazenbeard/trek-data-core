@@ -169,7 +169,7 @@
   // research coverage. Its exact byte pin prevents an unreviewed JSON swap
   // from changing destination, credit, license, or consent behavior.
   const premierePhotoManifestSha256 = 'bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634';
-  const premierePhotoReleaseDecisionSha256 = 'd294aacd6ed83276083a4299577eefcd369cf47ab4b213b037c7d342f6a7222b';
+  const premierePhotoReleaseDecisionSha256 = 'b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89';
   const premierePhotoState = { manifest: null, authorized: false, enabled: false, epoch: 0 };
   const publisherEditionState = { rows: [], available: false };
   const publisherIsbnState = { rows: [], available: false, limit: 12 };
@@ -1689,6 +1689,8 @@
       if (decisionHex !== premierePhotoReleaseDecisionSha256) throw Error('Release decision differs from code-owned review digest.');
       const decision = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(decisionBytes));
       if (decision.schema_version !== '1.0.0' || decision.source_local_film_id !== 'film-beyond' ||
+          decision.accepted_held_source_contract !== 'proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json' ||
+          decision.accepted_held_source_contract_sha256 !== '9ed8d519d8bba7ef7e605ad0d09bdcf74dd7f48c9f9c1ef829dc28772ab8e4a5' ||
           decision.photo_manifest_sha256 !== premierePhotoManifestSha256 ||
           decision.observed_rendition_sha256 !== source.image_sha256_observed ||
           decision.observed_rendition_bytes !== source.image_observed_bytes ||

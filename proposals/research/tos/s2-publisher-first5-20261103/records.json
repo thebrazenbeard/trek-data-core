@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "TOS.PPLUS.S2.FIRST5.20261103",
+  "lane": "TOS",
+  "status": "PROPOSAL_ONLY",
+  "accepted_base_sha": "f4ea65391cf1543a55bf19dfcf3ed776dd80ab04",
+  "selection_method": "NEXT_UNCLAIMED_TOS_SEASON_2_PUBLISHER_GUIDE_FIRST_FIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "artwork_publication_effect": "NONE",
+  "audiovisual_episodes_watched": false,
+  "full_episode_text_read": false,
+  "source": {
+    "id": "tos-s2-paramount-guide-html-20261103",
+    "kind": "FIRST_PARTY_PUBLISHER_EPISODE_GUIDE",
+    "url": "https://www.paramountplus.com/shows/star_trek/episodes/2/",
+    "retrieved_date_utc": "2026-11-03",
+    "response_status": 200,
+    "raw_html_bytes": 308788,
+    "raw_html_sha256": "617ea64c3408fc228151ef839c71ce5b9043614dc5e97b64b83fb8e0adffe1a6",
+    "publisher_signed_snapshot": false,
+    "raw_source_bytes_in_public_repo": false,
+    "independence_group": "publisher:paramountplus.com",
+    "source_replay_availability": "HASH_AND_LOCATOR_ONLY_UNTIL_PRIVATE_RAW_HTML_SUPPLIED"
+  },
+  "candidate_inventory_crosswalk": {
+    "path": "proposals/discovery/legacy-paramount-season2-20261102/tos/bundle.json",
+    "sha256": "b5cfe891190b5054b748c520d7640d520717b414a410e8d5cc923488ea61f466",
+    "scope": "DISCOVERY_ONLY_FIRST_FIVE_TITLE_AND_SLOT_MATCH",
+    "independent_content_witness": false
+  },
+  "works": [
+    {
+      "id": "tos-s2-e01-local", "season": 2, "episode": 1, "title": "Amok Time", "raw_html_title_line": 1467,
+      "source_datetime": "1967-09-15T03:26:00-07:00", "video_path": "/shows/video/1226104276/",
+      "publisher_description_length": 42, "publisher_description_sha256": "8b6f08adf59038e7088e6831747325645d8f814b708e1b21c78d93d7a639570e",
+      "original_synopsis": "The publisher's episode guide introduces a Vulcan mating ritual centered on Spock.", "canonical_work_id": null
+    },
+    {
+      "id": "tos-s2-e02-local", "season": 2, "episode": 2, "title": "Who Mourns for Adonais?", "raw_html_title_line": 1495,
+      "source_datetime": "1967-09-22T03:23:00-07:00", "video_path": "/shows/video/1226100875/",
+      "publisher_description_length": 55, "publisher_description_sha256": "e810d3b20cd962afce8a85eb4f23e7451acd74d63cf940f81d2c37fe4f298c00",
+      "original_synopsis": "Paramount's description places the Enterprise in the custody of a figure identified as Apollo.", "canonical_work_id": null
+    },
+    {
+      "id": "tos-s2-e03-local", "season": 2, "episode": 3, "title": "The Changeling", "raw_html_title_line": 1523,
+      "source_datetime": "1967-09-29T03:46:00-07:00", "video_path": "/shows/video/1226123965/",
+      "publisher_description_length": 45, "publisher_description_sha256": "c5e676e5e889727fbd5b09996420b1e39f3d38497d00c15d2504ad1b3500ed9c",
+      "original_synopsis": "The first-party guide describes an Enterprise encounter with a probe called Nomad.", "canonical_work_id": null
+    },
+    {
+      "id": "tos-s2-e04-local", "season": 2, "episode": 4, "title": "Mirror, Mirror", "raw_html_title_line": 1551,
+      "source_datetime": "1967-10-06T04:28:00-07:00", "video_path": "/shows/video/1226170276/",
+      "publisher_description_length": 54, "publisher_description_sha256": "765ab4c99e2c07e908c30f2bb40b3c584f816db8cabefeaf73f33a2f41be858c",
+      "original_synopsis": "The publisher describes Kirk, Scott, McCoy, and Uhura entering a parallel universe.", "canonical_work_id": null
+    },
+    {
+      "id": "tos-s2-e05-local", "season": 2, "episode": 5, "title": "The Apple", "raw_html_title_line": 1579,
+      "source_datetime": "1967-10-13T04:07:00-07:00", "video_path": "/shows/video/1226152002/",
+      "publisher_description_length": 52, "publisher_description_sha256": "58010a1b3e4783c0e094148dcba60f1ec5bccad93cedf5a79c1ced94e59c630a",
+      "original_synopsis": "Paramount characterizes the episode's setting as a seeming paradise maintained by a computer.", "canonical_work_id": null
+    }
+  ],
+  "local_entities": [
+    {"id": "tos-s2-e01-spock", "work_id": "tos-s2-e01-local", "kind": "PERSON_MENTION", "label": "Spock", "global_entity_id": null},
+    {"id": "tos-s2-e02-apollo", "work_id": "tos-s2-e02-local", "kind": "PERSON_MENTION", "label": "Apollo", "global_entity_id": null},
+    {"id": "tos-s2-e03-nomad", "work_id": "tos-s2-e03-local", "kind": "PROBE_MENTION", "label": "Nomad", "global_entity_id": null},
+    {"id": "tos-s2-e04-crew", "work_id": "tos-s2-e04-local", "kind": "PERSON_GROUP_MENTION", "label": "Kirk, Scott, McCoy, and Uhura", "global_entity_id": null},
+    {"id": "tos-s2-e05-computer", "work_id": "tos-s2-e05-local", "kind": "COMPUTER_MENTION", "label": "unidentified computer", "global_entity_id": null}
+  ],
+  "evidence": [
+    {"id": "tos-s2-e01-publisher", "work_id": "tos-s2-e01-local", "source_id": "tos-s2-paramount-guide-html-20261103", "entity_ids": ["tos-s2-e01-spock"], "kind": "PUBLISHER_DESCRIPTION", "locator": "publisher Season 2 card 1, HTML title line 1467", "observation": "Paramount's listing says Spock undergoes a Vulcan mating ceremony.", "scope": "PUBLISHER_TEXT_ONLY"},
+    {"id": "tos-s2-e02-publisher", "work_id": "tos-s2-e02-local", "source_id": "tos-s2-paramount-guide-html-20261103", "entity_ids": ["tos-s2-e02-apollo"], "kind": "PUBLISHER_DESCRIPTION", "locator": "publisher Season 2 card 2, HTML title line 1495", "observation": "Paramount's listing identifies Apollo as a captor of the Enterprise.", "scope": "PUBLISHER_TEXT_ONLY"},
+    {"id": "tos-s2-e03-publisher", "work_id": "tos-s2-e03-local", "source_id": "tos-s2-paramount-guide-html-20261103", "entity_ids": ["tos-s2-e03-nomad"], "kind": "PUBLISHER_DESCRIPTION", "locator": "publisher Season 2 card 3, HTML title line 1523", "observation": "Paramount's listing names the encountered probe as Nomad.", "scope": "PUBLISHER_TEXT_ONLY"},
+    {"id": "tos-s2-e04-publisher", "work_id": "tos-s2-e04-local", "source_id": "tos-s2-paramount-guide-html-20261103", "entity_ids": ["tos-s2-e04-crew"], "kind": "PUBLISHER_DESCRIPTION", "locator": "publisher Season 2 card 4, HTML title line 1551", "observation": "Paramount's listing names four crew members in a parallel-universe premise.", "scope": "PUBLISHER_TEXT_ONLY"},
+    {"id": "tos-s2-e05-publisher", "work_id": "tos-s2-e05-local", "source_id": "tos-s2-paramount-guide-html-20261103", "entity_ids": ["tos-s2-e05-computer"], "kind": "PUBLISHER_DESCRIPTION", "locator": "publisher Season 2 card 5, HTML title line 1579", "observation": "Paramount's listing associates the seeming paradise with computer control.", "scope": "PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"id": "tos-s2-e01-publisher-claim", "work_id": "tos-s2-e01-local", "evidence_id": "tos-s2-e01-publisher", "predicate": "PUBLISHER_DESCRIBES", "status": "UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id": "tos-s2-e02-publisher-claim", "work_id": "tos-s2-e02-local", "evidence_id": "tos-s2-e02-publisher", "predicate": "PUBLISHER_DESCRIBES", "status": "UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id": "tos-s2-e03-publisher-claim", "work_id": "tos-s2-e03-local", "evidence_id": "tos-s2-e03-publisher", "predicate": "PUBLISHER_DESCRIBES", "status": "UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id": "tos-s2-e04-publisher-claim", "work_id": "tos-s2-e04-local", "evidence_id": "tos-s2-e04-publisher", "predicate": "PUBLISHER_DESCRIBES", "status": "UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id": "tos-s2-e05-publisher-claim", "work_id": "tos-s2-e05-local", "evidence_id": "tos-s2-e05-publisher", "predicate": "PUBLISHER_DESCRIBES", "status": "UNVERIFIED_FICTIONAL_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"id": "tos-s2-e01-held-art", "work_id": "tos-s2-e01-local", "url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/05/15/30324803935/CBS_STAR_TREK_REM_034_R_2435203_1920x1080.jpg", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "explorer_effect": "NONE"},
+    {"id": "tos-s2-e02-held-art", "work_id": "tos-s2-e02-local", "url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/05/15/30325315883/CBS_STAR_TREK_REM_033_1920x1080_2435197_1920x1080.jpg", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "explorer_effect": "NONE"},
+    {"id": "tos-s2-e03-held-art", "work_id": "tos-s2-e03-local", "url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/05/15/30324803930/CBS_STAR_TREK_REM_037_R_2435208_1920x1080.jpg", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "explorer_effect": "NONE"},
+    {"id": "tos-s2-e04-held-art", "work_id": "tos-s2-e04-local", "url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/05/15/30326339721/CBS_STAR_TREK_REM_039_R_2435210_1920x1080.jpg", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "explorer_effect": "NONE"},
+    {"id": "tos-s2-e05-held-art", "work_id": "tos-s2-e05-local", "url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/05/15/30326851555/CBS_STAR_TREK_REM_038_R_2435199_1920x1080.jpg", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "explorer_effect": "NONE"}
+  ],
+  "limits": [
+    {"kind": "SINGLE_PUBLISHER_SOURCE", "note": "Five cards belong to one Paramount+ episode guide and do not independently corroborate fictional events."},
+    {"kind": "NO_FULL_EPISODE", "note": "No audiovisual episode, script, or subtitles were read; source text is publisher guide metadata only."},
+    {"kind": "UNVERIFIED_RELEASE_DATE_SEMANTICS", "note": "Raw publisher time strings are preserved without independently claiming historical broadcast chronology."},
+    {"kind": "UNRESOLVED_WORK_IDENTITY", "note": "Exact local title and slot matches are not reconciled global Work identities."},
+    {"kind": "NO_PUBLIC_IMAGE_RIGHTS_ASSERTION", "note": "Thumbnail locators are metadata candidates only; no image bytes are included or published."}
+  ]
+}

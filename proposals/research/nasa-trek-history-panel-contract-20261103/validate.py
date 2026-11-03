@@ -13,9 +13,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 CONTRACT = HERE / "contract.json"
+MANIFEST = HERE / "MANIFEST.md"
 EXPECTED_CANONICAL_SHA256 = "a7eaf9603f0310ac57b88178bbf997e313360ed792fe99fc50f435bdd02238ab"
+EXPECTED_MANIFEST_SHA256 = "8411b5d629146378f2ae6600a6f9d36581640a0340f8dcc718707d93cbcccb30"
 HELD_RENDER_STATE = "SOURCE_LINK_ONLY_IMAGE_WITHHELD"
 MEDIA_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".mp4"}
+EXPECTED_FILES = {"contract.json", "MANIFEST.md", "validate.py", "test_validate.py"}
 
 
 def unique_object(pairs: list[tuple[str, object]]) -> dict:
@@ -75,9 +78,24 @@ def validate(packet: dict) -> None:
         raise ValueError("browser privacy or visitor consent weakened")
     if packet["public_release_decision"] != "HOLD":
         raise ValueError("public release decision exceeded approved effect")
-    if any(path.is_symlink() or path.suffix.lower() in MEDIA_SUFFIXES
-           for path in HERE.iterdir()):
-        raise ValueError("proposal includes unexpected media or symlink")
+    if (MANIFEST.is_symlink() or not MANIFEST.is_file()
+            or hashlib.sha256(MANIFEST.read_bytes()).hexdigest() != EXPECTED_MANIFEST_SHA256):
+        raise ValueError("code-owned explanation and release-boundary text pin changed")
+    for path in HERE.rglob("*"):
+        rel = path.relative_to(HERE)
+        if path.is_symlink() or path.suffix.lower() in MEDIA_SUFFIXES:
+            raise ValueError("proposal includes unexpected media or symlink")
+        if path.is_dir():
+            if rel.parts != ("__pycache__",):
+                raise ValueError("unexpected proposal directory")
+        elif path.is_file():
+            if len(rel.parts) == 1 and rel.name in EXPECTED_FILES:
+                continue
+            if len(rel.parts) == 2 and rel.parts[0] == "__pycache__" and rel.suffix == ".pyc":
+                continue
+            raise ValueError("unexpected proposal file")
+        else:
+            raise ValueError("unexpected proposal filesystem object")
 
 
 def prospective_render_state(packet: dict, *, visitor_opted_in: bool = False,

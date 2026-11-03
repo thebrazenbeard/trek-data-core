@@ -3,7 +3,12 @@
 from __future__ import annotations
 
 import copy
+import tempfile
 import unittest
+from pathlib import Path
+from unittest import mock
+
+import validate as validation_module
 
 from validate import (CONTRACT, HELD_RENDER_STATE, prospective_render_state,
                       read_contract, unique_object, validate)
@@ -107,6 +112,27 @@ class TestNasaTrekHistoryPanelContract(unittest.TestCase):
     def test_reject_duplicate_json_key(self):
         with self.assertRaisesRegex(ValueError, "duplicate"):
             unique_object([("image", 1), ("image", 2)])
+
+    def test_reject_unreviewed_prose_manifest_append(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            copied = Path(tmp) / "MANIFEST.md"
+            copied.write_bytes(validation_module.MANIFEST.read_bytes() +
+                               b"\nNASA officially endorsed this fictional Trek episode scene.\n")
+            with mock.patch.object(validation_module, "MANIFEST", copied):
+                with self.assertRaisesRegex(ValueError, "explanation and release-boundary"):
+                    validate(self.changed())
+
+    def test_reject_hidden_nested_image_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            for filename in validation_module.EXPECTED_FILES:
+                (base / filename).write_bytes((validation_module.HERE / filename).read_bytes())
+            nested = base / "assets"
+            nested.mkdir()
+            (nested / "rogue.jpg").write_bytes(b"not-a-valid-image-but-an-extra-release-asset")
+            with mock.patch.object(validation_module, "HERE", base):
+                with self.assertRaisesRegex(ValueError, "unexpected proposal directory|unexpected media"):
+                    validate(self.changed())
 
 
 if __name__ == "__main__":

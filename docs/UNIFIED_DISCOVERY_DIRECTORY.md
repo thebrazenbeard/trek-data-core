@@ -25,9 +25,11 @@ continuity assertions, canonical Work IDs, or episode denominators.
 - `proposals/discovery/scouts-firstparty-video-s1-20261103/` — **20 *Star Trek: Scouts* first-party publisher-video observations** from the official Nickelodeon/Blaze YouTube account's individually captured oEmbed metadata. The associated StarTrek.com/CBS announcement identifies a 20-installment short-form order. Six complete TrekCore captures provide *discovery crosswalks* to 19 publisher video IDs, not independent corroboration; the tenth Asteroid Blasters video is separately verified against publisher oEmbed. Both Asteroid Blasters and Holodeck Rescues use source-local #1–#10 numbering, **not** promoted to globally verified season ordinals, accepted Works or Briefings. Only titles, direct publisher links and source-body hashes are public; no video bytes. This publisher is in Paramount's corporate provenance family.
 - `explorer/film-catalog.json` — 14 publisher film metadata candidates.
 - `proposals/librarian/ring-of-fire-editions-20261102/records.json` — one proposed literary Work with four publisher editions, not four novels.
+- `proposals/librarian/simon-schuster-three-novels-20261103/records.json` — three proposed novels (*Second Self*, *The High Country*, *The Enterprise War*) and nine distinct publisher product-page format observations (paperback, eBook and audiobook each). The publisher pages have no archived raw-response bytes or book-text receipts, and all nine views share one publisher independence family; Work groupings and format equivalence remain proposals, not accepted reconciliation.
+- `proposals/librarian/picard-companion-editions-20261103/records.json` — independently versioned **proposal on accepted `main`**, not independently corroborating evidence. Its *Second Self* trade paperback ISBN `9781982194833` and proposed Work ID overlap the three-novel proposal. The generator verifies their source-local title, creator, edition and publisher attribution agree, records the second file's exact SHA-256, and emits **one** *Second Self* directory candidate. Both product observations depend on the **same Simon & Schuster publisher lineage**; their agreement is not two independent attestations or an accepted global reconciliation decision.
 
-The proposed expansion has **1206 source-local rows**: 1155 episode-related metadata
-references, 14 films, one literary Work with four editions, 35 short-form
+The proposed expansion has **1209 source-local rows**: 1155 episode-related metadata
+references, 14 films, four proposed literary Work rows with 13 ISBN-format observations in their details, 35 short-form
 releases and one audio-series container. These numbers
 are not a count of distinct Star Trek Works, complete episodes, admitted
 Briefings, verified sources, or a denominator for the universe. The same Work
@@ -49,6 +51,9 @@ corroboration. Paramount and Paramount+ labels may share corporate lineage.
    capture, full audiovisual viewing, book reading, transcript rights, or
    semantic analysis. The archived Wikidata observations are not guaranteed
    externally verified in this environment.
+6. The novel-to-Picard overlap check fails closed on disagreement; it is limited
+   to one reviewed source-local ISBN/Work pair and does not deduplicate the
+   wider corpus or establish globally accepted literary identity.
 
 The accepted research pipeline remains Source → Work → Local Entity → Evidence
 → Assertion and requires separate explicit admission. Do not promote these

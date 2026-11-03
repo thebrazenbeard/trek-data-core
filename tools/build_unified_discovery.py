@@ -62,7 +62,19 @@ INPUTS = (
     Path("explorer/research-leads.json"),
     Path("proposals/discovery/publisher-catalog.json"),
     Path("proposals/librarian/ring-of-fire-editions-20261102/records.json"),
+    Path("proposals/librarian/simon-schuster-three-novels-20261103/records.json"),
 )
+PICARD_COMPANIONS = Path("proposals/librarian/picard-companion-editions-20261103/records.json")
+REVIEWED_NOVELS = {
+    "proposed-lit-picard-second-self": (
+        "Star Trek: Picard: Second Self", "Una McCormack", "Star Trek: Picard"),
+    "proposed-lit-snw-high-country": (
+        "Star Trek: Strange New Worlds: The High Country", "John Jackson Miller",
+        "Star Trek: Strange New Worlds"),
+    "proposed-lit-discovery-enterprise-war": (
+        "Star Trek: Discovery: The Enterprise War", "John Jackson Miller",
+        "Star Trek: Discovery"),
+}
 EPISODES = Path("proposals/discovery/ds9-voy-episode-slots-20261102")
 ROSTER_BATCHES = (
     (EPISODES, ("ds9", "voy", "tas"), "roster", 15),
@@ -135,6 +147,141 @@ def _row(ident: str, medium: str, kind: str, title: str, context: str,
     }
 
 
+def _publisher_slug(value: str) -> str:
+    return re.sub(r"[^A-Za-z0-9]+", "-", value).strip("-")
+
+
+def _three_novel_rows(proposal: dict) -> list[dict]:
+    """Project unadmitted publisher editions, without a global Work reconciliation."""
+    if (not isinstance(proposal, dict) or proposal.get("schema_version") != "1.0.0" or
+            proposal.get("proposal_only") is not True or
+            proposal.get("source_access") != "FULL_RENDERED_PUBLISHER_PRODUCT_PAGE_WEB_READER_NO_RAW_BYTE_CUSTODY" or
+            proposal.get("independence_group") != "publisher:simonandschuster.com" or
+            proposal.get("accepted_effects") != {"sources": "NONE", "works": "NONE",
+                                                 "bindings": "NONE", "coverage": "NONE"}):
+        raise ValueError("three-novel metadata is not unadmitted publisher discovery")
+    works = proposal.get("works")
+    editions = proposal.get("editions")
+    if not isinstance(works, list) or len(works) != 3 or not isinstance(editions, list) or len(editions) != 9:
+        raise ValueError("three-novel source Work/edition count changed")
+    if any(not isinstance(work, dict) for work in works) or any(not isinstance(item, dict) for item in editions):
+        raise ValueError("three-novel source object types changed")
+    work_ids = [work.get("candidate_work_id") for work in works]
+    if (any(not isinstance(ident, str) for ident in work_ids) or
+            set(work_ids) != set(REVIEWED_NOVELS)):
+        raise ValueError("three-novel source Work identity conflict")
+    required_formats = {"TRADE_PAPERBACK", "EBOOK", "UNABRIDGED_AUDIO_DOWNLOAD"}
+    rows = []
+    seen_isbns = set()
+    for work in works:
+        ident = work["candidate_work_id"]
+        if (not isinstance(ident, str) or not re.fullmatch(r"proposed-lit-[a-z0-9-]{4,90}", ident) or
+                work.get("status") != "PROPOSED" or work.get("medium") != "LITERATURE" or
+                work.get("work_type") != "NOVEL" or not isinstance(work.get("creator"), str) or
+                not work["creator"].strip() or not isinstance(work.get("series"), str) or
+                not work["series"].strip()):
+            raise ValueError("three-novel Work admission or identity changed")
+        if (work["title"], work["creator"], work["series"]) != REVIEWED_NOVELS[ident]:
+            raise ValueError("three-novel title/creator/series outside reviewed publisher tranche")
+        matches = [edition for edition in editions if edition.get("candidate_work_id") == ident]
+        if (len(matches) != 3 or
+                any(not isinstance(item.get("format"), str) for item in matches) or
+                {item["format"] for item in matches} != required_formats):
+            raise ValueError("three-novel edition formats do not form one source-local candidate")
+        details = []
+        locator = None
+        for item in matches:
+            isbn = item.get("isbn13")
+            if (not literature.isbn13_valid(isbn) or isbn in seen_isbns or
+                    item.get("status") != "PROPOSED_METADATA_ONLY" or
+                    item.get("raw_response_sha256") is not None or
+                    item.get("source_version") is not None):
+                raise ValueError("three-novel source edition improperly promoted or duplicated")
+            seen_isbns.add(isbn)
+            url = _checked_url(item.get("publisher_product_url"))
+            expected = (f"https://www.simonandschuster.com/books/"
+                        f"{_publisher_slug(work['title'])}/{_publisher_slug(work['creator'])}/"
+                        f"{_publisher_slug(work['series'])}/{isbn}")
+            if url != expected:
+                raise ValueError("three-novel ISBN lacks matching title/creator/series publisher locator")
+            details.append(f"{item['format'].replace('_', ' ').title()} · ISBN {isbn}")
+            if item["format"] == "TRADE_PAPERBACK":
+                locator = url
+        rows.append(_row("literature:" + ident, "LITERATURE", "NOVEL",
+                         work["title"], f"{work['creator']} · three publisher-format observations",
+                         proposal["independence_group"], str(INPUTS[4]), locator, tuple(details)))
+    if len(seen_isbns) != 9:
+        raise ValueError("three-novel edition identities were not disjoint")
+    return rows
+
+
+def _check_picard_publisher_overlap(three_novels: dict, picard: dict) -> None:
+    """Fail closed if dependent publisher observations disagree about Second Self.
+
+    Both proposals draw from Simon & Schuster product metadata. This is a
+    source-local consistency check, NOT global Work reconciliation or an
+    independent corroboration claim.
+    """
+    if (not isinstance(picard, dict) or picard.get("schema_version") != "1.0.0" or
+            picard.get("proposal_only") is not True or
+            picard.get("accepted_work_effect") != "NONE" or
+            picard.get("accepted_source_binding_effect") != "NONE" or
+            picard.get("coverage_effect") != "NONE" or
+            picard.get("source_group") != "publisher:simonandschuster.com" or
+            three_novels.get("independence_group") != picard["source_group"]):
+        raise ValueError("Picard publisher records are not metadata-only from the same lineage")
+    try:
+        new_works = {w["candidate_work_id"]: w for w in three_novels["works"]}
+        old_works = {w["work_id"]: w for w in picard["works"]}
+        new_editions = {e["isbn13"]: e for e in three_novels["editions"]}
+        old_editions = {e["isbn13"]: e for e in picard["edition_candidates"]}
+        source_by_id = {s["source_id"]: s for s in picard["sources"]}
+        bindings = {b["source_id"]: b for b in picard["bindings"]}
+        shared_works = set(new_works) & set(old_works)
+        shared_isbns = set(new_editions) & set(old_editions)
+        if (shared_works != {"proposed-lit-picard-second-self"} or
+                shared_isbns != {"9781982194833"} or
+                len(source_by_id) != len(picard["sources"]) or
+                len(bindings) != len(picard["bindings"])):
+            raise ValueError("unexpected ISBN or Work overlap between publisher proposals")
+        wid = "proposed-lit-picard-second-self"
+        isbn = "9781982194833"
+        new_work, old_work = new_works[wid], old_works[wid]
+        new_edition, old_edition = new_editions[isbn], old_editions[isbn]
+        source = source_by_id[old_edition["source_id"]]
+        binding = bindings[old_edition["source_id"]]
+        meta = source["provider_metadata"]
+        if (new_work["title"] != old_work["title"] or
+                new_work["title"] != meta["title"] or
+                new_work["creator"] != meta["creator"] or
+                old_work["status"] != "PROPOSED" or
+                old_edition["status"] != "PROPOSED" or
+                old_edition["verification"] != "PUBLISHER_METADATA_ONLY" or
+                old_edition["work_id"] != wid or
+                old_edition["format"] != "TRADE_PAPERBACK" or
+                source["status"] != "PROPOSED" or
+                source["independence_group"] != picard["source_group"] or
+                source["source_kind"] != "PUBLISHER_EDITION_METADATA" or
+                source["source_id"] != "proposed-picard-publisher-source-9781982194833" or
+                source["locator"] != new_edition["publisher_product_url"] or
+                source["content_hash"] is not None or
+                source["content_fingerprint"] is not None or
+                source["source_version"] is not None or
+                binding["source_id"] != source["source_id"] or
+                binding["work_id"] != wid or
+                binding["lifecycle"] != "PROPOSED" or
+                binding["mapping_role"] != "METADATA_ONLY" or
+                new_edition["candidate_work_id"] != wid or
+                new_edition["format"] != old_edition["format"] or
+                meta["isbn13"] != isbn or
+                meta["format"] != old_edition["format"] or
+                meta["publication_date"] != new_edition["publisher_publication_date"] or
+                f"{meta['length_pages']} pages" != new_edition["publisher_extent"]):
+            raise ValueError("conflicting Second Self source-local publisher edition claims")
+    except (KeyError, TypeError, AttributeError, ValueError) as exc:
+        raise ValueError("invalid or conflicting publisher cross-proposal metadata") from exc
+
+
 def build_bytes(root: Path) -> bytes:
     sources = {}
     for path, builder in (
@@ -142,6 +289,7 @@ def build_bytes(root: Path) -> bytes:
         (INPUTS[1], research.build_bytes(root)),
         (INPUTS[2], publisher.build_bytes(root)),
         (INPUTS[3], literature.build(root)),
+        (INPUTS[4], None),
         (SHORTS_INPUT, shorts.build(root)),
         (SCOUTS_INPUT, scouts.build(root)),
     ):
@@ -151,8 +299,13 @@ def build_bytes(root: Path) -> bytes:
         if str(path) == str(INPUTS[1]): leads_catalog = value
         if str(path) == str(INPUTS[2]): publisher_catalog = value
         if str(path) == str(INPUTS[3]): novel_catalog = value
+        if str(path) == str(INPUTS[4]): three_novels = value
         if path == SHORTS_INPUT: shorts_catalog = value
         if path == SCOUTS_INPUT: scouts_catalog = value
+
+    picard_catalog, picard_digest = _document(root, PICARD_COMPANIONS)
+    sources[str(PICARD_COMPANIONS)] = picard_digest
+    _check_picard_publisher_overlap(three_novels, picard_catalog)
 
     if (film_catalog.get("data_status") != "DISCOVERY_ONLY" or
             film_catalog.get("coverage_effect") != "NONE" or
@@ -678,6 +831,7 @@ def build_bytes(root: Path) -> bytes:
                         work["title"], f"{work['creator']} · {len(editions)} publisher editions",
                         novel_catalog["source_group"], str(INPUTS[3]),
                         source_by_id[editions[0]["source_id"]]["locator"], details))
+    entries.extend(_three_novel_rows(three_novels))
 
     identities = [r["row_id"] for r in entries]
     if len(set(identities)) != len(identities):

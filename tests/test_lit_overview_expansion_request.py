@@ -28,6 +28,9 @@ class LiteraryOverviewExpansionTests(unittest.TestCase):
         self.assertEqual(request['public_site_effect'], 'NONE')
         self.assertEqual(request['source_work_evidence_admission_effect'], 'NONE')
         self.assertEqual(len(request['source_artifacts']), 3)
+        self.assertEqual(request['corrected_paraphrase_count'], 2)
+        self.assertEqual(request['request_state'], 'V2_SUPERSEDING_PROPOSAL_FOR_SEPARATE_EDITORIAL_REVIEW')
+        self.assertEqual(request['supersedes_review_request_sha256'], 'bf9cc901d772a11b9c6e92260575a1116e4de132938a037ea087a6be036b5f42')
         self.assertEqual(len({c['proposed_directory_row_id'] for c in request['candidates']}), 18)
         for entry in request['candidates']:
             self.assertIsNone(entry['accepted_directory_row_id'])
@@ -84,6 +87,45 @@ class LiteraryOverviewExpansionTests(unittest.TestCase):
         for artifact in self.request['source_artifacts']:
             self.assertEqual(artifact['sha256'], builder._sha(builder._read(artifact['path'])))
             self.assertEqual(artifact['candidate_count'], 6)
+
+    def test_two_source_relative_modal_corrections_preserve_old_request_and_packet(self):
+        r = self.request
+        self.assertEqual(r['supersedes_review_request_sha256'], builder._sha(builder._read(builder.LEGACY_OUTPUT)))
+        self.assertEqual(r['source_local_correction_sha256'], builder._sha(builder._read(builder.CORRECTIONS)))
+        by_id = {c['candidate_work_id']: c for c in r['candidates']}
+        old = {c['candidate_work_id']: c for c in builder._json(builder.LEGACY_OUTPUT)['candidates']}
+        somewhere = by_id['lit-source-local-sns-discovery-somewhere-to-belong-20261103']
+        firewall = by_id['lit-source-local-sns-picard-firewall-20261103']
+        self.assertNotEqual(somewhere['original_paraphrase_sha256'], old[somewhere['candidate_work_id']]['original_paraphrase_sha256'])
+        self.assertNotEqual(firewall['original_paraphrase_sha256'], old[firewall['candidate_work_id']]['original_paraphrase_sha256'])
+        self.assertIn('may lead to a new crisis', somewhere['original_paraphrase'])
+        self.assertIn('finds a new home with the Fenris Rangers', firewall['original_paraphrase'])
+        self.assertEqual(sum(c['display_supersession_source'] is not None for c in r['candidates']), 2)
+
+    def test_correction_source_hash_mismatch_or_old_modal_text_rejected(self):
+        original = builder._json
+
+        def tamper_source(path):
+            data = original(path)
+            if path == builder.CORRECTIONS:
+                data = copy.deepcopy(data)
+                data['supersedes_source_sha256'] = 'a' * 64
+            return data
+
+        with mock.patch.object(builder, '_json', side_effect=tamper_source):
+            with self.assertRaisesRegex(builder.CandidateError, 'provenance/version'):
+                builder.build()
+
+        def tamper_semantics(path):
+            data = original(path)
+            if path == builder.CORRECTIONS:
+                data = copy.deepcopy(data)
+                data['corrections'][0]['replacement_paraphrase'] = 'The publisher follows Discovery and its crew through a new danger after a distress signal from their earlier century draws them into crisis.'
+            return data
+
+        with mock.patch.object(builder, '_json', side_effect=tamper_semantics):
+            with self.assertRaisesRegex(builder.CandidateError, 'modal regression'):
+                builder.build()
 
     def test_committed_review_request_exactly_rebuilds(self):
         self.assertEqual(builder._read(builder.OUTPUT), builder._render(self.request))

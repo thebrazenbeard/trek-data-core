@@ -60,6 +60,7 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
     def test_simulated_complete_receipt_maps_18_unadmitted_candidates(self):
         result = self._receipt_fixture(lambda: release.release(self.request, self.receipt))
         self.assertEqual(result['candidate_count'], 18)
+        self.assertEqual(result['source_local_correction_sha256'], self.request['source_local_correction_sha256'])
         self.assertEqual(result['directory_snapshot_rows_unchanged'], 1214)
         self.assertTrue(result['separate_from_directory'])
         self.assertEqual(result['admission_effect'], 'NONE')
@@ -70,6 +71,7 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
             self.assertIsNone(c['accepted_directory_row_id'])
             self.assertIsNone(c['raw_webpage_sha256'])
             self.assertEqual(c['artwork_release_effect'], 'NONE')
+        self.assertEqual(sum(c['source_correction_path'] is not None for c in result['candidates']), 2)
 
     def test_self_review_or_bad_source_tuple_rejected(self):
         for make_change in (

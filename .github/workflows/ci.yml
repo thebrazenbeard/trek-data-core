@@ -38,6 +38,11 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_*.py' -v
           python tools/validate.py
+      - name: Validate explicitly reviewed candidate proposals
+        run: |
+          python proposals/librarian/artwork-sourcing-wave2-20261103/validate.py
+          python proposals/films/afi-theatrical-release-20261103/validate.py
+          python proposals/librarian/picard-companion-editions-20261103/validate.py --check
       - name: Verify generated Mission index matches its catalog
         if: ${{ hashFiles('tools/build_explorer_index.py') != '' }}
         run: |

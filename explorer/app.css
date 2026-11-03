@@ -159,7 +159,12 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .directory-card { min-width: 0; border: 1px solid var(--line); border-left: 12px solid var(--peach); border-radius: 23px 4px 4px 4px; padding: 13px 17px; background: var(--surface2); }
 .directory-card.media-card, .film-grid .media-card { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: start; gap: 14px; }
 .media-card-copy { min-width: 0; }
-.artwork-slot { position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 76px; height: 105px; border: 1px solid var(--line); border-radius: 18px 3px 3px 3px; overflow: hidden; background: #090b19; color: var(--muted); }
+.artwork-slot { position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 76px; height: 105px; border: 1px solid var(--line); border-radius: 18px 3px 3px 3px; overflow: hidden; background: #090b19 center / cover no-repeat; color: var(--muted); }
+.artwork-slot.artwork-episode { background-image: url('./art-original-episode.svg'); }
+.artwork-slot.artwork-film { background-image: url('./art-original-film.svg'); }
+.artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
+.artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
+.artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }
 .artwork-slot::before { content: ""; position: absolute; top: 12px; left: 13px; width: 42px; height: 56px; border: 2px solid var(--aqua); border-radius: 25px 25px 4px 4px; transform: rotate(-12deg); opacity: .56; pointer-events: none; }
 .artwork-slot::after { content: ""; position: absolute; top: 52px; left: 9px; width: 48px; border-top: 2px solid var(--peach); transform: rotate(19deg); opacity: .66; pointer-events: none; }
 .artwork-slot.artwork-film { border-top: 6px solid var(--coral); }

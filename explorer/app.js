@@ -390,7 +390,7 @@
     const label = artworkKinds[medium] || 'Media';
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
     const title = el('span', 'artwork-kind', label);
-    const missing = el('span', 'artwork-missing', 'Artwork not sourced');
+    const missing = el('span', 'artwork-missing', 'Artwork not sourced · original abstract');
     frame.append(title, missing);
     const source = artworkState.enabled ? artworkState.entries.get(key) : null;
     if (source) {

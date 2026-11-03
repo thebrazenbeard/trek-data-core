@@ -19,7 +19,7 @@
       "episode": 24,
       "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
       "official_card_description_read": true,
-      "original_synopsis_draft": "After learning that a former rival from the NX test program has died, Archer recalls an earlier period in his career as a test pilot."
+      "original_synopsis_draft": "Archer learns that an old rival from the NX test program has died."
     },
     {
       "row_id": "lead:0091",
@@ -46,7 +46,7 @@
       "episode": 1,
       "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
       "official_card_description_read": true,
-      "original_synopsis_draft": "After weeks searching the Delphic Expanse, Enterprise follows a lead to a mining colony where a Xindi worker may help identify Earth's attackers."
+      "original_synopsis_draft": "After weeks of searching the Delphic Expanse, Enterprise follows a lead to a mining colony in pursuit of a Xindi worker."
     },
     {
       "row_id": "lead:0094",
@@ -64,7 +64,7 @@
       "episode": 23,
       "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
       "official_card_description_read": true,
-      "original_synopsis_draft": "Enterprise is assigned to transport Vulcan ambassador V'Lar, whose removal from her post leaves Archer questioning the accusations against her."
+      "original_synopsis_draft": "Enterprise is assigned to transport Vulcan ambassador V'Lar from the planet Mazar to a rendezvous."
     },
     {
       "row_id": "lead:0096",
@@ -73,7 +73,7 @@
       "episode": 21,
       "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
       "official_card_description_read": true,
-      "original_synopsis_draft": "Archer and Mayweather are detained in an internment camp where Suliban civilians face persecution over the actions of others."
+      "original_synopsis_draft": "Archer and Mayweather are mistakenly detained by Tandarans at a camp holding Suliban civilians."
     },
     {
       "row_id": "lead:0097",
@@ -91,7 +91,7 @@
       "episode": 2,
       "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
       "official_card_description_read": true,
-      "original_synopsis_draft": "As strange distortions repeatedly strike Enterprise, the weakened ship is raided by Osaarians who steal supplies and equipment."
+      "original_synopsis_draft": "Strange phenomena disrupt Enterprise's systems, and Osaarians take advantage of the disruption to loot the ship."
     }
   ]
 }

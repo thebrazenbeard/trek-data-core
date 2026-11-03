@@ -99,6 +99,23 @@ class EnterpriseB008Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             mod.compile_records(self.catalog, self.raw, altered)
 
+    def test_source_fidelity_reviewer_corrections_are_pinned(self):
+        by_id = {r["source_local_row_id"]: r for r in self.derived["rows"]}
+        self.assertEqual({k: by_id[k]["original_synopsis_draft"] for k in mod.SOURCE_FIDELITY_GUARDS}, mod.SOURCE_FIDELITY_GUARDS)
+        prior_unsupported = (
+            ("lead:0090", "recalls an earlier period in his career"),
+            ("lead:0093", "identify Earth's attackers"),
+            ("lead:0095", "questioning the accusations"),
+            ("lead:0096", "persecution over the actions of others"),
+            ("lead:0098", "distortions repeatedly strike"),
+        )
+        for row_id, prohibited in prior_unsupported:
+            self.assertNotIn(prohibited, by_id[row_id]["original_synopsis_draft"])
+            altered = copy.deepcopy(self.obs)
+            entry = next(r for r in altered["rows"] if r["row_id"] == row_id)
+            entry["original_synopsis_draft"] += " " + prohibited
+            with self.subTest(row_id=row_id), self.assertRaises(ValueError):
+                mod.compile_records(self.catalog, self.raw, altered)
     def test_reject_source_catalog_drift_and_duplicate_json_keys(self):
         altered = copy.deepcopy(self.catalog)
         altered["rows"][90]["verification_status"] = "SOURCE_BOUND"

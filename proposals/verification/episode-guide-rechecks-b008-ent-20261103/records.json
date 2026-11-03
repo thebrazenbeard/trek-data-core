@@ -3,7 +3,7 @@
   "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
   "coverage_effect": "NONE",
   "data_status": "B008-ENT_RENDERED_PUBLISHER_METADATA_PROPOSAL_ONLY",
-  "observation_manifest_sha256": "bef2769165c04bb9ea4b3dbffc6f9be49fe1889e2a4bdce96a2e72adef83c5fc",
+  "observation_manifest_sha256": "bc3764cd55e014308f14ba4b027b259ad9d64958dd4eebaf7ee2564676eea830",
   "rows": [
     {
       "admission_effect": "NONE",
@@ -18,7 +18,7 @@
         "section_locator": "Episode Guide > First Flight > S2 E24 > short description",
         "title": "First Flight"
       },
-      "original_synopsis_draft": "After learning that a former rival from the NX test program has died, Archer recalls an earlier period in his career as a test pilot.",
+      "original_synopsis_draft": "Archer learns that an old rival from the NX test program has died.",
       "source_body_custody_status": "NOT_READ_OR_HASHED",
       "source_local_context": "ENT",
       "source_local_lineage": "wikidata_collaborative_derivative",
@@ -87,7 +87,7 @@
         "section_locator": "Episode Guide > The Xindi > S3 E1 > short description",
         "title": "The Xindi"
       },
-      "original_synopsis_draft": "After weeks searching the Delphic Expanse, Enterprise follows a lead to a mining colony where a Xindi worker may help identify Earth's attackers.",
+      "original_synopsis_draft": "After weeks of searching the Delphic Expanse, Enterprise follows a lead to a mining colony in pursuit of a Xindi worker.",
       "source_body_custody_status": "NOT_READ_OR_HASHED",
       "source_local_context": "ENT",
       "source_local_lineage": "wikidata_collaborative_derivative",
@@ -133,7 +133,7 @@
         "section_locator": "Episode Guide > Fallen Hero > S1 E23 > short description",
         "title": "Fallen Hero"
       },
-      "original_synopsis_draft": "Enterprise is assigned to transport Vulcan ambassador V'Lar, whose removal from her post leaves Archer questioning the accusations against her.",
+      "original_synopsis_draft": "Enterprise is assigned to transport Vulcan ambassador V'Lar from the planet Mazar to a rendezvous.",
       "source_body_custody_status": "NOT_READ_OR_HASHED",
       "source_local_context": "ENT",
       "source_local_lineage": "wikidata_collaborative_derivative",
@@ -156,7 +156,7 @@
         "section_locator": "Episode Guide > Detained > S1 E21 > short description",
         "title": "Detained"
       },
-      "original_synopsis_draft": "Archer and Mayweather are detained in an internment camp where Suliban civilians face persecution over the actions of others.",
+      "original_synopsis_draft": "Archer and Mayweather are mistakenly detained by Tandarans at a camp holding Suliban civilians.",
       "source_body_custody_status": "NOT_READ_OR_HASHED",
       "source_local_context": "ENT",
       "source_local_lineage": "wikidata_collaborative_derivative",
@@ -202,7 +202,7 @@
         "section_locator": "Episode Guide > Anomaly > S3 E2 > short description",
         "title": "Anomaly"
       },
-      "original_synopsis_draft": "As strange distortions repeatedly strike Enterprise, the weakened ship is raided by Osaarians who steal supplies and equipment.",
+      "original_synopsis_draft": "Strange phenomena disrupt Enterprise's systems, and Osaarians take advantage of the disruption to loot the ship.",
       "source_body_custody_status": "NOT_READ_OR_HASHED",
       "source_local_context": "ENT",
       "source_local_lineage": "wikidata_collaborative_derivative",

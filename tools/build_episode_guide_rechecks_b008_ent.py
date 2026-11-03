@@ -27,6 +27,14 @@ CARDS = (
     ("ENT", "Anomaly", 3, 2),
 )
 HELD = set()
+SOURCE_FIDELITY_GUARDS = {
+    # Narrow first-party-guide-supported editorial drafts after hostile source-to-draft review.
+    "lead:0090": "Archer learns that an old rival from the NX test program has died.",
+    "lead:0093": "After weeks of searching the Delphic Expanse, Enterprise follows a lead to a mining colony in pursuit of a Xindi worker.",
+    "lead:0095": "Enterprise is assigned to transport Vulcan ambassador V'Lar from the planet Mazar to a rendezvous.",
+    "lead:0096": "Archer and Mayweather are mistakenly detained by Tandarans at a camp holding Suliban civilians.",
+    "lead:0098": "Strange phenomena disrupt Enterprise's systems, and Osaarians take advantage of the disruption to loot the ship.",
+}
 ROW_KEYS = {
     "row_id", "official_card_title", "season", "episode", "title_resolution",
     "official_card_description_read", "original_synopsis_draft",
@@ -119,6 +127,8 @@ def compile_records(catalog, catalog_bytes, observations):
                     or not 35 <= len(synopsis) <= 350
                     or "http" in synopsis.lower() or "\n" in synopsis):
                 raise ValueError("unreviewed synopsis or false exact title")
+            if entry["row_id"] in SOURCE_FIDELITY_GUARDS and synopsis != SOURCE_FIDELITY_GUARDS[entry["row_id"]]:
+                raise ValueError("hostile-reviewed source-fidelity draft changed")
         guide_slug = "star_trek_voyager" if medium == "VOY" else "enterprise"
         url = f"https://www.paramountplus.com/shows/{guide_slug}/episodes/{season}/"
         result.append({

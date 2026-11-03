@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "ENT-S2-B002-PUBLISHER-CARDS-20261103",
+  "baseline_accepted_main": "8744c1dd234fa1e3ad3eb34951399b34f5fe9c6f",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+  "read_surface": "PUBLISHER_RENDERED_GUIDE_AND_RAW_HTML_CARD_METADATA",
+  "raw_html_bytes_archived": false,
+  "audiovisual_episodes_watched": false,
+  "public_synopsis_authorized": false,
+  "artwork_copy_or_publication_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "accepted_ent_bundle_sha256": "b3ba6c175202d0bd55b711a850a939af6aee2786d0900bc1365cbd109086ef84",
+  "accepted_s1_b001_observations_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
+  "accepted_s1_b001_records_sha256": "4a48f7136eebff4693fb516bdc3af9bd320af3f2670abfbd492e48816b4e9fc0",
+  "accepted_s1_b002_observations_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
+  "accepted_s1_b002_records_sha256": "88996d6a16d52d6ea82faeccbc01cf97b924b8657d2f78139f2ec131d2e01ae0",
+  "accepted_s2_b001_observations_sha256": "547eae257037f2888ccd9eaee50795eed494d9ef02cfcda5ca0d0645a79458af",
+  "accepted_s2_b001_records_sha256": "d71c0e01c6e60c60222b3fd39dd9c21943f581d9816b4063d96b1b26ae897a9d",
+  "rows": [
+    {
+      "row_id": "legacy:s2:ent:010",
+      "publisher_title": "Precious Cargo",
+      "season": 2,
+      "episode": 11,
+      "publisher_description_sha256": "b7206134bd508b0ffa9691c38280dcc7544fb15206a1d8ff8c57b1bcd6be1b70",
+      "original_synopsis_draft": "Trip helps a captive passenger escape, then faces an unexpected personal entanglement during the journey.",
+      "entity_mentions_source_relative": [
+        "Trip"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_RESCUE_AND_ROMANCE_DESCRIPTION_NOT_AV_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490133/CBS_ENTERPRISE_037_2784415_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475199129/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:011",
+      "publisher_title": "The Catwalk",
+      "season": 2,
+      "episode": 12,
+      "publisher_description_sha256": "ef545ed58147cfa3c6c70762930100aef938712cc306e149e590f83a27652668",
+      "original_synopsis_draft": "A hazardous stellar storm drives Enterprise's crew into a cramped maintenance passage while they await safer conditions.",
+      "entity_mentions_source_relative": [
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_EIGHT_DAY_SHELTER_CLAIM_NOT_AV_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41489653/CBS_ENTERPRISE_038_2784399_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475205305/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:012",
+      "publisher_title": "Dawn",
+      "season": 2,
+      "episode": 13,
+      "publisher_description_sha256": "37e271ac937a2376361ed0a8eec3ab9a3110964079adf0ed6f48b9e384e9de29",
+      "original_synopsis_draft": "After a hostile encounter with a territorial alien, Trip becomes stranded on the dark side of an unfamiliar moon.",
+      "entity_mentions_source_relative": [
+        "Trip"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_TERRITORIAL_ATTACK_NOT_AV_VERIFIED",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41489420/CBS_ENTERPRISE_039_2784306_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475207106/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:013",
+      "publisher_title": "Stigma",
+      "season": 2,
+      "episode": 14,
+      "publisher_description_sha256": "b710b055e12b193a1d6edfe4a24bf765617d947d44dc88c8a8066fdb27ffd39b",
+      "original_synopsis_draft": "A serious illness places T'Pol's role aboard Enterprise at risk, according to the publisher's episode description.",
+      "entity_mentions_source_relative": [
+        "T'Pol",
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_DISEASE_DIAGNOSIS_NOT_MEDICAL_OR_AV_VERIFIED",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490246/CBS_ENTERPRISE_040_2784402_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475208813/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:014",
+      "publisher_title": "Cease Fire",
+      "season": 2,
+      "episode": 15,
+      "publisher_description_sha256": "dbb61e31f7795309719f12034794fa61f9058ba19fed10538596112a7a6d28bd",
+      "original_synopsis_draft": "Archer is drawn into negotiations after mounting tensions between Vulcan and Andorian forces lead to armed conflict.",
+      "entity_mentions_source_relative": [
+        "Vulcans",
+        "Andorians",
+        "Archer"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_NEGOTIATOR_ROLE_NOT_AV_VERIFIED",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490030/CBS_ENTERPRISE_041_2784403_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475308641/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:015",
+      "publisher_title": "Future Tense",
+      "season": 2,
+      "episode": 16,
+      "publisher_description_sha256": "2dfc93f038711c1c38d73664dba2508f654460f3b2b078d7a0522cd83f487715",
+      "original_synopsis_draft": "Enterprise encounters a drifting craft with an apparently human body while two other powers compete to claim the find.",
+      "entity_mentions_source_relative": [
+        "Enterprise",
+        "Suliban",
+        "Tholians"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_APPARENT_CORPSE_NOT_AUTHENTICATED_DEATH",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41489534/CBS_ENTERPRISE_042_2784404_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475314335/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:016",
+      "publisher_title": "Canamar",
+      "season": 2,
+      "episode": 17,
+      "publisher_description_sha256": "67e33c3ed9262014761cbdb762bcb07d6b90751b5d95fad246d78daae02937c8",
+      "original_synopsis_draft": "After a wrongful arrest, Archer and Tucker find themselves aboard a transport headed for a prison colony called Canamar.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Tucker",
+        "Canamar"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_MISTAKEN_ARREST_NOT_GUILT",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41488662/CBS_ENTERPRISE_043_2784405_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475317514/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:017",
+      "publisher_title": "The Crossing",
+      "season": 2,
+      "episode": 18,
+      "publisher_description_sha256": "6932145a418e7fbdddeb05d747adea0bff2f637a73b4098885c48d91e738f459",
+      "original_synopsis_draft": "An unusual vessel traps Enterprise, and its incorporeal occupants are described as seeking an exchange of consciousness with the crew.",
+      "entity_mentions_source_relative": [
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_CONSCIOUSNESS_TRADE_CLAIM_NOT_IDENTITY_TRANSFER_PROOF",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490570/CBS_ENTERPRISE_044_2784418_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475321661/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:018",
+      "publisher_title": "Judgement",
+      "season": 2,
+      "episode": 19,
+      "publisher_description_sha256": "39151362a85745b857fe721da865667f30250ee5983fd0f9e14783c57985bdea",
+      "original_synopsis_draft": "Archer must answer accusations before a Klingon tribunal, with exile to Rura Penthe looming if the case goes against him.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Klingon",
+        "Empire",
+        "Rura Penthe"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_CHARGE_NOT_ESTABLISHED_CONSPIRACY",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41489315/CBS_ENTERPRISE_045_2784411_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475322357/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:019",
+      "publisher_title": "Horizon",
+      "season": 2,
+      "episode": 20,
+      "publisher_description_sha256": "e09ac73fd3a9de71954df2276a7c37cfedd485b14c7ae2f3fd3607bbbf238508",
+      "original_synopsis_draft": "Mayweather revisits the freighter where the publisher says he grew up while Enterprise investigates a nearby planetary anomaly.",
+      "entity_mentions_source_relative": [
+        "Enterprise",
+        "Mayweather"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_BIOGRAPHICAL_REPORT_NOT_AV_VERIFIED",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41488681/CBS_ENTERPRISE_046_2784409_1920x1080.jpg",
+      "publisher_video_url": "https://www.paramountplus.com/shows/video/1475325435/",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-s7-e07-e11-label-conflict-20261103",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_main_at_selection": "1b4a91cda50f6f5b7c1d7d7ad424cdb58b951e8b",
+  "observed_utc_date": "2026-11-03",
+  "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+  "primary_publisher_family": "paramount_corporate_publisher_family",
+  "comparison_csv_sha256": "1dbfe6a4b6af54a5eb2831108d358c8c3f984346b1b3a79de6301ccf2dc22aea",
+  "historical_publisher_page_sha256": "23dcb2cc9d7baec5e13ee27f80054ee3dcf9f95ae86985f6ecaaf1303f946cf1",
+  "current_publisher_page_raw_sha256": null,
+  "current_source_read_level": "RENDERED_EPISODE_GUIDE_TITLE_SLOT_BLURB_ONLY",
+  "actual_episode_or_script_content_read": false,
+  "accepted_source_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "records": [
+    {
+      "evidence_id": "ds9-s7e07-11-p01",
+      "source_local_row_id": "publisher:s7:ds9:006",
+      "season": 7,
+      "episode": 7,
+      "historical_and_current_paramount_title": "Once More Unto the Breach",
+      "publisher_card_locator": "Season 7 Episode Guide > Once More Unto the Breach > S7 E7 > short description",
+      "title_resolution": "EXACT_WITH_HISTORICAL_PUBLISHER_CSV",
+      "same_family_conflict_sources": [],
+      "original_card_description_paraphrase": "The publisher describes Worf risking serious consequences by sending an esteemed Klingon warrior back into battle.",
+      "editorial_status": "PENDING_HUMAN_REVIEW",
+      "accepted_work_id": null
+    },
+    {
+      "evidence_id": "ds9-s7e07-11-p02",
+      "source_local_row_id": "publisher:s7:ds9:007",
+      "season": 7,
+      "episode": 8,
+      "historical_and_current_paramount_title": "The Siege of AR-555",
+      "publisher_card_locator": "Season 7 Episode Guide > The Siege of AR-555 > S7 E8 > short description",
+      "title_resolution": "NUMERIC_TITLE_CONFLICT_WITH_SAME_FAMILY_STAR_TREK_SITE_UNRESOLVED",
+      "same_family_conflict_sources": [
+        {
+          "uri": "https://www.startrek.com/videos/episode-preview-the-siege-of-ar-558",
+          "observed_label": "Episode Preview: The Siege of AR-558",
+          "page_date": "2014-11-05",
+          "observation_scope": "FIRST_PARTY_VIDEO_PREVIEW_PAGE_TITLE_NOT_EPISODE_VIEWING"
+        },
+        {
+          "uri": "https://www.startrek.com/en-un/news/fan-favorite-deep-space-nine-quotes",
+          "observed_label": "The Siege of AR-558, Season 7, Episode 8",
+          "page_date": "2023-01-03",
+          "observation_scope": "FIRST_PARTY_EDITORIAL_ARTICLE_TITLE_REFERENCE_NOT_EPISODE_VIEWING"
+        }
+      ],
+      "original_card_description_paraphrase": null,
+      "editorial_status": "WITHHELD_UNRESOLVED_SAME_FAMILY_NUMERIC_TITLE_CONFLICT",
+      "accepted_work_id": null
+    },
+    {
+      "evidence_id": "ds9-s7e07-11-p03",
+      "source_local_row_id": "publisher:s7:ds9:008",
+      "season": 7,
+      "episode": 9,
+      "historical_and_current_paramount_title": "Covenant",
+      "publisher_card_locator": "Season 7 Episode Guide > Covenant > S7 E9 > short description",
+      "title_resolution": "EXACT_WITH_HISTORICAL_PUBLISHER_CSV",
+      "same_family_conflict_sources": [],
+      "original_card_description_paraphrase": "The publisher describes Dukat holding Kira captive after becoming the leader of a Bajoran religious group.",
+      "editorial_status": "PENDING_HUMAN_REVIEW",
+      "accepted_work_id": null
+    },
+    {
+      "evidence_id": "ds9-s7e07-11-p04",
+      "source_local_row_id": "publisher:s7:ds9:009",
+      "season": 7,
+      "episode": 10,
+      "historical_and_current_paramount_title": "It's Only A Paper Moon",
+      "publisher_card_locator": "Season 7 Episode Guide > It's Only A Paper Moon > S7 E10 > short description",
+      "title_resolution": "EXACT_WITH_HISTORICAL_PUBLISHER_CSV",
+      "same_family_conflict_sources": [],
+      "original_card_description_paraphrase": "The publisher describes Nog withdrawing into Vic Fontaine's holographic environment as he copes with losing a leg.",
+      "editorial_status": "PENDING_HUMAN_REVIEW",
+      "accepted_work_id": null
+    },
+    {
+      "evidence_id": "ds9-s7e07-11-p05",
+      "source_local_row_id": "publisher:s7:ds9:010",
+      "season": 7,
+      "episode": 11,
+      "historical_and_current_paramount_title": "Prodigal Daughter",
+      "publisher_card_locator": "Season 7 Episode Guide > Prodigal Daughter > S7 E11 > short description",
+      "title_resolution": "EXACT_WITH_HISTORICAL_PUBLISHER_CSV",
+      "same_family_conflict_sources": [],
+      "original_card_description_paraphrase": "The publisher describes Ezri investigating O'Brien's disappearance at home and learning unsettling details about her family.",
+      "editorial_status": "PENDING_HUMAN_REVIEW",
+      "accepted_work_id": null
+    }
+  ]
+}

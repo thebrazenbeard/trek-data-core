@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "PIC.PPLUS.S3.FIRST5.CARDS.20261103",
+  "role": "PIC",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "explorer_effect": "NONE",
+  "source": {
+    "local_id": "pic-pplus-s3-first5-episode-guide-20261103",
+    "provider": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+    "retrieval_date_utc": "2026-11-03",
+    "retrieval_method": "DIRECT_HTTP_GET_AND_RENDERED_WEB_VIEW",
+    "http_status": 200,
+    "raw_sample_receipts": [
+      {"bytes": 271825, "sha256": "02dbab5ad9518af0589ff5be618fee1a13e983270cdf948807dd32b4667c683f"},
+      {"bytes": 271825, "sha256": "9911e2cfb52ba80ee75e0e63063b4c04c7797b4df3f82b399446a164398539a4"}
+    ],
+    "raw_html_retained_in_public_repo": false,
+    "publisher_html_stability": "DIFFERING_RESPONSE_DIGESTS_SAME_CARD_OBSERVATIONS",
+    "full_primary_audiovisual_content_read": false,
+    "scope": "SEASON_GUIDE_CARD_METADATA_NOT_EPISODE_CONTENT",
+    "description_fingerprint_rule": "SHA256_UTF8_HTML_UNESCAPED_STRIPPED_EP_COPY_TEXT"
+  },
+  "upstream_discovery": {
+    "path": "proposals/discovery/modern-paramount-season3-20261102/pic-observed-slots.csv",
+    "sha256": "033f18a51a5ea16c452aab27bbcdd3373ed321f97bf38bd994d813b5edbb6fe0",
+    "effect": "SOURCE_LOCAL_CROSSCHECK_ONLY"
+  },
+  "source_local_episode_cards": [
+    {
+      "local_id": "pic-s3-e01-pplus-guide", "season": 3, "episode_number": 1,
+      "title": "The Next Generation", "guide_line_window": [104, 108],
+      "description_length_utf8_codepoints": 244,
+      "description_sha256": "4c81f2fabf65dd16a687854effef44fdd51c1a82b94090f6e92b1afa6ef3a9b0",
+      "video_url": "https://www.paramountplus.com/shows/video/dQo2jCxwxKSXtDyIPKb44W6hCEiqd_Ec/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/01/11/2160568387838/Picard_301_TP_0917_02037_RT_1942956_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Dr. Beverly Crusher", "Admiral Jean-Luc Picard", "Starfleet"],
+      "synopsis_paraphrase_candidate": "The publisher describes Picard answering Beverly Crusher's distress call and gathering allies for a final mission.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s3-e02-pplus-guide", "season": 3, "episode_number": 2,
+      "title": "Disengage", "guide_line_window": [109, 113],
+      "description_length_utf8_codepoints": 302,
+      "description_sha256": "19d24fa5ae3654b12bcb7fd84d7de1766b45f38b38a20974b260a3f80d4a2757",
+      "video_url": "https://www.paramountplus.com/shows/video/_hn3xX7z2ADLb5xnjtHAP_JQw9geuB_l/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/01/11/2160574531772/Picard_302_TP_0927_01612_RT_1948761_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Seven of Nine", "U.S.S. Titan", "Picard", "Raffi"],
+      "synopsis_paraphrase_candidate": "The publisher places Picard and Seven's crew aboard the Titan as Raffi searches for a dangerous weapon.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s3-e03-pplus-guide", "season": 3, "episode_number": 3,
+      "title": "Seventeen Seconds", "guide_line_window": [114, 118],
+      "description_length_utf8_codepoints": 280,
+      "description_sha256": "e12c551a469f3bc5409fd0ae1ad0e0995c24c8b6c51191dec3dd3ffa036eca78",
+      "video_url": "https://www.paramountplus.com/shows/video/NjhnDbV7slibv9pl7MZ9LBC5fAyrvJTN/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/01/11/2160574531773/Star_Trek_Picard_303_No_Logo_1969562_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Titan", "Vadic", "Raffi", "Worf", "Starfleet"],
+      "synopsis_paraphrase_candidate": "The publisher reports a revelation for Picard while the Titan evades Vadic and Raffi and Worf uncover a plot.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s3-e04-pplus-guide", "season": 3, "episode_number": 4,
+      "title": "No Win Scenario", "guide_line_window": [119, 123],
+      "description_length_utf8_codepoints": 221,
+      "description_sha256": "ff828d78204aeb13fe5e8a6932ee88a305ef4b9866462b66f02074ffb0643709",
+      "video_url": "https://www.paramountplus.com/shows/video/__96sEpIXP3iBbpyS_7nhEPaV_CVYiBv/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/01/11/2160576067777/Star_Trek_Picard_304_No_Logo-R1_1977607_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Riker", "Titan"],
+      "synopsis_paraphrase_candidate": "The publisher describes the disabled Titan drifting toward an anomaly while Picard and Riker confront the past.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s3-e05-pplus-guide", "season": 3, "episode_number": 5,
+      "title": "Imposters", "guide_line_window": [124, 128],
+      "description_length_utf8_codepoints": 203,
+      "description_sha256": "3f9cc910315ebdf1c23f430f1c9bd0491534f6e536380d5dd7a2c02cd4775f15",
+      "video_url": "https://www.paramountplus.com/shows/video/d_z5_o1wYC8jHl3NOgHSqe_QY_eMYkY_/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/01/11/2160576579605/star_trek_picard_305_HD_CBS_Interactive_ProRes_Rec709_422_2398_20230301_15756_2385631_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Starfleet", "Picard"],
+      "synopsis_paraphrase_candidate": "The publisher says Starfleet detains Picard as he questions whether a past crewmate is ally or enemy.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    }
+  ]
+}

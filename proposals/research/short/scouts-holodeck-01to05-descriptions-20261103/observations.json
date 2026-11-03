@@ -1,0 +1,73 @@
+{
+  "schema_version": "trek-scouts-holodeck-01to05-publisher-description-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_access": "SEARCH_RETRIEVED_PUBLIC_YOUTUBE_VIDEO_DESCRIPTION_NOT_VIDEO_PAGE_OPENED",
+  "verification_class": "PUBLISHER_DESCRIPTION_METADATA_READ_NOT_ANIMATION_VIEWED",
+  "source_family": "publisher:paramount-nickelodeon-youtube",
+  "publisher_channel_display_name": "Blaze and the Monster Machines",
+  "independent_upstream_families": 1,
+  "short_count": 5,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "animations_viewed": false,
+  "video_pages_opened": false,
+  "source_bound": false,
+  "close_read": false,
+  "raw_source_page_sha256": null,
+  "description_paraphrases": [
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:01",
+      "publisher_video_id": "69jkEMz87co",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=69jkEMz87co",
+      "publisher_video_display_date": "2026-01-23",
+      "publisher_video_title": "Holodeck Rescues #1 | Star Trek Scouts Save a Baby Animal! 🌋 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "During a volcanic eruption, JR, Roo, and Sprocket set out to reunite a stranded cosmic animal with its family using their rocket boots and other tools."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:02",
+      "publisher_video_id": "6AAJlEn3DeY",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=6AAJlEn3DeY",
+      "publisher_video_display_date": "2026-01-24",
+      "publisher_video_title": "Holodeck Rescues #2 | Star Trek Scouts Save a Baby Monkey in Outer Space! 🐵 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "After Shadowtrix takes a baby nobonimbus monkey, the Scouts chase through an asteroid storm and try to recover it with their space equipment."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:03",
+      "publisher_video_id": "fybF9xOzXs4",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=fybF9xOzXs4",
+      "publisher_video_display_date": "2026-01-25",
+      "publisher_video_title": "Holodeck Rescues #3 | Star Trek Scouts Stop a Mudslide & Save Dinosaurs! 🦖 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The Scouts rush to protect a galactic pterodactyl nest from an approaching mudslide, using tractor beams and coordination to attempt the rescue."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:04",
+      "publisher_video_id": "M02cKstXmjo",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=M02cKstXmjo",
+      "publisher_video_display_date": "2026-01-26",
+      "publisher_video_title": "Roo Helps a Space Whale Stuck in a Black Hole! 🐋🌟 | Star Trek: Scouts | Holodeck Rescues Episode #4",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A gormagander is pulled toward a black hole, prompting the Scouts to attempt a rescue involving tractor beams and a slingshot maneuver."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:05",
+      "publisher_video_id": "dZznmiZYV-A",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=dZznmiZYV-A",
+      "publisher_video_display_date": "2026-02-06",
+      "publisher_video_title": "Holodeck Rescues #5 | Star Trek Scouts vs. Shadowtrix in Underwater Mission! 🌊🌟 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "When Shadowtrix steals a glowray's natural light, the Scouts launch an underwater mission to confront her and help the affected sea creature."
+    }
+  ]
+}

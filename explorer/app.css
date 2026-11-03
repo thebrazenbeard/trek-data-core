@@ -146,6 +146,23 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .film-grid .card a { overflow-wrap: anywhere; font-weight: 750; }
 .film-grid .kicker { color: var(--coral); }
 
+/* ISBN-specific publisher observations are a separate unadmitted shelf, not
+   extra directory rows or approved public book synopses. */
+.publisher-editions { border: 1px solid var(--line); border-top: 12px solid var(--violet); border-left: 18px solid var(--amber); border-radius: 44px 4px 4px 4px; padding: 28px; background: var(--surface); }
+.publisher-edition-filters { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr) auto; align-items: end; gap: 13px; margin-top: 18px; }
+.publisher-edition-grid { margin-top: 18px; }
+.publisher-edition-card { display: grid; grid-template-columns: 76px minmax(0,1fr); align-items: start; gap: 14px; border-left-color: var(--violet); }
+.publisher-edition-card .artwork-slot { grid-row: 1 / span 2; }
+.publisher-edition-card h3 { margin: 4px 0 10px; overflow-wrap: anywhere; }
+.publisher-edition-card p { overflow-wrap: anywhere; }
+.publisher-edition-card .kicker { color: var(--violet); }
+.publisher-edition-card .edition-status { color: var(--amber); font-weight: 750; }
+.publisher-edition-card .edition-scope { color: var(--muted); font-size: .78rem; }
+.publisher-edition-card .edition-source { display: inline-block; margin-top: 8px; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.publisher-edition-card details { grid-column: 2; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); }
+.publisher-edition-card summary { cursor: pointer; color: var(--aqua); font-size: .78rem; }
+.publisher-edition-card .edition-tag-list { margin: 10px 0 0; padding-left: 19px; font: 650 .72rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+
 .discovery-directory { border: 1px solid var(--line); border-top: 12px solid var(--aqua); border-left: 18px solid var(--peach); border-radius: 44px 4px 4px 4px; padding: 28px; background: var(--surface); }
 .directory-state { color: var(--amber); margin: 8px 0 13px; }
 .directory-summary { display: flex; flex-wrap: wrap; gap: 9px; margin: 10px 0 20px; }
@@ -207,6 +224,7 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .directory-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .directory-search-field { grid-column: span 2; }
   .filter-action { grid-column: auto; }
+  .publisher-edition-filters { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @media (max-width: 760px) {
   .lcars-navigation { padding: 0 16px 7px; }
@@ -253,12 +271,13 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .stat dt { font-size: .73rem; }
   .stat dd { margin: 0; font-size: 1.6rem; }
   .search-panel, .research-leads { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
-  .films-panel { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
+  .films-panel, .publisher-editions { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
   .discovery-directory { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
   .readout { border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
-  #filters, .research-filters, .directory-filters { grid-template-columns: 1fr; }
+  #filters, .research-filters, .directory-filters, .publisher-edition-filters { grid-template-columns: 1fr; }
   .search-field, .research-search-field, .directory-search-field { grid-column: auto; }
   .research-counter { max-width: 100%; }
+  .publisher-edition-card { grid-template-columns: 64px minmax(0,1fr); gap: 11px; padding: 12px; }
   .footer { border-left-width: 12px; border-top-width: 9px; padding: 24px 20px 30px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=c41193699f28b096483ab603e6761755aea64cf0db5506d9b1c4869e34d1d80a">
-  <script src="./app.js?v=fd6c9d777ccc2f29e5ce225645184726c0c42eae1d6cabf21fbfa7ce92ff6e71" defer></script>
+  <link rel="stylesheet" href="./app.css?v=cdc3340a39c76bff0100ff808ac9121815efb3aeb3065e0dd2d38ad248d25d04">
+  <script src="./app.js?v=8b7ef29d234b19d5efc3c354010a597c67157aec9f99885552fca277d71389e4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -25,6 +25,7 @@
     <a class="navigation-primary" href="#discovery-directory">Universe directory <span id="discovery-nav-count">—</span></a>
     <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
     <a href="#films">Films <span id="film-nav-count">—</span></a>
+    <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
     <a href="#missions">Missions</a>
     <a href="#briefings">Briefings</a>
     <a href="#records">Continuity</a>
@@ -95,6 +96,23 @@
       <p class="result-summary" id="discovery-summary" aria-live="polite" aria-atomic="true">Waiting for source-local records.</p>
       <div class="directory-grid" id="discovery-list"></div>
       <p class="empty-state" id="discovery-empty" hidden>No source-local observations match these filters.</p>
+    </section>
+
+    <section id="publisher-editions" class="collection publisher-editions" aria-labelledby="publisher-editions-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Literary shelf / Source-local editions</p><h2 id="publisher-editions-heading">Publisher edition leads</h2></div>
+        <p>Three ISBN-specific Simon &amp; Schuster metadata observations from the accepted research ledger. These are <strong>unreconciled edition candidates</strong>, not three newly established Works, book close reads, or additions to the 1,214-row universe directory. Publisher-claim tags describe promotional copy, not fictional truth.</p>
+      </div>
+      <p id="publisher-edition-state" class="directory-state" role="status" aria-live="polite">Checking the independently indexed publisher-edition sidecar…</p>
+      <form id="publisher-edition-filters" class="publisher-edition-filters" role="search" aria-label="Search publisher edition metadata" autocomplete="off">
+        <div class="field"><label for="publisher-edition-query">Title, creator, ISBN or source-relative tags</label><input id="publisher-edition-query" type="search" name="edition-q" maxlength="240" placeholder="e.g. Kobayashi Maru, Ecklar, 9780743419987…" spellcheck="false"></div>
+        <div class="field"><label for="publisher-edition-tag">Source-relative tag</label><select id="publisher-edition-tag" name="edition-tag"><option value="all">All tags</option></select></div>
+        <div class="filter-action"><button type="reset">Clear edition filters</button></div>
+      </form>
+      <p class="directory-state">Machine-callable <a href="./lit-publisher-edition-leads.json" download="trek-publisher-edition-leads.json">publisher edition JSON</a> and the repository's bounded offline query tool are separate from the governed Work index. No private books or publisher synopses are served here.</p>
+      <p id="publisher-edition-summary" class="result-summary" aria-live="polite" aria-atomic="true">Waiting for publisher-edition leads.</p>
+      <div id="publisher-edition-list" class="card-grid publisher-edition-grid"></div>
+      <p id="publisher-edition-empty" class="empty-state" hidden>No publisher edition candidates match these filters.</p>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">

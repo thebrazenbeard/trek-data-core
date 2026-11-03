@@ -473,6 +473,8 @@ def main(argv=None) -> int:
     if not args.enable_local:
         print("DISABLED: no listener created. Pass --enable-local to opt in.", file=sys.stderr)
         return 2
+    if args.model_url is not None and args.port != 9876:
+        parser.error("Explorer model chat UI is pinned to listener port 9876")
     token = os.environ.get("TREK_LORE_CSRF_TOKEN") or secrets.token_urlsafe(32)
     try:
         service = LoreService(port=args.port, token=token, model_url=args.model_url,

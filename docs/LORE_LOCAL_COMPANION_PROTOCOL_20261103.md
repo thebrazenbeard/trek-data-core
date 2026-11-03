@@ -41,7 +41,8 @@ py .\tools\lore_local_companion.py --enable-local --model-url http://127.0.0.1:1
 ```
 
 The service prints a temporary session token and stays running **only on
-127.0.0.1:9876**. It does not launch or download a model, and it does not
+127.0.0.1:9876**. Chat UI and the public Pages CSP are pinned to this port;
+the CLI rejects a different port when a model URL is configured. It does not launch or download a model, and it does not
 operate when disabled. If using KoboldCPP instead of Ollama, configure its
 existing local OpenAI-compatible port and actual model ID through the same
 flags. The model ID is sent in the JSON `model` field.
@@ -51,7 +52,9 @@ Lore, click **Pair this local Explorer automatically**, check the consent
 box, and start talking. The one-click pairing avoids copying a long token on
 the locally served page. The token stays in page memory and is cleared when
 consent is removed, Lore closes, the conversation is cleared, or the page is
-left; the browser/password manager may still have its own policies.
+left; the browser/password manager may still have its own policies. This is
+**tab-local clearing**, not server-side token revocation. If a token was
+exposed, stop and restart the companion to rotate its process token.
 
 Alternatively use the public Explorer at
 **https://thebrazenbeard.github.io/trek-data-core/**. There, paste the token
@@ -62,8 +65,10 @@ change. Only the exact Pages origin is permitted by CORS;
 when you are at work or using another machine. If public-origin loopback
 fails, the local same-origin URL above is the supported fallback.
 
-Both paths start disconnected and make **zero localhost requests on page
-load**. The public Pages page does not auto-pair or store a token.
+Both paths start disconnected and make **zero companion API/model requests
+before opt-in**. The local fallback necessarily loads its public Explorer
+HTML/CSS/JSON from the same loopback origin. The public Pages page does not
+auto-pair or store a token.
 
 ## Existing deterministic search-only API
 

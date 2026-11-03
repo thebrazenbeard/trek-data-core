@@ -82,6 +82,13 @@ class LoreCompanionTests(unittest.TestCase):
         with mock.patch.object(lore, "create_server", side_effect=AssertionError("listen")):
             self.assertEqual(lore.main([]), 2)
 
+    def test_model_chat_cli_rejects_port_which_static_explorer_cannot_reach(self):
+        with mock.patch.object(lore, "create_server", side_effect=AssertionError("listen")):
+            with self.assertRaises(SystemExit) as exit_status:
+                lore.main(["--enable-local", "--port", "9877", "--model-url",
+                           "http://127.0.0.1:11434/v1/chat/completions"])
+        self.assertEqual(exit_status.exception.code, 2)
+
     def test_model_url_requires_exact_numeric_loopback_path_and_no_redirect(self):
         okay = "http://127.0.0.1:9931/v1/chat/completions"
         self.assertEqual(lore.verify_model_url(okay), okay)

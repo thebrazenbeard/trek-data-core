@@ -88,8 +88,12 @@ archive edition equivalence `UNVERIFIED`, and all coverage, denominator,
 admission, and artwork release effects `NONE`.
 
 The generator pins the accepted source file's SHA-256 and accepted commit;
-`--validate-sources` compares the whole overlay to a source reconstruction.
-Downloaded JSON alone cannot authenticate its contents. A future reviewed
+the query program independently pins the **exact canonical overlay SHA-256**
+even when `--validate-sources` is absent. Thus a downloaded index with
+altered tags, dates, search text, or private-looking fields fails closed when
+checked against the trusted program, while `--validate-sources` additionally
+compares the whole overlay to a source reconstruction. The downloaded JSON
+alone cannot authenticate itself without that trusted code pin. A future reviewed
 Explorer-card adapter can expose the overlay alongside the base directory,
 using separate counts and independent synopsis review; this batch does not
 silently add the new records to the displayed directory.

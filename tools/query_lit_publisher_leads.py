@@ -8,6 +8,8 @@ three-row count with the independently governed 1,214-row Explorer directory.
 from __future__ import annotations
 
 import argparse
+from datetime import date
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -15,7 +17,13 @@ from urllib.parse import urlsplit
 
 from build_lit_publisher_leads import (ACCEPTED_SOURCE_COMMIT, ACCEPTED_SOURCE_SHA256,
                                        CLAIM_PREFIXES, EXPECTED, INPUT, OUTPUT, ROOT,
-                                       TAG, build, encode, norm, valid_isbn)
+                                       TAG, build, encode, norm, safe_text, valid_isbn)
+
+# Trusted compiler-distribution pin, independent of any claimed hash *inside*
+# the downloaded JSON. Changing a single field must require a reviewed code
+# update, not merely an attacker-supplied new input digest.
+ACCEPTED_OVERLAY_SHA256 = "0568db4c7313f3a3da4b3cd4a5d9e56430fe09e64ed0687d8d9690d782df67d5"
+MAX_INDEX_BYTES = 65_536
 
 REQUIRED = frozenset(("row_id", "title", "creator", "publisher_series", "edition_format", "isbn13",
                       "publisher_publication_date", "publisher_imprint", "publisher_extent",
@@ -45,6 +53,15 @@ def validate(value: object, *, sources: bool = False) -> list[dict]:
                  if isinstance(tag, str) and tag.startswith("publisher-claim:")] if isinstance(tags, list) else []
         structural = ("format:" + str(row.get("edition_format", "")).lower(),
                       "kind:publisher-edition-lead", "medium:literature")
+        try:
+            valid_date = date.fromisoformat(row.get("publisher_publication_date", "")).isoformat() == row["publisher_publication_date"]
+        except (ValueError, TypeError):
+            valid_date = False
+        # Path-looking detail text is neither a plausible publisher extent nor
+        # content that should accidentally cross a private-archive boundary.
+        fields = (row.get("publisher_extent"), row.get("publisher_imprint"), row.get("publisher_series"))
+        clean_details = (all(safe_text(field, limit=180) for field in fields) and
+                         not any(c in row["publisher_extent"] for c in ("/", "\\", "%")))
         if not valid_isbn(isbn) or isbn not in EXPECTED or \
            (row.get("title"), row.get("creator"), row.get("edition_format")) != EXPECTED[isbn] or \
            row.get("row_id") != "publisher-edition:" + isbn or row["row_id"] <= previous or \
@@ -57,12 +74,18 @@ def validate(value: object, *, sources: bool = False) -> list[dict]:
            row.get("private_edition_equivalence") != "UNVERIFIED" or \
            row.get("synopsis_status") != "UNREVIEWED_PARAPHRASE_HELD_NOT_PUBLIC" or \
            row.get("promotional_claim_scope") != "PUBLISHER_COPY_TAGS_NOT_FICTIONAL_TRUTH" or \
+           not valid_date or not clean_details or \
            not isinstance(tags, list) or tags != sorted(set(tags)) or len(tags) != 8 or \
            any(tag not in tags for tag in structural) or len(promo) != 5 or \
            any(not TAG.fullmatch(tag) or tag.partition(":")[0] not in CLAIM_PREFIXES for tag in promo) or \
            not isinstance(row.get("search_text"), str) or not 1 <= len(row["search_text"]) <= 3000:
             raise ValueError("Untrusted publisher-edition row identity, provenance or tags")
         previous = row["row_id"]
+    # A self-declared source hash cannot authenticate arbitrary downloaded
+    # JSON. This code-owned exact overlay digest rejects forged in-namespace
+    # tags, search text, dates, paths and other metadata even without --validate-sources.
+    if hashlib.sha256(encode(value)).hexdigest() != ACCEPTED_OVERLAY_SHA256:
+        raise ValueError("Downloaded index disagrees with trusted pinned projection SHA-256")
     if sources and encode(value) != encode(build(ROOT)):
         raise ValueError("Downloaded publisher lead overlay differs from exact source-derived projection")
     return value["rows"]
@@ -101,6 +124,8 @@ def main() -> None:
        any(not tag or len(tag) > 145 for tag in args.tag):
         parser.error("Query exceeds publisher edition lead limits")
     try:
+        if args.index.is_symlink() or not args.index.is_file() or args.index.stat().st_size > MAX_INDEX_BYTES:
+            raise ValueError("Index missing, symlinked or exceeds bounded 64-KiB limit")
         value = json.loads(args.index.read_text(encoding="utf-8"))
         rows = validate(value, sources=args.validate_sources)
         print(json.dumps(query(rows, q=args.q, isbn=args.isbn, tags=tuple(args.tag),

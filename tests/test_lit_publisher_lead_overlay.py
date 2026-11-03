@@ -97,6 +97,33 @@ class LiteraryPublisherOverlayTests(unittest.TestCase):
         reject(lambda d: d["rows"][0].update(edition_format="HARDCOVER"))
         reject(lambda d: d.update(source_input_sha256="0" * 64))
 
+    def test_four_exact_offline_forgery_classes_fail_without_source_files(self):
+        def reject(mutator, reason):
+            candidate = copy.deepcopy(self.artifact)
+            mutator(candidate)
+            with self.subTest(reason=reason), self.assertRaises(ValueError):
+                query_module.validate(candidate, sources=False)
+
+        def forged_claim(data):
+            tags = data["rows"][0]["query_tags"]
+            target = next(i for i, tag in enumerate(tags) if tag.startswith("publisher-claim:"))
+            tags[target] = "publisher-claim:topic:nonexistent-canon-claim"
+            tags.sort()
+
+        reject(forged_claim, "publisher claim in same allowed tag namespace")
+        reject(lambda d: d["rows"][0].update(search_text="fabricated canonical matter"), "fabricated search text")
+        reject(lambda d: d["rows"][0].update(publisher_publication_date="2000-09-23"), "fabricated but syntactically valid date")
+        reject(lambda d: d["rows"][0].update(publisher_extent="C:\\Users\\patri\\private-book.epub"), "private path in extent")
+
+    def test_cli_rejects_oversized_index_before_json_parsing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            forged = Path(tmp) / "large.json"
+            forged.write_bytes(b" " * (query_module.MAX_INDEX_BYTES + 1))
+            result = subprocess.run([sys.executable, "tools/query_lit_publisher_leads.py", "--index", str(forged)],
+                                    cwd=ROOT, capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("64-KiB", result.stderr)
+
     def test_invalid_source_bytes_do_not_rebuild(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -115,6 +142,8 @@ class LiteraryPublisherOverlayTests(unittest.TestCase):
             with self.subTest(cmd=cmd):
                 result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(__import__("hashlib").sha256(builder.encode(self.artifact)).hexdigest(),
+                         query_module.ACCEPTED_OVERLAY_SHA256)
 
 
 if __name__ == "__main__":

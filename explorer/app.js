@@ -457,6 +457,7 @@
       source_locator: 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/',
       isbn: '9781783297481', cover_id: 13083310,
       edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa',
+      alt_text: 'Open Library jacket preview: The Autobiography of James T. Kirk; underlying copyright unresolved',
       medium_preview_sha256: 'aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a',
       medium_preview_width: 180, medium_preview_height: 275
     }],
@@ -464,6 +465,7 @@
       source_locator: 'https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/',
       isbn: '9781785659409', cover_id: 10694457,
       edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f',
+      alt_text: 'Open Library jacket preview: The Autobiography of Jean-Luc Picard; underlying copyright unresolved',
       medium_preview_sha256: '9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887',
       medium_preview_width: 180, medium_preview_height: 274
     }],
@@ -471,6 +473,7 @@
       source_locator: 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/',
       isbn: '9781789095333', cover_id: 12097815,
       edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09',
+      alt_text: 'Open Library jacket preview: The Autobiography of Kathryn Janeway; underlying copyright unresolved',
       medium_preview_sha256: '8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051',
       medium_preview_width: 180, medium_preview_height: 273
     }],
@@ -478,6 +481,7 @@
       source_locator: 'https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/',
       isbn: '9781785659416', cover_id: 11945787,
       edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d',
+      alt_text: 'Open Library jacket preview: The Autobiography of Mr. Spock; underlying copyright unresolved',
       medium_preview_sha256: '6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0',
       medium_preview_width: 180, medium_preview_height: 271
     }]
@@ -1392,7 +1396,8 @@
         if (!receipt || receipt.source_locator !== item.source_locator ||
             receipt.isbn !== item.isbn || receipt.cover_id !== item.cover_id ||
             receipt.edition_metadata_sha256 !== item.edition_metadata_sha256 ||
-            (mediumCatalog && (!/^[a-f0-9]{64}$/.test(receipt.medium_preview_sha256) ||
+            (mediumCatalog && (receipt.alt_text !== item.alt_text ||
+              !/^[a-f0-9]{64}$/.test(receipt.medium_preview_sha256) ||
               receipt.medium_preview_width !== 180 ||
               !Number.isSafeInteger(receipt.medium_preview_height)))) {
           throw new Error('External cover lacks an independently reviewed row/edition/cover crosswalk receipt.');

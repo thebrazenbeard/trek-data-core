@@ -1385,6 +1385,7 @@ test('forged medium manifests fail independently and cannot erase approved small
     (data) => { data.artwork[0].cover_id = 12857937; },
     (data) => { data.artwork[0].provider = 'UNREVIEWED_COVER_HOST'; },
     (data) => { data.artwork[0].rights_status = 'PUBLIC_DISPLAY_PERMISSION_VERIFIED'; },
+    (data) => { data.artwork[0].alt_text = 'Paramount officially licensed original movie frame; public domain rights granted'; },
     (data) => { data.artwork[0].attribution_url = 'https://evil.example/'; },
     (data) => { data.schema_version = '1.2.0'; },
   ];

@@ -222,7 +222,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   };
   vm.runInNewContext(appScript, {
     document, fetch, Option: OptionNode, URL, crypto: deterministicCrypto, TextDecoder, TextEncoder,
-    AbortController, setTimeout, clearTimeout,
+    AbortController, setTimeout: browserAudio.mockSetTimeout || setTimeout,
+    clearTimeout: browserAudio.mockClearTimeout || clearTimeout,
     location: { origin: 'https://example.test', ...(browserAudio.mockLocation || {}) },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
@@ -2477,6 +2478,99 @@ test('Lore opt-out, Clear and Close revoke in-flight model response without stal
     assert.equal(nodes.get('lore-chat-token').value, '', revoke);
     assert.equal(nodes.get('lore-chat-consent').checked, false, revoke);
     assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
+  }
+});
+
+test('Lore chat has a hard deadline even when browser local-network permission never settles fetch', async () => {
+  let expire;
+  let warn;
+  let releaseLate;
+  let backendCalls = 0;
+  const stuckRequest = new Promise((resolve) => { releaseLate = resolve; });
+  const validReply = (text) => ({ok: true, json: async () => ({
+    mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
+    model_text: text, publication_effect: 'NONE', model_repo_authority: 'NONE',
+    source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
+  })});
+  const nodes = await runWithIndex(catalog, 200, null, 404, {
+    mockSetTimeout: (fn, ms) => {
+      if (ms === 12000) warn = fn;
+      else if (ms === 45000) expire = fn;
+      else assert.fail(`unexpected Lore timeout ${ms}`);
+      return ms;
+    },
+    mockClearTimeout: (id) => assert.ok([12000, 45000].includes(id)),
+    chatBackend: (_url, options) => {
+      assert.ok(options.signal, 'fetch abort signal remains required');
+      backendCalls += 1;
+      return backendCalls === 1 ? stuckRequest : validReply('Second attempt worked.');
+    }
+  });
+  nodes.get('lore-chat-token').value = 'A'.repeat(40);
+  nodes.get('lore-chat-consent').checked = true;
+  nodes.get('lore-chat-input').value = 'A question worth keeping';
+  const first = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+  assert.equal(nodes.get('lore-chat-send').disabled, true);
+  assert.match(nodes.get('lore-chat-status').textContent, /Contacting/);
+  assert.equal(nodes.chatRequests.length, 1);
+  warn();
+  assert.match(nodes.get('lore-chat-status').textContent, /Still waiting/);
+  assert.match(nodes.get('lore-chat-status').textContent, /local-network access/);
+  expire();
+  await first;
+  assert.equal(nodes.chatRequests[0].opts.signal.aborted, true);
+  assert.equal(nodes.get('lore-chat-send').disabled, false, 'timeout must restore Send');
+  assert.match(nodes.get('lore-chat-status').textContent, /No local reply within 45 seconds/);
+  assert.match(nodes.get('lore-chat-status').textContent, /local-network permission/);
+  assert.match(nodes.get('lore-chat-status').textContent, /http:\/\/127\.0\.0\.1:9877\/explorer\//);
+  assert.equal(nodes.get('lore-chat-input').value, 'A question worth keeping');
+  assert.equal(nodes.get('lore-chat-consent').checked, true, 'retry still requires prior opt-in');
+  assert.equal(nodes.get('lore-chat-log').children.length, 0);
+  // The browser may deliver the original response well after our deadline;
+  // it must not append a stale turn or overwrite the recovery guidance.
+  releaseLate(validReply('Late response must be ignored.'));
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(nodes.get('lore-chat-log').children.length, 0);
+  assert.match(nodes.get('lore-chat-status').textContent, /No local reply within 45 seconds/);
+  await nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+  assert.equal(backendCalls, 2, 'visitor can retry without reloading or losing the question');
+  assert.equal(nodes.get('lore-chat-log').children.length, 2);
+  assert.match(nodes.get('lore-chat-log').textContent, /Second attempt worked/);
+});
+
+test('Lore does not truncate a slow valid response after its waiting notice on either origin', async () => {
+  for (const localPairEligible of [false, true]) {
+    const delays = new Map();
+    let release;
+    const backend = new Promise((resolve) => { release = resolve; });
+    const mockLocation = localPairEligible
+      ? {protocol: 'http:', hostname: '127.0.0.1', port: '9877',
+        pathname: '/explorer/', origin: 'http://127.0.0.1:9877'} : {};
+    const nodes = await runWithIndex(catalog, 200, null, 404, {
+      mockLocation,
+      mockSetTimeout: (fn, ms) => { delays.set(ms, fn); return ms; },
+      mockClearTimeout: (ms) => assert.ok(delays.has(ms)),
+      chatBackend: () => backend
+    });
+    nodes.get('lore-chat-token').value = 'A'.repeat(40);
+    nodes.get('lore-chat-consent').checked = true;
+    nodes.get('lore-chat-input').value = 'Let the local model warm up';
+    const submit = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+    assert.equal(delays.has(12000), true);
+    assert.equal(delays.has(localPairEligible ? 60000 : 45000), true,
+      'public permission waits and localhost cold starts must have a generous hard ceiling');
+    delays.get(12000)();
+    assert.match(nodes.get('lore-chat-status').textContent, /Still waiting/);
+    release({ok: true, json: async () => ({
+      mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
+      model_text: 'Thank you for waiting.', publication_effect: 'NONE',
+      model_repo_authority: 'NONE', source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
+    })});
+    await submit;
+    assert.equal(nodes.get('lore-chat-send').disabled, false);
+    assert.equal(nodes.get('lore-chat-log').children.length, 2,
+      `slow ${localPairEligible ? 'localhost' : 'public'} request must be retained`);
+    assert.match(nodes.get('lore-chat-log').textContent, /Thank you for waiting/);
   }
 });
 

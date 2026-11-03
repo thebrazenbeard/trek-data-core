@@ -572,6 +572,12 @@
   }
 
   const directoryState = { rows: [], available: false, limit: 40 };
+  // This is a separate display-only source-read layer. Discovery status stays
+  // UNVERIFIED_METADATA and no Work/evidence/coverage state is promoted.
+  const metadataRechecks = { byId: new Map(), available: false };
+  // Exact accepted deterministic bytes, generated from the reviewed B001–B004
+  // observations. Refuse any modified sidecar before reading its badge claims.
+  const metadataRecheckSha256 = '3d8b846bfa9728b02144490c00f03d79d6c1b517f04c86e3e1747f366f6e7be8';
   const directoryMediums = ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO'];
   // Source-local episode rows use compact catalog codes (for example VOY),
   // while visitors search for the series name they actually recognize.
@@ -639,7 +645,20 @@
       copy.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
       copy.append(el('h3', null, item.title));
       copy.append(el('p', 'directory-context', item.context));
-      copy.append(el('p', 'directory-source', `${item.source_group} · unverified · source-local`));
+      copy.append(el('p', 'directory-source', `${item.source_group} · unadmitted discovery · source-local`));
+      const check = metadataRechecks.byId.get(item.row_id);
+      if (check) {
+        const exact = check.title_check === 'EXACT';
+        copy.append(el('p', 'directory-recheck', exact
+          ? `Official rendered metadata rechecked · ${check.recheck_batch} · ${check.observed_utc_date}`
+          : `Official metadata read · ${check.recheck_batch} · title/identity ${check.title_check.replaceAll('_', ' ').toLowerCase()} · unresolved`));
+        const evidence = el('a', 'directory-recheck-source', 'Inspect official metadata evidence page');
+        evidence.href = check.official_evidence_url;
+        evidence.rel = 'noopener noreferrer';
+        evidence.target = '_blank';
+        copy.append(evidence);
+        copy.append(el('small', 'directory-provenance', `Observed fields: ${check.fields_observed.join(', ')} · rendered page; no raw-page custody, full-work read or identity admission`));
+      }
       appendSynopsis(copy, item.medium, artworkKey(item));
       copy.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
       if (item.details.length) copy.append(el('p', 'directory-context', item.details.join(' · ')));
@@ -780,6 +799,99 @@
       acceptDirectory(await response.json());
     } catch (error) {
       setDirectoryAvailability(false, `Multimedia discovery data rejected: ${error.message || 'Check discovery-catalog.json.'}`);
+    }
+  }
+
+  function acceptMetadataRechecks(data) {
+    if (!directoryState.available || !data || typeof data !== 'object' ||
+        data.schema_version !== '1.0.0' || data.data_status !== 'SOURCE_LOCAL_RENDERED_METADATA_RECHECKS_DISPLAY_ONLY' ||
+        data.coverage_effect !== 'NONE' || data.admission_effect !== 'NONE' ||
+        data.source_local_row_count !== directoryState.rows.length || data.source_local_row_count !== 1214 ||
+        data.embedded_research_lead_rows !== 218 || data.embedded_research_leads_rechecked !== 51 ||
+        data.embedded_research_leads_not_rechecked !== 167 || data.literary_directory_rows_rechecked !== 5 ||
+        data.rendered_metadata_rechecks !== 56 || data.unrechecked_source_local_rows !== 1158 ||
+        data.exact_title_matches !== 52 || data.unresolved_title_or_multipart_cases !== 4 ||
+        data.raw_webpage_bytes_custodied !== 0 || data.admitted_works_or_evidence !== 0 ||
+        !Array.isArray(data.input_observation_receipts) || data.input_observation_receipts.length !== 5 ||
+        !Array.isArray(data.rows) || data.rows.length !== 56) {
+      throw new Error('Unreviewed or promoted metadata recheck envelope.');
+    }
+    const directoryRows = new Map(directoryState.rows.map((row) => [row.row_id, row]));
+    const checkKeys = ['row_id', 'medium', 'source_local_title', 'source_local_context', 'source_local_group',
+      'source_local_input', 'source_local_locator', 'recheck_batch', 'official_observed_title',
+      'official_evidence_url', 'official_section_locator', 'observed_utc_date', 'title_check',
+      'fields_observed', 'source_observation_path', 'source_observation_sha256',
+      'source_representation', 'official_source_family', 'raw_webpage_sha256',
+      'source_local_discovery_state', 'governed_research_coverage_state', 'synopsis_publication_effect',
+      'admission_effect', 'coverage_effect'];
+    const accepted = new Map();
+    let exact = 0;
+    let leadCount = 0;
+    let literatureCount = 0;
+    for (const item of data.rows) {
+      const row = directoryRows.get(item?.row_id);
+      if (!row || accepted.has(item.row_id) ||
+          Object.keys(item).sort().join('|') !== checkKeys.slice().sort().join('|') ||
+          item.source_local_title !== row.title || item.source_local_context !== row.context ||
+          item.source_local_group !== row.source_group || item.source_local_input !== row.source_input ||
+          item.source_local_locator !== row.source_locator || item.medium !== row.medium ||
+          !['B001', 'B002', 'B003', 'B004'].includes(item.recheck_batch) ||
+          !['EXACT', 'UNRESOLVED_PUNCTUATION', 'UNRESOLVED_CASE', 'UNRESOLVED_MULTIPART'].includes(item.title_check) ||
+          (item.title_check === 'EXACT') !== (item.official_observed_title === row.title) ||
+          !/^2026-11-03$/.test(item.observed_utc_date) ||
+          !Array.isArray(item.fields_observed) || !item.fields_observed.length ||
+          item.fields_observed.some((value) => typeof value !== 'string' || !/^[a-z_]+$/.test(value)) ||
+          typeof item.official_section_locator !== 'string' || !item.official_section_locator ||
+          !/^proposals\/verification\/[a-z0-9/_-]+\.json$/.test(item.source_observation_path) ||
+          !/^[0-9a-f]{64}$/.test(item.source_observation_sha256) ||
+          item.source_representation !== 'RENDERED_OFFICIAL_METADATA_NOT_RAW_PAGE_CUSTODY' ||
+          item.raw_webpage_sha256 !== null ||
+          item.source_local_discovery_state !== 'CATALOGUED_METADATA_ONLY' ||
+          item.governed_research_coverage_state !== 'NOT_ADMITTED' ||
+          item.synopsis_publication_effect !== 'NONE' || item.coverage_effect !== 'NONE' || item.admission_effect !== 'NONE') {
+        throw new Error('Metadata badge would change source-local evidence or coverage status.');
+      }
+      let source;
+      try { source = new URL(item.official_evidence_url); } catch (_) { throw new Error('Invalid official recheck URL.'); }
+      if (source.protocol !== 'https:' || !['www.paramountplus.com', 'www.simonandschuster.com',
+          'www.penguinrandomhouse.com'].includes(source.hostname) || source.port || source.search || source.hash ||
+          source.username || source.password) {
+        throw new Error('Metadata recheck source outside accepted official publisher domains.');
+      }
+      if (row.medium === 'EPISODE' && (source.hostname !== 'www.paramountplus.com' ||
+          item.official_source_family !== 'paramount_corporate_publisher_family')) {
+        throw new Error('Episode check lacks official Paramount lineage.');
+      }
+      accepted.set(item.row_id, item);
+      if (item.title_check === 'EXACT') exact++;
+      if (item.row_id.startsWith('lead:')) leadCount++;
+      if (item.medium === 'LITERATURE') literatureCount++;
+    }
+    if (exact !== 52 || leadCount !== 51 || literatureCount !== 5) {
+      throw new Error('Unexpected source-local metadata check breakdown.');
+    }
+    metadataRechecks.byId = accepted;
+    metadataRechecks.available = true;
+    byId('discovery-metrics').append(el('span', 'directory-recheck-count',
+      'Official rendered metadata rechecked: 56 / 1,214 rows · 51 / 218 embedded research leads · 5 / 9 literary leads · 4 unresolved title/multipart cases'));
+    renderDirectory();
+  }
+
+  async function loadMetadataRechecks() {
+    try {
+      const response = await fetch('./metadata-rechecks.json', { cache: 'no-store' });
+      if (!response.ok) return; // Optional fail-closed projection: no badge on missing/stale Pages release.
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') return;
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength > 150000 || bytes.byteLength < 1000) return;
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (x) => x.toString(16).padStart(2, '0')).join('');
+      if (hex !== metadataRecheckSha256) return;
+      acceptMetadataRechecks(JSON.parse(new TextDecoder().decode(bytes)));
+    } catch (_) {
+      // A corrupt or unavailable projection cannot promote a discovery row.
+      metadataRechecks.byId.clear();
+      metadataRechecks.available = false;
     }
   }
 
@@ -1301,6 +1413,8 @@
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory()]).then(() => Promise.all([loadArtworkCatalog(), loadSynopsisCatalog()]));
+  Promise.all([loadFilmCatalog(), loadDirectory()]).then(() => Promise.all([
+    loadArtworkCatalog(), loadSynopsisCatalog(), loadMetadataRechecks()
+  ]));
   loadIndex();
 })();

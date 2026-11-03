@@ -110,6 +110,19 @@ jobs:
             python3 tools/build_publisher_synopsis_release.py --check
           fi
 
+      - name: Verify optional read-only metadata recheck projection
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          if git cat-file -e HEAD:explorer/metadata-rechecks.json 2>/dev/null || \
+             test -e explorer/metadata-rechecks.json || test -L explorer/metadata-rechecks.json; then
+            test -f explorer/metadata-rechecks.json
+            test ! -L explorer/metadata-rechecks.json
+            test -f tools/build_metadata_recheck_projection.py
+            test ! -L tools/build_metadata_recheck_projection.py
+            python3 tools/build_metadata_recheck_projection.py --check
+          fi
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -143,6 +156,7 @@ jobs:
             ! -path explorer/research-leads.json \
             ! -path explorer/discovery-catalog.json \
             ! -path explorer/film-catalog.json \
+            ! -path explorer/metadata-rechecks.json \
             ! -path explorer/synopsis-catalog.json -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
@@ -205,6 +219,19 @@ jobs:
             fi
           elif test -e explorer/synopsis-catalog.json || test -L explorer/synopsis-catalog.json; then
             echo "Refusing to deploy an uncommitted publisher synopsis release" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/metadata-rechecks.json 2>/dev/null; then
+            test -f explorer/metadata-rechecks.json
+            test ! -L explorer/metadata-rechecks.json
+            expected="$(git rev-parse HEAD:explorer/metadata-rechecks.json)"
+            actual="$(git hash-object explorer/metadata-rechecks.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified metadata recheck projection" >&2
+              exit 1
+            fi
+          elif test -e explorer/metadata-rechecks.json || test -L explorer/metadata-rechecks.json; then
+            echo "Refusing to deploy uncommitted metadata recheck projection" >&2
             exit 1
           fi
 

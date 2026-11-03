@@ -1,0 +1,59 @@
+{
+  "batch_id": "tos-man-trap-derivative-close-read-20261102",
+  "role": "TOS_AUDIOVISUAL_WORKER",
+  "admission": "PROPOSAL_ONLY",
+  "base_accepted_main": "441289e2521f1cb529a7a3343b5064184a713e8f",
+  "captured_at_utc_date": "2026-11-02",
+  "work": {
+    "candidate_title": "The Man Trap",
+    "series": "Star Trek: The Original Series",
+    "candidate_id": "tos-man-trap-candidate-20261102",
+    "official_season_episode_number": "UNRESOLVED_BETWEEN_OFFICIAL_ROSTERS"
+  },
+  "source": {
+    "source_local_id": "tvmeg-tos-man-trap-20261102",
+    "url": "https://tvmeg.com/index.php/2023/08/07/trekmantraptrans/",
+    "source_kind": "THIRD_PARTY_DERIVATIVE_TRANSCRIPT_PAGE",
+    "source_lineage_class": "SOURCE_SELF_REPORTED_UNVERIFIED_DERIVATION",
+    "upstream_self_report": {
+      "raw_html_physical_line": 946,
+      "publisher_statement": "Transcripts taken from Chrissie's Transcripts Site and modified.",
+      "attributed_upstream_url": "http://www.chakoteya.net/",
+      "attribution_is_independently_verified": false,
+      "this_episode_upstream_match_verified": false,
+      "upstream_candidate_direct_retrieval": "HTTP_503_NO_TEXT_READ",
+      "independent_corroboration_count": 0
+    },
+    "retrieval": "HTTP_200_AND_COMPLETE_AVAILABLE_ARTICLE_BODY_PROCESSED",
+    "rights_to_republish_source_text": "UNVERIFIED",
+    "authenticated_primary_av_or_studio_script": false,
+    "raw_html_bytes": 148006,
+    "raw_html_sha256": "03d886c23410b26586c5ca46b2a06e3c014112aa8d78283c718e982c89674be6",
+    "raw_html_candidate_body_physical_lines_inclusive": [483, 941],
+    "derivation": "pandoc 3.1.3 -f html -t plain --wrap=auto --columns=96",
+    "rendered_text_bytes": 32567,
+    "rendered_text_sha256": "b33d541becf98606f809f44bdae0a710a75828f224135c2e0e4854d453c753ac",
+    "rendered_text_numbered_lines": 982,
+    "complete_rendered_text_read_windows_inclusive": [[1, 125], [126, 250], [251, 375], [376, 500], [501, 625], [626, 750], [751, 875], [876, 982]],
+    "public_transcript_text_included": false,
+    "private_source_custody": "TEMPORARY_LOCAL_ONLY_NO_DURABLE_AUTHENTICATED_ARTIFACT"
+  },
+  "records": {
+    "local_entities": 23,
+    "source_relative_evidence": 17,
+    "proposed_assertions": 9,
+    "accepted_briefings": 0,
+    "global_identity_reconciliations": 0,
+    "coverage_events": 0
+  },
+  "files_sha256": {
+    "RESEARCH_RECORD.md": "4b4039b2bd65f966cb58d6f3a25a9edbc1259f97eb23b34e1416d010977f606c",
+    "assertions.json": "fb823f811d5f8e764594d8f88ca26f64d1071799049d82bab1eab2e2d2b31826",
+    "evidence.json": "2119e1be463146326c28f854db8867ca7d54bbc8fb750b5cd1933b83b467985a",
+    "local_entities.json": "7d3a5e014600a4e580522c4e10aeb9eb910a6d725ba7a986ba4392ea0f4eb10e"
+  },
+  "files_sha256_stream_digest": "04c19395a701321759adc40d0c7ce3c7b88aff08e61a5c01e38a97cddd17ae1f",
+  "files_sha256_stream_recipe": "sha256sum proposals/research/tos-man-trap-derivative-close-read-20261102/{RESEARCH_RECORD.md,assertions.json,evidence.json,local_entities.json} | sha256sum",
+  "status": "COMPLETE_DERIVATIVE_READING_NOT_ADMITTED",
+  "next_frontier": "Librarian source-edition binding, primary AV or authenticated script witness, independent audit and explicit research admission"
+}

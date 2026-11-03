@@ -1,0 +1,90 @@
+{
+  "record_type": "PROPOSED_SOURCE_RELATIVE_ASSERTIONS",
+  "source_local_id": "tvmeg-tos-man-trap-20261102",
+  "work_local_id": "tos-man-trap-candidate-20261102",
+  "assertions": [
+    {
+      "id": "a01", "subject_type": "LOCAL_ENTITY", "subject": "kirk",
+      "predicate": "CLAIMS", "object": "Research personnel on alien planets require annual medical certification by a starship surgeon.",
+      "evidence": ["e02"], "context_evidence_ids": ["e06"], "counter_evidence_ids": [],
+      "counter_evidence_search": "None in this single derivative edition refutes the fact that Kirk made the claim.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "KIRK_SPOKEN_POLICY_CLAIM", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "An authenticated source could establish the rule is misquoted or source representation differs; in-work policy's legal force remains unverified."
+    },
+    {
+      "id": "a02", "subject_type": "WORK", "subject": "tos-man-trap-candidate-20261102",
+      "predicate": "DEPICTS", "object": "Different landing-party members apparently perceive different faces associated with the Nancy encounter.",
+      "evidence": ["e01"], "context_evidence_ids": ["e08", "e10"], "counter_evidence_ids": [],
+      "counter_evidence_search": "No direct counter to the narration within the read page.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "DERIVATIVE_NARRATIVE_PERCEPTION", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "An authenticated audiovisual cut might distinguish actual staging from text gloss, performance and editing."
+    },
+    {
+      "id": "a03", "subject_type": "WORK", "subject": "tos-man-trap-candidate-20261102",
+      "predicate": "DEPICTS", "object": "A plant-poison explanation appears in NANCY-labeled and Crater speaker turns; later officers report contrary medical and botanical findings.",
+      "evidence": ["e03", "e04", "e06"], "context_evidence_ids": ["e05"], "counter_evidence_ids": [],
+      "counter_evidence_search": "Medical lines contest the causal account, not the record that parties disagreed.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "SOURCE_RELATIVE_COMPETING_ATTRIBUTED_UTTERANCES_NOT_OBJECTIVE_CAUSE", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "A distinct edition might show a physical event not present in the text, changing which accounts are supported."
+    },
+    {
+      "id": "a04", "subject_type": "LOCAL_ENTITY", "subject": "mccoy",
+      "predicate": "CLAIMS", "object": "Examination found an unexplained absence of sodium chloride in Darnell's body.",
+      "evidence": ["e05"], "context_evidence_ids": ["e03", "e06"], "counter_evidence_ids": [],
+      "counter_evidence_search": "No independent specimen, instrument trace or conflicting numerical report appears in the text.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "ATTRIBUTED_MEDICAL_REPORT", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "An authenticated independent medical record, scene or source edition might contradict the reported test."
+    },
+    {
+      "id": "a05", "subject_type": "LOCAL_ENTITY", "subject": "crater",
+      "predicate": "CLAIMS", "object": "A creature killed the historical Nancy, who Crater says is buried locally; he cannot firmly date the death beyond roughly one or two years.",
+      "evidence": ["e11b"], "context_evidence_ids": ["e01", "e12"], "counter_evidence_ids": [],
+      "counter_evidence_search": "No independent death witness or burial record is depicted in the read text.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "CRATER_HISTORICAL_DEATH_TESTIMONY_ONLY", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "Independent evidence of Nancy's death, its cause, burial or chronology could establish or refute each component separately."
+    },
+    {
+      "id": "a06", "subject_type": "WORK", "subject": "tos-man-trap-candidate-20261102",
+      "predicate": "DEPICTS", "object": "Attributed Crater and MCCOY-labeled speaker turns argue for protecting or feeding the creature, while Kirk's turns emphasize reported crew deaths; a later Kirk speaker turn invokes the buffalo.",
+      "evidence": ["e11c", "e12", "e14", "e15"], "context_evidence_ids": ["e03", "e07"], "counter_evidence_ids": [],
+      "counter_evidence_search": "The derivative text supplies competing speaker positions; it supplies no independent narrator's verdict on survival rights or crew security.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "SOURCE_RELATIVE_ATTRIBUTED_ETHICAL_POSITIONS_NOT_NARRATOR_VERDICT", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "A better-authenticated cut could alter which deaths, threats or nonlethal options are presented."
+    },
+    {
+      "id": "a07", "subject_type": "WORK", "subject": "tos-man-trap-candidate-20261102",
+      "predicate": "DEPICTS", "object": "Crew members raise questions about correspondence between a missing Green and Green-labeled sightings, and between familiar appearances and uncertain speaker identity.",
+      "evidence": ["e07", "e08", "e10", "e13", "e14"], "context_evidence_ids": ["e09"], "counter_evidence_ids": [],
+      "counter_evidence_search": "The text contains several competing indications about identity but no stable identity-authentication mechanism.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "SOURCE_RELATIVE_SIGHTING_AND_IDENTIFICATION_QUESTIONS", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "Primary AV shot continuity, speech or independently authenticated crew logs could resolve specific appearance occurrences."
+    },
+    {
+      "id": "a08", "subject_type": "WORK", "subject": "tos-man-trap-candidate-20261102",
+      "predicate": "DEPICTS", "object": "A McCoy-labeled speaker refuses to shoot the apparent Nancy and later verbally rejects that identification; the transcript supplies final pleas but no explicit action stage direction.",
+      "evidence": ["e14"], "context_evidence_ids": ["e09", "e11b", "e13"], "counter_evidence_ids": [],
+      "counter_evidence_search": "No explicit stage direction in the derivative authenticates exactly how the final weapon is fired.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "TRANSCRIBED_DIALOGUE_AND_INFERRED_STAGING_BOUNDARY", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "A primary audiovisual or script witness must settle movements, facial transformations and shot sequence."
+    },
+    {
+      "id": "a09", "subject_type": "LOCAL_ENTITY", "subject": "crater",
+      "predicate": "CLAIMS", "object": "A once populous local kind has only one survivor and needs salt to live.",
+      "evidence": ["e11a", "e11c"], "context_evidence_ids": ["e12"], "counter_evidence_ids": [],
+      "counter_evidence_search": "No source-independent census, specimen comparison or ecological study appears in the derivative page.",
+      "status": "PROPOSED", "proposed_projection_status": "UNRESOLVED",
+      "scope": {"truth_level": "CRATER_ECOLOGICAL_AND_SALT_DEPENDENCE_TESTIMONY_ONLY", "edition": "TVMEG_DERIVATIVE_TEXT"},
+      "falsifier": "External work, source edition evidence, or specimens could independently challenge survivor count and salt requirement."
+    }
+  ],
+  "accepted_assertions": 0,
+  "projection_effect": "NONE"
+}

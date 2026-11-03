@@ -203,8 +203,24 @@ def run_repository_validation():
  if rc:raise ValueError('repository admission validation failed before projection build: '+output.getvalue())
 def verify_written_bundle(out):
  path=Path(__file__).with_name('projection_bundle.py'); spec=importlib.util.spec_from_file_location('trek_projection_bundle_compiler',path); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); module.verify_projection(out)
+def require_unaliased_output_path(path):
+ """Check all lexical components, including ones preceding a ``..`` segment."""
+ path=Path(path); absolute=path if path.is_absolute() else Path.cwd()/path
+ for component in (absolute,*absolute.parents):
+  if component.is_symlink():raise ValueError(f'projection output path has symlinked ancestor: {component}')
+def prepare_output_directory(out):
+ """Reject existing aliases or non-files before writing deterministic outputs."""
+ out=Path(out)
+ require_unaliased_output_path(out)
+ if out.exists() and not out.is_dir():raise ValueError('projection output path is not a directory')
+ out.mkdir(parents=True,exist_ok=True)
+ for name in (*CANONICAL_OUTPUTS,'manifest.json'):
+  path=out/name
+  if path.is_symlink():raise ValueError(f'{name}: symlinked projection output is forbidden')
+  if path.exists() and not path.is_file():raise ValueError(f'{name}: projection output must be a regular file')
+  if path.exists() and path.stat().st_nlink>1:raise ValueError(f'{name}: hardlinked projection output is forbidden')
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('--out',required=True); ap.add_argument('--projection-version',default='0.2.0'); ap.add_argument('--schema-version',required=True); ap.add_argument('--methodology-version',required=True); ap.add_argument('--research-head',required=True); ap.add_argument('--reconciliation-head',required=True); ap.add_argument('--compiler-commit',required=True); args=ap.parse_args(); run_repository_validation(); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
+ ap=argparse.ArgumentParser(); ap.add_argument('--out',required=True); ap.add_argument('--projection-version',default='0.2.0'); ap.add_argument('--schema-version',required=True); ap.add_argument('--methodology-version',required=True); ap.add_argument('--research-head',required=True); ap.add_argument('--reconciliation-head',required=True); ap.add_argument('--compiler-commit',required=True); args=ap.parse_args(); run_repository_validation(); out=Path(args.out); prepare_output_directory(out)
  records=list(iter_typed_records(DATA_ROOTS)); decisions=list(iter_typed_records((ROOT/'reconciliation',))); logical=build_logical_projection(records,decisions); specs={'entities.jsonl':(logical['entities'],'local_entity_id'),'facts.jsonl':(logical['facts'],'assertion_id'),'relations.jsonl':(logical['relations'],'relation_id'),'contested.jsonl':(logical['contested'],'assertion_id'),'unresolved.jsonl':(logical['unresolved'],'assertion_id'),'provenance.jsonl':(logical['provenance'],'provenance_id'),'assertion_history.jsonl':(logical['assertion_history'],'assertion_id'),'reconciliation_history.jsonl':(logical['reconciliation_history'],'decision_id')}; outputs={}
  for name,(rows,key) in specs.items():h,count=write_jsonl(out/name,rows,key); outputs[name]={'role':name.removesuffix('.jsonl'),'hash':h,'count':count}
  predicate_hash=canonical_json_hash(PREDICATE_REGISTRY); scope_hash=canonical_json_hash(SCOPE_KEY_REGISTRY); logical_input=[r for r in records if r.get('record_type') in {'source','work','source_work_binding','local_entity','evidence','assertion'}]; logical_input_hash=sha256_bytes(''.join(canonical(r)+'\n' for r in sorted(logical_input,key=canonical)).encode()); input_identity={'research_head':args.research_head,'reconciliation_head':args.reconciliation_head,'schema_version':args.schema_version,'methodology_version':args.methodology_version,'predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'compiler_commit':args.compiler_commit,'logical_input_records_hash':logical_input_hash,'reconciliation_history_hash':outputs['reconciliation_history.jsonl']['hash']}; input_hash=sha256_bytes(canonical(input_identity).encode()); projection_hash=sha256_bytes(canonical({n:outputs[n]['hash'] for n in CANONICAL_OUTPUTS}).encode()); manifest={'record_type':'projection_manifest','projection_version':args.projection_version,'schema_version':args.schema_version,'methodology_version':args.methodology_version,'compiler_commit':args.compiler_commit,'research_head':args.research_head,'reconciliation_head':args.reconciliation_head,'predicate_registry_hash':predicate_hash,'scope_key_registry_hash':scope_hash,'input_hash':input_hash,'projection_hash':projection_hash,'outputs':outputs}; (out/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n',encoding='utf-8'); verify_written_bundle(out); print(projection_hash)

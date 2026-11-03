@@ -46,6 +46,35 @@ hash `sha256:a3214eb7a9f67c79f46548d0ef19371134ce5fb6b0dfdecb27e34b0726212f4b`.
 The semantic diff returned `changes=0`, and SQLite, PostgreSQL and
 graph/search projection builders completed successfully.
 
+Projection bundle verification also rejects symlinked and hardlinked manifest
+or JSONL artifacts, even if their current bytes match the declared hashes. The
+compiler preflights its output directory, every lexical ancestor (including
+components before `..`), and named files before writing, preventing ordinary
+builds from silently replacing an aliased file outside the bundle.
+This is an output-path consistency safeguard, not a claim of protection against
+concurrent hostile filesystem mutation or proof of source authenticity.
+
+## Verification receipts are not upstream provenance certificates
+
+`projection_bundle.verify_projection()` establishes canonical JSONL byte
+serialization, declared output hashes/counts, required partitions, and the
+aggregate projection hash. It **cannot** independently authenticate the
+manifest's `research_head`, `reconciliation_head`, `compiler_commit`,
+`schema_version`, `methodology_version`, registry hashes, or `input_hash` from
+the bundle alone. For those fields, the returned receipt explicitly says
+`UNVERIFIED_DECLARATION` by default. A changed `research_head` can accompany
+the old `input_hash` and still pass intrinsic bundle checks; this must never be
+interpreted as accepted Git state or source custody.
+
+A caller with **independently obtained accepted values** may pass a bounded
+`expected_identity` map to `verify_projection(root, expected_identity={...})`.
+Only exact-matching supplied fields change to `EXTERNAL_EXPECTATION_MATCHED`;
+the rest remain `UNVERIFIED_DECLARATION`. A mismatch fails closed. This is a
+comparison to caller-supplied expectations—not an independent source lookup,
+review approval, admission event, or verification that the expectations
+themselves are authoritative. Derived SQLite, PostgreSQL, and graph/search
+receipts inherit these explicit statuses when no expectations are provided.
+
 These checks verify contract mechanics on synthetic fixtures and the empty
 repository only. They do **not** establish an admitted Star Trek corpus,
 source licensing, independent research signoff, or live service performance.

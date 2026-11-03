@@ -298,6 +298,8 @@ jobs:
             ! -path explorer/synopsis-catalog.json \
             ! -path explorer/artwork-catalog.json \
             ! -path explorer/artwork-catalog-v1.3.json \
+            ! -path explorer/beyond-premiere-photo.json \
+            ! -path explorer/beyond-premiere-release-decision.json \
             ! -path explorer/licensed-artwork \
             ! -path 'explorer/licensed-artwork/*' \
             ! -path explorer/art-original-episode.svg \
@@ -313,6 +315,24 @@ jobs:
             actual="$(git hash-object "$path")"
             if test "$actual" != "$expected"; then
               echo "Refusing to deploy modified Explorer content: $path" >&2
+              exit 1
+            fi
+          done
+          # The two accepted Beyond-premiere JSON records are documentary,
+          # held-only source metadata. This does not allow a photograph or a
+          # publication decision to bypass the separate artwork release gate.
+          for path in explorer/beyond-premiere-photo.json explorer/beyond-premiere-release-decision.json; do
+            if git cat-file -e "HEAD:$path" 2>/dev/null; then
+              test -f "$path"
+              test ! -L "$path"
+              expected="$(git rev-parse "HEAD:$path")"
+              actual="$(git hash-object "$path")"
+              if test "$actual" != "$expected"; then
+                echo "Refusing to deploy modified held documentary metadata: $path" >&2
+                exit 1
+              fi
+            elif test -e "$path" || test -L "$path"; then
+              echo "Refusing to deploy uncommitted held documentary metadata: $path" >&2
               exit 1
             fi
           done

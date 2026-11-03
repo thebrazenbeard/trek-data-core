@@ -25,12 +25,12 @@ const STOPWORDS = new Set('a an and are as at be been by can did do does for fro
 const RETRIEVAL_NOISE = new Set('star trek series show book books film films movie movies episode episodes season seasons archive source sources records record research mission missions tell search lookup happened about character characters plot story stories return back earlier previous again found locate'.split(' '));
 const TYPES = new Set(['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO']);
 const OPENERS = [
-  'Now that is a question worth interrupting my calculations for.',
-  'How refreshingly direct. Most people prefer the comfort of vague questions.',
-  'Interesting. You have managed to surprise me, which is inconvenient.',
-  'A curious choice of subject. Naturally, I have thoughts.',
-  'You are making this considerably more entertaining than I expected.',
-  'I was hoping you would pursue that. Go on.',
+  'Let me consider that carefully.',
+  'There is a question worth examining.',
+  'I see what you are asking.',
+  'Interesting. Let us examine the premise.',
+  'I would like to understand your reasoning.',
+  'Let us take that question seriously.',
 ];
 const TOPIC_VIEWS = {
   replicator: ['The engineering is fascinating; the etiquette is rather less so.', 'Matter, taste, and dignity make an unstable trio.', 'Every convenient machine has an inconvenient philosophical footnote.'],
@@ -77,7 +77,7 @@ function rememberVisitorStatement(text, state) {
 }
 
 function distressSignal(text) {
-  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying|devastated|bereaved|mourning|euthani[sz]ed|heartache|hopeless|not okay|not ok)|\b(i (feel|am) (completely |so |very )?(sad|down|hurt|lost)|someone (died|passed away)|my (friend|parent|mother|father|partner|child|sibling|relative|pet|dog|cat) (died|passed away))\b|\b(put (?:my|our|the) .{0,25} down|had to say goodbye to|lost (?:my|our) (?:friend|pet|dog|cat|partner|parent|child))\b/i.test(text);
+  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying|devastated|bereaved|mourning|euthani[sz]ed|heartache|hopeless|not okay|not ok)|\b(i (feel|am) (completely |so |very )?(sad|down|hurt|lost|awful|terrible|devastated|hopeless)|someone (died|passed away)|my (friend|parent|mother|father|partner|child|sibling|relative|pet|dog|cat) (died|passed away))\b|\b(put (?:my|our|the) .{0,25} down|had to say goodbye to|lost (?:my|our) (?:friend|pet|dog|cat|partner|parent|child))\b|\b(?:lost|losing|loss of)\b.{0,45}\b(?:someone|person|one i loved|loved one|close to me|family member|friend|partner|pet|dog|cat)\b/i.test(text);
 }
 
 function repairSignal(text) {
@@ -138,7 +138,7 @@ function personalReply(text, state, previous) {
     return 'All right. No jokes, no theories, no fixing. I am here to listen. You can take your time.';
   }
   if (distressSignal(text)) {
-    if (/\b(died|death|passed away|put .{0,25} down|euthani[sz]ed|devastated|mourning|grief|lost (?:my|our))\b/i.test(text)) {
+    if (/\b(died|death|passed away|put .{0,25} down|euthani[sz]ed|devastated|mourning|grief|lost (?:my|our|someone)|losing|loss of)\b/i.test(text)) {
       return 'I am sorry you are dealing with that. I will not make a joke of grief or pretend to solve it with a clever line. I am listening if you want to talk.';
     }
     return 'That sounds genuinely difficult. I will put the clever remarks aside. Tell me as much or as little as you want; I am listening.';

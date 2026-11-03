@@ -108,6 +108,8 @@ test('grief and anti-teasing language preempt character sarcasm across consecuti
     ['I had to put my dog down this morning.', 'I am devastated.', 'Please stop teasing me.'],
     ['I lost my cat yesterday.', 'I am not okay.', 'No sarcasm, please.'],
     ['My friend passed away.', 'Please be gentle.', 'I just need someone to listen.'],
+    ['I lost someone I loved yesterday. I feel awful.', 'Can we talk without jokes for a moment?', 'Please just listen.'],
+    ['I am grieving the loss of a loved one.', 'It hurts.', 'Please stop teasing me.'],
   ];
   for (const prompts of cases) {
     const engine = createLoreSemanticEngine();
@@ -118,4 +120,11 @@ test('grief and anti-teasing language preempt character sarcasm across consecuti
       assert.deepEqual(references, []);
     }
   }
+});
+
+test('ordinary lost objects do not become evidence of grief and default opening stays neutral', () => {
+  const engine = createLoreSemanticEngine();
+  const reply = engine.ask('I lost my keys yesterday.');
+  assert.equal(engine.getState().supportive, false);
+  assert.doesNotMatch(reply.text, /entertaining|refreshingly direct|surprised me|inconveniently/i);
 });

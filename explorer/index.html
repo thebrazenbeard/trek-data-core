@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=c6d588b4bd835f002c0f9f32d165780f8d7ae41c802af54a6bcc79482654cb52">
-  <script src="./app.js?v=dedf830f7563d1dbbb756440b137b0cc921c6cb4b58d99aac55af48a9e32209a" defer></script>
+  <link rel="stylesheet" href="./app.css?v=d79d495cbc380a15f5a179c934bc989d8a111f7d190f2d0d910d92c5a49ad8ec">
+  <script src="./app.js?v=e95febb1949b11072e6466296c1a992f485bfc29cb5207505b3c3fc8b1146223" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -83,6 +83,7 @@
         <div class="field directory-search-field"><label for="discovery-query">Search discoveries</label><input id="discovery-query" type="search" name="discovery-q" placeholder="Title, publisher, source, series…" spellcheck="false"></div>
         <div class="field"><label for="discovery-medium">Medium</label><select id="discovery-medium" name="medium"><option value="all">All media</option></select></div>
         <div class="field"><label for="discovery-series">Series (source-local)</label><select id="discovery-series" name="series"><option value="all">All series</option></select></div>
+        <div class="field"><label for="discovery-kind">Candidate type</label><select id="discovery-kind" name="kind"><option value="all">All candidate types</option></select></div>
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
         <div class="filter-action"><button type="reset">Clear directory filters</button></div>
       </form>

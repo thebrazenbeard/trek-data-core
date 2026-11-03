@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -67,6 +67,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('research-mission').value = 'all';
   nodes.get('discovery-medium').value = 'all';
   nodes.get('discovery-series').value = 'all';
+  nodes.get('discovery-kind').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
@@ -541,6 +542,36 @@ test('series facet filters source-local episode observations without counting th
   assert.equal(nodes.get('briefing-count').textContent, '0', 'source-local facet cannot change accepted admission');
 });
 
+test('candidate-kind facet distinguishes discovery types without promoting admission or changing totals', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
+  const kind = nodes.get('discovery-kind');
+  const values = kind.children.map((option) => option.value);
+  assert.equal(values[0], 'all');
+  assert.ok(values.includes('WIKIDATA_EPISODE'));
+  assert.ok(values.includes('PUBLISHER_EPISODE_SLOT'));
+  assert.ok(values.includes('PROMOTIONAL_ANIMATION'));
+  assert.equal(values.length, new Set(discovery.rows.map((row) => row.candidate_kind)).size + 1);
+
+  kind.value = 'PROMOTIONAL_ANIMATION';
+  nodes.get('discovery-filters').fire('change');
+  const animated = discovery.rows.filter((row) => row.candidate_kind === 'PROMOTIONAL_ANIMATION');
+  assert.match(nodes.get('discovery-summary').textContent, new RegExp(`${animated.length} source-local metadata rows match`));
+  assert.ok(animated.length > 0 && animated.length <= 40);
+  assert.equal(nodes.get('discovery-list').children.length, animated.length);
+  assert.match(nodes.get('discovery-list').textContent, /PROMOTIONAL ANIMATION/);
+
+  nodes.get('discovery-medium').value = 'LITERATURE';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 0, 'incompatible medium and candidate kind are not merged');
+  kind.value = 'NOVEL';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length,
+    discovery.rows.filter((row) => row.medium === 'LITERATURE' && row.candidate_kind === 'NOVEL').length);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214', 'filtering does not redefine source-local inventory');
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'filtering does not admit candidate data');
+});
+
 test('untrusted directory cannot forge admission or publisher navigation', async () => {
   const catalogData = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const accepted = structuredClone(catalogData);
@@ -873,6 +904,7 @@ test('HTML exposes the separate research search and status elements', () => {
     'prominent directory count links to the source-local listing rather than implying 12 total episodes');
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);
   assert.match(html, /for="discovery-series">Series \(source-local\)<\/label>/, 'series facet must disclose its source-local scope');
+  assert.match(html, /<label for="discovery-kind">Candidate type<\/label><select id="discovery-kind" name="kind">/, 'candidate facet is labeled and connected to the live directory form');
   assert.match(html, /for="discovery-lineage">Source group<\/label>/, 'source-group labels do not imply independent publishers');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);

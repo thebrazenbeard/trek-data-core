@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "lane": "LIT",
+  "batch_kind": "SOURCE_LOCAL_EDITION_COVER_METADATA_GAP",
+  "observed_on_utc": "2026-11-03",
+  "proposal_only": true,
+  "book_content_read": false,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "global_identity_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "candidate_directory_row": {
+    "row_id": "literature:prh-autobiography-kirk",
+    "title": "The Autobiography of James T. Kirk",
+    "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+    "edition_match_scope": "PAPERBACK_ISBN_ONLY",
+    "isbn13": "9781783297481"
+  },
+  "edition_observations": [
+    {
+      "local_observation_id": "kirk-prh-paperback",
+      "format": "PAPERBACK",
+      "isbn13": "9781783297481",
+      "us_publication_date": "2016-07-05",
+      "edition_metadata_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "edition_metadata_provider": "Penguin Random House (Titan Books distributor)",
+      "cover_link_observation_page": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "cover_link_locator": "https://images1.penguinrandomhouse.com/cover/9781783297481",
+      "cover_evidence_scope": "PUBLISHER_IMAGE_LINK_ONLY_NO_BINARY_RECEIPT",
+      "cover_display_rights": "NOT_ESTABLISHED",
+      "edition_identity_status": "PUBLIC_METADATA_OBSERVATION_NOT_AUTHENTICATED_TEXT",
+      "source_html_sha256": null
+    },
+    {
+      "local_observation_id": "kirk-titan-hardcover",
+      "format": "HARDCOVER",
+      "isbn13": "9781783297467",
+      "us_publication_date": "2015-09-08",
+      "edition_metadata_locator": "https://titanbooks.com/8302-the-autobiography-of-james-t-kirk/",
+      "edition_metadata_provider": "Titan Books publisher",
+      "cover_link_observation_page": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "cover_link_locator": "https://images4.penguinrandomhouse.com/cover/9781783297467",
+      "cover_evidence_scope": "PUBLISHER_IMAGE_LINK_ONLY_NO_BINARY_RECEIPT",
+      "cover_display_rights": "NOT_ESTABLISHED",
+      "edition_identity_status": "PUBLIC_METADATA_OBSERVATION_NOT_AUTHENTICATED_TEXT",
+      "source_html_sha256": null
+    },
+    {
+      "local_observation_id": "kirk-overdrive-ebook",
+      "format": "EBOOK",
+      "isbn13": "9781783297474",
+      "us_publication_date": "2015-09-08",
+      "edition_metadata_locator": "https://library2go.overdrive.com/library2go-111-134/content/media/2148177",
+      "edition_metadata_provider": "OverDrive licensed-library distributor",
+      "cover_link_observation_page": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "cover_link_locator": "https://images1.penguinrandomhouse.com/cover/9781783297474",
+      "cover_evidence_scope": "PUBLISHER_IMAGE_LINK_ONLY_NO_BINARY_RECEIPT",
+      "cover_display_rights": "NOT_ESTABLISHED",
+      "edition_identity_status": "PUBLIC_METADATA_OBSERVATION_NOT_AUTHENTICATED_TEXT",
+      "source_html_sha256": null
+    }
+  ],
+  "catalog_crosscheck": {
+    "source_locator": "https://openlibrary.org/books/OL28813033M/Autobiography_of_James_T._Kirk",
+    "source_record_kind": "OPEN_LIBRARY_EDITION_PAGE",
+    "edition_key": "OL28813033M",
+    "isbn13": "9781783297481",
+    "match_scope": "PAPERBACK_ISBN_METADATA_ONLY",
+    "cover_id": null,
+    "exact_json_sha256": null,
+    "cover_rights": "NOT_ESTABLISHED",
+    "note": "The live Open Library edition JSON endpoint could not be fetched; do not infer a cover ID from a page image or adjacent edition."
+  },
+  "promotional_description_discrepancy": [
+    {
+      "source_locator": "https://titanbooks.com/8302-the-autobiography-of-james-t-kirk/",
+      "source_relative_claim": "MARKETING_DESCRIPTION_YEAR_RANGE",
+      "start_year": 2233,
+      "end_year": 2293,
+      "narrative_truth_effect": "NONE"
+    },
+    {
+      "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "source_relative_claim": "MARKETING_DESCRIPTION_YEAR_RANGE",
+      "start_year": 2233,
+      "end_year": 2371,
+      "narrative_truth_effect": "NONE"
+    }
+  ],
+  "unresolved_gates": [
+    "PAPERBACK_VS_HARDCOVER_VS_EBOOK_TEXT_EQUIVALENCE",
+    "EDITION_TO_PRIVATE_OPF_OR_ORIGINAL_LIT_BYTE_IDENTITY",
+    "OPEN_LIBRARY_EDITION_JSON_AND_COVER_ID",
+    "PUBLISHER_IMAGE_DISPLAY_OR_REUSE_PERMISSION",
+    "COPYRIGHT_AND_SOURCE_ACCESS_PERMISSION",
+    "SOURCE_WORK_BINDING_AND_COVERAGE_ADMISSION"
+  ]
+}

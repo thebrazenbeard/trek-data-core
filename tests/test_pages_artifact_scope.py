@@ -108,6 +108,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/research-leads.json", text)
         self.assertIn("! -path explorer/film-catalog.json", text)
         self.assertIn("! -path explorer/discovery-catalog.json", text)
+        self.assertIn("! -path explorer/search-catalog.json", text)
+        self.assertIn("python3 tools/build_source_local_search.py --check", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/short-synopsis-catalog.json", text)
@@ -123,7 +125,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 10)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 11)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 

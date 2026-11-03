@@ -209,7 +209,7 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
   directory.rows.push({ ...original,
     row_id: 'fixture:last-best-hope-not-published', title: 'Fixture novel — not a public Work',
     context: 'TEST FIXTURE ONLY — literature', source_locator: lastBestHopeUrl,
-    source_input: 'proposals/fixtures/artwork-test.json', details: ['No real release from this test']
+    source_input: 'proposals/fixtures/artwork-test.json', details: ['Hardcover · ISBN 9781982142186']
   });
   directory.row_count++;
   directory.counts_by_medium.LITERATURE++;
@@ -244,7 +244,7 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
   const mismatched = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, crossEdition, 200);
   assert.equal(mismatched.get('artwork-toggle').disabled, true,
     'cover ISBN must identify the same publisher edition as the directory row, not merely share its locator');
-  assert.match(mismatched.get('artwork-state').textContent, /rejected/);
+  assert.match(mismatched.get('artwork-state').textContent, /source-local edition/);
 
   const alternateEdition = structuredClone(apiArtwork);
   alternateEdition.artwork[0].row_id = `directory:${original.row_id}`;
@@ -254,6 +254,7 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
   const wrongEdition = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, alternateEdition, 200);
   assert.equal(wrongEdition.get('artwork-toggle').disabled, true,
     'a listed alternate edition ISBN is not the specific edition identified by the row URL');
+  assert.match(wrongEdition.get('artwork-state').textContent, /source URL edition/);
 
   const sameEdition = structuredClone(apiArtwork);
   sameEdition.artwork[0].row_id = `directory:${original.row_id}`;
@@ -264,6 +265,14 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
   assert.equal(matching.get('artwork-toggle').disabled, true,
     'the exact publisher-edition ISBN still cannot certify an unrelated cover ID and digest');
   assert.match(matching.get('artwork-state').textContent, /crosswalk receipt/);
+
+  const unlistedEdition = structuredClone(apiArtwork);
+  unlistedEdition.artwork[0].isbn = '9781982194833';
+  unlistedEdition.artwork[0].attribution_url = 'https://openlibrary.org/isbn/9781982194833';
+  const unlisted = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, unlistedEdition, 200);
+  assert.equal(unlisted.get('artwork-toggle').disabled, true);
+  assert.match(unlisted.get('artwork-state').textContent, /source-local edition/,
+    'unlisted ISBN rejected before any independently reviewed crosswalk lookup');
 
   const forgedCoverId = structuredClone(sameEdition);
   forgedCoverId.artwork[0].cover_id = 123456;
@@ -284,6 +293,31 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
     const rejectedMedium = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, nonLiterary, 200);
     assert.equal(rejectedMedium.get('artwork-toggle').disabled, true,
       `Open Library cover previews are not allowed on ${medium} rows`);
+  }
+});
+
+test('PRH distributor discovery leads require exact fictional-memoir source scope', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const index = directory.rows.findIndex((row) => row.candidate_kind === 'FICTIONAL_MEMOIR');
+  assert.ok(index >= 0, 'accepted discovery has a source-local fictional memoir lead');
+  const baseline = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  assert.match(baseline.get('discovery-state').textContent, /1,214/);
+  for (const mutate of [
+    (r) => { r.candidate_kind = 'NOVEL'; },
+    (r) => { r.source_group = 'publisher:simonandschuster.com'; },
+    (r) => { r.medium = 'FILM'; },
+    (r) => { r.source_locator = 'https://www.penguinrandomhouse.com/books/unrelated/'; },
+    (r) => { r.source_locator = 'https://www.penguinrandomhouse.com/books/250795/unrelated?tracking=1'; }
+  ]) {
+    const forged = structuredClone(directory);
+    mutate(forged.rows[index]);
+    if (forged.rows[index].medium === 'FILM') {
+      forged.counts_by_medium.LITERATURE--;
+      forged.counts_by_medium.FILM++;
+    }
+    const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, forged, 200);
+    assert.match(rejected.get('discovery-state').textContent, /rejected/,
+      'PRH host never becomes a general-purpose source allowlist');
   }
 });
 

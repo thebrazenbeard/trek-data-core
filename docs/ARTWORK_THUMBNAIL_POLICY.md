@@ -90,6 +90,17 @@ edition-metadata digest in the audited Explorer release. Sidecar-supplied
 values cannot approve themselves. This does not establish jacket copyright
 clearance; the external API rights warning and visitor opt-in still apply.
 
+Even after a separately reviewed receipt is introduced, the requested ISBN
+must appear in the target literary lead's independently generated publisher
+edition details. Simon & Schuster product locators ending in an ISBN must also
+identify that exact edition; a row may list other formats that belong to a
+different product URL. The accepted Penguin Random House/Titan fictional
+memoir leads use a distinct `Paperback ISBN …` detail format, and their
+source URLs are restricted to that distributor's bounded `/books/<id>/<slug>/`
+path, `FICTIONAL_MEMOIR` kind, and publisher-lineage group. These are
+defense-in-depth consistency checks, not cover-authenticity or display-rights
+proof. The independently reviewed receipt map remains empty and fail-closed.
+
 Static Pages packaging, the artifact allowlist, and independent rights review
 must be updated and rerun before adding any actual sidecar or image binaries.
 The JavaScript validator is a defense-in-depth contract, **not** a legal

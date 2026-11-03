@@ -253,14 +253,31 @@
         throw new Error('Artwork references an unknown or mismatched source record.');
       }
       if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
+        const literaryRow = sourceRows.get(item.row_id);
         if (!exactKeys(item, openLibraryKeys) ||
-            sourceRows.get(item.row_id).medium !== 'LITERATURE' ||
+            literaryRow.medium !== 'LITERATURE' ||
             !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
             typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
             item.attribution_url !== `https://openlibrary.org/isbn/${item.isbn}` ||
             item.rights_status !== 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED' ||
             !/^[a-f0-9]{64}$/.test(item.edition_metadata_sha256 || '')) {
           throw new Error('External cover has no pinned Open Library edition or documented API display scope.');
+        }
+        const editionIsListed = Array.isArray(literaryRow.details) && literaryRow.details.some((detail) => {
+          if (typeof detail !== 'string') return false;
+          const publisher = /^[A-Za-z][A-Za-z -]{0,56} · ISBN (97[89][0-9]{10})$/.exec(detail);
+          const memoir = /^(?:Paperback|Hardcover|Trade Paperback|Ebook) ISBN (97[89][0-9]{10})$/.exec(detail);
+          return (publisher || memoir)?.[1] === item.isbn;
+        });
+        if (!editionIsListed) {
+          throw new Error('External cover ISBN is not listed on the target source-local edition.');
+        }
+        // Simon & Schuster product locators identify a particular ISBN even
+        // when their source-local row lists several additional formats.
+        const publisherUrl = new URL(literaryRow.source_locator);
+        if (publisherUrl.hostname === 'www.simonandschuster.com' &&
+            !publisherUrl.pathname.endsWith(`/${item.isbn}`)) {
+          throw new Error('External cover ISBN does not match the publisher source URL edition.');
         }
         const receipt = reviewedOpenLibraryEditionReceipts.get(item.row_id);
         if (!receipt || receipt.source_locator !== item.source_locator ||
@@ -516,6 +533,10 @@
         try { url = new URL(item.source_locator); } catch (_) { throw new Error('Invalid discovery source URL.'); }
         if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.port || url.search || url.hash ||
             url.username || url.password || !url.pathname.startsWith('/') ||
+            (url.hostname === 'www.penguinrandomhouse.com' &&
+              (item.medium !== 'LITERATURE' || item.candidate_kind !== 'FICTIONAL_MEMOIR' ||
+               item.source_group !== 'distributor:penguinrandomhouse.com:titan-books' ||
+               !/^\/books\/[1-9][0-9]*\/[a-z0-9-]+\/$/.test(url.pathname))) ||
             (url.hostname === 'youtu.be' &&
               !/^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(item.source_locator))) {
           throw new Error('Source URL outside the explicit publisher/catalog allowlist.');

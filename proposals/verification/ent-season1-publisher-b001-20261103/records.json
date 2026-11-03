@@ -1,0 +1,313 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_ent_bundle_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486",
+  "admission_effect": "NONE",
+  "combined_multipart_cards_preserved_as_single_source_slot": 1,
+  "coverage_effect": "NONE",
+  "data_status": "B001-ENT-S1-PUBLISHER_SOURCE_CARD_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "independent_corroborations": 0,
+  "invented_separate_s1e2_source_cards": 0,
+  "new_source_local_title_slot_rechecks": 10,
+  "observations_sha256": "b561e49c254ecb2f676f67f1ae4264aa4c4082cb5c06f22642af3c817e72ae8e",
+  "original_synopsis_drafts_held": 10,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 10,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "COMBINED_BROKEN_BOW_CARD_S1E1_WITH_NO_DISPLAYED_E2_CARD_NO_GLOBAL_WORK_IDENTITY",
+      "original_synopsis_draft": "Enterprise's inaugural crew sets out to deliver a Klingon messenger home, challenging Vulcan oversight of humanity's space exploration.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 1,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "f9cdbebc04c72787fb2d4fbd27a18b7328f560a67e48f95360c0842a439bcd04",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Broken Bow - Part 1 and 2"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2026/02/25/vDnTX2qyJMb41JRFGjBNY2SmJKplW9uD/PPUSA_STARTREKENTERPRISE_999_V1_4533271_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:000",
+      "source_local_title": "Broken Bow - Part 1 and 2",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Humans",
+        "Vulcans",
+        "Klingon",
+        "Kronos"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer must weigh crew safety against a moral obligation as Enterprise encounters a conflict between unfamiliar ships.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 3,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "13e04b4fee6e130a6e24d101a6f6867ea7f718bbdf1d971db04f66ee3e7ef113",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Fight or Flight"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492899/CBS_ENTERPRISE_003_1227935_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:001",
+      "source_local_title": "Fight or Flight",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Stranded overnight on an unexplored planet, an Enterprise landing party confronts paranoia triggered by local pollen.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 4,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "cacf492e4be677014615a61dbbd655e64112ba3b2372a20129ab04587f2ff101",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Strange New World"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41493446/CBS_ENTERPRISE_004_1215607_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:002",
+      "source_local_title": "Strange New World",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A repair visit to an unfamiliar vessel leaves Trip unexpectedly pregnant, prompting a search for that ship before the birth.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 5,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "21e7fe97c79abfb50c4e6f7d08214ab1b480d559f2c7b0280eab38ca88c5f8ea",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Unexpected"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492815/CBS_ENTERPRISE_005_2334931_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:003",
+      "source_local_title": "Unexpected",
+      "source_relative_entity_mentions": [
+        "Trip",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Investigating the long-silent Terra Nova colony, Archer encounters its descendants, now living underground as the Novans.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 6,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "2ee93b94196b39c376dc5d6259bbb34dd76cf2947833837b5205af30c8448832",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Terra Nova"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492880/CBS_ENTERPRISE_006_2334933_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:004",
+      "source_local_title": "Terra Nova",
+      "source_relative_entity_mentions": [
+        "Terra Nova",
+        "Archer",
+        "Enterprise",
+        "Novans"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer, Trip, and T'Pol meet Andorians at a Vulcan monastery and discover a concealed treaty violation.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 7,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "47a33689e71c6d2731fb372f361ab57ecbf9d939e2667612f9fa2395395154c9",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "The Andorian Incident"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494108/CBS_ENTERPRISE_007_2334945_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:005",
+      "source_local_title": "The Andorian Incident",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Trip",
+        "T'Pol",
+        "Andorians",
+        "Vulcan",
+        "P'Jem"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "While Archer navigates an unwelcoming Vulcan captain, Reed and Mayweather face danger during comet sampling.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 8,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "fb39c49887911f71d0330a8698471d581dc7cbb79994534c66418a4f2212d7bb",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Breaking The Ice"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494782/CBS_ENTERPRISE_008_1215609_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:006",
+      "source_local_title": "Breaking The Ice",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Vulcan Captain",
+        "Reed",
+        "Mayweather"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "On its first visit to an alien society, Archer's crew discovers outsiders exploiting the planet at lethal cost.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 9,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "ccecba82a8c9f48edbfd4da5879adfce686004ed9fa8c8d85a3278ae976594c2",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Civilization"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2026/02/25/1477082216/PPUSA_STARTREKENTERPRISE_109_V1_4332577_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:007",
+      "source_local_title": "Civilization",
+      "source_relative_entity_mentions": [
+        "Archer"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A request to assist the freighter Fortunate draws Enterprise into a revenge dispute that Mayweather helps resolve.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 10,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "f39515ee8ac269663b4204e26092288e508c1c96a3a2ca45ea933ca6f5f68799",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Fortunate Son"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494246/CBS_ENTERPRISE_010_1215623_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:008",
+      "source_local_title": "Fortunate Son",
+      "source_relative_entity_mentions": [
+        "Earth",
+        "Fortunate",
+        "Enterprise",
+        "Mayweather"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "During a journey to witness a rare stellar event, Archer confronts Silik amid a temporal intervention.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 11,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "c43e5f662a35b918b73f81ac8c86af886807886721953f83b14976cbe785ea30",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Cold Front"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492805/CBS_ENTERPRISE_011_2334942_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:009",
+      "source_local_title": "Cold Front",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Archer",
+        "Suliban",
+        "Silik"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 10
+}

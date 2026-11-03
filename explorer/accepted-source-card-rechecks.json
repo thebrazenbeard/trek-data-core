@@ -1,0 +1,1889 @@
+{
+  "accepted_input_receipts": [
+    {
+      "path": "explorer/discovery-catalog.json",
+      "sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc"
+    },
+    {
+      "path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd"
+    },
+    {
+      "path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080"
+    },
+    {
+      "path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5"
+    },
+    {
+      "path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac"
+    },
+    {
+      "path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3"
+    },
+    {
+      "path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698"
+    },
+    {
+      "path": "proposals/research/snw/s3-publisher-first5-20261103/records.json",
+      "sha256": "89e816d651996405dce608fa3509b437178b0dcd635f2d8635962d0bd7acfe1c"
+    },
+    {
+      "path": "proposals/research/snw/s3-publisher-last5-20261103/records.json",
+      "sha256": "b1daa95e849c61beb1011aabaebc06343589f29d0ec786e6359c07cb81137b2e"
+    }
+  ],
+  "admission_effect": "NONE",
+  "admitted_works": 0,
+  "approved_public_synopses": 0,
+  "coverage_effect": "NONE",
+  "data_status": "ACCEPTED_SOURCE_ONLY_RENDERED_PUBLISHER_CARDS_NOT_RESEARCH_COVERAGE",
+  "directory_row_count": 1214,
+  "full_audiovisual_content_reads": 0,
+  "new_exact_title_matches": 46,
+  "new_publisher_card_source_local_lead_count": 61,
+  "new_unresolved_title_or_split_cases": 15,
+  "prior_metadata_recheck_count_unchanged": 56,
+  "publisher_source_family_count": 1,
+  "raw_publisher_pages_custodied": 0,
+  "rows": [
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Paradise Lost",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 12,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0051",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1027888",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Paradise Lost",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "CASE_VARIANT_UNRESOLVED",
+      "publisher_card_title": "Return To Grace",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 14,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "CASE_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0052",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1092502",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Return to Grace",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Trials and Tribble-ations",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 6,
+          "season": 5
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0053",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2158401",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Trials and Tribble-ations",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Visitor",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 3,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0054",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2890937",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Visitor",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Rejoined",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 6,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0055",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2891237",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Rejoined",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Babel",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 5,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0056",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507025",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Babel",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Past Prologue",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 3,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0057",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507056",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Past Prologue",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "A Man Alone",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 4,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0058",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507090",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "A Man Alone",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "CASE_VARIANT_UNRESOLVED",
+      "publisher_card_title": "The House Of Quark",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 3,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "CASE_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0059",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q11863377",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The House of Quark",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Circle",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 2,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0060",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12031611",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Circle",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Melora",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 6,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0061",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12036362",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Melora",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Meridian",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 8,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0062",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12036402",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Meridian",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Necessary Evil",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 8,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0063",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12041492",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Necessary Evil",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Homecoming",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0064",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12041709",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Homecoming",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Tribunal",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 25,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0065",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12059643",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Tribunal",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b005-20261103/observations.json",
+      "accepted_observation_sha256": "d0cd3ae2a41d6adcb7df502fdee842e7b0002ce492ae00d7e3d4af2451eb42fd",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Inter Arma Enim Silent Leges",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 16,
+          "season": 7
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0066",
+      "source_batch": "B005-DS9",
+      "source_local_context": "DS9",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744084",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Inter Arma Enim Silent Leges",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Q2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 19,
+          "season": 7
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0070",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q125917",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Q2",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Cloud",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 6,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0071",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1016685",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Cloud",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Omega Directive",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 21,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0072",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1093269",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Omega Directive",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "CASE_VARIANT_UNRESOLVED",
+      "publisher_card_title": "Time And Again",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 4,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "CASE_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0073",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1976840",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Time and Again",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "MULTIPART_TITLE_SCOPE_UNRESOLVED",
+      "publisher_card_title": "Caretaker, Part 1 & 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "MULTIPART_TITLE_SCOPE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0074",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2121683",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Caretaker",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "In the Flesh",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 4,
+          "season": 5
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0075",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q10857017",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "In the Flesh",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Initiations",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 2,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0076",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13115900",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Initiations",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Investigations",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 20,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0077",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13115914",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Investigations",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Virtuoso",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 13,
+          "season": 6
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0078",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13403516",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Virtuoso",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Ashes to Ashes",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 18,
+          "season": 6
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0079",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13479268",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Ashes to Ashes",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Jetrel",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 15,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0080",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13639300",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Jetrel",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Q and the Grey",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 11,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0081",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q14476529",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Q and the Grey",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json",
+      "accepted_observation_sha256": "3b55fcf2b9a9aab7a02293400e4ccac1f62d0ad097ffb2ff057f02fa305b8080",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Think Tank",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 20,
+          "season": 5
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0082",
+      "source_batch": "B006-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q14643756",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Think Tank",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Juggernaut",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 21,
+          "season": 5
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0083",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744043",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Juggernaut",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Infinite Regress",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 7,
+          "season": 5
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0084",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744066",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Infinite Regress",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Natural Law",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 22,
+          "season": 7
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0085",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744191",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Natural Law",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Human Error",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 18,
+          "season": 7
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0086",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744675",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Human Error",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "ROMAN_NUMERAL_VARIANT_UNRESOLVED",
+      "publisher_card_title": "Basics, Part 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "ROMAN_NUMERAL_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0087",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q25587669",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Basics, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "ROMAN_NUMERAL_VARIANT_UNRESOLVED",
+      "publisher_card_title": "Future's End, Part 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 9,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "ROMAN_NUMERAL_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0088",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q25587671",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Future's End, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/librarian/voy-b007-source-card-20261103/records.json",
+      "accepted_observation_sha256": "bd89d3f13eb999626ee15e64d982b10f4874ccd1b7973ec72d69d945c2d264d5",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "NUMERAL_AND_CASE_VARIANT_UNRESOLVED",
+      "publisher_card_title": "Year Of Hell, Part 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 9,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "NUMERAL_AND_CASE_VARIANT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0089",
+      "source_batch": "B007-VOY",
+      "source_local_context": "VOY",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q25587679",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Year of Hell, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "First Flight",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 24,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0090",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q861673",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "First Flight",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Bounty",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 25,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0091",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q861686",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Bounty",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "The Expanse",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 26,
+          "season": 2
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0092",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1027348",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Expanse",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "The Xindi",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0093",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1185745",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Xindi",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Dear Doctor",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 13,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0094",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2122661",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Dear Doctor",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Fallen Hero",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 23,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0095",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2133397",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Fallen Hero",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Detained",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 21,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0096",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2134825",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Detained",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Cold Front",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 11,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0097",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2139300",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Cold Front",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json",
+      "accepted_observation_sha256": "445255914146e84735022cfb0d3fd7159a6bae739f3731102a3986ffe650dfac",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Anomaly",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 2,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0098",
+      "source_batch": "B008-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2153354",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Anomaly",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Sleeping Dogs",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 14,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0099",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2213032",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Sleeping Dogs",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Desert Crossing",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 24,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0100",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2309926",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Desert Crossing",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "publisher_card_title": "Oasis",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 20,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0101",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2313211",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Oasis",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "publisher_card_title": "In A Mirror, Darkly, Pt 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 19,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0102",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q42594945",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "In a Mirror, Darkly, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "publisher_card_title": "Storm Front, Pt. 1",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0103",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q42595960",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Storm Front, Part I",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "publisher_card_title": "Storm Front, Pt. 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 2,
+          "season": 4
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0104",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q42596046",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Storm Front, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PUNCTUATION_STYLE_UNRESOLVED",
+      "publisher_card_title": "Shockwave Part I",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 26,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PUNCTUATION_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0105",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q42596397",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Shockwave, Part I",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "COMBINED_CARD_SPLIT_UNRESOLVED",
+      "publisher_card_title": "Broken Bow - Part 1 and 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "COMBINED_CARD_SPLIT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0106",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q44166126",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Broken Bow, Part I",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json",
+      "accepted_observation_sha256": "b33917bc4725c06dcb9979a0b87f3246e055ee10592f473749f275c8712b00b3",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "COMBINED_CARD_SPLIT_UNRESOLVED",
+      "publisher_card_title": "Broken Bow - Part 1 and 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": null,
+      "publisher_season_episode_slots": [
+        {
+          "episode": 1,
+          "season": 1
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "COMBINED_CARD_SPLIT_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0107",
+      "source_batch": "B009-ENT",
+      "source_local_context": "ENT",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q44166211",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Broken Bow, Part II",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Forget Me Not",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/9QFl6ub5zIcHljkBWPZMcSBfDz9eFGNl/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 4,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0108",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327253",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Forget Me Not",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Die Trying",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/H_y5oaUVjtq8NmOnkVhQVUuTBRbSit8y/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 5,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0109",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327254",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Die Trying",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Scavengers",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/f3PngaryfJwyvS81U_qB9kqhnhJoHMPj/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 6,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0110",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327258",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Scavengers",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "Unification III",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/BJtfcsojwp4z7C_zddvNqhjU36_vwoA2/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 7,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0111",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327260",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Unification III",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "EXACT",
+      "publisher_card_title": "The Sanctuary",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/mUJjsKkUd01TLh_jsfDB5O3yRMZlDRSP/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 8,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "EXACT",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0112",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327261",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "The Sanctuary",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "publisher_card_title": "Terra Firma, Part 1",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/73BJ1N0qerkG0WPoUKNuDPcvBdvD6fEX/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 9,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0113",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327263",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Terra Firma, Part I",
+      "synopsis_publication_effect": "NONE"
+    },
+    {
+      "accepted_observation_path": "proposals/research/dis/s3-publisher-seven-20261103/records.json",
+      "accepted_observation_sha256": "a0079c680e72d37d42fc8931aabc66e1a7a41b7eed2e0084da50f554c2f92698",
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "full_episode_or_transcript_read": false,
+      "medium": "EPISODE",
+      "observed_utc_date": "2026-11-03",
+      "original_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "publisher_card_title": "Terra Firma, Part 2",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "publisher_guide_url": "https://www.paramountplus.com/shows/video/vAMnijrEC3s_g9cuwb7ZFnfKupYLQL3j/",
+      "publisher_season_episode_slots": [
+        {
+          "episode": 10,
+          "season": 3
+        }
+      ],
+      "publisher_surface": "RENDERED_PUBLISHER_CARD_SOURCE_ONLY",
+      "publisher_title_check": "PART_NUMERAL_STYLE_UNRESOLVED",
+      "raw_publisher_page_sha256": null,
+      "row_id": "lead:0114",
+      "source_batch": "DIS-S3-SEVEN",
+      "source_local_context": "DIS",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q100327265",
+      "source_local_source_family": "wikidata:wdqs",
+      "source_local_title": "Terra Firma, Part II",
+      "synopsis_publication_effect": "NONE"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_directory_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "unmapped_snw_s3_cards_not_joined": 10,
+  "upstream_wikidata_is_not_independent_corroboration": true
+}

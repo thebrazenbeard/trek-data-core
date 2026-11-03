@@ -16,7 +16,7 @@ OPF = "proposals/librarian/private-opf-metadata-20261103/observations.json"
 HELD = "proposals/consolidator/opf-source-local-review-sample-20261103/cards.json"
 OLDER = "proposals/librarian/ss-three-series-ebooks-20261103/records.json"
 BASE = "explorer/discovery-catalog.json"
-SOURCE_SHA = "2305bc824b4dfb450e08016aad4036744cfdfd2e3b118e7d5506232c67efbac0"
+SOURCE_SHA = "3d3aa4703bb2ab47291aa7fadb487320ed4cbef68c7456fabe09c52a1e848d42"
 OPF_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
 HELD_SHA = "ca251b3dfb98293526ad3c76c7169148e1344d106a2365304d0ddbfe36e5f06c"
 OLDER_SHA = "78dd5785c73ab91be932ff7865b36d45c4aca1c4c9ea3f93c28fc164975a8a20"
@@ -64,6 +64,21 @@ def isbn13_valid(s: str) -> bool:
         sum(int(c) * (1 if i % 2 == 0 else 3) for i, c in enumerate(s)) % 10 == 0
 
 
+def isbn10_valid(s: str) -> bool:
+    digits = s.replace("-", "")
+    return len(digits) == 10 and digits[:9].isascii() and digits[:9].isdecimal() and \
+        (digits[9].isascii() and digits[9].isdecimal() or digits[9] == "X") and \
+        sum((10 - i) * (int(c) if c != "X" else 10) for i, c in enumerate(digits)) % 11 == 0
+
+
+def isbn10_to_isbn13(s: str) -> str:
+    if not isbn10_valid(s):
+        raise ValueError("invalid original source ISBN10")
+    stem = "978" + s.replace("-", "")[:9]
+    check = (-sum(int(c) * (1 if i % 2 == 0 else 3) for i, c in enumerate(stem))) % 10
+    return stem + str(check)
+
+
 def build(root: Path = ROOT) -> dict:
     source = read_pinned(root, SOURCE, SOURCE_SHA)
     opf = read_pinned(root, OPF, OPF_SHA)
@@ -76,7 +91,7 @@ def build(root: Path = ROOT) -> dict:
         "method": "DIRECT_FIRST_PARTY_PUBLISHER_PRODUCT_PAGE_READ",
         "publisher_family": "publisher:simonandschuster.com", "publisher_family_independent_witnesses": 1,
         "owner_opf_original_zip_sha256_from_prior_custody": ZIP_SHA,
-        "original_opf_members_independently_rehashed_in_this_wave": False,
+        "original_opf_members_rehashed_by_this_consolidator": False,
         "publisher_pages_byte_snapshotted": False,
         "owner_private_edition_equivalence": "NOT_VERIFIED", "global_work_identity": "NOT_RECONCILED",
         "public_explorer_release": "HELD", "coverage_effect": "NONE", "artwork_effect": "NONE",
@@ -91,10 +106,15 @@ def build(root: Path = ROOT) -> dict:
     seen_isbns = set()
     result = []
     for local_id, record in zip(IDS, source["rows"]):
-        if set(record) != {"opf_source_local_id", "opf_entry_sha256", "publisher_url", "publisher_title",
+        expected_row_fields = {"opf_source_local_id", "opf_entry_sha256", "publisher_url", "publisher_title",
                            "publisher_byline", "publisher_format", "publisher_imprint", "publisher_date",
                            "publisher_pages", "publisher_isbn13", "publisher_series",
-                           "publisher_series_ordinal", "prior_same_family_publisher_candidate", "unresolved_difference"} or \
+                           "publisher_series_ordinal", "prior_same_family_publisher_candidate", "unresolved_difference"}
+        if local_id == "opf-local:0110":
+            expected_row_fields |= {"original_opf_xml_isbn10_literal", "original_opf_xml_identifier_tag",
+                                    "original_opf_xml_isbn10_review_provenance",
+                                    "source_isbn10_corresponding_publisher_ebook"}
+        if set(record) != expected_row_fields or \
                 record["opf_source_local_id"] != local_id:
             raise ValueError("publisher observation shape or ordinal changed")
         src = opf["rows"][int(local_id[-4:]) - 1]
@@ -126,16 +146,51 @@ def build(root: Path = ROOT) -> dict:
         elif prior is not None:
             raise ValueError("unreviewed prior publisher linkage")
         if not isinstance(record["unresolved_difference"], str) or \
-                not 40 <= len(record["unresolved_difference"]) <= 350:
+                not 40 <= len(record["unresolved_difference"]) <= 500:
             raise ValueError("unresolved edition/containment note absent")
+        source_xml_isbn10 = None
+        publisher_ebook = None
+        if local_id == "opf-local:0110":
+            source_xml_isbn10 = "0-7434-9997-2"
+            publisher_ebook = record["source_isbn10_corresponding_publisher_ebook"]
+            approved_ebook = {
+                "url": "https://www.simonandschuster.com/books/" + slug + "/9780743499972",
+                "isbn13": "9780743499972", "title": title, "byline": byline,
+                "format": "EBOOK", "imprint": "Pocket Books/Star Trek",
+                "date": "2004-10-01", "pages": 384,
+                "correspondence_basis": "VALID_SOURCE_XML_ISBN10_CONVERTS_EXACTLY_TO_PUBLISHER_EBOOK_ISBN13_PLUS_POCKET_BOOKS_2004_METADATA",
+                "private_source_edition_equivalence": "NOT_VERIFIED",
+            }
+            if (record["original_opf_xml_isbn10_literal"], record["original_opf_xml_identifier_tag"],
+                record["original_opf_xml_isbn10_review_provenance"]) != (
+                    "ISBN 0-7434-9997-2", "dc:Identifier",
+                    "INDEPENDENT_HOSTILE_AUDITOR_OWNER_ZIP_READ_ONLY_XML") or \
+                    not isbn10_valid(source_xml_isbn10) or \
+                    src.get("publisher") != ["Pocket Books"] or src.get("date") != ["2004"] or \
+                    src.get("isbn_checksum_valid") != [] or \
+                    not isinstance(publisher_ebook, dict) or publisher_ebook != approved_ebook or \
+                    not isbn13_valid(publisher_ebook["isbn13"]) or \
+                    isbn10_to_isbn13(source_xml_isbn10) != publisher_ebook["isbn13"] or \
+                    publisher_ebook["isbn13"] == isbn:
+                raise ValueError("independent original OPF ISBN10/metadata derivative discrepancy drift")
         result.append({
             "record_type": "HELD_SOURCE_LOCAL_OPF_PUBLISHER_EDITION_CANDIDATE",
             "opf_source_local_id": local_id,
             "opf_title_literal": src["title"],
             "opf_creator_literals": src["creator"],
             "original_opf_xml_sha256_from_accepted_metadata": src["opf_entry_sha256"],
+            "source_xml_isbn10_independently_observed": source_xml_isbn10,
+            "source_identifier_corresponding_publisher_ebook": publisher_ebook,
+            "source_identifier_edition_correspondence_scope": "METADATA_MATCH_NOT_SOURCE_TEXT_AUTHENTICATION" if publisher_ebook else None,
+            "source_xml_isbn10_checksum_valid": isbn10_valid(source_xml_isbn10) if source_xml_isbn10 else None,
+            "source_xml_isbn10_read_only_auditor": "INDEPENDENT_HOSTILE_AUDITOR_OWNER_ZIP_READ_ONLY_XML" if source_xml_isbn10 else None,
+            "source_xml_identifier_tag_exact_case": "dc:Identifier" if source_xml_isbn10 else None,
+            "accepted_derivative_isbn_checksum_valid": src.get("isbn_checksum_valid"),
+            "accepted_derivative_missed_source_xml_isbn10": True if source_xml_isbn10 else None,
+            "source_opf_publisher_literal": src.get("publisher"),
+            "source_opf_date_literal": src.get("date"),
             "original_opf_zip_sha256_from_prior_custody": ZIP_SHA,
-            "private_opf_xml_rehashed_this_wave": False,
+            "private_opf_xml_rehashed_by_this_consolidator": False,
             "publisher_source_group": "publisher:simonandschuster.com",
             "publisher_product_url": uri,
             "publisher_candidate_title": title,
@@ -164,6 +219,9 @@ def build(root: Path = ROOT) -> dict:
         "accepted_prior_publisher_lineage_sha256": OLDER_SHA,
         "historic_directory_sha256": BASE_SHA, "historic_directory_rows": 1214,
         "owner_opf_member_records": 347, "candidate_rows": len(result), "distinct_work_count": None,
+        "distinct_publisher_product_edition_candidates": 8,
+        "source_identifier_corresponding_publisher_ebook_candidates": 1,
+        "independently_flagged_original_xml_isbn10_omitted_by_derivative": 1,
         "publisher_corporate_families": 1,
         "prior_same_family_candidate_reused": sum(r["prior_same_family_publisher_candidate"] is not None for r in result),
         "private_edition_equivalence_verified": 0, "work_admissions": 0,

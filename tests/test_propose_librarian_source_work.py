@@ -145,16 +145,68 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
                     self.build()
 
     def test_nonfixture_declaration_remains_proposal_only(self):
-        self.req["provenance_family"] = "PUBLISHER_DECLARED_ONLY"
-        self.req["independence_group"] = "PUBLISHER_DECLARED_ONLY"
-        self.decl["work_type"] = "EPISODE"
-        self.decl["fixture_only"] = False
+        self.req.update(
+            receipt_id="receipt-publisher-001", source_candidate_id="source-publisher-001",
+            source_locator="private:publisher-opaque-001", source_version="edition-v1",
+            edition_identity="Publisher edition metadata not authenticated",
+            provenance_family="PUBLISHER_DECLARED_ONLY",
+            independence_group="PUBLISHER_DECLARED_ONLY",
+        )
+        self.decl.update(
+            proposal_id="proposal-publisher-001", work_candidate_id="work-publisher-001",
+            work_title="Publisher-declared candidate", work_type="EPISODE",
+            work_identity_note="Operator-proposed linkage awaiting independent review.",
+            fixture_only=False,
+        )
         self.receipt = custody.build_receipt(self.req, self.source_file)
         proposal = self.build()
         self.assertFalse(proposal["fixture_only"])
         self.assertEqual(proposal["source_work_binding"]["mapping_role"], "METADATA_ONLY")
         self.assertEqual(proposal["source_work_identity_state"], "DECLARED_NOT_INDEPENDENTLY_VERIFIED")
         self.assertEqual(proposal["accepted_registry_effect"], "NONE")
+
+    def test_other_explicit_fixture_markers_cannot_be_relabelled_nonfixture(self):
+        # A receipt re-hashed after changing provenance still reflects the same
+        # fixture bytes; its surviving edition/version labels must not be hidden.
+        self.req["provenance_family"] = "DECLARED_PUBLISHER"
+        self.req["independence_group"] = "DECLARED_PUBLISHER"
+        self.decl["work_type"] = "EPISODE"
+        self.decl["fixture_only"] = False
+        self.receipt = custody.build_receipt(self.req, self.source_file)
+        with self.assertRaisesRegex(custody.Rejected, "synthetic fixture"):
+            self.build()
+
+        for owner, key, value in (
+            ("request", "source_version", "fixture-v1"),
+            ("request", "edition_identity", "synthetic fixture, no Star Trek source"),
+            ("request", "source_locator", "private:fixture-opaque-001"),
+            ("request", "receipt_id", "receipt-synthetic-001"),
+            ("request", "source_candidate_id", "source-fixture-001"),
+            ("work", "proposal_id", "proposal-synthetic-001"),
+            ("work", "work_candidate_id", "work-fixture-001"),
+            ("work", "work_title", "Imaginary Synthetic Work"),
+            ("work", "work_identity_note", "Test-only operator declaration without Trek content."),
+        ):
+            with self.subTest(owner=owner, key=key):
+                self.req = request()
+                self.req.update(
+                    receipt_id="receipt-publisher-001", source_candidate_id="source-publisher-001",
+                    source_locator="private:publisher-opaque-001", source_version="edition-v1",
+                    edition_identity="Publisher edition metadata not authenticated",
+                    provenance_family="PUBLISHER_DECLARED_ONLY",
+                    independence_group="PUBLISHER_DECLARED_ONLY",
+                )
+                self.decl = declaration()
+                self.decl.update(
+                    proposal_id="proposal-publisher-001", work_candidate_id="work-publisher-001",
+                    work_title="Publisher-declared candidate", work_type="EPISODE",
+                    work_identity_note="Operator-proposed linkage awaiting independent review.",
+                    fixture_only=False,
+                )
+                (self.req if owner == "request" else self.decl)[key] = value
+                self.receipt = custody.build_receipt(self.req, self.source_file)
+                with self.assertRaisesRegex(custody.Rejected, "synthetic fixture"):
+                    self.build()
 
     def test_legitimate_slash_in_title_is_preserved_without_private_path(self):
         self.decl["work_title"] = "Synthetic episode A/B"

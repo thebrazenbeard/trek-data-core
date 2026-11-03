@@ -24,7 +24,12 @@ FIELDS = {
     "work_title", "work_type", "work_identity_note", "work_identity_reference",
     "fixture_only",
 }
-SYNTHETIC_MARKERS = {"SYNTHETIC_ONLY", "TEST_FIXTURE"}
+# Only explicit fixture-label tokens make a nonfixture declaration internally
+# contradictory. These checks cannot establish real source authenticity.
+FIXTURE_LABEL = re.compile(r"(?i)(?<![a-z0-9])(?:synthetic|fixture|test[-_ ]only)(?![a-z0-9])")
+WORK_DESCRIPTION_FIXTURE_LABEL = re.compile(
+    r"(?i)(?<![a-z0-9])(?:fixture|test[-_ ]only|imaginary[-_ ]synthetic)(?![a-z0-9])"
+)
 
 
 def proposed_work(item: dict) -> dict:
@@ -60,11 +65,18 @@ def build_proposal(request: dict, receipt: dict, work_declaration: dict, source_
     """Strictly replay the receipt against current bytes before proposing triad."""
     custody.validate_request(request)
     work = proposed_work(work_declaration)
-    if not work_declaration["fixture_only"] and any(
-        value.upper() in SYNTHETIC_MARKERS
-        for value in (request["provenance_family"], request["independence_group"], work["work_type"])
-    ):
-        raise custody.Rejected("synthetic fixture markers require fixture_only=true")
+    if not work_declaration["fixture_only"]:
+        source_labels = (
+            request[key] for key in (
+                "receipt_id", "source_candidate_id", "source_locator", "source_version",
+                "edition_identity", "provenance_family", "independence_group",
+            )
+        )
+        work_labels = (work_declaration[key] for key in ("proposal_id", "work_candidate_id", "work_type"))
+        work_description = (work_declaration[key] for key in ("work_title", "work_identity_note"))
+        if (any(FIXTURE_LABEL.search(value) for value in (*source_labels, *work_labels))
+                or any(WORK_DESCRIPTION_FIXTURE_LABEL.search(value) for value in work_description)):
+            raise custody.Rejected("synthetic fixture labels require fixture_only=true")
     expected = custody.build_receipt(request, source_file)
     if expected != receipt:
         raise custody.Rejected("receipt does not replay against source request and exact current bytes")

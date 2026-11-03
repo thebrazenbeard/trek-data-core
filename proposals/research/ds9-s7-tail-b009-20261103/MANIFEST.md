@@ -34,6 +34,8 @@ Paramount+'s current guide has **one S7E25 card** for *What You Leave Behind*. T
 
 `observations.json` contains precisely nine source-relative title/slot records plus a separate, held finale-presentation context. `validate.py` checks exact source URLs, accepted input hashes, prior S7E7–E16 non-overlap, literal titles/slots, close-schema admission gates and no fictitious S7E26. The adversarial test suite rejects forged source captures, Work IDs, descriptions, second-finale claims, extra fields, and coverage promotion, including optimized Python mode.
 
+Raw JSON duplicate-key custody is explicitly enforced by `read_json(..., object_pairs_hook=unique_pairs)`. The regression harness now uses the same strict parser when feeding raw attacker-controlled JSON into `validate(data)`. Both the actual file-bound parser and normal/optimized process probes reject a forged `CLOSE_READ` followed by `NONE`, an asserted raw HTML capture followed by `false`, or a forged nested Work ID followed by `null`. A Python `dict` alone cannot prove the originating raw JSON was duplicate-free; source admission must use the strict file-bound parser.
+
 ```bash
 python3 proposals/research/ds9-s7-tail-b009-20261103/validate.py
 python3 -m unittest discover -s tests -p 'test_ds9_s7_b009.py'

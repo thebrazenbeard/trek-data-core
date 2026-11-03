@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-OPF-PUBLISHER-EDITION-TNG-SCE10-20261103",
+  "accepted_main_baseline": "885df8dc60122e55d9f37195eabd0b1a7c67b3c6",
+  "owner_source_container": {
+    "opaque_id": "OWNER_PRIVATE_ST_OPF_ARCHIVE_A",
+    "whole_zip_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+    "bytes": 95673655,
+    "opf_members": 347
+  },
+  "independent_publisher_source": "https://www.simonandschuster.com/",
+  "observation_date_utc": "2026-11-03",
+  "source_class": "PRIVATE_OPF_XML_METADATA_PLUS_OFFICIAL_PUBLISHER_PAGE_BIBLIOGRAPHY",
+  "total_candidates": 10,
+  "rehashed_original_opf_xml_members": 10,
+  "original_book_chapter_prose_read": false,
+  "jacket_reference_only": true,
+  "jacket_image_binary_published": false,
+  "canonical_work_admissions": 0,
+  "accepted_edition_bindings": 0,
+  "coverage_effect": "NONE",
+  "identity_reconciliation_effect": "NONE",
+  "rights_status": "NOT_ESTABLISHED",
+  "records": [
+    {
+      "source_local_opf_id": "opf-local:0009",
+      "original_opf_entry_sha256": "24a77698008a1e36611862ae418196e85b2a270f27863753aaeee7112dd6c6a3",
+      "original_opf_xml_bytes": 7520,
+      "opf_xml_parse_status": "PARSED",
+      "opf_title_claim": "Have Tech, Will Travel",
+      "opf_creator_claims": [
+        "Keith R.A. DeCandido",
+        "Kevin Dilmore",
+        "Christie Golden",
+        "Dean Wesley Smith"
+      ],
+      "opf_isbn10_claim": "0743439961",
+      "isbn13_computed_from_opf_isbn10": "9780743439961",
+      "official_product_title": "Have Tech Will Travel",
+      "official_product_author_display": [
+        "Keith R. A. DeCandido",
+        "Kevin Dilmore",
+        "Christie Golden"
+      ],
+      "official_product_isbn13": "9780743439978",
+      "official_product_ebook": true,
+      "official_series_number": null,
+      "official_product_page": "https://www.simonandschuster.com/books/Have-Tech-Will-Travel/Keith-R-A-DeCandido/Star-Trek-Starfleet-Corps-of-Engineers/9780743439978",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "DIFFERENT_PRODUCT_IDENTIFIERS_HOLD",
+      "creator_relation": "AUTHOR_SET_DIFFERENCE_HOLD",
+      "bibliographic_role": "OMNIBUS_CONTAINER_CANDIDATE",
+      "original_txt_filename_candidate_id": null,
+      "original_txt_candidate_basis": "NONE"
+    },
+    {
+      "source_local_opf_id": "opf-local:0050",
+      "original_opf_entry_sha256": "0135412260edc89eb865167e1ebf8336c891d9f27575eb0b28a8fad6c094784c",
+      "original_opf_xml_bytes": 4693,
+      "opf_xml_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "opf_title_claim": "GHOST SHIP",
+      "opf_creator_claims": [
+        "Diane Carey"
+      ],
+      "opf_isbn10_claim": "0743412133",
+      "isbn13_computed_from_opf_isbn10": "9780743412131",
+      "official_product_title": "Ghost Ship",
+      "official_product_author_display": [
+        "Diane Carey"
+      ],
+      "official_product_isbn13": "9780743412131",
+      "official_product_ebook": true,
+      "official_series_number": 1,
+      "official_product_page": "https://www.simonandschuster.com/books/Ghost-Ship/Diane-Carey/Star-Trek-The-Next-Generation/9780743412131",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0088",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0051",
+      "original_opf_entry_sha256": "a0b564feea17f252c8c2cd7464123a9b6dcacfced554f3aabf9062fe0fc97087",
+      "original_opf_xml_bytes": 5375,
+      "opf_xml_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "opf_title_claim": "THE PEACEKEEPERS",
+      "opf_creator_claims": [
+        "Gene Deweese"
+      ],
+      "opf_isbn10_claim": "0743412141",
+      "isbn13_computed_from_opf_isbn10": "9780743412148",
+      "official_product_title": "The Peacekeepers",
+      "official_product_author_display": [
+        "Gene DeWeese"
+      ],
+      "official_product_isbn13": "9780743412148",
+      "official_product_ebook": true,
+      "official_series_number": 2,
+      "official_product_page": "https://www.simonandschuster.com/books/The-Peacekeepers/Gene-DeWeese/Star-Trek-The-Next-Generation/9780743412148",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0089",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0052",
+      "original_opf_entry_sha256": "281c7026d5d57f13bb77ebf0dae116ad1c95f1154b51a70e2f15608cf94b07f3",
+      "original_opf_xml_bytes": 6281,
+      "opf_xml_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "opf_title_claim": "THE CHILDREN OF HAMLIN",
+      "opf_creator_claims": [
+        "Carmen Carter"
+      ],
+      "opf_isbn10_claim": "074341215X",
+      "isbn13_computed_from_opf_isbn10": "9780743412155",
+      "official_product_title": "The Children of Hamlin",
+      "official_product_author_display": [
+        "Carter Carmen"
+      ],
+      "official_product_isbn13": "9780743412155",
+      "official_product_ebook": true,
+      "official_series_number": 3,
+      "official_product_page": "https://www.simonandschuster.com/books/The-Children-of-Hamlin/Carter-Carmen/Star-Trek-The-Next-Generation/9780743412155",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "PUBLISHER_NAME_ORDER_REVERSED_HOLD",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0090",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0053",
+      "original_opf_entry_sha256": "9caac6f27be03aef13a0fdd99d54dbaac3fdb2f0618896cb89af72810d7bb30e",
+      "original_opf_xml_bytes": 4366,
+      "opf_xml_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "opf_title_claim": "SURVIVORS",
+      "opf_creator_claims": [
+        "Jean Lorrah"
+      ],
+      "opf_isbn10_claim": "0743412168",
+      "isbn13_computed_from_opf_isbn10": "9780743412162",
+      "official_product_title": "Survivors",
+      "official_product_author_display": [
+        "Jean Lorrah"
+      ],
+      "official_product_isbn13": "9780743412162",
+      "official_product_ebook": true,
+      "official_series_number": 4,
+      "official_product_page": "https://www.simonandschuster.com/books/Survivors/Jean-Lorrah/Star-Trek-The-Next-Generation/9780743412162",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0091",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0054",
+      "original_opf_entry_sha256": "da6cdbb23d99b13935015e56fbd9eb7b200c2f7e3dc27dcaf96d75e46737c800",
+      "original_opf_xml_bytes": 5953,
+      "opf_xml_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "opf_title_claim": "STRIKE ZONE",
+      "opf_creator_claims": [
+        "Peter David"
+      ],
+      "opf_isbn10_claim": "0743412176",
+      "isbn13_computed_from_opf_isbn10": "9780743412179",
+      "official_product_title": "Strike Zone",
+      "official_product_author_display": [
+        "Peter David"
+      ],
+      "official_product_isbn13": "9780743412179",
+      "official_product_ebook": true,
+      "official_series_number": 5,
+      "official_product_page": "https://www.simonandschuster.com/books/Strike-Zone/Peter-David/Star-Trek-The-Next-Generation/9780743412179",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0092",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0055",
+      "original_opf_entry_sha256": "35221986d1e393481525b4710abcc83e15c3ed1dd56caafb6f86df00f3f05c8a",
+      "original_opf_xml_bytes": 5518,
+      "opf_xml_parse_status": "PARSED",
+      "opf_title_claim": "POWER HUNGRY",
+      "opf_creator_claims": [
+        "Howard Weinstein"
+      ],
+      "opf_isbn10_claim": "0743420861",
+      "isbn13_computed_from_opf_isbn10": "9780743420860",
+      "official_product_title": "Power Hungry",
+      "official_product_author_display": [
+        "Howard Weinstein"
+      ],
+      "official_product_isbn13": "9780743420860",
+      "official_product_ebook": true,
+      "official_series_number": 6,
+      "official_product_page": "https://www.simonandschuster.com/books/Power-Hungry/Howard-Weinstein/Star-Trek-The-Next-Generation/9780743420860",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0093",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0056",
+      "original_opf_entry_sha256": "df5fc69fea62c180f470f1f3801fd98a72d22558bb334c2bf3547a5b7dd814e2",
+      "original_opf_xml_bytes": 5397,
+      "opf_xml_parse_status": "PARSED",
+      "opf_title_claim": "MASKS",
+      "opf_creator_claims": [
+        "JOHN VORNHOLT"
+      ],
+      "opf_isbn10_claim": "074342087X",
+      "isbn13_computed_from_opf_isbn10": "9780743420877",
+      "official_product_title": "Masks",
+      "official_product_author_display": [
+        "John Vornholt"
+      ],
+      "official_product_isbn13": "9780743420877",
+      "official_product_ebook": true,
+      "official_series_number": 7,
+      "official_product_page": "https://www.simonandschuster.com/books/Masks/John-Vornholt/Star-Trek-The-Next-Generation/9780743420877",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0094",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0057",
+      "original_opf_entry_sha256": "81889d8fe757c96433220e1bc3776dd209e1d2954de33c64b11da81dffec1e27",
+      "original_opf_xml_bytes": 5900,
+      "opf_xml_parse_status": "PARSED",
+      "opf_title_claim": "A CALL TO DARKNESS",
+      "opf_creator_claims": [
+        "MICHAEL JAN FRIEDMAN"
+      ],
+      "opf_isbn10_claim": "0743420896",
+      "isbn13_computed_from_opf_isbn10": "9780743420891",
+      "official_product_title": "A Call to Darkness",
+      "official_product_author_display": [
+        "Michael Jan Friedman"
+      ],
+      "official_product_isbn13": "9780743420891",
+      "official_product_ebook": true,
+      "official_series_number": 9,
+      "official_product_page": "https://www.simonandschuster.com/books/A-Call-to-Darkness/Michael-Jan-Friedman/Star-Trek-The-Next-Generation/9780743420891",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0096",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    },
+    {
+      "source_local_opf_id": "opf-local:0058",
+      "original_opf_entry_sha256": "2e2f647a247fa7a105a61429639a7aa91a9875fae05d00036397f1c7475764bf",
+      "original_opf_xml_bytes": 5902,
+      "opf_xml_parse_status": "PARSED",
+      "opf_title_claim": "A ROCK AND A HARD PLACE",
+      "opf_creator_claims": [
+        "PETER DAVID"
+      ],
+      "opf_isbn10_claim": "074342090X",
+      "isbn13_computed_from_opf_isbn10": "9780743420907",
+      "official_product_title": "A Rock and a Hard Place",
+      "official_product_author_display": [
+        "Peter David"
+      ],
+      "official_product_isbn13": "9780743420907",
+      "official_product_ebook": true,
+      "official_series_number": 10,
+      "official_product_page": "https://www.simonandschuster.com/books/A-Rock-and-a-Hard-Place/Peter-David/Star-Trek-The-Next-Generation/9780743420907",
+      "official_jacket_jpg_reference_seen": true,
+      "edition_identifier_relation": "ISBN10_13_CHECKDIGIT_MATCH",
+      "creator_relation": "CASEFOLD_NAME_MATCH",
+      "bibliographic_role": "SINGLE_TITLE_EDITION_CANDIDATE",
+      "original_txt_filename_candidate_id": "txt-local:0097",
+      "original_txt_candidate_basis": "FILENAME_TITLE_HINT_ONLY"
+    }
+  ],
+  "records_sha256": "48416d48a5653ca30f593428152cba440face8f4150bd0a9e4e3438f46f9c725"
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SFA-PRESS-REFRESH-20261103-001",
+  "role": "SFA",
+  "status": "PROPOSAL_ONLY_PUBLISHER_METADATA",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "av_content_inspected": false,
+  "image_bytes_retrieved": false,
+  "source_snapshots": [
+    {
+      "source_id": "sfa-paramount-press-episodes-20261103",
+      "url": "https://www.paramountpressexpress.com/paramount-plus/shows/star-trek-starfleet-academy/episodes/",
+      "provider": "Paramount Press Express / Paramount+",
+      "independence_group": "publisher:paramount",
+      "observed_after_retrieval_utc": "2026-11-03T01:23:34Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "raw_response_bytes": 144050,
+      "raw_response_sha256": "379c67982b4d50664a09514e7723abd4bd4156ee3ce814df8b216dd81eafefc4",
+      "snapshot_bytes_public": false,
+      "snapshot_note": "Raw response includes expiring signed photo thumbnail URLs. This hash identifies one retrieval, not a stable publisher revision or permission to reuse images."
+    },
+    {
+      "source_id": "sfa-cbs-studios-show-20261103",
+      "url": "https://www.paramountpressexpress.com/cbs-studios/shows/star-trek-starfleet-academy/",
+      "provider": "Paramount Press Express / CBS Studios",
+      "independence_group": "publisher:paramount",
+      "observed_after_retrieval_utc": "2026-11-03T01:23:34Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "raw_response_bytes": 127823,
+      "raw_response_sha256": "c5753b461be1739321643286a5d9c69666d2b67b94e0fa8ab549bed2db67f332",
+      "snapshot_bytes_public": false,
+      "snapshot_note": "Same corporate publisher family, not an independent episode witness; raw response also includes expiring signed photo URLs."
+    }
+  ],
+  "local_entities": [
+    {"id":"sfa-press-20261103-slot-01","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"101","title":"Kids These Days","raw_html_line":1496},
+    {"id":"sfa-press-20261103-slot-02","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"102","title":"Beta Test","raw_html_line":1444},
+    {"id":"sfa-press-20261103-slot-03","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"103","title":"Vitus Reflux","raw_html_line":1392},
+    {"id":"sfa-press-20261103-slot-04","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"104","title":"Vox in Excelso","raw_html_line":1340},
+    {"id":"sfa-press-20261103-slot-05","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"105","title":"Series Acclimation Mil","raw_html_line":1288},
+    {"id":"sfa-press-20261103-slot-06","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"106","title":"Come, Let's Away","raw_html_line":1236},
+    {"id":"sfa-press-20261103-slot-07","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"107","title":"Ko'Zeine","raw_html_line":1184},
+    {"id":"sfa-press-20261103-slot-08","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"108","title":"The Life of the Stars","raw_html_line":1132},
+    {"id":"sfa-press-20261103-slot-09","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"109","title":"300th Night","raw_html_line":1080},
+    {"id":"sfa-press-20261103-slot-10","kind":"PUBLISHER_EPISODE_SLOT_REFERENCE","season_label":1,"publisher_episode_code":"110","title":"Rubincon","raw_html_line":1028},
+    {"id":"sfa-press-20261103-s2-promotional","kind":"PUBLISHER_MEDIA_BUCKET","season_label":2,"publisher_episode_code":"200","title":"Season 2 - Early Release","raw_html_line":976},
+    {"id":"sfa-press-20261103-s1-promotional","kind":"PUBLISHER_MEDIA_BUCKET","season_label":1,"publisher_episode_code":"Multiple","title":"Early Release Images","raw_html_line":1548}
+  ],
+  "evidence": [
+    {
+      "id":"sfa-press-s1-roster-evidence",
+      "source_id":"sfa-paramount-press-episodes-20261103",
+      "local_entity_ids":["sfa-press-20261103-slot-01","sfa-press-20261103-slot-02","sfa-press-20261103-slot-03","sfa-press-20261103-slot-04","sfa-press-20261103-slot-05","sfa-press-20261103-slot-06","sfa-press-20261103-slot-07","sfa-press-20261103-slot-08","sfa-press-20261103-slot-09","sfa-press-20261103-slot-10"],
+      "kind":"PUBLISHER_PAGE_TITLE_AND_CODE_OBSERVATION",
+      "locator":"HTML lines 1028-1514 in exact private retrieval; descending listing order; no episode video inspected",
+      "finding":"The publisher page displays ten Season 1 titles with release codes 101 through 110, matching the earlier source-local slot labels."
+    },
+    {
+      "id":"sfa-press-s2-media-bucket-evidence",
+      "source_id":"sfa-paramount-press-episodes-20261103",
+      "local_entity_ids":["sfa-press-20261103-s2-promotional"],
+      "kind":"PUBLISHER_PAGE_MEDIA_LISTING",
+      "locator":"HTML lines 966-1015; photo link /paramount-plus/shows/star-trek-starfleet-academy/photos?episode=27034",
+      "finding":"The page lists 'Season 2 - Early Release' under an Episodes heading with Season 2 / Ep. 200 and a photo-asset link but an empty description."
+    },
+    {
+      "id":"sfa-press-s1-media-bucket-evidence",
+      "source_id":"sfa-paramount-press-episodes-20261103",
+      "local_entity_ids":["sfa-press-20261103-s1-promotional"],
+      "kind":"PUBLISHER_PAGE_MEDIA_LISTING",
+      "locator":"HTML lines 1548-1594",
+      "finding":"The publisher lists 'Early Release Images' as Season 1 / Ep. Multiple, demonstrating that this Episodes page also includes media containers."
+    },
+    {
+      "id":"sfa-cbs-photo-filename-evidence",
+      "source_id":"sfa-cbs-studios-show-20261103",
+      "photo_metadata_ids":["sfa-cbs-photo-200-01","sfa-cbs-photo-200-02","sfa-cbs-photo-200-03"],
+      "kind":"PUBLISHER_PHOTO_FILENAME_AND_CAPTION_LISTING",
+      "locator":"HTML lines 1056-1150 in exact private CBS Studios response",
+      "finding":"The publisher show page lists three source-local filename/caption pairs under its Season 2 early-release media grouping; the referenced image bytes were not requested."
+    }
+  ],
+  "photo_metadata_observations": [
+    {"id":"sfa-cbs-photo-200-01","source_id":"sfa-cbs-studios-show-20261103","raw_html_line":1079,"file_label":"SFA_200_BZ_1021_0295_RT.jpg","caption_subjects":["Sandro Rosta","Kerrice Brooks","Karim Diané"],"image_bytes_retrieved":false,"rights_status":"UNRESOLVED"},
+    {"id":"sfa-cbs-photo-200-02","source_id":"sfa-cbs-studios-show-20261103","raw_html_line":1112,"file_label":"SFA_200_MG_1201_0147_RT.JPG","caption_subjects":["Robert Picardo","Bill Nighy"],"image_bytes_retrieved":false,"rights_status":"UNRESOLVED"},
+    {"id":"sfa-cbs-photo-200-03","source_id":"sfa-cbs-studios-show-20261103","raw_html_line":1145,"file_label":"SFA_200_BZ_1021_0416_RT.JPG","caption_subjects":["Bella Shepard","Zoë Steiner"],"image_bytes_retrieved":false,"rights_status":"UNRESOLVED"}
+  ],
+  "assertions": [
+    {"id":"sfa-press-assert-s1-roster","status":"SOURCE_LOCAL_OBSERVATION","predicate":"PUBLISHER_LISTS_SEASON_EPISODE_CODES","support_evidence_ids":["sfa-press-s1-roster-evidence"],"scope":"Publisher metadata only; not an authenticated Work roster or proof of completeness."},
+    {"id":"sfa-press-assert-s2-classification-hold","status":"UNRESOLVED","predicate":"PUBLISHER_BUCKET_MAY_BE_PROMOTIONAL_NOT_EPISODE","support_evidence_ids":["sfa-press-s2-media-bucket-evidence","sfa-press-s1-media-bucket-evidence"],"scope":"Do not infer S2E200, S2E1, an episode title, or a season denominator from this media listing. Need actual S2 episode guide and primary audiovisual source."},
+    {"id":"sfa-press-assert-photo-hold","status":"UNRESOLVED","predicate":"PUBLISHER_PHOTO_FILE_LABELS_OBSERVED","support_evidence_ids":["sfa-cbs-photo-filename-evidence"],"scope":"Three filename/caption observations are publicity metadata, not visual content, character identity evidence, or permission to publish artwork."}
+  ]
+}

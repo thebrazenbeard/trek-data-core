@@ -201,6 +201,24 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .publisher-isbn-card .isbn-source { display: inline-block; margin-top: 8px; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
 .publisher-isbn-card .isbn-custody { font: 650 .7rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--muted); overflow-wrap: anywhere; }
 .paramount-grid { margin-top: 18px; }
+.paramount-chronology { margin: 19px 0 23px; padding: 19px; background: linear-gradient(145deg, #151d2f, #0a101c 78%); border: 1px solid var(--line); border-top: 8px solid var(--aqua); border-left: 10px solid var(--violet); border-radius: 26px 4px 4px 4px; }
+.paramount-chronology[hidden] { display: none; }
+.paramount-chronology-heading { display: flex; justify-content: space-between; gap: 24px; align-items: start; }
+.paramount-chronology-heading h3 { margin: 3px 0 10px; font-size: clamp(1.1rem, 2.4vw, 1.55rem); }
+.paramount-chronology-heading p:last-child { max-width: 580px; margin: 0; color: var(--muted); font-size: .75rem; }
+.paramount-chronology-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; margin: 18px 0 0; padding: 0; }
+.paramount-chronology-item { min-width: 0; position: relative; border: 1px solid var(--line); border-left: 8px solid var(--aqua); border-radius: 20px 4px 4px 4px; background: #0e1928; }
+.paramount-chronology-item.held { border-left-color: var(--peach); background: #201b2a; }
+.paramount-chronology-item::before { content: ''; position: absolute; width: 15px; height: 7px; right: 8px; top: 11px; background: var(--aqua); border-radius: 7px 2px 2px 7px; }
+.paramount-chronology-item.held::before { background: var(--peach); }
+.paramount-chronology-source { display: flex; flex-direction: column; min-height: 172px; padding: 16px 13px 13px; color: var(--text); text-decoration: none; outline-offset: 4px; overflow-wrap: anywhere; }
+.paramount-chronology-source:hover, .paramount-chronology-source:focus-visible { background: #1e2b42; }
+.paramount-chronology-year { font: 830 1.52rem/1.1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--aqua); }
+.held .paramount-chronology-year { color: var(--peach); }
+.paramount-chronology-title { margin-top: 9px; font: 750 .83rem/1.25 system-ui, sans-serif; text-transform: capitalize; }
+.paramount-chronology-badge { margin-top: auto; padding-top: 11px; color: var(--aqua); font: 730 .67rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.held .paramount-chronology-badge { color: var(--peach); }
+.paramount-chronology-credit { margin-top: 3px; color: var(--muted); font: 620 .62rem/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .paramount-card { border-left-color: var(--aqua); min-width: 0; }
 .paramount-card.paramount-held { border-left-color: var(--peach); }
 .paramount-card h3 { margin: 4px 0 8px; font-size: 1rem; text-transform: capitalize; overflow-wrap: anywhere; }
@@ -249,6 +267,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot .artwork-record-title { position: relative; z-index: 1; display: -webkit-box; max-width: 98%; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; padding: 0 5px; color: var(--text); text-align: center; font: 760 .62rem/1.1 system-ui, sans-serif; overflow-wrap: anywhere; }
 .artwork-slot .artwork-missing { position: relative; z-index: 1; width: 100%; padding: 4px 3px 5px; background: #090b19ee; font: 700 .5rem/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .025em; text-align: center; text-transform: uppercase; }
 .artwork-slot img { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #090b19; }
+.artwork-slot .artwork-image-link { position: absolute; inset: 0; z-index: 2; display: block; border-radius: inherit; outline-offset: 3px; }
+.artwork-slot .artwork-image-link:focus-visible { outline: 4px solid var(--aqua); }
+.artwork-slot .artwork-image-link:hover img { outline: 2px solid var(--aqua); outline-offset: -2px; }
 .artwork-caption { display: flex; flex-direction: column; gap: 3px; padding: 5px 2px 1px; color: var(--muted); text-align: center; font: 650 .57rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
 .artwork-caption a { color: var(--aqua); text-decoration: underline; text-underline-offset: 2px; }
 .artwork-caption .artwork-credit { color: var(--peach); }
@@ -351,6 +372,11 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .command-route { font-size: .64rem; }
   .tone-toggle { padding: 7px 10px; font-size: .68rem; white-space: normal; }
   .lore-toggle { padding: 7px 10px; font-size: .68rem; white-space: normal; }
+  .paramount-chronology { padding: 12px; border-left-width: 8px; border-top-width: 7px; }
+  .paramount-chronology-heading { display: block; }
+  .paramount-chronology-heading p:last-child { margin-top: 8px; }
+  .paramount-chronology-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); }
+  .paramount-chronology-source { min-height: 160px; }
   .page-content { padding: 25px 16px 55px; }
   .lore-console { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
   .lore-query-form, .lore-response { padding: 15px; }

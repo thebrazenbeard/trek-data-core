@@ -1,0 +1,68 @@
+{
+  "schema_version": "trek-scouts-asteroid-06to10-publisher-description-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_access": "SEARCH_RETRIEVED_PUBLIC_YOUTUBE_VIDEO_DESCRIPTION_NOT_VIDEO_PAGE_OPENED",
+  "verification_class": "PUBLISHER_DESCRIPTION_METADATA_READ_NOT_ANIMATION_VIEWED",
+  "source_family": "publisher:paramount-nickelodeon-youtube",
+  "publisher_channel_display_name": "Blaze and the Monster Machines",
+  "independent_upstream_families": 1,
+  "short_count": 5,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "animations_viewed": false,
+  "video_pages_opened": false,
+  "source_bound": false,
+  "close_read": false,
+  "raw_source_page_sha256": null,
+  "description_paraphrases": [
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:06",
+      "publisher_video_id": "Ps3cQdL1By0",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=Ps3cQdL1By0",
+      "publisher_video_display_date": "2025-10-18",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A giant corn-kernel asteroid approaches the Scouts, who must quickly choose a way to stop it before a promised popcorn snack."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:07",
+      "publisher_video_id": "GtJpqUH3gTA",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=GtJpqUH3gTA",
+      "publisher_video_display_date": "2025-11-01",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A disco-ball asteroid from the Boogie Belt threatens the Scouts, who are urged to cooperate before a dance party with their pets."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:08",
+      "publisher_video_id": "6lnl4qzwHt8",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=6lnl4qzwHt8",
+      "publisher_video_display_date": "2025-11-08",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A huge bubble-gum asteroid puts the Scouts on a countdown to pick an effective defense before it reaches their position."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:09",
+      "publisher_video_id": "ODb0D3ZTgug",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=ODb0D3ZTgug",
+      "publisher_video_display_date": "2025-11-15",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "An enormous chocolate-chip-cookie asteroid from the Bakers Galaxy heads toward JR, Roo, and Sprocket, leaving them little time to work out a defense."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:10",
+      "publisher_video_id": "fSRr1CGFYiY",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=fSRr1CGFYiY",
+      "publisher_video_display_date": "2025-12-06",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "Shadowtrix pursues a Horta while a gorgonite asteroid races toward the Scouts, leaving them to confront both dangers under a tight deadline."
+    }
+  ]
+}

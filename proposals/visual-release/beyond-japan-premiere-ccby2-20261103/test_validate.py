@@ -95,6 +95,27 @@ class PhotoReleaseProposalTests(unittest.TestCase):
         with self.assertRaises(MODULE.ReleaseProposalRejected):
             MODULE.validate(self.root)
 
+    def test_forced_future_event_date_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(event_date="2099-01-01"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_unrelated_image_title_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(title="Unrelated private portrait"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_false_film_scene_caption_fails(self):
+        self._mutate(lambda r: r["required_adjacent_visible_ui"].update(
+            caption="Star Trek cast official film scene, not a film frame"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_bad_photo_source_link_fails(self):
+        self._mutate(lambda r: r["required_adjacent_visible_ui"].update(source_click="https://evil.example/tracker"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
     def test_unreviewed_public_image_file_fails(self):
         destination = self.root / MODULE.ASSET_PATH
         destination.parent.mkdir(parents=True, exist_ok=True)

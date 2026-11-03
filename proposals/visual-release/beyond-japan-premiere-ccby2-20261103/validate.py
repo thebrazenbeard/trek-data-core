@@ -23,6 +23,9 @@ ASSET_PATH = "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
 COMMONS_URL = "https://commons.wikimedia.org/wiki/File:Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg"
 THUMB_URL = "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg/960px-Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg"
 REQUESTED_EFFECT = "APPROVE_ONE_SOURCE_SPECIFIC_CC_BY_2_0_DOCUMENTARY_PREMIERE_PHOTO_FOR_INFORMATIONAL_EXPLORER_DISPLAY"
+# Immutable decision snapshot: no field in an independently reviewed version may
+# silently drift. A genuine correction requires a new version and review.
+EXPECTED_DECISION_SHA256 = "8df2b006b320afe5f365eae340ad9cc99ae998ae570075d1ea1b268b4c90fd81"
 
 
 class ReleaseProposalRejected(ValueError):
@@ -55,6 +58,8 @@ def _require(expression: bool, message: str) -> None:
 def validate(root: Path = ROOT) -> str:
     folder = root / FOLDER
     proposal = _load_json(folder / "decision.json")
+    _require(hashlib.sha256((folder / "decision.json").read_bytes()).hexdigest() ==
+             EXPECTED_DECISION_SHA256, "Versioned decision fields changed; create reviewed successor")
     manifest = folder / "MANIFEST.md"
     test_path = folder / "test_validate.py"
     _require(manifest.is_file() and not manifest.is_symlink(), "Missing MANIFEST")
@@ -89,6 +94,8 @@ def validate(root: Path = ROOT) -> str:
 
     photo = proposal["photo_identity"]
     _require(photo["photographer"] == "Dick Thomas Johnson", "Photographer changed")
+    _require(photo["title"] == "Star Trek Beyond Japan Premiere Red Carpet: J. J. Abrams & Simon Pegg" and
+             photo["event_date"] == "2016-10-19", "Source event/title changed")
     _require(photo["commons_oldid"] == 1217252320 and
              photo["commons_file"] == COMMONS_URL, "Commons identity changed")
     _require(photo["original_flickr"] == "https://www.flickr.com/photos/31029865@N06/31784488840/",
@@ -124,6 +131,10 @@ def validate(root: Path = ROOT) -> str:
              "Spurious Work/canon admission")
 
     ui = proposal["required_adjacent_visible_ui"]
+    _require(ui["caption"] == "J. J. Abrams (left) and Simon Pegg (right, holding a microphone) at the October 19, 2016 Japan premiere of Star Trek Beyond. Documentary red-carpet photograph, not a film frame." and
+             ui["alt"] == "J. J. Abrams and Simon Pegg at a Star Trek Beyond premiere backdrop; Pegg holds a handheld microphone." and
+             ui["source_click"] == "Commons exact photo page; do not imply that clicking opens the film source",
+             "UI reference identity/alt/source target changed")
     _require("not a film frame" in ui["caption"].lower() and
              ("Dick Thomas Johnson" in ui["photographer_title_source_license_and_changes"] or
               "photographer and title" in ui["photographer_title_source_license_and_changes"].lower()),

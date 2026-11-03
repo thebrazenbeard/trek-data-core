@@ -1,0 +1,32 @@
+{
+  "record_type": "PROPOSED_SOURCE_LOCAL_ENTITIES",
+  "source_local_id": "tvmeg-tos-man-trap-20261102",
+  "work_local_id": "tos-man-trap-candidate-20261102",
+  "entities": [
+    {"id": "kirk", "label": "Kirk", "kind": "SPEAKER", "notes": "Captain and log voice in this derivative text."},
+    {"id": "mccoy", "label": "McCoy", "kind": "SPEAKER", "notes": "Medical officer; some late lines may belong to an impersonator."},
+    {"id": "spock", "label": "Spock", "kind": "SPEAKER", "notes": "Officer making medical and sensor interpretations."},
+    {"id": "uhura", "label": "Uhura", "kind": "SPEAKER", "notes": "Communications officer."},
+    {"id": "crater", "label": "Robert Crater", "kind": "SPEAKER", "notes": "Archaeologist whose causal and historical statements remain testimony."},
+    {"id": "nancy_apparent", "label": "Appearance or speaking turn attributed to Nancy", "kind": "ATTRIBUTED_APPEARANCE", "notes": "A transcript presentation of an apparent figure or NANCY-labeled turn, not a verified identity."},
+    {"id": "nancy_identity_question", "label": "Unresolved identity of Nancy-attributed appearances", "kind": "IDENTIFICATION_QUESTION", "notes": "Distinct source-local uncertainty record. This is not an additional person or resolved link to historical Nancy or the creature."},
+    {"id": "nancy_historical", "label": "Nancy Crater as remembered/reported", "kind": "REPORTED_PERSON", "notes": "Historical person reported by Crater; not silently merged with appearances."},
+    {"id": "creature_candidate", "label": "Creature discussed by crew and Crater", "kind": "CANDIDATE_ENTITY", "notes": "Source-scoped inferred referent; shape and abilities remain speaker-attributed."},
+    {"id": "darnell", "label": "Crewman Darnell", "kind": "SPEAKER", "notes": "Crewman found dead after first landing."},
+    {"id": "sturgeon", "label": "Crewman Sturgeon", "kind": "REPORTED_PERSON", "notes": "Later found dead on M-113."},
+    {"id": "green_missing_person", "label": "Crewman Green searched for and later reported dead", "kind": "REPORTED_PERSON", "notes": "Source-local reported crewman, not presumed identical to the returned GREEN-labeled sighting."},
+    {"id": "green_apparent", "label": "Figure and speaker turns attributed to Green after return", "kind": "ATTRIBUTED_APPEARANCE", "notes": "Transcript's GREEN speaker label and witnesses' shipboard descriptions; no identity resolution."},
+    {"id": "green_identity_question", "label": "Unresolved Green sighting and identity correspondence", "kind": "IDENTIFICATION_QUESTION", "notes": "A question about appearance continuity, not a third established person or global SAME_AS edge."},
+    {"id": "uhura_interlocutor", "label": "Unidentified crewman addressing Uhura", "kind": "ATTRIBUTED_SPEAKER", "notes": "Speaker label CREWMAN; claims to guess what Uhura was thinking, not independently verified access to private thoughts."},
+    {"id": "mccoy_labeled_speaker_question", "label": "Identity of later MCCOY-labeled advocate", "kind": "IDENTIFICATION_QUESTION", "notes": "Later Spock report challenges whether the speaker in earlier protected-creature arguments was McCoy."},
+    {"id": "barnhart", "label": "Barnhart", "kind": "REPORTED_PERSON", "notes": "Reported deceased by ship security channel."},
+    {"id": "rand", "label": "Yeoman Rand", "kind": "SPEAKER", "notes": "Encountered apparent Green aboard ship."},
+    {"id": "sulu", "label": "Sulu", "kind": "SPEAKER", "notes": "Ship bridge and botanical-room scenes."},
+    {"id": "enterprise", "label": "Enterprise", "kind": "VESSEL", "notes": "Ship referenced in command logs and alert reports."},
+    {"id": "m113", "label": "Planet M-113", "kind": "LOCATION", "notes": "Landing-party site in captain's log."},
+    {"id": "borgia_plant", "label": "Borgia plant", "kind": "MATERIAL", "notes": "Proposed poisoning agent, later challenged by medical report."},
+    {"id": "salt", "label": "Salt or sodium chloride", "kind": "MATERIAL", "notes": "Requested supply and reported missing body constituent."}
+  ],
+  "global_identity_edges_created": 0,
+  "canonical_status": "NOT_ADMITTED"
+}

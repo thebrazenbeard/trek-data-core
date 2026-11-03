@@ -24,6 +24,11 @@ jobs:
           python-version: '3.12'
       - name: Run repository regression tests
         run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Check source-local visual mapping counts without claiming Work coverage
+        run: |
+          test -f tools/report_artwork_coverage.py
+          test ! -L tools/report_artwork_coverage.py
+          python tools/report_artwork_coverage.py --check --verify-git
       - name: Run Librarian adversarial tests
         run: python tools/test_librarian_registry.py
       - name: Validate Librarian fixtures

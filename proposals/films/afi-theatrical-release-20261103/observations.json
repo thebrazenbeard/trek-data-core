@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_type": "FILM_SOURCE_LOCAL_RELEASE_METADATA",
+  "proposal_only": true,
+  "coverage_effect": "NONE",
+  "admission_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "observed_on_utc": "2026-11-03",
+  "source_family": "afi:catalog-of-feature-films",
+  "independence_note": "Five entries in one AFI catalog constitute one catalog lineage, not five independent witnesses. AFI cites underlying publications which were not individually inspected in this tranche.",
+  "records": [
+    {
+      "local_record_id": "afi-film-53863-release",
+      "source": {"catalog_id": "53863", "catalog_title": "Star Trek: The Motion Picture", "locator": "https://catalog.afi.com/Catalog/MovieDetails/53863", "section": "DETAILS > Release Date", "raw_page_sha256": null},
+      "local_entity_id": "afi-film-listing-53863",
+      "candidate_work_ref": "film-motion-picture",
+      "crosswalk_status": "CANDIDATE_NOT_RECONCILED",
+      "evidence": {"id": "afi-53863-release-field", "kind": "SOURCE_METADATA_FIELD", "source_field_value": "7 December 1979"},
+      "assertion": {"id": "afi-53863-release-assertion", "predicate": "AFI_CATALOG_LISTS_THEATRICAL_RELEASE_DATE", "value": "1979-12-07", "scope": "ORIGINAL_THEATRICAL_RELEASE", "status": "SOURCE_ATTRIBUTED_ONLY", "evidence_ref": "afi-53863-release-field"},
+      "artwork_rights": "NO_IMAGE_ACQUIRED_NO_DISPLAY_PERMISSION"
+    },
+    {
+      "local_record_id": "afi-film-67066-release",
+      "source": {"catalog_id": "67066", "catalog_title": "Star Trek II: The Wrath of Khan", "locator": "https://catalog.afi.com/Catalog/MovieDetails/67066", "section": "DETAILS > Release Date", "raw_page_sha256": null},
+      "local_entity_id": "afi-film-listing-67066",
+      "candidate_work_ref": "film-wrath-of-khan",
+      "crosswalk_status": "CANDIDATE_NOT_RECONCILED",
+      "evidence": {"id": "afi-67066-release-field", "kind": "SOURCE_METADATA_FIELD", "source_field_value": "4 June 1982"},
+      "assertion": {"id": "afi-67066-release-assertion", "predicate": "AFI_CATALOG_LISTS_THEATRICAL_RELEASE_DATE", "value": "1982-06-04", "scope": "ORIGINAL_THEATRICAL_RELEASE", "status": "SOURCE_ATTRIBUTED_ONLY", "evidence_ref": "afi-67066-release-field"},
+      "artwork_rights": "NO_IMAGE_ACQUIRED_NO_DISPLAY_PERMISSION"
+    },
+    {
+      "local_record_id": "afi-film-57202-release",
+      "source": {"catalog_id": "57202", "catalog_title": "Star Trek III: The Search for Spock", "locator": "https://catalog.afi.com/Film/57202-STAR-TREK-III-THE-SEARCH-FOR-SPOCK", "section": "DETAILS > Release Date", "raw_page_sha256": null},
+      "local_entity_id": "afi-film-listing-57202",
+      "candidate_work_ref": "film-search-for-spock",
+      "crosswalk_status": "CANDIDATE_NOT_RECONCILED",
+      "evidence": {"id": "afi-57202-release-field", "kind": "SOURCE_METADATA_FIELD", "source_field_value": "1 June 1984"},
+      "assertion": {"id": "afi-57202-release-assertion", "predicate": "AFI_CATALOG_LISTS_THEATRICAL_RELEASE_DATE", "value": "1984-06-01", "scope": "ORIGINAL_THEATRICAL_RELEASE", "status": "SOURCE_ATTRIBUTED_ONLY", "evidence_ref": "afi-57202-release-field"},
+      "artwork_rights": "NO_IMAGE_ACQUIRED_NO_DISPLAY_PERMISSION"
+    },
+    {
+      "local_record_id": "afi-film-57482-release",
+      "source": {"catalog_id": "57482", "catalog_title": "Star Trek IV: The Voyage Home", "locator": "https://catalog.afi.com/Catalog/MovieDetails/57482", "section": "DETAILS > Release Date", "raw_page_sha256": null},
+      "local_entity_id": "afi-film-listing-57482",
+      "candidate_work_ref": "film-voyage-home",
+      "crosswalk_status": "CANDIDATE_NOT_RECONCILED",
+      "evidence": {"id": "afi-57482-release-field", "kind": "SOURCE_METADATA_FIELD", "source_field_value": "26 November 1986"},
+      "assertion": {"id": "afi-57482-release-assertion", "predicate": "AFI_CATALOG_LISTS_THEATRICAL_RELEASE_DATE", "value": "1986-11-26", "scope": "ORIGINAL_THEATRICAL_RELEASE", "status": "SOURCE_ATTRIBUTED_ONLY", "evidence_ref": "afi-57482-release-field"},
+      "artwork_rights": "NO_IMAGE_ACQUIRED_NO_DISPLAY_PERMISSION"
+    },
+    {
+      "local_record_id": "afi-film-58297-release",
+      "source": {"catalog_id": "58297", "catalog_title": "Star Trek V: The Final Frontier", "locator": "https://catalog.afi.com/Catalog/MovieDetails/58297", "section": "DETAILS > Release Date", "raw_page_sha256": null},
+      "local_entity_id": "afi-film-listing-58297",
+      "candidate_work_ref": "film-final-frontier",
+      "crosswalk_status": "CANDIDATE_NOT_RECONCILED",
+      "evidence": {"id": "afi-58297-release-field", "kind": "SOURCE_METADATA_FIELD", "source_field_value": "9 June 1989"},
+      "assertion": {"id": "afi-58297-release-assertion", "predicate": "AFI_CATALOG_LISTS_THEATRICAL_RELEASE_DATE", "value": "1989-06-09", "scope": "ORIGINAL_THEATRICAL_RELEASE", "status": "SOURCE_ATTRIBUTED_ONLY", "evidence_ref": "afi-58297-release-field"},
+      "artwork_rights": "NO_IMAGE_ACQUIRED_NO_DISPLAY_PERMISSION"
+    }
+  ]
+}

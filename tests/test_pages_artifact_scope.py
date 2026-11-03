@@ -137,6 +137,9 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/artwork-catalog.json", text)
         self.assertIn("! -path explorer/artwork-catalog-v1.3.json", text)
+        self.assertIn("! -path explorer/beyond-premiere-photo.json", text)
+        self.assertIn("! -path explorer/beyond-premiere-release-decision.json", text)
+        self.assertNotIn("! -path explorer/beyond-premiere-*", text)
         self.assertIn("! -path explorer/licensed-artwork", text)
         self.assertIn("! -path 'explorer/licensed-artwork/*'", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
@@ -281,6 +284,38 @@ class PagesArtifactScopeTests(unittest.TestCase):
             (explorer / "app.js").unlink()
             (explorer / "app.js").symlink_to("index.html")
             self.assertNotEqual(check().returncode, 0)
+
+    def test_beyond_held_json_must_be_exact_committed_text_only_paths(self):
+        """Two documentary metadata files are not a blanket image release."""
+        root = self.fixture()
+        explorer = root / "explorer"
+        names = ("beyond-premiere-photo.json", "beyond-premiere-release-decision.json")
+        check = lambda: self.check_step("Verify final public artifact boundary", root)
+
+        for name in names:
+            (explorer / name).write_text('{"held_only": true}\n', encoding="utf-8")
+        self.assertNotEqual(check().returncode, 0, "uncommitted held JSON must fail")
+        self.commit_fixture(root)
+        self.assertEqual(check().returncode, 0)
+
+        for name in names:
+            path = explorer / name
+            path.write_text('{"held_only": false}\n', encoding="utf-8")
+            self.assertNotEqual(check().returncode, 0, f"modified {name} must fail")
+            path.write_text('{"held_only": true}\n', encoding="utf-8")
+            self.assertEqual(check().returncode, 0)
+            path.unlink()
+            path.symlink_to("index.json")
+            self.assertNotEqual(check().returncode, 0, f"symlinked {name} must fail")
+            path.unlink()
+            path.write_text('{"held_only": true}\n', encoding="utf-8")
+
+        for extra in ("beyond-premiere-photo.jpg", "beyond-premiere-extra.json"):
+            path = explorer / extra
+            path.write_bytes(b"\xff\xd8\xff" if extra.endswith(".jpg") else b"{}\n")
+            self.assertNotEqual(check().returncode, 0, f"unreviewed {extra} must fail")
+            path.unlink()
+        self.assertEqual(check().returncode, 0)
 
     def test_original_abstract_svg_requires_committed_identical_bytes(self):
         root = self.fixture()

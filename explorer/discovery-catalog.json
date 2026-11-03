@@ -4,14 +4,14 @@
     "AUDIO": 1,
     "EPISODE": 1155,
     "FILM": 14,
-    "LITERATURE": 1,
+    "LITERATURE": 4,
     "SHORT_FORM": 35
   },
   "coverage_effect": "NONE",
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 1206,
+  "row_count": 1209,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -19805,6 +19805,63 @@
       "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898",
       "title": "Star Trek: Strange New Worlds: Ring of Fire",
       "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "NOVEL",
+      "context": "Una McCormack · three publisher-format observations",
+      "coverage_effect": "NONE",
+      "details": [
+        "Trade Paperback · ISBN 9781982194833",
+        "Ebook · ISBN 9781982194840",
+        "Unabridged Audio Download · ISBN 9781797137278"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:proposed-lit-picard-second-self",
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/simon-schuster-three-novels-20261103/records.json",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833",
+      "title": "Star Trek: Picard: Second Self",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "NOVEL",
+      "context": "John Jackson Miller · three publisher-format observations",
+      "coverage_effect": "NONE",
+      "details": [
+        "Trade Paperback · ISBN 9781668002391",
+        "Ebook · ISBN 9781668002407",
+        "Unabridged Audio Download · ISBN 9781797149226"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:proposed-lit-snw-high-country",
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/simon-schuster-three-novels-20261103/records.json",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-The-High-Country/John-Jackson-Miller/Star-Trek-Strange-New-Worlds/9781668002391",
+      "title": "Star Trek: Strange New Worlds: The High Country",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "NOVEL",
+      "context": "John Jackson Miller · three publisher-format observations",
+      "coverage_effect": "NONE",
+      "details": [
+        "Trade Paperback · ISBN 9781982113315",
+        "Ebook · ISBN 9781982113322",
+        "Unabridged Audio Download · ISBN 9781508283195"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:proposed-lit-discovery-enterprise-war",
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/simon-schuster-three-novels-20261103/records.json",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Discovery-The-Enterprise-War/John-Jackson-Miller/Star-Trek-Discovery/9781982113315",
+      "title": "Star Trek: Discovery: The Enterprise War",
+      "verification_status": "UNVERIFIED_METADATA"
     }
   ],
   "schema_version": "1.0.0",
@@ -20352,6 +20409,10 @@
     {
       "path": "proposals/librarian/ring-of-fire-editions-20261102/records.json",
       "sha256": "b11ac30d533173bc903b6a386a43ac92d5fbd1c657518ad463869e0fa150c2de"
+    },
+    {
+      "path": "proposals/librarian/simon-schuster-three-novels-20261103/records.json",
+      "sha256": "3eaa29c8617e4421910c00186c10709ba05c53b01dec4d7b226eae16cbf15496"
     }
   ]
 }

@@ -368,6 +368,10 @@ class ArtworkReleaseContractTests(unittest.TestCase):
             html.replace('</body>', f'<article class="episode-card">{hero}</article></body>'),
             html.replace(hero, '').replace('</body>',
                 f'<article class="episode-card">{fake_episode}</article></body>'),
+            # Hostile QA: exact permitted hero under a forged episode card,
+            # nested *within* masthead, defeated the boolean in_masthead gate.
+            html.replace(hero, '<article class="episode-card"><h2>Official episode screenshot</h2>'
+                         + hero + '</article>'),
         ):
             with self.subTest(attack=attack[-300:]):
                 (self.root / "explorer/index.html").write_text(attack)

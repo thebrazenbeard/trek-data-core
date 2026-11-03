@@ -466,11 +466,18 @@ def check_css_no_pre_opt_in_network(css: str) -> None:
 
 
 class _StartupHTML(HTMLParser):
+    # HTMLParser does not maintain DOM ancestry. Track the nesting ourselves
+    # so that an allowed hero cannot be placed in a forged episode card inside
+    # an otherwise legitimate masthead.
+    VOID_HTML = frozenset({"area", "base", "br", "col", "embed", "hr", "img", "input",
+                           "link", "meta", "param", "source", "track", "wbr"})
+
     def __init__(self):
         super().__init__()
         self.in_style = False
         self.svg_stack: list[str] = []
         self.in_masthead = False
+        self.masthead_stack: list[str] = []
         self.masthead_count = 0
         self.hero_count = 0
 
@@ -481,6 +488,9 @@ class _StartupHTML(HTMLParser):
             self.masthead_count += 1
             _ensure(self.masthead_count == 1, "duplicate decorative masthead")
             self.in_masthead = True
+            self.masthead_stack.append("header")
+        elif self.in_masthead and tag not in self.VOID_HTML:
+            self.masthead_stack.append(tag)
         if tag == "svg" or self.svg_stack:
             # Every SVG descendant may be an external-resource reference,
             # including <textPath>, <a>, and unfamiliar future SVG tags.
@@ -524,14 +534,14 @@ class _StartupHTML(HTMLParser):
                     "unexpected script URL")
         if tag == "img":
             self.hero_count += 1
-            _ensure(self.hero_count == 1 and self.in_masthead and
+            _ensure(self.hero_count == 1 and self.masthead_stack == ["header"] and
                     set(values) == {"class", "src", "width", "height", "alt", "decoding", "fetchpriority"} and
                     values["class"] == "masthead-art" and values["width"] == "1536" and
                     values["height"] == "512" and values["decoding"] == "async" and
                     values["fetchpriority"] == "high" and
                     values["alt"] == "Panoramic starship bridge facing a luminous celestial navigation chart" and
                     re.fullmatch(r"\./trek-data-core-hero\.jpg\?v=[a-f0-9]{64}", values["src"]) is not None,
-                    "first-party hero may appear once inside the masthead with exact presentation and provenance scope")
+                    "first-party hero must be a direct child of the masthead with exact presentation and provenance scope")
         if tag == "meta" and values.get("http-equiv", "").lower() == "refresh":
             raise ArtworkRejected("automatic HTML redirect/preload denied")
 
@@ -541,8 +551,12 @@ class _StartupHTML(HTMLParser):
             self.svg_stack.pop()
         if tag == "style":
             self.in_style = False
-        if tag == "header" and self.in_masthead:
-            self.in_masthead = False
+        if self.in_masthead and tag not in self.VOID_HTML:
+            _ensure(bool(self.masthead_stack) and self.masthead_stack[-1] == tag,
+                    "malformed masthead child nesting")
+            self.masthead_stack.pop()
+            if not self.masthead_stack:
+                self.in_masthead = False
 
     def handle_data(self, data):
         if self.in_style:
@@ -556,7 +570,8 @@ def check_static_startup(root: Path = ROOT) -> None:
     parser.feed(html)
     parser.close()
     _ensure(not parser.svg_stack, "unclosed SVG markup")
-    _ensure(parser.masthead_count == 1 and parser.hero_count == 1 and not parser.in_masthead,
+    _ensure(parser.masthead_count == 1 and parser.hero_count == 1 and
+            not parser.in_masthead and not parser.masthead_stack,
             "exactly one scoped decorative masthead hero must exist")
 
 

@@ -1,0 +1,501 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "coverage_effect": "NONE",
+  "data_status": "B006_PROPOSAL_ONLY_PRIMARY_RENDERED_CARD_TRIAGE",
+  "observation_manifest_sha256": "c4abb504be458de6cc22101a6749b7d967bcccf789c3bde18311e9f91f19a8d2",
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Image in the Sand > S7 E1 > short description",
+          "episode": 1,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+          "publisher_source_body_sha256": null,
+          "season": 7,
+          "title": "Image in the Sand"
+        }
+      ],
+      "original_synopsis_draft": "With the wormhole inaccessible, Sisko searches for a way to renew contact with Bajor's Prophets.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744156",
+      "source_local_row_id": "lead:0067",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Image in the Sand",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > His Way > S6 E20 > short description",
+          "episode": 20,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "His Way"
+        }
+      ],
+      "original_synopsis_draft": "Odo seeks romantic guidance from a holographic lounge singer as he tries to express his feelings for Kira.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744174",
+      "source_local_row_id": "lead:0068",
+      "source_local_series_context": "DS9",
+      "source_local_title": "His Way",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Favor The Bold > S6 E5 > short description",
+          "episode": 5,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Favor The Bold"
+        }
+      ],
+      "original_synopsis_draft": "As Kira faces the threatened minefield, Sisko prepares a mission to regain control of Deep Space Nine.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744188",
+      "source_local_row_id": "lead:0069",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Favor the Bold",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "CASE_VARIANT_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Q2 > S7 E19 > short description",
+          "episode": 19,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+          "publisher_source_body_sha256": null,
+          "season": 7,
+          "title": "Q2"
+        }
+      ],
+      "original_synopsis_draft": "Janeway is left responsible for Q's mischievous, omnipotent son, whose actions cause widespread trouble.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q125917",
+      "source_local_row_id": "lead:0070",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Q2",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Cloud > S1 E6 > short description",
+          "episode": 6,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "The Cloud"
+        }
+      ],
+      "original_synopsis_draft": "After Voyager becomes trapped inside a living nebula, Janeway leads an effort to repair the damage her ship caused.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1016685",
+      "source_local_row_id": "lead:0071",
+      "source_local_series_context": "VOY",
+      "source_local_title": "The Cloud",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Omega Directive > S4 E21 > short description",
+          "episode": 21,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "The Omega Directive"
+        }
+      ],
+      "original_synopsis_draft": "A dangerous particle detected near Voyager forces the crew to confront a threat to the surrounding space.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1093269",
+      "source_local_row_id": "lead:0072",
+      "source_local_series_context": "VOY",
+      "source_local_title": "The Omega Directive",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Time And Again > S1 E4 > short description",
+          "episode": 4,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Time And Again"
+        }
+      ],
+      "original_synopsis_draft": "Voyager investigates the destruction of a pre-warp world and the possibility that visiting its recent past caused the disaster.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1976840",
+      "source_local_row_id": "lead:0073",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Time and Again",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "CASE_VARIANT_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Caretaker, Part 1 & 2 > S1 E1 > short description",
+          "episode": 1,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Caretaker, Part 1 & 2"
+        }
+      ],
+      "original_synopsis_draft": null,
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2121683",
+      "source_local_row_id": "lead:0074",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Caretaker",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "WITHHELD_COMBINED_MULTIPART_WORK_IDENTITY_UNRESOLVED",
+      "title_resolution": "COMBINED_MULTIPART_LISTING_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > In the Flesh > S5 E4 > short description",
+          "episode": 4,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "In the Flesh"
+        }
+      ],
+      "original_synopsis_draft": "Voyager's crew discovers that Species 8472 operates a simulation of Starfleet Headquarters.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q10857017",
+      "source_local_row_id": "lead:0075",
+      "source_local_series_context": "VOY",
+      "source_local_title": "In the Flesh",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Initiations > S2 E2 > short description",
+          "episode": 2,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "Initiations"
+        }
+      ],
+      "original_synopsis_draft": "A young Kazon warrior abducts Chakotay while attempting to prove himself to his people.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13115900",
+      "source_local_row_id": "lead:0076",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Initiations",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Investigations > S2 E20 > short description",
+          "episode": 20,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "Investigations"
+        }
+      ],
+      "original_synopsis_draft": "Following erratic behavior, Tom Paris abandons Voyager and takes passage with a Talaxian convoy.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13115914",
+      "source_local_row_id": "lead:0077",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Investigations",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Virtuoso > S6 E13 > short description",
+          "episode": 13,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Virtuoso"
+        }
+      ],
+      "original_synopsis_draft": "The Doctor's growing musical ambitions begin to reshape his relationships and personal life.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13403516",
+      "source_local_row_id": "lead:0078",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Virtuoso",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Ashes to Ashes > S6 E18 > short description",
+          "episode": 18,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Ashes to Ashes"
+        }
+      ],
+      "original_synopsis_draft": "An alien seeking refuge aboard Voyager claims to be one of the ship's long-deceased crew members.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13479268",
+      "source_local_row_id": "lead:0079",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Ashes to Ashes",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Jetrel > S1 E15 > short description",
+          "episode": 15,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Jetrel"
+        }
+      ],
+      "original_synopsis_draft": "Neelix must confront painful memories when the scientist behind the weapon that devastated his homeworld visits Voyager.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q13639300",
+      "source_local_row_id": "lead:0080",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Jetrel",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Q and the Grey > S3 E11 > short description",
+          "episode": 11,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
+          "publisher_source_body_sha256": null,
+          "season": 3,
+          "title": "The Q and the Grey"
+        }
+      ],
+      "original_synopsis_draft": "Unusual supernovas herald a conflict within the Q Continuum, drawing Voyager into an escalating crisis.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q14476529",
+      "source_local_row_id": "lead:0081",
+      "source_local_series_context": "VOY",
+      "source_local_title": "The Q and the Grey",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Think Tank > S5 E20 > short description",
+          "episode": 20,
+          "guide_page_series_label": "Star Trek: Voyager",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "Think Tank"
+        }
+      ],
+      "original_synopsis_draft": "A Hazari ambush leaves Voyager facing an apparently inescapable threat.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q14643756",
+      "source_local_row_id": "lead:0082",
+      "source_local_series_context": "VOY",
+      "source_local_title": "Think Tank",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "summary": {
+    "actual_official_cards_read": 16,
+    "exact_title_cases": 13,
+    "governed_work_or_evidence_admissions": 0,
+    "original_synopsis_drafts_pending_human_review": 15,
+    "pinned_raw_publisher_html_bodies": 0,
+    "publicly_approved_synopses": 0,
+    "source_local_row_cases": 16,
+    "unresolved_case_variant_cases": 2,
+    "unresolved_combined_multipart_identity_cases": 1
+  }
+}

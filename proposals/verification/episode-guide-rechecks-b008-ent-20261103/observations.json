@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-B008-ENT-GUIDE-20261103",
+  "baseline_accepted_main": "e49ee5c51e2157ee505603b1394b511313ca50b7",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "observed_date_utc": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "read_surface": "RENDERED_OFFICIAL_PARAMOUNT_PLUS_EPISODE_GUIDE_CARDS",
+  "raw_webpage_bytes_custodied": false,
+  "episode_video_or_transcript_read": false,
+  "public_synopsis_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "row_id": "lead:0090",
+      "official_card_title": "First Flight",
+      "season": 2,
+      "episode": 24,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Archer learns that an old rival from the NX test program has died."
+    },
+    {
+      "row_id": "lead:0091",
+      "official_card_title": "Bounty",
+      "season": 2,
+      "episode": 25,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "A Tellarite bounty hunter captures Archer, seeking to collect a Klingon reward for delivering him into custody."
+    },
+    {
+      "row_id": "lead:0092",
+      "official_card_title": "The Expanse",
+      "season": 2,
+      "episode": 26,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Following a devastating alien probe attack on Earth, Enterprise is recalled and its crew prepares to pursue the attackers into the unknown."
+    },
+    {
+      "row_id": "lead:0093",
+      "official_card_title": "The Xindi",
+      "season": 3,
+      "episode": 1,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "After weeks of searching the Delphic Expanse, Enterprise follows a lead to a mining colony in pursuit of a Xindi worker."
+    },
+    {
+      "row_id": "lead:0094",
+      "official_card_title": "Dear Doctor",
+      "season": 1,
+      "episode": 13,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Dr. Phlox confronts an ethical dilemma when Enterprise is asked to help a species suffering from a devastating medical condition."
+    },
+    {
+      "row_id": "lead:0095",
+      "official_card_title": "Fallen Hero",
+      "season": 1,
+      "episode": 23,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Enterprise is assigned to transport Vulcan ambassador V'Lar from the planet Mazar to a rendezvous."
+    },
+    {
+      "row_id": "lead:0096",
+      "official_card_title": "Detained",
+      "season": 1,
+      "episode": 21,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Archer and Mayweather are mistakenly detained by Tandarans at a camp holding Suliban civilians."
+    },
+    {
+      "row_id": "lead:0097",
+      "official_card_title": "Cold Front",
+      "season": 1,
+      "episode": 11,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "During a visit by alien pilgrims observing a stellar phenomenon, Archer encounters Silik and becomes entangled in a mystery involving the Suliban."
+    },
+    {
+      "row_id": "lead:0098",
+      "official_card_title": "Anomaly",
+      "season": 3,
+      "episode": 2,
+      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
+      "official_card_description_read": true,
+      "original_synopsis_draft": "Strange phenomena disrupt Enterprise's systems, and Osaarians take advantage of the disruption to loot the ship."
+    }
+  ]
+}

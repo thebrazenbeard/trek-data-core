@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "BOUNDED_RENDERED_PRIMARY_METADATA_OBSERVATIONS",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "observations": [
+    {
+      "row_id": "literature:prh-autobiography-kirk",
+      "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "observed_title": "The Autobiography of James T. Kirk",
+      "observed_creator": "David A. Goodman",
+      "observed_isbn": "9781783297481",
+      "observed_publisher": "Titan Books",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_WEB_PRODUCT_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Product Details: ISBN, title, byline and publisher"
+    },
+    {
+      "row_id": "literature:prh-autobiography-picard",
+      "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "observed_title": "The Autobiography of Jean-Luc Picard",
+      "observed_creator": "David A. Goodman",
+      "observed_isbn": "9781785659409",
+      "observed_publisher": "Titan Books",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_WEB_PRODUCT_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Product Details: ISBN, title, byline and publisher"
+    },
+    {
+      "row_id": "literature:prh-autobiography-janeway",
+      "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "observed_title": "The Autobiography of Kathryn Janeway",
+      "observed_creator": "Una McCormack",
+      "observed_isbn": "9781789095333",
+      "observed_publisher": "Titan Books",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_WEB_PRODUCT_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Product Details: ISBN, title, byline and publisher"
+    },
+    {
+      "row_id": "literature:proposed-lit-picard-second-self",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833",
+      "observed_title": "Star Trek: Picard: Second Self",
+      "observed_creator": "Una McCormack",
+      "observed_isbn": "9781982194833",
+      "observed_publisher": null,
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_WEB_PRODUCT_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Trade Paperback Product Details: title, byline and ISBN13"
+    },
+    {
+      "row_id": "literature:proposed-lit-snw-high-country",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-The-High-Country/John-Jackson-Miller/Star-Trek-Strange-New-Worlds/9781668002391",
+      "observed_title": "Star Trek: Strange New Worlds: The High Country",
+      "observed_creator": "John Jackson Miller",
+      "observed_isbn": "9781668002391",
+      "observed_publisher": null,
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_WEB_PRODUCT_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Trade Paperback Product Details: title, byline and ISBN13"
+    }
+  ]
+}

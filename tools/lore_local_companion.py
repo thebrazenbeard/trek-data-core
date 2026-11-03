@@ -17,6 +17,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import socket
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.error import HTTPError, URLError
@@ -454,8 +455,20 @@ class LoreRequestHandler(BaseHTTPRequestHandler):
         self._reply(200, result)
 
 
+class ExclusiveLoopbackHTTPServer(HTTPServer):
+    # HTTPServer normally sets SO_REUSEADDR. On Windows this can misleadingly
+    # bind a socket while a user-owned process still occupies that port, then
+    # print READY although no browser can reach us. Never share that address.
+    allow_reuse_address = False
+
+    def server_bind(self):
+        if os.name == "nt" and hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
+
+
 def create_server(service: LoreService) -> HTTPServer:
-    server = HTTPServer((SERVER_BIND, service.port), LoreRequestHandler)
+    server = ExclusiveLoopbackHTTPServer((SERVER_BIND, service.port), LoreRequestHandler)
     server.service = service
     return server
 
@@ -464,7 +477,7 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--enable-local", action="store_true",
                         help="explicitly activate a loopback-only server")
-    parser.add_argument("--port", type=int, default=9876)
+    parser.add_argument("--port", type=int, default=9877)
     parser.add_argument("--model-url", default=None,
                         help="optional pre-existing local OpenAI-compatible endpoint at 127.0.0.1")
     parser.add_argument("--model-id", default="qwen3:4b-instruct",
@@ -473,8 +486,6 @@ def main(argv=None) -> int:
     if not args.enable_local:
         print("DISABLED: no listener created. Pass --enable-local to opt in.", file=sys.stderr)
         return 2
-    if args.model_url is not None and args.port != 9876:
-        parser.error("Explorer model chat UI is pinned to listener port 9876")
     token = os.environ.get("TREK_LORE_CSRF_TOKEN") or secrets.token_urlsafe(32)
     try:
         service = LoreService(port=args.port, token=token, model_url=args.model_url,

@@ -147,7 +147,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const fetch = async (path, opts) => {
     assert.equal(opts.cache, 'no-store');
     requested.add(path);
-    if (path === 'http://127.0.0.1:9876/api/chat' || path === 'http://127.0.0.1:9876/api/session') {
+    if (/^http:\/\/127\.0\.0\.1:(9877|9887)\/api\/(chat|session)$/.test(path)) {
       chatRequests.push({ path, opts });
       const backend = chatBackend || browserAudio.chatBackend;
       assert.ok(backend, 'unconsented chat request is forbidden');
@@ -2321,7 +2321,8 @@ test('optional fictional Lore console opens outside hero, restores focus, and cl
   assert.match(html, /id="lore-chat-token" type="password"/);
   assert.match(html, /id="lore-chat-consent" type="checkbox" required/);
   assert.match(html, /Archive Search \/\/ Scripted index lookup/);
-  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9876/);
+  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877;/);
+  assert.doesNotMatch(html, /connect-src[^;]*9876/);
   assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
 
   const nodes = await runWithIndex(catalog);
@@ -2360,7 +2361,7 @@ test('Lore model chat starts disconnected and makes two genuine bounded turn req
   const seen = [];
   const hostile = '<img src=x onerror=alert(1)> Lore remembers.';
   const nodes = await runWithIndex(catalog, 200, null, 404, {chatBackend: async (url, options) => {
-    assert.equal(url, 'http://127.0.0.1:9876/api/chat');
+    assert.equal(url, 'http://127.0.0.1:9877/api/chat');
     assert.equal(options.method, 'POST');
     assert.equal(options.redirect, 'error');
     assert.equal(options.credentials, 'omit');
@@ -2432,14 +2433,14 @@ test('Lore opt-out, Clear and Close revoke in-flight model response without stal
 });
 
 test('local same-origin Lore pairing requires a click and late pairing cannot restore a revoked token', async () => {
-  const local = {protocol: 'http:', hostname: '127.0.0.1', port: '9876',
-    pathname: '/explorer/', origin: 'http://127.0.0.1:9876'};
-  for (const revoke of ['none', 'clear', 'close']) {
+  for (const port of ['9877', '9887']) for (const revoke of ['none', 'clear', 'close']) {
+    const local = {protocol: 'http:', hostname: '127.0.0.1', port,
+      pathname: '/explorer/', origin: `http://127.0.0.1:${port}`};
     let release;
     const pending = new Promise((resolve) => { release = resolve; });
     const nodes = await runWithIndex(catalog, 200, null, 404,
       {mockLocation: local, chatBackend: async (path, options) => {
-        assert.equal(path, 'http://127.0.0.1:9876/api/session');
+        assert.equal(path, `http://127.0.0.1:${port}/api/session`);
         assert.equal(options.method, 'GET');
         assert.equal(options.headers['X-Trek-Lore-Pair'], '1');
         assert.equal(options.credentials, 'omit');
@@ -2463,6 +2464,28 @@ test('local same-origin Lore pairing requires a click and late pairing cannot re
       assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
     }
   }
+});
+
+test('local Explorer custom port chat stays same-origin and never contacts the occupied 9876', async () => {
+  const local = {protocol: 'http:', hostname: '127.0.0.1', port: '9887',
+    pathname: '/explorer/', origin: 'http://127.0.0.1:9887'};
+  const nodes = await runWithIndex(catalog, 200, null, 404, {mockLocation: local,
+    chatBackend: async (url, opts) => {
+      assert.equal(url, 'http://127.0.0.1:9887/api/chat');
+      assert.equal(opts.method, 'POST');
+      return {ok: true, json: async () => ({
+        mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
+        model_text: 'I am still here.', publication_effect: 'NONE', model_repo_authority: 'NONE',
+        source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
+      })};
+    }});
+  nodes.get('lore-chat-token').value = 'A'.repeat(40);
+  nodes.get('lore-chat-consent').checked = true;
+  nodes.get('lore-chat-input').value = 'Lore, respond.';
+  await nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+  assert.equal(nodes.chatRequests.length, 1);
+  assert.ok(nodes.chatRequests.every(({path}) => !path.includes(':9876/')));
+  assert.equal(nodes.get('lore-chat-log').children.length, 2);
 });
 
 test('Lore searches validated local directory records, labels source limits and offers native inspection', async () => {

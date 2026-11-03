@@ -2,6 +2,7 @@
 
 import contextlib
 import http.client
+import io
 import json
 import socket
 import threading
@@ -82,12 +83,38 @@ class LoreCompanionTests(unittest.TestCase):
         with mock.patch.object(lore, "create_server", side_effect=AssertionError("listen")):
             self.assertEqual(lore.main([]), 2)
 
-    def test_model_chat_cli_rejects_port_which_static_explorer_cannot_reach(self):
-        with mock.patch.object(lore, "create_server", side_effect=AssertionError("listen")):
-            with self.assertRaises(SystemExit) as exit_status:
-                lore.main(["--enable-local", "--port", "9877", "--model-url",
-                           "http://127.0.0.1:11434/v1/chat/completions"])
-        self.assertEqual(exit_status.exception.code, 2)
+    def test_model_chat_cli_defaults_to_dedicated_9877_but_local_explorer_can_serve_custom_port(self):
+        class NoListener:
+            def serve_forever(self, **kwargs):
+                return None
+
+            def server_close(self):
+                return None
+
+        ports = []
+
+        def record(service):
+            ports.append(service.port)
+            return NoListener()
+
+        with mock.patch.object(lore, "create_server", side_effect=record), contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(lore.main(["--enable-local", "--model-url",
+                                        "http://127.0.0.1:11434/v1/chat/completions"]), 0)
+            self.assertEqual(lore.main(["--enable-local", "--port", "9887", "--model-url",
+                                        "http://127.0.0.1:11434/v1/chat/completions"]), 0)
+        self.assertEqual(ports, [9877, 9887])
+
+    def test_exclusive_listener_fails_closed_if_another_process_owns_port(self):
+        self.assertFalse(lore.ExclusiveLoopbackHTTPServer.allow_reuse_address)
+        with socket.socket() as existing:
+            existing.bind(("127.0.0.1", 0))
+            existing.listen(1)
+            port = existing.getsockname()[1]
+            service = lore.LoreService(port=port, token=TOKEN)
+            with self.assertRaises(OSError):
+                lore.create_server(service)
+        with lore.create_server(service) as server:
+            self.assertEqual(server.socket.getsockname()[1], port)
 
     def test_model_url_requires_exact_numeric_loopback_path_and_no_redirect(self):
         okay = "http://127.0.0.1:9931/v1/chat/completions"

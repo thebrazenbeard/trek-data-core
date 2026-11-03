@@ -2875,10 +2875,10 @@
   const chatSend = byId('lore-chat-send');
   const chatStatus = byId('lore-chat-status');
   const chatLog = byId('lore-chat-log');
-  const localChatOrigin = location.protocol === 'http:' && location.hostname === '127.0.0.1' && location.port === '9876'
-    ? location.origin : 'http://127.0.0.1:9876';
   const localPairEligible = location.protocol === 'http:' && location.hostname === '127.0.0.1' &&
-    location.port === '9876' && location.pathname?.startsWith('/explorer/');
+    /^\d{1,5}$/.test(location.port) && Number(location.port) >= 1 && Number(location.port) <= 65535 &&
+    location.pathname?.startsWith('/explorer/');
+  const localChatOrigin = localPairEligible ? location.origin : 'http://127.0.0.1:9877';
   chatPair.hidden = !localPairEligible;
   let chatHistory = [];
   let chatRequest = null;
@@ -3024,7 +3024,7 @@
     } catch (error) {
       if (generation === chatGeneration) {
         const unavailable = error.name === 'AbortError' ? 'Local model timed out.' : 'Local companion connection failed.';
-        chatStatus.textContent = `${unavailable} Check that the model and companion are running, the token is correct, and your browser permits loopback access. For browser restrictions, open http://127.0.0.1:9876/explorer/ on this computer.`;
+        chatStatus.textContent = `${unavailable} Check that the model and companion are running, the token is correct, and your browser permits loopback access. For browser restrictions, open http://127.0.0.1:9877/explorer/ on this computer.`;
       }
     } finally {
       clearTimeout(timeout);

@@ -37,17 +37,21 @@ From a PowerShell prompt in a current checkout of `trek-data-core`, run:
 
 ```powershell
 ollama list
-py .\tools\lore_local_companion.py --enable-local --model-url http://127.0.0.1:11434/v1/chat/completions --model-id qwen3:4b-instruct
+py .\tools\lore_local_companion.py --enable-local --port 9877 --model-url http://127.0.0.1:11434/v1/chat/completions --model-id qwen3:4b-instruct
 ```
 
 The service prints a temporary session token and stays running **only on
-127.0.0.1:9876**. Chat UI and the public Pages CSP are pinned to this port;
-the CLI rejects a different port when a model URL is configured. It does not launch or download a model, and it does not
+127.0.0.1:9877** (the new default). The public Pages Explorer CSP permits only
+this exact chat port. This is deliberate: Lappy's user-owned Blender process
+occupied 9876 during testing. Lore refuses an occupied listening port rather
+than sharing it or disturbing the existing process. An explicitly selected
+free different port can serve the **local same-origin** Explorer, but public
+Pages will not connect to that different port. It does not launch or download a model, and it does not
 operate when disabled. If using KoboldCPP instead of Ollama, configure its
 existing local OpenAI-compatible port and actual model ID through the same
 flags. The model ID is sent in the JSON `model` field.
 
-Now open **http://127.0.0.1:9876/explorer/** on that same computer, open
+Now open **http://127.0.0.1:9877/explorer/** on that same computer, open
 Lore, click **Pair this local Explorer automatically**, check the consent
 box, and start talking. The one-click pairing avoids copying a long token on
 the locally served page. The token stays in page memory and is cleared when
@@ -78,19 +82,19 @@ You may also use the prior manual search interface with no model configured:
 python tools/lore_local_companion.py
 # Exit 2; DISABLED and no listener by default.
 
-python tools/lore_local_companion.py --enable-local --port 9876
+python tools/lore_local_companion.py --enable-local --port 9877
 # Starts a local-only HTTP listener and prints an ephemeral CSRF token to that
 # local terminal; do not paste or publish the token.
 ```
 
-The search-only route is `POST http://127.0.0.1:9876/api/query` with
-`Content-Type: application/json`, a `Host: 127.0.0.1:9876` header,
-`Origin: http://127.0.0.1:9876`, and the `X-Trek-Lore-CSRF` session token.
+The search-only route is `POST http://127.0.0.1:9877/api/query` with
+`Content-Type: application/json`, a `Host: 127.0.0.1:9877` header,
+`Origin: http://127.0.0.1:9877`, and the `X-Trek-Lore-CSRF` session token.
 Body: `{"query":"Spock"}`. A minimal loopback-only manual call is:
 
 ```bash
-curl --request POST 'http://127.0.0.1:9876/api/query' \
-  --header 'Origin: http://127.0.0.1:9876' \
+curl --request POST 'http://127.0.0.1:9877/api/query' \
+  --header 'Origin: http://127.0.0.1:9877' \
   --header 'Content-Type: application/json' \
   --header "X-Trek-Lore-CSRF: $TREK_LORE_CSRF_TOKEN" \
   --data '{"query":"Spock"}'

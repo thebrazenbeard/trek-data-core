@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9876; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
   <link rel="stylesheet" href="./app.css?v=c6bbdb3f6fadfd8af29b965a42acb1996064afe08fbb0bb65a698b89853006b3">
-  <script src="./app.js?v=c34a6b49af25983a335461eee0d4fb8be88e4ed27e49c7eaaf1c638c63fc74de" defer></script>
+  <script src="./app.js?v=a38770ce610c8af7e68903196b093e2e8a026de9bc9c93d368413a784b603e54" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -70,7 +70,7 @@
       <p id="lore-disclosure" class="lore-disclosure">Fictional Lore. The <strong>Converse</strong> station uses your separately started, opt-in local model; its character replies are unverified. <strong>Archive Search</strong> remains a deterministic search of the loaded research index.</p>
       <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
         <h3 id="lore-chat-heading">Converse // Optional local model</h3>
-        <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9876/explorer/</code> on the same machine.</p>
+        <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9877/explorer/</code> on the same machine. Lore's public Explorer connects only to port 9877, never port 9876.</p>
         <form id="lore-chat-form" class="lore-chat-form" autocomplete="off">
           <label for="lore-chat-token">Local session token (this page does not save it)</label>
           <input id="lore-chat-token" type="password" minlength="32" maxlength="256" autocomplete="off" spellcheck="false" placeholder="Paste token printed by your local companion" required>

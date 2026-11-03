@@ -207,11 +207,11 @@ def validate(root: Path = ROOT) -> dict:
     # Narrow chat-only loopback POST permission is not a photo/image release.
     # Preserve exact allowed endpoints; an arbitrary connect-src or widened
     # img-src remains prohibited while the documentary photo is held.
+    chat_connections = markup.csp.split("connect-src ", 1)[1].split(";", 1)[0] if "connect-src " in markup.csp else ""
     require("img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org;" in markup.csp and
             "https://thumb.wikimedia.org" not in markup.csp and
             "https://upload.wikimedia.org" not in markup.csp and
-            "connect-src 'self' http://127.0.0.1:9876;" in markup.csp and
-            "https://" not in markup.csp.split("connect-src ", 1)[1].split(";", 1)[0],
+            chat_connections == "'self' http://127.0.0.1:9877",
             "premiere photo must not extend image network CSP before public release")
     require(DIGEST in js and DECISION_DIGEST in js and
             "fetch('./beyond-premiere-photo.json'" in js and

@@ -612,8 +612,15 @@ class _StartupHTML(HTMLParser):
                     re.fullmatch(r"\./app\.css\?v=[a-f0-9]{64}", values.get("href", "")) is not None,
                     "unexpected HTML preloading or stylesheet URL")
         if tag == "script":
-            _ensure(re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", values.get("src", "")) is not None,
-                    "unexpected script URL")
+            source = values.get("src", "")
+            if re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", source):
+                _ensure(set(values) == {"src", "defer"} and values["defer"] is None,
+                        "unexpected main script attributes")
+            elif re.fullmatch(r"\./(?:lore-web-model|lore-public-chat)\.js\?v=[a-f0-9]{64}", source):
+                _ensure(set(values) == {"src", "type"} and values["type"] == "module",
+                        "unexpected Lore module attributes")
+            else:
+                raise ArtworkRejected("unexpected script URL")
         if tag == "img":
             self.hero_count += 1
             _ensure(self.hero_count == 1 and self.masthead_stack == ["header"] and

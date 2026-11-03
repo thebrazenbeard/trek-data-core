@@ -1,0 +1,19 @@
+{
+  "name": "trek-lore-web-chat",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-11-01",
+  "ai": { "binding": "AI" },
+  "observability": { "enabled": false },
+  "ratelimits": [
+    {
+      "name": "LORE_PER_VISITOR",
+      "namespace_id": "9421170",
+      "simple": { "limit": 5, "period": 60 }
+    },
+    {
+      "name": "LORE_PER_LOCATION",
+      "namespace_id": "9421171",
+      "simple": { "limit": 50, "period": 60 }
+    }
+  ]
+}

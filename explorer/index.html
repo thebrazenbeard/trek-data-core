@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
+  <!-- Set only to a reviewed, deployed HTTPS Lore endpoint. Empty means no remote service is configured. -->
+  <meta name="trek-lore-api" content="">
+  <!-- Cloudflare Turnstile public site key (never the private secret); set with endpoint during deployment. -->
+  <meta name="trek-lore-turnstile-sitekey" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://challenges.cloudflare.com 'wasm-unsafe-eval'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877 https://cdn.jsdelivr.net https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://*.githubusercontent.com https://challenges.cloudflare.com; worker-src 'self' blob:; frame-src https://challenges.cloudflare.com; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=c6bbdb3f6fadfd8af29b965a42acb1996064afe08fbb0bb65a698b89853006b3">
+  <link rel="stylesheet" href="./app.css?v=44bf768fe1ab894834a8ee6317b850852436222b529f7b5aae3527876c3a8b03">
   <script src="./app.js?v=ba3ffea731d75fcfe4b367f90793969b77089baa049af9819315d00fe5fe070c" defer></script>
+  <script type="module" src="./lore-web-model.js?v=d070977fd401497fb7bc235ee583a897daaeab0c6471c58036c2729adb111e85"></script>
+  <script type="module" src="./lore-public-chat.js?v=fddfa5bb436ca7e11dad5fba0f1da04fde3d9b369390beeb695686a880423211"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -67,7 +73,36 @@
         </div>
         <button type="button" id="lore-close" class="lore-close">Close console</button>
       </div>
-      <p id="lore-disclosure" class="lore-disclosure">Fictional Lore. The <strong>Converse</strong> station uses your separately started, opt-in local model; its character replies are unverified. <strong>Archive Search</strong> remains a deterministic search of the loaded research index.</p>
+      <p id="lore-disclosure" class="lore-disclosure">Speak to a <strong>fictional Lore persona</strong> using an AI model right on this page. Model dialogue is creative and unverified, not evidence of canon or a real character. The separate <strong>Archive Search</strong> station only reports source-local records.</p>
+      <section class="lore-web-station" aria-labelledby="lore-web-heading">
+        <div class="lore-web-heading-row">
+          <div>
+            <p class="eyebrow">Subspace link / AI character conversation</p>
+            <h3 id="lore-web-heading">Talk with Lore <span class="lore-simulation-tag">Fictional AI</span></h3>
+          </div>
+          <span id="lore-web-mode" class="lore-web-mode">Not connected</span>
+        </div>
+        <p class="lore-web-instructions">Converse from the Explorer website. <strong>No local server, account, or session token.</strong> When a hosted service is available, your messages go to that service. Otherwise, compatible browsers can optionally download a large AI model and run it within this page. Replies are not verified archive research.</p>
+        <p class="lore-web-instructions lore-web-privacy">Do not send sensitive information. Explorer does not save the transcript to browser storage. A hosted provider receives messages for inference and may process service logs; clearing this tab does not erase provider-side records.</p>
+        <div class="lore-web-start-row">
+          <button id="lore-web-connect" type="button">Connect to Lore</button>
+          <button id="lore-web-browser" type="button" hidden>Try browser AI (~290 MB download, ~1 GB GPU memory)</button>
+        </div>
+        <p id="lore-web-status" class="lore-chat-status" role="status" aria-live="polite">Offline. Connect when you're ready to talk.</p>
+        <div id="lore-web-challenge" class="lore-web-challenge" aria-label="Human verification for the hosted Lore service" hidden></div>
+        <ol id="lore-web-log" class="lore-chat-log lore-web-log" aria-label="Fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
+        <form id="lore-web-form" class="lore-chat-form" autocomplete="off">
+          <label for="lore-web-input">Your message</label>
+          <textarea id="lore-web-input" rows="3" maxlength="500" placeholder="Lore, tell me something you have been dying to say." required></textarea>
+          <div class="lore-chat-actions">
+            <button id="lore-web-send" type="submit" disabled>Transmit</button>
+            <button id="lore-web-stop" type="button" disabled>Stop</button>
+            <button id="lore-web-clear" type="button">New conversation</button>
+          </div>
+        </form>
+      </section>
+      <details class="lore-legacy-options">
+        <summary>Advanced: legacy local companion</summary>
       <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
         <h3 id="lore-chat-heading">Converse // Optional local model</h3>
         <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9877/explorer/</code> on the same machine. Lore's public Explorer connects only to port 9877, never port 9876.</p>
@@ -86,6 +121,7 @@
         </form>
         <ol id="lore-chat-log" class="lore-chat-log" aria-label="Local fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
       </section>
+      </details>
       <h3 class="lore-archive-heading">Archive Search // Scripted index lookup</h3>
       <div class="lore-stations">
         <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Lore to find archive entries" autocomplete="off">

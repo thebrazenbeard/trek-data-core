@@ -2370,7 +2370,7 @@ test('optional fictional Lore console opens outside hero, restores focus, and cl
   assert.match(html, /id="lore-chat-token" type="password"/);
   assert.match(html, /id="lore-chat-consent" type="checkbox" required/);
   assert.match(html, /Archive Search \/\/ Scripted index lookup/);
-  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877;/);
+  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877(?:\s|;)/);
   assert.doesNotMatch(html, /connect-src[^;]*9876/);
   assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
 

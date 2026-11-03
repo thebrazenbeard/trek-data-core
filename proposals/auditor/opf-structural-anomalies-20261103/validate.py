@@ -34,7 +34,7 @@ TOP_KEYS = {
     "ebook_prose_or_images_read", "private_member_paths_exported", "full_ebook_text_exported",
     "artwork_exported", "source_work_binding", "edition_binding", "work_admission_effect",
     "coverage_effect", "strict_xml_parser", "manifest_link_audit",
-    "original_lit_stem_encoding_candidate",
+    "original_lit_stem_pairing_candidate",
 }
 
 
@@ -77,7 +77,8 @@ def strict_opf_xml(xml: bytes) -> bool:
 
 def original_filename_pairing_state(stem: str) -> str:
     require(isinstance(stem, str) and stem != "", "bad original filename stem")
-    return "UNRESOLVED_REPLACEMENT_CHARACTER" if "\ufffd" in stem else "CANDIDATE_ONLY"
+    require("\ufffd" not in stem, "unsubstantiated replacement character in original stem")
+    return "UNRESOLVED_UTF8_MIDDLE_DOT" if "\u00b7" in stem else "CANDIDATE_ONLY"
 
 
 def validate(record: dict, source: dict) -> None:
@@ -142,12 +143,16 @@ def validate(record: dict, source: dict) -> None:
             "unresolved manifest counts drift")
     require(all(indexed[sid]["parse_status"] == "PARSED" for sid in ("opf-local:0303", *URI_ONLY_IDS)),
             "manifest audit involved non-parseable OPF")
-    encoding = record["original_lit_stem_encoding_candidate"]
-    require(encoding == {
+    pairing = record["original_lit_stem_pairing_candidate"]
+    require(pairing == {
         "converted_opf_source_local_id": "opf-local:0156",
-        "anomaly_class": "REPLACEMENT_CHARACTER_IN_ORIGINAL_LIT_FILENAME_STEM",
+        "anomaly_class": "UTF8_ZIP_FILENAME_MIDDLE_DOT_PUNCTUATION",
+        "original_lit_unicode_codepoint": "U+00B7",
+        "original_lit_zip_entry_flag_bits_hex": "0x0808",
+        "original_lit_zip_filename_utf8_flag": True,
+        "original_lit_replacement_character_count_in_347_lit_names": 0,
         "original_to_converted_filename_pairing": "UNRESOLVED",
-    }, "unsafe automatic original-to-converted file identity")
+    }, "incorrect original LIT Unicode/ZIP flag observation or unsafe pairing")
     require(any("Search For Spock" in title for title in indexed["opf-local:0156"]["title"]),
             "unrelated OPF entry assigned original filename anomaly")
 

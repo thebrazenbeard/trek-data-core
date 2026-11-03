@@ -428,16 +428,16 @@ test('separate official film discovery remains unadmitted and strictly source-sc
 test('multimedia source-local directory is independently searchable, paged, and never admitted', async () => {
   const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
-  assert.equal(nodes.get('discovery-nav-count').textContent, '1,206');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
   assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
   assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 1,155/);
   assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
-  assert.match(nodes.get('discovery-metrics').textContent, /Literary Works: 1/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Literary leads: 9/);
   assert.match(nodes.get('discovery-metrics').textContent, /Short-form releases: 35/);
   assert.match(nodes.get('discovery-metrics').textContent, /Audio containers: 1/);
   assert.match(nodes.get('discovery-list').textContent, /Data receipt: explorer\/research-leads\.json/);
   assert.equal(nodes.get('briefing-count').textContent, '0');
-  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 1,206 cards on load');
+  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 1,214 cards on load');
   nodes.get('discovery-list').children.at(-1).fire('click');
   assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
   assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
@@ -460,9 +460,15 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.match(nodes.get('discovery-list').textContent, /Khan/);
   nodes.get('discovery-medium').value = 'LITERATURE';
   nodes.get('discovery-filters').fire('change');
-  assert.equal(nodes.get('discovery-list').children.length, 1);
+  assert.equal(nodes.get('discovery-list').children.length, 9);
   assert.match(nodes.get('discovery-list').textContent, /Ring of Fire/);
   assert.match(nodes.get('discovery-list').textContent, /ISBN 9781668095898/);
+  assert.match(nodes.get('discovery-list').textContent, /Second Self/);
+  assert.match(nodes.get('discovery-list').textContent, /The High Country/);
+  assert.match(nodes.get('discovery-list').textContent, /The Enterprise War/);
+  assert.match(nodes.get('discovery-list').textContent, /ISBN 9781797149226/);
+  assert.match(nodes.get('discovery-list').textContent, /The Autobiography of Kathryn Janeway/);
+  assert.match(nodes.get('discovery-list').textContent, /The Autobiography of Benjamin Sisko/);
   nodes.get('discovery-medium').value = 'all';
   nodes.get('discovery-query').value = 'Starstruck';
   nodes.get('discovery-filters').fire('input');
@@ -526,7 +532,7 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   const noDuplicate = await runWithIndex(catalog, 200, null, 404, {}, null, 404, duplicate, 200);
   assert.equal(noDuplicate.get('discovery-nav-count').textContent, '—');
   const absent = await runWithIndex(null, 404, null, 404, {}, null, 404, catalogData, 200);
-  assert.equal(absent.get('discovery-nav-count').textContent, '1,206', 'discovery does not depend on governed Mission index');
+  assert.equal(absent.get('discovery-nav-count').textContent, '1,214', 'discovery does not depend on governed Mission index');
   assert.equal(absent.get('mission-count').textContent, '—');
 });
 

@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_access": "FULL_RENDERED_PUBLISHER_PRODUCT_PAGE_WEB_READER_NO_RAW_BYTE_CUSTODY",
+  "independence_group": "publisher:simonandschuster.com",
+  "accepted_effects": {
+    "sources": "NONE",
+    "works": "NONE",
+    "bindings": "NONE",
+    "coverage": "NONE"
+  },
+  "works": [
+    {
+      "candidate_work_id": "proposed-lit-picard-second-self",
+      "title": "Star Trek: Picard: Second Self",
+      "creator": "Una McCormack",
+      "series": "Star Trek: Picard",
+      "medium": "LITERATURE",
+      "work_type": "NOVEL",
+      "status": "PROPOSED"
+    },
+    {
+      "candidate_work_id": "proposed-lit-snw-high-country",
+      "title": "Star Trek: Strange New Worlds: The High Country",
+      "creator": "John Jackson Miller",
+      "series": "Star Trek: Strange New Worlds",
+      "medium": "LITERATURE",
+      "work_type": "NOVEL",
+      "status": "PROPOSED"
+    },
+    {
+      "candidate_work_id": "proposed-lit-discovery-enterprise-war",
+      "title": "Star Trek: Discovery: The Enterprise War",
+      "creator": "John Jackson Miller",
+      "series": "Star Trek: Discovery",
+      "publisher_series_number": "5 (publisher label; not a universe-wide chronology)",
+      "medium": "LITERATURE",
+      "work_type": "NOVEL",
+      "status": "PROPOSED"
+    }
+  ],
+  "editions": [
+    {
+      "isbn13": "9781982194833",
+      "candidate_work_id": "proposed-lit-picard-second-self",
+      "format": "TRADE_PAPERBACK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2023-09-19",
+      "publisher_extent": "320 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781982194840",
+      "candidate_work_id": "proposed-lit-picard-second-self",
+      "format": "EBOOK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2022-09-13",
+      "publisher_extent": "320 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194840",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781797137278",
+      "candidate_work_id": "proposed-lit-picard-second-self",
+      "format": "UNABRIDGED_AUDIO_DOWNLOAD",
+      "publisher_imprint": "Simon & Schuster Audio",
+      "publisher_publication_date": "2022-09-13",
+      "publisher_extent": "10 hours 52 minutes",
+      "narrator": "January LaVoy",
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781797137278",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781668002391",
+      "candidate_work_id": "proposed-lit-snw-high-country",
+      "format": "TRADE_PAPERBACK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2024-04-02",
+      "publisher_extent": "384 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-The-High-Country/John-Jackson-Miller/Star-Trek-Strange-New-Worlds/9781668002391",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781668002407",
+      "candidate_work_id": "proposed-lit-snw-high-country",
+      "format": "EBOOK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2023-02-21",
+      "publisher_extent": "384 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-The-High-Country/John-Jackson-Miller/Star-Trek-Strange-New-Worlds/9781668002407",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781797149226",
+      "candidate_work_id": "proposed-lit-snw-high-country",
+      "format": "UNABRIDGED_AUDIO_DOWNLOAD",
+      "publisher_imprint": "Simon & Schuster Audio",
+      "publisher_publication_date": "2023-02-21",
+      "publisher_extent": "16 hours 11 minutes",
+      "narrator": "Robert Petkoff",
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-The-High-Country/John-Jackson-Miller/Star-Trek-Strange-New-Worlds/9781797149226",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781982113315",
+      "candidate_work_id": "proposed-lit-discovery-enterprise-war",
+      "format": "TRADE_PAPERBACK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2019-07-30",
+      "publisher_extent": "432 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Discovery-The-Enterprise-War/John-Jackson-Miller/Star-Trek-Discovery/9781982113315",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781982113322",
+      "candidate_work_id": "proposed-lit-discovery-enterprise-war",
+      "format": "EBOOK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publisher_publication_date": "2019-07-30",
+      "publisher_extent": "432 pages",
+      "narrator": null,
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Discovery-The-Enterprise-War/John-Jackson-Miller/Star-Trek-Discovery/9781982113322",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    },
+    {
+      "isbn13": "9781508283195",
+      "candidate_work_id": "proposed-lit-discovery-enterprise-war",
+      "format": "UNABRIDGED_AUDIO_DOWNLOAD",
+      "publisher_imprint": "Simon & Schuster Audio",
+      "publisher_publication_date": "2019-07-30",
+      "publisher_extent": "12 hours 48 minutes",
+      "narrator": "Robert Petkoff",
+      "publisher_product_url": "https://www.simonandschuster.com/books/Star-Trek-Discovery-The-Enterprise-War/John-Jackson-Miller/Star-Trek-Discovery/9781508283195",
+      "source_version": null,
+      "raw_response_sha256": null,
+      "status": "PROPOSED_METADATA_ONLY"
+    }
+  ]
+}

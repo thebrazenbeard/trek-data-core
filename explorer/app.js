@@ -406,7 +406,7 @@
     LD: 'Star Trek Lower Decks', SNW: 'Star Trek Strange New Worlds',
     PRO: 'Star Trek Prodigy', SFA: 'Star Trek Starfleet Academy'
   });
-  const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
+  const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'FICTIONAL_MEMOIR', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
   const directoryFields = ['row_id', 'medium', 'candidate_kind', 'title', 'context', 'source_group',
     'source_input', 'source_locator', 'details', 'verification_status', 'identity_scope', 'coverage_effect', 'admission_effect'];
 
@@ -497,7 +497,7 @@
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
     const seriesCounts = new Map();
-    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be']);
+    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be', 'www.penguinrandomhouse.com']);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
           typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||
@@ -556,7 +556,7 @@
     metrics.replaceChildren();
     for (const label of directoryMediums) {
       const name = {
-        EPISODE: 'Episode refs', FILM: 'Film rows', LITERATURE: 'Literary Works',
+        EPISODE: 'Episode refs', FILM: 'Film rows', LITERATURE: 'Literary leads',
         SHORT_FORM: 'Short-form releases', AUDIO: 'Audio containers'
       }[label];
       metrics.append(el('span', null, `${name}: ${counts[label].toLocaleString()}`));

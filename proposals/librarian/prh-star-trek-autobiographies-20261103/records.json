@@ -1,0 +1,251 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "bindings": [
+    {
+      "binding_id": "proposed-prh-binding-9781783297481",
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-prh-source-9781783297481",
+      "work_id": "prh-autobiography-kirk"
+    },
+    {
+      "binding_id": "proposed-prh-binding-9781785659409",
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-prh-source-9781785659409",
+      "work_id": "prh-autobiography-picard"
+    },
+    {
+      "binding_id": "proposed-prh-binding-9781789095333",
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-prh-source-9781789095333",
+      "work_id": "prh-autobiography-janeway"
+    },
+    {
+      "binding_id": "proposed-prh-binding-9781785659416",
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-prh-source-9781785659416",
+      "work_id": "prh-autobiography-spock"
+    },
+    {
+      "binding_id": "proposed-prh-binding-9781803366258",
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-prh-source-9781803366258",
+      "work_id": "prh-autobiography-sisko"
+    }
+  ],
+  "collection_container": {
+    "container_id": "prh-captains-autobiographies-boxed-set",
+    "contains_work_ids": [
+      "prh-autobiography-kirk",
+      "prh-autobiography-picard",
+      "prh-autobiography-janeway"
+    ],
+    "counted_as_independent_work": false,
+    "format": "BOXED_SET",
+    "isbn13": "9781803362168",
+    "locator": "https://www.penguinrandomhouse.com/books/715915/star-trek-captains---the-autobiographies-by-una-mccormack-david-a-goodman/",
+    "source_body_bytes": 215042,
+    "source_body_sha256": "77e22a9bdf9c290bc9b7d1e6e21aa734321fc3bcbedbfd13030ab64d51086f36",
+    "title": "Star Trek Captains - The Autobiographies"
+  },
+  "coverage_effect": "NONE",
+  "deep_read_effect": "NONE",
+  "distributor_series_source": {
+    "locator": "https://www.penguinrandomhouse.com/series/0PT/star-trek-autobiographies-series/",
+    "observed_title_count": 5,
+    "source_body_bytes": 183841,
+    "source_body_sha256": "bd1e729a07c7a1714c0bde2a9da384f97259c87a928d899c1c43d7637a2a31fd"
+  },
+  "edition_candidates": [
+    {
+      "edition_candidate_id": "proposed-prh-edition-9781783297481",
+      "format": "PAPERBACK",
+      "isbn13": "9781783297481",
+      "publication_date": "2016-07-05",
+      "source_id": "proposed-prh-source-9781783297481",
+      "status": "PROPOSED",
+      "work_id": "prh-autobiography-kirk"
+    },
+    {
+      "edition_candidate_id": "proposed-prh-edition-9781785659409",
+      "format": "PAPERBACK",
+      "isbn13": "9781785659409",
+      "publication_date": "2018-07-24",
+      "source_id": "proposed-prh-source-9781785659409",
+      "status": "PROPOSED",
+      "work_id": "prh-autobiography-picard"
+    },
+    {
+      "edition_candidate_id": "proposed-prh-edition-9781789095333",
+      "format": "PAPERBACK",
+      "isbn13": "9781789095333",
+      "publication_date": "2021-11-16",
+      "source_id": "proposed-prh-source-9781789095333",
+      "status": "PROPOSED",
+      "work_id": "prh-autobiography-janeway"
+    },
+    {
+      "edition_candidate_id": "proposed-prh-edition-9781785659416",
+      "format": "PAPERBACK",
+      "isbn13": "9781785659416",
+      "publication_date": "2025-09-09",
+      "source_id": "proposed-prh-source-9781785659416",
+      "status": "PROPOSED",
+      "work_id": "prh-autobiography-spock"
+    },
+    {
+      "edition_candidate_id": "proposed-prh-edition-9781803366258",
+      "format": "PAPERBACK",
+      "isbn13": "9781803366258",
+      "publication_date": "2025-10-07",
+      "source_id": "proposed-prh-source-9781803366258",
+      "status": "PROPOSED",
+      "work_id": "prh-autobiography-sisko"
+    }
+  ],
+  "observed_on": "2026-11-03",
+  "proposal_only": true,
+  "raw_html_publication": "NONE",
+  "schema_version": "1.0.0",
+  "source_group": "distributor:penguinrandomhouse.com:titan-books",
+  "sources": [
+    {
+      "content_hash_sha256": "5acfa401c5ee942e185c308ded5ff264972b7a013852961aad8b2757083684af",
+      "cover_license_verification": "NOT_ESTABLISHED",
+      "independence_group": "distributor:penguinrandomhouse.com:titan-books",
+      "isbn13": "9781783297481",
+      "locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "provider": "Penguin Random House (Titan Books distribution)",
+      "publisher_cover_locator": "https://images.penguinrandomhouse.com/cover/9781783297481",
+      "record_type": "source",
+      "source_body_bytes": 257913,
+      "source_id": "proposed-prh-source-9781783297481",
+      "source_kind": "DISTRIBUTOR_JSONLD_EDITION_METADATA",
+      "status": "PROPOSED"
+    },
+    {
+      "content_hash_sha256": "119eddb5ca3d8d1b76bdd9d0b411f5d16e3a470b62507796e053301c37c51b26",
+      "cover_license_verification": "NOT_ESTABLISHED",
+      "independence_group": "distributor:penguinrandomhouse.com:titan-books",
+      "isbn13": "9781785659409",
+      "locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "provider": "Penguin Random House (Titan Books distribution)",
+      "publisher_cover_locator": "https://images.penguinrandomhouse.com/cover/9781785659409",
+      "record_type": "source",
+      "source_body_bytes": 230973,
+      "source_id": "proposed-prh-source-9781785659409",
+      "source_kind": "DISTRIBUTOR_JSONLD_EDITION_METADATA",
+      "status": "PROPOSED"
+    },
+    {
+      "content_hash_sha256": "fa8dbce6950678405dfe4615a0e26782406af0b73acf0ad7409aaed991ac49ca",
+      "cover_license_verification": "NOT_ESTABLISHED",
+      "independence_group": "distributor:penguinrandomhouse.com:titan-books",
+      "isbn13": "9781789095333",
+      "locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "provider": "Penguin Random House (Titan Books distribution)",
+      "publisher_cover_locator": "https://images.penguinrandomhouse.com/cover/9781789095333",
+      "record_type": "source",
+      "source_body_bytes": 262319,
+      "source_id": "proposed-prh-source-9781789095333",
+      "source_kind": "DISTRIBUTOR_JSONLD_EDITION_METADATA",
+      "status": "PROPOSED"
+    },
+    {
+      "content_hash_sha256": "1c54fd926d0641d98fb41d827e9c999bb56e24fd11fae97ee4d304f4fbca8510",
+      "cover_license_verification": "NOT_ESTABLISHED",
+      "independence_group": "distributor:penguinrandomhouse.com:titan-books",
+      "isbn13": "9781785659416",
+      "locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "provider": "Penguin Random House (Titan Books distribution)",
+      "publisher_cover_locator": "https://images.penguinrandomhouse.com/cover/9781785659416",
+      "record_type": "source",
+      "source_body_bytes": 258759,
+      "source_id": "proposed-prh-source-9781785659416",
+      "source_kind": "DISTRIBUTOR_JSONLD_EDITION_METADATA",
+      "status": "PROPOSED"
+    },
+    {
+      "content_hash_sha256": "9fe73b190eec8fe1bb3209d1d58c2c4dadd404b336ece66e6dfab22bb43e9d42",
+      "cover_license_verification": "NOT_ESTABLISHED",
+      "independence_group": "distributor:penguinrandomhouse.com:titan-books",
+      "isbn13": "9781803366258",
+      "locator": "https://www.penguinrandomhouse.com/books/737400/the-autobiography-of-benjamin-sisko-by-derek-tyler-attico/",
+      "provider": "Penguin Random House (Titan Books distribution)",
+      "publisher_cover_locator": "https://images.penguinrandomhouse.com/cover/9781803366258",
+      "record_type": "source",
+      "source_body_bytes": 261970,
+      "source_id": "proposed-prh-source-9781803366258",
+      "source_kind": "DISTRIBUTOR_JSONLD_EDITION_METADATA",
+      "status": "PROPOSED"
+    }
+  ],
+  "work_count": 5,
+  "works": [
+    {
+      "creator": "David A. Goodman",
+      "medium": "LITERATURE",
+      "record_type": "work",
+      "series": "Star Trek Autobiographies",
+      "status": "PROPOSED",
+      "title": "The Autobiography of James T. Kirk",
+      "work_id": "prh-autobiography-kirk",
+      "work_type": "FICTIONAL_MEMOIR"
+    },
+    {
+      "creator": "David A. Goodman",
+      "medium": "LITERATURE",
+      "record_type": "work",
+      "series": "Star Trek Autobiographies",
+      "status": "PROPOSED",
+      "title": "The Autobiography of Jean-Luc Picard",
+      "work_id": "prh-autobiography-picard",
+      "work_type": "FICTIONAL_MEMOIR"
+    },
+    {
+      "creator": "Una McCormack",
+      "medium": "LITERATURE",
+      "record_type": "work",
+      "series": "Star Trek Autobiographies",
+      "status": "PROPOSED",
+      "title": "The Autobiography of Kathryn Janeway",
+      "work_id": "prh-autobiography-janeway",
+      "work_type": "FICTIONAL_MEMOIR"
+    },
+    {
+      "creator": "Una McCormack",
+      "medium": "LITERATURE",
+      "record_type": "work",
+      "series": "Star Trek Autobiographies",
+      "status": "PROPOSED",
+      "title": "The Autobiography of Mr. Spock",
+      "work_id": "prh-autobiography-spock",
+      "work_type": "FICTIONAL_MEMOIR"
+    },
+    {
+      "creator": "Derek Tyler Attico",
+      "medium": "LITERATURE",
+      "record_type": "work",
+      "series": "Star Trek Autobiographies",
+      "status": "PROPOSED",
+      "title": "The Autobiography of Benjamin Sisko",
+      "work_id": "prh-autobiography-sisko",
+      "work_type": "FICTIONAL_MEMOIR"
+    }
+  ]
+}

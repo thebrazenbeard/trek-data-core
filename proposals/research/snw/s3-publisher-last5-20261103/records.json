@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SNW.PPLUS.S3.LAST5.20261103",
+  "lane": "SNW",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "explorer_effect": "NONE",
+  "audiovisual_content_inspected": false,
+  "full_primary_source_available": false,
+  "source": {
+    "source_local_id": "snw-s3-paramount-guide-last5-20261103",
+    "kind": "PUBLISHER_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+    "retrieved_utc_date": "2026-11-03",
+    "response_status": 200,
+    "response_body_bytes": 271803,
+    "response_sha256": "a970f41f9257adc002d86d7036dd0e495d0c3e92a9c51b2ef234638e859317bb",
+    "response_digest_stability": "DYNAMIC_SITE_UNDETERMINED",
+    "snapshot_committed": false,
+    "publisher_revision": null
+  },
+  "works": [
+    {"local_work_id":"snw-s3-e06-pplus","season":3,"episode_number":6,"title":"The Sehlat Who Ate Its Tail","source_datetime":"2025-08-14T03:00:00-07:00","card_html_lines":[1630,1654],"publisher_video_url":"https://www.paramountplus.com/shows/video/8xFW5cr_Md8aQJnq_LL8GSkmQiOfOo4q/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e07-pplus","season":3,"episode_number":7,"title":"What is Starfleet?","source_datetime":"2025-08-21T03:00:00-07:00","card_html_lines":[1658,1682],"publisher_video_url":"https://www.paramountplus.com/shows/video/TnvjBKqK_a9q5I2OvQa9gncUYwOUdCVt/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e08-pplus","season":3,"episode_number":8,"title":"Four-and-a-Half Vulcans","source_datetime":"2025-08-28T03:00:00-07:00","card_html_lines":[1686,1710],"publisher_video_url":"https://www.paramountplus.com/shows/video/lTwwMmmIgsNPBTR8Y9bkNjfCuuq1MPpf/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e09-pplus","season":3,"episode_number":9,"title":"Terrarium","source_datetime":"2025-09-04T03:00:00-07:00","card_html_lines":[1714,1738],"publisher_video_url":"https://www.paramountplus.com/shows/video/AfpvVBONdI5AA_gpRdjRsLGe0ozAPTm4/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e10-pplus","season":3,"episode_number":10,"title":"New Life and New Civilizations","source_datetime":"2025-09-11T03:00:00-07:00","card_html_lines":[1742,1766],"publisher_video_url":"https://www.paramountplus.com/shows/video/_m6Ipk4F0HyBL8Rqe0eeBkhDehCm9fQX/","source_binding_id":null,"canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"local_entity_id":"snw-s3-e06-kirk-mention","work_id":"snw-s3-e06-pplus","label":"Kirk","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e06-enterprise-mention","work_id":"snw-s3-e06-pplus","label":"Enterprise","kind":"VESSEL_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e07-pike-mention","work_id":"snw-s3-e07-pplus","label":"Pike","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e07-journalist-mention","work_id":"snw-s3-e07-pplus","label":"unnamed journalist","kind":"ROLE_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e08-vulcans-mention","work_id":"snw-s3-e08-pplus","label":"Vulcans","kind":"SPECIES_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e09-ortegas-mention","work_id":"snw-s3-e09-pplus","label":"Ortegas","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e10-pike-mention","work_id":"snw-s3-e10-pplus","label":"Pike","kind":"PERSON_MENTION","global_entity_id":null}
+  ],
+  "evidence": [
+    {"evidence_id":"snw-s3-e06-publisher-copy","work_id":"snw-s3-e06-pplus","source_local_id":"snw-s3-paramount-guide-last5-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1632-1651; h2, S3/E6, time datetime, div.ep__copy","paraphrase":"According to the publisher, Kirk's first day in command becomes a crisis when a scavenger vessel takes control of the Enterprise.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e07-publisher-copy","work_id":"snw-s3-e07-pplus","source_local_id":"snw-s3-paramount-guide-last5-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1660-1679; h2, S3/E7, time datetime, div.ep__copy","paraphrase":"The publisher describes Pike's crew assisting a planet affected by war while a journalist examines their conduct.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e08-publisher-copy","work_id":"snw-s3-e08-pplus","source_local_id":"snw-s3-paramount-guide-last5-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1688-1707; h2, S3/E8, time datetime, div.ep__copy","paraphrase":"The publisher says a mission changes some crew members into Vulcans and that efforts to return them to their former condition create further complications.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e09-publisher-copy","work_id":"snw-s3-e09-pplus","source_local_id":"snw-s3-paramount-guide-last5-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1716-1735; h2, S3/E9, time datetime, div.ep__copy","paraphrase":"The publisher describes Ortegas stranded on a dangerous moon, where survival requires challenging convictions she has held closely.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e10-publisher-copy","work_id":"snw-s3-e10-pplus","source_local_id":"snw-s3-paramount-guide-last5-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1744-1763; h2, S3/E10, time datetime, div.ep__copy","paraphrase":"The publisher describes the reappearance of an old threat that confronts Pike with a consequential decision.","observation_scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"assertion_id":"snw-s3-e06-publisher-claim","work_id":"snw-s3-e06-pplus","evidence_id":"snw-s3-e06-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e06-kirk-mention","snw-s3-e06-enterprise-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e07-publisher-claim","work_id":"snw-s3-e07-pplus","evidence_id":"snw-s3-e07-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e07-pike-mention","snw-s3-e07-journalist-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e08-publisher-claim","work_id":"snw-s3-e08-pplus","evidence_id":"snw-s3-e08-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e08-vulcans-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e09-publisher-claim","work_id":"snw-s3-e09-pplus","evidence_id":"snw-s3-e09-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e09-ortegas-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e10-publisher-claim","work_id":"snw-s3-e10-pplus","evidence_id":"snw-s3-e10-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e10-pike-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"work_id":"snw-s3-e06-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432601155596/PPUSA_STARTREKSTRANGENEWWORLDS_306_3319911_1920x1080.jpg","html_line":1633,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e07-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432602179724/PPUSA_STARTREKSTRANGENEWWORLDS_307_3319851_1920x1080.jpg","html_line":1661,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e08-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432602179793/PPUSA_STARTREKSTRANGENEWWORLDS_308_3321221_1920x1080.jpg","html_line":1689,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e09-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432602179834/PPUSA_STARTREKSTRANGENEWWORLDS_309_3321215_1920x1080.jpg","html_line":1717,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e10-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432602179880/PPUSA_STARTREKSTRANGENEWWORLDS_310_3321226_1920x1080.jpg","html_line":1745,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"}
+  ],
+  "counterevidence_and_limits": [
+    {"kind":"SHARED_LINEAGE","statement":"The five descriptions and artwork candidates are from the same Paramount+ publisher episode-guide page, not independent corroborations of narrative content."},
+    {"kind":"PUBLISHER_CARD_SCOPE","statement":"Descriptions report publisher editorial copy; no episode stream, transcript, subtitles, or script were inspected."},
+    {"kind":"NO_IDENTITY_MERGE","statement":"Kirk, Pike, Enterprise, the unnamed journalist, and other terms remain work-local mentions, not canonical cross-work entity identities."},
+    {"kind":"IMAGE_LOCATORS_ONLY","statement":"Publisher CDN thumbnail URLs are documented as candidate source locators. No images were downloaded, committed, or published."},
+    {"kind":"WEBSITE_VARIABILITY","statement":"The response SHA identifies a single retrieval. Dynamic pages can change independent of stable episode-card metadata."}
+  ]
+}

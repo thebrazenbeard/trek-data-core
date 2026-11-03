@@ -1,0 +1,5218 @@
+{
+  "coverage_effect": "NONE",
+  "data_status": "OWNER_PRIVATE_SOURCE_METADATA_DISCOVERY_ONLY",
+  "edition_bindings_verified": 0,
+  "full_text_sources_read": 0,
+  "in_memory_namespace_recovered": 15,
+  "isbn_checksum_valid_candidate_rows": 75,
+  "normal_xml_parse": 332,
+  "observations_sha256": "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7",
+  "records": [
+    {
+      "creator_search_keys": [
+        "john"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9303fa230d12144ddb90dbae556248f0bc6ac9586048716ae12cd6561af30a16",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0001",
+      "title_search_keys": [
+        "star trek gateways 1of7 one small step"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "56b8ff04f7394d677641eeddbabd95daf66ca71f708aa5670345486d19c7ae83",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0002",
+      "title_search_keys": [
+        "diane carey star trek gateways 2 chainmail"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "38b169b1b8571ed6a08deb4eb75df3a81e8a9ee6814de22d8071a91a37e28e40",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0003",
+      "title_search_keys": [
+        "star trek gateways 3of7 doors into chaos"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f6fd51a8643009b87a16ff020f0c24e04340f9817921fdd9bcda55d8b3a5f618",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0004",
+      "title_search_keys": [
+        "star trek ds9 relaunch 04 gateways 4 of 7 demons of air and darkness"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "57502ebf8e22c86eef530378ea2ce16617d956070aacfb938a4d74b526161ac8",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0005",
+      "title_search_keys": [
+        "star trek gateways 5 no man s land"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0867e0337dc55eb60e729f7be35554ebc1607b196f64edcafe36552b21fda619",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0006",
+      "title_search_keys": [
+        "star trek new frontier 11 gateways 6 of 7 cold_wars"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "various"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ff84da33b51df8d7be8d32dfac0d9cdfd3be93118552bca6d68f2947eef4ef9f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0007",
+      "title_search_keys": [
+        "star trek gateways 7 what lay beyond"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c305d874f06fb77951715a4f670c2995d0a140418306f2b3d3e32478f5d6c68e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0008",
+      "title_search_keys": [
+        "star trek sce 10 gateways epilogue here there be monsters"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christie golden",
+        "dean wesley smith",
+        "keith r a decandido",
+        "kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "24a77698008a1e36611862ae418196e85b2a270f27863753aaeee7112dd6c6a3",
+      "isbn_search_keys": [
+        "0743439961"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0009",
+      "title_search_keys": [
+        "have tech will travel"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e86f66ddf0924e317717a5559ac6ecbc540fd084a8a10710758ebd2c2b7124c8",
+      "isbn_search_keys": [
+        "0743419014"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0010",
+      "title_search_keys": [
+        "the belly of the beast"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ba13ca61c7f2e9671d1e6a409e9ba9c55f6dbab6efbbd5f4a505c7f92c45a1ca",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0011",
+      "title_search_keys": [
+        "star trek sce 02 fatal error 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christie golden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3891568cc1517d65b1ba9bb4c80c3eed4393e51cd2edea0dde204497de982f2c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0012",
+      "title_search_keys": [
+        "star trek sce 03 hard crash"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6d2030d6755e05130166dc22b748d896b93c4a31114abc7447a6252c005825b5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0013",
+      "title_search_keys": [
+        "starfleet corps of engineers interphase book 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "501176457e48d8f1d7144df4a9c9a7f6d5e6c0ecd02c9439592ed45ea22356c7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0014",
+      "title_search_keys": [
+        "starfleet corps of engineers interphase book 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack",
+        "dayton ward",
+        "keith r a decandido",
+        "kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "64dd25266361dd2772fa76d051cfb74278e823f3ce62b3096b622f93bacb458b",
+      "isbn_search_keys": [
+        "0743444124"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0015",
+      "title_search_keys": [
+        "miracle workers"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2265fe6f23777ad66e7a4b87b082863659f7cae83fc4b33691c04478ac71e427",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0016",
+      "title_search_keys": [
+        "star trek sce 06 cold fusion"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d4f2e5797e69d75630e3b13611e7d88e5e1f8261094c86878967d474ff7a2d01",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0017",
+      "title_search_keys": [
+        "star trek sce 07 invincible book 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9579da3bd161e62e4598a2ed80c9e5bc616b2abcdfaa8f6153c4f0e93cd0ee6d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0018",
+      "title_search_keys": [
+        "star trek sce 08 invincible book 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "67d1314e0884ccffdc8ae1bb22a4bf834fceedbeed22cf81cd100c6a8d5d1a9b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0019",
+      "title_search_keys": [
+        "star trekr sce 09 the riddled post"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg brodeur scott ciencin keith r a decandido dave galanter dan jolley and aaron rosenberg"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8c7028d9dd6654d9ae93a72fdba74c6f228a77be11ea2636175348fc6cb97c49",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0020",
+      "title_search_keys": [
+        "sce omnibus book 3"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave galanter greg brodeur"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4555bf0a091eec309ada5b535d0b0726411937a910a81d1a2ae61407d20f56b7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0021",
+      "title_search_keys": [
+        "star trek sce 11 ambush"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "scott ciencin dan jolley"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ff7aa3c8f4741f188a2cbb42a18afa477d42bb34607f3ad9f34f40322b12a7c0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0022",
+      "title_search_keys": [
+        "star trek sce 12 some assembly required"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "jeff mariotte"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "257ac6f14691663a0461c83663f636d9e57652d46c0a85a5d18cf30b44f44499",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0023",
+      "title_search_keys": [
+        "star trek sce 13 no surrender"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "mike collins ian edginton robert greenberger glenn hauman and jeff mariotte"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "870398cbb24623293dce5fae66d4fb2c140cd208537bb54446c4086e034a9ec8",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0024",
+      "title_search_keys": [
+        "no surrender"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "scott ciencin dan jolley"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "085c8aac32c76706e0c792b29252299750a551970f133bc28b387ed7a18bccc5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0025",
+      "title_search_keys": [
+        "star trek sce 14 caveat emptor"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "28635d3e8f21cbf5c44e398238d9f2a76ecff08de73321a364a7584c3508c904",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0026",
+      "title_search_keys": [
+        "star trek sce 15 past life"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "glenn hauman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6b2fc08c5e22f03b35f055a92b0be17cc8a4151268d81f8982f92eb8896af190",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0027",
+      "title_search_keys": [
+        "star trek sce 16 oaths"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward",
+        "kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "763135052d663b69cf8d535d72915f4eb48d4288da9be4779f670b90d44fe476",
+      "isbn_search_keys": [
+        "0743456726"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0028",
+      "title_search_keys": [
+        "foundations book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "87b54e9d35f770d5d78c246ad361966b34f748aa67503fa6e161d85bd4c42664",
+      "isbn_search_keys": [
+        "0743456734"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0029",
+      "title_search_keys": [
+        "foundations book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0c1dc7ad81f09aabfc3c021d5b0a2212b9ae0e1b7e23a93d1e0b10df56ef4f40",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0030",
+      "title_search_keys": [
+        "foundations book three"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j steven york christina f york"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e5f46b1ea2deb41867d3ffb2270bb3d87a3fbc88c1383dde0dd3379dd6e410e4",
+      "isbn_search_keys": [
+        "0743456750"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0031",
+      "title_search_keys": [
+        "enigma ship"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a0822509bc6103e05773125ee4716ef964d16a7b1f577fbb3cd814d0a646e6a6",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0032",
+      "title_search_keys": [
+        "war stories book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "200e6074959997a195faef6731e8ea78e9453d747466495c095cac666d8d8cda",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0033",
+      "title_search_keys": [
+        "war stories book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0606dc7ad6123f45d568c7f8aceb1eb0c2e7cd373c387b65e507fb1111966417",
+      "isbn_search_keys": [
+        "0743456785"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0034",
+      "title_search_keys": [
+        "wildfire book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b9f2731b2e3f85619b722e8e209d0e11f4c0e523b2479dbac28f8e612cce6914",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0035",
+      "title_search_keys": [
+        "wildfire book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "700ebe7328ca95748411c2e5f8ef2b352306cd636c5097e3717c9a9c93fcfbee",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0036",
+      "title_search_keys": [
+        "home fires"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "scott ciencin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "36f08bb89b7d969b6947db20da5961a1e82dfd82a701ef793b7db1077c56ea85",
+      "isbn_search_keys": [
+        "0743475925"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0037",
+      "title_search_keys": [
+        "age of unreason"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "heather jarman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "fcae83b5e93d629eb2e1ed996e0e92cddd49f277a878bab68aa220d757d42cc0",
+      "isbn_search_keys": [
+        "0743475933"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0038",
+      "title_search_keys": [
+        "balance of nature"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ee48affacd685444fbc03f8fde7de942e42bef68da03adf5d4f1995a60b4abd0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0039",
+      "title_search_keys": [
+        "breakdowns"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christopher l bennett"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a21c8347635f455d4d9b1e2636eb91bd75dbb34548b72580873320bc70ec3d02",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0040",
+      "title_search_keys": [
+        "aftermath"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael a martin andy mangels"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ffbcfde66501dc1bdf5edd4fac0f849f36d2b2833025a6f822bcd02b6f380de2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0041",
+      "title_search_keys": [
+        "ishtar rising book 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael a martin andy mangels"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7749c8a215e18e6aac1ed172597a9f56f0b2df3a9ef24e7a11209db2655c5f1a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0042",
+      "title_search_keys": [
+        "ishtar rising book 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9171b169ced838b3500f5e081cf6addcf4abaaa71c95447c72202e3e544fca2d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0043",
+      "title_search_keys": [
+        "buying time"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "aaron rosenberg"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "66c8bb7c52f374d4df87a0fcb03d827feaa34f5f5d1d8e3fa18f91f45d609fc5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0044",
+      "title_search_keys": [
+        "collective hindsight book 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "aaron rosenberg"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ca025b2d11a8982524e89a97e1e454340ae639c1b6a38f4f1eebbb09b07e2706",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0045",
+      "title_search_keys": [
+        "collective hindsight book 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "loren l coleman randall n bills"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d263edc0cc885417a73b27ebcd8057ebb26a956cb095d887f85d4ad5292f8eed",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0046",
+      "title_search_keys": [
+        "the demon book 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "loren l coleman randall n bills"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7d0bbdd715aefcb480a76b0c075e5b6903a318ae40f654e4bf6cc3f21b53ffe9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0047",
+      "title_search_keys": [
+        "the demon book 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "allyn gibson"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "392224d17900b9dd6293d1a83936a56b1fa4642c86d59168a913b83fc29d76f8",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0048",
+      "title_search_keys": [
+        "ring around the sky"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith with john j ordover elisa j kassin and paula m block"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "08973c9c47009f53ee32947b38a0eef8a0e84d102321252f721a3e63872e3190",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0049",
+      "title_search_keys": [
+        "strange new worlds vii"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0135412260edc89eb865167e1ebf8336c891d9f27575eb0b28a8fad6c094784c",
+      "isbn_search_keys": [
+        "0743412133"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0050",
+      "title_search_keys": [
+        "ghost ship"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "gene deweese"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a0b564feea17f252c8c2cd7464123a9b6dcacfced554f3aabf9062fe0fc97087",
+      "isbn_search_keys": [
+        "0743412141"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0051",
+      "title_search_keys": [
+        "the peacekeepers"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "carmen carter"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "281c7026d5d57f13bb77ebf0dae116ad1c95f1154b51a70e2f15608cf94b07f3",
+      "isbn_search_keys": [
+        "074341215X"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0052",
+      "title_search_keys": [
+        "the children of hamlin"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "jean lorrah"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9caac6f27be03aef13a0fdd99d54dbaac3fdb2f0618896cb89af72810d7bb30e",
+      "isbn_search_keys": [
+        "0743412168"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0053",
+      "title_search_keys": [
+        "survivors"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "da6cdbb23d99b13935015e56fbd9eb7b200c2f7e3dc27dcaf96d75e46737c800",
+      "isbn_search_keys": [
+        "0743412176"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0054",
+      "title_search_keys": [
+        "strike zone"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "howard weinstein"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "35221986d1e393481525b4710abcc83e15c3ed1dd56caafb6f86df00f3f05c8a",
+      "isbn_search_keys": [
+        "0743420861"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0055",
+      "title_search_keys": [
+        "power hungry"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "df5fc69fea62c180f470f1f3801fd98a72d22558bb334c2bf3547a5b7dd814e2",
+      "isbn_search_keys": [
+        "074342087X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0056",
+      "title_search_keys": [
+        "masks"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "81889d8fe757c96433220e1bc3776dd209e1d2954de33c64b11da81dffec1e27",
+      "isbn_search_keys": [
+        "0743420896"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0057",
+      "title_search_keys": [
+        "a call to darkness"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2e2f647a247fa7a105a61429639a7aa91a9875fae05d00036397f1c7475764bf",
+      "isbn_search_keys": [
+        "074342090X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0058",
+      "title_search_keys": [
+        "a rock and a hard place"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith sharee"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b2f17c79cce4f72d86507cc47f64479dd24886d1806fa6372cb0cc78b8638349",
+      "isbn_search_keys": [
+        "0743420918"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0059",
+      "title_search_keys": [
+        "gulliver s fugitives"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "carmen carter peter david michael jan friedman and robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "caa77b36f24b432a6b62271fcbacbec37224fc4da24c89d93f16f31f2d8ad28f",
+      "isbn_search_keys": [
+        "0743420926"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0060",
+      "title_search_keys": [
+        "doomsday world"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "a c crispin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3d064640f39a71fd5b544066731e1f71445f479ba1a134e4862cffd600e7995a",
+      "isbn_search_keys": [
+        "0743420934"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0061",
+      "title_search_keys": [
+        "the eyes of the beholders"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "howard weinstein"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f042691095b1f3748bfe8b02def014e43e59ef24d08d6030602f1c349844569b",
+      "isbn_search_keys": [
+        "0743420942"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0062",
+      "title_search_keys": [
+        "exiles"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9ad2237695254b413ddde3f1475db69a67289cf21e7db9a5e50e7ceeefba18f0",
+      "isbn_search_keys": [
+        "0743420950"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0063",
+      "title_search_keys": [
+        "fortune s light"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "eba472b619da851af64b7e0c7b06eae80159ceaf3fdf6ac1ec6101be4c0bbea2",
+      "isbn_search_keys": [
+        "0743420969"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0064",
+      "title_search_keys": [
+        "contamination"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "mel gilden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1d89a9e32a90d6f0153d3daa6cc9b7cc801bd27858db2ef6e35a0d813ae2d492",
+      "isbn_search_keys": [
+        "0743420977"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0065",
+      "title_search_keys": [
+        "boogeymen"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "932eb1aec317bd3f8574d18e5be45797f30cb86ff4a0cf1ab8f474e1a1dca119",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0066",
+      "title_search_keys": [
+        "star trek q in law"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "howard weinstein"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6f0771e9c3b95181a2e9bb657c18c5e2943644b68bac5831ccd534d58bf1959b",
+      "isbn_search_keys": [
+        "0743420993"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0067",
+      "title_search_keys": [
+        "prechance to dream"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "t l mancour"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "de54cf31b71cc8cf4524ec0e08083f09989bd3523960ac241d3afdf0a4172731",
+      "isbn_search_keys": [
+        "0743421000"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0068",
+      "title_search_keys": [
+        "spartacus"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "w a mccay and e l flood"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ce3fe5bcf214cf7792ae8ffcebff06f7a847e48f1beeb5660f87b00e6b8c56c7",
+      "isbn_search_keys": [
+        "0743421019"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0069",
+      "title_search_keys": [
+        "chains of command"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "v e mitchell"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "78cc06cf049770cf8abec0c79802a20f485b8349c80f32c2ad587bd27d6435b2",
+      "isbn_search_keys": [
+        "0743421027"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0070",
+      "title_search_keys": [
+        "imbalance"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cfcd6e8d270af781fba6e7c48f7b41e65512dca77c75284c22fe98ff055331b4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0071",
+      "title_search_keys": [
+        "star trek tng war drums"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "laurell k hamilton"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "32015f0833007a8b73b2da2e68fec0a0acd8c6346831233df07f3b10797bb4cf",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0072",
+      "title_search_keys": [
+        "star trek tng 24 nightshade"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david bischoff"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4af4ad023315791b0c17e90422de4895260171fe8af90df2f8ca8302c4188913",
+      "isbn_search_keys": [
+        "0743421086"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0073",
+      "title_search_keys": [
+        "grounded"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "simon hawke"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c511cdfedfedda9c489583b448eb2bf63e4ca9d8db8baae3587334b6add2acfc",
+      "isbn_search_keys": [
+        "0743421094"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0074",
+      "title_search_keys": [
+        "the romulan prize"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "rebecca neason"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f9b296cf765060e02a145caf939fc3a92bab21ee8843f2ec7783c36173f3e285",
+      "isbn_search_keys": [
+        "0743421108"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0075",
+      "title_search_keys": [
+        "guises of the mind"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john peel"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cc092c539158cbb2ec28eda7a850aa3a0adf4ffc65812f70acffd620dd5b752c",
+      "isbn_search_keys": [
+        "0743421116"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0076",
+      "title_search_keys": [
+        "here there be dragons"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "susan wright"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "99d06eca59fc7e187610747a8b48f134335a5e8545e7a36dcb999651f8705efb",
+      "isbn_search_keys": [
+        "0743421124"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0077",
+      "title_search_keys": [
+        "sins of commission"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "w r thompson"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cb4c5dd123c64562ee5852f323f697170b19fa29d40eb59afc630a2998f80212",
+      "isbn_search_keys": [
+        "0743421132"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0078",
+      "title_search_keys": [
+        "debtor s planet"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave galanter and greg brodeur"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b23446811129fdf4b42e55b8b1c80e5573c71abae84899f400546d0f8aa1b85d",
+      "isbn_search_keys": [
+        "0743421140"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0079",
+      "title_search_keys": [
+        "foreign foes"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "micheal jan friedman and kevin ryan"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "08a9aeedd2a9f3d5a706f801dc17735bd90d4a0afdc2aec6dcd4a49ed89c8150",
+      "isbn_search_keys": [
+        "0743421159"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0080",
+      "title_search_keys": [
+        "requiem"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6a5d66b7b19e9b1a2de7c581ffdb118969079488dd0d70163aff0567b03ad9cd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0081",
+      "title_search_keys": [
+        "star trek tng 033 balance of power"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "simon hawke"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9ccf4e83c5d59a246587ea8c18f7b1e78597a0c4c1643f28af3b832ccb6840b2",
+      "isbn_search_keys": [
+        "074342123X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0082",
+      "title_search_keys": [
+        "blaze of glory"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6d1cdfc418f85c09646f8fbd38c9abeca148d7d191bc16e4a0c2a9fce70f8b5c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0083",
+      "title_search_keys": [
+        "star trek the romulan stratagem"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "gene deweese"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "bb7821ca32ac41563b7b8c58c715bdb1595d04204ac15fdf734737356d9b3e65",
+      "isbn_search_keys": [
+        "074342137X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0084",
+      "title_search_keys": [
+        "into the nebula"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "brad ferguson"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a38dee56e21f0f5387bbf12cb0a309a9b6bfc1b1ad80a1788cc70900a74d4cb8",
+      "isbn_search_keys": [
+        "0743421396"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0085",
+      "title_search_keys": [
+        "the last stand"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kij johnson and greg cox"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c85539a16e80baee58d03c36cc79ba5d59016b4280695ef7570a889cd5f313c1",
+      "isbn_search_keys": [
+        "0743421418"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0086",
+      "title_search_keys": [
+        "dragons s honor"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7dd13961bfa77fa9d7ab623cf87106cb385293c44fd9bdd84300224f8da0fb6e",
+      "isbn_search_keys": [
+        "0743421167"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0087",
+      "title_search_keys": [
+        "rogue saucer"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j m dillard and kathleen o malley"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2e71bf4f1362956cc5b3a2b03bc2386e25789960e84b557d7a53ed474c4c8cd3",
+      "isbn_search_keys": [
+        "0743421175"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0088",
+      "title_search_keys": [
+        "possession"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "73b2ed96170cdbd7f0db2ddebf4b9d1f6aad0d6011c07aec3c48022c6109b1f1",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0089",
+      "title_search_keys": [
+        "star trek tng infiltrator"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "pamela sargent and george zebrowski"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9f3e9472ff7685f5436d2b7052d794da9d07b91235a57caf4b7263fcb7a619a5",
+      "isbn_search_keys": [
+        "0743421213"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0090",
+      "title_search_keys": [
+        "a fury scorned"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john peel"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "11d97f45a723d8dd0dad9adb517027b5a4b183b18ca8216ff667d05512ed25ab",
+      "isbn_search_keys": [
+        "0743421221"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0091",
+      "title_search_keys": [
+        "the death of princes"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane duane"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "bc9ab5d3e99f28d15c6cdcba53574370092120dbce144a4f4a78d6ce095c4b3d",
+      "isbn_search_keys": [
+        "0743421248"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0092",
+      "title_search_keys": [
+        "intellivore"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "09eaf2d182439bd4807ed3d5c67d2ef9858602d5537e4e1f4d030a3165e7fb35",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0093",
+      "title_search_keys": [
+        "star trek tng 046 to storm heaven"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f5bdf4488021037d1f644c4fb729a6a3ad478c4253cd6c4c271ee53cab7102ef",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0094",
+      "title_search_keys": [
+        "star trek tng 047 q space"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5879cbaef3658465656ff5b248f21f85a8c0fcb90aea89d62728ca3e43cacb95",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0095",
+      "title_search_keys": [
+        "star trek tng 046 q zone"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "william c deets dean williams"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b837518b08addbbd6e390b9de29d9942a3a41c19080cf2c0bc0cb91b38c151fc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0096",
+      "title_search_keys": [
+        "star trek tng the q continuum 3 q strike"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a63954755e0798cefe170e3a92dba1007e59fe090c3a919294bef06cb251c5fd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0097",
+      "title_search_keys": [
+        "star trek tng 050 dyson sphere"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean w smith kristine k rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "609ba09e38ea4a1fbbd600749521ba808a972bc00b5c0d88a817492af88e429d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0098",
+      "title_search_keys": [
+        "vectors"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7ecabc5e573be4e788e65b466068a6a371e184f3b32764f0d015870fde530105",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0099",
+      "title_search_keys": [
+        "star trek tng 053 double helix red sector"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1cdedb9093639f7b09060cde66b20c7d91b5938bd5ea0652d0d3a8cc668ebcdf",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0100",
+      "title_search_keys": [
+        "star trek double helix quarantine"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5fa9101419cbecab0100b1a5e788a3ac9be854419f5e8b59fcc8e856543c2d06",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0101",
+      "title_search_keys": [
+        "star trek tng 056 double helix the first virtue"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "william r forstchen"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6b4f81d288cf444718f12b28d7fea39a005da4df581fdd8b990100549be54d01",
+      "isbn_search_keys": [
+        "0743421388"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0102",
+      "title_search_keys": [
+        "the forgotten war"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ece62ca7ad023352cf9848b4c1755bfa90cc3a332ffd81dc85501b610ffddbd8",
+      "isbn_search_keys": [
+        "074342140X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0103",
+      "title_search_keys": [
+        "gemworld book one of two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e8edf2ed4aca1fce9558eef0d0b37c79652c75ce89f271ba58ed8ee36cd9f321",
+      "isbn_search_keys": [
+        "0743421426"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0104",
+      "title_search_keys": [
+        "gemworld book two of two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "doranna durgin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "03b31ee32cd4b0a877a94550bf6ae1d60776fa8f3ba3c261b43958431f8fcb43",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0105",
+      "title_search_keys": [
+        "star trek next generation tooth and claw"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2076dc39dd52f3a2aeb294ec106e94c949dc67ad5179314f4adb238e61f4784d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0106",
+      "title_search_keys": [
+        "star trek next generations diplomatic implausibility"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave galanter and greg brodeur"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7115d4a45325acc036f652f420e4fdc5789269b8e452553bd2b68c99856bb9c5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0107",
+      "title_search_keys": [
+        "star trek tng 62 maximum warp book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave galanter and greg brodeur"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e03d412dabef021e598911eac4a0ea51bfdc633bf6ccb985c977ef186a8fff32",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0108",
+      "title_search_keys": [
+        "star trek tng 63 maximum warp book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8a50a443847d3070603913935d33f8f96aa0c9b4067689d4259e0403c2a99231",
+      "isbn_search_keys": [
+        "074341926X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0109",
+      "title_search_keys": [
+        "a hard rain"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4c35fb7b4991d34add2e92c450475edda12e77b773d99de2e14bcab33d16b0aa",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0110",
+      "title_search_keys": [
+        "a time for war a time for peace"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a2660c9683466d906b4b2d7a5e87cdc49c32d8e8497dc116aef59cd06e8293d9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0111",
+      "title_search_keys": [
+        "atimetobeborn"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ddac9ce74e3afd13a78d5f79594c8cced86f1c813acf9813ce5056a91a817486",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0112",
+      "title_search_keys": [
+        "a time to die"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1ba6c3d1dff75eab00cfd84038958516582c9b4e59430027fa2e54bfaac97b28",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0113",
+      "title_search_keys": [
+        "a time to harvest"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d430ad30b69de2a19e607275d9a7d01eaff47f1696a65308721585eeb2f9a2a5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0114",
+      "title_search_keys": [
+        "a time to hate"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david mack"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "36c23dc2c9ff5e1ebc3d7009dcff503ac5b42661c5c6376e5e787b49fb562322",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0115",
+      "title_search_keys": [
+        "a time to kill"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8a3ee2427039a8bf388c2bb5e7a59e99cb4306b4147fc999c0ad5187c3c798b7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0116",
+      "title_search_keys": [
+        "a time to love"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward kevin dilmore"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d5c4e8a328b8abfa9b8ae7b33798499ccf66bb4e5bf66d9eca773301d02b4b9f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0117",
+      "title_search_keys": [
+        "a time to sow"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "976d229bd71558da7cf63f4b8f60fdbc5d1623262186ce6b155d17028777fde1",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0118",
+      "title_search_keys": [
+        "star trek tng all good things"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "charlotte douglas",
+        "susan kearney"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "580ef8e210101bd936aadfca1a3c71bab43bcdb26aeaa478547e2b2a6d4f0a1c",
+      "isbn_search_keys": [
+        "074343434X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0119",
+      "title_search_keys": [
+        "the battle of betazed"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4f67d91aef53a4cd3eadc42cadc7a56d0022f2a81a475b9422f4e228fa169aac",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0120",
+      "title_search_keys": [
+        "star trek tng beginning"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "s p somtow"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "018355be2990d4b15537e5aaa610c7984af3dd33d3099a2b875bc4e9a5534f5d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0121",
+      "title_search_keys": [
+        "star trek tng do comets dream"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "567dbb4b7f6bcdb19c23906604b2045c3336761886cee17222bae20cc653355d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0122",
+      "title_search_keys": [
+        "star trek tng generations"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "jeffrey lang"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ebdcd080bc3f59f8a716d418b2a98458e9d258cbb8cf4167bb05a07cf0155677",
+      "isbn_search_keys": [
+        "0743405927"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0123",
+      "title_search_keys": [
+        "immortal coil"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cf4eff2eb4e0479479b924a69ab1ce0f93d3878d48819727a94a6442cebe23a3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0124",
+      "title_search_keys": [
+        "star trek tng kahless"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "fc8ab12c2b7ebc456de650f0f1d86a28d3f3829fac62483fe71d9d7956ded853",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0125",
+      "title_search_keys": [
+        "star trek nemesis"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f1f2f9d4ad7da61259dcb99422641141852f0b0e1bdd8db01f4664d53eabf066",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0126",
+      "title_search_keys": [
+        "star trek q squared"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "af5c31fb9df38f51c7a8a327d11454612638bf67ded37aa0b36c5414a9ccc6e3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0127",
+      "title_search_keys": [
+        "star trek the next generation relics"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f36bfb5d8c37a5045d24298385c629d08cb064d8e6228acd7bd96dc6eb074232",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0128",
+      "title_search_keys": [
+        "imzadi forever"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "10960d908288f5e009cbdf5c3a8d1f4fc3211a97f71da989d1ed0042a2aee4e2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0129",
+      "title_search_keys": [
+        "pantheon"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6f55e2e4ec234fa7f5fa975ea2cb7cd39612a4da6df7799326ca41bd73e93843",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0130",
+      "title_search_keys": [
+        "star trek tng stargazer three"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "carmen carter"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8db6a55aeee048e305133037123ac04bb9dafaaa59ee9be94ccae7bdd450fe46",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0131",
+      "title_search_keys": [
+        "star trek tng the devil s heart"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kenneth a lowenberg"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "46ec1ff812400330e2415b0635d5bf56b455222597b4d8ef00b3d8bf1a8d5de7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0132",
+      "title_search_keys": [
+        "star trek the five enterprises"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "761a256535940a4987d0541868339c09977fe1fdd6d2265e300efc85f46af873",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0133",
+      "title_search_keys": [
+        "star trek tng the genesis wave book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f8db3c3c9374241ecea7c8fe021c25940af745da2fcdf22cac30cd6a63e5ace3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0134",
+      "title_search_keys": [
+        "star trek tng the genesis wave book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e50f6cb14cfe7e5903f261dfb55e1b000a847746596ba86c1dcd09474accd2e0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0135",
+      "title_search_keys": [
+        "star trek tng the genesis wave book three"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7a4ff9ceb8643f0fdf467f8e67fc2f965f32f0f9c683c5274d9e4e04b4a06078",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0136",
+      "title_search_keys": [
+        "star trek tng the genesis wave book four genesis force"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "421815afd1c02cd8da0701401187af61ded8dbe5b18b3a2cc8348a58e3c84afd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0137",
+      "title_search_keys": [
+        "star trek tng the valiant"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4ae81c582fa71ad0b829cc90c5694c08776d66d9ad0d6e3562158d17c433b731",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0138",
+      "title_search_keys": [
+        "star trek tng unification"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "james blish"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d7765f72a50ce934562eaa840c5103c8346fd8ac3ff9932b14dd0071c19e1ffb",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0139",
+      "title_search_keys": [
+        "star trek 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "gene roddenberry"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b815b98f15098b44c4e75aef3bc006feabd9f3e671bb4586566c48140ee8b248",
+      "isbn_search_keys": [
+        "0743412087"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0140",
+      "title_search_keys": [
+        "the motion picturetm"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "vonda n mcintyre"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6e6f27345bbafb2b1d63bbe6bef0818fc2849d8d25debd0e68a02619807317c0",
+      "isbn_search_keys": [
+        "0743412095"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0141",
+      "title_search_keys": [
+        "the entropy effect"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert e vardeman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "854a310ff066bcb99d90973174b8bc3707b7eaf9e45bccd49f6301885da50b38",
+      "isbn_search_keys": [
+        "0743412109"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0142",
+      "title_search_keys": [
+        "the klingon gambit"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "howard weinstein"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "45b8f1483fb1bd498d756d02a2aa93401f4c0acf833f5837c46fe5addc064680",
+      "isbn_search_keys": [
+        "0743412117"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0143",
+      "title_search_keys": [
+        "the covenant of the crown"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "myrna culbreath",
+        "sondra marshak"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "41ad1973190c50af5e321a1c1d54ab052e69aaace35602f36dd8f7d4724ef5d9",
+      "isbn_search_keys": [
+        "0743412125"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0144",
+      "title_search_keys": [
+        "the prometheus design"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "393b0771a09e478f1cb545d50c68a9b7a8b924548cd910d7a028d87efa618508",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0145",
+      "title_search_keys": [
+        "star trek tos 006 the abode of life"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "vonda n mcintyre novelization"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5f5d3a7396c02ba5d801d7c475b895a1bb520beec3fe81b899d99ff22ed77c27",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0146",
+      "title_search_keys": [
+        "star trek tos 7 star trek ii the wrath of khan"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "sonni cooper"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c0eb2d7ec4fb467438a637e6121725fd1692fb9dd3a9c6fb1a752160190bafd3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0147",
+      "title_search_keys": [
+        "star trek tos black fire"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "sondra marshak myrna culbreath"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ea4077599a68952cc06c7e378b0403721590969c7352f36c49c7071c74cead6c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0148",
+      "title_search_keys": [
+        "star trek tos 9 triangle"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "m s murdock"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7d33b6010db28ddbd0fefbc96be0d851e05a143c528a3d901b4dbdbec6e9a879",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0149",
+      "title_search_keys": [
+        "star trek tos 10 web of the romulans"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "a c crispin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ba238b8040af11e78ac19447a000dd43b9fb67c131d306d7a5ddacc1d10a1613",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0150",
+      "title_search_keys": [
+        "star trek tos 11 the yesterday saga i yesterday s son"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "robert e vardeman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "20b398b342207e226564fda9c40dda1014f5505dea252dbc5d4102d3a8cace80",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0151",
+      "title_search_keys": [
+        "star trek tos 12 mutiny on the enterprise"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "67da0c2d8d3b73cea0662f9708fa0d13762a390e6af70e2b646797a9f979b8eb",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0152",
+      "title_search_keys": [
+        "star trek tos 013 the wounded sky"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david dvorkin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f35a891917ff626a8b7b17e8e8ae738bbc4120df8b85591fa5aa288caaeae2fa",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0153",
+      "title_search_keys": [
+        "star trek tos 14 the trellisane confrontation"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg bear"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4a3cb3568a4991ad7a23610ccce5f80983da8e69a82c4154d06ad09787cc2d15",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0154",
+      "title_search_keys": [
+        "star trek tos corona"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john m ford"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f9cbe34eaa8871465e50bfe0fe9cd3aaef101fcc1dc5254f83d9d526f890500a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0155",
+      "title_search_keys": [
+        "star trek tos 16 world s apart book one the final reflection"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "vonda n mcintyre"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f1c79e6cb65d346ce44a30b4de5062309bf690a01011d853dbdc0823454c6d36",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0156",
+      "title_search_keys": [
+        "star trek tos 17 star trek iii the search for spock"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane duane"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "51a4d117d2b84258618f6d6921fc9742c2ac7dab7f82f7c399068f5690b0daef",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0157",
+      "title_search_keys": [
+        "rihannsu 1 my enemy my ally"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "melinda snodgrass"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "758b70de8d71ba4b882a302da866c1e48f06a9d996d8b3dba4ca8becdf0b82c2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0158",
+      "title_search_keys": [
+        "star trek tos the tears of the singers"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ee981786b04fd8e5defeea8ea32b153378c911757e249efb2462423644bdb9c7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0159",
+      "title_search_keys": [
+        "star trek tos 020 vulcan academy murders"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "19645704a586ebcf63db7c86f25b93b6e77bf616f1aee9f0ee7b29baf0eae3ea",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0160",
+      "title_search_keys": [
+        "star trek tos 021 uhura s song"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "laurence yep"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5fc475e359ce8c0e650373a75d9c463fba3a8d3351dc1b69a21618a5d7dcea45",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0161",
+      "title_search_keys": [
+        "star trek tos 22 shadow lord"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "barbara hambly"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "addd87696e566b7755f0e3e450da7ee7a5efa8cf1f9fc0929ff1d28c25715e31",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0162",
+      "title_search_keys": [
+        "star trek tos 23 ishmael"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kevin underwood"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5bae9fdbe3fcd4238badd6e3f4df47a7af2454dc81fef19503085490e9b384b7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0163",
+      "title_search_keys": [
+        "star trek tos 027 mindshadow"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "878f60802df1a527edd156500bce351b3f02f4169873b40423cbcb773b2a1b31",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0164",
+      "title_search_keys": [
+        "star trek dreadnought"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j m dillard"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c12c379b2701e2eefb187e2d18d33699fca0367e26e5247506beeef3cfb55758",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0165",
+      "title_search_keys": [
+        "star trek tos 30 demons"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2ca3761d1be18616e650b9d83dd389c7caa24e3fac2d3b3328c61ba1ed2ad64f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0166",
+      "title_search_keys": [
+        "star trek tos battlestations"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "gene deweese"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3371b3d0c2a2982510e604e18aa0adfdf98579c6096da3e3cade5d4144673efe",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0167",
+      "title_search_keys": [
+        "star trek tos chain of attack"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "89884d55953aeb531f50cd82071f9d938c8eaf8e3bddfc1ec95bbd5503fcc56a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0168",
+      "title_search_keys": [
+        "star trek tos 033 the deep domain"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "carmen carter"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b4dbc74f536129fa7a3a9ddc1b6cda1dd59040b48aa509bcaf449579cd10665c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0169",
+      "title_search_keys": [
+        "star trek tos dreams of the raven"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "fa612e4b548b1c4527fd1e09a8fd30e6c951cb31666216fc23f50f0509963376",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0170",
+      "title_search_keys": [
+        "star trek tos 035 romulan way"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b582746d5e96057ccbbd6fbbc26c6793d8d7529870a9b921bd0b27b59ce29ecb",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0171",
+      "title_search_keys": [
+        "star trek tos how much for just the planet"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "91ff65ad98af24bc4e3609be5e3096ee7db89660909c38f86250cd916327cc28",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0172",
+      "title_search_keys": [
+        "star trek tos 037 bloodthirst"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f87542f42f7225df5eeee077774db55eef6bd480ca5d4cc62340ef5771ec5d66",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0173",
+      "title_search_keys": [
+        "star trek tos 038 idic plan"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "ann crispin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1168e37c8c7374df7efdeff2e92aa78833a1608d5884859edf91f91760417ee4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0174",
+      "title_search_keys": [
+        "star trek tos time for yesterday"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david dvorkin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0fef184448d7757b4aba404198eaaa2863744e35a852db66142a6ad5b7c8e06d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0175",
+      "title_search_keys": [
+        "star trek tos timetrap"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "acb5f455deff98a74c16e7241a6f4bdc2992ee4b2f3c7c6f5212badb42e0c046",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0176",
+      "title_search_keys": [
+        "star trek tos 042 memory prime"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "d c fontana"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6827e7ac4c9107d262165f76f7324dc81f08855ff457f798c770067823bff383",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0177",
+      "title_search_keys": [
+        "star trek tos 44 vulcan s glory"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "julia ecklar"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2dde366d89d4aa96b603171cc3ca0498eb3fff28ae54c0304c81392a7bff9d5a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0178",
+      "title_search_keys": [
+        "star trek tos 47 the kobayashi maru"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter morwood"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "75f7231776b5944e130ecd3dae70d50131d6c5612f29e40ac798ecbc2d2b2ea3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0179",
+      "title_search_keys": [
+        "star trek tos 48 rules of engagement"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "559a8f5b1bc6fa16ababd5303c22cd785c755ad0f67d75ea4fa096071167e254",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0180",
+      "title_search_keys": [
+        "star trek pandora principle"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane duane"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "28d7f88ac5ea3663dc5102bded625ddc583a9d0103ca410ee241ad7c00bbc21c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0181",
+      "title_search_keys": [
+        "star trek tos 50 doctor s orders"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "v e mitchell"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b8f0e42709d1934e1e46ffed13d518d3e26bf52e2beb6d7847b9d4655b7ffc0c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0182",
+      "title_search_keys": [
+        "star trek tos 51 enemy unseen"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dana kramer rolls"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "40994bcd642f3a05ac06735be04cecd343f2ad77ea570698d6ada5f5c8166dc0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0183",
+      "title_search_keys": [
+        "star trek tos 53 home is the hunter"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "barbara hambly"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "57ad2077de2ac9beaede254d9a0db1d0495bce389d6029caa2f3d068e330246d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0184",
+      "title_search_keys": [
+        "star trek tos 53 ghost walker"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8b2bc510a8a0304d0f5758dd1278c76fed8755c153d207d4a79bc3e898a8f045",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0185",
+      "title_search_keys": [
+        "star trek flag full of stars"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "gene deweese"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "be34a6283cb323e96ba9de273be9c14168866ca7b12d075a23f662f1f468d2d3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0186",
+      "title_search_keys": [
+        "star trek tos 55 renegade"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1d32a3a436a3e0d97700337ee8d89a7d8988b0c191c1e40f05ebe1c8e82ee3fb",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0187",
+      "title_search_keys": [
+        "star trek tos legacy"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "02b0225e5d6783658519bac9524a37b902e03b8693645e3835c409c674976d99",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0188",
+      "title_search_keys": [
+        "star trek tos 57 the rift"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david michael jan friedman robert greenberger"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a4fb3f6298a4f6c7b35880ca28154e8ac813a311e37264e2ebd3361a1103cc00",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0189",
+      "title_search_keys": [
+        "star trek tos 59 the disinherited"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "606b0f2f06f0f2768429cbdb347e3ca52dda29e9a48d41d2a7774852f0253f3b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0190",
+      "title_search_keys": [
+        "star trek tos ice trap"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5af9dfa0dfcf73cb79624b2e462409188e8abbbfd96d806eb258b69fc48ce8e9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0191",
+      "title_search_keys": [
+        "star trek tos 61 sanctuary"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8674eb9909faaa28243ea5217bcf68425b3624772a46bb31df4be68815b4632b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0192",
+      "title_search_keys": [
+        "star trek tos death count"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "mel gilden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "702bc2adca16195df08a052398a6ed42cb5a7e7311429b3e52dc55b575f519e0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0193",
+      "title_search_keys": [
+        "star trek tos 64 the starship trap"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "v e mitchell"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "13a39a2392042683d8ef64eb5c3ce297b7a07eda5e6dd2b669a36cadcacd3513",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0194",
+      "title_search_keys": [
+        "star trek tos 65 windows on a lost world"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "victor milan"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "06b0e330d840e169cd0a8946a36dbb7085c36011097d5660356ce55a8083c39f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0195",
+      "title_search_keys": [
+        "star trek tos 66 from the depths"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "420a78ccbfca50a09331b86fcf0fc48facd56bddc56483dcf134ccf393314abc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0196",
+      "title_search_keys": [
+        "star trek tos 67 the great starship race"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9b7ce8d771e2bfd67c431cda5fb1b78711da46d20a05fffb56b4283c6cff04f6",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0197",
+      "title_search_keys": [
+        "star trek tos patrian transgression"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6b39b19e3cb61af86e4d5229def02edd3fa782cf84e95fd5aff2ce9c6da0f6ab",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0198",
+      "title_search_keys": [
+        "star trek traitor winds"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b460d51fa77a7c9bea3a57188942d7bfcbfecb553df7b3d05ebb6e4febd3cba7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0199",
+      "title_search_keys": [
+        "star trek tos 077 twilight s end"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith kristine kathryn rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1030a9e4c56e3694d1758d16bb44866da8379805117d59831f3b8f1b58f6ae73",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0200",
+      "title_search_keys": [
+        "star trek tos 78 the rings of tautee"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f1f6089b0fdd455d0588ebf67fa3e4f7d2b7c6c216c136550d3979e21c73b28f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0201",
+      "title_search_keys": [
+        "star trek tos 79 invasion 1 first strike"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "james gunn"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9a31f6b8ac301d8ded59e595a9e5ab557e5e31fd678ec45faa2acf25d3fc6d88",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0202",
+      "title_search_keys": [
+        "star trek tos 80 the joy machine"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "pamela sargent george zebrowsi"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "93feee5df709e213b098a0b3de8ae04a3c5a85ba83963a63f5698646fc7913c0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0203",
+      "title_search_keys": [
+        "star trek tos 83 heart of the sun"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg cox"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1ec86a9b969d5b4c76f86cf5c8a1555ef079e57850ac16cc3d028ebb9bf74c24",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0204",
+      "title_search_keys": [
+        "star trek tos 84 assignment eternity"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5d83fa917aa738ccdbeb8bf24ed7d19d1f1420849f07020b8c73519dc4ed1e3c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0205",
+      "title_search_keys": [
+        "star trek tos 85 my brother s keeper book one republic"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ff46731ff3225064412084c6de75f54d924159a91a41b9467db1c9e0ed9a92f8",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0206",
+      "title_search_keys": [
+        "star trek tos 86 my brother s keeper book two constitution"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f7c80ab7a557be76ff74a560dd45c3a2f68e51e97800d636c15524f138251d19",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0207",
+      "title_search_keys": [
+        "star trek tos 87 my brother s keeper book three enterprise"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "pamela sargent george zebrowski"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a952d9f6b37349e820e10625f337d07d0c4eb77e8da3b4efbd928796243c31fd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0208",
+      "title_search_keys": [
+        "star trek tos 88 across the universe"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a79828c4792a090dd840533eb412371f3bd0196d0bfb58c1113c54f4b9ef86b2",
+      "isbn_search_keys": [
+        "0743411145"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0209",
+      "title_search_keys": [
+        "startrek new earth wagon train to the stars"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith",
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "de7d1c8f2af01c27a7f622dd2c3da0336bab25eccd98fb668a51ea67d36fb6bf",
+      "isbn_search_keys": [
+        "0743411153"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0210",
+      "title_search_keys": [
+        "star trek new earth belle terre"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2f486f002cf6dbd8c3d50d5ecb5a0e5044f09cdf4e9a5a6db2ab22a7ab3997a9",
+      "isbn_search_keys": [
+        "074341117X"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0211",
+      "title_search_keys": [
+        "star trek new earth rough trails"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "jerry oltion",
+        "kathy oltion"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "92542af6a52dd3c290ad065134a1013d12ec82e948074ee0786578ec90f18ac1",
+      "isbn_search_keys": [
+        "0743411188"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0212",
+      "title_search_keys": [
+        "star trek new earth the flaming arrow"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith",
+        "kristine kathryn rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "034b7ea7682b98bf9b0fef6a9ba2f24b2dac53424b7fa0a444e584a00c8715a6",
+      "isbn_search_keys": [
+        "0743422236"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0213",
+      "title_search_keys": [
+        "star trek new earth thin air"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8b1d0fa0d2ac82e5a9c1d020a0ca8ec976c97f79a60a74913c38121309a7fb25",
+      "isbn_search_keys": [
+        "0743422244"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0214",
+      "title_search_keys": [
+        "star trek new earth challenger"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3f4eac1f5003a7b0d27b64441f17db452d8c4614304a6cdbbd9ab9de945ec44a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0215",
+      "title_search_keys": [
+        "star trek tos 095 swordhunt rihannsu 3"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f7939c643259f191a516cb4baee19a4094332ec2c877f29beca787d8f731f2f9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0216",
+      "title_search_keys": [
+        "star trek tos 096 honor blade rihannsu 4"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "98e9c3ca4d9b460527454ffe1fcacd4032874992414b02bd38715627a78c241a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0217",
+      "title_search_keys": [
+        "star trek tos ashes of eden"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "27ac9b7e0f6812bca04d971cffb7343f6b2e445d7f8445a263329f7360d53250",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0218",
+      "title_search_keys": [
+        "star trek tos best destiny"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "411e6f75556d3d3521d012d8b64108829984db99b3b18dd0fb922980ad287130",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0219",
+      "title_search_keys": [
+        "the brave and the bold"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kathleen sky"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0ebf82f17a6d44b32161c062142da7bb8751d825bc932b82051039b98aebad2e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0220",
+      "title_search_keys": [
+        "star trek tos death s angel"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0e3c71f13080545e4b9c5f61a8a8276eb36d00da525955e090556fac3539e9b6",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0221",
+      "title_search_keys": [
+        "star trek tos devil world"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "vonda n mcintyre"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "89b0f889854b661a585002056308a8173f74d38130e3633a3f2bdd10b6c3ab17",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0222",
+      "title_search_keys": [
+        "star trek tos enterprise the first adventure"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kevin ryan"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f481d60fdf85c6f604bd984d97e6b0fb7f04f559b578696daa5e3432150bfe63",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0223",
+      "title_search_keys": [
+        "star trek tos errand of vengeance book one the edge of the sword"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kevin ryan"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ad27c8a665727cb3e31b3bb8209ab5ea44eacf1d5bcf5da55cd4dfe452e9fde8",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0224",
+      "title_search_keys": [
+        "star trek tos errand of vengeance book two killing blow"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "kevin ryan"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3286a6dd3320e88ada8e379318fafaaf5292d7aaed43ac3c8f908e44644c93c5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0225",
+      "title_search_keys": [
+        "star trek tos errand of vengeance book three river of blood"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2e786e2ca33f9a3a1eb2e3f74f2d390bbe8f6246027d59dc7723235f91ad21d2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0226",
+      "title_search_keys": [
+        "star trek tos federation"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "aaaae64f1da240e97e6b942707060bc4d5499e99fc06e08a753735a0a4444156",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0227",
+      "title_search_keys": [
+        "star trek tos final frontier"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "92e17abdc852b38fb2b593148f7b30b57b37831567becdc459d65dc7dd092e69",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0228",
+      "title_search_keys": [
+        "star trek garth of izar"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "margaret wander"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3f29e99c52bff1a4b4495b0da6c96853a80205ab154cbcd75663e781582cc0f3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0229",
+      "title_search_keys": [
+        "music of the spheres"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "51291692c5ad2e92a91801d41bcb5f14593d41ebfa2137c0be392308f14b25a4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0230",
+      "title_search_keys": [
+        "star trek the new voyages"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "judith garfield reeves stevens"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9f053c046ead8af538dbfaaa4d8d037814b3ba06e87afaa778280326b81309c7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0231",
+      "title_search_keys": [
+        "star trek tos prime directive"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5d636328f46e4c269b850be1f7e6178ff36e0406435eed52bc3bd917c492b0ca",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0232",
+      "title_search_keys": [
+        "star trek tos probe"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "a c crispin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "bd4c4b65e72d78281dadf2ec4600f44c362652108d8ebcd1afb455c8bcf9ac34",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0233",
+      "title_search_keys": [
+        "star trek sarek"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7cebe16f2a722fb28dd781792ea6f55e60e5072956f444554de336dc68a7c52e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0234",
+      "title_search_keys": [
+        "star trek tos shadows of the sun"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "judith garfield reeves stevens"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4765384f5344725ad00ab00a6a440ac8075c7e905ca192eb4e3090a8bb5817f6",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0235",
+      "title_search_keys": [
+        "worlds in collision"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane duane"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "89d7b7a21d381018ab3be724b54e98c676fe64e31600ab2184644d0d97232b31",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0236",
+      "title_search_keys": [
+        "star trek tos spock s world"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "theodore r cogswell"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e5c1ea273103c475d6516ecc04e44e53540716d37d4feca781c55ac45f253836",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0237",
+      "title_search_keys": [
+        "star trek tos spock messiah"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dayton ward"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "565611c90b3ac8d90e168e10ca0afe550104abb9d543ecc0754f237f5cde2cea",
+      "isbn_search_keys": [
+        "0743464540"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0238",
+      "title_search_keys": [
+        "the aliens are coming"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "keith r a decandido"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0a4e87e887990365a5daaaabb3c2c58d3cff29452a1871d168f19eae23e5f02b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0239",
+      "title_search_keys": [
+        "star trek the brave and the bold book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg cox"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8928864f1084eb9a4b8fea75d2697b9a602b7b4fbe55d7e31ba0e41331db04b2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0240",
+      "title_search_keys": [
+        "star trek tos the eugenics wars volume one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg cox"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3f1d5b11aca4d693a688efbd8e3bed789389cde9185d74eb1b1e7db895c97b58",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0241",
+      "title_search_keys": [
+        "star trek tos the eugenics wars volume two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david gerrold"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "93160e91b97b9ffc48d9b1959530ec49d0ea5effdd30f060d75230be521baedc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0242",
+      "title_search_keys": [
+        "star trek tos the galactic whirlpool"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "82a124f30ea57f9c39ddea9f3f1a5d4c6afe910da979aafb880c784e4f4af5e5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0243",
+      "title_search_keys": [
+        "star trek tos the janus gate book one present tense"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b5b2d598d9caf10f21931023f3a13c863c9ba90db3f9fc2c056089e99156bbe7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0244",
+      "title_search_keys": [
+        "star trek tos the janus gate book two future imperfect"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b7b42ebe24bc22ee4b11f9d44daa244773dff51507a458659a2eb23ede68562e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0245",
+      "title_search_keys": [
+        "star trek tos the janus gate book three past prologue"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christie golden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2eb1dbc355a780872bbf9889f460009ba08a6d7dd0dc29f1c255cc1cb74afb86",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0246",
+      "title_search_keys": [
+        "star trek the original series the last roundup"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "stephen goldin"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "43e207d3bafc67d0f363d6ce958f7f76f741dcf6db7c27cc36ff34b2066bd177",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0247",
+      "title_search_keys": [
+        "star trek tos trek to madworld"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "33b83638f3cdf517809ee885c496055e1a767b9854bb6e9008a8206d7b20f1d9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0248",
+      "title_search_keys": [
+        "star trek tos vulcan s heart"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "josepha sherman susan shwartz"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1139c2f6212d788a2b9ada971d999fdb361eab31f743253ec041407a02870074",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0249",
+      "title_search_keys": [
+        "star trek tos vulcans forge"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a23dd325001d70fb7e4def5e1e824dda1dc0057eadb261ff42adee2a26edb8b5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0250",
+      "title_search_keys": [
+        "star trek voy 001 the caretaker"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "042a6d5e1f84cc03ddc2b918c14ca47eb3f4d3d1726033676ab872bfe200f844",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0251",
+      "title_search_keys": [
+        "star trek voy 002 the escape"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cfc04d0cabfecbc2cd98d80756fc6e91d12ed50a463a2e91b37b68dd86c55b9e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0252",
+      "title_search_keys": [
+        "star trek voy 003 ragnarok"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "9bc37f41e103f41bfef56d3dfeb2a8514ae9ad5e53995638e4da94a8c7f8d1bc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0253",
+      "title_search_keys": [
+        "star trek voy 004 violations"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "51a3669536ab7acebaf8571f2566fd884b138e7c5c8ba286dea6267a0af81e9d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0254",
+      "title_search_keys": [
+        "star trek voy 005 incident at arbuk"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e04054c5097fc7eebb5c23f1c45a44cb2cc46cb7632ede1976a893756d3a1c76",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0255",
+      "title_search_keys": [
+        "star trek voy 006 the murdered sun"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1aa4a9860ccf0edff3e1850b75bab2dee0361169f7155aa45bab6ee8537aa083",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0256",
+      "title_search_keys": [
+        "star trek voy 007 ghost of a chance"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "06a8b008d726602896ae573af5514fa2cc91d24f2cd6da84d9fc9e5bded212a5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0257",
+      "title_search_keys": [
+        "star trek voy 008 cybersong"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0b1d05e36962ae484bcfa7629541b6aa7ff313f342cdb53caf590dec977a2c96",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0258",
+      "title_search_keys": [
+        "star trek voy 009 invasion book 4 of 4 the final fury"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "karen haber"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "222e14bf9baa435234506e6a4b2fcb61340d5425dcbf46380e58780782195b91",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0259",
+      "title_search_keys": [
+        "star trek voyager 10 bless the beasts"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "melissa scott"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "42424b62cb3de3f03eff0bf557b08c88c5864580be10991e343ba25412171b4d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0260",
+      "title_search_keys": [
+        "star trek voyager 11 the garden"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david niel wilson"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ca256b47dd18ed7a19652d06a23cfbf338bdd6b6c6dbb46235fc9cfd96190917",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0261",
+      "title_search_keys": [
+        "star trek voyager 12 chrysalis"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "greg cox"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3f20329e16fcf8cb84a3b7a3aebb4499752077903c8b57a5a756975e779e2439",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0262",
+      "title_search_keys": [
+        "star trek voyager 13 the black shore"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "bc50952cd4f9757f1ccc880ed6b7368127acb88a75a179873c113f816eb6bfd0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0263",
+      "title_search_keys": [
+        "star trek voy 014 marooned"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith kristine kathryn rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "81d792691f4408a4f8aaaf5189db43ea90ab145e493b03c1b3361e30e410f9c4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0264",
+      "title_search_keys": [
+        "star trek voyager 15 echoes"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "44a922cc4caf9924daa00425e7fa95e458418b04f3ba3bc3144e49e34aeed94e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0265",
+      "title_search_keys": [
+        "star trek voy 016 seven of nine"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a02fba1107af9ee223dc99e8c875dc095d6b50f2e2c6593fa75ae791e077b048",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0266",
+      "title_search_keys": [
+        "star trek voy 017 death of a neutron star"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "932d32d67e023e13570aa897def8829eb48d7bf0de520aa81df084d65edc36aa",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0267",
+      "title_search_keys": [
+        "star trek voy 018 battle lines"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d5ab4d89c46acfe49243b8f39a2b64863b00fb7b77520c2e36c64164c23a61b7",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0268",
+      "title_search_keys": [
+        "star trek voy 019 cloak and dagger"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "465228c5cbfecb527241cbe0c2c2c6471a2775fec8e3376e006a7ea6c16dcfd5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0269",
+      "title_search_keys": [
+        "star trek voy 020 ghost dance"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e614db92d5043ced55de62e26d3b4066894e45a04dd39432b6326aa2a814ed45",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0270",
+      "title_search_keys": [
+        "star trek voy 021 shadow of heaven"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ff8846f921d6d5ca52f5c7fc2710254520d557d7462b7f7ed626e20b9dec405b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0271",
+      "title_search_keys": [
+        "captain proton"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey christie golden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d5a34426c1d5577b31adcceb22fe8ac8f1b261163e95fd704ad114dd37aa0b42",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0272",
+      "title_search_keys": [
+        "star trek voyager endgame"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey brannon braga joe menosky rick berman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "40203eb2466ecec238f958922276b74a142028c2eee76c4305d6e691989f6565",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0273",
+      "title_search_keys": [
+        "star trek voyager equinox"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey brannon braga"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "78f4849e87f51b02eb39747e44ecd4d4ec5258e23df991fb19e9a9a6b6584acc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0274",
+      "title_search_keys": [
+        "star trek voyager flashback"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christie golden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7fd5029be27563a68f4a2a8a0fbc416b1b61f24ee83c3294d0d8e0f781180f83",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0275",
+      "title_search_keys": [
+        "star trek voy homecoming book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "christie golden"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f7e479485d2bcad69249e35cfefebf98741dfad7990e3ac1438774711c8fe41e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0276",
+      "title_search_keys": [
+        "star trek voy homecoming book two the farther shore"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "83b56196f5f14b95285b9500d5a2f875a39ebb7c3bd58a892298dc777b83e8cc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0277",
+      "title_search_keys": [
+        "star trek voy mosaic"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "steven piziks"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c5f0a5143ebbc8280e99bbb77fb8c051d63880283fcce0712d26a92ead01c19c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0278",
+      "title_search_keys": [
+        "star trek voyager the nanotech war"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "49961077151825ef1d7b70b3ef4497caa2ede447ec1eaf29eee16409f6615080",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0279",
+      "title_search_keys": [
+        "star trek day of honor ii armageddon sky"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "539723ef0ceb20fd54217c71a02e79842c3a6c5f31e36545e6b99c97c3053cfe",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0280",
+      "title_search_keys": [
+        "star trek voy day of honor book 3 of 4 her klingon soul"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "emily jane"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d8d74e3b10604c97fe80fcad8c48e098a3ea24d7e1bcc3191f11db509c0b0db9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0281",
+      "title_search_keys": [
+        "star trek ds9 avatar book one of two htm"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j m dillard"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "14883f8832ab71b7be4837116472bec3d467f329244111ac2ec8d7f54e017539",
+      "isbn_search_keys": [
+        "0743412206"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0282",
+      "title_search_keys": [
+        "emissary"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8110877530e109cef62de1378c3e04ec4d0cc7349dded8bc7ea0ab4dbd3be551",
+      "isbn_search_keys": [
+        "0743412214"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0283",
+      "title_search_keys": [
+        "the siege"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "k w jeter"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "033cf00ffde43b426006483d7c32936be7e6f10136876bbe7ae986a1428c046e",
+      "isbn_search_keys": [
+        "0743412222"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0284",
+      "title_search_keys": [
+        "bloodletter"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "sandy schofield"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cd7e8ce305b183d3ae2b8c3affd08da5ae4ecdc41085c665a39cbab913731048",
+      "isbn_search_keys": [
+        "0743412230"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0285",
+      "title_search_keys": [
+        "the big game"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dafydd ab hugh"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "89bb3a8f499fa40c1d986143c1cc6a0d05bf19676e155915935e9913013d5f2a",
+      "isbn_search_keys": [
+        "0743412249"
+      ],
+      "metadata_parse_status": "OPF_XML_NAMESPACE_RECOVERED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0286",
+      "title_search_keys": [
+        "fallen heroes"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "lois tilton"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "ba68ad8782b5f823fca210a851918caf0ec31e90ea7eba516872162c18ee04e2",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0287",
+      "title_search_keys": [
+        "betrayal"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "esther friesner"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "f11a34ab973d6fcc191c8e5450989d8bb32e95c6ece64ee14fca7b8fcac2a6fa",
+      "isbn_search_keys": [
+        "0743420381"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0288",
+      "title_search_keys": [
+        "warchild"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john vornholt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4126c6bb35d5374318e69666c65aca9c6a697d8ea951b9bdeb8713b1dbe91ee4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0289",
+      "title_search_keys": [
+        "star trek ds9 antimatter"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "melissa scott"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "267c75ab42d9e281d2229af07916e1cf179a4b578ed6362d30251c125c7b22b5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0290",
+      "title_search_keys": [
+        "star trek ds9 09 proud helios"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "88585a28a1050d23ffe24bdff6b9a90a63bc36e96af30236308d78cc22833014",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0291",
+      "title_search_keys": [
+        "star trek ds9 10 valhalla"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d8c63c3a6f18d258265f415dffcd606db0b51639f8dd6f5244b8cea6cb399e0f",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0292",
+      "title_search_keys": [
+        "star trek ds9 011 devil in the sky"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "d5cb6b9ca97b1816318a6ca0627d07fcb66e19dcc8a459a5a9eb44e828a63854",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0293",
+      "title_search_keys": [
+        "star trek ds9 012 the laertian gamble"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0479ab5f3242fd8ade6a2291027a98d66199d7f6cb5d0a04a34ec0def5da3dce",
+      "isbn_search_keys": [
+        "0743420446"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0294",
+      "title_search_keys": [
+        "station rage"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "l a graf"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3b606c298006737daa339fdf7252e970999f5c7ac0f1e02afb0a28e020d7b44d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0295",
+      "title_search_keys": [
+        "star trek ds9 invasion 3 time s enemy"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "john gregory betancourt"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "573a64c3e659a3aaee2aedbd5d7d2ca62eb22ac5feb11465e573c1d73d2eb9bf",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0296",
+      "title_search_keys": [
+        "star trek ds9 heart of the warrior book 17"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "561d29c9c6d70ef8a099830f35081380e5df223a372c740c8b75712e4e899e4c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0297",
+      "title_search_keys": [
+        "star trek ds9 saratoga book 18"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6554f9bab6253fc4a9f5073ee6c693d14a574b2ad7d6149df8d839a5a506a8ae",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0298",
+      "title_search_keys": [
+        "star trek ds9 019 tempest"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "cf6a362ffe74972518a275ea44e109ab66c0b4913ea7c591724326bba6b6fc01",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0299",
+      "title_search_keys": [
+        "star trek ds9 021 trial by error"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c226865957d5722034669d501058cecfe693deecca9daa04718c527dcee04e63",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0300",
+      "title_search_keys": [
+        "star trek ds9 vengeance"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "armin shimerman david r george iii"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a5b7691a285b76a03f350c329b4442a580c8dc315474198a26d02597255eec91",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0301",
+      "title_search_keys": [
+        "star trek ds9 the 34th rule 23"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0a50dbaf9cb0c0ac36760749dbc8a84357d7bda82c27fc2f5c3be3909aaea864",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0302",
+      "title_search_keys": [
+        "star trek ds9 024 conquered"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4dce338358c301d12095b2a974445735a3424dddba85ec65feb9a89b0399e2ea",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0303",
+      "title_search_keys": [
+        "deep space nine the rebels all three books"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "08ff3610a538f8125199db2a6691635a920495c27781d8c8e926ddc06a994046",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0304",
+      "title_search_keys": [
+        "star trek ds9 025 courageous"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5497fc1a29017d6dd749192853bd28c58600baac07e9ebae7caa471488d83c8c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0305",
+      "title_search_keys": [
+        "star trek ds9 026 rebels liberated"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "paula m block",
+        "terry j erdmann"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1423d1acef8b68bc859e0174b2d75ccba702fc93150e2baa65b7ad764aaceb12",
+      "isbn_search_keys": [
+        "0671501062"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0306",
+      "title_search_keys": [
+        "star trek deep space nine companion"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "susan wright"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2da79566cbf4055967011370b76e40621c7aaa073010610256a7f8d24dd4b8cc",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0307",
+      "title_search_keys": [
+        "star trek dark passions volume 1"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "susan wright"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "970c52ca8e7ef9b0b5b46b7c3e4ab160cfdbbffc0bfc0528d7b2be83fe0b9d1b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0308",
+      "title_search_keys": [
+        "star trek dark passions vol 2"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "551c7d2fd020ccb2a736a8c4a8af53bfa8463518dd5cb54c4c56b2e38274288c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0309",
+      "title_search_keys": [
+        "star trek tng dominion war 1 behind enemy lines"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "80b5137f9c672ccfb00a80029cc6523ac23c632f36eff00a43580a769617f9dd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0310",
+      "title_search_keys": [
+        "star trek tng dominion war 2 call to arms"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4e5864d812d46cd2cfbffa57bc8d68a95dd4c0f8f802434422ce80de4eae637a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0311",
+      "title_search_keys": [
+        "star trek tng dominion war 3 tunnel through the stars"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4cd7b22819ba77825f59833b89733a33de634e2d21256f6bf8e1303a96627cee",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0312",
+      "title_search_keys": [
+        "star trek tng dominion war 4 sacrafice of angels"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "0a7ad5169c87fda2e9f1c013b6d6167a865dbe8fee2a5fd69bf3546049fc64ef",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0313",
+      "title_search_keys": [
+        "star trek ds9 fall of terok nor"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "marco palmieri editor"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "862fd344814d2c7f67c0a2a826f342ca74a6c9819a638c97fffdf8808f2fece5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0314",
+      "title_search_keys": [
+        "star trek ds9 prophecy and change"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "6ba1191a9aa25f38a5aaa933b2187bb3894d1529841cff4f3563e91a291f77b1",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0315",
+      "title_search_keys": [
+        "star trek ds9 search"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "999867186c987ca3e956487849b94d72422002046bff9de92dd12ac08f37efb5",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0316",
+      "title_search_keys": [
+        "star trek dominion war all four books"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j g hertzler jeffrey lang"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "652516742908eec387322769734ada91237cc0d89afa9f7ccdc9c9f12a2e3be4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0317",
+      "title_search_keys": [
+        "star trek ds9 the left hand of destiny book one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j g hertzler jeffrey lang"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2fe784780e78329cb6a192286cb6ec367edb532a5a6d371c223c7a4da4fff167",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0318",
+      "title_search_keys": [
+        "star trek ds9 the left hand of destiny book two"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "marco palmieri editor"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "e667f3fe8ec280e93d9b5a8e35c0b33508bf7ece0aebf0ebb3d068e6b2178285",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0319",
+      "title_search_keys": [
+        "star trek ds9 the lives of dax"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "david r george 3"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2f28f94e0e743a13ba119fc018b345447f8a76f721db13f2bd9a3ca6f175592d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0320",
+      "title_search_keys": [
+        "star trek ds9 twilight"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "903e5c44f72532d954c87ee6280ae8bdd830efc4ea579b10369467bfa84c269a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0321",
+      "title_search_keys": [
+        "star trek ds9 warped"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "diane carey novelization"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "00406fc2a0637c7755de6d5c0ff01370bdd31c7eb452f729e6090f9bcb496fa6",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0322",
+      "title_search_keys": [
+        "star trek enterprise broken bow"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith kristine kathryn rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4916ce6dbd778f619f0a186469bc5a4daa147d7ae1c49079649494e21e6f2e8d",
+      "isbn_search_keys": [
+        "0743448723"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0323",
+      "title_search_keys": [
+        "enterprise by the book"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2bf11f12390eaecb648b448985ed67dfa85011349324fb9188b105c283e8ffbf",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0324",
+      "title_search_keys": [
+        "star trek enterprise 4 daedalus part one"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave stern"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8fa8b572100b2a7e21ae2971fa61694e223a96ff7b4a0c52dbb5c811ca81c2dd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0325",
+      "title_search_keys": [
+        "daedalus s children"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "paul ruditis novelization"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "06714cc85df622f06529f1a8ac50b8aee1297cd461845637365c21d9fce6ccc3",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0326",
+      "title_search_keys": [
+        "star trek enterprise shockwave"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j m dillard"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "1813be5748ff7e7e5c29f6db81a1fbad5b28582d9afca1f09f5d7923be2fd846",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0327",
+      "title_search_keys": [
+        "star trek enterprise surak s soul"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "j m dillard novelization"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "5f8cda21077de60f5ab0cd828e9eb83bcdfccde00081d7387e9ccfae78b4d1b4",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0328",
+      "title_search_keys": [
+        "star trek enterprise the expanse"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dave stern"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "480d9359cccb158478157d0ceda796d45b54b4679701594930d2c8d2b9314ec0",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0329",
+      "title_search_keys": [
+        "star trek enterprise what price honor"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3e82eaeefd9be915b20952f3224726f5d3613c4e2e1a79faa41d0e4f0484b1f9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0330",
+      "title_search_keys": [
+        "star trek new frontier 01 house of cards"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "141e81792a9492649135285a699e6f41976cdccfad289fc92567736d341e7ccd",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0331",
+      "title_search_keys": [
+        "star trek new frontier 02 into the void"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c63d564572f4585b46a55cb4e1382c374513896e5a310a40281c22e8d1296259",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0332",
+      "title_search_keys": [
+        "star trek nf 03 the two front war"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "bdee34aa26d165c67b828a179f2c280e2fabae35e5c508bd35e33108d8be2a17",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0333",
+      "title_search_keys": [
+        "star trek new frontier end game"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "fd930525e8b04af9293cea095983829d0ceb0015bf112aa4dde172e10559980d",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0334",
+      "title_search_keys": [
+        "star trek nf 005 martyr"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "7872c09ec06d03fada78612d3e9d109499b5f8cf794fc148aaf914b7b4ff6b5b",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0335",
+      "title_search_keys": [
+        "star trek new frontiers fire on high book 6"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3222e65942e66dfc104527e8e9426fed2883c3674c58730c98cf318e35d48f54",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0336",
+      "title_search_keys": [
+        "star trek nf 07 the quiet place"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4a45766123a6d519ef6d49c03e114ee56bf336b01fb5ed8424dcbc10ad3e0f08",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0337",
+      "title_search_keys": [
+        "star trek nf 08 dark allies"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "3b498be9bc09aa5155443c4ee913e45ed0dec5584c336f0d9f8b44e15739220a",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0338",
+      "title_search_keys": [
+        "star trek nf 09 excalibur 1 requiem"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "12b07a4193e6a041620484b85fd7579517408f1c447570c533c40406334bfeb9",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0339",
+      "title_search_keys": [
+        "star trek nf 10 excalibur 2 renaissance"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "4975386d6bfbf34f3af0cb6ab72476d986fa4d3430f0a581b0e23529f1e2d738",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0340",
+      "title_search_keys": [
+        "star trek nf 11 excalibur 3 restoration"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "75b6c3eeb1ea6cd56639f595a2d5f83f4b7f8257cae1e3115d27eaeed2936c60",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0341",
+      "title_search_keys": [
+        "star trek nf 12 being human"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "2fa10ba4ea579fd2ae712872942c25bcf3bd1ab535517d919b9034e1e8bab89c",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0342",
+      "title_search_keys": [
+        "star trek nf 13 gods above"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "b785617c12938477681bcab10fc45d189082be3898469dbc860deb5e343c426e",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0343",
+      "title_search_keys": [
+        "stone and anvil"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "peter david"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "8cdb43b55f70c1e8b70e96f2be1b1837ca1a66bf24d51ee90ff164c81b94ea79",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0344",
+      "title_search_keys": [
+        "no limits"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "ilsa j bick"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "c6311ceac179c13a377447ca58dfd390927c53424e5e30bd5f2bd66e32f98a14",
+      "isbn_search_keys": [],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0345",
+      "title_search_keys": [
+        "star trek the lost era 2336 well of souls"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "michael jan friedman"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "32090d7e0c90e69cbcde0de2b6fc86d96457d6a023910824491cb8c6cba3f596",
+      "isbn_search_keys": [
+        "0743427920"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0346",
+      "title_search_keys": [
+        "gauntlet"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    },
+    {
+      "creator_search_keys": [
+        "dean wesley smith and kristine kathryn rusch"
+      ],
+      "edition_binding": "NOT_VERIFIED",
+      "entry_fingerprint_sha256": "a73997fca0a51c6f1f884c9d796faa1ed0f5fada0f51d01a2c6784435c6d9ef2",
+      "isbn_search_keys": [
+        "0743421191"
+      ],
+      "metadata_parse_status": "PARSED",
+      "source_identity_scope": "ONE_OWNER_PRIVATE_OPF_XML_ENTRY",
+      "source_local_id": "opf-local:0347",
+      "title_search_keys": [
+        "invasion book two the soldiers of fear"
+      ],
+      "work_identity": "NOT_RECONCILED"
+    }
+  ],
+  "row_count": 347,
+  "source_container_opaque_id": "OWNER_PRIVATE_ST_OPF_ARCHIVE_A",
+  "source_container_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+  "work_admission_effect": "NONE"
+}

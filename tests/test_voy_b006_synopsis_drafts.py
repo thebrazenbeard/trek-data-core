@@ -61,6 +61,10 @@ class VoyagerSynopsisDraftTests(unittest.TestCase):
     def test_no_unreviewed_prose_rewrite(self):
         self.invalid(lambda d: d["rows"][0].__setitem__("synopsis", "x"))
 
+    def test_two_independently_narrowed_cards_cannot_regress(self):
+        self.invalid(lambda d: d["rows"][2].__setitem__("synopsis", "A dangerous particle detected near Voyager forces the crew to confront a threat to the surrounding space."))
+        self.invalid(lambda d: d["rows"][8].__setitem__("synopsis", "The Doctor's growing musical ambitions begin to reshape his relationships and personal life."))
+
 
 if __name__ == "__main__":
     unittest.main()

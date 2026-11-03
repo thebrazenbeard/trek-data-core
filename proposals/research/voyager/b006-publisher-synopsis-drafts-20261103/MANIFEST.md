@@ -18,6 +18,12 @@ or recount any episode metadata into the accepted verification ledgers.
 - `lead:0074` / *Caretaker* stays `null`: the official card is a combined
   `Caretaker, Part 1 & 2` listing, not a settled local Work identity.
 - `lead:0073` retains the title-case mismatch without reconciling identity.
+- A source-fidelity recheck narrowed two promotional paraphrases: `lead:0072`
+  limits the Omega concern to the card's forced warp exit and subspace wording;
+  `lead:0078` limits the Doctor's musical interest to an effect on his personal
+  life, with no claim about specific relationships. Official guide locators:
+  <https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/> and
+  <https://www.paramountplus.com/shows/star_trek_voyager/episodes/6/>.
 
 No public Explorer synopsis release, artwork, title identity reconciliation,
 or copyrighted source reproduction is authorized by this packet. A separate

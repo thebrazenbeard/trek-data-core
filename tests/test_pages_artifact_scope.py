@@ -108,6 +108,11 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/research-leads.json", text)
         self.assertIn("! -path explorer/film-catalog.json", text)
         self.assertIn("! -path explorer/discovery-catalog.json", text)
+        self.assertIn("! -path explorer/search-catalog.json", text)
+        for slug in ("episode", "film", "literature", "short-form", "audio"):
+            self.assertIn(f"! -path explorer/art-original-{slug}.svg", text)
+        self.assertIn("python3 tools/build_explorer_abstract_art.py --check", text)
+        self.assertIn("python3 tools/build_source_local_search.py --check", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/short-synopsis-catalog.json", text)
@@ -123,7 +128,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 10)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 11)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -193,6 +198,9 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/metadata-rechecks.json", final)
         self.assertIn("git rev-parse HEAD:explorer/short-synopsis-catalog.json", final)
+        self.assertIn('git rev-parse "HEAD:$path"', final)
+        self.assertIn("Refusing to deploy modified original abstract artwork", final)
+        self.assertIn("Refusing to deploy uncommitted abstract artwork", final)
         self.assertIn("cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg", final)
 
     def test_final_barrier_rejects_post_test_modifications_and_new_files(self):
@@ -233,6 +241,26 @@ class PagesArtifactScopeTests(unittest.TestCase):
             (explorer / "app.js").unlink()
             (explorer / "app.js").symlink_to("index.html")
             self.assertNotEqual(check().returncode, 0)
+
+    def test_original_abstract_svg_requires_committed_identical_bytes(self):
+        root = self.fixture()
+        for slug in ("episode", "film", "literature", "short-form", "audio"):
+            (root / "explorer" / f"art-original-{slug}.svg").write_text("<svg/>\n", encoding="utf-8")
+        self.commit_fixture(root)
+        check = lambda: self.check_step("Verify final public artifact boundary", root)
+        self.assertEqual(check().returncode, 0)
+        target = root / "explorer" / "art-original-film.svg"
+        target.write_text("<svg><script/></svg>\n", encoding="utf-8")
+        self.assertNotEqual(check().returncode, 0, "post-test SVG mutation must fail")
+        target.write_text("<svg/>\n", encoding="utf-8")
+        self.assertEqual(check().returncode, 0)
+        extra = root / "explorer" / "art-original-arbitrary.svg"
+        extra.write_text("<svg/>\n", encoding="utf-8")
+        self.assertNotEqual(check().returncode, 0, "unexpected artwork file must fail")
+        extra.unlink()
+        target.unlink()
+        target.symlink_to("art-original-episode.svg")
+        self.assertNotEqual(check().returncode, 0, "original artwork symlink must fail")
 
     def test_manual_dispatch_without_complete_explorer_is_a_noop(self):
         readiness = workflow_step("Check whether the Explorer has landed on main")

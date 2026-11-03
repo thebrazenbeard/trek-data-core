@@ -11,6 +11,14 @@ ROOT = Path(__file__).resolve().parents[4]
 SOURCE_PATH = ROOT / "proposals/verification/episode-guide-rechecks-b006-voy-20261103/records.json"
 PACKET_PATH = Path(__file__).with_name("records.json")
 
+# These two publisher-card paraphrases were narrowed after independent source
+# review.  Pin the corrected wording until another reviewed, source-bound
+# supersession is proposed, preventing a reverted overclaim from passing CI.
+SOURCE_NARROWING_LOCKS = {
+    "lead:0072": "Voyager is forced out of warp when it detects a dangerous particle called Omega, whose properties are linked to subspace.",
+    "lead:0078": "The Doctor finds that his passion for music starts influencing matters in his personal life.",
+}
+
 
 def validate(packet: dict | None = None, source: dict | None = None) -> int:
     source_bytes = SOURCE_PATH.read_bytes()
@@ -64,6 +72,8 @@ def validate(packet: dict | None = None, source: dict | None = None) -> int:
         if item["title_resolution"] != observed.get("title_resolution"):
             raise ValueError(f"unresolved title relation overwritten: {item['row_id']}")
         description = item["synopsis"]
+        if item["row_id"] in SOURCE_NARROWING_LOCKS and description != SOURCE_NARROWING_LOCKS[item["row_id"]]:
+            raise ValueError(f"reviewed source-bound paraphrase changed: {item['row_id']}")
         if item["row_id"] == "lead:0074":
             if description is not None or item["synopsis_status"] != "WITHHELD_COMBINED_MULTIPART_IDENTITY_UNRESOLVED":
                 raise ValueError("Caretaker combined multipart must stay withheld")

@@ -43,6 +43,13 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_*.py' -v
           node tests/test_explorer.mjs
           node tests/test_explorer_accessibility.mjs
+          # Original generic art is generated from the accepted safe renderer,
+          # not from an externally sourced or rights-uncertain image.
+          test -f tools/build_explorer_abstract_art.py
+          test ! -L tools/build_explorer_abstract_art.py
+          test -f proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
+          test ! -L proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
+          python3 tools/build_explorer_abstract_art.py --check
 
       - name: Verify deterministic catalog index
         if: steps.readiness.outputs.ready == 'true'
@@ -94,6 +101,18 @@ jobs:
             test ! -L tools/build_unified_discovery.py
             python3 tools/build_unified_discovery.py --check
           fi
+
+      - name: Verify callable source-local search projection
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Search JSON is derived exclusively from four pinned public sidecars.
+          test -f explorer/search-catalog.json
+          test ! -L explorer/search-catalog.json
+          test ! -L tools/build_source_local_search.py
+          test ! -L tools/query_trek_index.py
+          python3 tools/build_source_local_search.py --check
+          python3 tools/query_trek_index.py --validate-sources --limit 1 > /dev/null
 
       - name: Verify optional publisher-description synopsis release
         if: steps.readiness.outputs.ready == 'true'
@@ -171,10 +190,16 @@ jobs:
             ! -path explorer/trek-data-core-hero.jpg \
             ! -path explorer/research-leads.json \
             ! -path explorer/discovery-catalog.json \
+            ! -path explorer/search-catalog.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/short-synopsis-catalog.json \
-            ! -path explorer/synopsis-catalog.json -print -quit | grep -q .; then
+            ! -path explorer/synopsis-catalog.json \
+            ! -path explorer/art-original-episode.svg \
+            ! -path explorer/art-original-film.svg \
+            ! -path explorer/art-original-literature.svg \
+            ! -path explorer/art-original-short-form.svg \
+            ! -path explorer/art-original-audio.svg -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
@@ -225,6 +250,19 @@ jobs:
             echo "Refusing to deploy uncommitted Multimedia directory" >&2
             exit 1
           fi
+          if git cat-file -e HEAD:explorer/search-catalog.json 2>/dev/null; then
+            test -f explorer/search-catalog.json
+            test ! -L explorer/search-catalog.json
+            expected="$(git rev-parse HEAD:explorer/search-catalog.json)"
+            actual="$(git hash-object explorer/search-catalog.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified source-local search projection" >&2
+              exit 1
+            fi
+          elif test -e explorer/search-catalog.json || test -L explorer/search-catalog.json; then
+            echo "Refusing to deploy an uncommitted source-local search projection" >&2
+            exit 1
+          fi
           if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null; then
             test -f explorer/synopsis-catalog.json
             test ! -L explorer/synopsis-catalog.json
@@ -264,6 +302,22 @@ jobs:
             echo "Refusing to deploy uncommitted short-form synopsis release" >&2
             exit 1
           fi
+          for medium in episode film literature short-form audio; do
+            path="explorer/art-original-${medium}.svg"
+            if git cat-file -e "HEAD:$path" 2>/dev/null; then
+              test -f "$path"
+              test ! -L "$path"
+              expected="$(git rev-parse "HEAD:$path")"
+              actual="$(git hash-object "$path")"
+              if test "$actual" != "$expected"; then
+                echo "Refusing to deploy modified original abstract artwork: $path" >&2
+                exit 1
+              fi
+            elif test -e "$path" || test -L "$path"; then
+              echo "Refusing to deploy uncommitted abstract artwork: $path" >&2
+              exit 1
+            fi
+          done
 
       - name: Upload Explorer only
         if: steps.readiness.outputs.ready == 'true'

@@ -136,6 +136,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
             self.assertIn(f"python3 proposals/librarian/{validator}/validate.py", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/artwork-catalog.json", text)
+        self.assertIn("! -path explorer/artwork-catalog-v1.3.json", text)
         self.assertIn("! -path explorer/licensed-artwork", text)
         self.assertIn("! -path 'explorer/licensed-artwork/*'", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)

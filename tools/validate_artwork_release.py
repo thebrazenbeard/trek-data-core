@@ -22,11 +22,11 @@ from urllib.parse import urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = "explorer/artwork-catalog.json"
-# This deployment deliberately uses one accepted v1.2 identity sidecar. Any
-# unreviewed additive reader/sidecar would reintroduce partial M/S release and
-# stale-image retry paths; fail closed even if the Pages allowlist also rejects.
-UNAPPROVED_MEDIUM_MANIFEST = "explorer/artwork-catalog-v1.3.json"
+MANIFEST = "explorer/artwork-catalog-v1.3.json"
+LEGACY_MANIFEST = "explorer/artwork-catalog.json"
+# Accepted v1.2 public S-cover file must remain byte-identical for cached
+# Explorer clients. Upgrading its payload in place can blank existing cards.
+LEGACY_MANIFEST_SHA256 = "5a7b28ea71f75d717f835b47e308dadfa059c589198452da03c66127b0cc835f"
 ART_DIRECTORY = "explorer/licensed-artwork"
 OL_SOURCE_PACKET = "proposals/librarian/open-library-nine-literature-20261103/records.json"
 MAX_ART_BYTES = 16_000_000
@@ -39,11 +39,14 @@ ROOT_KEYS = {"schema_version", "data_status", "coverage_effect", "rights_policy"
 LOCAL_KEYS = {"row_id", "image_path", "image_sha256", "alt_text", "source_locator", "rights_status",
               "rights_receipt_sha256", "artwork_kind", "attribution_text", "attribution_url"}
 OPEN_LIBRARY_KEYS = {"row_id", "provider", "cover_id", "isbn", "alt_text", "source_locator",
-                     "rights_status", "edition_metadata_sha256", "attribution_url"}
+                     "rights_status", "edition_metadata_sha256", "attribution_url", "image_size"}
 LOCAL_PIN_KEYS = LOCAL_KEYS | {"rights_receipt_path", "rights_page_snapshot_sha256", "rights_evidence_url",
                                "license_identifier"}
 OPEN_LIBRARY_PIN_KEYS = OPEN_LIBRARY_KEYS | {"edition_review_receipt_path", "edition_review_receipt_sha256",
-                                             "edition_metadata_locator", "image_preview_sha256"}
+                                             "edition_metadata_locator", "image_preview_sha256",
+                                             "medium_preview_sha256", "medium_preview_bytes", "medium_preview_width",
+                                             "medium_preview_height", "medium_preview_mime", "medium_preview_locator",
+                                             "medium_provider_doc_url"}
 LOCAL_RECEIPT_KEYS = {"schema_version", "review_status", "row_id", "source_locator", "image_path",
                       "image_sha256", "rights_page_snapshot_sha256", "rights_evidence_url", "license_identifier",
                       "artwork_kind", "attribution_text", "attribution_url", "rights_reviewer",
@@ -51,7 +54,11 @@ LOCAL_RECEIPT_KEYS = {"schema_version", "review_status", "row_id", "source_locat
 OPEN_LIBRARY_RECEIPT_KEYS = {"schema_version", "review_status", "row_id", "source_locator", "isbn",
                              "cover_id", "edition_metadata_sha256", "edition_metadata_locator",
                              "edition_reviewer", "source_reviewer", "reviewed_on", "image_review_status",
-                             "image_review_observation", "image_reviewer", "image_preview_sha256"}
+                             "image_review_observation", "image_reviewer", "image_preview_sha256",
+                             "image_size", "medium_preview_sha256", "medium_preview_bytes",
+                             "medium_preview_width", "medium_preview_height", "medium_preview_mime",
+                             "medium_preview_locator", "medium_provider_doc_url", "medium_visual_reviewer",
+                             "medium_visual_status", "medium_visual_observation", "medium_reviewed_on"}
 ARTWORK_KINDS = {"PUBLICITY_STILL", "POSTER", "COVER", "OTHER"}
 LICENSE_BASES = {"PD-US-no-notice", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "EXPLICIT_WRITTEN_PERMISSION"}
 
@@ -70,54 +77,74 @@ REVIEWED_OPEN_LIBRARY_COVER_PINS: dict[str, dict] = {
     "directory:literature:prh-autobiography-kirk": {
         "row_id": "directory:literature:prh-autobiography-kirk",
         "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
-        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 13083310, "isbn": "9781783297481",
+        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 13083310, "isbn": "9781783297481", "image_size": "M",
         "alt_text": "Open Library jacket preview: The Autobiography of James T. Kirk; underlying copyright unresolved",
         "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
         "edition_metadata_sha256": "dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa",
         "attribution_url": "https://openlibrary.org/isbn/9781783297481",
         "edition_metadata_locator": "https://openlibrary.org/books/OL28813033M.json",
         "image_preview_sha256": "1aee9b2835d96e3f04ca457e3728c98e24584a80c9a07beab6cce2c2350d8ec5",
+        "medium_preview_sha256": "aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a",
+        "medium_preview_bytes": 10834, "medium_preview_width": 180, "medium_preview_height": 275,
+        "medium_preview_mime": "image/jpeg",
+        "medium_preview_locator": "https://covers.openlibrary.org/b/id/13083310-M.jpg?default=false",
+        "medium_provider_doc_url": "https://openlibrary.org/dev/docs/api/covers",
         "edition_review_receipt_path": "registry/artwork-edition-receipts/autobiography-kirk.json",
-        "edition_review_receipt_sha256": "d04cf6046eea79ce29ebcf7b9cd2f176231157d78c2d2400ad6ec10f876966de",
+        "edition_review_receipt_sha256": "e95ef398a7e89f88469269feae5e0f1df000b09e7a3959e734aa3e83bb60accf",
     },
     "directory:literature:prh-autobiography-picard": {
         "row_id": "directory:literature:prh-autobiography-picard",
         "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
-        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 10694457, "isbn": "9781785659409",
+        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 10694457, "isbn": "9781785659409", "image_size": "M",
         "alt_text": "Open Library jacket preview: The Autobiography of Jean-Luc Picard; underlying copyright unresolved",
         "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
         "edition_metadata_sha256": "733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f",
         "attribution_url": "https://openlibrary.org/isbn/9781785659409",
         "edition_metadata_locator": "https://openlibrary.org/books/OL32028282M.json",
         "image_preview_sha256": "c9f9736af9b191e7f9e2acd69a1b1f03793940ee178870a34e0fb63957fa4121",
+        "medium_preview_sha256": "9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887",
+        "medium_preview_bytes": 15269, "medium_preview_width": 180, "medium_preview_height": 274,
+        "medium_preview_mime": "image/jpeg",
+        "medium_preview_locator": "https://covers.openlibrary.org/b/id/10694457-M.jpg?default=false",
+        "medium_provider_doc_url": "https://openlibrary.org/dev/docs/api/covers",
         "edition_review_receipt_path": "registry/artwork-edition-receipts/autobiography-picard.json",
-        "edition_review_receipt_sha256": "1b0161d3e01f0486bd7d4278f3d68150c0e682ae58083e5b94359c7adc9b6ec6",
+        "edition_review_receipt_sha256": "bc4e224f4fdb19b0d5cae4675f4a804bbe6cd89bb055791ee65cc2870c6b30db",
     },
     "directory:literature:prh-autobiography-janeway": {
         "row_id": "directory:literature:prh-autobiography-janeway",
         "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
-        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 12097815, "isbn": "9781789095333",
+        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 12097815, "isbn": "9781789095333", "image_size": "M",
         "alt_text": "Open Library jacket preview: The Autobiography of Kathryn Janeway; underlying copyright unresolved",
         "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
         "edition_metadata_sha256": "b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09",
         "attribution_url": "https://openlibrary.org/isbn/9781789095333",
         "edition_metadata_locator": "https://openlibrary.org/books/OL30052366M.json",
         "image_preview_sha256": "6ac504dee361e64bf5d84f6a79966e3a49d2f0827d59a809b52713ae93de81d6",
+        "medium_preview_sha256": "8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051",
+        "medium_preview_bytes": 14279, "medium_preview_width": 180, "medium_preview_height": 273,
+        "medium_preview_mime": "image/jpeg",
+        "medium_preview_locator": "https://covers.openlibrary.org/b/id/12097815-M.jpg?default=false",
+        "medium_provider_doc_url": "https://openlibrary.org/dev/docs/api/covers",
         "edition_review_receipt_path": "registry/artwork-edition-receipts/autobiography-janeway.json",
-        "edition_review_receipt_sha256": "9329b0d00d9698853058832bfecb54d390cd94c15754638c55126b4435ce3e87",
+        "edition_review_receipt_sha256": "57f602af61c8f7259e8eb8732c37780dc00afc02d4ebbe53b1019a0fe64c89c0",
     },
     "directory:literature:prh-autobiography-spock": {
         "row_id": "directory:literature:prh-autobiography-spock",
         "source_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
-        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 11945787, "isbn": "9781785659416",
+        "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 11945787, "isbn": "9781785659416", "image_size": "M",
         "alt_text": "Open Library jacket preview: The Autobiography of Mr. Spock; underlying copyright unresolved",
         "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
         "edition_metadata_sha256": "b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d",
         "attribution_url": "https://openlibrary.org/isbn/9781785659416",
         "edition_metadata_locator": "https://openlibrary.org/books/OL33271375M.json",
         "image_preview_sha256": "6c7e699801faed04d08e8b54079ca28d6be59e464822320e7d8c1dc61dc15a3c",
+        "medium_preview_sha256": "6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0",
+        "medium_preview_bytes": 13536, "medium_preview_width": 180, "medium_preview_height": 271,
+        "medium_preview_mime": "image/jpeg",
+        "medium_preview_locator": "https://covers.openlibrary.org/b/id/11945787-M.jpg?default=false",
+        "medium_provider_doc_url": "https://openlibrary.org/dev/docs/api/covers",
         "edition_review_receipt_path": "registry/artwork-edition-receipts/autobiography-spock.json",
-        "edition_review_receipt_sha256": "97a3bfe6777f61d0cdfe36295e14f3c528f63cd06f9ba57186fb019d9dd9450e",
+        "edition_review_receipt_sha256": "67635affe50ebb064df1280eb49572793acb1cbabd49772d1dd7b0289dc8367e",
     },
 }
 
@@ -272,7 +299,9 @@ def _reviewed_receipt(root: Path, pin: dict, path_key: str, digest_key: str,
     digest = hashlib.sha256(raw).hexdigest()
     _ensure(_sha(pin[digest_key]) and digest == pin[digest_key], "review receipt SHA-256 does not match bytes")
     receipt = _object(_strict_json(raw, path), receipt_keys, "independent review receipt")
-    _ensure(receipt["schema_version"] == "1.0.0" and receipt["review_status"] == review_status,
+    receipt_version = ("1.1.0" if review_status == "INDEPENDENT_EDITION_CROSSWALK_REVIEW"
+                       else "1.0.0")
+    _ensure(receipt["schema_version"] == receipt_version and receipt["review_status"] == review_status,
             "review receipt has no accepted review status")
     for key, value in candidate.items():
         _ensure(receipt.get(key) == value, f"review receipt diverges on {key}")
@@ -293,6 +322,16 @@ def _reviewed_receipt(root: Path, pin: dict, path_key: str, digest_key: str,
                 re.fullmatch(r"[a-zA-Z0-9._-]{3,80}", receipt["image_reviewer"]) is not None and
                 receipt["image_reviewer"] not in (receipt["edition_reviewer"], receipt["source_reviewer"]),
                 "cover image not independently visually reviewed")
+        _ensure(receipt.get("medium_visual_status") == "COVER_IMAGE_VISUALLY_REVIEWED" and
+                isinstance(receipt.get("medium_visual_observation"), str) and
+                20 <= len(receipt["medium_visual_observation"].strip()) <= 260 and
+                isinstance(receipt.get("medium_visual_reviewer"), str) and
+                re.fullmatch(r"[a-zA-Z0-9._-]{3,80}", receipt["medium_visual_reviewer"]) is not None and
+                receipt["medium_visual_reviewer"] not in (receipt["edition_reviewer"],
+                                                          receipt["source_reviewer"],
+                                                          receipt["image_reviewer"]) and
+                receipt.get("medium_reviewed_on") == receipt["reviewed_on"],
+                "medium jacket not independently inspected against reviewed large jacket")
 
 
 def _local_entry(root: Path, item: dict, row: dict, pin: dict) -> str:
@@ -348,6 +387,7 @@ def _library_entry(root: Path, item: dict, row: dict, pin: dict, source_candidat
     isbn = item["isbn"]
     _ensure(row.get("medium") == "LITERATURE" and item["provider"] == "OPEN_LIBRARY_COVERS_API" and
             item["rights_status"] == "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED" and
+            item["image_size"] == "M" and
             type(item["cover_id"]) is int and 1 <= item["cover_id"] <= 999_999_999 and
             _isbn_valid(isbn) and _sha(item["edition_metadata_sha256"]) and
             item["attribution_url"] == f"https://openlibrary.org/isbn/{isbn}",
@@ -371,9 +411,22 @@ def _library_entry(root: Path, item: dict, row: dict, pin: dict, source_candidat
     _ensure(isinstance(metadata_locator, str) and
             re.fullmatch(r"https://openlibrary\.org/books/OL[0-9]+M\.json", metadata_locator) is not None,
             "Open Library raw edition metadata locator unreviewed")
+    _ensure(pin["medium_preview_locator"] ==
+            f"https://covers.openlibrary.org/b/id/{item['cover_id']}-M.jpg?default=false" and
+            pin["medium_provider_doc_url"] == "https://openlibrary.org/dev/docs/api/covers" and
+            _sha(pin["medium_preview_sha256"]) and
+            type(pin["medium_preview_bytes"]) is int and 1024 <= pin["medium_preview_bytes"] <= 100_000 and
+            type(pin["medium_preview_width"]) is int and pin["medium_preview_width"] == 180 and
+            type(pin["medium_preview_height"]) is int and
+            200 <= pin["medium_preview_height"] <= 400 and
+            pin["medium_preview_mime"] == "image/jpeg",
+            "Open Library medium rendition byte, dimension, or provider source pin invalid")
     candidate = {key: pin[key] for key in ("row_id", "source_locator", "isbn", "cover_id",
                                             "edition_metadata_sha256", "edition_metadata_locator",
-                                            "image_preview_sha256")}
+                                            "image_preview_sha256", "image_size", "medium_preview_sha256",
+                                            "medium_preview_bytes", "medium_preview_width",
+                                            "medium_preview_height", "medium_preview_mime",
+                                            "medium_preview_locator", "medium_provider_doc_url")}
     _reviewed_receipt(root, pin, "edition_review_receipt_path", "edition_review_receipt_sha256",
                       OPEN_LIBRARY_RECEIPT_KEYS, "INDEPENDENT_EDITION_CROSSWALK_REVIEW", candidate)
 
@@ -382,15 +435,6 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
                       verify_git: bool = False) -> dict:
     """Use code-owned pins in CLI; explicit test-only injections exercise release fixtures."""
     root = Path(root)
-    alternative = root / UNAPPROVED_MEDIUM_MANIFEST
-    _ensure(not alternative.exists() and not alternative.is_symlink(),
-            "unreviewed v1.3 artwork sidecar may not be published or loaded")
-    if verify_git:
-        committed_alternative = subprocess.run(
-            ["git", "cat-file", "-e", f"HEAD:{UNAPPROVED_MEDIUM_MANIFEST}"], cwd=root,
-            capture_output=True, check=False)
-        _ensure(committed_alternative.returncode != 0,
-                "committed unreviewed v1.3 artwork sidecar must not be published")
     local_pins = REVIEWED_LOCAL_ARTWORK_PINS if local_pins is None else local_pins
     library_pins = REVIEWED_OPEN_LIBRARY_COVER_PINS if library_pins is None else library_pins
     manifest = root / MANIFEST
@@ -404,10 +448,27 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
         return {"status": "ARTWORK_UNAVAILABLE", "artwork_count": 0, "coverage_effect": "NONE"}
     data = _object(_json_file(root, MANIFEST), ROOT_KEYS, "artwork sidecar")
     entries = data["artwork"]
-    _ensure(data["schema_version"] == "1.2.0" and data["data_status"] == "PROVENANCE_REVIEWED_ARTWORK" and
+    _ensure(data["schema_version"] == "1.3.0" and data["data_status"] == "PROVENANCE_REVIEWED_ARTWORK" and
             data["coverage_effect"] == "NONE" and data["rights_policy"] == "PER_ENTRY_DISPLAY_GATE" and
             isinstance(entries, list) and 1 <= len(entries) <= 5000 and type(data["artwork_count"]) is int and
             data["artwork_count"] == len(entries), "artwork sidecar envelope not an authorized release")
+    legacy = root / LEGACY_MANIFEST
+    if legacy.exists() or legacy.is_symlink():
+        legacy_data = _object(_json_file(root, LEGACY_MANIFEST), ROOT_KEYS, "v1.2 artwork sidecar")
+        legacy_entries = legacy_data["artwork"]
+        _ensure(legacy_data["schema_version"] == "1.2.0" and
+                legacy_data["data_status"] == data["data_status"] and
+                legacy_data["coverage_effect"] == data["coverage_effect"] and
+                legacy_data["rights_policy"] == data["rights_policy"] and
+                type(legacy_data["artwork_count"]) is int and
+                legacy_data["artwork_count"] == len(legacy_entries) == len(entries) and
+                legacy_entries == [{k: v for k, v in entry.items() if k != "image_size"} for entry in entries],
+                "v1.3 medium sidecar diverges from preserved v1.2 fallback")
+        if root.resolve() == ROOT:
+            _ensure(hashlib.sha256(legacy.read_bytes()).hexdigest() == LEGACY_MANIFEST_SHA256,
+                    "previously published v1.2 artwork bytes were altered")
+    elif root.resolve() == ROOT:
+        raise ArtworkRejected("v1.2 artwork fallback unexpectedly removed")
     rows = _source_rows(root)
     seen: set[str] = set()
     used_files: set[str] = set()
@@ -448,7 +509,7 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
     else:
         _ensure(not used_files, "licensed artwork files missing")
     if verify_git:
-        for rel in sorted({MANIFEST, "tools/validate_artwork_release.py", "explorer/app.css",
+        for rel in sorted({MANIFEST, LEGACY_MANIFEST, "tools/validate_artwork_release.py", "explorer/app.css",
                            "explorer/index.html", *used_files, *used_receipts}):
             expected = subprocess.run(["git", "rev-parse", f"HEAD:{rel}"], cwd=root,
                                       capture_output=True, text=True, check=False)

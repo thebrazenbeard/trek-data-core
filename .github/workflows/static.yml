@@ -292,6 +292,7 @@ jobs:
             ! -path explorer/short-synopsis-catalog.json \
             ! -path explorer/synopsis-catalog.json \
             ! -path explorer/artwork-catalog.json \
+            ! -path explorer/artwork-catalog-v1.3.json \
             ! -path explorer/licensed-artwork \
             ! -path 'explorer/licensed-artwork/*' \
             ! -path explorer/art-original-episode.svg \

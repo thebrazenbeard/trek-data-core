@@ -34,6 +34,59 @@ REVIEWED_PUBLISHER_METADATA = {
     "opf-local:0050": ("Ghost Ship", "Diane Carey", "Ghost-Ship/Diane-Carey/Star-Trek-The-Next-Generation", "2000-05-23"),
     "opf-local:0051": ("The Peacekeepers", "Gene DeWeese", "The-Peacekeepers/Gene-DeWeese/Star-Trek-The-Next-Generation", "2000-05-23"),
 }
+# SHA-256 of each fully reviewed row serialized as deterministic JSON. These
+# constants are code-owned audit pins, not untrusted digests supplied by rows.
+# Any changed synopsis, additional author, surprise field, URL, or uncertainty
+# statement requires another source review and an explicit pin update.
+REVIEWED_ROW_SHA256 = {
+    "opf-local:0009": "63fefc4280e1192c88bf6941e126020968259bd664267b8bdae9030c4e23522b",
+    "opf-local:0010": "2111dbd285f123e979c9d8ba2806083cc84ab26274dcc2d58db16a6bea6e735b",
+    "opf-local:0015": "592eb46ccb555ecb25b77ceafa4e70aafce9ca69bfc9a1fa9afae79ebd45824e",
+    "opf-local:0028": "851fae9ace5d7bb8d59e0c34cb919c65f0cdadf443dea00eb7748281d0897e5c",
+    "opf-local:0029": "7eed396f03c9f6185c563a07d3c2883b873cda95122f8d9de0d6aa564a93e8f6",
+    "opf-local:0031": "6a8224c63cab4dd1ebe44dd8275253dfa1eb4edb5d9795a68e373dc918c96ae6",
+    "opf-local:0034": "e95ab831467f1a05e9629a7951159c6fa6effa748637cbdaeea8b93f25d42555",
+    "opf-local:0050": "eb63a9d7b7440172e8b85d0f47d083ce64581df70614a84740ff6e9ce1792bca",
+    "opf-local:0051": "017b76a51e530794038ea7cf29468bff699673d0cb85ba22d2c94e6e246ae7d7",
+}
+
+ENVELOPE_FIELDS = frozenset({
+    "schema_version", "proposal_id", "source_observation_path", "source_observation_sha256",
+    "publisher_source_family", "publisher_source_mode", "research_snapshot_date",
+    "publisher_raw_html_sha256", "private_ebook_text_read", "private_book_paths_exported",
+    "publisher_cover_bytes_exported", "private_source_equivalence_verified",
+    "global_work_admission", "coverage_effect", "records",
+})
+ROW_FIELDS = frozenset({
+    "opf_source_local_id", "opf_entry_sha256", "opf_isbn10", "isbn13_candidate",
+    "publisher_locator", "publisher_title", "publisher_authors", "publisher_format",
+    "publisher_isbn13", "publisher_publication_date", "crosscheck_state",
+    "original_publisher_description_paraphrase", "uncertainty",
+})
+PRIVATE_PATH = re.compile(
+    r"(?:(?<![A-Za-z])[A-Za-z]:[\\/]|\\\\|(?:^|[\\/])(?:Users|home|mnt|AppData|OneDrive|workspace|tmp)[\\/]|file://)",
+    re.IGNORECASE,
+)
+
+
+def forbid_private_paths(value: object, breadcrumb: str = "data") -> None:
+    """Inspect recursively, including extra fields, before checking schema."""
+    if isinstance(value, dict):
+        for key, subvalue in value.items():
+            require(isinstance(key, str), f"Nonstring key: {breadcrumb}")
+            require(PRIVATE_PATH.search(key) is None, f"Private path embedded in key: {breadcrumb}")
+            forbid_private_paths(subvalue, f"{breadcrumb}.{key}")
+    elif isinstance(value, list):
+        for index, subvalue in enumerate(value):
+            forbid_private_paths(subvalue, f"{breadcrumb}[{index}]")
+    elif isinstance(value, str):
+        require(PRIVATE_PATH.search(value) is None, f"Private path string: {breadcrumb}")
+
+
+def reviewed_digest(value: dict) -> str:
+    payload = json.dumps(value, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def require(condition: bool, message: str) -> None:
@@ -68,6 +121,8 @@ def isbn13_valid(value: str) -> bool:
 
 
 def validate(data: dict, source: dict, source_bytes: bytes) -> None:
+    forbid_private_paths(data)
+    require(set(data) == ENVELOPE_FIELDS, "Unexpected or missing top-level field")
     require(data["schema_version"] == 1, "Wrong crosscheck schema version")
     require(data["proposal_id"] == "opf-first-nine-publisher-edition-check-20261103", "Wrong proposal identity")
     require(data["source_observation_path"] == "proposals/librarian/private-opf-metadata-20261103/observations.json", "Wrong source path")
@@ -84,9 +139,13 @@ def validate(data: dict, source: dict, source_bytes: bytes) -> None:
     observed = {row["source_local_id"]: row for row in source["rows"]}
     records = data["records"]
     require(len(records) == len(EXPECTED), "Wrong bounded row count")
+    require(all(isinstance(row, dict) for row in records), "Unexpected row type")
+    require(all(set(row) == ROW_FIELDS for row in records), "Unexpected or missing row field")
     require({row["opf_source_local_id"] for row in records} == set(EXPECTED), "Missing or duplicate or unreviewed OPF row")
     for row in records:
         ident = row["opf_source_local_id"]
+        require(reviewed_digest(row) == REVIEWED_ROW_SHA256[ident],
+                f"Unreviewed record mutation, synopsis, author or uncertainty: {ident}")
         local = observed[ident]
         candidate, publisher, expected_state = EXPECTED[ident]
         reviewed_title, reviewed_author, reviewed_path, reviewed_date = REVIEWED_PUBLISHER_METADATA[ident]

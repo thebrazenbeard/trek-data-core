@@ -92,7 +92,7 @@ def validate(packet: dict, root: Path = ROOT) -> None:
         "original_image_mime": "image/jpeg",
         "original_image_width": 5568,
         "original_image_height": 3712,
-        "image_exif_orientation": "ROTATED_90_DEGREES_CW",
+        "image_exif_orientation": "EXIF_8_ROTATED_90_DEGREES_CCW",
         "original_image_bytes": 7753903,
         "original_image_sha256": "c71f33e5d123e21dbefcfef41dc3f97f425c62470ef46d2f138cdf3baeaeb287",
         "pixel_review": "VISUALLY_INSPECTED_PHOTO_SHOWS_GREEN_REPTILIAN_COSTUME_MANNEQUIN_IN_MUSEUM_CASE;PIXELS_ALONE_DO_NOT_VERIFY_PROVENANCE",
@@ -110,7 +110,8 @@ def validate(packet: dict, root: Path = ROOT) -> None:
             continue
         require(path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"},
                 "image extension in proposal subtree")
-        signature = path.read_bytes()[:20]
+        with path.open("rb") as stream:
+            signature = stream.read(20)
         require(not (signature.startswith((b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF87a", b"GIF89a"))
                      or signature[:4] == b"RIFF" and signature[8:12] == b"WEBP"),
                 "image binary disguised by extension in proposal subtree")

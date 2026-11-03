@@ -28,6 +28,9 @@ class TestArenaMuseumCustody(unittest.TestCase):
     def test_fail_bad_artifact_claim(self) -> None:
         self.reject("depicted_artifact_status", "ORIGINAL_GORN_FILMING_PROP_CERTIFIED")
 
+    def test_fail_wrong_exif_rotation(self) -> None:
+        self.reject("image_exif_orientation", "EXIF_8_ROTATED_90_DEGREES_CW")
+
     def test_fail_fake_screen_frame_alt(self) -> None:
         self.reject("proposed_alt", "Frame from the Arena episode showing Kirk fighting the Gorn in a museum case")
 

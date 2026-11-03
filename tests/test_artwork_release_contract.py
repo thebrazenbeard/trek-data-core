@@ -354,6 +354,28 @@ class ArtworkReleaseContractTests(unittest.TestCase):
                 with self.assertRaises(art.ArtworkRejected):
                     art.check_static_startup(self.root)
 
+    def test_first_party_hero_cannot_be_laundered_as_episode_screenshot(self):
+        # Literal-compliance falsifier: the current startup allowlist admits
+        # the hero URL anywhere, regardless of how the image is described.
+        html = (ROOT / "explorer/index.html").read_text()
+        hero_start = html.index('<img class="masthead-art"')
+        hero_end = html.index('>', hero_start) + 1
+        hero = html[hero_start:hero_end]
+        fake_episode = hero.replace('class="masthead-art"', 'class="episode-screenshot"').replace(
+            'alt="Panoramic starship bridge facing a luminous celestial navigation chart"',
+            'alt="Official episode screenshot"')
+        for attack in (
+            html.replace('</body>', f'<article class="episode-card">{hero}</article></body>'),
+            html.replace(hero, '').replace('</body>',
+                f'<article class="episode-card">{fake_episode}</article></body>'),
+        ):
+            with self.subTest(attack=attack[-300:]):
+                (self.root / "explorer/index.html").write_text(attack)
+                with self.assertRaisesRegex(art.ArtworkRejected, "masthead|hero"):
+                    art.check_static_startup(self.root)
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
     def test_svg_descendant_href_cannot_fetch_or_launder_remote_art_before_opt_in(self):
         # A clean outer <svg> is not evidence that nested SVG tags are inert.
         # SVG <textPath> and <a> can carry external href references.

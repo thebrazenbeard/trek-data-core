@@ -14,11 +14,14 @@ ROOT=Path(__file__).resolve().parents[1]
 SCHEMA=ROOT/'schema'/'coverage-event.schema.json'
 DENOMINATOR_SCHEMA=ROOT/'schema'/'coverage-denominator-snapshot.schema.json'
 LIBRARIAN_CONTRACT=Path(__file__).resolve().parents[1]/'registry'/'librarian_registry_contract.schema.json'
+BATCH_SCHEMA=Path(__file__).resolve().parents[1]/'schema'/'batch-manifest.schema.json'
+EVIDENCE_SCHEMA=Path(__file__).resolve().parents[1]/'schema'/'evidence.schema.json'
 PB=Path(__file__).with_name('projection_bundle.py'); SPEC=importlib.util.spec_from_file_location('trek_coverage_schema',PB); schema_tools=importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(schema_tools)
 STATES=('DISCOVERED','SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED','CLOSE_READ','SEMANTICALLY_ANALYZED','ENTITY_LINKED','CROSS_REFERENCED','AUDITED')
 PREDECESSOR={state:STATES[i-1] for i,state in enumerate(STATES) if i>0}
 SOURCE_STATES={'SOURCE_BOUND','FULL_TEXT_AVAILABLE','STRUCTURALLY_INDEXED','CLOSE_READ','SEMANTICALLY_ANALYZED'}
 RESEARCH_ROLES={'TOS','TAS','TNG','DS9','VOY','ENT','DIS','SHORT','PIC','LD','PRO','SNW','SFA','FILMS','LIT'}
+RESEARCH_LANE_ROLES={'tos':'TOS','tas':'TAS','tng':'TNG','ds9':'DS9','voyager':'VOY','enterprise':'ENT','discovery':'DIS','short-treks':'SHORT','picard':'PIC','lower-decks':'LD','prodigy':'PRO','strange-new-worlds':'SNW','starfleet-academy':'SFA','films':'FILMS','literature':'LIT'}
 
 def canonical(v):return schema_tools.canonical(v)
 def content_hash(v):return 'sha256:'+hashlib.sha256(canonical(v).encode('utf-8')).hexdigest()
@@ -74,25 +77,32 @@ def _open_governed(path,directory=False):
  finally:
   if fd is not None:os.close(fd)
 
-def read_governed_text(path,expected_identity=None):
+def read_governed_text(path,expected_identity=None,require_single_link=False):
  """Read stable file bytes with an enumeration-time identity check when available."""
  with _open_governed(path) as fd:
-  before=_file_identity(os.fstat(fd))
+  info=os.fstat(fd);before=_file_identity(info)
+  if require_single_link and info.st_nlink!=1:
+   raise ValueError(f'{path}: governed receipt must not be hardlinked')
   if expected_identity is not None and before!=expected_identity:
    raise ValueError(f'{path}: governed file changed after enumeration')
   with os.fdopen(os.dup(fd),'r',encoding='utf-8') as stream:raw=stream.read()
-  if _file_identity(os.fstat(fd))!=before:
+  after=os.fstat(fd)
+  if require_single_link and after.st_nlink!=1:
+   raise ValueError(f'{path}: governed receipt became hardlinked during read')
+  if _file_identity(after)!=before:
    raise ValueError(f'{path}: governed file changed during read')
  # A rename/replacement during the read leaves the old fd intact, so verify
  # that the governed pathname still names that inode before using the bytes.
  with _open_governed(path) as fd:
+  if require_single_link and os.fstat(fd).st_nlink!=1:
+   raise ValueError(f'{path}: governed receipt hardlink detected after read')
   if _file_identity(os.fstat(fd))!=before:
    raise ValueError(f'{path}: governed file replaced during read')
  return raw
 
-def read_jsonl(path,expected_identity=None):
+def read_jsonl(path,expected_identity=None,require_single_link=False):
  rows=[]
- for line_no,raw in enumerate(read_governed_text(path,expected_identity).splitlines(),1):
+ for line_no,raw in enumerate(read_governed_text(path,expected_identity,require_single_link).splitlines(),1):
   if not raw.strip():continue
   row=strict_json(raw)
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
@@ -232,6 +242,115 @@ def accepted_source_binding_basis(source,binding):
  if not isinstance(digest,str) or re.fullmatch(r'sha256:[0-9a-f]{64}',digest) is None:return False
  basis=binding.get('basis')
  return isinstance(basis,list) and any(isinstance(b,dict) and b.get('kind')=='BYTE_HASH' and b.get('value')==digest for b in basis)
+
+READ_RECEIPT_FIELDS={'receipt_kind','receipt_version','work_id','source_id','binding_id','source_content_hash',
+                     'producer_role','producer_ref','batch_manifest_sha256','reading_scope','evidence_ids','verification_status'}
+READ_REVIEW_FIELDS={'receipt_kind','receipt_version','read_receipt_hash','work_id','source_id','binding_id',
+                    'reviewer_role','reviewer_id','decision','review_basis_refs'}
+
+def _governed_receipt(ref,prefix,subdirectory):
+ """Resolve a content-addressed in-repo receipt, not an arbitrary event path."""
+ if not isinstance(ref,str) or re.fullmatch(re.escape(prefix)+r'sha256:[0-9a-f]{64}',ref) is None:
+  raise ValueError(f'invalid {prefix} reference')
+ digest=ref.removeprefix(prefix)
+ path=ROOT/'coverage'/subdirectory/(digest.removeprefix('sha256:')+'.json')
+ raw=read_governed_text(path,require_single_link=True)
+ if 'sha256:'+hashlib.sha256(raw.encode('utf-8')).hexdigest()!=digest:
+  raise ValueError(f'{prefix} bytes do not match content-addressed SHA-256')
+ receipt=strict_json(raw)
+ if not isinstance(receipt,dict):raise ValueError(f'{prefix} must be an object')
+ return receipt,digest
+
+def _close_read_receipt_errors(eid,row,records,sources,bindings):
+ """Mechanical custody/review gate; never claims a human actually read bytes."""
+ errors=[];refs=row.get('basis_refs')
+ if not isinstance(refs,list):return [f'{eid}: CLOSE_READ requires read receipt and independent review references']
+ read_refs=[ref for ref in refs if isinstance(ref,str) and ref.startswith('read-receipt:')]
+ review_refs=[ref for ref in refs if isinstance(ref,str) and ref.startswith('read-review:')]
+ if len(read_refs)!=1 or len(review_refs)!=1:
+  return [f'{eid}: CLOSE_READ requires exactly one content-addressed read receipt and independent review reference']
+ try:
+  receipt,read_hash=_governed_receipt(read_refs[0],'read-receipt:','read-receipts')
+  review,_=_governed_receipt(review_refs[0],'read-review:','read-reviews')
+  if set(receipt)!=READ_RECEIPT_FIELDS or receipt['receipt_kind']!='CLOSE_READ_CONTENT_RECEIPT' or receipt['receipt_version']!='1.0.0':
+   raise ValueError('read receipt has unreviewed shape/version')
+  if set(review)!=READ_REVIEW_FIELDS or review['receipt_kind']!='CLOSE_READ_ADMISSION_REVIEW' or review['receipt_version']!='1.0.0':
+   raise ValueError('read review has unreviewed shape/version')
+  for key in ('work_id','source_id','binding_id'):
+   if receipt[key]!=row.get(key) or review[key]!=row.get(key):
+    raise ValueError(f'read receipt/review {key} does not match coverage context')
+  if receipt['producer_role']!=row.get('producer_role') or receipt['producer_ref']!=row.get('producer_ref'):
+   raise ValueError('read receipt producer identity does not match coverage event')
+  if receipt['verification_status']!='VERIFICATION_PENDING':
+   raise ValueError('read receipt may only state VERIFICATION_PENDING; review is separate')
+  source=sources.get(row.get('source_id'));binding=bindings.get(row.get('binding_id'))
+  if not source or not binding or not accepted_source_binding_basis(source,binding) or binding.get('lifecycle')!='ACCEPTED' or binding.get('mapping_role')!='EVIDENCE_BEARING' or binding.get('source_id')!=row.get('source_id') or binding.get('work_id')!=row.get('work_id'):
+   raise ValueError('read receipt requires exact accepted evidence-bearing Source/Work binding')
+  if receipt['source_content_hash']!=source.get('content_hash'):
+   raise ValueError('read receipt source SHA-256 does not match accepted Source')
+  scope=receipt['reading_scope']
+  if not isinstance(scope,dict) or set(scope)!={'extent','first_locator','last_locator'} or scope['extent']!='COMPLETE_DECLARED_SOURCE_REPRESENTATION' or not all(isinstance(scope[k],str) and scope[k].strip() for k in ('first_locator','last_locator')):
+   raise ValueError('read receipt lacks bounded complete-source reading locators')
+  ids=receipt['evidence_ids']
+  if not isinstance(ids,list) or not ids or not all(isinstance(i,str) and i for i in ids) or ids!=sorted(set(ids)):
+   raise ValueError('read receipt requires sorted, unique evidence IDs')
+  evidence=index_records(records,'evidence','evidence_id')
+  evidence_schema=strict_json(EVIDENCE_SCHEMA.read_text(encoding='utf-8'))
+  for evidence_id in ids:
+   item=evidence.get(evidence_id)
+   if not item or schema_tools.schema_errors(item,evidence_schema) or item.get('fixture_only') is not False or item.get('source_id')!=row.get('source_id') or item.get('work_id')!=row.get('work_id') or not isinstance(item.get('locator'),dict) or not item['locator'] or not isinstance(item.get('observed'),dict) or not item['observed']:
+    raise ValueError(f'orphan or wrong-context read evidence {evidence_id}')
+   if f'evidence:{evidence_id}' not in refs:
+    raise ValueError(f'read evidence {evidence_id} absent from event basis_refs')
+  producer=receipt['producer_ref']
+  if not isinstance(producer,str) or re.fullmatch(r'research/[a-z-]+/batches/[A-Za-z0-9_-]+/manifest\.json',producer) is None:
+   raise ValueError('CLOSE_READ producer_ref must name a governed research batch manifest')
+  lane=Path(producer).parts[1]
+  if RESEARCH_LANE_ROLES.get(lane)!=row.get('producer_role'):
+   raise ValueError('research batch partition does not match worker role')
+  raw=read_governed_text(ROOT/producer,require_single_link=True)
+  if receipt['batch_manifest_sha256']!='sha256:'+hashlib.sha256(raw.encode('utf-8')).hexdigest():
+   raise ValueError('research batch manifest SHA-256 mismatch')
+  batch=strict_json(raw)
+  batch_errors=schema_tools.schema_errors(batch,strict_json(BATCH_SCHEMA.read_text(encoding='utf-8')))
+  if batch_errors:raise ValueError('invalid research batch manifest: '+'; '.join(batch_errors))
+  if not isinstance(batch,dict) or batch.get('record_type')!='batch_manifest' or batch.get('worker_id')!=row.get('producer_role') or row.get('work_id') not in batch.get('works',[]) or source['content_hash'] not in batch.get('source_hashes',[]):
+   raise ValueError('research batch manifest lacks exact producer/Work/Source hash linkage')
+  batch_dir=(ROOT/producer).parent;batch_records=[]
+  json_files,jsonl_files=safe_record_files(batch_dir,with_identities=True)
+  for path,identity in sorted(json_files+jsonl_files):
+   if path==ROOT/producer:continue
+   rows=read_jsonl(path,identity,require_single_link=True) if path.suffix=='.jsonl' else [strict_json(read_governed_text(path,identity,require_single_link=True))]
+   if not all(isinstance(item,dict) and item.get('record_type') for item in rows):
+    raise ValueError('research batch contains an untyped record')
+   batch_records.extend(item for item in rows if item.get('record_type')!='batch_manifest')
+  batch_records=sorted(batch_records,key=canonical)
+  expected_batch_hash=content_hash({'manifest':{k:v for k,v in batch.items() if k!='batch_hash'},'records':batch_records})
+  if batch.get('batch_hash')!=expected_batch_hash:
+   raise ValueError('research batch_hash mismatch against actual batch contents')
+  counts={}
+  for item in batch_records:counts[item['record_type']]=counts.get(item['record_type'],0)+1
+  declared=batch['record_counts']
+  count_types={'local_entities':'local_entity','evidence':'evidence','assertions':'assertion','sources':'source','works':'work','reconciliation_decisions':'reconciliation_decision'}
+  if not isinstance(declared,dict) or not {'local_entities','evidence','assertions'}.issubset(declared) or any(key in declared and (not isinstance(declared[key],int) or isinstance(declared[key],bool) or declared[key]!=counts.get(record_type,0)) for key,record_type in count_types.items()):
+   raise ValueError('research batch record_counts mismatch actual records')
+  batch_evidence={}
+  for item in batch_records:
+   if item['record_type']=='evidence':
+    evidence_id=item.get('evidence_id')
+    if not isinstance(evidence_id,str) or evidence_id in batch_evidence:raise ValueError('invalid or duplicate batch evidence ID')
+    batch_evidence[evidence_id]=item
+  if any(evidence_id not in batch_evidence or canonical(evidence[evidence_id])!=canonical(batch_evidence[evidence_id]) for evidence_id in ids):
+   raise ValueError('read evidence absent from exact hashed research batch')
+  if review['read_receipt_hash']!=read_hash or review['reviewer_role']!='AUDITOR' or not isinstance(review['reviewer_id'],str) or not review['reviewer_id'].strip() or review['reviewer_id'] in {receipt['producer_role'],receipt['producer_ref']}:
+   raise ValueError('read review lacks distinct Auditor attestation to exact read receipt')
+  refs_for_review=review['review_basis_refs']
+  expected_review_refs={f'evidence:{evidence_id}' for evidence_id in ids}
+  if review['decision']!='APPROVED_FOR_COVERAGE' or not isinstance(refs_for_review,list) or not refs_for_review or not all(isinstance(b,str) for b in refs_for_review) or refs_for_review!=sorted(set(refs_for_review)) or not set(refs_for_review).issubset(expected_review_refs):
+   raise ValueError('read review lacks explicit approved decision and bounded review basis references')
+ except (ValueError,OSError,KeyError,TypeError) as exc:
+  errors.append(f'{eid}: CLOSE_READ read receipt/review gate: {exc}')
+ return errors
 def active_events(events):
  # Rejection of a proposed correction cannot revoke previously accepted history.
  superseded={row.get('supersedes') for row in events.values() if row.get('supersedes') and row.get('status')=='ACCEPTED'}
@@ -344,6 +463,8 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
   if state=='FULL_TEXT_AVAILABLE':
    scope=row.get('representation_scope')
    if not isinstance(scope,dict) or not scope.get('representation_type') or not scope.get('completeness_scope'):errors.append(f'{eid}: FULL_TEXT_AVAILABLE requires representation_scope with representation_type and completeness_scope')
+  if state=='CLOSE_READ' and enforce_origins:
+   errors.extend(_close_read_receipt_errors(eid,row,records,sources,bindings))
   if state in {'ENTITY_LINKED','CROSS_REFERENCED'} and not row.get('integration_ref'):errors.append(f'{eid}: {state} requires integration_ref')
   if state=='AUDITED' and not row.get('audit_ref'):errors.append(f'{eid}: AUDITED requires audit_ref')
   predecessor_state=PREDECESSOR.get(state)

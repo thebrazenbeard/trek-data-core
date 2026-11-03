@@ -31,6 +31,11 @@ episode facts merely because this tool produces valid JSON.
    an episode title **must not** substitute for the representation digest.
    If you cannot obtain a real byte digest, remain in metadata-only status;
    this pilot's accepted `SOURCE_BOUND` gate requires a genuine exact hash.
+   When the exact inspected representation exists as a permitted local regular
+   file, [`source_custody_receipt.py`](SOURCE_CUSTODY_RECEIPTS.md) can hash it
+   offline and produce a separately replayable byte/edition/locator receipt.
+   Use its `content_sha256` as a crosscheck, not as proof that the bytes match
+   an official Work or that access/publication rights were granted.
 4. Write only short **original research notes**, one bounded episode time
    span per observation (`cue_start_seconds`, `cue_end_seconds`), and a small
    set of proposed factual assertions referring to `evidence_id` values in

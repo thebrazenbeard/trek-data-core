@@ -12,7 +12,7 @@ class SQLiteProjectionTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td)/'projection'; manifest=fixture.make_projection(root); db=Path(td)/'query.db'; sqlite_projection.build_database(root,db)
    with sqlite3.connect(db) as con:
-    meta=dict(con.execute('select key,value from metadata').fetchall()); self.assertEqual(meta['projection_hash'],manifest['projection_hash']); self.assertTrue(meta['verification_receipt_hash'].startswith('sha256:')); self.assertTrue(meta['derived_builder_identity'].startswith('sha256:')); self.assertEqual(meta['derived_schema_version'],'0.2.0')
+    meta=dict(con.execute('select key,value from metadata').fetchall()); self.assertEqual(meta['projection_hash'],manifest['projection_hash']); self.assertTrue(meta['verification_receipt_hash'].startswith('sha256:')); self.assertTrue(meta['derived_builder_identity'].startswith('sha256:')); self.assertEqual(meta['derived_schema_version'],'0.3.0')
  def test_active_partitions_and_inactive_history_are_preserved(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td)/'projection'; fixture.make_projection(root); db=Path(td)/'query.db'; sqlite_projection.build_database(root,db)
@@ -30,5 +30,5 @@ class SQLiteProjectionTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td)/'projection'; fixture.make_projection(root); db=Path(td)/'query.db'; sqlite_projection.build_database(root,db)
    with sqlite3.connect(db) as con:
-    self.assertEqual(con.execute('select count(*) from sources').fetchone()[0],1); self.assertEqual(con.execute('select count(*) from works').fetchone()[0],1); self.assertEqual(con.execute('select count(*) from evidence').fetchone()[0],1)
+    self.assertEqual(con.execute('select count(*) from sources').fetchone()[0],1); self.assertEqual(con.execute('select count(*) from works').fetchone()[0],1); self.assertEqual(con.execute('select count(*) from evidence').fetchone()[0],1); self.assertEqual(con.execute('select count(*) from source_work_bindings').fetchone()[0],1)
 if __name__=='__main__': unittest.main()

@@ -77,6 +77,17 @@ class TNGPublisherCardsB010Tests(unittest.TestCase):
         self.reject(lambda x: x["rows"][4].update(
             publisher_thumbnail_url=x["rows"][6]["publisher_thumbnail_url"]))
 
+    def test_contextual_character_identity_is_not_a_literal_source_mention(self):
+        # The E12 publisher blurb says "the Captain", not "Captain Picard".
+        self.assertEqual(self.observations["rows"][9]["entity_mentions_source_relative"],
+                         ["Captain", "San Francisco"])
+        self.reject(lambda x: x["rows"][9].update(
+            entity_mentions_source_relative=["Captain Picard", "San Francisco"]))
+        self.reject(lambda x: x["rows"][0].update(
+            entity_mentions_source_relative=["Q", "Picard"]))
+        self.reject(lambda x: x["rows"][6].update(
+            entity_mentions_source_relative=["Wesley", "Picard", "Federation"]))
+
     def test_cross_series_catalog_contamination_is_rejected(self):
         catalog = copy.deepcopy(self.catalog)
         for row in catalog["rows"]:

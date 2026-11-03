@@ -85,7 +85,7 @@
       "season": 1,
       "episode": 8,
       "publisher_description_sha256": "cea8637109a9333c6ce66aee4e2a8cd8095acbc877f79b0bfff3d46fc0b62418",
-      "original_synopsis_draft": "After Wesley faces execution for breaking a local rule, Picard must weigh intervention against Starfleet's noninterference principle.",
+      "original_synopsis_draft": "After Wesley faces execution for breaking a local rule, Picard must weigh his rescue against a rule barring interference with another civilization.",
       "entity_mentions_source_relative": ["Wesley", "Captain Picard", "Federation"],
       "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843966/CBS_TNG_109_HD_IMAGE_CIAN_R_3164061_1920x1080.jpg",
       "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
@@ -118,8 +118,8 @@
       "season": 1,
       "episode": 12,
       "publisher_description_sha256": "1502728b12bcc254844b63360761c07146eff441a2873ea73d67ac9d04cc6d0d",
-      "original_synopsis_draft": "A malfunctioning holodeck traps Picard and three colleagues amid dangerous gangsters in a 1941 San Francisco simulation.",
-      "entity_mentions_source_relative": ["Captain Picard", "San Francisco"],
+      "original_synopsis_draft": "A holodeck malfunction traps the captain and three crewmates among dangerous gangsters in 1941 San Francisco.",
+      "entity_mentions_source_relative": ["Captain", "San Francisco"],
       "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035698/CBS_TNG_113_HD_IMAGE_CIAN_R_3164056_1920x1080.jpg",
       "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
     }

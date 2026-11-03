@@ -5,7 +5,7 @@
   "coverage_effect": "NONE",
   "data_status": "B010-TNG-S1-PUBLISHER_SOURCE_RECHECK_PROPOSAL_ONLY",
   "governed_research_admissions": 0,
-  "observations_sha256": "7120f4d9751710bd665e54517177185b16a61378138bd68007cebd3e42e78c9d",
+  "observations_sha256": "50ceb0bbdf9ee6de654dae576ebf5bb218eb1a73215c26b0e2272e2bd9019f77",
   "original_synopsis_drafts_held": 10,
   "public_synopses_or_images_published": 0,
   "publisher_artwork_url_leads_held": 10,
@@ -202,7 +202,7 @@
       "coverage_effect": "NONE",
       "governed_coverage_state": "NOT_ADMITTED",
       "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
-      "original_synopsis_draft": "After Wesley faces execution for breaking a local rule, Picard must weigh intervention against Starfleet's noninterference principle.",
+      "original_synopsis_draft": "After Wesley faces execution for breaking a local rule, Picard must weigh his rescue against a rule barring interference with another civilization.",
       "publisher_card": {
         "brief_description_actually_read": true,
         "episode": 8,
@@ -297,7 +297,7 @@
       "coverage_effect": "NONE",
       "governed_coverage_state": "NOT_ADMITTED",
       "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
-      "original_synopsis_draft": "A malfunctioning holodeck traps Picard and three colleagues amid dangerous gangsters in a 1941 San Francisco simulation.",
+      "original_synopsis_draft": "A holodeck malfunction traps the captain and three crewmates among dangerous gangsters in 1941 San Francisco.",
       "publisher_card": {
         "brief_description_actually_read": true,
         "episode": 12,
@@ -316,7 +316,7 @@
       "source_local_row_id": "legacy:s1:tng:010",
       "source_local_title": "The Big Goodbye",
       "source_relative_entity_mentions": [
-        "Captain Picard",
+        "Captain",
         "San Francisco"
       ],
       "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"

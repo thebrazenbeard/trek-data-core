@@ -51,6 +51,21 @@ EXPECTED_ARTWORK = (
     "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26442819828/CBS_TNG_105_HD_IMAGE_CIAN_1122572_1920x1080.jpg",
     "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035698/CBS_TNG_113_HD_IMAGE_CIAN_R_3164056_1920x1080.jpg",
 )
+# Exact literal mentions in the individual publisher-description cards, not
+# resolved fictional identity. E12 says only "the Captain", not Picard;
+# crediting that mention to Captain Picard would silently import outside lore.
+EXPECTED_MENTIONS = (
+    ("Enterprise", "Q"),
+    ("Enterprise",),
+    ("Ligonians", "Tasha Yar", "Federation"),
+    ("Enterprise", "Ferengi"),
+    ("Wesley Crusher",),
+    ("Enterprise",),
+    ("Wesley", "Captain Picard", "Federation"),
+    ("Ferengi", "Picard", "Enterprise"),
+    ("Deanna Troi", "Riker"),
+    ("Captain", "San Francisco"),
+)
 TOP_KEYS = {
     "schema_version", "proposal_id", "baseline_accepted_main", "observed_utc_date",
     "source_family", "guide_url", "read_surface", "raw_html_bytes_archived",
@@ -130,8 +145,9 @@ def compile_records(catalog, catalog_bytes, observations):
         entities = row["entity_mentions_source_relative"]
         if (not isinstance(entities, list) or not entities or len(entities) > 5
                 or len(entities) != len(set(map(str, entities)))
-                or any(not isinstance(e, str) or not 1 <= len(e) <= 50 for e in entities)):
-            raise ValueError("unsupported entity mention structure")
+                or any(not isinstance(e, str) or not 1 <= len(e) <= 50 for e in entities)
+                or tuple(entities) != EXPECTED_MENTIONS[i]):
+            raise ValueError("source-relative mention not literally supported by publisher card")
         artwork = row["publisher_thumbnail_url"]
         parts = urlsplit(artwork) if isinstance(artwork, str) else None
         if (not parts or parts.scheme != "https" or parts.hostname != "thumbnails.cbsig.net"

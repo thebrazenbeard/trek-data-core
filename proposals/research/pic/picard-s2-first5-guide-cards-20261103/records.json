@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "PIC.PPLUS.S2.FIRST5.CARDS.20261103",
+  "role": "PIC",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "source": {
+    "local_id": "pic-pplus-s2-first5-episode-guide-20261103",
+    "provider": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-picard/episodes/2/",
+    "retrieval_date_utc": "2026-11-03",
+    "retrieval_method": "DIRECT_HTTP_GET_AND_RENDERED_WEB_VIEW",
+    "http_status": 200,
+    "raw_sample_receipts": [
+      {"bytes": 271518, "sha256": "889000c328534710a7dd3b4f670cff0ea0a2bbb49b88ff41d6c1eebcd125a5e7"},
+      {"bytes": 271518, "sha256": "d0c28ad7afbd6b58d4e5ad12d9ac733243dc4d23c4be1d068da272a71eaddae3"}
+    ],
+    "raw_html_retained_in_public_repo": false,
+    "publisher_html_stability": "DIFFERING_RESPONSE_DIGESTS_SAME_CARD_OBSERVATIONS",
+    "full_primary_audiovisual_content_read": false,
+    "scope": "SEASON_GUIDE_CARD_METADATA_NOT_EPISODE_CONTENT"
+  },
+  "upstream_discovery": {
+    "path": "proposals/discovery/modern-paramount-season2-first5-20261102/pic-observed-slots.csv",
+    "sha256": "1ebab18e8e0ca4dc6a4204ddd6e68e338d8d346df5569a867f797b1dcbbeb78a",
+    "effect": "SOURCE_LOCAL_CROSSCHECK_ONLY"
+  },
+  "source_local_episode_cards": [
+    {
+      "local_id": "pic-s2-e01-pplus-guide",
+      "season": 2,
+      "episode_number": 1,
+      "title": "The Star Gazer",
+      "guide_line_window": [104, 108],
+      "video_url": "https://www.paramountplus.com/shows/video/RznkQ28IQNPYFk6_3mkZRpJbtBeKKxuf/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/02/18/2004660291513/STAR_TREK_PICARD_201_1194183_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Starfleet", "Jean-Luc Picard", "Cristóbal Rios", "Seven of Nine", "Raffi Musiker", "Dr. Agnes Jurati"],
+      "synopsis_paraphrase_candidate": "Starfleet calls on Picard after former crewmates discover a dangerous anomaly in space.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s2-e02-pplus-guide",
+      "season": 2,
+      "episode_number": 2,
+      "title": "Penance",
+      "guide_line_window": [109, 113],
+      "video_url": "https://www.paramountplus.com/shows/video/k8ebkarVRm5YBcIfTi7lr_VIweb0wxpl/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008775747666/Picard_202_TP_2244_RT_1215557_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "alternate timeline", "year 2400", "Q"],
+      "synopsis_paraphrase_candidate": "In an alternate 2400, Picard searches for his crew amid a trial arranged by Q.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s2-e03-pplus-guide",
+      "season": 2,
+      "episode_number": 3,
+      "title": "Assimilation",
+      "guide_line_window": [114, 118],
+      "video_url": "https://www.paramountplus.com/shows/video/8s3v_BRcan18peRItu4lV_eT_9Z60tmY/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008774211729/STAR_TREK_PICARD_203_1225961_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "2024 Los Angeles", "Watcher", "Seven", "Raffi", "Rios", "Jurati"],
+      "synopsis_paraphrase_candidate": "The crew reaches 2024 Los Angeles to find a Watcher who may help explain the changed timeline.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s2-e04-pplus-guide",
+      "season": 2,
+      "episode_number": 4,
+      "title": "Watcher",
+      "guide_line_window": [119, 123],
+      "video_url": "https://www.paramountplus.com/shows/video/94mLIxbwQKjaztosqgeCYJRnxosmtFUg/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008774211730/STAR_TREK_PICARD_204_1235670_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Rios", "Jurati", "Borg Queen"],
+      "synopsis_paraphrase_candidate": "Picard seeks an old friend's help as Rios faces legal trouble and Jurati bargains with the Borg Queen.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s2-e05-pplus-guide",
+      "season": 2,
+      "episode_number": 5,
+      "title": "Fly Me to the Moon",
+      "guide_line_window": [124, 128],
+      "video_url": "https://www.paramountplus.com/shows/video/2NV4H17unfaAo7GKv1Neb1zvTLNynHcF/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008775747695/STAR_TREK_PICARD_205_1259340_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Q", "Dr. Adam Soong", "Seven", "Raffi", "Rios", "Jurati", "Borg Queen"],
+      "synopsis_paraphrase_candidate": "Picard investigates a key to the altered timeline while Seven and Raffi seek Rios and Jurati faces her bargain.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    }
+  ]
+}

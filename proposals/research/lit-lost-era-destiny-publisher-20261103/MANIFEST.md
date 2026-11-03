@@ -1,0 +1,24 @@
+# LIT source-local publisher overviews — Lost Era / post-Destiny trio
+
+**Observed:** 2026-11-03 UTC. **Role:** LIT. **Acceptance:** `PROPOSAL_ONLY`; locally based on accepted `main@1b4a91cda50f6f5b7c1d7d7ad424cdb58b951e8b`. No Source→Work admission, accepted coverage, public publication, art rights or source-text access is claimed.
+
+I inspected the first-party Simon & Schuster *About the Book* and edition-specific product details for **three distinct publisher-title candidates and four ISBN editions**. Three short original paraphrases are explicitly **publisher-description paraphrases**, not plot analysis based on the actual books. The original publisher pages are dynamic rendered sources; raw HTML byte custody and reproducible content hashes are **not** available. The four URLs share **one upstream publisher family**.
+
+| Source-local book candidate | Official publisher product evidence | Observed metadata |
+|---|---|---|
+| *The Lost Era: The Buried Age* — Christopher L. Bennett | [ISBN 9781668290712](https://www.simonandschuster.com/books/The-Lost-Era-The-Buried-Age/Christopher-L-Bennett/Star-Trek-The-Next-Generation/9781668290712) | Gallery Books, **trade paperback dated February 13, 2027**, 448 pp. Future publisher listing relative to this observation; not proof of available text. |
+| Separate format/era of the same publisher-displayed title | [ISBN 9781416537397](https://www.simonandschuster.com/books/The-Lost-Era-The-Buried-Age/Christopher-L-Bennett/Star-Trek-The-Next-Generation/9781416537397) | Pocket Books/Star Trek, **mass-market paperback dated June 26, 2007**, 448 pp. Content equivalence with the 2027 format remains **UNVERIFIED**. |
+| *Star Trek: The Next Generation: A Singular Destiny* — Keith R. A. DeCandido | [ISBN 9781476788319](https://www.simonandschuster.com/books/Star-Trek-The-Next-Generation-A-Singular-Destiny/Keith-R-A-DeCandido/Star-Trek-The-Next-Generation/9781476788319) | Pocket Books/Star Trek, trade paperback dated April 12, 2014, 400 pp. |
+| *The Star Trek: The Lost era: 2328-2346: The Art of the Impossible* — Keith R. A. DeCandido | [ISBN 9780743464062](https://www.simonandschuster.com/books/The-Star-Trek-The-Lost-era-2328-2346-The-Art-of-the-Impossible/Keith-R-A-DeCandido/Star-Trek-Deep-Space-Nine/9780743464062) | Pocket Books/Star Trek, eBook dated October 1, 2003, 384 pages (publisher-reported extent). |
+
+The final title is **exactly the publisher's unusually formatted display string**, not a proposed canonical title. The publisher classifies the 2003 eBook under *Star Trek: Deep Space Nine* while its title embeds *The Lost era: 2328–2346*. A later librarian reconciliation must determine whether these labels represent series, subseries or a catalog display anomaly; this LIT record does not choose. Similarly, the two *Buried Age* ISBNs are separate editions despite equal publisher-reported page counts.
+
+**Private archive boundary:** Accepted `main` has a [private OPF custody receipt](../../librarian/private-opf-custody-receipt-20261103/MANIFEST.md) covering 347 converted packages and a separate nine-ISBN publisher metadata check. The archive's aggregate presence, an OPF ISBN, or a publisher listing cannot prove a licensed/verified complete edition or per-book Source↔Work binding. The official [Director issue #23](https://github.com/thebrazenbeard/trek-data-core/issues/23) remains open and bars new close-reading until governance/schema/source bindings/coverage admissions are accepted. Accordingly, **no ZIP book body was opened and no private source read was attempted in this wave**. That is the exact source-bound blocker, not a declared completed research batch.
+
+The publisher pages list cover-image resources, but no qualifying license for public reuse was established. No artwork URL/image binary, ebook text, copied full publisher marketing paragraph, source file path, or owner-private metadata is committed.
+
+## Validation and frontier
+
+`observations.json` SHA-256 `9f0daa1268260621abacbd93a40546deb2b8205fdd6afc957e07faae99524590` is pinned in `validate.py`. The validator rejects unknown keys at all record layers, checks exact source URL/ISBN/date/extent combinations, ISBN-13 checksums, promotional anchoring, future availability, distinct edition equivalence holds, rights/custody/coverage promotion and duplicates against current accepted proposals/public overviews. It is `python3 -O` safe. `tests/test_lit_lost_era_destiny_publisher.py` contains 16 hostile tests including optimized-mode admitted-coverage rejection.
+
+**Next frontier:** independent publisher-page source/edition audit and title/series discrepancy check, then librarian-owned source identity and per-edition rights/custody gates. No manuscript close-read until issue #23 resume conditions genuinely land. Do not count these as three CLOSE_READ works, four independent sources or published synopses.

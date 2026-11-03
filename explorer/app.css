@@ -39,6 +39,9 @@ a:hover { color: #c9fff6; }
 .lcars-navigation a:hover, .lcars-navigation a:focus-visible { background: var(--peach); color: var(--space); }
 .lcars-navigation a.navigation-primary { background: var(--amber); color: var(--space); }
 .lcars-navigation a.navigation-primary:hover, .lcars-navigation a.navigation-primary:focus-visible { background: var(--aqua); color: var(--space); }
+.lcars-navigation a.navigation-artwork { background: var(--aqua); color: var(--space); }
+.lcars-navigation a.navigation-artwork:hover, .lcars-navigation a.navigation-artwork:focus-visible { background: var(--peach); color: var(--space); }
+.lcars-navigation a[hidden] { display: none; }
 .lcars-navigation a:last-child { border-radius: 3px 22px 3px 3px; }
 .lcars-navigation span[id] { font-variant-numeric: tabular-nums; font-weight: 900; }
 .navigation-scroll-hint { margin: 0; padding: 6px max(28px, calc((100vw - 1180px) / 2)); border-left: 12px solid var(--violet); border-bottom: 5px solid var(--space); background: #29263d; color: var(--aqua); font: 760 .66rem/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .065em; text-transform: uppercase; }

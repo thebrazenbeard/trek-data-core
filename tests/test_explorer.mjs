@@ -15,7 +15,7 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'discovery-directory', 'episode-source-cards',
   'artwork-toggle', 'artwork-state', 'artwork-gallery', 'artwork-gallery-summary',
-  'artwork-gallery-list', 'publisher-edition-nav-count', 'publisher-edition-state',
+  'artwork-nav-link', 'artwork-nav-count', 'artwork-gallery-list', 'publisher-edition-nav-count', 'publisher-edition-state',
   'publisher-edition-query', 'publisher-edition-tag', 'publisher-edition-filters',
   'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty',
   'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
@@ -1265,6 +1265,9 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(nodes.get('artwork-toggle').disabled, false);
   assert.match(nodes.get('artwork-toggle').textContent, /Show sourced artwork \(4 previews\)/);
   assert.match(nodes.get('artwork-state').textContent, /4 Open Library API previews/);
+  assert.equal(nodes.get('artwork-nav-link').hidden, false,
+    'an accepted image manifest exposes a direct top navigation entry');
+  assert.equal(nodes.get('artwork-nav-count').textContent, '4');
   assert.equal(nodes.get('artwork-gallery').hidden, false,
     'the source-linked LCARS gallery itself should be discoverable before opt-in');
   assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'off');
@@ -1327,6 +1330,9 @@ test('only four independently visually identified fictional-autobiography jacket
   });
   held.artwork_count++;
   const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, held, 200);
+  assert.equal(rejected.get('artwork-nav-link').hidden, true,
+    'a rejected image manifest must not expose a dead artwork navigation target');
+  assert.equal(rejected.get('artwork-nav-count').textContent, '—');
   assert.equal(rejected.get('artwork-toggle').disabled, true,
     'a visually rejected interior title page cannot be marketed as a book cover');
   assert.match(rejected.get('artwork-state').textContent, /crosswalk receipt/);

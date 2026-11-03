@@ -1,0 +1,60 @@
+{
+  "batch_id": "tos-leads-official-guide-b002-20261103",
+  "role": "LIBRARIAN",
+  "state": "PROPOSED_SOURCE_LOCAL_PUBLISHER_CARD_CROSSWALK",
+  "observed_utc_date": "2026-11-03",
+  "archived_leads_input": "explorer/research-leads.json",
+  "archived_leads_sha256": "efab937a08445f2ada98eb2b8137f05477b9002e8d462ece715925524fd35d66",
+  "publisher_independence_family": "paramount_corporate_publisher_family",
+  "wikidata_source_independence": "NOT_ESTABLISHED_FROM_ARCHIVE",
+  "published_page_reads": [
+    {
+      "season": 1,
+      "official_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+      "reader": "DIRECT_FIRST_PARTY_RENDERED_GUIDE",
+      "lappy_direct_http_status": 200,
+      "lappy_transient_html_sha256": "82128797a9bf54cfc4128f0ce1d2e26506e578b8b317af8b43abb9983aad4dc9",
+      "raw_body_archived": false,
+      "raw_body_digest_replayable": false
+    },
+    {
+      "season": 2,
+      "official_url": "https://www.paramountplus.com/shows/star_trek/episodes/2/",
+      "reader": "DIRECT_FIRST_PARTY_RENDERED_GUIDE",
+      "lappy_direct_http_status": 200,
+      "lappy_transient_html_sha256": "1be024161e1a3d7366f68f3d772db380dc3b9daf31201be79b7869d1c82a2a96",
+      "raw_body_archived": false,
+      "raw_body_digest_replayable": false
+    },
+    {
+      "season": 3,
+      "official_url": "https://www.paramountplus.com/shows/star_trek/episodes/3/",
+      "reader": "DIRECT_FIRST_PARTY_RENDERED_GUIDE",
+      "lappy_direct_http_status": 200,
+      "lappy_transient_html_sha256": "c6d7c064b950e387ae704999ddffcbfd1a5ddbaec948762a0d63b74191a4da4f",
+      "raw_body_archived": false,
+      "raw_body_digest_replayable": false
+    }
+  ],
+  "rows": [
+    {"lead_id":"lead:0006","qid":"Q2659593","archived_title":"Charlie X","publisher_title":"Charlie \"X\"","season":1,"episode":3,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"959911b9d9afbbff26c51540681ecad41a3204bb438d8dd3bc0c1314f6c3c2bc","title_match":"PUNCTUATION_VARIANT_HELD","mismatch":"ARCHIVED_CHARLIE_X_VS_PUBLISHER_CHARLIE_QUOTED_X"},
+    {"lead_id":"lead:0007","qid":"Q2664096","archived_title":"Mudd's Women","publisher_title":"Mudd's Women","season":1,"episode":7,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"a2cfa89ae278d8d5ad29ae71acfbcda65ea400d5c3738c506ce6aa565ab92e8f","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0009","qid":"Q2984502","archived_title":"The Enemy Within","publisher_title":"The Enemy Within","season":1,"episode":6,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"16257a2a840f22807429662740ed8a143f786a23f0449d0aeee1d183c8fae9e9","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0010","qid":"Q3107459","archived_title":"Dagger of the Mind","publisher_title":"Dagger of the Mind","season":1,"episode":10,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"26826e9b9fbaee887a12425d75d0c0b54fc7465c3f085eba21a2b6c67c1a3a0a","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0011","qid":"Q3178411","archived_title":"Balance of Terror","publisher_title":"Balance of Terror","season":1,"episode":15,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"f8ede30929e5a7f0d4fb503d4bae4f8c5579553884afdfba104cad5e43548e18","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0012","qid":"Q3312529","archived_title":"Mirror, Mirror","publisher_title":"Mirror, Mirror","season":2,"episode":4,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"765ab4c99e2c07e908c30f2bb40b3c584f816db8cabefeaf73f33a2f41be858c","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0013","qid":"Q3487115","archived_title":"By Any Other Name","publisher_title":"By Any Other Name","season":2,"episode":22,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"3e54ef4e5013c9efba31cb4fd6b932a4ecd8c08fb8fccf98db321464690f76fb","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0014","qid":"Q3487125","archived_title":"A Taste of Armageddon","publisher_title":"A Taste of Armageddon","season":1,"episode":24,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/1/","publisher_description_sha256":"c0ae5c27590dbf6c91f62e4feb3c5c4b7d9a7620c17258f694aabcbb57f2906e","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0015","qid":"Q3487137","archived_title":"Wolf in the Fold","publisher_title":"Wolf in the Fold","season":2,"episode":14,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"e80cdfd06656e6c9279784db844383ce09d2ab64db810233eff85c48032a8d47","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0016","qid":"Q3487169","archived_title":"A Private Little War","publisher_title":"A Private Little War","season":2,"episode":19,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"8aef7ce0f3edf8d1dd4f6e56485f30b53cd587318d3cdabefe72e7ac58d080da","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0017","qid":"Q3487183","archived_title":"And the Children Shall Lead","publisher_title":"And the Children Shall Lead","season":3,"episode":4,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/3/","publisher_description_sha256":"610407ae77cf2ef780aa0d4cb2f38527bc70124aeb55c45f852b579e0500343f","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0018","qid":"Q3487187","archived_title":"Catspaw","publisher_title":"Catspaw","season":2,"episode":7,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"83ff1f0dfcf11af148f25c70729453ab43a95c2cc9345b9a77f9d6e184d9e07e","title_match":"EXACT","mismatch":null},
+    {"lead_id":"lead:0019","qid":"Q3487379","archived_title":"Bread and Circuses","publisher_title":"Bread and Circuses","season":2,"episode":25,"publisher_guide_url":"https://www.paramountplus.com/shows/star_trek/episodes/2/","publisher_description_sha256":"475bde2223b6591f3461fe76cf3202385099e017ab1978c6beffc32f6c53f03b","title_match":"EXACT","mismatch":null}
+  ],
+  "accepted_work_effect": "NONE",
+  "accepted_source_work_binding_effect": "NONE",
+  "governed_coverage_effect": "NONE",
+  "explorer_publication_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "original_synopsis_release_effect": "NONE"
+}

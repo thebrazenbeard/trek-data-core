@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=28502b30ceaf38a4c85c11f6a66b3893e899634d4a1db273514f43444cdcc158">
-  <script src="./app.js?v=d2f576c3d5d202cd17adb2f09d2cb7ca82f09b72f7e6a92fb260aed7b850d734" defer></script>
+  <link rel="stylesheet" href="./app.css?v=46beac6de82a0f1110ca1f4865f7a4d06f2ca9c15b2340ce606dbc55120d9477">
+  <script src="./app.js?v=3a74ffdac4da0cf646955706d06af9da622193369b3f38b6849395b79a029864" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -109,9 +109,20 @@
       <p class="directory-state" id="discovery-state" role="status" aria-live="polite">Checking the discovery index…</p>
       <div class="directory-summary" id="discovery-metrics" aria-label="Discovery source-local row counts">Counts unavailable until index validation.</div>
       <div class="artwork-controls" role="group" aria-label="Publisher artwork controls">
-        <button type="button" id="artwork-toggle" aria-pressed="false" disabled>Show sourced artwork</button>
+        <div class="artwork-control-primary">
+          <p class="eyebrow">Visual archive / Visitor controlled</p>
+          <button type="button" id="artwork-toggle" aria-controls="artwork-gallery" aria-pressed="false" disabled>Show sourced artwork</button>
+        </div>
         <p id="artwork-state" class="artwork-note" role="status" aria-live="polite">Checking whether display-cleared artwork is available…</p>
       </div>
+      <section id="artwork-gallery" class="artwork-gallery" aria-labelledby="artwork-gallery-heading" hidden>
+        <div class="artwork-gallery-heading">
+          <div><p class="eyebrow">LCARS / Source-bound imagery</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
+          <p>These are individually reviewed <strong>image-to-source references</strong>, not admitted Works or visual proof of a fictional event. Open Library covers remain copyright-unresolved and load only with your permission. The original LCARS record graphics remain available when previews are hidden.</p>
+        </div>
+        <p id="artwork-gallery-summary" class="artwork-gallery-summary" role="status" aria-live="polite"></p>
+        <div id="artwork-gallery-list" class="artwork-gallery-grid"></div>
+      </section>
       <form id="discovery-filters" class="directory-filters" role="search" aria-label="Search multimedia discovery metadata" autocomplete="off">
         <div class="field directory-search-field"><label for="discovery-query">Search discoveries</label><input id="discovery-query" type="search" name="discovery-q" placeholder="Title, source receipt, series, reviewed overview…" spellcheck="false"></div>
         <div class="field"><label for="discovery-medium">Medium</label><select id="discovery-medium" name="medium"><option value="all">All media</option></select></div>

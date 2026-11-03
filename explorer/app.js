@@ -516,23 +516,37 @@
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
     const seriesCounts = new Map();
     const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be', 'www.penguinrandomhouse.com']);
+    // A URL on the host allowlist cannot by itself justify an unrelated
+    // provenance badge. Keep source-lineage and retrieval-host scopes paired.
+    const lineageHosts = new Map([
+      ['wikidata:wdqs', new Set(['www.wikidata.org'])],
+      ['publisher:paramount', new Set(['www.paramountplus.com', 'www.startrek.com', 'www.mikrosanimation.com', 'youtu.be'])],
+      ['publisher:paramountplus.com', new Set(['www.paramountplus.com'])],
+      ['publisher:startrek.com', new Set(['www.startrek.com'])],
+      ['publisher:simonandschuster.com', new Set(['www.simonandschuster.com'])],
+      ['distributor:penguinrandomhouse.com:titan-books', new Set(['www.penguinrandomhouse.com'])]
+    ]);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
           typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||
           !directoryMediums.includes(item.medium) || !directoryKinds.includes(item.candidate_kind) ||
           typeof item.title !== 'string' || !item.title.trim() || item.title.length > 200 ||
           typeof item.context !== 'string' || !item.context.trim() || item.context.length > 160 ||
-          typeof item.source_group !== 'string' || item.source_group.length > 120 ||
+          typeof item.source_group !== 'string' || !lineageHosts.has(item.source_group) ||
           typeof item.source_input !== 'string' || !/^(?:explorer\/|proposals\/)[a-z0-9\/_.-]+\.json$/.test(item.source_input) ||
           !Array.isArray(item.details) || item.details.length > 8 || item.details.some((x) => typeof x !== 'string' || x.length > 150) ||
           item.verification_status !== 'UNVERIFIED_METADATA' || item.identity_scope !== 'SOURCE_LOCAL' ||
           item.coverage_effect !== 'NONE' || item.admission_effect !== 'NONE') {
         throw new Error('Invalid or promoted multimedia discovery row.');
       }
+      if (item.source_locator === null && item.source_group !== 'wikidata:wdqs') {
+        throw new Error('Publisher/distributor source-group claim needs a checkable retrieval locator.');
+      }
       if (item.source_locator !== null) {
         let url;
         try { url = new URL(item.source_locator); } catch (_) { throw new Error('Invalid discovery source URL.'); }
-        if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.port || url.search || url.hash ||
+        if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) ||
+            !lineageHosts.get(item.source_group).has(url.hostname) || url.port || url.search || url.hash ||
             url.username || url.password || !url.pathname.startsWith('/') ||
             (url.hostname === 'www.penguinrandomhouse.com' &&
               (item.medium !== 'LITERATURE' || item.candidate_kind !== 'FICTIONAL_MEMOIR' ||

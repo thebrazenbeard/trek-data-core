@@ -576,6 +576,40 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   assert.equal(absent.get('mission-count').textContent, '—');
 });
 
+test('directory source-group labels must match their actual source hosts', async () => {
+  const fixture = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const sourceRow = fixture.rows.find((row) => row.source_group === 'wikidata:wdqs');
+  const publisherRow = fixture.rows.find((row) => row.source_group === 'publisher:startrek.com');
+  assert.ok(sourceRow && publisherRow);
+  for (const [rowId, falseGroup] of [
+    [sourceRow.row_id, 'publisher:startrek.com'],
+    [publisherRow.row_id, 'wikidata:wdqs'],
+    [sourceRow.row_id, 'publisher:paramount'],
+  ]) {
+    const forged = structuredClone(fixture);
+    forged.rows.find((row) => row.row_id === rowId).source_group = falseGroup;
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, forged, 200);
+    assert.equal(nodes.get('discovery-nav-count').textContent, '—',
+      `directory must reject ${falseGroup} when the source host belongs to another lineage`);
+    assert.match(nodes.get('discovery-state').textContent, /rejected/);
+  }
+
+  const nullLocator = structuredClone(fixture);
+  const spoofed = nullLocator.rows.find((row) => row.row_id === sourceRow.row_id);
+  spoofed.source_group = 'publisher:paramount';
+  spoofed.source_locator = null;
+  const missingPublisherEvidence = await runWithIndex(catalog, 200, null, 404, {}, null, 404, nullLocator, 200);
+  assert.equal(missingPublisherEvidence.get('discovery-nav-count').textContent, '—',
+    'a publisher source-group badge must never bypass host validation with a null locator');
+  assert.match(missingPublisherEvidence.get('discovery-state').textContent, /rejected/);
+
+  const unattributedWikidataLink = structuredClone(fixture);
+  unattributedWikidataLink.rows.find((row) => row.row_id === sourceRow.row_id).source_locator = null;
+  const unlinked = await runWithIndex(catalog, 200, null, 404, {}, null, 404, unattributedWikidataLink, 200);
+  assert.equal(unlinked.get('discovery-nav-count').textContent, '1,214',
+    'a null Wikidata URL does not invent a publisher claim or promote source-local metadata');
+});
+
 test('Research Leads load separately from admitted Mission Briefings and stay searchable', async () => {
   const nodes = await runWithIndex(catalog, 200, candidateIndex(3), 200);
   assert.equal(nodes.get('research-top-count').textContent, '3');

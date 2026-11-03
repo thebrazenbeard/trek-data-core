@@ -1,0 +1,93 @@
+{
+  "schema_version": "trek-short-credits-first-party-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "evidence_class": "FIRST_PARTY_ARTICLE_CREDIT_FIELDS_READ_NOT_SHORT_VIEWED",
+  "source_family": "publisher:paramount-cbs-startrek",
+  "independent_upstream_families": 1,
+  "source_bound": false,
+  "audiovisual_viewed": false,
+  "work_identity_effect": "NONE",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "explorer_effect": "NONE",
+  "synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "accepted_description_observations_sha256": "91862225de0740c18b545de84efb4c9c84b0538d00888a55c4af1f78e3f2fd96",
+  "accepted_2019_cohort_records_sha256": "edbf4f0b50e2c4506cd6a5d54760761bdf38db18c179a223e14fc28610312526",
+  "sources": [
+    {
+      "id": "startrek:2018:shorts-credits",
+      "url": "https://www.startrek.com/news/short-treks-schedule-revealed",
+      "article_published": "2018-09-20",
+      "read_locator": "article credit lines 47-66; 2026-11-03 web retrieval",
+      "read_state": "DIRECT_RENDERED_FIRST_PARTY_HTML_AND_LAPPY_HTTP_200",
+      "raw_html_archived": false,
+      "artwork_lead_id": "image:2018:article-banner"
+    },
+    {
+      "id": "startrek:2020:shorts-credits",
+      "url": "https://www.startrek.com/news/star-trek-short-treks-now-streaming-on-youtube",
+      "article_published": "2020-08-17",
+      "read_locator": "article credit lines 46-52; web canonical redirect /en-un/; 2026-11-03 retrieval",
+      "read_state": "DIRECT_RENDERED_FIRST_PARTY_HTML_AND_LAPPY_HTTP_200",
+      "raw_html_archived": false,
+      "artwork_lead_id": "image:2020:article-banner"
+    },
+    {
+      "id": "startrek:2020:shorts-home-video",
+      "url": "https://www.startrek.com/news/announcing-star-trek-short-treks-release-on-blu-ray-and-dvd",
+      "article_published": "2020-03-15",
+      "read_locator": "home-video article lines 40-54, exact nine-item package list; 2026-11-03 retrieval",
+      "read_state": "DIRECT_RENDERED_FIRST_PARTY_HTML_AND_LAPPY_HTTP_200",
+      "raw_html_archived": false,
+      "artwork_lead_id": "image:2020:home-video-banner"
+    }
+  ],
+  "page_level_artwork_leads": [
+    {
+      "id": "image:2018:article-banner",
+      "source_id": "startrek:2018:shorts-credits",
+      "url": "https://images.prismic.io/star-trek-untold/NWE0YmE4MWQtMTVjNS00ZTlkLWE2MmMtYWEwNjg5ZGZkNWI3_baed9f51d412c2514ee46a0942138ad6.jpeg?auto=compress%2Cformat&h=1178&rect=0%2C0%2C2800%2C1178&w=2800",
+      "scope": "ARTICLE_BANNER_NOT_EPISODE_STILL",
+      "bytes_retrieved": false,
+      "display_rights": "UNKNOWN_HELD"
+    },
+    {
+      "id": "image:2020:article-banner",
+      "source_id": "startrek:2020:shorts-credits",
+      "url": "https://images.prismic.io/star-trek-untold/NGM5ODdlZjMtZWNmMC00MTFhLTlmNzYtOWM2ODY5MDcxNzIy_star_trek_short_treks_fyc.jpg?auto=format%2Ccompress",
+      "scope": "ARTICLE_BANNER_NOT_EPISODE_STILL",
+      "bytes_retrieved": false,
+      "display_rights": "UNKNOWN_HELD"
+    },
+    {
+      "id": "image:2020:home-video-banner",
+      "source_id": "startrek:2020:shorts-home-video",
+      "url": "https://images.prismic.io/star-trek-untold/MDMxNjg3MGUtZDlmZS00MjI5LThmMmEtNjIxOTY1YTQ3N2I3_shorttreks_blueray_002.png?auto=compress%2Cformat&h=1080&rect=0%2C0%2C2000%2C1080&w=2000",
+      "scope": "HOME_VIDEO_ARTICLE_BANNER_NOT_SINGLE_EPISODE_POSTER",
+      "bytes_retrieved": false,
+      "display_rights": "UNKNOWN_HELD"
+    }
+  ],
+  "edition_container_lead": {
+    "source_id": "startrek:2020:shorts-home-video",
+    "media": ["BLU_RAY", "DVD"],
+    "publisher_announced_us_date": "2020-06-02",
+    "publisher_article_nine_titles": ["Runaway", "Calypso", "The Brightest Star", "The Escape Artist", "Q&A", "The Trouble With Edward", "Ask Not", "Ephraim & Dot", "The Girl Who Made the Stars"],
+    "claim_scope": "ARTICLE_ANNOUNCED_NINE_TITLE_PACKAGE_NOT_DISC_OR_EPISODE_READ",
+    "work_binding": null
+  },
+  "credits": [
+    {"directory_row_id":"short:short-treks-01","title":"Runaway","publisher_guide_slot":"S1E1","source_id":"startrek:2018:shorts-credits","credit_locator":"Runaway credit immediately following description","written_by":["Jenny Lumet","Alex Kurtzman"],"teleplay_by":[],"story_by":[],"directed_by":["Maja Vrvilo"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-02","title":"Calypso","publisher_guide_slot":"S1E2","source_id":"startrek:2018:shorts-credits","credit_locator":"Calypso credit immediately following description","written_by":[],"teleplay_by":["Michael Chabon"],"story_by":["Sean Cochran","Michael Chabon"],"directed_by":["Olatunde Osunsanmi"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-03","title":"The Brightest Star","publisher_guide_slot":"S1E3","source_id":"startrek:2018:shorts-credits","credit_locator":"The Brightest Star credit immediately following description","written_by":["Bo Yeon Kim","Erika Lippoldt"],"teleplay_by":[],"story_by":[],"directed_by":["Douglas Aarniokoski"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-04","title":"The Escape Artist","publisher_guide_slot":"S1E4","source_id":"startrek:2018:shorts-credits","credit_locator":"The Escape Artist credit immediately following description","written_by":["Michael McMahan"],"teleplay_by":[],"story_by":[],"directed_by":["Rainn Wilson"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-05","title":"Q&A","publisher_guide_slot":"S1E5","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article Q&A bullet credit","written_by":["Michael Chabon"],"teleplay_by":[],"story_by":[],"directed_by":["Mark Pellington"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-06","title":"The Trouble with Edward","publisher_guide_slot":"S1E6","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article The Trouble with Edward bullet credit","written_by":["Graham Wagner"],"teleplay_by":[],"story_by":[],"directed_by":["Daniel Gray Longino"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-07","title":"Ask Not","publisher_guide_slot":"S1E7","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article Ask Not bullet credit","written_by":["Kalinda Vazquez"],"teleplay_by":[],"story_by":[],"directed_by":["Sanji Senaka"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-08","title":"The Girl Who Made the Stars","publisher_guide_slot":"S1E8","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article The Girl Who Made the Stars bullet credit","written_by":["Brandon Schultz"],"teleplay_by":[],"story_by":[],"directed_by":["Olatunde Osunsanmi"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-09","title":"Ephraim and Dot","publisher_guide_slot":"S1E9","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article Ephraim and Dot bullet credit","written_by":["Chris Silvestri","Anthony Maranville"],"teleplay_by":[],"story_by":[],"directed_by":["Michael Giacchino"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"},
+    {"directory_row_id":"short:short-treks-10","title":"Children of Mars","publisher_guide_slot":"S1E10","source_id":"startrek:2020:shorts-credits","credit_locator":"2020 article Children of Mars bullet credit","written_by":["Kirsten Beyer","Jenny Lumet","Alex Kurtzman"],"teleplay_by":[],"story_by":[],"directed_by":["Mark Pellington"],"synopsis_status":"HELD_ACCEPTED_PUBLISHER_PARAPHRASE","episode_artwork_status":"NO_EPISODE_IMAGE_CONFIRMED"}
+  ]
+}

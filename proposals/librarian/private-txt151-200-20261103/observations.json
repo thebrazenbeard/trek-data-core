@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-TXT151-200-20261103",
+  "accepted_main_baseline": "4a6ebb1c1ae22f7e4b1221f20c32aa93b322d01c",
+  "archive": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "whole_zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "txt_members": 220
+  },
+  "sample": "lexically sorted TXT member ordinals 151-200; TNG 064-103 and VOY 001-010 filename hints",
+  "prior_accepted_packets": [
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-DS9-TXT50-20261103",
+      "records_sha256": "56017619758a9e0294384187ec1c18569b1966729bfaf47fbdc85a8d68438553",
+      "range_start": 1,
+      "range_end": 50
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT51-100-20261103",
+      "records_sha256": "59cb068ab6fee0338846c031bcf4f25044c01a055856f156b6acdd4f0cf94d27",
+      "range_start": 51,
+      "range_end": 100
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT101-150-20261103",
+      "records_sha256": "38f4c77d5dcbf1ff20eaea358253f93f6b193934830744948a43d0bf04bbd5e1",
+      "range_start": 101,
+      "range_end": 150
+    }
+  ],
+  "data_rights": "UNKNOWN",
+  "member_byte_access": "HASHED_WITHOUT_SEMANTIC_READ",
+  "work_coverage_stage": "DISCOVERED",
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "copyrighted_text_exported": false,
+  "private_member_paths_exported": false,
+  "records": [
+    {
+      "source_local_id": "txt-local:0151",
+      "archive_txt_ordinal": 151,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 64,
+      "title_hint": "Metamorphosis",
+      "uncompressed_bytes": 552931,
+      "member_sha256": "9eca62986a859ff6e419b021a0c6b282b3bd9d034f84a62b965e4c5be55b0683"
+    },
+    {
+      "source_local_id": "txt-local:0152",
+      "archive_txt_ordinal": 152,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 65,
+      "title_hint": "Vendetta",
+      "uncompressed_bytes": 591209,
+      "member_sha256": "ec220b70922cacdf3c8c6a2b2a15bdfcf09f2e4e0fcedf1e8b8fb824787ad9a7"
+    },
+    {
+      "source_local_id": "txt-local:0153",
+      "archive_txt_ordinal": 153,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 66,
+      "title_hint": "The Valiant",
+      "uncompressed_bytes": 449233,
+      "member_sha256": "cd6e8e46141e606082fceece9a10d4d910c331a940eca0e76770a5238cd2dac1"
+    },
+    {
+      "source_local_id": "txt-local:0154",
+      "archive_txt_ordinal": 154,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 67,
+      "title_hint": "Imzadi",
+      "uncompressed_bytes": 566875,
+      "member_sha256": "291b85619c3d3ad4863b4a194e2bda6d56ab3013a2306b3b7c87881cc372f17b"
+    },
+    {
+      "source_local_id": "txt-local:0155",
+      "archive_txt_ordinal": 155,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 68,
+      "title_hint": "The Devil's Heart",
+      "uncompressed_bytes": 533184,
+      "member_sha256": "a68563d505ab51bc19e2fe1836046999a114ddfc181fd0b94f77055c6102bff5"
+    },
+    {
+      "source_local_id": "txt-local:0156",
+      "archive_txt_ordinal": 156,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 69,
+      "title_hint": "Dark Mirror",
+      "uncompressed_bytes": 588666,
+      "member_sha256": "9c9c66ec46355c2eeef6433031a790e2228b689288d6c398d9d383efe1c52830"
+    },
+    {
+      "source_local_id": "txt-local:0157",
+      "archive_txt_ordinal": 157,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 70,
+      "title_hint": "Q-Squared",
+      "uncompressed_bytes": 560907,
+      "member_sha256": "853179bec87f5d0cd93d97fdabb382710460261ddd5134e4640b9a14bd28e800"
+    },
+    {
+      "source_local_id": "txt-local:0158",
+      "archive_txt_ordinal": 158,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 71,
+      "title_hint": "Crossover",
+      "uncompressed_bytes": 443791,
+      "member_sha256": "b32c26a1094d8ecde90f25bea467141940d1718e77826c497c941987fa937e93"
+    },
+    {
+      "source_local_id": "txt-local:0159",
+      "archive_txt_ordinal": 159,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 72,
+      "title_hint": "Kahless",
+      "uncompressed_bytes": 424244,
+      "member_sha256": "2b9d3d1d7b8b4f3b73ad2ddf54cadc25a4c455337b47637bfc52ebb8fbccab46"
+    },
+    {
+      "source_local_id": "txt-local:0160",
+      "archive_txt_ordinal": 160,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 73,
+      "title_hint": "Ship of the Line",
+      "uncompressed_bytes": 517886,
+      "member_sha256": "8bf5b7d5dcfbc8d8aa8ede2a4177b1c600a9fde05bfed14071fa49212cc073c1"
+    },
+    {
+      "source_local_id": "txt-local:0161",
+      "archive_txt_ordinal": 161,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 74,
+      "title_hint": "The Best and the Brightest",
+      "uncompressed_bytes": 418205,
+      "member_sha256": "67dce477765423042b70af9249dfb1d7a0ce030883442f03a0b0c7b5a1d282e9"
+    },
+    {
+      "source_local_id": "txt-local:0162",
+      "archive_txt_ordinal": 162,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 75,
+      "title_hint": "Planet X",
+      "uncompressed_bytes": 405835,
+      "member_sha256": "57de8022c805e3560ecbb242b95424728c3e28aec7bc8f0ab219f12b647efb62"
+    },
+    {
+      "source_local_id": "txt-local:0163",
+      "archive_txt_ordinal": 163,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 76,
+      "title_hint": "Triangle - Imzadi II",
+      "uncompressed_bytes": 641100,
+      "member_sha256": "bdef620414e8223d76a380d2d4304bb8835e72a29491efc182c1514967d2915b"
+    },
+    {
+      "source_local_id": "txt-local:0164",
+      "archive_txt_ordinal": 164,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 77,
+      "title_hint": "I, Q",
+      "uncompressed_bytes": 398738,
+      "member_sha256": "00324b9848f99eeb3bcf01377e7ed2a6f760de1bcda6d258af3c9b7660b96051"
+    },
+    {
+      "source_local_id": "txt-local:0165",
+      "archive_txt_ordinal": 165,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 78,
+      "title_hint": "Reunion",
+      "uncompressed_bytes": 482560,
+      "member_sha256": "698199e268d46ca7fc98804d40f8a94cd848061e53a9d830323c85ecc6951f18"
+    },
+    {
+      "source_local_id": "txt-local:0166",
+      "archive_txt_ordinal": 166,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 79,
+      "title_hint": "Immortal Coil",
+      "uncompressed_bytes": 485762,
+      "member_sha256": "23c4b078cf6589a17b08b9707cd5814835c874a369fa4de46b18ac8f08475508"
+    },
+    {
+      "source_local_id": "txt-local:0167",
+      "archive_txt_ordinal": 167,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 80,
+      "title_hint": "A Hard Rain",
+      "uncompressed_bytes": 300765,
+      "member_sha256": "ab76a8d10f828d4ff3b9764885493fd00bf47a8623e746e24ebf3aaa6b8e582e"
+    },
+    {
+      "source_local_id": "txt-local:0168",
+      "archive_txt_ordinal": 168,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 81,
+      "title_hint": "The Battle of Betazed",
+      "uncompressed_bytes": 385669,
+      "member_sha256": "2aa4fd56ab389f7cdcc268953110ac153a4ff8d75d997d86fb42856fd90180b6"
+    },
+    {
+      "source_local_id": "txt-local:0169",
+      "archive_txt_ordinal": 169,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 82,
+      "title_hint": "Do Comets Dream",
+      "uncompressed_bytes": 294571,
+      "member_sha256": "533082686713f9513349b16b23625781bf5a5f084b5c6ecf173a81879781302b"
+    },
+    {
+      "source_local_id": "txt-local:0170",
+      "archive_txt_ordinal": 170,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 83,
+      "title_hint": "Genesis Wave (Book 1)",
+      "uncompressed_bytes": 526718,
+      "member_sha256": "3e6c1ca10064b4bb71a6d2dc37e78bdc513d2dd9d1c12f29d69cf3f6426a5939"
+    },
+    {
+      "source_local_id": "txt-local:0171",
+      "archive_txt_ordinal": 171,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 84,
+      "title_hint": "Genesis Wave (Book 2)",
+      "uncompressed_bytes": 494905,
+      "member_sha256": "ed92f57668f28c797024c33b15fe7d37e8394cebc202faf5381c5e55d40d6a5d"
+    },
+    {
+      "source_local_id": "txt-local:0172",
+      "archive_txt_ordinal": 172,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 85,
+      "title_hint": "Genesis Wave (Book 3)",
+      "uncompressed_bytes": 524962,
+      "member_sha256": "85e65fd98052fec7dbc3a78d26b20db2a738838ea3fd9df2a493379a50a565df"
+    },
+    {
+      "source_local_id": "txt-local:0173",
+      "archive_txt_ordinal": 173,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 86,
+      "title_hint": "Genesis Force",
+      "uncompressed_bytes": 527896,
+      "member_sha256": "2487aeb8a8fab8d8e258373865440cdf828a67b051546a7d9cd7914218f27de6"
+    },
+    {
+      "source_local_id": "txt-local:0174",
+      "archive_txt_ordinal": 174,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 87,
+      "title_hint": "A Time to Be Born",
+      "uncompressed_bytes": 404384,
+      "member_sha256": "d9f117b4b117712ab9541639be06019ad2ecb4af09be56f4e1a183cc06d134ce"
+    },
+    {
+      "source_local_id": "txt-local:0175",
+      "archive_txt_ordinal": 175,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 88,
+      "title_hint": "A Time to Die",
+      "uncompressed_bytes": 374771,
+      "member_sha256": "dafadf931692c5407d2868638ea6dd3491ed3303e32ce9429a32df5b0680950b"
+    },
+    {
+      "source_local_id": "txt-local:0176",
+      "archive_txt_ordinal": 176,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 89,
+      "title_hint": "A Time to Sow",
+      "uncompressed_bytes": 458716,
+      "member_sha256": "a49282309c09b0eb8d802d8656a1552620aad11de157186c99ea1fe26f59ab27"
+    },
+    {
+      "source_local_id": "txt-local:0177",
+      "archive_txt_ordinal": 177,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 90,
+      "title_hint": "A Time to Harvest",
+      "uncompressed_bytes": 506608,
+      "member_sha256": "eb03d18ce5aaf70bfcca66868e899e287b1e03250e7a53b7ff43c0663c685e13"
+    },
+    {
+      "source_local_id": "txt-local:0178",
+      "archive_txt_ordinal": 178,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 91,
+      "title_hint": "A Time to Love",
+      "uncompressed_bytes": 376689,
+      "member_sha256": "807748b2ee1a2c82450e7ca70285945197c7aee9e7f282dd6e27d82dfebded3f"
+    },
+    {
+      "source_local_id": "txt-local:0179",
+      "archive_txt_ordinal": 179,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 92,
+      "title_hint": "A Time to Hate",
+      "uncompressed_bytes": 402868,
+      "member_sha256": "660836e08ef331c717546d10000ea75edc73e92b8292e0466a02ba14ba05357b"
+    },
+    {
+      "source_local_id": "txt-local:0180",
+      "archive_txt_ordinal": 180,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 93,
+      "title_hint": "A Time to Kill",
+      "uncompressed_bytes": 431224,
+      "member_sha256": "218d1aba886049c45fe057e36c1ea8c100e5c14087b01cab415785ecd8fd43aa"
+    },
+    {
+      "source_local_id": "txt-local:0181",
+      "archive_txt_ordinal": 181,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 94,
+      "title_hint": "A Time to Heal",
+      "uncompressed_bytes": 487652,
+      "member_sha256": "432c2fd3f3ff2b1f501b64063afc799512809fb515a24ea684064349ca7da877"
+    },
+    {
+      "source_local_id": "txt-local:0182",
+      "archive_txt_ordinal": 182,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 95,
+      "title_hint": "A Time for War",
+      "uncompressed_bytes": 502001,
+      "member_sha256": "15447f3a96c849afc5d64f8478474e80c3d39203da56541b6a009888c8af77f4"
+    },
+    {
+      "source_local_id": "txt-local:0183",
+      "archive_txt_ordinal": 183,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 96,
+      "title_hint": "Engines of Destiny",
+      "uncompressed_bytes": 522879,
+      "member_sha256": "07d4725e86ce2067be9d40a5dbd25e671d6834431df279e5932b78ce816dba81"
+    },
+    {
+      "source_local_id": "txt-local:0184",
+      "archive_txt_ordinal": 184,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 97,
+      "title_hint": "Articles of the Federation",
+      "uncompressed_bytes": 604526,
+      "member_sha256": "f53697a32434c8155b70f17789ccb54e03e8ccf0f8eec108682a7ba1ca13c199"
+    },
+    {
+      "source_local_id": "txt-local:0185",
+      "archive_txt_ordinal": 185,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 98,
+      "title_hint": "Death In Winter",
+      "uncompressed_bytes": 445754,
+      "member_sha256": "6c4a084c7afa76b0db3c22fb13634966f6de1411cf935b10643b7ec602a8f8d8"
+    },
+    {
+      "source_local_id": "txt-local:0186",
+      "archive_txt_ordinal": 186,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 99,
+      "title_hint": "Resistance",
+      "uncompressed_bytes": 397155,
+      "member_sha256": "d84939da89eaa5efca156f3440744a2a350935643e219065f03a6cd7fcb84e3a"
+    },
+    {
+      "source_local_id": "txt-local:0187",
+      "archive_txt_ordinal": 187,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 100,
+      "title_hint": "Q & A",
+      "uncompressed_bytes": 348245,
+      "member_sha256": "4954946fdb89fbe7fd36ec1a3f28a0c5355473e3668cc6e4abfde489c265d082"
+    },
+    {
+      "source_local_id": "txt-local:0188",
+      "archive_txt_ordinal": 188,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 101,
+      "title_hint": "The Sky's the Limit",
+      "uncompressed_bytes": 779809,
+      "member_sha256": "74f060dbf0d9319cfba768f8865e3731619d3f225e359217f27d8e9e1edfe699"
+    },
+    {
+      "source_local_id": "txt-local:0189",
+      "archive_txt_ordinal": 189,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 102,
+      "title_hint": "Before Dishonor",
+      "uncompressed_bytes": 474679,
+      "member_sha256": "f21623862564b71d8fba93a65869c812cbd738c56fca6c384eeb6fe2e01a84e8"
+    },
+    {
+      "source_local_id": "txt-local:0190",
+      "archive_txt_ordinal": 190,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 103,
+      "title_hint": "Greater than the Sum",
+      "uncompressed_bytes": 459846,
+      "member_sha256": "2edd98c530b99c72457981f82c0ca060c536162c24202d12326031ac62dcea61"
+    },
+    {
+      "source_local_id": "txt-local:0191",
+      "archive_txt_ordinal": 191,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 1,
+      "title_hint": "Caretaker",
+      "uncompressed_bytes": 351393,
+      "member_sha256": "74544d4e8e76c6dd18a849fcf3eb4a949ef6b931a8341f0ee4d682fc43e1b5f8"
+    },
+    {
+      "source_local_id": "txt-local:0192",
+      "archive_txt_ordinal": 192,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 2,
+      "title_hint": "The Escape",
+      "uncompressed_bytes": 315251,
+      "member_sha256": "c15f22c735ed249a0c0cd3a1feb4ed9717e92a4977bf22e0247185194747a3de"
+    },
+    {
+      "source_local_id": "txt-local:0193",
+      "archive_txt_ordinal": 193,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 3,
+      "title_hint": "Ragnarok",
+      "uncompressed_bytes": 340086,
+      "member_sha256": "57e78d04900e9d26235768d6baf3ddc35d8c447024828a970c20dd60398eaeec"
+    },
+    {
+      "source_local_id": "txt-local:0194",
+      "archive_txt_ordinal": 194,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 4,
+      "title_hint": "Violations",
+      "uncompressed_bytes": 411275,
+      "member_sha256": "c0150006196b12e860bab8b054968d511a87fa7fd820ba9129a750ace4d5aa2b"
+    },
+    {
+      "source_local_id": "txt-local:0195",
+      "archive_txt_ordinal": 195,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 5,
+      "title_hint": "Incident at Arbuk",
+      "uncompressed_bytes": 282120,
+      "member_sha256": "a397e6833412bdcaba82857fb6bf257594448aed04dfb1e9ec4fd79fcea73dc2"
+    },
+    {
+      "source_local_id": "txt-local:0196",
+      "archive_txt_ordinal": 196,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 6,
+      "title_hint": "The Murdered Sun",
+      "uncompressed_bytes": 401569,
+      "member_sha256": "9ff4810530b6ddea22af26e0dc4b38ffe91c38fbc678529a9ee00590a2225f14"
+    },
+    {
+      "source_local_id": "txt-local:0197",
+      "archive_txt_ordinal": 197,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 7,
+      "title_hint": "Ghost of a Chance",
+      "uncompressed_bytes": 402956,
+      "member_sha256": "9cbfcd23687474f901b263a12d2c6d24ee4267003b25992455583bb79df304a0"
+    },
+    {
+      "source_local_id": "txt-local:0198",
+      "archive_txt_ordinal": 198,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 8,
+      "title_hint": "Cybersong",
+      "uncompressed_bytes": 350139,
+      "member_sha256": "51b237d52a7614920c532ef12c1cc465c55dd88ad1e8090684a9fdd44aeb04d3"
+    },
+    {
+      "source_local_id": "txt-local:0199",
+      "archive_txt_ordinal": 199,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 9,
+      "title_hint": "The Final Fury (Invasion, Book 4)",
+      "uncompressed_bytes": 535302,
+      "member_sha256": "130fce0820f2d074ae8d42cfeeebf78979d68063e4eeb3103c6fb35ac45fa6aa"
+    },
+    {
+      "source_local_id": "txt-local:0200",
+      "archive_txt_ordinal": 200,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 10,
+      "title_hint": "Bless the Beasts",
+      "uncompressed_bytes": 375189,
+      "member_sha256": "b4a5ef5b842b4d7a5cf6a4712086009a271b7958a3af537e7dddbe68985bc98e"
+    }
+  ],
+  "records_sha256": "c608f11dde8278eb2a918f0885d99c208d8907cc2565d96f1c905181363380b0"
+}

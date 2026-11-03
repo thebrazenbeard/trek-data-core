@@ -3094,17 +3094,44 @@
     chatRequest = controller;
     chatSend.disabled = true;
     chatStatus.textContent = 'Contacting the opt-in local model…';
-    const timeout = setTimeout(() => controller.abort(), 35000);
+    // Public HTTPS pages can stall at a browser loopback permission prompt.
+    // Same-origin localhost has no such prompt and needs longer for cold models.
+    const deadlineMs = localPairEligible ? 60000 : 45000;
+    // Some browsers hold fetch at their Local Network Access prompt without
+    // settling it even after abort(). Race against our own abort notification
+    // so a denied/unanswered permission prompt cannot strand the send button.
+    let timedOut = false;
+    let rejectAbort;
+    const aborted = new Promise((_, reject) => { rejectAbort = reject; });
+    const onAbort = () => {
+      const error = new Error('Local chat request cancelled');
+      error.name = 'AbortError';
+      rejectAbort(error);
+    };
+    controller.signal.addEventListener('abort', onAbort, { once: true });
+    const waitingNotice = setTimeout(() => {
+      if (generation === chatGeneration && chatRequest === controller) {
+        chatStatus.textContent = localPairEligible
+          ? 'Still waiting for the local model; a cold start can take a while.'
+          : 'Still waiting for the local model or browser permission. If prompted for local-network access, decide whether to allow it.';
+      }
+    }, 12000);
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, deadlineMs);
     try {
-      const response = await fetch(`${localChatOrigin}/api/chat`, {
-        method: 'POST', mode: 'cors', cache: 'no-store', credentials: 'omit', redirect: 'error',
-        targetAddressSpace: 'loopback',
-        headers: { 'Content-Type': 'application/json', 'X-Trek-Lore-CSRF': chatToken.value },
-        body: JSON.stringify({ query: question, history: chatHistory }),
-        signal: controller.signal
-      });
-      if (!response.ok) throw new Error(`Local companion returned HTTP ${response.status}`);
-      const output = await response.json();
+      const output = await Promise.race([(async () => {
+        const response = await fetch(`${localChatOrigin}/api/chat`, {
+          method: 'POST', mode: 'cors', cache: 'no-store', credentials: 'omit', redirect: 'error',
+          targetAddressSpace: 'loopback',
+          headers: { 'Content-Type': 'application/json', 'X-Trek-Lore-CSRF': chatToken.value },
+          body: JSON.stringify({ query: question, history: chatHistory }),
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error(`Local companion returned HTTP ${response.status}`);
+        return response.json();
+      })(), aborted]);
       if (output.mode !== 'opt_in_fictional_multiturn_chat' || output.model_text_unverified !== true ||
           typeof output.model_text !== 'string' || !output.model_text.trim() ||
           output.model_text.length > 800 || output.source_search?.status !== 'SOURCE_LOCAL_HELD_ONLY' ||
@@ -3122,11 +3149,17 @@
       chatInput.focus();
     } catch (error) {
       if (generation === chatGeneration) {
-        const unavailable = error.name === 'AbortError' ? 'Local model timed out.' : 'Local companion connection failed.';
-        chatStatus.textContent = `${unavailable} Check that the model and companion are running, the token is correct, and your browser permits loopback access. For browser restrictions, open http://127.0.0.1:9877/explorer/ on this computer.`;
+        const unavailable = timedOut
+          ? localPairEligible
+            ? 'No local reply within 60 seconds. The local model may still be starting.'
+            : 'No local reply within 45 seconds. Your browser may be waiting for local-network permission, or the model may still be starting.'
+          : 'Local companion connection failed. Your browser may have blocked local-network access.';
+        chatStatus.textContent = `${unavailable} Check the browser permission prompt and that the model and companion are running. You can also open http://127.0.0.1:9877/explorer/ directly on this computer. Your question is still in the input; retry when ready.`;
       }
     } finally {
       clearTimeout(timeout);
+      clearTimeout(waitingNotice);
+      controller.signal.removeEventListener('abort', onAbort);
       if (generation === chatGeneration) {
         chatRequest = null;
         chatSend.disabled = false;

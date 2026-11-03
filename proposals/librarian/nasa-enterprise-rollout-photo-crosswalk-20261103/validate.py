@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 import sys
 import urllib.parse
 import urllib.request
@@ -25,6 +26,7 @@ EXPECTED_IMAGE_SHA256 = "e36c3e1c94c53f57fe99ac921169c24a35c63851666885d20af6fdf
 EXPECTED_IMAGE_BYTES = 165312
 EXPECTED_IMAGE_DIMENSIONS = (1041, 833)
 MAX_DOWNLOAD_BYTES = 4_000_000
+MAX_TEXT_FILE_BYTES = 200_000
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".avif"}
 ALLOWED_PACKET_FILES = {"MANIFEST.md", "packet.json", "validate.py", "test_validate.py"}
 SOF_MARKERS = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
@@ -93,6 +95,41 @@ def validate_source_bytes(image: bytes) -> dict:
     return {"sha256": digest, "bytes": len(image), "dimensions": list(dimensions)}
 
 
+def validate_plaintext_file(path: Path) -> None:
+    if path.stat().st_size > MAX_TEXT_FILE_BYTES:
+        raise ValueError("oversize source packet text file")
+    body = path.read_bytes()
+    if (body.startswith((b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF87a", b"GIF89a", b"%PDF", b"PK\x03\x04"))
+            or body[:4] == b"RIFF" and body[8:12] == b"WEBP"
+            or body[4:12] in (b"ftypavif", b"ftypavis")):
+        raise ValueError("image magic or binary file disguised as reviewed text")
+    try:
+        decoded = body.decode("utf-8", errors="strict")
+    except UnicodeDecodeError as exc:
+        raise ValueError("invalid UTF-8/nontext source packet file") from exc
+    if "\x00" in decoded or any(ord(ch) < 32 and ch not in "\t\r\n" for ch in decoded):
+        raise ValueError("nontext control byte in reviewed text file")
+    if path.suffix.lower() == ".md":
+        lower = decoded.lower()
+        if "data:image/" in lower or "<svg" in lower or "<img" in lower:
+            raise ValueError("embedded image or markup disguised as reviewed Markdown")
+
+
+def validate_git_tracked_packet() -> None:
+    """Proof the committed packet cannot hide media in ignored cache paths."""
+    prefix = HERE.relative_to(ROOT).as_posix() + "/"
+    proc = subprocess.run(
+        ["git", "ls-files", "--cached", "--", prefix], cwd=ROOT,
+        text=True, capture_output=True, timeout=10, check=False,
+    )
+    if proc.returncode:
+        raise ValueError("unable to verify tracked source packet inventory")
+    tracked = set(proc.stdout.splitlines())
+    expected = {prefix + name for name in ALLOWED_PACKET_FILES}
+    if tracked != expected:
+        raise ValueError("unreviewed tracked file or hidden media path in source packet")
+
+
 def verify_download() -> dict:
     parsed = urllib.parse.urlsplit(EXPECTED_IMAGE_URL)
     if (parsed.scheme, parsed.hostname) != ("https", "www.nasa.gov"):
@@ -158,11 +195,14 @@ def validate(packet: dict, *, directory: Path = HERE) -> None:
             continue
         if child.is_file():
             if len(rel.parts) == 1 and rel.name in ALLOWED_PACKET_FILES:
+                validate_plaintext_file(child)
                 continue
             if (len(rel.parts) == 2 and rel.parts[0] == "__pycache__"
                     and child.suffix == ".pyc"):
                 continue
         raise ValueError("unreviewed file or unexpected nested content in source packet")
+    if directory == HERE:
+        validate_git_tracked_packet()
     accepted = read_json(ACCEPTED_DECISION)
     if (accepted.get("historical_source_og_image_exact_url") != EXPECTED_IMAGE_URL
             or accepted.get("historical_source_image_sha256") != EXPECTED_IMAGE_SHA256

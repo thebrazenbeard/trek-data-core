@@ -7,6 +7,7 @@ import copy
 import json
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 import validate as guard
@@ -51,12 +52,37 @@ class TestNasaPhotoCrosswalk(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unreviewed file"):
                 guard.validate(self.packet, directory=directory)
 
+    def test_rejects_jpeg_bytes_disguised_as_manifest_md(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "MANIFEST.md").write_bytes(b"\xff\xd8\xff\xe0JPEG masquerade")
+            with self.assertRaisesRegex(ValueError, "image magic|nontext|invalid UTF-8"):
+                guard.validate(self.packet, directory=directory)
+
+    def test_rejects_base64_image_data_uri_in_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "MANIFEST.md").write_text("![photo](data:image/jpeg;base64,AAAA)", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "embedded image"):
+                guard.validate(self.packet, directory=directory)
+
     def test_local_python_bytecode_cache_is_not_mistaken_for_media(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
             (directory / "__pycache__").mkdir()
             (directory / "__pycache__" / "validate.cpython-312.pyc").write_bytes(b"test cache only")
             guard.validate(self.packet, directory=directory)
+
+    def test_git_index_hidden_image_payload_rejected(self) -> None:
+        prefix = guard.HERE.relative_to(guard.ROOT).as_posix() + "/"
+        listed = [prefix + f for f in sorted(guard.ALLOWED_PACKET_FILES)]
+        listed.append(prefix + "__pycache__/hidden.jpg")
+        result = guard.subprocess.CompletedProcess(
+            args=[], returncode=0, stdout="\n".join(listed) + "\n", stderr=""
+        )
+        with mock.patch.object(guard.subprocess, "run", return_value=result):
+            with self.assertRaisesRegex(ValueError, "unreviewed tracked file"):
+                guard.validate_git_tracked_packet()
 
     def test_rejects_any_changed_source_or_release_field(self) -> None:
         falsifiers = (

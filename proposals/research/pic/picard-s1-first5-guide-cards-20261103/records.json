@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "PIC.PPLUS.S1.FIRST5.CARDS.20261103",
+  "role": "PIC",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "source": {
+    "local_id": "pic-pplus-s1-episode-guide-20261103",
+    "provider": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-picard/episodes/1/",
+    "retrieval_date_utc": "2026-11-03",
+    "retrieval_method": "DIRECT_HTTP_GET_AND_RENDERED_WEB_VIEW",
+    "http_status": 200,
+    "raw_sample_receipts": [
+      {"bytes": 273178, "sha256": "4c83db68d022e895fd5c1e7581e09aca04984828b6bc23ba4c7d0817f5e1356e"},
+      {"bytes": 273178, "sha256": "c0828d5836c211eebcc88bda32a21832d9ed8ac5b0bb08554f5d1ef984c0c250"}
+    ],
+    "raw_html_retained_in_public_repo": false,
+    "publisher_html_stability": "DIFFERING_RESPONSE_DIGESTS_SAME_CARD_OBSERVATIONS",
+    "full_primary_audiovisual_content_read": false,
+    "scope": "SEASON_GUIDE_CARD_METADATA_NOT_EPISODE_CONTENT"
+  },
+  "upstream_discovery": {
+    "path": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+    "sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c",
+    "effect": "SOURCE_LOCAL_CROSSCHECK_ONLY"
+  },
+  "source_local_episode_cards": [
+    {
+      "local_id": "pic-s1-e01-pplus-guide",
+      "season": 1,
+      "episode_number": 1,
+      "title": "Remembrance",
+      "guide_line_window": [103, 107],
+      "video_url": "https://www.paramountplus.com/shows/video/p_F16OmokbFpnKJC64lcdoP9_MdR1I7D/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/01/11/1669514307830/CBS_STAR_TREK_PICARD_101_NO_LOGO_IMAGE_162071_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Jean-Luc Picard", "Dahj"],
+      "synopsis_paraphrase_candidate": "Retired Picard meets Dahj, whose need for help suggests an unexpected connection to his past.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s1-e02-pplus-guide",
+      "season": 1,
+      "episode_number": 2,
+      "title": "Maps and Legends",
+      "guide_line_window": [108, 112],
+      "video_url": "https://www.paramountplus.com/shows/video/dEv998pdGs_0n4meq536O_U7KgdES1Ew/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/01/23/1684686403944/CBS_STAR_TREK_PICARD_102_NO_LOGO_IMAGE__746585_165221_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Dahj", "Agnes Jurati", "Raffi Musiker"],
+      "synopsis_paraphrase_candidate": "Without Starfleet's backing, Picard seeks help from Jurati and Raffi while investigating Dahj's significance.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s1-e03-pplus-guide",
+      "season": 1,
+      "episode_number": 3,
+      "title": "The End is the Beginning",
+      "guide_line_window": [113, 117],
+      "video_url": "https://www.paramountplus.com/shows/video/hB4J7gllhhJUPRpYkgpQwjYb2sTfwIr9/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/01/30/1691286595587/CBS_STAR_TREK_PICARD_103_NO_LOGO_IMAGE_167174_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Soji", "Raffi", "Picard", "Bruce Maddox", "Cristóbal Rios"],
+      "synopsis_paraphrase_candidate": "Soji attracts scrutiny at the Borg research project as Picard recruits help to locate Maddox.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s1-e04-pplus-guide",
+      "season": 1,
+      "episode_number": 4,
+      "title": "Absolute Candor",
+      "guide_line_window": [118, 122],
+      "video_url": "https://www.paramountplus.com/shows/video/bRbQB8Mj_ylqhHCcD96HIkpZ1j1ZVqxD/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/02/05/1693801539611/CBS_STAR_TREK_PICARD_104_NO_LOGO_IMAGE_168648_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["Picard", "Raffi", "Elnor", "Narek", "Soji", "Narissa"],
+      "synopsis_paraphrase_candidate": "Picard detours to Vashti and reconnects with Elnor while Narek continues seeking information about Soji.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    },
+    {
+      "local_id": "pic-s1-e05-pplus-guide",
+      "season": 1,
+      "episode_number": 5,
+      "title": "Stardust City Rag",
+      "guide_line_window": [123, 127],
+      "video_url": "https://www.paramountplus.com/shows/video/o1UkhNQZmPtcDud9Ku1fH4M6lHJ8abMw/",
+      "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/02/11/1696553027846/CBS_STAR_TREK_PICARD_105_NO_LOGO_IMAGE_171583_1920x1080.jpg",
+      "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "literal_name_mentions": ["La Sirena", "Bruce Maddox"],
+      "synopsis_paraphrase_candidate": "The La Sirena crew heads to Freecloud to find Bruce Maddox, whose situation puts their search at risk.",
+      "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
+      "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
+    }
+  ]
+}

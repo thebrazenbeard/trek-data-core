@@ -271,6 +271,8 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-gallery-card-medium .artwork-panel-medium,
 .artwork-gallery-card-medium .artwork-slot-medium { width: 180px; }
 .artwork-gallery-card-medium .artwork-slot-medium { height: 275px; }
+.artwork-gallery[data-preview-state="off"] .artwork-gallery-card { border-left-color: var(--violet); }
+.artwork-gallery[data-preview-state="off"] .artwork-gallery-card .artwork-slot { outline: 1px solid var(--aqua); outline-offset: 2px; }
 .artwork-gallery-copy { min-width: 0; overflow-wrap: anywhere; }
 .artwork-gallery-copy h4 { margin: 5px 0 8px; font-size: .95rem; line-height: 1.2; }
 .artwork-gallery-copy p { margin: 0 0 8px; font-size: .73rem; }

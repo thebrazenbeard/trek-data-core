@@ -449,10 +449,12 @@
     const query = normalize(byId('discovery-query').value.trim());
     const medium = byId('discovery-medium').value;
     const series = byId('discovery-series').value;
+    const kind = byId('discovery-kind').value;
     const lineage = byId('discovery-lineage').value;
     const terms = query.split(/\s+/).filter(Boolean);
     const rows = directoryState.rows.filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
+      if (kind !== 'all' && item.candidate_kind !== kind) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
@@ -514,6 +516,7 @@
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
     const seriesCounts = new Map();
+    const kindCounts = new Map();
     const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be', 'www.penguinrandomhouse.com']);
     // A URL on the host allowlist cannot by itself justify an unrelated
     // provenance badge. Keep source-lineage and retrieval-host scopes paired.
@@ -557,6 +560,7 @@
         }
       }
       seen.add(item.row_id); counts[item.medium]++;
+      kindCounts.set(item.candidate_kind, (kindCounts.get(item.candidate_kind) || 0) + 1);
       if (item.medium === 'EPISODE') {
         const seriesCode = item.context.split(/\s+/, 1)[0];
         if (Object.hasOwn(directorySeriesLabels, seriesCode)) {
@@ -575,6 +579,7 @@
     for (const [selectId, values, label] of [
       ['discovery-medium', directoryMediums, 'All media'],
       ['discovery-series', [...seriesCounts.keys()].sort((a, b) => directorySeriesLabels[a].localeCompare(directorySeriesLabels[b])), 'All series'],
+      ['discovery-kind', [...kindCounts.keys()].sort(), 'All candidate types'],
       ['discovery-lineage', [...new Set(data.rows.map((row) => row.source_group))].sort(), 'All sources']
     ]) {
       const select = byId(selectId);
@@ -582,6 +587,8 @@
       for (const value of values) {
         const label = selectId === 'discovery-series'
           ? `${directorySeriesLabels[value]} · ${seriesCounts.get(value)} source rows`
+          : selectId === 'discovery-kind'
+            ? `${value.replaceAll('_', ' ')} · ${kindCounts.get(value)} source rows`
           : value.replaceAll('_', ' ');
         select.add(new Option(label, value));
       }

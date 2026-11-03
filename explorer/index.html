@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=b6160c782f3b3f681e82f6b786380d4138eb0d5fab1ede1a8101476205ec0aea">
-  <script src="./app.js?v=d9edcee81e552887e9b1bf3a33c1fb92365fe62aceaa451c8457dc4343c7906f" defer></script>
+  <link rel="stylesheet" href="./app.css?v=e203e578ef8c28da42e8b7020e065f4fe4132e069e26331f92b3f102c49802d8">
+  <script src="./app.js?v=56d856da7e470dada7d2fe168094812ab520fe7e5944a1269084dc2c42ed44f0" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -211,6 +211,13 @@
       </form>
       <p class="directory-state"><a id="paramount-download" href="./paramount-film-rechecks.json" download="trek-paramount-source-local-film-rechecks.json" hidden>Download source-local film-page metadata JSON</a>. Rendered publisher page metadata only; no film copy, image bytes, poster URLs, descriptions or approved synopsis is included.</p>
       <p id="paramount-summary" class="result-summary" aria-live="polite" aria-atomic="true">Paramount source-only metadata not yet loaded.</p>
+      <section id="paramount-chronology" class="paramount-chronology" aria-labelledby="paramount-chronology-heading" hidden>
+        <div class="paramount-chronology-heading">
+          <div><p class="eyebrow">LCARS / Studio source trail</p><h3 id="paramount-chronology-heading">Film-page chronology</h3></div>
+          <p>Publisher-listed years, one source-local observation per card. This is an <strong>original metadata visualization, not a film still, poster or rights-cleared image</strong>. It adds no accepted Works or canon claims. HELD source discrepancies stay visible; years are ordered, not proportionally spaced.</p>
+        </div>
+        <ol id="paramount-chronology-list" class="paramount-chronology-grid" aria-label="Chronological first-party film-page links"></ol>
+      </section>
       <div id="paramount-list" class="card-grid paramount-grid"></div>
       <p id="paramount-empty" class="empty-state" hidden>No Paramount publisher metadata checks match these filters.</p>
     </section>

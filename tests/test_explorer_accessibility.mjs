@@ -22,7 +22,7 @@ const ids = [
   'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
   'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
   'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
-  'paramount-list', 'paramount-empty',
+  'paramount-list', 'paramount-empty', 'paramount-chronology', 'paramount-chronology-list',
   'episode-source-nav-count', 'episode-source-state', 'episode-source-download',
   'episode-source-query', 'episode-source-series', 'episode-source-status',
   'episode-source-tag', 'episode-source-filters', 'episode-source-summary',
@@ -162,6 +162,9 @@ test('Paramount film-page shelf exposes accessible filters and explicit non-admi
   assert.match(html, /<label for="paramount-tag">Source-local facet<\/label>/);
   assert.match(html, /id="paramount-state"[^>]*role="status" aria-live="polite"/);
   assert.match(html, /id="paramount-download"[^>]*hidden>/);
+  assert.match(html, /id="paramount-chronology"[^>]*aria-labelledby="paramount-chronology-heading"[^>]*hidden>/);
+  assert.match(html, /id="paramount-chronology-list"[^>]*aria-label="Chronological first-party film-page links"/);
+  assert.match(html, /original metadata visualization, not a film still, poster or rights-cleared image/);
   assert.match(html, /not film viewing, canonical Work identity, independent witnesses or released poster\/synopsis text/);
 });
 

@@ -23,7 +23,8 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
   'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
   'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
-  'paramount-list', 'paramount-empty', 'episode-source-nav-count', 'episode-source-state',
+  'paramount-list', 'paramount-empty', 'paramount-chronology', 'paramount-chronology-list',
+  'episode-source-nav-count', 'episode-source-state',
   'episode-source-download', 'episode-source-query', 'episode-source-series',
   'episode-source-status', 'episode-source-tag', 'episode-source-filters',
   'episode-source-summary', 'episode-source-list', 'episode-source-empty',
@@ -418,20 +419,42 @@ test('13 first-party Paramount source-only film page rechecks search by cast, ye
   assert.equal(nodes.get('paramount-download').hidden, false);
   assert.match(nodes.get('paramount-summary').textContent, /^13 of 13/);
   assert.equal(traverse(nodes.get('paramount-list'), (n) => n.tagName === 'article').length, 13);
+  const chronology = nodes.get('paramount-chronology-list');
+  assert.equal(nodes.get('paramount-chronology').hidden, false);
+  const timelineCards = traverse(chronology, (n) => n.tagName === 'li');
+  const source = JSON.parse(bytes.toString('utf8')).rows;
+  assert.equal(timelineCards.length, 13, 'each validated publisher source row gets its own visual timeline link');
+  const ordered = [...source].sort((a, b) => a.year_as_listed - b.year_as_listed ||
+    a.source_page_slug.localeCompare(b.source_page_slug));
+  assert.deepEqual(timelineCards.map((n) => traverse(n, (child) => child.className === 'paramount-chronology-year')[0].textContent),
+    ordered.map((n) => String(n.year_as_listed)), 'source-reported years define chronology, not invented chronology');
+  const links = traverse(chronology, (n) => n.tagName === 'a');
+  assert.deepEqual(links.map((n) => n.href), ordered.map((n) => n.source_locator));
+  assert.ok(links.every((n) => n.target === '_blank' && n.rel === 'noopener noreferrer'));
+  assert.equal(timelineCards.filter((n) => n.className.includes('held')).length, 3);
+  assert.equal(traverse(chronology, (n) => n.tagName === 'img').length, 0,
+    'publisher metadata may never silently grant poster or screenshot display');
+  assert.match(chronology.textContent, /Publisher page/i);
+  assert.match(chronology.textContent, /HELD anomaly/);
+  assert.match(chronology.textContent, /No Work admitted · no film image/,
+    'visual source-only cards must never imply film pixels, accepted Works or canon facts');
   assert.match(nodes.get('paramount-state').textContent, /3 source discrepancies held/);
   assert.doesNotMatch(nodes.get('paramount-list').textContent, /poster_asset_locator|original_synopsis_candidate/);
   nodes.get('paramount-status').value = 'HELD_UNRESOLVED_SOURCE_ANOMALY';
   nodes.get('paramount-filters').fire('change');
   assert.match(nodes.get('paramount-summary').textContent, /^3 of 13/);
   assert.equal(traverse(nodes.get('paramount-list'), (n) => n.className === 'card paramount-card paramount-held').length, 3);
+  assert.equal(traverse(chronology, (n) => n.tagName === 'li').length, 3);
   nodes.get('paramount-status').value = 'all';
   nodes.get('paramount-query').value = 'Patrick Stewart';
   nodes.get('paramount-filters').fire('input');
   assert.ok(traverse(nodes.get('paramount-list'), (n) => n.tagName === 'article').length >= 1);
+  assert.ok(traverse(chronology, (n) => n.tagName === 'li').length >= 1);
   nodes.get('paramount-query').value = '';
   nodes.get('paramount-tag').value = 'anomaly:held';
   nodes.get('paramount-filters').fire('change');
   assert.match(nodes.get('paramount-summary').textContent, /^3 of 13/);
+  assert.equal(traverse(chronology, (n) => n.tagName === 'li').length, 3);
 });
 
 test('Paramount public sidecar rejects missing bytes, tampering and rehashed source/rights escalation', async () => {
@@ -443,6 +466,8 @@ test('Paramount public sidecar rejects missing bytes, tampering and rehashed sou
     assert.equal(nodes.get('paramount-nav-count').textContent, '—');
     assert.match(nodes.get('paramount-summary').textContent, /unavailable; not a verified zero/);
     assert.equal(nodes.get('paramount-list').children.length, 0);
+    assert.equal(nodes.get('paramount-chronology').hidden, true);
+    assert.equal(nodes.get('paramount-chronology-list').children.length, 0);
   }
   const original = JSON.parse(bytes.toString('utf8'));
   const digest = '40d968f1faa11bd888f2af838c6cc4075c1c89ba4b269cf08a2e33878e87e26b';
@@ -1079,6 +1104,10 @@ test('explicit artwork opt-in displays only same-origin rights-receipted assets 
   assert.equal(toggle.attributes.get('aria-pressed'), 'true');
   const images = traverse(nodes.get('film-list'), (n) => n.tagName === 'img');
   assert.equal(images.length, 1);
+  assert.equal(images[0].parentNode.tagName, 'a', 'authorized image itself links to exact attribution receipt');
+  assert.equal(images[0].parentNode.href, licensedArtwork.artwork[0].attribution_url);
+  assert.equal(images[0].parentNode.rel, 'noopener noreferrer');
+  assert.equal(images[0].parentNode.referrerPolicy, 'no-referrer');
   assert.equal(images[0].src, './licensed-artwork/verified-film-cover.webp');
   assert.equal(images[0].loading, 'lazy');
   assert.equal(images[0].referrerPolicy, 'no-referrer');
@@ -1275,6 +1304,8 @@ test('only four independently visually identified fictional-autobiography jacket
     'four sourced LCARS key cards must be discoverable without external preview requests');
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0,
     'the visible gallery shell must not create any remote image element before opt-in');
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-image-link').length, 0,
+    'no image links to external editions appear before visitor opt-in');
   assert.match(nodes.get('artwork-gallery-summary').textContent, /nothing is fetched before that choice/);
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-record-source').length, 4,
     'each visible placeholder links to its own source record');
@@ -1293,6 +1324,12 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
+  assert.ok(rendered.every((img) => img.parentNode.tagName === 'a' &&
+    img.parentNode.href === `https://openlibrary.org/isbn/${artwork.find((row) =>
+      `https://covers.openlibrary.org/b/id/${row.cover_id}-S.jpg?default=false` === img.src)?.isbn}`),
+  'each clicked cover must navigate to the exact same ISBN edition provenance, never to an unrelated record');
+  assert.ok(rendered.every((img) => img.parentNode.target === '_blank' &&
+    img.parentNode.rel === 'noopener noreferrer' && img.parentNode.referrerPolicy === 'no-referrer'));
   assert.deepEqual(rendered.map((img) => img.src).sort(),
     reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-S.jpg?default=false`).sort());
   assert.ok(rendered.every((img) => img.loading === 'lazy' && img.referrerPolicy === 'no-referrer'));
@@ -1358,6 +1395,13 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
   const gallery = nodes.get('artwork-gallery-list');
   const galleryImages = traverse(gallery, (n) => n.tagName === 'img');
   assert.equal(galleryImages.length, 4);
+  assert.ok(galleryImages.every((img) => img.parentNode.tagName === 'a' &&
+    img.parentNode.className === 'artwork-image-link' &&
+    img.parentNode.href === medium.artwork.find((item) =>
+      img.src === `https://covers.openlibrary.org/b/id/${item.cover_id}-M.jpg?default=false`)?.attribution_url &&
+    img.parentNode.target === '_blank' && img.parentNode.rel === 'noopener noreferrer' &&
+    img.parentNode.referrerPolicy === 'no-referrer'),
+  'clicking each 180px jacket opens its exact ISBN edition source with a protected external link');
   assert.deepEqual(galleryImages.map((img) => img.src).sort(),
     medium.artwork.map((a) => `https://covers.openlibrary.org/b/id/${a.cover_id}-M.jpg?default=false`).sort());
   assert.ok(galleryImages.every((img) => img.width === 180 &&

@@ -581,7 +581,19 @@
       img.src = remoteLibrary
         ? `https://covers.openlibrary.org/b/id/${source.cover_id}-${mediumPreview ? 'M' : 'S'}.jpg?default=false`
         : source.image_path;
-      frame.append(img);
+      // The image itself links to its validated exact-edition attribution
+      // record. The link and image appear only after visitor opt-in; neither
+      // record identity nor a new source URL is inferred from visual content.
+      const imageLink = el('a', 'artwork-image-link');
+      imageLink.href = source.attribution_url;
+      imageLink.target = '_blank';
+      imageLink.rel = 'noopener noreferrer';
+      imageLink.referrerPolicy = 'no-referrer';
+      imageLink.setAttribute('aria-label', remoteLibrary
+        ? `Open exact Open Library ISBN edition record for ${titleText}; jacket copyright unresolved`
+        : `Inspect reviewed artwork attribution for ${titleText}`);
+      imageLink.append(img);
+      frame.append(imageLink);
       const credit = el('a', 'artwork-credit', remoteLibrary ? 'Open Library · edition record' : source.attribution_text);
       credit.href = source.attribution_url;
       credit.target = '_blank';
@@ -936,6 +948,10 @@
   function renderParamountRechecks() {
     const holder = byId('paramount-list');
     const empty = byId('paramount-empty');
+    const chronology = byId('paramount-chronology');
+    const chronologyList = byId('paramount-chronology-list');
+    chronologyList.replaceChildren();
+    chronology.hidden = true;
     holder.replaceChildren();
     empty.hidden = true;
     if (!paramountState.available) {
@@ -956,6 +972,26 @@
     });
     byId('paramount-summary').textContent = `${matches.length} of 13 separate source-local Paramount film-page observations match. No films viewed, Works admitted or artwork released.`;
     if (!matches.length) { empty.hidden = false; return; }
+    // This illustrated chronology uses *only* already SHA-checked publisher
+    // metadata, one live source link per observation. No remote image URL is
+    // inferred from a title, and a HELD source anomaly remains conspicuous.
+    chronology.hidden = false;
+    for (const row of [...matches].sort((a, b) =>
+      a.year_as_listed - b.year_as_listed || a.source_page_slug.localeCompare(b.source_page_slug))) {
+      const held = row.recheck_status === 'HELD_UNRESOLVED_SOURCE_ANOMALY';
+      const card = el('li', `paramount-chronology-item${held ? ' held' : ''}`);
+      const link = el('a', 'paramount-chronology-source');
+      link.href = row.source_locator;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', `Inspect first-party Paramount page for ${row.source_page_slug.replaceAll('-', ' ')}; publisher-listed ${row.year_as_listed}${held ? '; unresolved metadata anomaly' : ''}`);
+      link.append(el('span', 'paramount-chronology-year', String(row.year_as_listed)));
+      link.append(el('span', 'paramount-chronology-title', row.source_page_slug.replaceAll('-', ' ')));
+      link.append(el('span', 'paramount-chronology-badge', held ? 'HELD anomaly · source only' : 'Publisher page · source only'));
+      link.append(el('span', 'paramount-chronology-credit', 'No Work admitted · no film image'));
+      card.append(link);
+      chronologyList.append(card);
+    }
     for (const row of matches) {
       const held = row.recheck_status === 'HELD_UNRESOLVED_SOURCE_ANOMALY';
       const card = el('article', `card paramount-card${held ? ' paramount-held' : ''}`);

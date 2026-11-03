@@ -100,6 +100,8 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
             ("work_candidate_id", "../private"),
             ("proposal_id", "x" * 80),
             ("fixture_only", "false"),
+            ("work_identity_note", r"C:\Users\Example\Private\source.mp4"),
+            ("work_identity_note", "/home/example/private/episode.mkv"),
         ):
             self.decl = declaration()
             self.decl[key] = value

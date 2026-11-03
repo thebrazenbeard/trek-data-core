@@ -31,7 +31,9 @@ def proposed_work(item: dict) -> dict:
     for key in ("proposal_id", "work_candidate_id"):
         custody.ident(item[key], key)
     for key in ("work_title", "work_type", "work_identity_note"):
-        custody.text(item[key], key, length=240)
+        value = custody.text(item[key], key, length=240)
+        if "/" in value or "\\" in value:
+            raise custody.Rejected(f"{key} must not contain paths or path separators")
     if len(item["work_identity_note"]) < 20:
         raise custody.Rejected("work identity note must explain the operator's specific basis")
     if type(item["fixture_only"]) is not bool:

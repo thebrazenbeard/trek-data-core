@@ -36,6 +36,10 @@ python3 tools/propose_librarian_source_work.py \
 
 The JSON contains `source`, `work`, and `source_work_binding` that pass the Librarian contract but retain `status/lifecycle=PROPOSED`, `mapping_role=METADATA_ONLY`, explicit input `fixture_only`, and `accepted_registry_effect=NONE`. Synthetic inputs **must** set `fixture_only=true`; real-source operators may declare false, but that declaration itself is not authenticity proof. `BYTE_HASH` proves only which private bytes were read at this invocation, *not* the declared title, publisher, narrative authenticity, lineage independence, copyright clearance, or Source↔Work identity. That is why the binding remains metadata-only. The machine-readable `admission_blockers` are not review approvals.
 
+The generator refuses `fixture_only=false` when the declared Work type is `TEST_FIXTURE` or the Source provenance/independence marker is `SYNTHETIC_ONLY` or `TEST_FIXTURE`. This protects obvious fixture-label contradictions; it cannot authenticate arbitrary declarations or detect a synthetic input deliberately disguised as a real edition. Nonfixture output is still only an operator-labeled **PROPOSED** record.
+
+Work-title fields also reject embedded absolute POSIX paths after punctuation delimiters (for example `Episode|/private/secret-path`), as well as after whitespace. Ordinary title separators such as `A/B` remain valid. This reduces accidental private path echo in proposal JSON; source filenames are never placed in proposal output.
+
 4. A Librarian can then investigate source edition, upstream lineage, public/private identity and lawful access; an independent Auditor must challenge any proposed promotion. Separate versioned review/reconciliation, accepted authoritative file-backed records, and governed coverage are still needed before `SOURCE_BOUND` or `CLOSE_READ`. Never copy generated candidates into `registry/authoritative` and silently flip flags. This CLI deliberately contains no promotion option.
 
 ## Bounded next acquisition: TOS “Charlie X”

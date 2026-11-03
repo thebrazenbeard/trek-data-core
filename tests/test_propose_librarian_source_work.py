@@ -104,6 +104,10 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
             ("work_identity_note", "/home/example/private/episode.mkv"),
             ("work_title", r"Work C:\Users\Example\Private\source.mp4"),
             ("work_title", "Memo /etc/passwd"),
+            ("work_title", "Episode|/private/secret-path"),
+            ("work_title", "Episode(/opt/source.mkv)"),
+            ("work_title", "Episode(/home/user/private.mp4)"),
+            ("work_title", "Episode,/tmp/story"),
             ("work_title", "/opt/secret"),
         ):
             self.decl = declaration()
@@ -119,6 +123,38 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
         self.decl["acceptance_effect"] = "ACCEPTED"
         with self.assertRaisesRegex(custody.Rejected, "exact v1 fields"):
             self.build()
+
+    def test_synthetic_markers_cannot_be_declared_nonfixture(self):
+        # No amount of operator assertion can turn a named synthetic fixture
+        # into nonfixture custody evidence by changing only this one flag.
+        for marker in ("provenance_family", "independence_group", "work_type"):
+            with self.subTest(marker=marker):
+                self.req = request()
+                self.decl = declaration()
+                self.decl["fixture_only"] = False
+                if marker != "work_type":
+                    self.req["provenance_family"] = "DECLARED_PUBLISHER"
+                    self.req["independence_group"] = "DECLARED_PUBLISHER"
+                    self.req[marker] = "SYNTHETIC_ONLY"
+                    self.decl["work_type"] = "EPISODE"
+                else:
+                    self.req["provenance_family"] = "DECLARED_PUBLISHER"
+                    self.req["independence_group"] = "DECLARED_PUBLISHER"
+                self.receipt = custody.build_receipt(self.req, self.source_file)
+                with self.assertRaisesRegex(custody.Rejected, "synthetic fixture"):
+                    self.build()
+
+    def test_nonfixture_declaration_remains_proposal_only(self):
+        self.req["provenance_family"] = "PUBLISHER_DECLARED_ONLY"
+        self.req["independence_group"] = "PUBLISHER_DECLARED_ONLY"
+        self.decl["work_type"] = "EPISODE"
+        self.decl["fixture_only"] = False
+        self.receipt = custody.build_receipt(self.req, self.source_file)
+        proposal = self.build()
+        self.assertFalse(proposal["fixture_only"])
+        self.assertEqual(proposal["source_work_binding"]["mapping_role"], "METADATA_ONLY")
+        self.assertEqual(proposal["source_work_identity_state"], "DECLARED_NOT_INDEPENDENTLY_VERIFIED")
+        self.assertEqual(proposal["accepted_registry_effect"], "NONE")
 
     def test_legitimate_slash_in_title_is_preserved_without_private_path(self):
         self.decl["work_title"] = "Synthetic episode A/B"

@@ -24,6 +24,7 @@ FIELDS = {
     "work_title", "work_type", "work_identity_note", "work_identity_reference",
     "fixture_only",
 }
+SYNTHETIC_MARKERS = {"SYNTHETIC_ONLY", "TEST_FIXTURE"}
 
 
 def proposed_work(item: dict) -> dict:
@@ -36,7 +37,7 @@ def proposed_work(item: dict) -> dict:
         if key == "work_title":
             # Slash is legitimate punctuation in some titles; block path-shaped
             # spans rather than every title with a separator.
-            if re.search(r"(?i)(?:[a-z]:[\\/]|\\\\|(?:^|\s)/[a-z0-9._-]+(?:/[a-z0-9._-]+)*|file://|\.\.[\\/])", value):
+            if re.search(r"(?i)(?:[a-z]:[\\/]|\\\\|(?<!\w)/[a-z0-9._-]+(?:/[a-z0-9._-]+)*|file://|\.\.[\\/])", value):
                 raise custody.Rejected("work_title must not embed a private or relative file path")
         elif "/" in value or "\\" in value:
             raise custody.Rejected(f"{key} must not contain paths or path separators")
@@ -57,10 +58,16 @@ def proposed_work(item: dict) -> dict:
 
 def build_proposal(request: dict, receipt: dict, work_declaration: dict, source_file: Path) -> dict:
     """Strictly replay the receipt against current bytes before proposing triad."""
+    custody.validate_request(request)
+    work = proposed_work(work_declaration)
+    if not work_declaration["fixture_only"] and any(
+        value.upper() in SYNTHETIC_MARKERS
+        for value in (request["provenance_family"], request["independence_group"], work["work_type"])
+    ):
+        raise custody.Rejected("synthetic fixture markers require fixture_only=true")
     expected = custody.build_receipt(request, source_file)
     if expected != receipt:
         raise custody.Rejected("receipt does not replay against source request and exact current bytes")
-    work = proposed_work(work_declaration)
     source_id = receipt["source_candidate_id"]
     work_id = work["work_id"]
     binding_id = work_declaration["proposal_id"] + "-binding"

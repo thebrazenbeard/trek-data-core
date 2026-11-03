@@ -1,0 +1,60 @@
+{
+  "packet_id": "librarian-first-contact-museum-props-ccby-sa-20261103",
+  "status": "HELD_SOURCE_ONLY_NO_IMAGE_PUBLICATION",
+  "accepted_main_baseline": "969626ae8866602ff263f3189b2dcb1dd61d9d3b",
+  "catalogue_row_id": "film:film-first-contact",
+  "catalogue_source_locator": "https://www.startrek.com/movies/star-trek-viii-first-contact",
+  "association_status": "PHOTOGRAPHER_CAPTION_SOURCE_LOCAL_FILM_PROP_ASSOCIATION_ONLY",
+  "photo_kind": "DOCUMENTARY_MUSEUM_PROP_NOT_FILM_FRAME_STILL_OR_POSTER",
+  "event_location": "Star Trek: Exploring New Worlds exhibition, Henry Ford Museum, Dearborn, Michigan",
+  "photographer": "Joe Ross / Joetography LLC",
+  "capture_date": "2019-08-22",
+  "source_lineage": "JOE_ROSS_FLICKR_TO_WIKIMEDIA_COMMONS_SINGLE_PHOTOGRAPHER_FAMILY",
+  "license": "CC_BY_SA_2_0_GENERIC_PHOTOGRAPHER_CONTRIBUTION_ONLY",
+  "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "license_legal_code": "https://creativecommons.org/licenses/by-sa/2.0/legalcode",
+  "commons_flickr_review_date": "2023-06-15",
+  "underlying_prop_rights": "UNRESOLVED",
+  "image_binary_committed": 0,
+  "remote_image_hotlink_committed": false,
+  "public_image_display_authorized": false,
+  "site_effect": "NONE",
+  "work_or_coverage_admission": "NONE",
+  "assets": [
+    {
+      "id": "first-contact-borg-cube-museum-photo",
+      "described_subject": "Borg cube prop exhibited as from the 1996 film Star Trek: First Contact",
+      "subject_basis": "Original photographer title and Commons image description; not independent visual film-prop authentication",
+      "original_flickr": "https://www.flickr.com/photos/joeross/49786189402/",
+      "commons_page": "https://commons.wikimedia.org/wiki/File:The_Borg_Collective_-_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum,_Dearborn,_Michigan.jpg",
+      "rendition_url_for_provenance_only": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/The_Borg_Collective_-_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum%2C_Dearborn%2C_Michigan.jpg/330px-The_Borg_Collective_-_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum%2C_Dearborn%2C_Michigan.jpg",
+      "rendition_dimensions_verified": [330, 495],
+      "rendition_fetched_bytes": 51571,
+      "rendition_sha256_verified": "b027b2d81100271d56051502fdaa60a16fb6a41294c56808bac2da547a31caf1",
+      "visual_inspection": "Dark, detailed cube-shaped object behind glass in museum exhibit; exact identity follows original photographer description",
+      "proposed_caption": "A Borg cube prop displayed at the Star Trek: Exploring New Worlds exhibition; identified by the photographer as a Star Trek: First Contact (1996) prop. Museum documentary photo, not a film frame.",
+      "proposed_alt": "Dark, intricately detailed cube-shaped exhibition object behind glass in a museum display"
+    },
+    {
+      "id": "first-contact-phasers-museum-photo",
+      "described_subject": "Hand phaser and phaser rifle props exhibited as from the 1996 film Star Trek: First Contact",
+      "subject_basis": "Original photographer title and Commons image description; not independent visual film-prop authentication",
+      "original_flickr": "https://www.flickr.com/photos/joeross/49786193777/",
+      "commons_page": "https://commons.wikimedia.org/wiki/File:Phasers_from_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum,_Dearborn,_Michigan.jpg",
+      "rendition_url_for_provenance_only": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Phasers_from_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum%2C_Dearborn%2C_Michigan.jpg/330px-Phasers_from_Star_Trek-_First_Contact_movie_1996_-_Star_Trek_-_Exploring_New_Worlds_exhibit_at_the_Henry_Ford_Museum%2C_Dearborn%2C_Michigan.jpg",
+      "rendition_dimensions_verified": [330, 495],
+      "rendition_fetched_bytes": 28770,
+      "rendition_sha256_verified": "de9457f668d884d786ddef5d145c1fd8ddd5e542c7b45875a98ad18cfa350356",
+      "visual_inspection": "Two differently sized sci-fi weapon-shaped exhibits, on separate stands behind glass; identity follows source description",
+      "proposed_caption": "A hand phaser and phaser rifle exhibited at Star Trek: Exploring New Worlds and identified by the photographer as props from Star Trek: First Contact (1996). Museum documentary photo, not a film frame.",
+      "proposed_alt": "Two futuristic prop weapons displayed separately on pedestals behind museum glass"
+    }
+  ],
+  "proposed_credit": "Joe Ross / Joetography LLC, 2019, original Flickr / Wikimedia Commons; CC BY-SA 2.0. Commons 330-pixel resized previews. No endorsement implied; photographer copyright does not clear underlying prop designs.",
+  "release_holds": {
+    "independent_underlying_prop_rights_editorial_context_review": "PENDING",
+    "owner_explicit_public_image_release_decision": "PENDING",
+    "exact_public_image_bytes_attribution_sharealike_qa": "PENDING",
+    "browser_opt_in_network_accessibility_pages_qa": "PENDING"
+  }
+}

@@ -68,6 +68,17 @@ INPUTS = (
     Path("proposals/librarian/prh-star-trek-autobiographies-20261103/records.json"),
 )
 PICARD_COMPANIONS = Path("proposals/librarian/picard-companion-editions-20261103/records.json")
+PICARD_COMPANION_DISPLAY = {
+    "proposed-lit-picard-the-dark-veil": (
+        "Star Trek: Picard: The Dark Veil", "James Swallow", "9781982154073",
+        "2021-09-07", 336),
+    "proposed-lit-picard-rogue-elements": (
+        "Star Trek: Picard: Rogue Elements", "John Jackson Miller", "9781982175207",
+        "2022-06-07", 416),
+    "proposed-lit-picard-second-self": (
+        "Star Trek: Picard: Second Self", "Una McCormack", "9781982194833",
+        "2023-09-19", 320),
+}
 REVIEWED_NOVELS = {
     "proposed-lit-picard-second-self": (
         "Star Trek: Picard: Second Self", "Una McCormack", "Star Trek: Picard"),
@@ -284,6 +295,77 @@ def _check_picard_publisher_overlap(three_novels: dict, picard: dict) -> None:
             raise ValueError("conflicting Second Self source-local publisher edition claims")
     except (KeyError, TypeError, AttributeError, ValueError) as exc:
         raise ValueError("invalid or conflicting publisher cross-proposal metadata") from exc
+
+
+def _picard_companion_rows(picard: dict) -> list[dict]:
+    """Project only the two additional, existing source-local Picard editions.
+
+    The third Picard observation, Second Self, is already emitted from the
+    three-novel publisher batch. Its presence here is cross-checked, not
+    counted twice or merged into a global Work identity.
+    """
+    if (not isinstance(picard, dict) or picard.get("schema_version") != "1.0.0" or
+            picard.get("proposal_only") is not True or
+            picard.get("accepted_work_effect") != "NONE" or
+            picard.get("accepted_source_binding_effect") != "NONE" or
+            picard.get("coverage_effect") != "NONE" or
+            picard.get("source_group") != "publisher:simonandschuster.com"):
+        raise ValueError("Picard publisher record is not proposal-only")
+    try:
+        works = {r["work_id"]: r for r in picard["works"]}
+        editions = {r["work_id"]: r for r in picard["edition_candidates"]}
+        sources = {r["source_id"]: r for r in picard["sources"]}
+        bindings = {r["work_id"]: r for r in picard["bindings"]}
+        expected = set(PICARD_COMPANION_DISPLAY)
+        if (any(len(coll) != 3 for coll in (works, editions, sources, bindings)) or
+                set(works) != expected or set(editions) != expected or
+                set(bindings) != expected or len(picard["sources"]) != 3 or
+                len(picard["works"]) != 3 or len(picard["edition_candidates"]) != 3 or
+                len(picard["bindings"]) != 3):
+            raise ValueError("Picard publisher row inventory changed")
+        result = []
+        for work_id, (title, creator, isbn, published, length) in PICARD_COMPANION_DISPLAY.items():
+            work, edition, binding = works[work_id], editions[work_id], bindings[work_id]
+            source_id = "proposed-picard-publisher-source-" + isbn
+            source = sources[source_id]
+            meta = source["provider_metadata"]
+            publisher_url = ("https://www.simonandschuster.com/books/" +
+                             f"{_publisher_slug(title)}/{_publisher_slug(creator)}/"
+                             f"Star-Trek-Picard/{isbn}")
+            if (work["title"] != title or work["work_type"] != "NOVEL" or
+                    work["status"] != "PROPOSED" or
+                    edition["edition_candidate_id"] != "proposed-picard-edition-" + isbn or
+                    edition["isbn13"] != isbn or edition["source_id"] != source_id or
+                    edition["format"] != "TRADE_PAPERBACK" or
+                    edition["status"] != "PROPOSED" or
+                    edition["verification"] != "PUBLISHER_METADATA_ONLY" or
+                    binding["binding_id"] != "proposed-picard-binding-" + isbn or
+                    binding["source_id"] != source_id or binding["lifecycle"] != "PROPOSED" or
+                    binding["mapping_role"] != "METADATA_ONLY" or
+                    source["source_id"] != source_id or source["locator"] != publisher_url or
+                    source["provider"] != "Simon & Schuster" or
+                    source["source_kind"] != "PUBLISHER_EDITION_METADATA" or
+                    source["independence_group"] != picard["source_group"] or
+                    source["status"] != "PROPOSED" or
+                    source["content_hash"] is not None or
+                    source["content_fingerprint"] is not None or
+                    source["source_version"] is not None or
+                    meta["title"] != title or meta["creator"] != creator or
+                    meta["isbn13"] != isbn or meta["format"] != "TRADE_PAPERBACK" or
+                    meta["publication_date"] != published or meta["length_pages"] != length):
+                raise ValueError("Picard publisher edition identity/provenance drift")
+            if work_id != "proposed-lit-picard-second-self":
+                result.append(_row("literature:" + work_id, "LITERATURE", "NOVEL",
+                                   title, creator + " · publisher trade paperback",
+                                   picard["source_group"], str(PICARD_COMPANIONS),
+                                   publisher_url,
+                                   ("Trade Paperback · ISBN " + isbn,
+                                    "Publisher metadata only; no close read")))
+        if len(result) != 2:
+            raise ValueError("Picard publisher projection must add only two new rows")
+        return result
+    except (KeyError, TypeError, AttributeError) as exc:
+        raise ValueError("incomplete Picard publisher source-local identity") from exc
 
 
 def build_bytes(root: Path) -> bytes:
@@ -847,6 +929,7 @@ def build_bytes(root: Path) -> bytes:
                         novel_catalog["source_group"], str(INPUTS[3]),
                         source_by_id[editions[0]["source_id"]]["locator"], details))
     entries.extend(_three_novel_rows(three_novels))
+    entries.extend(_picard_companion_rows(picard_catalog))
 
     prh_sources = {source["source_id"]: source for source in prh_catalog["sources"]}
     prh_editions = {edition["work_id"]: edition for edition in prh_catalog["edition_candidates"]}

@@ -29,6 +29,12 @@ LEGACY_MANIFEST = "explorer/artwork-catalog.json"
 LEGACY_MANIFEST_SHA256 = "5a7b28ea71f75d717f835b47e308dadfa059c589198452da03c66127b0cc835f"
 ART_DIRECTORY = "explorer/licensed-artwork"
 OL_SOURCE_PACKET = "proposals/librarian/open-library-nine-literature-20261103/records.json"
+# This is an immutable historical source receipt, not a moving checksum of
+# the currently expanded directory. Any future rows must be justified as an
+# exactly reversible, separately source-checked addition.
+HISTORICAL_OL_PACKET_SHA256 = "f8dd9fc079d2a1eeb6dd10063954f6c41f37998eeb1de220ea672c06eb6f5762"
+HISTORICAL_OL_DIRECTORY_SHA256 = "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc"
+HISTORICAL_OL_DIRECTORY_COMMIT = "da44aecc4a44829c2cd8c969e80ade7d311c355d"
 MAX_ART_BYTES = 16_000_000
 MAX_MANIFEST_BYTES = 2_000_000
 HASH = re.compile(r"[a-f0-9]{64}\Z")
@@ -244,6 +250,60 @@ def _source_rows(root: Path) -> dict[str, dict]:
     return rows
 
 
+def _historical_directory_receipt_intact(root: Path, packet: dict) -> None:
+    """Verify an exact 2-row additive derivative without rewriting old custody.
+
+    The 2026-11-03 Open Library source packet's directory digest pins its
+    historical 1,214-row *source snapshot*. Updating that checksum whenever
+    a new, unrelated source-local Work appears would forge the old receipt.
+    Reconstruct that snapshot byte-for-byte, allowing only the two separate
+    pre-existing Picard publisher editions emitted by the directory builder.
+    """
+    from tools import build_unified_discovery as discovery
+
+    _ensure(hashlib.sha256(_file_bytes(root, OL_SOURCE_PACKET, MAX_MANIFEST_BYTES)).hexdigest()
+            == HISTORICAL_OL_PACKET_SHA256, "immutable Open Library source packet changed")
+    _ensure(packet.get("source_catalog_sha256") == HISTORICAL_OL_DIRECTORY_SHA256 and
+            packet.get("source_catalog_commit") == HISTORICAL_OL_DIRECTORY_COMMIT and
+            packet.get("literary_row_count") == 9,
+            "historical Open Library directory provenance rewritten")
+    raw = _file_bytes(root, "explorer/discovery-catalog.json", MAX_MANIFEST_BYTES)
+    if hashlib.sha256(raw).hexdigest() == HISTORICAL_OL_DIRECTORY_SHA256:
+        return
+
+    directory = discovery.research._strict_json(raw, "explorer/discovery-catalog.json")
+    _ensure(isinstance(directory, dict) and isinstance(directory.get("rows"), list) and
+            isinstance(directory.get("counts_by_medium"), dict) and
+            directory.get("row_count") == 1216 and
+            directory["counts_by_medium"].get("LITERATURE") == 11,
+            "unrecognized expanded directory receipt")
+    picard = _json_file(root, str(discovery.PICARD_COMPANIONS))
+    try:
+        added = discovery._picard_companion_rows(picard)
+    except ValueError as exc:
+        raise ValueError("unreviewed Picard directory addition") from exc
+    rows = directory["rows"]
+    ids = [r.get("row_id") if isinstance(r, dict) else None for r in rows]
+    addition_ids = [r["row_id"] for r in added]
+    _ensure(ids.count(addition_ids[0]) == ids.count(addition_ids[1]) == 1,
+            "Picard directory insertion missing or duplicated")
+    start = ids.index(addition_ids[0])
+    _ensure(rows[start:start + 2] == added and
+            start > 0 and start + 2 < len(rows) and
+            ids[start - 1] == "literature:proposed-lit-discovery-enterprise-war" and
+            ids[start + 2] == "literature:prh-autobiography-kirk",
+            "Picard directory insertion order or source identity changed")
+    reconstructed = dict(directory)
+    reconstructed["rows"] = rows[:start] + rows[start + 2:]
+    reconstructed["row_count"] = 1214
+    counts = dict(directory["counts_by_medium"])
+    counts["LITERATURE"] = 9
+    reconstructed["counts_by_medium"] = counts
+    rebuilt = (json.dumps(reconstructed, sort_keys=True, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    _ensure(hashlib.sha256(rebuilt).hexdigest() == HISTORICAL_OL_DIRECTORY_SHA256,
+            "historical Open Library directory differs after exact Picard rollback")
+
+
 def _open_library_source_candidates(root: Path) -> dict[str, dict]:
     """Bind release pins to the accepted, still proposal-only Librarian ledger."""
     packet = _json_file(root, OL_SOURCE_PACKET)
@@ -258,9 +318,7 @@ def _open_library_source_candidates(root: Path) -> dict[str, dict]:
             isinstance(candidates, list) and packet.get("candidate_count") == len(candidates) and
             isinstance(packet.get("held"), list) and packet.get("held_count") == len(packet["held"]),
             "Open Library source packet is not an accepted provenance-only inventory")
-    _ensure(packet.get("source_catalog_sha256") == hashlib.sha256(_file_bytes(
-            root, "explorer/discovery-catalog.json", MAX_MANIFEST_BYTES)).hexdigest(),
-            "Open Library source packet directory digest drift")
+    _historical_directory_receipt_intact(root, packet)
     by_row: dict[str, dict] = {}
     for candidate in candidates:
         _ensure(isinstance(candidate, dict) and isinstance(candidate.get("row_id"), str) and

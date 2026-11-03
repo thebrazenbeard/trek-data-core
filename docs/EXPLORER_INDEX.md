@@ -100,10 +100,10 @@ the conflicting publisher year metadata for *The Search for Spock*.
 `explorer/discovery-catalog.json` is a third optional candidate-only artifact,
 derived by `python3 tools/build_unified_discovery.py --check`. Unlike the
 governed `index.json`, its rows deliberately retain **source-local** identity.
-The expanded 1214 rows consist of 1155 episode-related observations (many
+The expanded 1216 rows consist of 1155 episode-related observations (many
 potentially overlapping), 14 films, 35 separate short-form releases, one
-scripted audio-series container, and nine literary candidate rows (four novels
-with 13 publisher ISBN-format observations plus five fictional memoirs with one
+scripted audio-series container, and eleven literary candidate rows (six novels
+with 15 publisher ISBN-format observations plus five fictional memoirs with one
 ISBN edition each).
 There is no sum labeled “known universe Works” and no inferred completeness.
 

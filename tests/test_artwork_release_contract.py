@@ -41,6 +41,10 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         (self.root / "explorer").mkdir()
         shutil.copyfile(ROOT / "explorer/app.css", self.root / "explorer/app.css")
         shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        # Public startup integrity now validates the exact same-origin script
+        # bytes and the pinned procedural Lore module import as well as HTML.
+        for name in ("app.js", "lore-public-chat.js", "lore-semantic-chat.js"):
+            shutil.copyfile(ROOT / "explorer" / name, self.root / "explorer" / name)
         self._json("explorer/discovery-catalog.json", {
             "data_status": "DISCOVERY_ONLY", "coverage_effect": "NONE", "admission_effect": "NONE",
             "row_count": 1, "rows": [{"row_id": "literature:prh-autobiography-kirk", "medium": "LITERATURE",

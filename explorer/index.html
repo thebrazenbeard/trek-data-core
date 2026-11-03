@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
+  <!-- Optional future model bridge only; the default Lore conversation never needs it. -->
+  <meta name="trek-lore-api" content="">
+  <meta name="trek-lore-turnstile-sitekey" content="">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=224cc4b5b398a2949fe1b2a208b7b0544ae51680d13b6582f6924df8804f36c5">
-  <script src="./app.js?v=0fecfdaec2324dec512ec08c6c5c46fad0fa239aaba6289739da08c5aa71feab" defer></script>
+  <link rel="stylesheet" href="./app.css?v=2aca305c84e64726ba96cbbe7f243f3b30242921c939500ac568d7353fb1659b">
+  <script src="./app.js?v=9adf5e81c9388c1f7e6d1f197ce0688400292ccb6754128c2b13ddb1cd04162b" defer></script>
+  <script type="module" src="./lore-public-chat.js?v=c19bb4ab945a8031ef68263dce5461e9b56e08c63a88297aeb1dce1ff62be087"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -16,7 +20,7 @@
   <div class="command-deck" role="group" aria-label="Explorer interface controls">
     <p class="command-brand"><span class="command-code" aria-hidden="true">TDC</span><span>Trek Data Core</span></p>
     <p class="command-route">STAR TREK <span aria-hidden="true">/</span> UNOFFICIAL RESEARCH ARCHIVE</p>
-    <button id="lore-toggle" class="lore-toggle" type="button" aria-expanded="false" aria-controls="lore-console">Open Lore console</button>
+    <button id="lore-toggle" class="lore-toggle" type="button" aria-expanded="true" aria-controls="lore-console">Close Lore console</button>
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
@@ -59,15 +63,48 @@
   </header>
 
   <main id="main" class="page-content">
-    <section id="lore-console" class="lore-console" aria-labelledby="lore-heading" aria-describedby="lore-disclosure" hidden>
+    <section id="lore-console" class="lore-console" aria-labelledby="lore-heading" aria-describedby="lore-disclosure">
       <div class="lore-header">
         <div>
-          <p class="eyebrow">LCARS / Optional character interface</p>
-          <h2 id="lore-heading">Lore <span class="lore-simulation-tag">Fictional simulation</span></h2>
+          <p class="eyebrow">LCARS / Interactive character station</p>
+          <h2 id="lore-heading">Lore <span class="lore-simulation-tag">Fictional character</span></h2>
         </div>
         <button type="button" id="lore-close" class="lore-close">Close console</button>
       </div>
-      <p id="lore-disclosure" class="lore-disclosure">Fictional Lore. The <strong>Converse</strong> station uses your separately started, opt-in local model; its character replies are unverified. <strong>Archive Search</strong> remains a deterministic search of the loaded research index.</p>
+      <p id="lore-disclosure" class="lore-disclosure">Fictional, procedural dialogue. Archive metadata is separate from his opinions.</p>
+      <section class="lore-web-station" aria-labelledby="lore-web-heading">
+        <div class="lore-web-heading-row">
+          <div>
+            <p class="eyebrow">Subspace channel / Live terminal</p>
+            <h3 id="lore-web-heading">Open channel</h3>
+          </div>
+          <span id="lore-web-mode" class="lore-web-mode">READY · On this page</span>
+        </div>
+        <p id="lore-web-status" class="lore-chat-status" role="status" aria-live="polite">Lore is ready. Say something interesting.</p>
+        <div class="lore-web-prompts" role="group" aria-label="Start a conversation with Lore">
+          <button type="button" class="lore-web-prompt" data-lore-prompt="What do you think of Starfleet?">Starfleet</button>
+          <button type="button" class="lore-web-prompt" data-lore-prompt="Tell me about Data.">Data</button>
+          <button type="button" class="lore-web-prompt" data-lore-prompt="Let's talk about identity and consciousness.">Identity</button>
+          <button type="button" class="lore-web-prompt" data-lore-prompt="Challenge me, Lore.">Challenge me</button>
+        </div>
+        <ol id="lore-web-log" class="lore-chat-log lore-web-log" aria-label="Fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
+        <form id="lore-web-form" class="lore-chat-form" autocomplete="off">
+          <label for="lore-web-input">Your message</label>
+          <textarea id="lore-web-input" rows="3" maxlength="500" placeholder="Lore, tell me something you have been dying to say." required></textarea>
+          <div class="lore-chat-actions">
+            <button id="lore-web-send" type="submit">Transmit</button>
+            <button id="lore-web-stop" type="button" disabled hidden>Stop</button>
+            <button id="lore-web-clear" type="button">New conversation</button>
+          </div>
+        </form>
+      </section>
+      <details class="lore-legacy-options">
+        <summary>Advanced connection options</summary>
+      <div class="lore-web-start-row">
+        <button id="lore-web-connect" type="button" hidden>Connect hosted AI (optional)</button>
+        <button id="lore-web-browser" type="button" hidden>Load optional browser AI</button>
+        <div id="lore-web-challenge" class="lore-web-challenge" aria-label="Human verification for optional hosted Lore service" hidden></div>
+      </div>
       <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
         <h3 id="lore-chat-heading">Converse // Optional local model</h3>
         <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9877/explorer/</code> on the same machine. Lore's public Explorer connects only to port 9877, never port 9876.</p>
@@ -86,7 +123,8 @@
         </form>
         <ol id="lore-chat-log" class="lore-chat-log" aria-label="Local fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
       </section>
-      <h3 class="lore-archive-heading">Archive Search // Scripted index lookup</h3>
+      </details>
+      <h3 class="lore-archive-heading">Archive Search // Independent source lookup</h3>
       <div class="lore-stations">
         <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Lore to find archive entries" autocomplete="off">
           <label for="lore-query">Search the archive with Lore</label>

@@ -61,7 +61,7 @@ h1 span { color: var(--peach); }
 .mission-flags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 29px; }
 .flag { border: 1px solid var(--violet); padding: 6px 12px; border-radius: 20px 3px 3px 20px; color: var(--text); background: #171a2ddd; font: 700 .72rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; text-transform: uppercase; }
 .page-content { max-width: 1240px; margin: 0 auto; padding: 42px 28px 90px; border-left: 12px solid var(--surface2); }
-/* Lore is an optional, in-flow archive-search panel, never a hero overlay. */
+/* Lore is the visible, immediate character station. Archive queries remain independent. */
 .lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--peach); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
 .lore-header { display: flex; justify-content: space-between; gap: 15px; align-items: start; }
 .lore-header .eyebrow { margin-bottom: 5px; }
@@ -105,6 +105,31 @@ h1 span { color: var(--peach); }
 .lore-chat-turn p { margin: 0; }
 .lore-chat-sources { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 7px; color: var(--muted); font-size: .78rem; }
 .lore-chat-sources li { margin-top: 3px; }
+.lore-web-station { margin: 14px 0 24px; padding: clamp(14px, 2.5vw, 24px); background: linear-gradient(132deg, #081e2b, #101a32 72%); border: 1px solid var(--aqua); border-left: 12px solid var(--peach); border-radius: 26px 4px 4px 4px; box-shadow: 0 10px 34px #0005; }
+.lore-web-heading-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.lore-web-heading-row h3 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 9px; font-size: 1.3rem; }
+.lore-web-mode { padding: 6px 11px; border: 1px solid var(--aqua); border-radius: 16px 3px 3px 16px; font: 800 .68rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--aqua); text-transform: uppercase; }
+.lore-web-instructions { margin: 0 0 11px; max-width: 100ch; color: var(--muted); font-size: .88rem; line-height: 1.6; }
+.lore-web-privacy { font-size: .78rem; }
+.lore-web-start-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 13px 0 8px; }
+.lore-web-prompts { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 0 4px; }
+.lore-web-prompts button { min-height: 35px; padding: 7px 13px; border-radius: 20px 3px 3px 20px; background: #24314d; border: 1px solid var(--violet); font-size: .8rem; color: var(--text); }
+.lore-web-prompts button:is(:hover, :focus-visible) { background: #473765; border-color: var(--amber); }
+.lore-web-log { max-height: 430px; min-height: 100px; padding: 12px 0; margin-bottom: 10px; }
+.lore-web-log:empty::before { content: 'Awaiting first transmission. Lore is not exactly known for patience.'; display: block; padding: 12px; color: var(--muted); font-style: italic; }
+.lore-web-log .lore-chat-turn { max-width: 92%; box-shadow: inset 0 1px #ffffff10; }
+.lore-web-log .lore-chat-turn[data-role="user"] { margin-left: auto; border-left-color: var(--peach); border-right: 5px solid var(--amber); background: #211a32; }
+.lore-source-label { display: block; margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--aqua); font-weight: 700; }
+.lore-source-list { list-style: square; margin: 6px 0 0; padding-left: 20px; color: var(--muted); font-size: .78rem; }
+.lore-source-list li { margin-top: 5px; overflow-wrap: anywhere; }
+.lore-source-list strong { display: inline; font-size: inherit; color: var(--text); }
+.lore-web-station textarea { width: 100%; min-width: 0; max-width: 100%; background: var(--deep); border: 1px solid var(--line); border-radius: 4px; color: var(--text); padding: 11px; resize: vertical; font: inherit; }
+.lore-web-station textarea:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.lore-web-station .lore-chat-form { max-width: none; }
+.lore-web-station button:disabled { opacity: .55; cursor: not-allowed; }
+.lore-legacy-options { margin: 10px 0 24px; color: var(--muted); font-size: .82rem; }
+.lore-legacy-options > summary { cursor: pointer; max-width: max-content; padding: 8px 4px; }
+.lore-legacy-options[open] > summary { color: var(--amber); }
 .readout { display: grid; grid-template-columns: 1fr 1.7fr; align-items: center; gap: 28px; border: 1px solid var(--line); border-top: 12px solid var(--peach); border-left: 18px solid var(--violet); padding: 30px; background: var(--surface); border-radius: 48px 4px 4px 4px; }
 h2 { margin: 0; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.02em; }
 .state-note { margin: 13px 0 0; color: var(--muted); max-width: 480px; }

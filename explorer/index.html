@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
   <link rel="stylesheet" href="./app.css?v=85a05a5c95a603ad3f3f8f16edde50759bc4d6107160f1b7ccf5119e0d5fab67">
-  <script src="./app.js?v=b479b4cf523123b59bc972f691cb2a1d74ba86d6732f725b9215de6fdcf1bdae" defer></script>
+  <script src="./app.js?v=9c9e48741f5504fa21d487f31f8f8dc777fc8ea8833a3a4ab48189d1f5e1e6ee" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -27,6 +27,7 @@
     <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
     <a href="#films">Films <span id="film-nav-count">—</span></a>
     <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
+    <a href="#owner-opf-shelf">My local OPF shelf</a>
     <a href="#publisher-isbn-crosschecks">ISBN crosschecks <span id="publisher-isbn-nav-count">—</span></a>
     <a href="#paramount-rechecks">Studio page checks <span id="paramount-nav-count">—</span></a>
     <a href="#episode-source-cards">Publisher episode cards <span id="episode-source-nav-count">—</span></a>
@@ -147,6 +148,23 @@
       <p id="publisher-edition-summary" class="result-summary" aria-live="polite" aria-atomic="true">Waiting for publisher-edition leads.</p>
       <div id="publisher-edition-list" class="card-grid publisher-edition-grid"></div>
       <p id="publisher-edition-empty" class="empty-state" hidden>No publisher edition candidates match these filters.</p>
+    </section>
+
+    <section id="owner-opf-shelf" class="collection publisher-editions" aria-labelledby="owner-opf-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Personal terminal / Local-only file</p><h2 id="owner-opf-heading">My OPF metadata shelf</h2></div>
+        <p>Optionally select the reviewed <strong>OPF metadata search-index JSON</strong> from this device. The normalized title/creator metadata derivative <strong>already exists in the public repository</strong>; original source archives, paths and book content remain private. This UI reads your selected file in browser memory only: nothing is uploaded, fetched automatically, saved, or added to public search, Lore responses, admitted Works or research coverage. A metadata entry may be a duplicate, an edition, or a collection—not necessarily one book.</p>
+      </div>
+      <div class="publisher-edition-filters">
+        <div class="field"><label for="owner-opf-file">Choose reviewed OPF metadata search-index.json</label><input id="owner-opf-file" type="file" accept=".json,application/json" aria-describedby="owner-opf-state"></div>
+        <div class="field"><label for="owner-opf-query">Filter locally loaded title, creator or ISBN</label><input id="owner-opf-query" type="search" maxlength="150" placeholder="Search this device's metadata…" spellcheck="false" disabled></div>
+        <div class="filter-action"><button id="owner-opf-clear" type="button" disabled>Clear local shelf</button></div>
+      </div>
+      <p id="owner-opf-state" class="directory-state" role="status" aria-live="polite">No local file selected. This page does not automatically load or transmit the existing public metadata derivative.</p>
+      <p id="owner-opf-summary" class="result-summary" aria-live="polite">Private inventory not loaded; no book count inferred.</p>
+      <div id="owner-opf-list" class="card-grid" aria-label="Locally selected OPF metadata observations"></div>
+      <p id="owner-opf-empty" class="empty-state" hidden>No locally loaded metadata observations match the filter.</p>
+      <button id="owner-opf-more" type="button" hidden>Show more local observations</button>
     </section>
 
     <section id="publisher-isbn-crosschecks" class="collection publisher-isbn-crosschecks" aria-labelledby="publisher-isbn-heading">

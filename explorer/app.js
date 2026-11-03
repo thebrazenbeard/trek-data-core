@@ -2531,3 +2531,136 @@
   ]));
   loadIndex();
 })();
+
+// Explicit, in-memory, browser-local OPF metadata shelf. No fetch, upload,
+// persistent storage, or mutation of the public/admitted Explorer stores.
+(() => {
+  'use strict';
+  const byId = (id) => document.getElementById(id);
+  const fileInput = byId('owner-opf-file');
+  const queryInput = byId('owner-opf-query');
+  const clearButton = byId('owner-opf-clear');
+  const moreButton = byId('owner-opf-more');
+  const list = byId('owner-opf-list');
+  const empty = byId('owner-opf-empty');
+  const state = byId('owner-opf-state');
+  const summary = byId('owner-opf-summary');
+  const PINNED_SHA256 = 'ef3c6de334a00a55588ebd1fe839d1f5229033b1f60f78be09c8ec19d8ef8c72';
+  const MAX_BYTES = 512 * 1024;
+  const PAGE_SIZE = 40;
+  let rows = [];
+  let limit = PAGE_SIZE;
+  let generation = 0;
+
+  const node = (tag, className, text) => {
+    const item = document.createElement(tag);
+    if (className) item.className = className;
+    if (text !== undefined) item.textContent = String(text);
+    return item;
+  };
+  const normalize = (value) => String(value || '').normalize('NFKD').toLocaleLowerCase();
+
+  function checkIndex(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value) ||
+        value.data_status !== 'OWNER_PRIVATE_SOURCE_METADATA_DISCOVERY_ONLY' ||
+        value.source_container_opaque_id !== 'OWNER_PRIVATE_ST_OPF_ARCHIVE_A' ||
+        value.row_count !== 347 || !Array.isArray(value.records) || value.records.length !== 347 ||
+        value.edition_bindings_verified !== 0 || value.full_text_sources_read !== 0 ||
+        value.work_admission_effect !== 'NONE' || value.coverage_effect !== 'NONE') {
+      throw new Error('Not the reviewed owner-private, unadmitted OPF index.');
+    }
+    const expectedKeys = ['creator_search_keys', 'edition_binding', 'entry_fingerprint_sha256',
+      'isbn_search_keys', 'metadata_parse_status', 'source_identity_scope', 'source_local_id',
+      'title_search_keys', 'work_identity'].sort().join('|');
+    for (let i = 0; i < value.records.length; i++) {
+      const row = value.records[i];
+      if (!row || typeof row !== 'object' || Array.isArray(row) ||
+          Object.keys(row).sort().join('|') !== expectedKeys ||
+          row.source_local_id !== `opf-local:${String(i + 1).padStart(4, '0')}` ||
+          !/^[0-9a-f]{64}$/.test(row.entry_fingerprint_sha256) ||
+          !['PARSED', 'OPF_XML_NAMESPACE_RECOVERED'].includes(row.metadata_parse_status) ||
+          row.source_identity_scope !== 'ONE_OWNER_PRIVATE_OPF_XML_ENTRY' ||
+          row.edition_binding !== 'NOT_VERIFIED' || row.work_identity !== 'NOT_RECONCILED' ||
+          ![row.title_search_keys, row.creator_search_keys, row.isbn_search_keys].every(
+            (items) => Array.isArray(items) && items.length <= 5 && items.every(
+              (text) => typeof text === 'string' && text.length > 0 && text.length <= 180)) ||
+          row.title_search_keys.length === 0) {
+        throw new Error('Invalid OPF metadata entry.');
+      }
+    }
+    return value.records;
+  }
+
+  function render() {
+    const terms = normalize(queryInput.value).trim().split(/\s+/).filter(Boolean);
+    const matched = rows.filter((row) => {
+      const haystack = normalize([...row.title_search_keys, ...row.creator_search_keys,
+        ...row.isbn_search_keys].join(' '));
+      return terms.every((term) => haystack.includes(term));
+    });
+    const fragment = document.createDocumentFragment();
+    for (const row of matched.slice(0, limit)) {
+      const card = node('article', 'card');
+      card.append(node('p', 'eyebrow', `${row.source_local_id} · OPF metadata only`));
+      card.append(node('h3', '', row.title_search_keys.join(' / ')));
+      card.append(node('p', '', row.creator_search_keys.length
+        ? `Creator claim: ${row.creator_search_keys.join(' / ')}` : 'Creator not present in OPF metadata'));
+      card.append(node('p', '', row.isbn_search_keys.length
+        ? `ISBN candidate(s): ${row.isbn_search_keys.join(', ')}` : 'No checksum-valid ISBN recorded'));
+      card.append(node('p', '', `${row.metadata_parse_status.replaceAll('_', ' ')} · Unreconciled edition / Work`));
+      fragment.append(card);
+    }
+    list.replaceChildren(fragment);
+    empty.hidden = !rows.length || matched.length !== 0;
+    moreButton.hidden = matched.length <= limit;
+    summary.textContent = rows.length
+      ? `${matched.length} of ${rows.length} locally selected OPF metadata observations match; ${Math.min(limit, matched.length)} displayed. 0 admitted Works, 0 verified edition bindings, 0 book close reads.`
+      : 'Private inventory not loaded; no book count inferred.';
+  }
+
+  function discard() {
+    generation++;
+    rows = [];
+    limit = PAGE_SIZE;
+    fileInput.value = '';
+    queryInput.value = '';
+    queryInput.disabled = true;
+    clearButton.disabled = true;
+    state.textContent = 'No local file selected. This page does not automatically load or transmit the existing public metadata derivative.';
+    render();
+  }
+
+  fileInput.addEventListener('change', async () => {
+    const selected = fileInput.files && fileInput.files.length === 1 ? fileInput.files[0] : null;
+    discard();
+    const token = generation;
+    if (!selected) return;
+    clearButton.disabled = false;
+    state.textContent = 'Checking selected file locally. Clear cancels this pending selection.';
+    try {
+      if (!Number.isInteger(selected.size) || selected.size < 1 || selected.size > MAX_BYTES ||
+          typeof selected.arrayBuffer !== 'function') throw new Error('File size/type rejected.');
+      const bytes = new Uint8Array(await selected.arrayBuffer());
+      if (token !== generation) return;
+      if (bytes.length !== selected.size) throw new Error('File changed during selection.');
+      const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+      if (token !== generation) return;
+      const hex = [...digest].map((part) => part.toString(16).padStart(2, '0')).join('');
+      if (hex !== PINNED_SHA256) throw new Error('File differs from reviewed OPF index bytes.');
+      const parsed = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
+      rows = checkIndex(parsed);
+      queryInput.disabled = false;
+      clearButton.disabled = false;
+      state.textContent = 'Exact reviewed index loaded into browser memory only. Its normalized metadata derivative already exists in the public repository; these records are not admitted Trek research.';
+      render();
+    } catch (_) {
+      if (token !== generation) return;
+      discard();
+      state.textContent = 'Local index rejected: select the exact reviewed OPF search-index JSON. No data sent.';
+    }
+  });
+  queryInput.addEventListener('input', () => { limit = PAGE_SIZE; render(); });
+  clearButton.addEventListener('click', discard);
+  moreButton.addEventListener('click', () => { limit += PAGE_SIZE; render(); });
+  discard();
+})();

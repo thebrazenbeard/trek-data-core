@@ -444,34 +444,43 @@
   // and the explicitly documented Open Library Covers API are separate,
   // reviewed display routes; remote API thumbnails are opt-in, never mirrored.
   const artworkState = { entries: new Map(), available: false, enabled: false };
-  // No Open Library ISBN-to-cover crosswalk has yet been independently
-  // admitted for a public directory row. A sidecar cannot self-certify one:
-  // Four exact-edition API previews, independently crosschecked against the
+  // A sidecar cannot self-certify an ISBN-to-cover crosswalk. Only four
+  // exact-edition API previews are independently crosschecked against the
   // publisher rows, Open Library edition JSON and visibly inspected jackets.
   // Their COPYRIGHT_UNRESOLVED status means opt-in only. A fifth candidate,
   // Enterprise War cover ID 12857937, is deliberately HELD: the image is a
-  // title page rather than the book jacket. This map is a source identity
-  // allowlist, not a grant of artwork copyright or automatic network access.
+  // title page rather than the book jacket. Medium SHA-256/dimensions are
+  // 2026-11-03 CDN-byte observation receipts (Blotter #3466), not assurances
+  // about future remote bytes or publisher copyright. This map binds source
+  // identities; it cannot grant copyright or automatic network requests.
   const reviewedOpenLibraryEditionReceipts = new Map([
     ['directory:literature:prh-autobiography-kirk', {
       source_locator: 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/',
       isbn: '9781783297481', cover_id: 13083310,
-      edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa'
+      edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa',
+      medium_preview_sha256: 'aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a',
+      medium_preview_width: 180, medium_preview_height: 275
     }],
     ['directory:literature:prh-autobiography-picard', {
       source_locator: 'https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/',
       isbn: '9781785659409', cover_id: 10694457,
-      edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f'
+      edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f',
+      medium_preview_sha256: '9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887',
+      medium_preview_width: 180, medium_preview_height: 274
     }],
     ['directory:literature:prh-autobiography-janeway', {
       source_locator: 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/',
       isbn: '9781789095333', cover_id: 12097815,
-      edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09'
+      edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09',
+      medium_preview_sha256: '8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051',
+      medium_preview_width: 180, medium_preview_height: 273
     }],
     ['directory:literature:prh-autobiography-spock', {
       source_locator: 'https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/',
       isbn: '9781785659416', cover_id: 11945787,
-      edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d'
+      edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d',
+      medium_preview_sha256: '6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0',
+      medium_preview_width: 180, medium_preview_height: 271
     }]
   ]);
   // Likewise, a self-attested file digest/permission string in an optional
@@ -490,7 +499,7 @@
   // from validated source-local metadata. It is never presented as a frame
   // grab, poster or jacket. Actual imagery requires a separately admitted,
   // rights-reviewed artwork sidecar and explicit visitor opt-in.
-  function makeArtworkSlot(medium, key, row) {
+  function makeArtworkSlot(medium, key, row, gallery = false) {
     const label = artworkKinds[medium] || 'Media';
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
@@ -523,9 +532,10 @@
     if (source) {
       const img = el('img');
       const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
+      const mediumReceipt = remoteLibrary ? reviewedOpenLibraryEditionReceipts.get(key) : null;
       img.alt = source.alt_text;
-      img.width = 112;
-      img.height = 142;
+      img.width = gallery && mediumReceipt ? mediumReceipt.medium_preview_width : 112;
+      img.height = gallery && mediumReceipt ? mediumReceipt.medium_preview_height : 142;
       img.loading = 'lazy';
       img.decoding = 'async';
       img.referrerPolicy = 'no-referrer';
@@ -546,7 +556,7 @@
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.
       img.src = remoteLibrary
-        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`
+        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-M.jpg?default=false`
         : source.image_path;
       frame.append(img);
       const credit = el('a', 'artwork-credit', remoteLibrary ? 'Open Library · edition record' : source.attribution_text);
@@ -1238,7 +1248,10 @@
       .sort((a, b) => a.row.title.localeCompare(b.row.title) || a.key.localeCompare(b.key));
     for (const { key, source, row } of entries.slice(0, 24)) {
       const card = el('article', 'artwork-gallery-card');
-      const art = makeArtworkSlot(row.medium || 'FILM', key, row);
+      if (artworkState.enabled && source.provider === 'OPEN_LIBRARY_COVERS_API') {
+        card.className += ' artwork-gallery-card-medium';
+      }
+      const art = makeArtworkSlot(row.medium || 'FILM', key, row, true);
       const copy = el('div', 'artwork-gallery-copy');
       copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
       copy.append(el('h4', '', row.title));
@@ -1382,6 +1395,14 @@
         }
       }
       entries.set(item.row_id, item);
+    }
+    // Medium jackets are an atomic, independently inspected quartet. If one
+    // row or edition is missing, publish none of the remote cover candidates.
+    const coverRows = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API');
+    if (coverRows.length && (coverRows.length !== reviewedOpenLibraryEditionReceipts.size ||
+        [...reviewedOpenLibraryEditionReceipts.keys()].some((key) =>
+          entries.get(key)?.provider !== 'OPEN_LIBRARY_COVERS_API'))) {
+      throw new Error('The four independently reviewed Open Library jackets must be released as one exact source-bound set.');
     }
     artworkState.entries = entries;
     const apiCount = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API').length;

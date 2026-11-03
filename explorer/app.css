@@ -264,6 +264,12 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-gallery-summary { margin: 12px 0; border-left: 5px solid var(--aqua); padding: 7px 11px; color: var(--aqua); background: #081521; font: 750 .68rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .artwork-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); gap: 12px; }
 .artwork-gallery-card { display: grid; grid-template-columns: 112px minmax(0,1fr); align-items: start; gap: 14px; min-width: 0; border: 1px solid var(--line); border-left: 7px solid var(--peach); border-radius: 24px 4px 4px 4px; padding: 13px; background: var(--surface2); }
+/* Medium Open Library jackets use their independently observed native 180px
+   width in the opt-in shelf; other directory artwork remains compact. */
+.artwork-gallery[data-preview-state="on"] .artwork-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); }
+.artwork-gallery-card-medium { grid-template-columns: 180px minmax(0,1fr); }
+.artwork-gallery-card-medium .artwork-panel, .artwork-gallery-card-medium .artwork-slot { width: 180px; }
+.artwork-gallery-card-medium .artwork-slot { height: 275px; }
 .artwork-gallery[data-preview-state="off"] .artwork-gallery-card { border-left-color: var(--violet); }
 .artwork-gallery[data-preview-state="off"] .artwork-gallery-card .artwork-slot { outline: 1px solid var(--aqua); outline-offset: 2px; }
 .artwork-gallery-copy { min-width: 0; overflow-wrap: anywhere; }
@@ -352,6 +358,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .directory-card.media-card, .film-grid .media-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 12px; }
   .artwork-gallery { padding: 12px; border-top-width: 8px; border-left-width: 8px; }
   .artwork-gallery-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 10px; }
+  .artwork-gallery-card.artwork-gallery-card-medium { grid-template-columns: minmax(0, 1fr); }
+  .artwork-gallery-card-medium .artwork-panel { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .artwork-gallery-card-medium .artwork-caption { width: 100%; text-align: center; }
   .artwork-panel, .artwork-slot { width: 82px; }
   .artwork-slot { height: 118px; }
   .artwork-slot::before { top: 12px; left: 10px; width: 54px; height: 63px; }

@@ -1260,7 +1260,12 @@ test('only four independently visually identified fictional-autobiography jacket
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
   assert.deepEqual(rendered.map((img) => img.src).sort(),
-    reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-S.jpg?default=false`).sort());
+    reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-M.jpg?default=false`).sort(),
+    'four same-edition 180px jacket variants replace only the old small JPEGs after visitor opt-in');
+  const galleryImages = traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img');
+  assert.deepEqual(galleryImages.map((img) => img.src).sort(), rendered.map((img) => img.src).sort());
+  assert.ok(galleryImages.every((img) => img.width === 180 && img.height >= 271 && img.height <= 275),
+    'gallery renders independently reviewed native-size medium jackets');
   assert.ok(rendered.every((img) => img.loading === 'lazy' && img.referrerPolicy === 'no-referrer'));
   assert.match(nodes.get('discovery-list').textContent, /Open Library cover preview · copyright unresolved/);
   const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
@@ -1282,6 +1287,21 @@ test('only four independently visually identified fictional-autobiography jacket
     'hiding must remove remote images from the gallery too');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'hiding imagery must remove all remote image elements, not merely hide gallery visuals');
+  // An old detached M image can emit its error after Show -> Hide -> Show.
+  // With no M->S retry machinery this must never schedule a stale S request.
+  nodes.get('artwork-toggle').fire('click');
+  const fresh = traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img');
+  assert.equal(fresh.length, 4);
+  galleryImages[0].fire('error');
+  assert.deepEqual(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img'), fresh,
+    'detached earlier image errors cannot change the newly active gallery generation');
+  assert.ok(fresh.every((img) => img.src.endsWith('-M.jpg?default=false')),
+    'no small fallback requests are introduced by stale callbacks');
+  fresh[0].fire('error');
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 3,
+    'a current failed medium jacket returns to original LCARS art, with no external retry');
+  nodes.get('artwork-toggle').fire('click');
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0);
 
   // A matching ISBN/JSON digest alone is not sufficient: this purported
   // Enterprise War cover ID actually displayed an interior title page.
@@ -1299,6 +1319,52 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(rejected.get('artwork-toggle').disabled, true,
     'a visually rejected interior title page cannot be marketed as a book cover');
   assert.match(rejected.get('artwork-state').textContent, /crosswalk receipt/);
+});
+
+test('four medium jackets are an atomic source-bound set; partial manifests show only local LCARS art', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const approved = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
+  for (const count of [1, 3]) {
+    const partial = structuredClone(approved);
+    partial.artwork = partial.artwork.slice(0, count);
+    partial.artwork_count = count;
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, partial, 200);
+    assert.equal(nodes.get('artwork-toggle').disabled, true, `partial ${count}/4 set must be rejected`);
+    assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0);
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
+    assert.match(nodes.get('artwork-state').textContent, /rejected/);
+  }
+});
+
+test('medium-cover source bytes and dimensions are code-pinned without changing the legacy small release sidecar', () => {
+  const shippedBytes = readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url));
+  assert.equal(createHash('sha256').update(shippedBytes).digest('hex'),
+    '5a7b28ea71f75d717f835b47e308dadfa059c589198452da03c66127b0cc835f',
+    'existing v1.2 sidecar must remain byte-identical for old cached readers');
+  const sourceStart = SCRIPT.indexOf('const reviewedOpenLibraryEditionReceipts = new Map([');
+  const sourceEnd = SCRIPT.indexOf('\n  ]);', sourceStart);
+  assert.ok(sourceStart >= 0 && sourceEnd > sourceStart);
+  const receipts = SCRIPT.slice(sourceStart, sourceEnd);
+  const pins = [
+    ['kirk', '13083310', '9781783297481', 'aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a', 275],
+    ['picard', '10694457', '9781785659409', '9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887', 274],
+    ['janeway', '12097815', '9781789095333', '8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051', 273],
+    ['spock', '11945787', '9781785659416', '6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0', 271]
+  ];
+  for (const [slug, cover, isbn, sha, height] of pins) {
+    const entryStart = receipts.indexOf(`['directory:literature:prh-autobiography-${slug}'`);
+    assert.ok(entryStart >= 0, `missing source-row pin ${slug}`);
+    const nextEntry = receipts.indexOf("\n    ['directory:", entryStart + 5);
+    const entry = receipts.slice(entryStart, nextEntry < 0 ? undefined : nextEntry);
+    assert.match(entry, new RegExp(`cover_id: ${cover}\\b`));
+    assert.match(entry, new RegExp(`isbn: '${isbn}'`));
+    assert.ok(entry.includes(`medium_preview_sha256: '${sha}'`));
+    assert.ok(entry.includes(`medium_preview_width: 180, medium_preview_height: ${height}`));
+  }
+  assert.ok(!receipts.includes('12857937'), 'held Enterprise War interior title page remains excluded');
+  assert.match(SCRIPT, /-M\.jpg\?default=false/);
+  assert.doesNotMatch(SCRIPT, /-S\.jpg\?default=false/,
+    'new browser code must not have an M-to-S retry path');
 });
 
 test('PRH distributor discovery leads require exact fictional-memoir source scope', async () => {

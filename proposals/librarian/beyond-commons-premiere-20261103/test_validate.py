@@ -31,6 +31,11 @@ class PhotoProposalTests(unittest.TestCase):
     def test_rejects_mislabeled_still(self) -> None:
         self.mutate_fails({"image_kind": "FILM_STILL"}, key="candidate")
 
+    def test_rejects_false_frame_claim_even_with_premiere_keywords(self) -> None:
+        self.mutate_fails({
+            "suggested_alt": "Frame from Star Trek Beyond showing Captain Kirk on Enterprise bridge, premiere microphone"
+        }, key="candidate")
+
     def test_rejects_wrong_film(self) -> None:
         self.mutate_fails({"source_local_film_id": "film-into-darkness"}, key="candidate")
 

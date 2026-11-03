@@ -82,7 +82,11 @@ def validate(packet: dict, root: Path = ROOT) -> None:
     require(candidate["film_title"] == film["title"], "film title mismatch")
     require(candidate["official_film_source"] == film["source_locator"], "first-party source mismatch")
     require(candidate["image_kind"] == "DOCUMENTARY_JAPAN_FILM_PREMIERE_EVENT_PHOTOGRAPH_NOT_FILM_STILL_OR_POSTER", "genre must be documentary")
-    require("premiere" in candidate["suggested_alt"].lower() and "microphone" in candidate["suggested_alt"], "event alt required")
+    require(
+        candidate["suggested_alt"]
+        == "J. J. Abrams and Simon Pegg at the October 2016 Star Trek Beyond Japan premiere, with Simon Pegg holding a microphone",
+        "exact event caption required; never let a film-frame or scene claim pass",
+    )
     require(candidate["creator"] == "Dick Thomas Johnson", "creator attribution")
     require(candidate["event_place"] == "Japan" and candidate["event_date"] == "2016-10-19", "event provenance")
     file_part = "Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg"

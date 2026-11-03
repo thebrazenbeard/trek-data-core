@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -49,6 +50,65 @@ class EpisodeSourceCardTests(unittest.TestCase):
             query(data, series="INCORRECT")
         with self.assertRaises(ValueError):
             query(data, limit=21)
+
+    def test_exact_source_local_lookup_receipt_and_paginated_facets(self):
+        data = builder.build()
+        # A source-local card is retrievable without assuming it identifies an
+        # admitted global Work, or saying that its full episode was inspected.
+        first = data["rows"][0]
+        found = query(data, local_id=first["source_local_id"], facets=True)
+        self.assertEqual(found["matching_count"], 1)
+        self.assertEqual(found["rows"], [first])
+        self.assertEqual(found["identity_scope"], "SOURCE_LOCAL_CARD_NOT_ADMITTED_WORK")
+        self.assertEqual(found["admission_effect"], "NONE")
+        self.assertEqual(found["coverage_effect"], "NONE")
+        self.assertEqual(found["matched_facets"]["source_batch"], {first["source_batch"]: 1})
+        self.assertEqual(found["matched_facets"]["source_status"], {"HELD_PUBLISHER_GUIDE_ONLY": 1})
+        self.assertEqual(found["rows"][0]["source_input_sha256"], first["source_input_sha256"])
+        self.assertFalse(found["rows"][0]["full_episode_read"])
+        self.assertEqual(query(data, local_id="work:invented")["matching_count"], 0)
+        self.assertEqual(query(data, local_id=first["row_id"])["matching_count"], 0)
+
+        first_page = query(data, series="SNW", source_batch="SNW-LAST5", limit=2, facets=True)
+        second_page = query(data, series="SNW", source_batch="SNW-LAST5", limit=2, offset=2)
+        last_page = query(data, series="SNW", source_batch="SNW-LAST5", limit=2, offset=4)
+        self.assertEqual(first_page["matching_count"], 5)
+        self.assertEqual(first_page["returned_count"], 2)
+        self.assertEqual(first_page["next_offset"], 2)
+        self.assertEqual(second_page["next_offset"], 4)
+        self.assertIsNone(last_page["next_offset"])
+        self.assertEqual(first_page["matched_facets"]["source_batch"], {"SNW-LAST5": 5})
+        self.assertEqual(
+            first_page["rows"] + second_page["rows"] + last_page["rows"],
+            [row for row in data["rows"] if row["source_batch"] == "SNW-LAST5"],
+        )
+        self.assertEqual(query(data, offset=99, facets=True)["rows"], [])
+        self.assertEqual(query(data, offset=99)["returned_count"], 0)
+        for invalid in (-1, True, 1_000_001):
+            with self.subTest(offset=invalid), self.assertRaisesRegex(ValueError, "invalid query offset"):
+                query(data, offset=invalid)
+        with self.assertRaisesRegex(ValueError, "invalid source-local card ID"):
+            query(data, local_id="x" * 101)
+        with self.assertRaisesRegex(ValueError, "invalid source batch"):
+            query(data, source_batch="x" * 101)
+        with self.assertRaisesRegex(ValueError, "invalid facet request"):
+            query(data, facets=1)
+
+    def test_cli_exact_lookup_and_invalid_offset_fail_closed(self):
+        tool = builder.ROOT / "tools" / "query_episode_source_cards.py"
+        command = [sys.executable, str(tool)]
+        success = subprocess.run(command + ["--id", "snw-s3-e03-pplus", "--facets"],
+                                 capture_output=True, text=True, check=True)
+        result = json.loads(success.stdout)
+        self.assertEqual(result["matching_count"], 1)
+        self.assertEqual(result["rows"][0]["source_local_id"], "snw-s3-e03-pplus")
+        self.assertEqual(result["rows"][0]["source_status"], "HELD_PUBLISHER_GUIDE_ONLY")
+        self.assertEqual(result["admission_effect"], "NONE")
+        failure = subprocess.run(command + ["--offset", "-1"],
+                                 capture_output=True, text=True)
+        self.assertNotEqual(failure.returncode, 0)
+        self.assertIn("invalid query offset", failure.stderr)
+        self.assertNotIn("Traceback", failure.stderr)
 
     def test_browser_code_owned_public_row_sha_pins_bind_all_published_fields(self):
         script = (builder.ROOT / "explorer/app.js").read_text(encoding="utf-8")

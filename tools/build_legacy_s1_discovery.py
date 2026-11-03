@@ -25,6 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools import validate_publisher_episode_roster as roster
+from tools import publisher_output_directory as dirguard
 
 
 BASE = Path("proposals/discovery/legacy-paramount-season1-20261102")
@@ -226,8 +227,7 @@ def source_index(pages: list[dict]) -> dict:
 
 def ingest(raw_dir: Path) -> int:
     root = ROOT / BASE
-    if not root.is_dir():
-        root.mkdir(parents=True)
+    dirguard.ensure_directory(ROOT, BASE)
     ensure_no_symlink(root)
     # Detect a forged index leaf before making any other generated changes.
     ensure_no_symlink(root / "index.json")
@@ -240,7 +240,7 @@ def ingest(raw_dir: Path) -> int:
         observation = csv_bytes(rows)
         csv_path = root / f"{mission}.csv"
         bundle_path = root / mission / "bundle.json"
-        bundle_path.parent.mkdir(parents=True, exist_ok=True)
+        dirguard.ensure_directory(ROOT, BASE / mission)
         for path in (csv_path, bundle_path):
             ensure_no_symlink(path)
         safe_atomic_write(BASE / f"{mission}.csv", observation)

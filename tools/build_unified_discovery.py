@@ -28,6 +28,7 @@ if __package__:
     from . import build_publisher_s4_discovery as season4
     from . import build_publisher_s5_discovery as season5
     from . import build_publisher_s6_discovery as season6
+    from . import build_publisher_s7_discovery as season7
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -42,6 +43,7 @@ else:
     import build_publisher_s4_discovery as season4
     import build_publisher_s5_discovery as season5
     import build_publisher_s6_discovery as season6
+    import build_publisher_s7_discovery as season7
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -448,6 +450,53 @@ def build_bytes(root: Path) -> bytes:
         sources[str(bundle_path)] = bundle_digest
     if season6_count != 78:
         raise ValueError(f"Season 6 publisher observation count changed from reviewed 78: {season6_count}")
+
+    # The three Season 7 guides are candidate metadata, not a canonical
+    # season/Work census. The Voyager publisher omits S7E10; preserve that
+    # source gap and do not create a synthetic episode observation.
+    season7_index_path = season7.BASE / "index.json"
+    season7_index, season7_digest = _document(root, season7_index_path)
+    sources[str(season7_index_path)] = season7_digest
+    expected_s7 = {"tng": 25, "ds9": 25, "voy": 24}
+    if (set(season7_index) != season7.INDEX_KEYS or
+            {key: season7_index[key] for key in season7.INDEX_KEYS - {"source_pages"}}
+            != {key: season7.source_index([])[key] for key in season7.INDEX_KEYS - {"source_pages"}} or
+            not isinstance(season7_index.get("source_pages"), list) or
+            len(season7_index["source_pages"]) != len(season7.SLUGS)):
+        raise ValueError("Season 7 source index is not bounded candidate-only metadata")
+    season7_count = 0
+    for mission, page in zip(season7.SLUGS, season7_index["source_pages"]):
+        if (not isinstance(page, dict) or set(page) != season7.PAGE_KEYS or
+                page["mission_id"] != mission or
+                page["official_page"] != season7.official_url(mission) or
+                not re.fullmatch(r"[a-f0-9]{64}", str(page["source_body_sha256"])) or
+                type(page["source_body_bytes"]) is not int or
+                not 10_000 <= page["source_body_bytes"] <= 3_000_000):
+            raise ValueError("Season 7 publisher page receipt invalid or misbound")
+        csv_path = season7.BASE / f"{mission}.csv"
+        bundle_path = season7.BASE / mission / "bundle.json"
+        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+        if hashlib.sha256(csv_raw).hexdigest() != page["observation_csv_sha256"]:
+            raise ValueError("Season 7 source CSV receipt digest mismatch")
+        rows = season7.parse_csv(csv_raw)
+        bundle, bundle_digest = _document(
+            root, bundle_path, season7.source_tools.serialized(season7.bundle(mission, rows)))
+        roster.validate(bundle, catalog)
+        if (len(rows) != expected_s7[mission] or
+                page["listed_slot_count"] != len(rows) or
+                bundle["listed_slot_count"] != len(rows) or
+                bundle["observation"]["primary_locator"] != page["official_page"]):
+            raise ValueError("Season 7 publisher CSV, source or bundle changed")
+        for idx, (season, episode, title) in enumerate(rows):
+            entries.append(_row(f"publisher:s7:{mission}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                title, f"{mission.upper()} S{season}E{episode}",
+                                season7_index["independence_group"], str(bundle_path),
+                                page["official_page"], ("Official publisher season-7 listing",)))
+            season7_count += 1
+        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+        sources[str(bundle_path)] = bundle_digest
+    if season7_count != 74:
+        raise ValueError(f"Season 7 publisher observation count changed from reviewed 74: {season7_count}")
 
     if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
             shorts_catalog.get("admission_effect") != "NONE" or

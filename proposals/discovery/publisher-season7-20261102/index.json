@@ -1,0 +1,37 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 25,
+      "mission_id": "tng",
+      "observation_csv_sha256": "1b66b02df827de8456e0c3af12719da104dd70cde8c30e804e4d3aa2a453fb82",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/7/",
+      "source_body_bytes": 314757,
+      "source_body_sha256": "ac21c7177380da2fec93d63e8a4a6452bf2cf3516bfbc37056e529f3a6c2198d"
+    },
+    {
+      "listed_slot_count": 25,
+      "mission_id": "ds9",
+      "observation_csv_sha256": "1dbfe6a4b6af54a5eb2831108d358c8c3f984346b1b3a79de6301ccf2dc22aea",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+      "source_body_bytes": 314706,
+      "source_body_sha256": "23dcb2cc9d7baec5e13ee27f80054ee3dcf9f95ae86985f6ecaaf1303f946cf1"
+    },
+    {
+      "listed_slot_count": 24,
+      "mission_id": "voy",
+      "observation_csv_sha256": "e5cb811a636be2fe526e13d19843bad1d235b21d2f25b6ea87096821a9bd632d",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "source_body_bytes": 310720,
+      "source_body_sha256": "86bbcfc3e8758b3db42c8bfcd548db7002d73a92e170a4895d7f7bafb7d30656"
+    }
+  ]
+}

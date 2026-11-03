@@ -1,0 +1,68 @@
+{
+  "schema_version": "trek-scouts-asteroid-publisher-description-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_access": "SEARCH_RETRIEVED_PUBLIC_YOUTUBE_VIDEO_DESCRIPTION_NOT_VIDEO_PAGE_OPENED",
+  "verification_class": "PUBLISHER_DESCRIPTION_METADATA_READ_NOT_ANIMATION_VIEWED",
+  "source_family": "publisher:paramount-nickelodeon-youtube",
+  "publisher_channel_display_name": "Blaze and the Monster Machines",
+  "independent_upstream_families": 1,
+  "short_count": 5,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "animations_viewed": false,
+  "video_pages_opened": false,
+  "source_bound": false,
+  "close_read": false,
+  "raw_source_page_sha256": null,
+  "description_paraphrases": [
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:01",
+      "publisher_video_id": "j-KvjtSgfJs",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=j-KvjtSgfJs",
+      "publisher_video_display_date": "2025-09-08",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "With a huge soap-bar asteroid bearing down on them, JR, Roo, and Sprocket must quickly cooperate and choose a way to stop it."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:02",
+      "publisher_video_id": "x1mIN62O00s",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=x1mIN62O00s",
+      "publisher_video_display_date": "2025-09-08",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "An enormous meatball from the Noodle Nebula approaches the Scouts, who have only minutes to devise a defense before it arrives."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:03",
+      "publisher_video_id": "PfaNbFeRCm4",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=PfaNbFeRCm4",
+      "publisher_video_display_date": "2025-09-19",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A fast-approaching chalk asteroid forces the Scouts to use their technical skills together, while the publisher promises a fireworks display."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:04",
+      "publisher_video_id": "j3asH2YbKz8",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=j3asH2YbKz8",
+      "publisher_video_display_date": "2025-10-04",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "As a giant piñata-shaped asteroid closes in, the Scouts must respond to the threat and Finn's interference amid Sprocket's birthday celebration."
+    },
+    {
+      "directory_row_id": "short:scouts:asteroid_blasters:05",
+      "publisher_video_id": "60SkYJy-_2U",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=60SkYJy-_2U",
+      "publisher_video_display_date": "2025-10-11",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The Scouts must find a way to divert a giant booger-like asteroid before impact, with Roo's boomerang rescue also teased."
+    }
+  ]
+}

@@ -444,14 +444,15 @@
   // and the explicitly documented Open Library Covers API are separate,
   // reviewed display routes; remote API thumbnails are opt-in, never mirrored.
   const artworkState = { entries: new Map(), available: false, enabled: false };
-  // No Open Library ISBN-to-cover crosswalk has yet been independently
-  // admitted for a public directory row. A sidecar cannot self-certify one:
-  // Four exact-edition API previews, independently crosschecked against the
+  // A sidecar cannot self-certify an ISBN-to-cover crosswalk. Only four
+  // exact-edition API previews are independently crosschecked against the
   // publisher rows, Open Library edition JSON and visibly inspected jackets.
   // Their COPYRIGHT_UNRESOLVED status means opt-in only. A fifth candidate,
   // Enterprise War cover ID 12857937, is deliberately HELD: the image is a
-  // title page rather than the book jacket. This map is a source identity
-  // allowlist, not a grant of artwork copyright or automatic network access.
+  // title page rather than the book jacket. Medium SHA-256/dimensions are
+  // 2026-11-03 CDN-byte observation receipts (Blotter #3466), not assurances
+  // about future remote bytes or publisher copyright. This map binds source
+  // identities; it cannot grant copyright or automatic network requests.
   const reviewedOpenLibraryEditionReceipts = new Map([
     ['directory:literature:prh-autobiography-kirk', {
       source_locator: 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/',
@@ -535,8 +536,7 @@
     if (source) {
       const img = el('img');
       const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
-      const mediumPreview = remoteLibrary && source.image_size === 'M';
-      const mediumReceipt = mediumPreview ? reviewedOpenLibraryEditionReceipts.get(key) : null;
+      const mediumReceipt = remoteLibrary ? reviewedOpenLibraryEditionReceipts.get(key) : null;
       if (gallery && mediumReceipt) {
         panel.className += ' artwork-panel-medium';
         frame.className += ' artwork-slot-medium';
@@ -554,17 +554,9 @@
         ({ PUBLICITY_STILL: 'Rights-reviewed publicity still', POSTER: 'Rights-reviewed poster',
           COVER: 'Rights-reviewed cover', OTHER: 'Rights-reviewed source image' }[source.artwork_kind]);
       status.textContent = kind;
-      let attemptedSmallFallback = false;
       img.addEventListener('error', () => {
-        // The separately reviewed S jacket remains a safe once-only fallback
-        // after a failed M request. No retry is allowed after opt-out, and the
-        // second failure returns to original LCARS index art.
-        if (mediumPreview && !attemptedSmallFallback && artworkState.enabled) {
-          attemptedSmallFallback = true;
-          status.textContent = 'Medium jacket unavailable · reviewed small Open Library preview';
-          img.src = `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`;
-          return;
-        }
+        // A failed source image returns directly to local LCARS art. There is
+        // no cross-generation M->S retry when an old detached image errors.
         frame.className = frame.className.replace(' artwork-has-source', '');
         frame.setAttribute('role', 'img');
         frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
@@ -574,7 +566,7 @@
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.
       img.src = remoteLibrary
-        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-${mediumPreview ? 'M' : 'S'}.jpg?default=false`
+        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-M.jpg?default=false`
         : source.image_path;
       frame.append(img);
       const credit = el('a', 'artwork-credit', remoteLibrary ? 'Open Library · edition record' : source.attribution_text);
@@ -1267,16 +1259,16 @@
     for (const { key, source, row } of entries.slice(0, 24)) {
       const card = el('article', 'artwork-gallery-card');
       const art = makeArtworkSlot(row.medium || 'FILM', key, row, true);
-      if (source.image_size === 'M') card.className += ' artwork-gallery-card-medium';
+      if (artworkState.enabled && source.provider === 'OPEN_LIBRARY_COVERS_API') {
+        card.className += ' artwork-gallery-card-medium';
+      }
       const copy = el('div', 'artwork-gallery-copy');
       copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
       copy.append(el('h4', '', row.title));
       copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
       copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
         ? artworkState.enabled
-          ? source.image_size === 'M'
-            ? 'Medium Open Library API jacket preview · 180 pixels wide (small reviewed fallback if unavailable) · copyright unresolved'
-            : 'Small Open Library API thumbnail · underlying copyright unresolved'
+          ? 'Medium Open Library API jacket preview · 180 pixels wide · copyright unresolved'
           : 'Jacket preview available on request · no external image loaded'
         : artworkState.enabled
           ? 'Rights-reviewed public image · see source attribution'
@@ -1331,21 +1323,17 @@
     } catch (_) { return false; }
   }
 
-  function acceptArtworkCatalog(data, expectedVersion) {
+  function acceptArtworkCatalog(data) {
     const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
       Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
     const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator',
       'rights_status', 'rights_receipt_sha256', 'artwork_kind', 'attribution_text', 'attribution_url'];
     const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
-    const mediumLibraryKeys = [...openLibraryKeys, 'image_size'];
-    const smallCatalog = data?.schema_version === '1.2.0';
-    const mediumCatalog = data?.schema_version === '1.3.0';
-    // This dual reader is a no-blank rollout bridge. v1.2 may show only the
-    // independently approved S covers; v1.3 requires M and the same exact
-    // code-owned four row/edition/cover pins. Never infer arbitrary sizes.
-    if (!exactKeys(data, rootKeys) || (!smallCatalog && !mediumCatalog) ||
-        data.schema_version !== expectedVersion ||
+    // Preserve the accepted v1.2 source/rights identity sidecar byte-for-byte.
+    // The independently inspected medium *rendition* is a code-owned UI choice,
+    // not a second runtime manifest or any new permission to fetch by default.
+    if (!exactKeys(data, rootKeys) || data?.schema_version !== '1.2.0' ||
         data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
         data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
         !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
@@ -1366,8 +1354,7 @@
       }
       if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
         const literaryRow = sourceRows.get(item.row_id);
-        if (!exactKeys(item, mediumCatalog ? mediumLibraryKeys : openLibraryKeys) ||
-            (mediumCatalog && item.image_size !== 'M') ||
+        if (!exactKeys(item, openLibraryKeys) ||
             literaryRow.medium !== 'LITERATURE' ||
             !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
             typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
@@ -1396,10 +1383,10 @@
         if (!receipt || receipt.source_locator !== item.source_locator ||
             receipt.isbn !== item.isbn || receipt.cover_id !== item.cover_id ||
             receipt.edition_metadata_sha256 !== item.edition_metadata_sha256 ||
-            (mediumCatalog && (receipt.alt_text !== item.alt_text ||
+            receipt.alt_text !== item.alt_text ||
               !/^[a-f0-9]{64}$/.test(receipt.medium_preview_sha256) ||
               receipt.medium_preview_width !== 180 ||
-              !Number.isSafeInteger(receipt.medium_preview_height)))) {
+              !Number.isSafeInteger(receipt.medium_preview_height)) {
           throw new Error('External cover lacks an independently reviewed row/edition/cover crosswalk receipt.');
         }
       } else if (!exactKeys(item, localKeys) ||
@@ -1426,10 +1413,11 @@
       }
       entries.set(item.row_id, item);
     }
-    if (mediumCatalog && (entries.size !== reviewedOpenLibraryEditionReceipts.size ||
+    const coverRows = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API');
+    if (coverRows.length && (coverRows.length !== reviewedOpenLibraryEditionReceipts.size ||
         [...reviewedOpenLibraryEditionReceipts.keys()].some((key) =>
           entries.get(key)?.provider !== 'OPEN_LIBRARY_COVERS_API'))) {
-      throw new Error('Medium artwork release must contain all four independently reviewed jackets, never a partial replacement.');
+      throw new Error('The four independently reviewed Open Library jackets must be released as one exact source-bound set.');
     }
     artworkState.entries = entries;
     const apiCount = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API').length;
@@ -1437,26 +1425,8 @@
   }
 
   async function loadArtworkCatalog() {
-    // Keep the accepted v1.2 S manifest intact for old HTML/JS retained in
-    // browser or Pages caches. The new v1.3 M manifest is an *additive* URL,
-    // not an in-place schema overwrite. Invalid or absent M can only fall
-    // back to the separately reviewed v1.2 S thumbnails.
-    let mediumProblem = null;
-    try {
-      const medium = await fetch('./artwork-catalog-v1.3.json', { cache: 'no-store' });
-      if (medium.ok) {
-        try {
-          acceptArtworkCatalog(await medium.json(), '1.3.0');
-          return;
-        } catch (error) {
-          mediumProblem = error.message || 'v1.3 medium release rejected';
-        }
-      } else if (medium.status !== 404) {
-        mediumProblem = `HTTP ${medium.status}`;
-      }
-    } catch (error) {
-      mediumProblem = error.message || 'medium manifest unavailable';
-    }
+    // Current JS requires the same accepted v1.2 four-row source identity
+    // gate as old cached JS. Only the opt-in rendition changes S -> M.
     try {
       const response = await fetch('./artwork-catalog.json', { cache: 'no-store' });
       if (response.status === 404) {
@@ -1464,10 +1434,7 @@
         return;
       }
       if (!response.ok) throw new Error(`Artwork manifest returned HTTP ${response.status}.`);
-      acceptArtworkCatalog(await response.json(), '1.2.0');
-      if (mediumProblem) {
-        byId('artwork-state').textContent += ` Medium rendition held (${mediumProblem}); four reviewed small previews remain available.`;
-      }
+      acceptArtworkCatalog(await response.json());
     } catch (error) {
       setArtworkAvailability(false, `Artwork release was rejected: ${error.message || 'Check artwork rights receipts.'}`);
     }

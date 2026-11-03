@@ -77,6 +77,7 @@ function traverse(node, predicate) {
 async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
+  nodes.requested = requested;
   const inFlightDigests = new Set();
   nodes.get('lore-console').hidden = true;
   nodes.get('navigation-scroll-hint').hidden = true;
@@ -180,7 +181,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   // Promise callbacks update the DOM. This avoids machine-load timing races
   // without a guessed fixed delay or swallowing a rejected request.
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
-    './artwork-catalog-v1.3.json', './synopsis-catalog.json',
+    './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
     './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json', './episode-source-cards.json'];
   const deadline = Date.now() + 5000;
@@ -188,7 +189,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   while (quietTurns < 2 && Date.now() < deadline) {
     await new Promise((resolve) => setImmediate(resolve));
     if (optionalPaths.every((path) => requested.has(path)) &&
-        (requested.has('./artwork-catalog.json') || mediumStatus >= 200 && mediumStatus < 300) &&
+        requested.has('./artwork-catalog.json') &&
         inFlightDigests.size === 0) quietTurns++;
     else quietTurns = 0;
   }
@@ -1269,7 +1270,7 @@ test('only four independently visually identified fictional-autobiography jacket
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
   assert.deepEqual(rendered.map((img) => img.src).sort(),
-    reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-S.jpg?default=false`).sort());
+    reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-M.jpg?default=false`).sort());
   assert.ok(rendered.every((img) => img.loading === 'lazy' && img.referrerPolicy === 'no-referrer'));
   assert.match(nodes.get('discovery-list').textContent, /Open Library cover preview · copyright unresolved/);
   const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
@@ -1310,7 +1311,7 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.match(rejected.get('artwork-state').textContent, /crosswalk receipt/);
 });
 
-test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old browser clients', async () => {
+test('direct four medium jackets use one accepted v1.2 gate; v1.3 injection is ignored', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const small = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
   assert.equal(small.schema_version, '1.2.0', 'the legacy URL must remain unchanged for old cached app.js');
@@ -1318,6 +1319,8 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
   medium.schema_version = '1.3.0';
   for (const entry of medium.artwork) entry.image_size = 'M';
   const nodes = await runMediumArtwork(directory, medium, 200, small);
+  assert.equal(nodes.requested.has('./artwork-catalog-v1.3.json'), false,
+    'the obsolete dual-reader URL must not be requested even when a forged sidecar exists');
   assert.equal(nodes.get('artwork-toggle').disabled, false);
   assert.equal(nodes.get('artwork-gallery').hidden, false,
     'accepted #420 preserves source-linked LCARS gallery before image consent');
@@ -1337,7 +1340,7 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
     img.referrerPolicy === 'no-referrer'));
   assert.equal(traverse(gallery, (n) => n.className === 'artwork-panel artwork-panel-medium').length, 4,
     'native-width medium jackets need their own responsive gallery presentation');
-  assert.match(gallery.textContent, /Medium Open Library API jacket preview · 180 pixels wide .*copyright unresolved/);
+  assert.match(gallery.textContent, /Medium Open Library API jacket preview · 180 pixels wide · copyright unresolved/);
   assert.doesNotMatch(gallery.textContent, /Enterprise War/);
   const credits = traverse(gallery, (n) => n.className === 'artwork-credit');
   assert.equal(credits.length, 4);
@@ -1345,33 +1348,33 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
   const firstMediumImage = galleryImages[0];
   const firstMediumSrc = firstMediumImage.src;
   firstMediumImage.fire('error');
-  assert.match(firstMediumImage.src, /-S\.jpg\?default=false$/,
-    'a failed M request may retry only its exact already-approved S jacket');
-  assert.equal(firstMediumImage.referrerPolicy, 'no-referrer');
-  assert.equal(firstMediumImage.loading, 'lazy');
-  firstMediumImage.fire('error');
   assert.equal(traverse(gallery, (n) => n === firstMediumImage).length, 0,
-    'a failed M and S must return to original LCARS art, without an infinite network retry');
+    'a failed M returns directly to original LCARS art, with no small network retry');
   assert.match(gallery.textContent, /Sourced image unavailable · LCARS record graphic/);
-  assert.notEqual(firstMediumSrc, firstMediumImage.src);
+  assert.equal(firstMediumSrc, firstMediumImage.src, 'failure cannot schedule a second URL');
   const pendingMediumImage = galleryImages[1];
   const pendingSrc = pendingMediumImage.src;
   nodes.get('artwork-toggle').fire('click');
   assert.equal(traverse(gallery, (n) => n.tagName === 'img').length, 0);
+  nodes.get('artwork-toggle').fire('click');
+  const newer = traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img');
+  assert.equal(newer.length, 4);
   pendingMediumImage.fire('error');
   assert.equal(pendingMediumImage.src, pendingSrc,
-    'late image error after opt-out must not initiate an S fallback request');
+    'late detached error after Hide→Show must never initiate an S fallback request');
+  assert.deepEqual(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img'), newer,
+    'stale detached errors cannot mutate the new rendered generation');
 
   const old = await runMediumArtwork(directory, null, 404, small);
-  assert.equal(old.get('artwork-toggle').disabled, false, 'v1.2 fallback must remain displayable');
+  assert.equal(old.get('artwork-toggle').disabled, false, 'accepted v1.2 identity catalog remains displayable');
   old.get('artwork-toggle').fire('click');
   const oldImages = traverse(old.get('artwork-gallery-list'), (n) => n.tagName === 'img');
   assert.equal(oldImages.length, 4);
-  assert.ok(oldImages.every((img) => /-S\.jpg\?default=false$/.test(img.src)));
-  assert.equal(traverse(old.get('artwork-gallery-list'), (n) => n.className === 'artwork-panel artwork-panel-medium').length, 0);
+  assert.ok(oldImages.every((img) => /-M\.jpg\?default=false$/.test(img.src)));
+  assert.equal(traverse(old.get('artwork-gallery-list'), (n) => n.className === 'artwork-panel artwork-panel-medium').length, 4);
 });
 
-test('forged medium manifests fail independently and cannot erase approved small jackets', async () => {
+test('forged absent, partial or contradictory v1.3 sidecars are never requested or activated', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const small = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
   const medium = structuredClone(small);
@@ -1382,6 +1385,7 @@ test('forged medium manifests fail independently and cannot erase approved small
     (data) => { delete data.artwork[0].image_size; },
     (data) => { data.artwork.pop(); data.artwork_count--; },
     (data) => { data.artwork.shift(); data.artwork_count--; },
+    (data) => { data.artwork = data.artwork.slice(0, 1); data.artwork_count = 1; },
     (data) => { data.artwork[0].cover_id = 12857937; },
     (data) => { data.artwork[0].provider = 'UNREVIEWED_COVER_HOST'; },
     (data) => { data.artwork[0].rights_status = 'PUBLIC_DISPLAY_PERMISSION_VERIFIED'; },
@@ -1394,17 +1398,56 @@ test('forged medium manifests fail independently and cannot erase approved small
     mutate(forged);
     const nodes = await runMediumArtwork(directory, forged, 200, small);
     assert.equal(nodes.get('artwork-toggle').disabled, false,
-      'an invalid v1.3 candidate must not break separately reviewed v1.2 fallback');
-    assert.match(nodes.get('artwork-state').textContent, /Medium rendition held/);
+      'unreviewed v1.3 must not influence the accepted four-row v1.2 identity gate');
+    assert.equal(nodes.requested.has('./artwork-catalog-v1.3.json'), false);
     nodes.get('artwork-toggle').fire('click');
     const urls = traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').map((n) => n.src);
     assert.equal(urls.length, 4);
-    assert.ok(urls.every((url) => /-S\.jpg\?default=false$/.test(url)), 'forged variant must never be fetched');
+    assert.ok(urls.every((url) => /-M\.jpg\?default=false$/.test(url)),
+      'only the four code-owned variants from accepted v1.2 source identities can be fetched');
   }
   const missingOld = await runMediumArtwork(directory, medium, 200);
-  assert.equal(missingOld.get('artwork-toggle').disabled, false, 'valid new medium manifest stands alone');
-  missingOld.get('artwork-toggle').fire('click');
-  assert.equal(traverse(missingOld.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
+  assert.equal(missingOld.get('artwork-toggle').disabled, true,
+    'a v1.3-only release cannot activate imagery without the accepted v1.2 identity gate');
+  assert.equal(missingOld.requested.has('./artwork-catalog-v1.3.json'), false);
+  for (const n of [1, 3]) {
+    const partial = structuredClone(small);
+    partial.artwork = partial.artwork.slice(0, n);
+    partial.artwork_count = n;
+    const rejected = await runMediumArtwork(directory, medium, 200, partial);
+    assert.equal(rejected.get('artwork-toggle').disabled, true,
+      `even a valid v1.3 cannot repair an incomplete ${n}/4 accepted sidecar`);
+    assert.equal(traverse(rejected.get('artwork-gallery-list'), (x) => x.tagName === 'img').length, 0);
+  }
+});
+
+test('four M byte/dimension receipts match independent source observation and v1.2 bytes stay unchanged', () => {
+  const bytes = readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),
+    '5a7b28ea71f75d717f835b47e308dadfa059c589198452da03c66127b0cc835f');
+  const receiptStart = SCRIPT.indexOf('const reviewedOpenLibraryEditionReceipts = new Map([');
+  const receiptEnd = SCRIPT.indexOf('\n  ]);', receiptStart);
+  assert.ok(receiptStart >= 0 && receiptEnd > receiptStart);
+  const source = SCRIPT.slice(receiptStart, receiptEnd);
+  for (const [slug, cover, isbn, sha, height] of [
+    ['kirk', 13083310, '9781783297481', 'aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a', 275],
+    ['picard', 10694457, '9781785659409', '9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887', 274],
+    ['janeway', 12097815, '9781789095333', '8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051', 273],
+    ['spock', 11945787, '9781785659416', '6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0', 271]
+  ]) {
+    const start = source.indexOf(`['directory:literature:prh-autobiography-${slug}'`);
+    assert.ok(start >= 0);
+    const next = source.indexOf("\n    ['directory:", start + 5);
+    const row = source.slice(start, next < 0 ? undefined : next);
+    assert.ok(row.includes(`cover_id: ${cover}`) && row.includes(`isbn: '${isbn}'`));
+    assert.ok(row.includes(`medium_preview_sha256: '${sha}'`));
+    assert.ok(row.includes(`medium_preview_width: 180, medium_preview_height: ${height}`));
+  }
+  assert.ok(!source.includes('12857937'), 'held Enterprise War interior title page is not admitted');
+  assert.equal(SCRIPT.includes('artwork-catalog-v1.3.json'), false,
+    'stale dual-reader branch cannot silently reactivate on a future sidecar');
+  assert.match(SCRIPT, /-M\.jpg\?default=false/);
+  assert.doesNotMatch(SCRIPT, /-S\.jpg\?default=false/, 'no M→S retry URL may survive');
 });
 
 test('PRH distributor discovery leads require exact fictional-memoir source scope', async () => {

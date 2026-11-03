@@ -1,0 +1,138 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "coverage_effect": "NONE",
+  "data_status": "B012-TNG-S1-PUBLISHER_SOURCE_RECHECK_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "independent_corroborations": 0,
+  "new_title_slot_rechecks": 2,
+  "observations_sha256": "9ff32de5069c09efa21aa5b09386c9b584419f6b7cdbd4fbcb2be9c9a628703a",
+  "original_synopsis_drafts_held": 4,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 4,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "An Enterprise rescue ends in the death of a crew officer following an encounter with a hostile alien.",
+      "prior_overlap_effect": "ENRICHMENT_ONLY_NOT_NEW_TITLE_SLOT_RECHECK",
+      "prior_same_family_title_slot_recheck_id": "lead:0043",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 23,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "43bc68d6b8e50b544cec3ed2da0865ba9d945b9b0247e848456cda7a02896d67",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Skin of Evil"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453059819/CBS_TNG_122_HD_IMAGE_CIAN_1732780_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:tng:021",
+      "source_local_title": "Skin of Evil",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Picard reconnects with an earlier love while investigating dangerous experiments that disrupt time.",
+      "prior_overlap_effect": "NEW_SOURCE_LOCAL_TITLE_SLOT_RECHECK",
+      "prior_same_family_title_slot_recheck_id": null,
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 24,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "3867d1eb7f80d9cfdd57785648e97de403fa904799a7e1838a19cf33edf23e6a",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "We'll Always Have Paris"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107770/CBS_TNG_124_HD_IMAGE_CIAN_1122558_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:tng:022",
+      "source_local_title": "We'll Always Have Paris",
+      "source_relative_entity_mentions": [
+        "Captain Picard"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Picard and Riker head to Earth to examine a suspected conspiracy within senior Starfleet command.",
+      "prior_overlap_effect": "NEW_SOURCE_LOCAL_TITLE_SLOT_RECHECK",
+      "prior_same_family_title_slot_recheck_id": null,
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 25,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "a40a3decc5db26f99cd6eb5aff76994c961d41dc6ce24ccc794196fb5bbbd593",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Conspiracy"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107854/CBS_TNG_125_HD_IMAGE_CIAN_1122569_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:tng:023",
+      "source_local_title": "Conspiracy",
+      "source_relative_entity_mentions": [
+        "Captain Picard",
+        "Commander Riker",
+        "Earth",
+        "Starfleet"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "En route to a meeting with Romulans, the crew discovers a spacecraft carrying three Americans frozen since the twentieth century.",
+      "prior_overlap_effect": "ENRICHMENT_ONLY_NOT_NEW_TITLE_SLOT_RECHECK",
+      "prior_same_family_title_slot_recheck_id": "lead:0040",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 26,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "ecee596a410a394aaa3ffb5b638e5d2ff80ed138770abd50539aa9e9678760cc",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "The Neutral Zone"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26454595923/CBS_TNG_126_HD_IMAGE_CIAN_1122560_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:tng:024",
+      "source_local_title": "The Neutral Zone",
+      "source_relative_entity_mentions": [
+        "Romulans",
+        "Americans"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    }
+  ],
+  "same_publisher_prior_title_slot_overlaps": 2,
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 4
+}

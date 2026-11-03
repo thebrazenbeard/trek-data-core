@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-s7-publisher-card-recheck-20261103",
+  "proposal_only": true,
+  "accepted_assertions": 0,
+  "projection_effect": "NONE",
+  "assertions": [
+    {
+      "id": "ds9-s7r-a01",
+      "predicate": "SAME_UPSTREAM_PUBLISHER_LINEAGE_NOT_INDEPENDENT_CORROBORATION",
+      "subject": "paramount-corporate-publisher-family:ds9-s7-guide",
+      "evidence_ids": ["ds9-s7r-p01", "ds9-s7r-p02", "ds9-s7r-p03", "ds9-s7r-p04", "ds9-s7r-p05"],
+      "counter_evidence_ids": [],
+      "status": "PROPOSED_UNRESOLVED",
+      "statement": "The five rendered card rechecks agree with an earlier title-slot CSV derived from the same Paramount publisher guide. The agreement is useful longitudinal metadata stability, not independent corroboration or source-body authenticity.",
+      "falsifier": "An edition-specific independent primary witness or authenticated differently originated catalog could establish distinct provenance and resolve particular title-slot or edition questions."
+    }
+  ]
+}

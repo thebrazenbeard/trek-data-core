@@ -48,7 +48,15 @@ corroboration. Paramount and Paramount+ labels may share corporate lineage.
 3. The generator rejects stale/symlinked inputs and outputs. GitHub Pages
    validates exact committed bytes and its strict public artifact allowlist.
 4. The Explorer renders text with DOM text nodes and permits link targets only
-   on an explicit first-party/catalog host allowlist; tones remain opt-in.
+   on an explicit first-party/catalog host allowlist; it also checks that each
+   source-group badge is compatible with the row's actual retrieval host, so
+   a Wikidata item cannot impersonate a publisher listing. The broader
+   `publisher:paramount` group explicitly permits its reviewed family of
+   Paramount+, StarTrek.com, Mikros and YouTube source hosts. Publisher and
+   distributor group claims require a non-null locator. A matching host,
+   especially `youtu.be`, does **not** authenticate a publisher-operated
+   channel or the claimed source content; that needs separate source review.
+   Tones remain opt-in.
 5. Source pages are mutable. Publisher URL attribution is not proof of source
    capture, full audiovisual viewing, book reading, transcript rights, or
    semantic analysis. The archived Wikidata observations are not guaranteed

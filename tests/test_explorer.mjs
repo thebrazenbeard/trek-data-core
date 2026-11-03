@@ -1221,7 +1221,15 @@ test('only four independently visually identified fictional-autobiography jacket
   const sidecar = { schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK',
     coverage_effect: 'NONE', rights_policy: 'PER_ENTRY_DISPLAY_GATE',
     artwork_count: artwork.length, artwork };
-  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, sidecar, 200);
+  // The shipped release-sidecar is independently validated by the Pages
+  // packaging gate. Check the actual bytes here too, so a future mismatch
+  // between the four code-pinned jackets and public sidecar fails visibly.
+  const shipped = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
+  const key = (entry) => [entry.row_id, entry.isbn, entry.cover_id, entry.edition_metadata_sha256];
+  assert.deepEqual(shipped.artwork.map(key), sidecar.artwork.map(key));
+  assert.equal(shipped.schema_version, '1.2.0');
+  assert.equal(shipped.coverage_effect, 'NONE');
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, shipped, 200);
   assert.equal(nodes.get('artwork-toggle').disabled, false);
   assert.match(nodes.get('artwork-state').textContent, /4 Open Library API previews/);
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,

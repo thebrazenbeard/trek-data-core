@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.2.0",
+  "data_status": "PROVENANCE_REVIEWED_ARTWORK",
+  "coverage_effect": "NONE",
+  "rights_policy": "PER_ENTRY_DISPLAY_GATE",
+  "artwork_count": 4,
+  "artwork": [
+    {
+      "row_id": "directory:literature:prh-autobiography-kirk",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 13083310,
+      "isbn": "9781783297481",
+      "alt_text": "Open Library jacket preview: The Autobiography of James T. Kirk; underlying copyright unresolved",
+      "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa",
+      "attribution_url": "https://openlibrary.org/isbn/9781783297481"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-picard",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 10694457,
+      "isbn": "9781785659409",
+      "alt_text": "Open Library jacket preview: The Autobiography of Jean-Luc Picard; underlying copyright unresolved",
+      "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f",
+      "attribution_url": "https://openlibrary.org/isbn/9781785659409"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-janeway",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 12097815,
+      "isbn": "9781789095333",
+      "alt_text": "Open Library jacket preview: The Autobiography of Kathryn Janeway; underlying copyright unresolved",
+      "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09",
+      "attribution_url": "https://openlibrary.org/isbn/9781789095333"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-spock",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 11945787,
+      "isbn": "9781785659416",
+      "alt_text": "Open Library jacket preview: The Autobiography of Mr. Spock; underlying copyright unresolved",
+      "source_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d",
+      "attribution_url": "https://openlibrary.org/isbn/9781785659416"
+    }
+  ]
+}

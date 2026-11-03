@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
+  "row_id": "directory:literature:prh-autobiography-picard",
+  "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+  "isbn": "9781785659409",
+  "cover_id": 10694457,
+  "edition_metadata_sha256": "733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f",
+  "edition_metadata_locator": "https://openlibrary.org/books/OL32028282M.json",
+  "edition_reviewer": "chatgpt.trek.librarian",
+  "source_reviewer": "chatgpt.trek.consolidator",
+  "image_reviewer": "chatgpt.trek.independent_auditor",
+  "image_preview_sha256": "c9f9736af9b191e7f9e2acd69a1b1f03793940ee178870a34e0fb63957fa4121",
+  "image_review_status": "COVER_IMAGE_VISUALLY_REVIEWED",
+  "image_review_observation": "Visible illustrated front jacket: The Autobiography of Jean-Luc Picard, credited to David A. Goodman; not an interior title page.",
+  "reviewed_on": "2026-11-03"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
+  "row_id": "directory:literature:prh-autobiography-spock",
+  "source_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+  "isbn": "9781785659416",
+  "cover_id": 11945787,
+  "edition_metadata_sha256": "b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d",
+  "edition_metadata_locator": "https://openlibrary.org/books/OL33271375M.json",
+  "edition_reviewer": "chatgpt.trek.librarian",
+  "source_reviewer": "chatgpt.trek.consolidator",
+  "image_reviewer": "chatgpt.trek.independent_auditor",
+  "image_preview_sha256": "6c7e699801faed04d08e8b54079ca28d6be59e464822320e7d8c1dc61dc15a3c",
+  "image_review_status": "COVER_IMAGE_VISUALLY_REVIEWED",
+  "image_review_observation": "Visible illustrated front jacket: The Autobiography of Mr. Spock, credited to Una McCormack; not an interior title page.",
+  "reviewed_on": "2026-11-03"
+}

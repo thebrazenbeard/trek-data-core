@@ -1,0 +1,117 @@
+{
+  "batch_id": "chat-export-triage-20261103",
+  "role": "MIGRATION",
+  "record_class": "HISTORICAL_CHAT_CLAIM_TRIAGE",
+  "admission": "NOT_ADMITTED",
+  "accepted_main_at_intake": "d4ecd970bf28019696abd692011007d7d47f9ff8",
+  "accepted_research_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "source_work_binding_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "source": {
+    "kind": "USER_SUPPLIED_SAVED_CHATGPT_WEB_PAGE_ARCHIVE",
+    "filename": "Deploy subagents build repo.zip",
+    "archive_sha256": "3db8f3adc1c930f03ddf7fcb0f670ed2840b569c4359e52d7dad3eace1d8de5f",
+    "html_member_name": "Deploy subagents build repo.htm",
+    "html_member_sha256": "ef867c378f8843773e66cfa0902b2467b263769d6ebdc63d07848c80741f271d",
+    "line_locator_recipe": "unzip -p ARCHIVE 'Deploy subagents build repo.htm' | pandoc -f html -t plain --wrap=none 2>/dev/null | nl -ba",
+    "renderer": "pandoc 3.1.3",
+    "retention": "Archive remains user-held; no chat HTML, transcript, CSS, JS, or source-page bytes copied into repository",
+    "limitations": [
+      "The saved page reproduces assistant statements, not independently authenticated prior agent logs or source bytes.",
+      "Locators are line numbers of rendered page text under the recorded converter version, not original conversation IDs.",
+      "Other exported sidebar/history excerpts are not independent corroboration of main conversation text."
+    ]
+  },
+  "review_queue": [
+    {
+      "id": "EXPORT-TNG-B001",
+      "priority": 1,
+      "lane": "TNG",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1447, 1454],
+      "historical_claim": "Five historical TNG Works reportedly recovered with 69 local entities, 58 evidence records and 31 assertions; all 31 counterevidence lists reportedly empty.",
+      "accepted_main_overlap": ["proposals/tng/tng-s01-b001-historical-candidates.json", "docs/HISTORICAL_RESEARCH_RECOVERY.md"],
+      "verification_state": "CHAT_REPORT_WITH_PARTIAL_ACCEPTED_PROPOSAL_OVERLAP",
+      "next_gate": "Replay exact historical Git object and locator hashes, then independently code counterevidence and source-relative assertion scope. Do not import old confidence as evidence."
+    },
+    {
+      "id": "EXPORT-DS9-OFFSET",
+      "priority": 1,
+      "lane": "DS9",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1467, 1480],
+      "historical_claim": "A five-page Springfield DS9 transcript title/body offset was reported for the first season, affecting proposed source-to-Work assignments.",
+      "accepted_main_overlap": ["proposals/discovery/ds9-voy-episode-slots-20261102/RESEARCH_LOG.md"],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Retrieve and hash the exact claimed five historical page versions. Match body-level anchors against independently known Work identities before using any old dialogue locator."
+    },
+    {
+      "id": "EXPORT-TNG-LINEATION",
+      "priority": 1,
+      "lane": "TNG",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1500, 1528],
+      "historical_claim": "Historical transcript line numbers and current page physical lines differed; a later forensic probe reportedly found compatible anchors in 13 of 16 windows, with ties and three failures.",
+      "accepted_main_overlap": ["proposals/tng/tng-s01-b001-historical-candidates.json"],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Recover source/extraction edition and independently replay all locator windows. Keep the line map unresolved if offsets tie or anchors fail."
+    },
+    {
+      "id": "EXPORT-TAS-B003",
+      "priority": 1,
+      "lane": "TAS",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1532, 1534],
+      "historical_claim": "The historical TAS B003 compressed archive reportedly failed gzip integrity and did not decode as valid JSON.",
+      "accepted_main_overlap": [],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Resolve exact Git blob/PR identity and replay integrity checks without attempting to repair or invent missing records."
+    },
+    {
+      "id": "EXPORT-TAS-B002",
+      "priority": 2,
+      "lane": "TAS",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1516, 1519],
+      "historical_claim": "An evidence reference in a TAS B002 record reportedly pointed to a missing local Spock entity ID; multiple other Spock variants existed.",
+      "accepted_main_overlap": [],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Replay exact record blob and preserve orphan reference as unresolved; do not pick a global or local identity by name resemblance."
+    },
+    {
+      "id": "EXPORT-DERIVATIVE-PILOTS",
+      "priority": 2,
+      "lane": "TNG_DS9_VOY",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1492, 1565],
+      "historical_claim": "Complete reads and proposed evidence batches were reported for derivative transcript pages covering The Naked Now, Past Prologue and Caretaker, with source hashes and pilot tests claimed in chat.",
+      "accepted_main_overlap": [],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Recover private source representation hashes, exact read-window logs and proposed record artifacts, rerun source-relative citation/counterevidence audit. Derivative reads cannot become primary audiovisual inspection."
+    },
+    {
+      "id": "EXPORT-TNG-PR21",
+      "priority": 2,
+      "lane": "TNG",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1529, 1551],
+      "historical_claim": "Historical TNG PR #21 and additional Season 1 PR material were reported as structurally recovered, but the source editions were not independently authenticated.",
+      "accepted_main_overlap": ["docs/HISTORICAL_RESEARCH_RECOVERY.md"],
+      "verification_state": "CHAT_REPORT_NOT_REPLAYED",
+      "next_gate": "Resolve the exact PR-head blob versions and compare against the migration dry-run and conflicts before source-neutral re-coding."
+    },
+    {
+      "id": "EXPORT-LIT-SOURCE-GAP",
+      "priority": 3,
+      "lane": "LIT",
+      "claimant": "HISTORICAL_ASSISTANT_IN_CHAT",
+      "rendered_text_lines": [1043, 1043],
+      "historical_claim": "Prior ebook archives were reportedly not included in the saved chat export and would need to be separately accessible for literary deep reading.",
+      "accepted_main_overlap": ["docs/LITERARY_OPF_PRIVATE_INTAKE.md"],
+      "verification_state": "ARCHIVE_HAS_NO_BOOK_CONTENT_EVIDENCE",
+      "next_gate": "Librarian independently confirms lawfully accessible exact edition/source bytes before any literary close-reading batch; no book text is admitted from chat metadata."
+    }
+  ]
+}

@@ -204,9 +204,14 @@ def validate(root: Path = ROOT) -> dict:
     require(markup.panels == markup.buttons == 1 and markup.images_before_consent == 0,
             "premiere DOM must have one disabled consent gate and zero startup image nodes")
     require(markup.csp is not None, "missing CSP")
+    # Narrow chat-only loopback POST permission is not a photo/image release.
+    # Preserve exact allowed endpoints; an arbitrary connect-src or widened
+    # img-src remains prohibited while the documentary photo is held.
+    chat_connections = markup.csp.split("connect-src ", 1)[1].split(";", 1)[0] if "connect-src " in markup.csp else ""
     require("img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org;" in markup.csp and
             "https://thumb.wikimedia.org" not in markup.csp and
-            "https://upload.wikimedia.org" not in markup.csp and "connect-src 'self';" in markup.csp,
+            "https://upload.wikimedia.org" not in markup.csp and
+            chat_connections == "'self' http://127.0.0.1:9877",
             "premiere photo must not extend image network CSP before public release")
     require(DIGEST in js and DECISION_DIGEST in js and
             "fetch('./beyond-premiere-photo.json'" in js and

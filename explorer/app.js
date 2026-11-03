@@ -1,4 +1,4 @@
-/* Trek Data Core Explorer. Local data only; no dependencies, telemetry, or HTML injection. */
+/* Trek Data Core Explorer. No telemetry, HTML injection, or model requests by default. */
 (() => {
   'use strict';
 
@@ -2861,6 +2861,177 @@
     if (guideMatches.length) addLoreShortcut('Inspect held guide cards', 'episode-source-cards', byId('episode-source-query'), renderEpisodeSourceCards, typed);
     if (!directoryState.available || !episodeSourceState.available) {
       loreAnswer.append(el('p', 'lore-row-label', 'Unavailable shelves were excluded; their result counts are unknown.'));
+    }
+  });
+
+  // Actual conversation is deliberately separate from the scripted index
+  // lookup. There is no network request, token persistence, or model download
+  // until the visitor supplies a local session token and explicitly opts in.
+  const chatForm = byId('lore-chat-form');
+  const chatToken = byId('lore-chat-token');
+  const chatPair = byId('lore-chat-pair');
+  const chatConsent = byId('lore-chat-consent');
+  const chatInput = byId('lore-chat-input');
+  const chatSend = byId('lore-chat-send');
+  const chatStatus = byId('lore-chat-status');
+  const chatLog = byId('lore-chat-log');
+  const localPairEligible = location.protocol === 'http:' && location.hostname === '127.0.0.1' &&
+    /^\d{1,5}$/.test(location.port) && Number(location.port) >= 1 && Number(location.port) <= 65535 &&
+    location.pathname?.startsWith('/explorer/');
+  const localChatOrigin = localPairEligible ? location.origin : 'http://127.0.0.1:9877';
+  chatPair.hidden = !localPairEligible;
+  let chatHistory = [];
+  let chatRequest = null;
+  let pairRequest = null;
+  let chatGeneration = 0;
+  const disconnectChat = (message) => {
+    chatGeneration += 1;
+    if (chatRequest) chatRequest.abort();
+    if (pairRequest) pairRequest.abort();
+    chatRequest = null;
+    pairRequest = null;
+    chatHistory = [];
+    chatLog.replaceChildren();
+    chatToken.value = '';
+    chatConsent.checked = false;
+    chatSend.disabled = false;
+    chatPair.disabled = false;
+    chatStatus.textContent = message;
+  };
+  const appendChatTurn = (role, content, source, sourceTruncated = false) => {
+    const turn = el('li', 'lore-chat-turn');
+    turn.dataset.role = role;
+    turn.append(el('strong', '', role === 'user' ? 'Visitor' : 'Lore // Fictional model reply · Unverified'),
+      el('p', '', content));
+    if (role === 'assistant' && source && source.status === 'SOURCE_LOCAL_HELD_ONLY') {
+      const wrapper = el('div', 'lore-chat-sources');
+      const rows = Array.isArray(source.rows) ? source.rows.slice(0, 5) : [];
+      wrapper.append(el('span', '', rows.length
+        ? 'Separate held source-card matches (not citations for character prose):'
+        : 'No relevant held source-card matches. Lore’s reply is not source evidence.'));
+      if (sourceTruncated) wrapper.append(el('p', '', 'Source-card lookup used only the first 160 characters of the question; the full message went to the local model.'));
+      if (rows.length) {
+        const list = el('ul');
+        for (const row of rows) {
+          if (typeof row.title === 'string' && typeof row.source_local_id === 'string') {
+            list.append(el('li', '', `${row.title.slice(0, 120)} · ${row.source_local_id.slice(0, 70)} · HELD`));
+          }
+        }
+        wrapper.append(list);
+      }
+      turn.append(wrapper);
+    }
+    chatLog.append(turn);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  };
+  byId('lore-chat-clear').addEventListener('click', () => {
+    disconnectChat('Disconnected. Conversation cleared; token and consent removed.');
+    chatToken.focus();
+  });
+  chatConsent.addEventListener('change', () => {
+    if (!chatConsent.checked) disconnectChat('Disconnected. Consent withdrawn; in-flight response cancelled.');
+  });
+  chatToken.addEventListener('input', () => {
+    if (chatHistory.length || chatRequest) {
+      disconnectChat('Disconnected. Session token changed; enter it again to start a new conversation.');
+    }
+  });
+  chatPair.addEventListener('click', async () => {
+    if (!localPairEligible || chatRequest || pairRequest) return;
+    const generation = chatGeneration;
+    const controller = new AbortController();
+    pairRequest = controller;
+    chatPair.disabled = true;
+    chatStatus.textContent = 'Pairing with this same-origin local companion…';
+    try {
+      const response = await fetch(`${localChatOrigin}/api/session`, {
+        method: 'GET', cache: 'no-store', credentials: 'omit', redirect: 'error',
+        headers: { 'X-Trek-Lore-Pair': '1' }, signal: controller.signal
+      });
+      if (!response.ok) throw new Error('local pairing unavailable');
+      const result = await response.json();
+      if (result.pairing_scope !== 'LOCAL_SAME_ORIGIN_ONLY' ||
+          typeof result.local_session_token !== 'string' ||
+          !/^[\x21-\x7e]{32,256}$/.test(result.local_session_token)) {
+        throw new Error('invalid local session receipt');
+      }
+      if (generation !== chatGeneration) return;
+      chatToken.value = result.local_session_token;
+      chatStatus.textContent = 'Paired locally for this page session. Check the consent box before sending a message.';
+      chatConsent.focus();
+    } catch (_) {
+      if (generation === chatGeneration) {
+        chatStatus.textContent = 'Local pairing failed. Paste the token from the companion terminal, or restart that local service.';
+      }
+    } finally {
+      if (generation === chatGeneration) {
+        pairRequest = null;
+        chatPair.disabled = false;
+      }
+    }
+  });
+  loreClose.addEventListener('click', () => disconnectChat('Disconnected. Lore console closed.'));
+  loreToggle.addEventListener('click', () => {
+    if (lorePanel.hidden) disconnectChat('Disconnected. Lore console closed.');
+  });
+  lorePanel.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') disconnectChat('Disconnected. Lore console closed.');
+  });
+  window.addEventListener?.('pagehide', () => disconnectChat('Disconnected. Page session ended.'));
+  chatForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (chatRequest || !chatConsent.checked || chatToken.value.length < 32 ||
+        chatToken.value.length > 256) {
+      chatStatus.textContent = 'Enter the local session token and explicitly enable the connection.';
+      return;
+    }
+    const question = chatInput.value.trim();
+    if (!question || question.length > 500) {
+      chatStatus.textContent = 'Enter a message of 1–500 characters.';
+      return;
+    }
+    const generation = ++chatGeneration;
+    const controller = new AbortController();
+    chatRequest = controller;
+    chatSend.disabled = true;
+    chatStatus.textContent = 'Contacting the opt-in local model…';
+    const timeout = setTimeout(() => controller.abort(), 35000);
+    try {
+      const response = await fetch(`${localChatOrigin}/api/chat`, {
+        method: 'POST', mode: 'cors', cache: 'no-store', credentials: 'omit', redirect: 'error',
+        targetAddressSpace: 'loopback',
+        headers: { 'Content-Type': 'application/json', 'X-Trek-Lore-CSRF': chatToken.value },
+        body: JSON.stringify({ query: question, history: chatHistory }),
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error(`Local companion returned HTTP ${response.status}`);
+      const output = await response.json();
+      if (output.mode !== 'opt_in_fictional_multiturn_chat' || output.model_text_unverified !== true ||
+          typeof output.model_text !== 'string' || !output.model_text.trim() ||
+          output.model_text.length > 800 || output.source_search?.status !== 'SOURCE_LOCAL_HELD_ONLY' ||
+          output.publication_effect !== 'NONE' || output.model_repo_authority !== 'NONE') {
+        throw new Error('Unverified local companion response rejected');
+      }
+      if (generation !== chatGeneration) return;
+      appendChatTurn('user', question);
+      appendChatTurn('assistant', output.model_text, output.source_search,
+        output.source_search_truncated === true);
+      chatHistory = [...chatHistory, { role: 'user', content: question },
+        { role: 'assistant', content: output.model_text }].slice(-8);
+      chatInput.value = '';
+      chatStatus.textContent = 'Local model replied. Fictional dialogue is unverified; source matches remain separate.';
+      chatInput.focus();
+    } catch (error) {
+      if (generation === chatGeneration) {
+        const unavailable = error.name === 'AbortError' ? 'Local model timed out.' : 'Local companion connection failed.';
+        chatStatus.textContent = `${unavailable} Check that the model and companion are running, the token is correct, and your browser permits loopback access. For browser restrictions, open http://127.0.0.1:9877/explorer/ on this computer.`;
+      }
+    } finally {
+      clearTimeout(timeout);
+      if (generation === chatGeneration) {
+        chatRequest = null;
+        chatSend.disabled = false;
+      }
     }
   });
 

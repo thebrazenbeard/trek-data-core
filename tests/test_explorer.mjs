@@ -13,6 +13,8 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
+  'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
+  'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
   'discovery-directory', 'episode-source-cards',
   'artwork-toggle', 'artwork-state', 'artwork-gallery', 'artwork-gallery-summary',
   'artwork-nav-link', 'artwork-nav-count', 'artwork-gallery-list', 'publisher-edition-nav-count', 'publisher-edition-state',
@@ -44,6 +46,7 @@ class FakeNode {
     this.focused = false;
     this.parentNode = null;
     this._documentRoot = false;
+    this.dataset = {};
   }
 
   get isConnected() { return this._documentRoot || Boolean(this.parentNode?.isConnected); }
@@ -85,7 +88,7 @@ class FakeNode {
     list.push(listener);
     this.handlers.set(type, list);
   }
-  fire(type, event) { for (const listener of this.handlers.get(type) || []) listener(event); }
+  fire(type, event) { return Promise.all((this.handlers.get(type) || []).map((listener) => listener(event))); }
   scrollIntoView() {}
   focus() { this.focused = true; }
 }
@@ -96,10 +99,12 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404, premiereBytes = null, premiereStatus = 404, decisionBytes = null, decisionStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404, premiereBytes = null, premiereStatus = 404, decisionBytes = null, decisionStatus = 404, chatBackend = null) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   for (const node of nodes.values()) node._documentRoot = true;
   const requested = new Set();
+  const chatRequests = [];
+  nodes.chatRequests = chatRequests;
   const inFlightDigests = new Set();
   nodes.get('lore-console').hidden = true;
   nodes.get('navigation-scroll-hint').hidden = true;
@@ -142,6 +147,12 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const fetch = async (path, opts) => {
     assert.equal(opts.cache, 'no-store');
     requested.add(path);
+    if (/^http:\/\/127\.0\.0\.1:(9877|9887)\/api\/(chat|session)$/.test(path)) {
+      chatRequests.push({ path, opts });
+      const backend = chatBackend || browserAudio.chatBackend;
+      assert.ok(backend, 'unconsented chat request is forbidden');
+      return backend(path, opts);
+    }
     if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
@@ -203,7 +214,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   };
   vm.runInNewContext(appScript, {
     document, fetch, Option: OptionNode, URL, crypto: deterministicCrypto, TextDecoder, TextEncoder,
-    location: { origin: 'https://example.test' },
+    AbortController, setTimeout, clearTimeout,
+    location: { origin: 'https://example.test', ...(browserAudio.mockLocation || {}) },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
   // Every fixture must reach the optional loader frontier and finish every
@@ -2305,7 +2317,12 @@ test('optional fictional Lore console opens outside hero, restores focus, and cl
   assert.match(html, /id="lore-toggle"[^>]*aria-expanded="false"[^>]*aria-controls="lore-console"/);
   assert.match(html, /<main id="main"[\s\S]*?<section id="lore-console"[^>]*hidden>/);
   assert.match(html, /Fictional simulation/);
-  assert.match(html, /not an AI model, a trapped consciousness, or an authority on canon/);
+  assert.match(html, /Fictional Lore/);
+  assert.match(html, /id="lore-chat-token" type="password"/);
+  assert.match(html, /id="lore-chat-consent" type="checkbox" required/);
+  assert.match(html, /Archive Search \/\/ Scripted index lookup/);
+  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877;/);
+  assert.doesNotMatch(html, /connect-src[^;]*9876/);
   assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
 
   const nodes = await runWithIndex(catalog);
@@ -2338,6 +2355,137 @@ test('Lore panel stays in flow and Explorer cache keys match the exact local scr
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.lore-stations \{ grid-template-columns: 1fr; \}/);
   assert.match(css, /\.lore-answer \{[^}]*color: var\(--text\)/,
     'terminal text is high contrast against its dark local response surface');
+});
+
+test('Lore model chat starts disconnected and makes two genuine bounded turn requests only after consent', async () => {
+  const seen = [];
+  const hostile = '<img src=x onerror=alert(1)> Lore remembers.';
+  const nodes = await runWithIndex(catalog, 200, null, 404, {chatBackend: async (url, options) => {
+    assert.equal(url, 'http://127.0.0.1:9877/api/chat');
+    assert.equal(options.method, 'POST');
+    assert.equal(options.redirect, 'error');
+    assert.equal(options.credentials, 'omit');
+    assert.equal(options.targetAddressSpace, 'loopback');
+    assert.equal(options.headers['X-Trek-Lore-CSRF'], 'A'.repeat(40));
+    const body = JSON.parse(options.body);
+    seen.push(body);
+    return {ok: true, json: async () => ({
+      mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
+      model_text: hostile, publication_effect: 'NONE', model_repo_authority: 'NONE',
+      source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: [{title: 'Wedding Bell Blues', source_local_id: 'snw-s3-e02-pplus'}]}
+    })};
+  }});
+  assert.equal(nodes.chatRequests.length, 0, 'Explorer must not ping localhost on load');
+  const form = nodes.get('lore-chat-form');
+  nodes.get('lore-chat-input').value = 'Hello Lore';
+  await form.fire('submit', { preventDefault() {} });
+  assert.equal(nodes.chatRequests.length, 0, 'no token or consent means no request');
+  nodes.get('lore-chat-token').value = 'A'.repeat(40);
+  await form.fire('submit', { preventDefault() {} });
+  assert.equal(nodes.chatRequests.length, 0, 'token alone is insufficient');
+  nodes.get('lore-chat-consent').checked = true;
+  await form.fire('submit', { preventDefault() {} });
+  assert.equal(nodes.chatRequests.length, 1);
+  assert.deepEqual(seen[0], {query: 'Hello Lore', history: []});
+  assert.equal(nodes.get('lore-chat-log').children.length, 2);
+  assert.match(nodes.get('lore-chat-log').textContent, /Fictional model reply · Unverified/);
+  assert.match(nodes.get('lore-chat-log').textContent, /Separate held source-card matches/);
+  assert.equal(traverse(nodes.get('lore-chat-log'), (node) => ['img', 'script', 'iframe'].includes(node.tagName)).length, 0);
+  nodes.get('lore-chat-input').value = 'What did I just say?';
+  await form.fire('submit', { preventDefault() {} });
+  assert.equal(nodes.chatRequests.length, 2);
+  assert.equal(seen[1].history.length, 2);
+  assert.equal(seen[1].history[0].role, 'user');
+  assert.equal(seen[1].history[0].content, 'Hello Lore');
+  assert.equal(seen[1].history[1].role, 'assistant');
+  assert.equal(seen[1].history[1].content, hostile);
+  assert.ok(!nodes.get('lore-chat-log').textContent.includes('A'.repeat(40)), 'token must never render');
+});
+
+test('Lore opt-out, Clear and Close revoke in-flight model response without stale transcript', async () => {
+  for (const revoke of ['untick', 'clear', 'close']) {
+    let respond;
+    const pendingResponse = new Promise((resolve) => { respond = resolve; });
+    const nodes = await runWithIndex(catalog, 200, null, 404,
+      {chatBackend: () => pendingResponse});
+    nodes.get('lore-chat-input').value = 'Are you really there?';
+    nodes.get('lore-chat-token').value = 'A'.repeat(40);
+    nodes.get('lore-chat-consent').checked = true;
+    const pendingSubmit = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+    assert.equal(nodes.chatRequests.length, 1, revoke);
+    if (revoke === 'untick') {
+      nodes.get('lore-chat-consent').checked = false;
+      await nodes.get('lore-chat-consent').fire('change', {});
+    } else if (revoke === 'clear') {
+      await nodes.get('lore-chat-clear').fire('click', {});
+    } else {
+      await nodes.get('lore-close').fire('click', {});
+    }
+    respond({ok: true, json: async () => ({mode: 'opt_in_fictional_multiturn_chat',
+      model_text_unverified: true, model_text: 'stale', publication_effect: 'NONE',
+      model_repo_authority: 'NONE', source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}})});
+    await pendingSubmit;
+    assert.equal(nodes.get('lore-chat-log').children.length, 0, revoke);
+    assert.equal(nodes.get('lore-chat-token').value, '', revoke);
+    assert.equal(nodes.get('lore-chat-consent').checked, false, revoke);
+    assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
+  }
+});
+
+test('local same-origin Lore pairing requires a click and late pairing cannot restore a revoked token', async () => {
+  for (const port of ['9877', '9887']) for (const revoke of ['none', 'clear', 'close']) {
+    const local = {protocol: 'http:', hostname: '127.0.0.1', port,
+      pathname: '/explorer/', origin: `http://127.0.0.1:${port}`};
+    let release;
+    const pending = new Promise((resolve) => { release = resolve; });
+    const nodes = await runWithIndex(catalog, 200, null, 404,
+      {mockLocation: local, chatBackend: async (path, options) => {
+        assert.equal(path, `http://127.0.0.1:${port}/api/session`);
+        assert.equal(options.method, 'GET');
+        assert.equal(options.headers['X-Trek-Lore-Pair'], '1');
+        assert.equal(options.credentials, 'omit');
+        return pending;
+      }});
+    assert.equal(nodes.get('lore-chat-pair').hidden, false);
+    assert.equal(nodes.chatRequests.length, 0, 'pairing must never happen on load');
+    const pair = nodes.get('lore-chat-pair').fire('click', {});
+    assert.equal(nodes.chatRequests.length, 1);
+    if (revoke === 'clear') await nodes.get('lore-chat-clear').fire('click', {});
+    else if (revoke === 'close') await nodes.get('lore-close').fire('click', {});
+    release({ok: true, json: async () => ({pairing_scope: 'LOCAL_SAME_ORIGIN_ONLY', local_session_token: 'A'.repeat(40)})});
+    await pair;
+    if (revoke === 'none') {
+      assert.equal(nodes.get('lore-chat-token').value, 'A'.repeat(40));
+      assert.equal(nodes.get('lore-chat-consent').checked, undefined,
+        'pairing may not enable consent automatically');
+    } else {
+      assert.equal(nodes.get('lore-chat-token').value, '', revoke);
+      assert.equal(nodes.get('lore-chat-consent').checked, false, revoke);
+      assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
+    }
+  }
+});
+
+test('local Explorer custom port chat stays same-origin and never contacts the occupied 9876', async () => {
+  const local = {protocol: 'http:', hostname: '127.0.0.1', port: '9887',
+    pathname: '/explorer/', origin: 'http://127.0.0.1:9887'};
+  const nodes = await runWithIndex(catalog, 200, null, 404, {mockLocation: local,
+    chatBackend: async (url, opts) => {
+      assert.equal(url, 'http://127.0.0.1:9887/api/chat');
+      assert.equal(opts.method, 'POST');
+      return {ok: true, json: async () => ({
+        mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
+        model_text: 'I am still here.', publication_effect: 'NONE', model_repo_authority: 'NONE',
+        source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
+      })};
+    }});
+  nodes.get('lore-chat-token').value = 'A'.repeat(40);
+  nodes.get('lore-chat-consent').checked = true;
+  nodes.get('lore-chat-input').value = 'Lore, respond.';
+  await nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
+  assert.equal(nodes.chatRequests.length, 1);
+  assert.ok(nodes.chatRequests.every(({path}) => !path.includes(':9876/')));
+  assert.equal(nodes.get('lore-chat-log').children.length, 2);
 });
 
 test('Lore searches validated local directory records, labels source limits and offers native inspection', async () => {

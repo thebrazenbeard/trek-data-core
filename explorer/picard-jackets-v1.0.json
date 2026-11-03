@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "PICARD_SOURCE_LOCAL_OPEN_LIBRARY_API_OPT_IN_ONLY",
+  "source_packet_path": "proposals/librarian/open-library-picard-jackets-20261103/records.json",
+  "source_packet_sha256": "031e558658de77627158f022621752d0dd863b47f41b47531161989650b3d3ad",
+  "source_overlay_sha256": "ab8e5d15f7b33bf1311aec0afb2755322b41bca73978d3c7889f1272dbfe21c8",
+  "copyright_status": "UNDERLYING_JACKET_COPYRIGHT_UNRESOLVED",
+  "public_image_bytes_committed": false,
+  "coverage_effect": "NONE",
+  "work_admission_effect": "NONE",
+  "artwork_count": 2,
+  "artwork": [
+    {
+      "row_id": "directory:literature:proposed-lit-picard-the-dark-veil",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 10691195,
+      "image_size": "M",
+      "isbn": "9781982154073",
+      "alt_text": "Open Library jacket preview: Star Trek: Picard: The Dark Veil by James Swallow; underlying copyright unresolved",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "4d7798715ac839095498c1c508501b7717be2fc63f4c93ce804af2702e3f4488",
+      "attribution_url": "https://openlibrary.org/isbn/9781982154073"
+    },
+    {
+      "row_id": "directory:literature:proposed-lit-picard-rogue-elements",
+      "provider": "OPEN_LIBRARY_COVERS_API",
+      "cover_id": 13231543,
+      "image_size": "M",
+      "isbn": "9781982175207",
+      "alt_text": "Open Library jacket preview: Star Trek: Picard: Rogue Elements by John Jackson Miller; underlying copyright unresolved",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "edition_metadata_sha256": "725e29c8f1dce0391b46887eacb783f4e9b34d4486031edccb2ac62d9656878b",
+      "attribution_url": "https://openlibrary.org/isbn/9781982175207"
+    }
+  ]
+}

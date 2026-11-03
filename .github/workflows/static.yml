@@ -257,6 +257,11 @@ jobs:
           test -f tools/validate_artwork_release.py
           test ! -L tools/validate_artwork_release.py
           python3 tools/validate_artwork_release.py --check --verify-git
+          # Separate, additive two-Picard-jacket remote API preview; it does
+          # not weaken the four-cover immutable fallback or local-pixel ban.
+          test -f tools/validate_picard_jacket_release.py
+          test ! -L tools/validate_picard_jacket_release.py
+          python3 tools/validate_picard_jacket_release.py --check --verify-git
           # Report source-local visual gaps without treating rows as Works or
           # treating missing imagery as a rights refusal or admission status.
           test -f tools/report_artwork_coverage.py
@@ -308,6 +313,7 @@ jobs:
             ! -path explorer/synopsis-catalog.json \
             ! -path explorer/artwork-catalog.json \
             ! -path explorer/artwork-catalog-v1.3.json \
+            ! -path explorer/picard-jackets-v1.0.json \
             ! -path explorer/beyond-premiere-photo.json \
             ! -path explorer/beyond-premiere-release-decision.json \
             ! -path explorer/licensed-artwork \

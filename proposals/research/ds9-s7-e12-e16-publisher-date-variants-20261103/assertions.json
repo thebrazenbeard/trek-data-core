@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-s7-e12-e16-publisher-date-variants-20261103",
+  "proposal_only": true,
+  "accepted_assertions": 0,
+  "projection_effect": "NONE",
+  "assertions": [
+    {
+      "id": "ds9-s7e12-16-a01",
+      "predicate": "PUBLISHER_DISPLAY_DATE_VARIANTS_REQUIRE_SEMANTICS",
+      "subject_source_family": "paramount_corporate_publisher_family",
+      "evidence_ids": ["ds9-s7e12-16-p01", "ds9-s7e12-16-p02", "ds9-s7e12-16-p03", "ds9-s7e12-16-p04", "ds9-s7e12-16-p05"],
+      "status": "PROPOSED_UNRESOLVED",
+      "claim": "Five official Paramount episode listing dates are one calendar day later than the matching individual episode-detail header dates. The publisher has not established their timezone or date semantics here; neither display is promoted to verified broadcast date.",
+      "falsifier": "Publisher documentation of date field semantics, timezone and edition, with authenticated raw page/capture evidence, could reconcile the displays."
+    },
+    {
+      "id": "ds9-s7e12-16-a02",
+      "predicate": "PUBLISHER_DISPLAY_DATE_SEQUENCE_NONMONOTONIC_UNRESOLVED",
+      "subject_source_family": "paramount_corporate_publisher_family",
+      "evidence_ids": ["ds9-s7e12-16-p04", "ds9-s7e12-16-p05"],
+      "status": "PROPOSED_UNRESOLVED",
+      "claim": "Within the same Paramount Season 7 listing, Episode 16 has a displayed February 15, 1999 date earlier than Episode 15's February 22, 1999 date. This observation does not determine airing order or establish an error.",
+      "falsifier": "An authenticated edition-specific schedule or publisher data dictionary could explain whether listing order and displayed dates are intended to be monotonic."
+    }
+  ]
+}

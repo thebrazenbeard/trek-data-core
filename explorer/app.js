@@ -492,6 +492,29 @@
       medium_preview_width: 180, medium_preview_height: 271
     }]
   ]);
+  // Independent additive Picard release: these two source-local *publisher
+  // edition* rows are in the pinned overlay, not the original 1,214 directory.
+  // The old four-cover v1.2/v1.3 fallback stays unchanged. A separate
+  // manifest+SHA and explicit opt-in gate are necessary for both new jackets.
+  const picardJacketArtifactSha256 = '85bdc8ebbb348d713d604fb9486c2af091e36d40138587a761ddd93716cd9615';
+  const reviewedPicardJacketReceipts = new Map([
+    ['directory:literature:proposed-lit-picard-the-dark-veil', Object.freeze({
+      source_locator: 'https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073',
+      isbn: '9781982154073', cover_id: 10691195,
+      edition_metadata_sha256: '4d7798715ac839095498c1c508501b7717be2fc63f4c93ce804af2702e3f4488',
+      alt_text: 'Open Library jacket preview: Star Trek: Picard: The Dark Veil by James Swallow; underlying copyright unresolved',
+      medium_preview_sha256: '8172dd71c563fae8aee4b82b645a4e852ffb1bc968be0578efb85b3112854c3a',
+      medium_preview_width: 180, medium_preview_height: 271
+    })],
+    ['directory:literature:proposed-lit-picard-rogue-elements', Object.freeze({
+      source_locator: 'https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207',
+      isbn: '9781982175207', cover_id: 13231543,
+      edition_metadata_sha256: '725e29c8f1dce0391b46887eacb783f4e9b34d4486031edccb2ac62d9656878b',
+      alt_text: 'Open Library jacket preview: Star Trek: Picard: Rogue Elements by John Jackson Miller; underlying copyright unresolved',
+      medium_preview_sha256: 'e4c8ce22a96738d739d256389db0a91f51659877592cb731c452d96b13e9609f',
+      medium_preview_width: 180, medium_preview_height: 280
+    })]
+  ]);
   // Likewise, a self-attested file digest/permission string in an optional
   // JSON sidecar cannot authorize a locally copied publicity still. Only
   // separately reviewed, code-pinned exact row/asset/rights/credit tuples may
@@ -542,7 +565,8 @@
       const img = el('img');
       const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
       const mediumPreview = remoteLibrary && source.image_size === 'M';
-      const mediumReceipt = mediumPreview ? reviewedOpenLibraryEditionReceipts.get(key) : null;
+      const mediumReceipt = mediumPreview
+        ? reviewedOpenLibraryEditionReceipts.get(key) || reviewedPicardJacketReceipts.get(key) : null;
       if (gallery && mediumReceipt) {
         panel.className += ' artwork-panel-medium';
         frame.className += ' artwork-slot-medium';
@@ -570,7 +594,7 @@
         // The separately reviewed S jacket remains a safe once-only fallback
         // after a failed M request. The second failure returns to original
         // LCARS index art, never another network retry.
-        if (mediumPreview && !attemptedSmallFallback) {
+        if (mediumPreview && !attemptedSmallFallback && reviewedOpenLibraryEditionReceipts.has(key)) {
           attemptedSmallFallback = true;
           status.textContent = 'Medium jacket unavailable · reviewed small Open Library preview';
           img.src = `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`;
@@ -1306,6 +1330,7 @@
     section.setAttribute('data-preview-state', artworkState.enabled ? 'on' : 'off');
     const sourceRows = new Map();
     for (const row of directoryState.rows) sourceRows.set(artworkKey(row), row);
+    for (const row of picardLiteratureSupplement.rows) sourceRows.set(artworkKey(row), row);
     for (const row of filmState.films) sourceRows.set(artworkKey(row), row);
     const entries = [...artworkState.entries]
       .map(([key, source]) => ({ key, source, row: sourceRows.get(key) }))
@@ -1519,6 +1544,69 @@
       }
     } catch (error) {
       setArtworkAvailability(false, `Artwork release was rejected: ${error.message || 'Check artwork rights receipts.'}`);
+    }
+  }
+
+  async function loadPicardJacketCatalog() {
+    // This optional six-cover upgrade never changes accepted historical
+    // artwork manifests, and it cannot publish an image before visitor opt-in.
+    if (!artworkState.available || !picardLiteratureSupplement.available) return;
+    try {
+      const response = await fetch('./picard-jackets-v1.0.json', { cache: 'no-store' });
+      if (!response.ok || !globalThis.crypto?.subtle || typeof TextDecoder !== 'function')
+        throw new Error('optional Picard jackets unavailable');
+      const raw = await response.arrayBuffer();
+      if (raw.byteLength < 1000 || raw.byteLength > 16_384) throw new Error('Picard jacket sidecar size invalid');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', raw);
+      const actual = Array.from(new Uint8Array(digest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (actual !== picardJacketArtifactSha256) throw new Error('Picard jacket sidecar differs from reviewed bytes');
+      const data = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(raw));
+      const exact = (obj, keys) => obj && typeof obj === 'object' && !Array.isArray(obj) &&
+        Object.keys(obj).length === keys.length && keys.every((key) => Object.hasOwn(obj, key));
+      const rootKeys = ['schema_version', 'data_status', 'source_packet_path', 'source_packet_sha256',
+        'source_overlay_sha256', 'copyright_status', 'public_image_bytes_committed',
+        'coverage_effect', 'work_admission_effect', 'artwork_count', 'artwork'];
+      const entryKeys = ['row_id', 'provider', 'cover_id', 'image_size', 'isbn', 'alt_text',
+        'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
+      if (!exact(data, rootKeys) || data.schema_version !== '1.0.0' ||
+          data.data_status !== 'PICARD_SOURCE_LOCAL_OPEN_LIBRARY_API_OPT_IN_ONLY' ||
+          data.source_packet_path !== 'proposals/librarian/open-library-picard-jackets-20261103/records.json' ||
+          data.source_packet_sha256 !== '031e558658de77627158f022621752d0dd863b47f41b47531161989650b3d3ad' ||
+          data.source_overlay_sha256 !== picardLiteratureSha256 ||
+          data.copyright_status !== 'UNDERLYING_JACKET_COPYRIGHT_UNRESOLVED' ||
+          data.public_image_bytes_committed !== false || data.coverage_effect !== 'NONE' ||
+          data.work_admission_effect !== 'NONE' || data.artwork_count !== 2 ||
+          !Array.isArray(data.artwork) || data.artwork.length !== 2)
+        throw new Error('Picard jacket rights/admission envelope invalid');
+      const sources = new Map(picardLiteratureSupplement.rows.map((row) => [artworkKey(row), row]));
+      const incoming = new Map();
+      for (const item of data.artwork) {
+        const pin = reviewedPicardJacketReceipts.get(item?.row_id);
+        const source = sources.get(item?.row_id);
+        if (!exact(item, entryKeys) || !pin || !source || incoming.has(item.row_id) ||
+            source.medium !== 'LITERATURE' || source.source_group !== 'publisher:simonandschuster.com' ||
+            item.provider !== 'OPEN_LIBRARY_COVERS_API' || item.image_size !== 'M' ||
+            item.rights_status !== 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED' ||
+            item.source_locator !== source.source_locator ||
+            item.source_locator !== pin.source_locator || item.isbn !== pin.isbn ||
+            item.cover_id !== pin.cover_id || item.alt_text !== pin.alt_text ||
+            item.edition_metadata_sha256 !== pin.edition_metadata_sha256 ||
+            item.attribution_url !== `https://openlibrary.org/isbn/${pin.isbn}` ||
+            !source.source_locator.endsWith(`/${pin.isbn}`) ||
+            !source.details.includes(`Trade Paperback · ISBN ${pin.isbn}`))
+          throw new Error('Picard jacket not independently bound to one source-local publisher edition');
+        incoming.set(item.row_id, item);
+      }
+      if (incoming.size !== reviewedPicardJacketReceipts.size)
+        throw new Error('Picard jacket release missing a reviewed edition');
+      for (const [key, item] of incoming) artworkState.entries.set(key, item);
+      const count = artworkState.entries.size;
+      setArtworkAvailability(true,
+        `${count} source-attributed API jacket options (including 2 exact Picard paperback editions). ` +
+        'No external preview is requested until Show sourced artwork; underlying cover copyright remains unresolved.');
+    } catch (_) {
+      // Failure of the additive sidecar cannot erase or broaden the four
+      // already-reviewed autobiography jackets and must not request pixels.
     }
   }
 
@@ -3240,7 +3328,7 @@
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
   Promise.all([loadFilmCatalog(), loadDirectory().then(loadPicardSupplement), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks(), loadEpisodeSourceCards()]).then(() => Promise.all([
-    loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
+    loadArtworkCatalog().then(loadPicardJacketCatalog), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
     loadMetadataRechecks(), loadPublisherCardChecks(), loadPremierePhoto()
   ]));
   loadIndex();

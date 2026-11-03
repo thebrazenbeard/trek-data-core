@@ -301,6 +301,7 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot .artwork-record-mark { position: relative; z-index: 1; margin: 2px 0; color: var(--text); font: 850 1.9rem/1.1 system-ui, sans-serif; letter-spacing: -.07em; text-shadow: 0 2px 8px #050c18; }
 .artwork-slot .artwork-record-title { position: relative; z-index: 1; display: -webkit-box; max-width: 98%; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; padding: 0 5px; color: var(--text); text-align: center; font: 760 .62rem/1.1 system-ui, sans-serif; overflow-wrap: anywhere; }
 .artwork-slot .artwork-missing { position: relative; z-index: 1; width: 100%; padding: 4px 3px 5px; background: #090b19ee; font: 700 .5rem/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .025em; text-align: center; text-transform: uppercase; }
+.artwork-slot.artwork-has-source .artwork-missing { display: none; }
 .artwork-slot img { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #090b19; }
 .artwork-slot .artwork-image-link { position: absolute; inset: 0; z-index: 2; display: block; border-radius: inherit; outline-offset: 3px; }
 .artwork-slot .artwork-image-link:focus-visible { outline: 4px solid var(--aqua); }

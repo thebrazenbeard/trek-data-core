@@ -173,7 +173,19 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
         arrayBuffer: async () => bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
       };
     }
-    if (path === './artwork-catalog-v1.3.json') return { status: mediumStatus, ok: mediumStatus >= 200 && mediumStatus < 300, json: async () => mediumArtwork };
+    if (path === './picard-jackets-v1.0.json') {
+      const bytes = browserAudio.picardJacketsBytes;
+      const sidecarStatus = browserAudio.picardJacketsStatus ?? 404;
+      return {
+        status: sidecarStatus, ok: sidecarStatus >= 200 && sidecarStatus < 300,
+        arrayBuffer: async () => bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
+      };
+    }
+    if (path === './artwork-catalog-v1.3.json') {
+      const effectiveStatus = browserAudio.mediumStatus ?? mediumStatus;
+      return { status: effectiveStatus, ok: effectiveStatus >= 200 && effectiveStatus < 300,
+        json: async () => browserAudio.mediumArtwork ?? mediumArtwork };
+    }
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
     if (path === './synopsis-catalog.json') return { status: synopsisStatus, ok: synopsisStatus >= 200 && synopsisStatus < 300, json: async () => synopsis };
     if (path === './metadata-rechecks.json') return {
@@ -235,6 +247,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     './artwork-catalog-v1.3.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
     './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json', './episode-source-cards.json'];
+  if ((picardBytes || browserAudio.picardBytes) &&
+      (browserAudio.picardStatus ?? picardStatus) === 200 &&
+      ((browserAudio.mediumStatus ?? mediumStatus) === 200 || artworkStatus === 200))
+    optionalPaths.push('./picard-jackets-v1.0.json');
   if (filmStatus === 200 && films?.films?.some((f) => f.id === 'film-beyond' && f.title === 'Star Trek Beyond' &&
       f.source_locator === 'https://www.startrek.com/movies/star-trek-beyond')) {
     optionalPaths.push('./beyond-premiere-photo.json');
@@ -249,7 +265,9 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   while (quietTurns < 2 && Date.now() < deadline) {
     await new Promise((resolve) => setImmediate(resolve));
     if (optionalPaths.every((path) => requested.has(path)) &&
-        (requested.has('./artwork-catalog.json') || mediumStatus >= 200 && mediumStatus < 300) &&
+        (requested.has('./artwork-catalog.json') ||
+         (browserAudio.mediumStatus ?? mediumStatus) >= 200 &&
+         (browserAudio.mediumStatus ?? mediumStatus) < 300) &&
         inFlightDigests.size === 0) quietTurns++;
     else quietTurns = 0;
   }
@@ -1894,6 +1912,78 @@ test('two separately pinned Picard literary proposals augment only Explorer and 
   nodes.get('lore-query').value = 'The Dark Veil';
   nodes.get('lore-form').fire('submit', { preventDefault() {} });
   assert.match(nodes.get('lore-answer').textContent, /The Dark Veil/);
+});
+
+test('two separately reviewed Picard paperback covers add visible source-matched M jackets only after explicit opt-in', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const picardBytes = readFileSync(new URL('../explorer/picard-literature-overlay.json', import.meta.url));
+  const picardJacketsBytes = readFileSync(new URL('../explorer/picard-jackets-v1.0.json', import.meta.url));
+  const mediumArtwork = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog-v1.3.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404,
+    { picardBytes, picardStatus: 200, picardJacketsBytes, picardJacketsStatus: 200,
+      mediumArtwork, mediumStatus: 200 }, null, 404, directory, 200);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,216',
+    'two editions must not inflate the historical 1,214 source-local discovery denominator');
+  assert.equal(nodes.get('artwork-nav-count').textContent, '6');
+  assert.match(nodes.get('artwork-toggle').textContent, /Show sourced artwork \(6 previews\)/);
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 6);
+  assert.match(nodes.get('artwork-gallery-list').textContent, /The Dark Veil/);
+  assert.match(nodes.get('artwork-gallery-list').textContent, /Rogue Elements/);
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0,
+    'no remote JPEG element or URL may enter the DOM before visitor consent');
+  nodes.get('artwork-toggle').fire('click');
+  const gallery = nodes.get('artwork-gallery-list');
+  const images = traverse(gallery, (n) => n.tagName === 'img');
+  assert.equal(images.length, 6);
+  for (const [isbn, cover, title, height] of [
+    ['9781982154073', 10691195, 'The Dark Veil', 271],
+    ['9781982175207', 13231543, 'Rogue Elements', 280]
+  ]) {
+    const img = images.find((node) => node.src === `https://covers.openlibrary.org/b/id/${cover}-M.jpg?default=false`);
+    assert.ok(img, `real edition-pinned ${title} jacket must display in gallery`);
+    assert.equal(img.width, 180);
+    assert.equal(img.height, height);
+    assert.equal(img.loading, 'lazy');
+    assert.equal(img.referrerPolicy, 'no-referrer');
+    assert.equal(img.parentNode.href, `https://openlibrary.org/isbn/${isbn}`);
+    assert.equal(img.parentNode.rel, 'noopener noreferrer');
+    assert.equal(img.parentNode.parentNode.className.includes('artwork-has-source'), true,
+      'sourced jacket controls the original record-graphic placeholder');
+    assert.match(img.alt, /underlying copyright unresolved/);
+  }
+  assert.equal(traverse(gallery, (node) => node.className === 'artwork-credit').length, 6,
+    'all six external jacket previews expose individually exact-edition credit links');
+  nodes.get('artwork-toggle').fire('click');
+  assert.equal(traverse(gallery, (node) => node.tagName === 'img').length, 0,
+    'opt-out must remove all six JPEG elements');
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 6,
+    'local source-linked LCARS index remains browsable after consent withdrawal');
+});
+
+test('missing, tampered or server-error Picard jacket release leaves original four reviewed covers', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const picardBytes = readFileSync(new URL('../explorer/picard-literature-overlay.json', import.meta.url));
+  const original = readFileSync(new URL('../explorer/picard-jackets-v1.0.json', import.meta.url));
+  const mediumArtwork = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog-v1.3.json', import.meta.url), 'utf8'));
+  const tampered = Buffer.from(original);
+  tampered[3] ^= 1;
+  for (const variant of [
+    { picardJacketsStatus: 404 },
+    { picardJacketsBytes: tampered, picardJacketsStatus: 200 },
+    { picardJacketsBytes: original, picardJacketsStatus: 500 }
+  ]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404,
+      { picardBytes, picardStatus: 200, mediumArtwork, mediumStatus: 200, ...variant },
+      null, 404, directory, 200);
+    assert.equal(nodes.get('artwork-nav-count').textContent, '4');
+    assert.equal(nodes.get('artwork-gallery-list').children.length, 4);
+    assert.equal(traverse(nodes.get('artwork-gallery-list'), (node) => node.tagName === 'img').length, 0);
+    nodes.get('artwork-toggle').fire('click');
+    const images = traverse(nodes.get('artwork-gallery-list'), (node) => node.tagName === 'img');
+    assert.equal(images.length, 4);
+    assert.ok(images.every((img) => ![10691195, 13231543].some((id) => img.src.includes(`/id/${id}-`))),
+      'withheld Picard image may not leak through legacy artwork cards');
+  }
 });
 
 test('missing or digest-tampered Picard supplement leaves original 1,214 directory and nine literary rows', async () => {

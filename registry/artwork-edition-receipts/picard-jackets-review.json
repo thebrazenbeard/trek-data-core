@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "review_status": "FOUR_DISTINCT_REVIEWERS_API_OPT_IN",
+  "source_packet_sha256": "031e558658de77627158f022621752d0dd863b47f41b47531161989650b3d3ad",
+  "sidecar_sha256": "85bdc8ebbb348d713d604fb9486c2af091e36d40138587a761ddd93716cd9615",
+  "reviewed_on": "2026-11-03",
+  "edition_reviewer": "chatgpt.trek.visual-bookcover-release",
+  "publisher_source_reviewer": "chatgpt.trek.consolidator.opf.publisher_source",
+  "large_image_reviewer": "chatgpt.trek.literary-archive-audit",
+  "medium_image_reviewer": "chatgpt.trek.visual-artwork-release",
+  "edition_source_scope": "TWO_PICARD_S_AND_S_TRADE_PAPERBACK_ISBNS",
+  "visual_inspection_scope": "TWO_FRONT_JACKETS_M_AND_L_BYTES",
+  "api_display_scope": "REMOTE_OPEN_LIBRARY_API_AFTER_EXPLICIT_CONSENT",
+  "copyright_status": "UNRESOLVED",
+  "coverage_effect": "NONE",
+  "work_admission_effect": "NONE",
+  "image_bytes_mirrored": false,
+  "source_local_jacket_count": 2
+}

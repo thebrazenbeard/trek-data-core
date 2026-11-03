@@ -43,6 +43,22 @@ packaged alongside it indefinitely for cached older Explorer clients.
 The matching dual-reader UI must try only the strictly reviewed v1.3.0
 sidecar first and fall back to unchanged v1.2.0 on missing, invalid or
 unavailable medium images; no remote requests occur before visitor opt-in.
+An **additive, separately pinned** `explorer/picard-jackets-v1.0.json`
+contains two independent source-local Picard trade-paperback jackets: *The
+Dark Veil*, James Swallow, ISBN `9781982154073`, Open Library cover ID
+`10691195`, and *Rogue Elements*, John Jackson Miller, ISBN
+`9781982175207`, cover ID `13231543`. Publisher-edition/ISBN, Open Library
+JSON and actual large/medium JPEG bytes were independently checked; the two
+medium JPEG fronts were visually inspected. Four distinct workers reviewed
+edition mapping, first-party publisher metadata, large pixels and medium
+pixels; see `registry/artwork-edition-receipts/picard-jackets-review.json` and
+`proposals/librarian/open-library-picard-jackets-20261103/` for exact provenance.
+These are **six opt-in API-displayed external images**, not six licensed
+copies, new admitted Works or public-domain claims. The Picard sidecar fails
+closed to the original four autobiography jackets when absent, tampered, or
+unbound from its separately pinned two-row Picard literary supplement.
+The independently gated static Pages build excludes `explorer/licensed-artwork/`
+physical binaries even when a proposed rights sidecar claims authorization.
 **No merge or deployment ahead of a compatible independently browser-tested
 UI: no temporary blank cover shelf.** If both optional artwork sidecars are
 absent, the browser reports artwork unavailable, not an empty universe.

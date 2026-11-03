@@ -7,7 +7,7 @@ import { webcrypto } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -73,6 +73,9 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-kind').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
   nodes.get('discovery-overview').value = 'all';
+  nodes.get('discovery-verification').value = 'all';
+  nodes.get('discovery-synopsis').value = 'all';
+  nodes.get('discovery-tag').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -883,6 +886,34 @@ test('candidate-kind facet distinguishes discovery types without promoting admis
     discovery.rows.filter((row) => row.medium === 'LITERATURE' && row.candidate_kind === 'NOVEL').length);
   assert.equal(nodes.get('discovery-nav-count').textContent, '1,214', 'filtering does not redefine source-local inventory');
   assert.equal(nodes.get('briefing-count').textContent, '0', 'filtering does not admit candidate data');
+});
+
+test('source-local structural tag, synopsis and metadata facets are searchable without admissions', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
+  const tags = nodes.get('discovery-tag');
+  assert.ok(tags.children.some((item) => item.value === 'series:tos'));
+  assert.ok(tags.children.some((item) => item.value === 'source:wikidata:wdqs'));
+  tags.value = 'series:tos';
+  nodes.get('discovery-filters').fire('change');
+  assert.ok(nodes.get('discovery-list').children.length > 0);
+  assert.match(nodes.get('discovery-list').textContent, /TOS/);
+  nodes.get('discovery-verification').value = 'rechecked_exact';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 0,
+    'without accepted recheck sidecar, structural index cannot assert official verified status');
+  nodes.get('discovery-verification').value = 'not_rechecked';
+  nodes.get('discovery-filters').fire('change');
+  assert.ok(nodes.get('discovery-list').children.length > 0);
+  nodes.get('discovery-synopsis').value = 'reviewed_publisher_paraphrase';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 0,
+    'reviewed synopsis filter fails closed if publisher synopsis sidecars are absent');
+  nodes.get('discovery-synopsis').value = 'pending';
+  nodes.get('discovery-filters').fire('change');
+  assert.ok(nodes.get('discovery-list').children.length > 0);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
 });
 
 test('untrusted directory cannot forge admission or publisher navigation', async () => {

@@ -95,6 +95,18 @@ jobs:
             python3 tools/build_unified_discovery.py --check
           fi
 
+      - name: Verify callable source-local search projection
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Search JSON is derived exclusively from four pinned public sidecars.
+          test -f explorer/search-catalog.json
+          test ! -L explorer/search-catalog.json
+          test ! -L tools/build_source_local_search.py
+          test ! -L tools/query_trek_index.py
+          python3 tools/build_source_local_search.py --check
+          python3 tools/query_trek_index.py --validate-sources --limit 1 > /dev/null
+
       - name: Verify optional publisher-description synopsis release
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -171,6 +183,7 @@ jobs:
             ! -path explorer/trek-data-core-hero.jpg \
             ! -path explorer/research-leads.json \
             ! -path explorer/discovery-catalog.json \
+            ! -path explorer/search-catalog.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/short-synopsis-catalog.json \
@@ -223,6 +236,19 @@ jobs:
             fi
           elif test -e explorer/discovery-catalog.json || test -L explorer/discovery-catalog.json; then
             echo "Refusing to deploy uncommitted Multimedia directory" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/search-catalog.json 2>/dev/null; then
+            test -f explorer/search-catalog.json
+            test ! -L explorer/search-catalog.json
+            expected="$(git rev-parse HEAD:explorer/search-catalog.json)"
+            actual="$(git hash-object explorer/search-catalog.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified source-local search projection" >&2
+              exit 1
+            fi
+          elif test -e explorer/search-catalog.json || test -L explorer/search-catalog.json; then
+            echo "Refusing to deploy an uncommitted source-local search projection" >&2
             exit 1
           fi
           if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null; then

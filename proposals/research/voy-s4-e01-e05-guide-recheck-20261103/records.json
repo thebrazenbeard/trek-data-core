@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "voy-s4-e01-e05-guide-recheck-20261103",
+  "role": "VOY",
+  "base_accepted_main": "aebf9e8a69ab44919f2d89ab60dd1e824e05a807",
+  "state": "HELD_SOURCE_LOCAL_PROPOSAL",
+  "admission_effect": "NONE",
+  "work_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "full_episode_or_transcript_read": false,
+  "raw_source_bytes_newly_custodied": false,
+  "date_observed_utc": "2026-11-03",
+  "source": {
+    "id": "paramount-us-voy-s4-guide",
+    "url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
+    "type": "OFFICIAL_PUBLISHER_SEASON_GUIDE",
+    "lineage_group": "PARAMOUNT_CBS_SKYDANCE_CORPORATE",
+    "read_representation": "RENDERED_HTML_GUIDE",
+    "read_locator": "Season 4 > Episode Guide > first five episode cards",
+    "new_raw_source_sha256": null,
+    "existing_repo_source_receipt": "proposals/discovery/publisher-season4-20261102/index.json",
+    "existing_repo_csv": "proposals/discovery/publisher-season4-20261102/voy.csv",
+    "existing_repo_csv_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
+  },
+  "local_entities": [
+    {
+      "id": "voy-s4e01-paramount-guide-card",
+      "source_id": "paramount-us-voy-s4-guide",
+      "season": 4,
+      "display_ordinal": 1,
+      "display_title": "Scorpion, Part 2",
+      "work_id": null,
+      "evidence_id": "voy-s4e01-guide-heading",
+      "assertion_id": "voy-s4e01-source-display",
+      "synopsis_candidate": {
+        "text": "Janeway makes an uneasy pact with the Borg while Voyager faces a dangerous confrontation.",
+        "basis": "OFFICIAL_GUIDE_BRIEF_BLURB_ONLY",
+        "state": "HELD_FOR_HUMAN_REVIEW",
+        "is_original_paraphrase": true,
+        "full_episode_read": false,
+        "public_release": false
+      }
+    },
+    {
+      "id": "voy-s4e02-paramount-guide-card",
+      "source_id": "paramount-us-voy-s4-guide",
+      "season": 4,
+      "display_ordinal": 2,
+      "display_title": "The Gift",
+      "work_id": null,
+      "evidence_id": "voy-s4e02-guide-heading",
+      "assertion_id": "voy-s4e02-source-display",
+      "synopsis_candidate": {
+        "text": "Seven of Nine resists the return of her human biology after being separated from the Borg collective.",
+        "basis": "OFFICIAL_GUIDE_BRIEF_BLURB_ONLY",
+        "state": "HELD_FOR_HUMAN_REVIEW",
+        "is_original_paraphrase": true,
+        "full_episode_read": false,
+        "public_release": false
+      }
+    },
+    {
+      "id": "voy-s4e03-paramount-guide-card",
+      "source_id": "paramount-us-voy-s4-guide",
+      "season": 4,
+      "display_ordinal": 3,
+      "display_title": "Day Of Honor",
+      "work_id": null,
+      "evidence_id": "voy-s4e03-guide-heading",
+      "assertion_id": "voy-s4e03-source-display",
+      "synopsis_candidate": {
+        "text": "B'Elanna's attempt to observe the Klingon Day of Honor is disrupted by a cascade of setbacks.",
+        "basis": "OFFICIAL_GUIDE_BRIEF_BLURB_ONLY",
+        "state": "HELD_FOR_HUMAN_REVIEW",
+        "is_original_paraphrase": true,
+        "full_episode_read": false,
+        "public_release": false
+      }
+    },
+    {
+      "id": "voy-s4e04-paramount-guide-card",
+      "source_id": "paramount-us-voy-s4-guide",
+      "season": 4,
+      "display_ordinal": 4,
+      "display_title": "Nemesis",
+      "work_id": null,
+      "evidence_id": "voy-s4e04-guide-heading",
+      "assertion_id": "voy-s4e04-source-display",
+      "synopsis_candidate": {
+        "text": "Stranded amid a planetary conflict, Chakotay helps a group of fighters despite the Prime Directive.",
+        "basis": "OFFICIAL_GUIDE_BRIEF_BLURB_ONLY",
+        "state": "HELD_FOR_HUMAN_REVIEW",
+        "is_original_paraphrase": true,
+        "full_episode_read": false,
+        "public_release": false
+      }
+    },
+    {
+      "id": "voy-s4e05-paramount-guide-card",
+      "source_id": "paramount-us-voy-s4-guide",
+      "season": 4,
+      "display_ordinal": 5,
+      "display_title": "Revulsion",
+      "work_id": null,
+      "evidence_id": "voy-s4e05-guide-heading",
+      "assertion_id": "voy-s4e05-source-display",
+      "synopsis_candidate": {
+        "text": "B'Elanna and the Doctor answer a distress call from a hologram whose systems are failing.",
+        "basis": "OFFICIAL_GUIDE_BRIEF_BLURB_ONLY",
+        "state": "HELD_FOR_HUMAN_REVIEW",
+        "is_original_paraphrase": true,
+        "full_episode_read": false,
+        "public_release": false
+      }
+    }
+  ],
+  "evidence": [
+    {"id": "voy-s4e01-guide-heading", "source_id": "paramount-us-voy-s4-guide", "entity_id": "voy-s4e01-paramount-guide-card", "locator": "Season 4 > Scorpion, Part 2 > S4 E1", "establishes": "Publisher guide displays the title, ordinal and a brief plot blurb."},
+    {"id": "voy-s4e02-guide-heading", "source_id": "paramount-us-voy-s4-guide", "entity_id": "voy-s4e02-paramount-guide-card", "locator": "Season 4 > The Gift > S4 E2", "establishes": "Publisher guide displays the title, ordinal and a brief plot blurb."},
+    {"id": "voy-s4e03-guide-heading", "source_id": "paramount-us-voy-s4-guide", "entity_id": "voy-s4e03-paramount-guide-card", "locator": "Season 4 > Day Of Honor > S4 E3", "establishes": "Publisher guide displays the title, ordinal and a brief plot blurb."},
+    {"id": "voy-s4e04-guide-heading", "source_id": "paramount-us-voy-s4-guide", "entity_id": "voy-s4e04-paramount-guide-card", "locator": "Season 4 > Nemesis > S4 E4", "establishes": "Publisher guide displays the title, ordinal and a brief plot blurb."},
+    {"id": "voy-s4e05-guide-heading", "source_id": "paramount-us-voy-s4-guide", "entity_id": "voy-s4e05-paramount-guide-card", "locator": "Season 4 > Revulsion > S4 E5", "establishes": "Publisher guide displays the title, ordinal and a brief plot blurb."}
+  ],
+  "assertions": [
+    {"id": "voy-s4e01-source-display", "predicate": "PUBLISHER_GUIDE_DISPLAYS_LOCAL_CARD", "state": "HELD", "evidence_ids": ["voy-s4e01-guide-heading"], "scope": "Publisher guide display only; no canonical episode identity claim"},
+    {"id": "voy-s4e02-source-display", "predicate": "PUBLISHER_GUIDE_DISPLAYS_LOCAL_CARD", "state": "HELD", "evidence_ids": ["voy-s4e02-guide-heading"], "scope": "Publisher guide display only; no canonical episode identity claim"},
+    {"id": "voy-s4e03-source-display", "predicate": "PUBLISHER_GUIDE_DISPLAYS_LOCAL_CARD", "state": "HELD", "evidence_ids": ["voy-s4e03-guide-heading"], "scope": "Publisher guide display only; no canonical episode identity claim"},
+    {"id": "voy-s4e04-source-display", "predicate": "PUBLISHER_GUIDE_DISPLAYS_LOCAL_CARD", "state": "HELD", "evidence_ids": ["voy-s4e04-guide-heading"], "scope": "Publisher guide display only; no canonical episode identity claim"},
+    {"id": "voy-s4e05-source-display", "predicate": "PUBLISHER_GUIDE_DISPLAYS_LOCAL_CARD", "state": "HELD", "evidence_ids": ["voy-s4e05-guide-heading"], "scope": "Publisher guide display only; no canonical episode identity claim"}
+  ],
+  "coverage_update": {"episodes_discovered_new": 0, "works_created": 0, "source_bindings_admitted": 0, "close_reads": 0, "semantic_analysis_admitted": 0, "status": "NOT_ADVANCED"}
+}

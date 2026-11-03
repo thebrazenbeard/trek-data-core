@@ -1,0 +1,59 @@
+{
+  "source_url": "https://www.startrek.com/news/star-trek-prodigy-season-2-now-available",
+  "source_publication_date": "2024-07-01",
+  "retrieved_date": "2026-11-03",
+  "raw_html_sha256": "453aeb5dc7f69ff005f3da70f41a43d4755f4157253e0bba3f5d76d54a57b12a",
+  "source_independence_group": "StarTrek.com corporate publisher",
+  "records": [
+    {
+      "source_local_id": "startrek-pro-s2-201",
+      "publisher_slot": "201",
+      "publisher_title": "Into the Breach, Part I",
+      "original_source_relative_synopsis": "The crew reunites aboard Voyager-A, where Admiral Janeway has different plans for their assignment.",
+      "source_status": "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY",
+      "work_identity": "UNRESOLVED",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "coverage_effect": "NONE"
+    },
+    {
+      "source_local_id": "startrek-pro-s2-202",
+      "publisher_slot": "202",
+      "publisher_title": "Into the Breach, Part II",
+      "original_source_relative_synopsis": "Gwyn seeks assistance after interference with her mission; an unexpected arrival disrupts Janeway's operation and sends the crew through a rift.",
+      "source_status": "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY",
+      "work_identity": "UNRESOLVED",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "coverage_effect": "NONE"
+    },
+    {
+      "source_local_id": "startrek-pro-s2-203",
+      "publisher_slot": "203",
+      "publisher_title": "Who Saves the Saviors",
+      "original_source_relative_synopsis": "A rescue attempt on future Solum goes awry, creating a temporal crisis that threatens Gwyn.",
+      "source_status": "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY",
+      "work_identity": "UNRESOLVED",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "coverage_effect": "NONE"
+    },
+    {
+      "source_local_id": "startrek-pro-s2-204",
+      "publisher_slot": "204",
+      "publisher_title": "Temporal Mechanics 101",
+      "original_source_relative_synopsis": "Stranded in a dangerous future, the crew tries to return to its own time and protect Gwyn with help from an unidentified source.",
+      "source_status": "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY",
+      "work_identity": "UNRESOLVED",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "coverage_effect": "NONE"
+    },
+    {
+      "source_local_id": "startrek-pro-s2-205",
+      "publisher_slot": "205",
+      "publisher_title": "Observer's Paradox",
+      "original_source_relative_synopsis": "Back aboard Voyager, the crew faces scrutiny while pursuing the missing Protostar and a puzzling message from Murf.",
+      "source_status": "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY",
+      "work_identity": "UNRESOLVED",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "coverage_effect": "NONE"
+    }
+  ]
+}

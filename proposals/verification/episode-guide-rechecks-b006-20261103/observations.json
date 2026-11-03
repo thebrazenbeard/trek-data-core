@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "RENDERED_PRIMARY_GUIDE_CARDS_MULTIPART_LISTING_UNRESOLVED",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "source_raw_bytes_pinned": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {"row_id":"lead:0067","series":"DS9","cards":[{"season":7,"episode":1,"official_title":"Image in the Sand"}],"title_resolution":"EXACT","original_synopsis_draft":"With the wormhole inaccessible, Sisko searches for a way to renew contact with Bajor's Prophets."},
+    {"row_id":"lead:0068","series":"DS9","cards":[{"season":6,"episode":20,"official_title":"His Way"}],"title_resolution":"EXACT","original_synopsis_draft":"Odo seeks romantic guidance from a holographic lounge singer as he tries to express his feelings for Kira."},
+    {"row_id":"lead:0069","series":"DS9","cards":[{"season":6,"episode":5,"official_title":"Favor The Bold"}],"title_resolution":"CASE_VARIANT_UNRESOLVED","original_synopsis_draft":"As Kira faces the threatened minefield, Sisko prepares a mission to regain control of Deep Space Nine."},
+    {"row_id":"lead:0070","series":"VOY","cards":[{"season":7,"episode":19,"official_title":"Q2"}],"title_resolution":"EXACT","original_synopsis_draft":"Janeway is left responsible for Q's mischievous, omnipotent son, whose actions cause widespread trouble."},
+    {"row_id":"lead:0071","series":"VOY","cards":[{"season":1,"episode":6,"official_title":"The Cloud"}],"title_resolution":"EXACT","original_synopsis_draft":"After Voyager becomes trapped inside a living nebula, Janeway leads an effort to repair the damage her ship caused."},
+    {"row_id":"lead:0072","series":"VOY","cards":[{"season":4,"episode":21,"official_title":"The Omega Directive"}],"title_resolution":"EXACT","original_synopsis_draft":"A dangerous particle detected near Voyager forces the crew to confront a threat to the surrounding space."},
+    {"row_id":"lead:0073","series":"VOY","cards":[{"season":1,"episode":4,"official_title":"Time And Again"}],"title_resolution":"CASE_VARIANT_UNRESOLVED","original_synopsis_draft":"Voyager investigates the destruction of a pre-warp world and the possibility that visiting its recent past caused the disaster."},
+    {"row_id":"lead:0074","series":"VOY","cards":[{"season":1,"episode":1,"official_title":"Caretaker, Part 1 & 2"}],"title_resolution":"COMBINED_MULTIPART_LISTING_UNRESOLVED","original_synopsis_draft":null},
+    {"row_id":"lead:0075","series":"VOY","cards":[{"season":5,"episode":4,"official_title":"In the Flesh"}],"title_resolution":"EXACT","original_synopsis_draft":"Voyager's crew discovers that Species 8472 operates a simulation of Starfleet Headquarters."},
+    {"row_id":"lead:0076","series":"VOY","cards":[{"season":2,"episode":2,"official_title":"Initiations"}],"title_resolution":"EXACT","original_synopsis_draft":"A young Kazon warrior abducts Chakotay while attempting to prove himself to his people."},
+    {"row_id":"lead:0077","series":"VOY","cards":[{"season":2,"episode":20,"official_title":"Investigations"}],"title_resolution":"EXACT","original_synopsis_draft":"Following erratic behavior, Tom Paris abandons Voyager and takes passage with a Talaxian convoy."},
+    {"row_id":"lead:0078","series":"VOY","cards":[{"season":6,"episode":13,"official_title":"Virtuoso"}],"title_resolution":"EXACT","original_synopsis_draft":"The Doctor's growing musical ambitions begin to reshape his relationships and personal life."},
+    {"row_id":"lead:0079","series":"VOY","cards":[{"season":6,"episode":18,"official_title":"Ashes to Ashes"}],"title_resolution":"EXACT","original_synopsis_draft":"An alien seeking refuge aboard Voyager claims to be one of the ship's long-deceased crew members."},
+    {"row_id":"lead:0080","series":"VOY","cards":[{"season":1,"episode":15,"official_title":"Jetrel"}],"title_resolution":"EXACT","original_synopsis_draft":"Neelix must confront painful memories when the scientist behind the weapon that devastated his homeworld visits Voyager."},
+    {"row_id":"lead:0081","series":"VOY","cards":[{"season":3,"episode":11,"official_title":"The Q and the Grey"}],"title_resolution":"EXACT","original_synopsis_draft":"Unusual supernovas herald a conflict within the Q Continuum, drawing Voyager into an escalating crisis."},
+    {"row_id":"lead:0082","series":"VOY","cards":[{"season":5,"episode":20,"official_title":"Think Tank"}],"title_resolution":"EXACT","original_synopsis_draft":"A Hazari ambush leaves Voyager facing an apparently inescapable threat."}
+  ]
+}

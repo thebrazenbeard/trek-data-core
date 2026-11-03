@@ -1,0 +1,77 @@
+{
+  "schema_version": "trek-lit-private-source-relative-evidence-v1",
+  "proposal_id": "LIT-DS9-EMISSARY-TXT-20261103",
+  "proposal_only": true,
+  "source_local_id": "txt-local:0001",
+  "librarian_receipt": "proposals/librarian/private-ds9-txt50-20261103/observations.json",
+  "source_member_sha256": "fb80998ce09f42b096d97cbffda446eb68f1b022d6c8f344d665bc1cf54f5f3e",
+  "candidate_work": {
+    "title": "Emissary",
+    "creator": "J.M. Dillard",
+    "series": "Star Trek: Deep Space Nine",
+    "publisher_catalog": "https://www.simonandschuster.com/books/Emissary/J-M-Dillard/Star-Trek-Deep-Space-Nine/9780743412209",
+    "publisher_ebook_isbn13": "9780743412209",
+    "textual_genre": "PROSE_NARRATIVE_ADAPTATION_CANDIDATE",
+    "source_work_binding": "CANDIDATE_UNRESOLVED",
+    "edition_match": "UNKNOWN",
+    "conversion_history": "UNKNOWN",
+    "full_publisher_edition_complete": "UNKNOWN"
+  },
+  "reading": {
+    "private_member_byte_integrity": "VERIFIED_AGAINST_ACCEPTED_LIBRARIAN_RECEIPT",
+    "read_scope": "ALL_TWELVE_OBSERVED_CHAPTERS",
+    "read_method": "Full sequential first-hand text reading from the exact hash-verified private TXT member on the user's authorized Lappy; chapter boundaries and nonempty-line locators re-derived without exporting text.",
+    "read_performed": true,
+    "privately_read_artifact": true,
+    "accepted_coverage_effect": "NONE",
+    "copyrighted_text_exported": false,
+    "global_reconciliation_effect": "NONE"
+  },
+  "local_entities": [
+    {"id":"lit-ds9-emissary:ben-sisko","kind":"PERSON_OCCURRENCE","local_label":"Benjamin Sisko"},
+    {"id":"lit-ds9-emissary:jennifer-sisko","kind":"PERSON_OCCURRENCE","local_label":"Jennifer Sisko"},
+    {"id":"lit-ds9-emissary:jake-sisko","kind":"PERSON_OCCURRENCE","local_label":"Jake Sisko"},
+    {"id":"lit-ds9-emissary:picard","kind":"PERSON_OCCURRENCE","local_label":"Jean-Luc Picard"},
+    {"id":"lit-ds9-emissary:kira","kind":"PERSON_OCCURRENCE","local_label":"Kira Nerys"},
+    {"id":"lit-ds9-emissary:obrien","kind":"PERSON_OCCURRENCE","local_label":"Miles O'Brien"},
+    {"id":"lit-ds9-emissary:jadzia-dax","kind":"JOINED_PERSON_OCCURRENCE","local_label":"Jadzia Dax"},
+    {"id":"lit-ds9-emissary:odo","kind":"PERSON_OCCURRENCE","local_label":"Odo"},
+    {"id":"lit-ds9-emissary:wormhole-entity","kind":"UNRESOLVED_NONLINEAR_ENTITY_OCCURRENCE","local_label":"Encountered wormhole entity or entities"},
+    {"id":"lit-ds9-emissary:nog","kind":"PERSON_OCCURRENCE","local_label":"Nog"},
+    {"id":"lit-ds9-emissary:opaka","kind":"PERSON_OCCURRENCE","local_label":"Kai Opaka"},
+    {"id":"lit-ds9-emissary:orb","kind":"ARTIFACT_OCCURRENCE","local_label":"Opaka's orb"},
+    {"id":"lit-ds9-emissary:station","kind":"LOCATION_OCCURRENCE","local_label":"Deep Space Nine"}
+  ],
+  "evidence": [
+    {"id":"ev-01","kind":"NARRATION_DEPICTION","locator":{"chapter":1,"nonempty_line_zero_based":96},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:jennifer-sisko","lit-ds9-emissary:jake-sisko"],"observation":"Sisko finds Jennifer and Jake beneath wreckage during a ship evacuation; the account distinguishes the rescue of the child from the unrecoverable adult.","frame":"NARRATED_WOLF_359_SEQUENCE"},
+    {"id":"ev-02","kind":"DIALOGUE_TESTIMONY","locator":{"chapter":2,"nonempty_line_zero_based":137},"participants":["lit-ds9-emissary:kira","lit-ds9-emissary:ben-sisko"],"observation":"Kira questions whether invited Federation assistance can coexist with meaningful Bajoran self-rule.","frame":"SPOKEN_POLITICAL_POSITION_NOT_OBJECTIVE_POLICY_JUDGMENT"},
+    {"id":"ev-03","kind":"INTERIOR_NARRATION","locator":{"chapter":3,"nonempty_line_zero_based":109},"participants":["lit-ds9-emissary:picard","lit-ds9-emissary:jennifer-sisko"],"observation":"After his confrontation with Sisko, the narration gives Picard awareness of the name and death of Sisko's spouse, separately depicting his self-blame.","frame":"PICARD_POINT_OF_VIEW_NOVEL_ARTIFACT_ONLY"},
+    {"id":"ev-04","kind":"ALTERED_EXPERIENCE","locator":{"chapter":4,"nonempty_line_zero_based":140},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:jennifer-sisko","lit-ds9-emissary:orb"],"observation":"Contact with the orb brings Sisko a perceptually detailed replay of meeting Jennifer before their marriage.","frame":"ORB_MEDIATED_EXPERIENCE_NOT_PROOF_OF_LITERAL_TIME_TRAVEL"},
+    {"id":"ev-05","kind":"RECOLLECTION","locator":{"chapter":5,"nonempty_line_zero_based":157},"participants":["lit-ds9-emissary:obrien"],"observation":"O'Brien remembers a fatal confrontation during a rescue on Setlik, alongside the deaths of a colleague and a commander's family.","frame":"INTERIOR_FLASHBACK_ARTIFACT_ONLY"},
+    {"id":"ev-06","kind":"DIALOGUE_TESTIMONY","locator":{"chapter":5,"nonempty_line_zero_based":206},"participants":["lit-ds9-emissary:jadzia-dax","lit-ds9-emissary:ben-sisko"],"observation":"Dax explicitly speaks of joined existence with more than one contributing subject and pushes back on Sisko's singular-host framing.","frame":"LOCAL_CHARACTER_SELF_DESCRIPTION"},
+    {"id":"ev-07","kind":"ORB_MEDIATED_MEMORY","locator":{"chapter":6,"nonempty_line_zero_based":36},"participants":["lit-ds9-emissary:jadzia-dax","lit-ds9-emissary:orb"],"observation":"Dax's contact with the orb presents the joining as an experience accessed through both the former host's and the new host's viewpoints.","frame":"DAX_SUBJECTIVE_REEXPERIENCE_NOT_INDEPENDENT_BIOGRAPHICAL_PROOF"},
+    {"id":"ev-08","kind":"CONTESTED_PERCEPTION","locator":{"chapter":7,"nonempty_line_zero_based":165},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:jadzia-dax"],"observation":"Sisko and Dax describe incompatible immediate landscapes while standing together at a wormhole destination.","frame":"CO_PRESENT_SUBJECTIVE_FRAMES_GLOBAL_TERRAIN_UNRESOLVED"},
+    {"id":"ev-09","kind":"DIALOGUE_TESTIMONY","locator":{"chapter":8,"nonempty_line_zero_based":57},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:wormhole-entity"],"observation":"An interlocutor adopting the appearance of Sisko's son asks about time, while Sisko attempts to explain human sequential experience.","frame":"ENTITY_IN_MEMORY_FORM_NOT_ACTUAL_JAKE"},
+    {"id":"ev-10","kind":"ALTERED_EXPERIENCE","locator":{"chapter":9,"nonempty_line_zero_based":164},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:wormhole-entity"],"observation":"A memory-form interlocutor questions why Sisko remains in the moment of traumatic loss, despite his expressed wish to leave it.","frame":"PSYCHOLOGICAL_DIALOGUE_INSIDE_NONLINEAR_ENCOUNTER"},
+    {"id":"ev-11","kind":"INTERIOR_NARRATION","locator":{"chapter":10,"nonempty_line_zero_based":224},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:wormhole-entity"],"observation":"Sisko acknowledges that his grief has held his attention in the destroyed ship, exposing conflict between physical departure and lived psychological time.","frame":"CHARACTER_INSIGHT_WITHIN_ALTERED_ENCOUNTER"},
+    {"id":"ev-12","kind":"NARRATION_DEPICTION","locator":{"chapter":11,"nonempty_line_zero_based":152},"participants":["lit-ds9-emissary:jake-sisko","lit-ds9-emissary:nog"],"observation":"Jake and Nog cooperate in extinguishing a fire and freeing Nog's trapped father, despite earlier disagreement over property and conduct.","frame":"NARRATED_STATION_ATTACK"},
+    {"id":"ev-13","kind":"NARRATION_DEPICTION","locator":{"chapter":11,"nonempty_line_zero_based":198},"participants":["lit-ds9-emissary:odo"],"observation":"Odo reluctantly assists a wounded civilian at the doctor's direction; earlier antagonism becomes situational cooperation.","frame":"NARRATED_STATION_MEDICAL_RESPONSE"},
+    {"id":"ev-14","kind":"INTERIOR_NARRATION","locator":{"chapter":11,"nonempty_line_zero_based":259},"participants":["lit-ds9-emissary:ben-sisko","lit-ds9-emissary:picard"],"observation":"Sisko's perspective toward Picard changes from involuntary Borg-associated images to recognition of the injured human before him.","frame":"CHARACTER_PERSPECTIVE_NOT_OBJECTIVE_IDENTIFICATION_EQUIVALENCE"},
+    {"id":"ev-15","kind":"DIALOGUE_TESTIMONY","locator":{"chapter":12,"nonempty_line_zero_based":45},"participants":["lit-ds9-emissary:opaka","lit-ds9-emissary:ben-sisko"],"observation":"Opaka declines Sisko's offer to describe the wormhole beings directly and frames that refusal as a spiritual boundary.","frame":"SPOKEN_RELIGIOUS_POSITION_NOT_EVIDENCE_OF_DIVINE_IDENTITY"}
+  ],
+  "assertions": [
+    {"id":"as-01","type":"INTERPRETIVE","predicate":"MOTIF_RECURS","subject":"lit-ds9-emissary:ben-sisko","object":"Grief expressed as arrested rather than chronological time","supported_by":["ev-01","ev-04","ev-10","ev-11"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"},
+    {"id":"as-02","type":"INTERPRETIVE","predicate":"PARALLEL_CHARACTER_ARC","subject":"lit-ds9-emissary:obrien","object":"Private war trauma parallels Sisko's response to family loss without equating the experiences","supported_by":["ev-01","ev-05"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"},
+    {"id":"as-03","type":"INTERPRETIVE","predicate":"EPISTEMIC_FRAMES_CONFLICT","subject":"lit-ds9-emissary:wormhole-entity","object":"Co-present perceptions and reconstructed memories complicate treating every described image as an external entity","supported_by":["ev-04","ev-07","ev-08","ev-09"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"},
+    {"id":"as-04","type":"INTERPRETIVE","predicate":"AUTONOMY_AND_INSTITUTIONS","subject":"lit-ds9-emissary:kira","object":"An expressed tension between post-occupation local sovereignty and outside institutional protection","supported_by":["ev-02"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"},
+    {"id":"as-05","type":"INTERPRETIVE","predicate":"JOINED_IDENTITY_DESCRIPTION","subject":"lit-ds9-emissary:jadzia-dax","object":"The local narrative explores a multi-perspective joined self while retaining distinctions between hosts and memories","supported_by":["ev-06","ev-07"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"},
+    {"id":"as-06","type":"INTERPRETIVE","predicate":"INTERPERSONAL_TRUST_CHANGE","subject":"lit-ds9-emissary:jake-sisko","object":"A crisis produces cooperative action across initially mistrustful cultural expectations","supported_by":["ev-12"],"counterweight":[],"counterevidence_status":"UNKNOWN","status":"SOURCE_LOCAL_INTERPRETATION"}
+  ],
+  "unresolved": [
+    {"id":"un-01","kind":"EDITION_IDENTITY","status":"UNKNOWN","reason":"The TXT has no verified title or imprint page; the publisher's catalog establishes a plausible novel Work but does not authenticate the private TXT manifestation."},
+    {"id":"un-02","kind":"TEXT_COMPLETENESS","status":"UNKNOWN","reason":"Twelve consecutive chapters and a narrative ending were observed, but a publisher text/pagination comparison was not available."},
+    {"id":"un-03","kind":"CONTINUITY","status":"UNRESOLVED","reason":"Novel prose includes expanded flashbacks and apparent source-specific biographical assertions; audiovisual continuity and later series retroactive corrections were not reconciled."},
+    {"id":"un-04","kind":"ENTITY_IDENTITY","status":"AMBIGUOUS","reason":"Figures that look and speak like Sisko's loved ones inside the encounter are narrative presentation forms, not evidence that the originals are present."},
+    {"id":"un-05","kind":"RECONCILIATION_AUTHORITY","status":"UNRESOLVED","reason":"No global Work or character identity decisions are authorized for this LIT worker."}
+  ]
+}

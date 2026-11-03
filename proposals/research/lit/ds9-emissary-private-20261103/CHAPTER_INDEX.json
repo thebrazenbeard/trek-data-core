@@ -1,0 +1,27 @@
+{
+  "schema_version": "trek-lit-private-txt-chapter-index-v1",
+  "source_local_id": "txt-local:0001",
+  "archive_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+  "archive_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+  "source_member_sha256": "fb80998ce09f42b096d97cbffda446eb68f1b022d6c8f344d665bc1cf54f5f3e",
+  "source_member_bytes": 363543,
+  "private_source_read": true,
+  "published_edition_verified": false,
+  "accepted_work_coverage_effect": "NONE",
+  "extraction_method": "Decode UTF-8 bytes without replacement, find exactly anchored Chapter N headings, segment by heading's zero-based character index, split on CRLF or LF, count nonempty lines (including headings), SHA256 each unmodified UTF-8 chapter segment. End indices exclusive.",
+  "total_nonempty_lines": 2092,
+  "chapters": [
+    {"chapter":1,"char_start":0,"char_end_exclusive":20650,"nonempty_line_start":0,"nonempty_line_end_exclusive":132,"segment_sha256":"2c6a8186de3775d09549fdb1b6960c5cc99d1bf730b42d1644d4b4fd63e64d74"},
+    {"chapter":2,"char_start":20650,"char_end_exclusive":48637,"nonempty_line_start":132,"nonempty_line_end_exclusive":283,"segment_sha256":"cb6a7e5cb82ee7b77424c7a3349471d7cf436bbb7f469f6f4cd95187d71949e8"},
+    {"chapter":3,"char_start":48637,"char_end_exclusive":71874,"nonempty_line_start":283,"nonempty_line_end_exclusive":404,"segment_sha256":"dfefb7a7e1f5ad09ff480c3da3c0e6313b4d57dc836677fa29dfb0cce399a109"},
+    {"chapter":4,"char_start":71874,"char_end_exclusive":103776,"nonempty_line_start":404,"nonempty_line_end_exclusive":592,"segment_sha256":"d3dbaa749ce359ec364e7127bb118dac46b62a1dba80ea4036181e9b541df250"},
+    {"chapter":5,"char_start":103776,"char_end_exclusive":156035,"nonempty_line_start":592,"nonempty_line_end_exclusive":857,"segment_sha256":"247980384ede030a52df3a6e8109830f7e245c5083ee6bd948c410cb6b1fb514"},
+    {"chapter":6,"char_start":156035,"char_end_exclusive":187038,"nonempty_line_start":857,"nonempty_line_end_exclusive":1025,"segment_sha256":"f131dd75c30e940aabd507cbf95c013e6873eaec8903ddf6be605db722931501"},
+    {"chapter":7,"char_start":187038,"char_end_exclusive":212923,"nonempty_line_start":1025,"nonempty_line_end_exclusive":1203,"segment_sha256":"4b67def0438cbeafef0ae795cf9ebe768f2d17c22475316014185dd10033cb45"},
+    {"chapter":8,"char_start":212923,"char_end_exclusive":234375,"nonempty_line_start":1203,"nonempty_line_end_exclusive":1341,"segment_sha256":"fb6d9163040bee80ef521f5f35362bef519d1eafa1bbdb4a5332d04d065d65fa"},
+    {"chapter":9,"char_start":234375,"char_end_exclusive":265284,"nonempty_line_start":1341,"nonempty_line_end_exclusive":1524,"segment_sha256":"933dbd579208b98702672976c8dde04e3d49adef26b6ddbb7e6de00dcfd4b96b"},
+    {"chapter":10,"char_start":265284,"char_end_exclusive":303439,"nonempty_line_start":1524,"nonempty_line_end_exclusive":1763,"segment_sha256":"7d769444b455b04cac3def92f9f89ac83b36fe09a28cc7e3841d0c33aabb2de6"},
+    {"chapter":11,"char_start":303439,"char_end_exclusive":354992,"nonempty_line_start":1763,"nonempty_line_end_exclusive":2041,"segment_sha256":"a33b8319e92c2d83b20e30dc00fc215a01216ad452eb2311971831fef7cc20f9"},
+    {"chapter":12,"char_start":354992,"char_end_exclusive":363543,"nonempty_line_start":2041,"nonempty_line_end_exclusive":2092,"segment_sha256":"adac920436b273526b7ffd35d6137fa83a617efec85fe49d49f85696f590905b"}
+  ]
+}

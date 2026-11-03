@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "TNG-S1-B012-PUBLISHER-CARDS-20261103",
+  "baseline_accepted_main": "2070b0153228272b5dd667b0a23465ff49a95a5f",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+  "read_surface": "PUBLISHER_RENDERED_GUIDE_AND_RAW_HTML_CARD_METADATA",
+  "raw_html_bytes_archived": false,
+  "audiovisual_episodes_watched": false,
+  "public_synopsis_authorized": false,
+  "artwork_copy_or_publication_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "accepted_b004_observations_sha256": "1b8e2dcf3fb80b17e9bda1565416e5a9a96181fc0be9b0b118dca9d7107aeed3",
+  "accepted_b011_observations_sha256": "89222839cbdf6e15f860efbce0d6aa6fd38bf0421a07c2813b1e915f4b83205a",
+  "accepted_b011_records_sha256": "1e484266c0cf980fbbb1768b78bf624005007669f50135311e9ee2eba937eed4",
+  "rows": [
+    {
+      "row_id": "legacy:s1:tng:021",
+      "publisher_title": "Skin of Evil",
+      "season": 1,
+      "episode": 23,
+      "publisher_description_sha256": "43bc68d6b8e50b544cec3ed2da0865ba9d945b9b0247e848456cda7a02896d67",
+      "original_synopsis_draft": "An Enterprise rescue ends in the death of a crew officer following an encounter with a hostile alien.",
+      "entity_mentions_source_relative": ["Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453059819/CBS_TNG_122_HD_IMAGE_CIAN_1732780_1920x1080.jpg",
+      "prior_same_family_title_slot_recheck_id": "lead:0043",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:022",
+      "publisher_title": "We'll Always Have Paris",
+      "season": 1,
+      "episode": 24,
+      "publisher_description_sha256": "3867d1eb7f80d9cfdd57785648e97de403fa904799a7e1838a19cf33edf23e6a",
+      "original_synopsis_draft": "Picard reconnects with an earlier love while investigating dangerous experiments that disrupt time.",
+      "entity_mentions_source_relative": ["Captain Picard"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107770/CBS_TNG_124_HD_IMAGE_CIAN_1122558_1920x1080.jpg",
+      "prior_same_family_title_slot_recheck_id": null,
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:023",
+      "publisher_title": "Conspiracy",
+      "season": 1,
+      "episode": 25,
+      "publisher_description_sha256": "a40a3decc5db26f99cd6eb5aff76994c961d41dc6ce24ccc794196fb5bbbd593",
+      "original_synopsis_draft": "Picard and Riker head to Earth to examine a suspected conspiracy within senior Starfleet command.",
+      "entity_mentions_source_relative": ["Captain Picard", "Commander Riker", "Earth", "Starfleet"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107854/CBS_TNG_125_HD_IMAGE_CIAN_1122569_1920x1080.jpg",
+      "prior_same_family_title_slot_recheck_id": null,
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:024",
+      "publisher_title": "The Neutral Zone",
+      "season": 1,
+      "episode": 26,
+      "publisher_description_sha256": "ecee596a410a394aaa3ffb5b638e5d2ff80ed138770abd50539aa9e9678760cc",
+      "original_synopsis_draft": "En route to a meeting with Romulans, the crew discovers a spacecraft carrying three Americans frozen since the twentieth century.",
+      "entity_mentions_source_relative": ["Romulans", "Americans"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26454595923/CBS_TNG_126_HD_IMAGE_CIAN_1122560_1920x1080.jpg",
+      "prior_same_family_title_slot_recheck_id": "lead:0040",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

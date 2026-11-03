@@ -58,7 +58,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -110,9 +110,11 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       digest(algorithm, bytes) {
         // Real WebCrypto is asynchronous on CI. Track every actual digest
         // completion rather than assuming one setImmediate settles sidecars.
-        const pending = webcrypto.subtle.digest(algorithm, bytes);
+        const pending = rejectDigest ? Promise.reject(new Error('Synthetic WebCrypto digest failure'))
+          : webcrypto.subtle.digest(algorithm, bytes);
         inFlightDigests.add(pending);
-        pending.finally(() => inFlightDigests.delete(pending));
+        // Observe both outcomes without creating an ignored rejecting promise.
+        pending.then(() => inFlightDigests.delete(pending), () => inFlightDigests.delete(pending));
         return pending;
       }
     }
@@ -201,6 +203,23 @@ test('changed or missing short synopsis appendix is rejected without deleting or
     assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 0);
     assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14);
   }
+});
+
+test('rejected native digest settles without a floating unhandled rejection or a forged recheck badge', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const original = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const metadata = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const short = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, original, 200, SCRIPT, metadata, 200, short, 200, true);
+  assert.doesNotMatch(nodes.get('discovery-metrics').textContent, /Official rendered metadata rechecked/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'directory-recheck').length, 0);
+  nodes.get('discovery-medium').value = 'SHORT_FORM';
+  nodes.get('discovery-filters').fire('input');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 0);
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14,
+    'failed optional digest does not remove 23 previously reviewed film/literature summaries');
 });
 
 const filmCatalog = {

@@ -14,7 +14,8 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'discovery-directory', 'episode-source-cards',
-  'artwork-toggle', 'artwork-state', 'publisher-edition-nav-count', 'publisher-edition-state',
+  'artwork-toggle', 'artwork-state', 'artwork-gallery', 'artwork-gallery-summary',
+  'artwork-gallery-list', 'publisher-edition-nav-count', 'publisher-edition-state',
   'publisher-edition-query', 'publisher-edition-tag', 'publisher-edition-filters',
   'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty',
   'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
@@ -1231,7 +1232,11 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(shipped.coverage_effect, 'NONE');
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, shipped, 200);
   assert.equal(nodes.get('artwork-toggle').disabled, false);
+  assert.match(nodes.get('artwork-toggle').textContent, /Show sourced artwork \(4 previews\)/);
   assert.match(nodes.get('artwork-state').textContent, /4 Open Library API previews/);
+  assert.equal(nodes.get('artwork-gallery').hidden, true);
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 0,
+    'the four-cover shelf must remain unbuilt before opt-in');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'there are no external image URLs in the DOM until a visitor explicitly opts in');
   nodes.get('discovery-query').value = 'autobiography';
@@ -1239,6 +1244,11 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'the four exact cover-bearing rows themselves cannot initiate off-site image requests before opt-in');
   nodes.get('artwork-toggle').fire('click');
+  assert.equal(nodes.get('artwork-gallery').hidden, false);
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
+    'a dedicated art gallery makes all four source-matched images discoverable without hiding in pagination');
+  assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually source-bound image options.*do not add Works/);
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
   assert.deepEqual(rendered.map((img) => img.src).sort(),
@@ -1248,6 +1258,18 @@ test('only four independently visually identified fictional-autobiography jacket
   const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
   assert.equal(credits.length, 4);
   assert.ok(credits.every((link) => link.rel === 'noopener noreferrer'));
+  const findLinks = traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-gallery-locate');
+  assert.equal(findLinks.length, 4);
+  findLinks[0].fire('click');
+  assert.match(nodes.get('discovery-query').value, /autobiography/i);
+  assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
+  assert.equal(nodes.get('discovery-directory').focused, true,
+    'the gallery locator preserves keyboard focus on the filtered results');
+  nodes.get('artwork-toggle').fire('click');
+  assert.equal(nodes.get('artwork-gallery').hidden, true);
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 0);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'hiding imagery must remove all remote image elements, not merely hide gallery visuals');
 
   // A matching ISBN/JSON digest alone is not sufficient: this purported
   // Enterprise War cover ID actually displayed an interior title page.

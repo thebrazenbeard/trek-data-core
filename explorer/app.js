@@ -1216,13 +1216,64 @@
     }
   }
 
+  function renderArtworkGallery() {
+    const section = byId('artwork-gallery');
+    const list = byId('artwork-gallery-list');
+    list.replaceChildren();
+    section.hidden = !artworkState.enabled || !artworkState.available;
+    if (section.hidden) {
+      byId('artwork-gallery-summary').textContent = '';
+      return;
+    }
+    const sourceRows = new Map();
+    for (const row of directoryState.rows) sourceRows.set(artworkKey(row), row);
+    for (const row of filmState.films) sourceRows.set(artworkKey(row), row);
+    const entries = [...artworkState.entries]
+      .map(([key, source]) => ({ key, source, row: sourceRows.get(key) }))
+      .filter((entry) => entry.row)
+      .sort((a, b) => a.row.title.localeCompare(b.row.title) || a.key.localeCompare(b.key));
+    for (const { key, source, row } of entries.slice(0, 24)) {
+      const card = el('article', 'artwork-gallery-card');
+      const art = makeArtworkSlot(row.medium || 'FILM', key, row);
+      const copy = el('div', 'artwork-gallery-copy');
+      copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
+      copy.append(el('h4', '', row.title));
+      copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
+      copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
+        ? 'Low-resolution API thumbnail · underlying copyright unresolved'
+        : 'Rights-reviewed public image · see source attribution'));
+      if (key.startsWith('directory:')) {
+        const locate = el('button', 'artwork-gallery-locate', 'Find this reference in the directory');
+        locate.type = 'button';
+        locate.addEventListener('click', () => {
+          byId('discovery-query').value = row.title;
+          for (const id of ['discovery-series', 'discovery-kind', 'discovery-lineage',
+            'discovery-overview', 'discovery-verification', 'discovery-publisher-check',
+            'discovery-synopsis', 'discovery-tag']) byId(id).value = 'all';
+          byId('discovery-medium').value = row.medium;
+          directoryState.limit = 40;
+          renderDirectory();
+          byId('discovery-directory').focus();
+          byId('discovery-list').scrollIntoView();
+        });
+        copy.append(locate);
+      }
+      card.append(art, copy);
+      list.append(card);
+    }
+    byId('artwork-gallery-summary').textContent =
+      `${Math.min(entries.length, 24)} of ${entries.length} individually source-bound image options shown; these do not add Works, close reads or episode coverage.`;
+  }
+
   function setArtworkAvailability(available, message) {
     artworkState.available = available;
     if (!available) { artworkState.entries.clear(); artworkState.enabled = false; }
     artworkToggle.disabled = !available;
     artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
-    artworkToggle.textContent = artworkState.enabled ? 'Hide sourced artwork' : 'Show sourced artwork';
+    artworkToggle.textContent = artworkState.enabled ? `Hide sourced artwork (${artworkState.entries.size} previews)`
+      : `Show sourced artwork (${available ? artworkState.entries.size : 0} previews)`;
     byId('artwork-state').textContent = message;
+    renderArtworkGallery();
     renderDirectory();
     renderFilms();
   }
@@ -1345,7 +1396,9 @@
     if (!artworkState.available) return;
     artworkState.enabled = !artworkState.enabled;
     artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
-    artworkToggle.textContent = artworkState.enabled ? 'Hide sourced artwork' : 'Show sourced artwork';
+    artworkToggle.textContent = artworkState.enabled ? `Hide sourced artwork (${artworkState.entries.size} previews)`
+      : `Show sourced artwork (${artworkState.entries.size} previews)`;
+    renderArtworkGallery();
     renderDirectory();
     renderFilms();
   });

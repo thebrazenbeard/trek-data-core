@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -66,6 +66,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('status-filter').value = 'all';
   nodes.get('research-mission').value = 'all';
   nodes.get('discovery-medium').value = 'all';
+  nodes.get('discovery-series').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
@@ -431,6 +432,29 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.equal(nodes.get('mission-count').textContent, '2', 'directory is segregated from Mission catalog');
 });
 
+test('series facet filters source-local episode observations without counting them as distinct Works', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
+  const series = nodes.get('discovery-series');
+  const options = series.children.map((child) => [child.value, child.textContent]);
+  assert.equal(options.length, 13, 'all series plus the twelve source-local series aliases');
+  assert.ok(options.some(([code, label]) => code === 'VOY' && /Voyager/.test(label)));
+  assert.ok(options.some(([code, label]) => code === 'TOS' && /Original Series/.test(label)));
+  series.value = 'VOY';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /193 source-local metadata rows match/);
+  assert.match(nodes.get('discovery-summary').textContent, /not distinct or admitted Works/);
+  assert.equal(nodes.get('discovery-list').children.length, 41, 'forty of 193 observations and Show next');
+  assert.equal(nodes.get('discovery-list').children.every((node) => node.tagName === 'button' || node.textContent.includes('VOY')), true);
+  nodes.get('discovery-medium').value = 'FILM';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 0, 'film rows cannot be misattributed to selected episode series');
+  series.value = 'all';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-list').children.length, 14, 'film rows remain independently browsable');
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'source-local facet cannot change accepted admission');
+});
+
 test('untrusted directory cannot forge admission or publisher navigation', async () => {
   const catalogData = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const accepted = structuredClone(catalogData);
@@ -722,6 +746,7 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="film-state"[^>]*role="status"/);
   assert.match(html, /id="discovery-directory"/);
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);
+  assert.match(html, /for="discovery-series">Series \(source-local\)<\/label>/, 'series facet must disclose its source-local scope');
   assert.match(html, /for="discovery-lineage">Source group<\/label>/, 'source-group labels do not imply independent publishers');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);

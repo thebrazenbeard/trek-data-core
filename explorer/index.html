@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=9e9b2e35ae980c405d84718949068fccc92eec7e86045f5657deffcf7ef09c3c">
-  <script src="./app.js?v=2f6c4691fff3a0606b3012bbcd04219a3f1237956076c18f3764ca11ba71aae5" defer></script>
+  <link rel="stylesheet" href="./app.css?v=cb1d78b06f036be9e276693938817dd9bcc1b15069808e15722c2b97d35c54b8">
+  <script src="./app.js?v=810bf892cdb4e137956327845dbe796b1a1daf1886cebac75db8d27dce7b6c11" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -81,6 +81,7 @@
       <form id="discovery-filters" class="directory-filters" role="search" aria-label="Search multimedia discovery metadata" autocomplete="off">
         <div class="field directory-search-field"><label for="discovery-query">Search discoveries</label><input id="discovery-query" type="search" name="discovery-q" placeholder="Title, publisher, source, series…" spellcheck="false"></div>
         <div class="field"><label for="discovery-medium">Medium</label><select id="discovery-medium" name="medium"><option value="all">All media</option></select></div>
+        <div class="field"><label for="discovery-series">Series (source-local)</label><select id="discovery-series" name="series"><option value="all">All series</option></select></div>
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
         <div class="filter-action"><button type="reset">Clear directory filters</button></div>
       </form>

@@ -420,12 +420,14 @@
     }
     const query = normalize(byId('discovery-query').value.trim());
     const medium = byId('discovery-medium').value;
+    const series = byId('discovery-series').value;
     const lineage = byId('discovery-lineage').value;
     const terms = query.split(/\s+/).filter(Boolean);
     const rows = directoryState.rows.filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
+      if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)
         ? directorySeriesLabels[seriesCode] : '';
       const body = normalize([item.title, item.context, seriesLabel,
@@ -483,6 +485,7 @@
     }
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
+    const seriesCounts = new Map();
     const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be']);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
@@ -508,6 +511,12 @@
         }
       }
       seen.add(item.row_id); counts[item.medium]++;
+      if (item.medium === 'EPISODE') {
+        const seriesCode = item.context.split(/\s+/, 1)[0];
+        if (Object.hasOwn(directorySeriesLabels, seriesCode)) {
+          seriesCounts.set(seriesCode, (seriesCounts.get(seriesCode) || 0) + 1);
+        }
+      }
     }
     if (!data.counts_by_medium || directoryMediums.some((key) => data.counts_by_medium[key] !== counts[key]) ||
         Object.keys(data.counts_by_medium).length !== directoryMediums.length || data.source_digests.length < 4 ||
@@ -519,11 +528,17 @@
     directoryState.limit = 40;
     for (const [selectId, values, label] of [
       ['discovery-medium', directoryMediums, 'All media'],
+      ['discovery-series', [...seriesCounts.keys()].sort((a, b) => directorySeriesLabels[a].localeCompare(directorySeriesLabels[b])), 'All series'],
       ['discovery-lineage', [...new Set(data.rows.map((row) => row.source_group))].sort(), 'All sources']
     ]) {
       const select = byId(selectId);
       select.replaceChildren(new Option(label, 'all'));
-      for (const value of values) select.add(new Option(value.replaceAll('_', ' '), value));
+      for (const value of values) {
+        const label = selectId === 'discovery-series'
+          ? `${directorySeriesLabels[value]} · ${seriesCounts.get(value)} source rows`
+          : value.replaceAll('_', ' ');
+        select.add(new Option(label, value));
+      }
       select.value = 'all';
     }
     const metrics = byId('discovery-metrics');

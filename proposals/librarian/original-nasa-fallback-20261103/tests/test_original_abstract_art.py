@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import pathlib
+import random
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -44,6 +45,40 @@ class AbstractArtTests(unittest.TestCase):
         for args in [("", "EPISODE", "title"), ("id", "OTHER", "title"), ("id", "FILM", "bad\x00title"), ("id\n", "FILM", "title")]:
             with self.assertRaises(ValueError):
                 ART.render_card(*args)
+
+    def test_invalid_xml_bidi_formatters_and_noncharacters_rejected(self):
+        invalid = [
+            "\ufffe", "\uffff", "\ufdd0", "\ufdef", "\u202e", "\u202d", "\u2066", "\u2069",
+            "\u200b", "\u200d", "\ufeff", "\ud800", "\U0001fffe", "\U0002ffff", "\U0010ffff",
+        ]
+        for character in invalid:
+            with self.subTest(codepoint=f"U+{ord(character):04X}"):
+                with self.assertRaises(ValueError):
+                    ART.render_card("id", "EPISODE", "safe" + character + "evil")
+                with self.assertRaises(ValueError):
+                    ART.render_card("safe" + character + "evil", "FILM", "title")
+
+    def test_valid_unicode_and_limits_remain_xml_parseable(self):
+        title = "L'histoire — 宇宙の旅 — Привет — 🙂"
+        xml = ART.render_card("entry:unicode", "EPISODE", title)
+        ET.fromstring(xml)
+        for length in [0, 241]:
+            with self.assertRaises(ValueError):
+                ART.render_card("id", "FILM", "X" * length)
+        with self.assertRaises(ValueError):
+            ART.render_card("I" * 201, "FILM", "valid")
+
+    def test_seeded_unicode_fuzz_never_emits_malformed_xml(self):
+        rng = random.Random(316)
+        for _ in range(1200):
+            # Any Unicode scalar/noncharacter may appear; accepted input must
+            # serialize as parseable XML. Rejected input is a valid safe result.
+            title = "test" + chr(rng.randrange(0x110000)) + "case"
+            try:
+                svg = ART.render_card("fuzz:id", "LITERATURE", title)
+            except ValueError:
+                continue
+            ET.fromstring(svg)
 
     def test_external_references_held_and_no_fake_work_binding(self):
         records = json.loads((ROOT / "records.json").read_text(encoding="utf-8"))

@@ -7,7 +7,7 @@ import { webcrypto } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -72,6 +72,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-series').value = 'all';
   nodes.get('discovery-kind').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
+  nodes.get('discovery-overview').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -187,6 +188,48 @@ test('separate internally reviewed Short Trek appendix yields fourteen real publ
   assert.match(nodes.get('discovery-list').textContent, /Not a full-work close read/);
   assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14,
     'original film summaries stay intact after short appendix');
+});
+
+test('overview availability facet filters the actual pinned source-local overviews without promoting discoveries', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const base = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const short = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, base, 200, SCRIPT, null, 404, short, 200);
+  nodes.get('discovery-overview').value = 'reviewed';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^37 source-local metadata rows match/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 37);
+  for (const [medium, count] of [['LITERATURE', 9], ['FILM', 14], ['SHORT_FORM', 14], ['EPISODE', 0]]) {
+    nodes.get('discovery-medium').value = medium;
+    nodes.get('discovery-filters').fire('change');
+    assert.equal(nodes.get('discovery-list').children.filter((n) => n.tagName === 'article').length, count, medium);
+  }
+  nodes.get('discovery-medium').value = 'all';
+  nodes.get('discovery-overview').value = 'not-loaded';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^1,177 source-local metadata rows match/);
+  assert.equal(nodes.get('discovery-list').children.filter((n) => n.tagName === 'article').length, 40);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 0);
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+});
+
+test('overview availability is fail-closed when its separate short appendix is missing or forged', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const base = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const exact = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const forged = Buffer.from(exact.toString('utf8').replace('"synopsis_count": 14', '"synopsis_count": 15'));
+  for (const [short, status] of [[exact, 404], [forged, 200]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+      null, 404, base, 200, SCRIPT, null, 404, short, status);
+    nodes.get('discovery-overview').value = 'reviewed';
+    nodes.get('discovery-filters').fire('change');
+    assert.match(nodes.get('discovery-summary').textContent, /^23 source-local metadata rows match/);
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 23);
+  }
 });
 
 test('changed or missing short synopsis appendix is rejected without deleting original film or literature summaries', async () => {
@@ -1176,6 +1219,8 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /for="discovery-series">Series \(source-local\)<\/label>/, 'series facet must disclose its source-local scope');
   assert.match(html, /<label for="discovery-kind">Candidate type<\/label><select id="discovery-kind" name="kind">/, 'candidate facet is labeled and connected to the live directory form');
   assert.match(html, /for="discovery-lineage">Source group<\/label>/, 'source-group labels do not imply independent publishers');
+  assert.match(html, /for="discovery-overview">Publisher overview \(loaded\)<\/label>/,
+    'reviewed display availability must be visibly distinguished from source/admission status');
   assert.match(html, /id="research-leads"/);
   assert.match(html, /id="research-filters"/);
   assert.match(html, /id="research-state"/);

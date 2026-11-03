@@ -26,8 +26,27 @@ MEDIA = {
 def _clean(value: str, field: str, limit: int) -> str:
     if not isinstance(value, str) or not (0 < len(value) <= limit):
         raise ValueError(f"{field} must be a nonempty bounded string")
-    if any(unicodedata.category(character) in {"Cc", "Cs"} for character in value):
-        raise ValueError(f"{field} contains disallowed control characters")
+    # XML 1.0 character ranges alone are not sufficient for readable titles:
+    # format controls permit bidirectional-display spoofing, while Unicode
+    # noncharacters (including U+FFFE) can break XML serialization. Apply the
+    # same fail-closed check to the row identifier used as the seed.
+    for character in value:
+        codepoint = ord(character)
+        xml_valid = (
+            0x20 <= codepoint <= 0xD7FF
+            or 0xE000 <= codepoint <= 0xFFFD
+            or 0x10000 <= codepoint <= 0x10FFFF
+        )
+        noncharacter = (
+            0xFDD0 <= codepoint <= 0xFDEF
+            or (codepoint & 0xFFFF) in {0xFFFE, 0xFFFF}
+        )
+        if (
+            not xml_valid
+            or noncharacter
+            or unicodedata.category(character) in {"Cc", "Cf", "Cs"}
+        ):
+            raise ValueError(f"{field} contains a disallowed XML or formatting character")
     return value
 
 

@@ -77,6 +77,13 @@ Those are **client-specific HTTP fetch representations**, not content-addressed
 legal instruments. Tests pin the research packet; they cannot independently
 prove a rights grant. NASA's original image SHA-256 is separately reproducible.
 
+The executable decision validator also pins the **entire exact proposed
+caption and adjacent credit text** in code, plus a canonical digest of all
+five open falsifiers. Keyword presence is insufficient: an appended claim of
+NASA endorsement or fictional Trek canonicity invalidates the packet even if
+the honest wording remains present. Normal and optimized Python negative tests
+exercise these contradictory append attacks.
+
 Prior research [PR #411](https://github.com/thebrazenbeard/trek-data-core/pull/411)
 and distinct [Nichols/Doohan candidate PR #414](https://github.com/thebrazenbeard/trek-data-core/pull/414)
 remain *unaccepted* proposal references; this decision does not promote them.

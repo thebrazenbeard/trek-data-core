@@ -106,13 +106,37 @@ class TestNasaDisplayDecision(unittest.TestCase):
     def test_reject_removed_nasa_disclaimer(self):
         d = self.changed()
         d["proposed_credit"] = "NASA historical image"
-        with self.assertRaisesRegex(ValueError, "nonendorsement removed"):
+        with self.assertRaisesRegex(ValueError, "pin changed"):
             validate(d)
 
     def test_reject_fictional_caption(self):
         d = self.changed()
         d["proposed_caption"] = "The USS Enterprise crew poses for a mission photograph."
-        with self.assertRaisesRegex(ValueError, "historical caption"):
+        with self.assertRaisesRegex(ValueError, "pin changed"):
+            validate(d)
+
+    def test_reject_append_false_canonicality_to_valid_caption(self):
+        d = self.changed()
+        d["proposed_caption"] += " NASA states that this scene occurs in Star Trek canon."
+        with self.assertRaisesRegex(ValueError, "pin changed"):
+            validate(d)
+
+    def test_reject_append_fake_nasa_endorsement_to_valid_credit(self):
+        d = self.changed()
+        d["proposed_credit"] += " This archive is officially NASA-approved and endorsed by NASA."
+        with self.assertRaisesRegex(ValueError, "pin changed"):
+            validate(d)
+
+    def test_reject_append_fictional_episode_to_valid_falsifier(self):
+        d = self.changed()
+        d["open_falsifiers"][3] += " NASA confirms this fictional scene as episode canon."
+        with self.assertRaisesRegex(ValueError, "falsifier text pin changed"):
+            validate(d)
+
+    def test_reject_append_third_party_clearance_to_valid_falsifier(self):
+        d = self.changed()
+        d["open_falsifiers"][0] += " All third-party publicity rights are now fully cleared."
+        with self.assertRaisesRegex(ValueError, "falsifier text pin changed"):
             validate(d)
 
     def test_reject_falsifier_elision(self):

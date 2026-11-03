@@ -8,6 +8,7 @@ can be issued by running this script.
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import sys
 from pathlib import Path
@@ -90,6 +91,10 @@ FIXED = {
     "related_earlier_candidate_pr": "https://github.com/thebrazenbeard/trek-data-core/pull/411",
     "separate_held_photos_pr": "https://github.com/thebrazenbeard/trek-data-core/pull/414",
     "separate_held_photos_must_remain_held": True,
+    # Exact code-owned editorial copy prevents a valid source receipt from
+    # laundering contradictory invented statements into the proposed panel.
+    "proposed_caption": "At the public rollout of NASA's Space Shuttle Enterprise in Palmdale, California, on September 17, 1976, original Star Trek cast members and creator Gene Roddenberry joined NASA Administrator James C. Fletcher. This is a photograph of a real NASA event, not a Star Trek episode scene.",
+    "proposed_credit": "Image: NASA. Historical event: Space Shuttle Enterprise rollout, September 17, 1976. Source: NASA. This independent Star Trek research archive is not affiliated with or endorsed by NASA.",
 }
 POLICY_KEYS = {
     "educational_informational_web_use", "independent_nasa_credit_required",
@@ -112,6 +117,10 @@ FIXED_POLICY = {
     "locally_mirrored_binary": "REQUIRES_SEPARATE_IMAGE_RELEASE_AND_HASH_PIN",
     "global_public_domain_or_cc0_claim": False,
 }
+# Exact code-owned canonical digest of the five individually disclosed open
+# falsifiers. Schema/keyword checks alone would permit contradictory appended
+# rights or fictional-story claims to ride through the proposal preview.
+EXPECTED_FALSIFIERS_SHA256 = "f9d5210c41c5325b13e4aae1eb2f971efdcb223ec8f9b4b2e70a462b99e341b2"
 
 
 def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
@@ -166,6 +175,12 @@ def validate(packet: dict) -> None:
     falsifiers = packet["open_falsifiers"]
     if not isinstance(falsifiers, list) or len(falsifiers) != 5 or not all(isinstance(x, str) and len(x) >= 130 for x in falsifiers):
         raise ValueError("material open falsifiers removed")
+    observed_falsifiers_hash = hashlib.sha256(json.dumps(
+        falsifiers, sort_keys=True, ensure_ascii=False,
+        separators=(",", ":"),
+    ).encode("utf-8")).hexdigest()
+    if observed_falsifiers_hash != EXPECTED_FALSIFIERS_SHA256:
+        raise ValueError("code-owned material falsifier text pin changed")
     if not all(any(needle in f.lower() for f in falsifiers) for needle in (
             "copyright", "non-nasa", "hotlink", "fictional", "html")):
         raise ValueError("material rights/identity uncertainty elided")

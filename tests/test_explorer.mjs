@@ -57,7 +57,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
@@ -90,9 +90,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
+    if (path === './synopsis-catalog.json') return { status: synopsisStatus, ok: synopsisStatus >= 200 && synopsisStatus < 300, json: async () => synopsis };
     assert.fail('Unexpected data request: ' + path);
   };
-  vm.runInNewContext(SCRIPT, {
+  vm.runInNewContext(appScript, {
     document, fetch, Option: OptionNode, URL, location: { origin: 'https://example.test' },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
@@ -140,6 +141,79 @@ const licensedArtwork = {
     rights_receipt_sha256: '2'.repeat(64)
   }]
 };
+
+const synopsisRelease = {
+  schema_version: '1.0.0', data_status: 'EDITORIALLY_REVIEWED_DISPLAY_ONLY',
+  coverage_effect: 'NONE', admission_effect: 'NONE', synopsis_count: 1,
+  synopses: [{
+    row_id: 'film:star-trek-2009', title: 'Star Trek (2009)', medium: 'FILM',
+    source_locator: filmCatalog.films[0].source_locator,
+    source_group: 'publisher:startrek.com', source_input: 'explorer/film-catalog.json', source_context: 'FEATURE_FILM',
+    overview_text: 'Synthetic display fixture: this sentence tests the overview rendering contract without asserting any film events.',
+    overview_basis: 'PUBLISHER_DESCRIPTION_PARAPHRASE', source_snapshot_date: '2026-11-03',
+    research_observation_path: 'proposals/research/fixture/observations.json',
+    research_observation_sha256: '1'.repeat(64), raw_webpage_sha256: null,
+    editorial_receipt_sha256: '2'.repeat(64),
+    admission_effect: 'NONE', coverage_effect: 'NONE'
+  }]
+};
+
+test('all five discovery media and sampled research leads carry an honest synopsis state without source reads', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, candidateIndex(), 200, {}, filmCatalog, 200, directory, 200);
+  assert.equal(nodes.get('film-list').children.length, filmCatalog.films.length);
+  assert.match(nodes.get('film-list').textContent, /Synopsis pending source verification/);
+  assert.match(nodes.get('research-list').textContent, /Synopsis pending source verification/);
+  for (const medium of ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO']) {
+    nodes.get('discovery-medium').value = medium;
+    nodes.get('discovery-filters').fire('input');
+    const cards = nodes.get('discovery-list').children.filter((n) => n.tagName === 'article');
+    assert.ok(cards.length > 0, `expected ${medium} source-local cards`);
+    assert.ok(cards.every((c) => c.textContent.includes('Synopsis pending source verification')));
+  }
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+});
+
+test('a self-attested synopsis sidecar cannot publish unreviewed or mismatched text', async () => {
+  const unpinned = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200,
+    null, 404, null, 404, synopsisRelease, 200);
+  assert.match(unpinned.get('film-list').textContent, /Synopsis pending source verification/);
+  assert.doesNotMatch(unpinned.get('film-list').textContent, /Synthetic display fixture/);
+  const reviewed = synopsisRelease.synopses[0];
+  const pin = { title: reviewed.title, source_locator: reviewed.source_locator,
+    source_group: reviewed.source_group, source_input: reviewed.source_input, source_context: reviewed.source_context,
+    overview_text: reviewed.overview_text, source_snapshot_date: reviewed.source_snapshot_date,
+    research_observation_path: reviewed.research_observation_path,
+    research_observation_sha256: reviewed.research_observation_sha256,
+    raw_webpage_sha256: null,
+    editorial_receipt_sha256: reviewed.editorial_receipt_sha256 };
+  const trustedScript = SCRIPT.replace('const reviewedSynopsisReceipts = new Map();',
+    `const reviewedSynopsisReceipts = new Map([['film:star-trek-2009', ${JSON.stringify(pin)}]]);`);
+  assert.notEqual(trustedScript, SCRIPT, 'the test must patch only a deliberately pinned synthetic review fixture');
+  const valid = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200,
+    null, 404, null, 404, synopsisRelease, 200, trustedScript);
+  assert.match(valid.get('film-list').textContent, /Publisher-description-based overview/);
+  assert.match(valid.get('film-list').textContent, /Synthetic display fixture/);
+  for (const change of [
+    (x) => { x.synopses[0].overview_text += ' Changed without review'; },
+    (x) => { x.synopses[0].source_locator = 'https://www.startrek.com/movies/star-trek-into-darkness'; },
+    (x) => { x.synopses[0].source_input = 'proposals/forged.json'; },
+    (x) => { x.synopses[0].source_snapshot_date = '2025-01-01'; },
+    (x) => { x.synopses[0].research_observation_sha256 = '3'.repeat(64); },
+    (x) => { x.synopses[0].research_observation_path = 'proposals/research/forgery/observations.json'; },
+    (x) => { x.synopses[0].raw_webpage_sha256 = '3'.repeat(64); },
+    (x) => { x.synopses[0].coverage_effect = 'CLOSE_READ'; },
+    (x) => { x.synopses[0].overview_basis = 'PRIMARY_WORK_CLOSE_READ'; },
+    (x) => { x.synopses[0].overview_text = '<script>alert(1)</script>'; }
+  ]) {
+    const forged = structuredClone(synopsisRelease);
+    change(forged);
+    const rejected = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200,
+      null, 404, null, 404, forged, 200, trustedScript);
+    assert.match(rejected.get('film-list').textContent, /Synopsis pending source verification/);
+    assert.doesNotMatch(rejected.get('film-list').textContent, /Synthetic display fixture/);
+  }
+});
 
 test('honest LCARS artwork placeholders render without remote image requests or licensed assets', async () => {
   const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));

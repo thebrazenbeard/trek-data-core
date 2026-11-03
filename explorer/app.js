@@ -166,6 +166,110 @@
   const researchState = { leads: [], available: false };
   const filmState = { films: [], available: false };
 
+  // Source-local discoveries are not plot reads. A separate reviewed display
+  // artifact may eventually supply ORIGINAL publisher-description paraphrases.
+  // It cannot self-attest approval: an independently reviewed immutable tuple
+  // must also be pinned here in a separately reviewed code change.
+  const reviewedSynopsisReceipts = new Map();
+  const synopsisState = { entries: new Map() };
+  const synopsisMedia = new Set(['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO']);
+  const publisherOverviewMedia = new Set(['EPISODE', 'FILM', 'LITERATURE']);
+
+  function appendSynopsis(container, medium, key) {
+    if (!synopsisMedia.has(medium)) return;
+    const block = el('section', 'synopsis-panel');
+    block.setAttribute('aria-label', 'Synopsis and verification status');
+    const release = synopsisState.entries.get(key);
+    if (release) {
+      block.append(el('strong', 'synopsis-label', 'Publisher-description-based overview'));
+      block.append(el('p', 'synopsis-copy', release.overview_text));
+      block.append(el('small', 'synopsis-scope', `Original paraphrase of publisher description observed ${release.source_snapshot_date} (rendered-page notes; raw webpage not archived). Not a full-work close read.`));
+    } else {
+      block.append(el('strong', 'synopsis-label', 'Synopsis'));
+      block.append(el('p', 'synopsis-pending', 'Synopsis pending source verification'));
+    }
+    container.append(block);
+  }
+
+  function acceptSynopsisCatalog(data) {
+    const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
+      Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
+    const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'admission_effect', 'synopsis_count', 'synopses'];
+    const entryKeys = ['row_id', 'title', 'medium', 'source_group', 'source_input', 'source_context',
+      'source_locator', 'overview_text', 'overview_basis', 'source_snapshot_date',
+      'research_observation_path', 'research_observation_sha256', 'raw_webpage_sha256',
+      'editorial_receipt_sha256', 'admission_effect', 'coverage_effect'];
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'EDITORIALLY_REVIEWED_DISPLAY_ONLY' ||
+        data.coverage_effect !== 'NONE' || data.admission_effect !== 'NONE' ||
+        !Array.isArray(data.synopses) || !Number.isSafeInteger(data.synopsis_count) ||
+        data.synopsis_count !== data.synopses.length || data.synopses.length < 1 ||
+        data.synopses.length > 5000) {
+      throw new Error('Synopsis release envelope is not an approved display artifact.');
+    }
+    const sources = new Map();
+    for (const row of directoryState.rows) sources.set(artworkKey(row), row);
+    for (const row of filmState.films) sources.set(artworkKey(row), {
+      ...row, medium: 'FILM', source_input: 'explorer/film-catalog.json', context: row.work_type
+    });
+    const entries = new Map();
+    for (const item of data.synopses) {
+      const source = sources.get(item?.row_id);
+      const pin = reviewedSynopsisReceipts.get(item?.row_id);
+      const validDate = /^\d{4}-\d{2}-\d{2}$/.test(item?.source_snapshot_date || '') &&
+        !Number.isNaN(Date.parse(`${item.source_snapshot_date}T00:00:00Z`)) &&
+        new Date(`${item.source_snapshot_date}T00:00:00Z`).toISOString().slice(0, 10) === item.source_snapshot_date;
+      const publisherSource = source && /^(?:publisher:|distributor:)/.test(source.source_group) &&
+        typeof source.source_locator === 'string' &&
+        /^https:\/\/www\.(?:startrek\.com|paramountplus\.com|simonandschuster\.com|penguinrandomhouse\.com)\//.test(source.source_locator);
+      if (!exactKeys(item, entryKeys) || !source || entries.has(item.row_id) ||
+          !publisherOverviewMedia.has(item.medium) || !publisherSource || source.medium !== item.medium ||
+          item.title !== source.title || item.source_group !== source.source_group ||
+          item.source_input !== source.source_input || item.source_context !== source.context ||
+          typeof item.source_locator !== 'string' ||
+          item.source_locator !== source.source_locator ||
+          item.overview_basis !== 'PUBLISHER_DESCRIPTION_PARAPHRASE' ||
+          typeof item.overview_text !== 'string' || item.overview_text !== item.overview_text.trim() ||
+          item.overview_text.length < 40 || item.overview_text.length > 700 ||
+          /[\p{C}<>]/u.test(item.overview_text) || !validDate ||
+          !/^proposals\/research\/[a-z0-9/_-]+\/observations\.json$/.test(item.research_observation_path || '') ||
+          !/^[a-f0-9]{64}$/.test(item.research_observation_sha256 || '') ||
+          item.raw_webpage_sha256 !== null ||
+          !/^[a-f0-9]{64}$/.test(item.editorial_receipt_sha256 || '') ||
+          item.coverage_effect !== 'NONE' || item.admission_effect !== 'NONE' ||
+          !pin || pin.title !== item.title || pin.source_locator !== item.source_locator ||
+          pin.source_group !== item.source_group || pin.source_input !== item.source_input ||
+          pin.source_context !== item.source_context ||
+          pin.overview_text !== item.overview_text ||
+          pin.source_snapshot_date !== item.source_snapshot_date ||
+          pin.research_observation_path !== item.research_observation_path ||
+          pin.research_observation_sha256 !== item.research_observation_sha256 ||
+          pin.raw_webpage_sha256 !== null ||
+          pin.editorial_receipt_sha256 !== item.editorial_receipt_sha256) {
+        throw new Error('Synopsis has no independently pinned source/edition/text/review receipt.');
+      }
+      entries.set(item.row_id, item);
+    }
+    synopsisState.entries = entries;
+    renderDirectory();
+    renderFilms();
+  }
+
+  async function loadSynopsisCatalog() {
+    try {
+      const response = await fetch('./synopsis-catalog.json', { cache: 'no-store' });
+      if (response.status === 404) return;
+      if (!response.ok) throw new Error(`Synopsis display release returned HTTP ${response.status}.`);
+      acceptSynopsisCatalog(await response.json());
+    } catch (_) {
+      // Malformed, unreviewed or unpublished synopsis content cannot influence
+      // the visible source-local observations or silently invent plot claims.
+      synopsisState.entries.clear();
+      renderDirectory();
+      renderFilms();
+    }
+  }
+
   // Artwork is a separate, explicitly rights-reviewed release artifact. The
   // episode/film/source-local JSON schemas must not grow unaudited image URLs.
   // No publisher image URL is inferred from metadata. Licensed local images
@@ -351,6 +455,7 @@
       copy.append(el('span', 'kicker', row.work_type === 'STREAMING_ORIGINAL_FILM' ? 'Streaming movie · discovery' : 'Feature film · discovery'));
       copy.append(el('h3', null, row.title));
       copy.append(el('p', null, 'Publisher-listed title · metadata only · not source-reviewed'));
+      appendSynopsis(copy, 'FILM', artworkKey(row));
       const link = el('a', null, 'Open official source');
       link.href = row.source_locator;
       link.target = '_blank';
@@ -479,6 +584,7 @@
       copy.append(el('h3', null, item.title));
       copy.append(el('p', 'directory-context', item.context));
       copy.append(el('p', 'directory-source', `${item.source_group} · unverified · source-local`));
+      appendSynopsis(copy, item.medium, artworkKey(item));
       copy.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
       if (item.details.length) copy.append(el('p', 'directory-context', item.details.join(' · ')));
       if (item.source_locator) {
@@ -791,6 +897,7 @@
     badge.setAttribute('aria-label', 'Unverified candidate; not an admitted Briefing');
     top.append(badge);
     card.append(top, el('h3', null, row.episode_label));
+    appendSynopsis(card, 'EPISODE', `research:${row.episode_qid || `${row.mission_id}:${row.season_number}:${row.episode_number}`}`);
     const mission = state.missions.find((item) => item.id === row.mission_id);
     card.append(el('p', null, mission?.title || row.mission_id));
     const detail = el('dl', 'detail-list');
@@ -1138,6 +1245,6 @@
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory()]).then(loadArtworkCatalog);
+  Promise.all([loadFilmCatalog(), loadDirectory()]).then(() => Promise.all([loadArtworkCatalog(), loadSynopsisCatalog()]));
   loadIndex();
 })();

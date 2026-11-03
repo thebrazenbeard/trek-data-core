@@ -29,13 +29,16 @@ episode stills, licensed book jackets, or publisher posters.
   permission is **not** proof that an episode was watched or a novel read.
 - A future licensed binary is published only with an immutable image SHA-256
   receipt and a separate rights-document SHA-256. This repository currently
-  ships no such approved card artwork and no `licensed-artwork/` directory.
+  ships **no** licensed image binaries or `licensed-artwork/` directory.
 
 The [publisher discovery catalog](PUBLISHER_DISCOVERY_CATALOG.md) documents
-source metadata; it must not silently acquire cover URLs. The optional
-`explorer/artwork-catalog.json` is intentionally absent until eligible
-source-bound image entries are reviewed and packaged. The browser treats its
-404 state as `ARTWORK_UNAVAILABLE`, not an empty universe or an episode error.
+source metadata; it must not silently acquire cover URLs. The independently
+reviewed `explorer/artwork-catalog.json` contains **four opt-in Open Library API
+previews** for exact autobiographical book editions, and no local artwork.
+An older accepted Explorer build expecting schema 1.1.0 rejects the new
+schema 1.2.0 until its separate UI contract is updated and reviewed. If the
+optional sidecar is absent, the browser treats its 404 state as
+`ARTWORK_UNAVAILABLE`, not an empty universe or an episode error.
 
 ## Future sidecar contract (not a release receipt)
 
@@ -43,7 +46,7 @@ An authorized release may carry exactly the following keys:
 
 | Field | Requirement |
 | --- | --- |
-| `schema_version` | `1.1.0` |
+| `schema_version` | `1.2.0` |
 | `data_status` | `PROVENANCE_REVIEWED_ARTWORK` |
 | `coverage_effect` | `NONE` |
 | `rights_policy` | `PER_ENTRY_DISPLAY_GATE` |
@@ -64,6 +67,19 @@ rights gates:
 - `rights_status`: `PUBLIC_DISPLAY_PERMISSION_VERIFIED` only.
 - `rights_receipt_sha256`: SHA-256 of the independently retained permission
   or license evidence, not an invented constant.
+- `artwork_kind`: `PUBLICITY_STILL`, `POSTER`, `COVER`, or `OTHER`; must match
+  the reviewed image and source-local medium.
+- `attribution_text` (1–160 characters) and `attribution_url`: visible credit
+  and exact reviewed HTTPS asset-page link. The source-local
+  `source_locator` remains the work's first-party source URL, **not** an
+  attribution substitute.
+- An independently reviewed rights receipt in
+  `registry/artwork-rights-receipts/` must record the exact image hash,
+  Commons/rights-page revision and snapshot digest, license or permission
+  basis, asset credit, row/source binding, and distinct reviewer identities.
+  The code-owned release pin binds the entire tuple and the receipt's own
+  byte digest. Neither a Commons license tag nor an uploader's eBay scan
+  attribution proves rights by itself.
 
 **Documented Open Library book-cover API:** only a `LITERATURE` source row.
 
@@ -74,21 +90,27 @@ rights gates:
   `https://openlibrary.org/isbn/<isbn>`.
 - `edition_metadata_sha256`: SHA-256 of the exact Open Library edition
   metadata used for the ISBN-to-cover crosswalk (64 lowercase hex).
+- Independent `registry/artwork-edition-receipts/` records additionally pin
+  the exact viewed `-L.jpg` preview byte SHA-256, a separate visual inspection
+  explicitly confirming a *front jacket rather than an interior title page*,
+  edition metadata response identity, and distinct review roles. A valid
+  ISBN/JSON digest/HTTP 200 alone is insufficient.
 - `rights_status`:
   `API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED`, explicitly distinct from
   licensed/public-domain status.
 - The rendered image links visibly to Open Library. It is fetched only after
   opt-in, with `referrerPolicy='no-referrer'`, `loading='lazy'`, and a fallback.
 
-**Current release gate:** no Open Library edition-to-cover receipt has been
-independently reviewed and pinned to a public directory row. The Explorer
-therefore rejects **all** Open Library artwork sidecar entries, including
-entries with plausible ISBNs, cover IDs and 64-character metadata hashes.
-Before enabling one, a separate source-relative review must pin the exact
-directory row, publisher locator, edition ISBN, Open Library cover ID, and
-edition-metadata digest in the audited Explorer release. Sidecar-supplied
-values cannot approve themselves. This does not establish jacket copyright
-clearance; the external API rights warning and visitor opt-in still apply.
+**Current release gate:** four source-local autobiography editions have
+independently checked publisher ISBN, Open Library edition JSON and visual
+front-jacket review receipts. The code-owned Python release pins and public
+sidecar include only those four; a separately reviewed Explorer JS code-owned
+receipt map and live browser opt-in qualification must agree before the
+previews display. Sidecar-supplied values cannot approve themselves. These
+are API previews, **not mirrored image copies or copyright clearance**.
+An independently checked *Enterprise War* edition's cover ID `12857937`
+returned an **interior title page**, so that image is explicitly held despite
+its valid ISBN and edition digest.
 
 Even after a separately reviewed receipt is introduced, the requested ISBN
 must appear in the target literary lead's independently generated publisher
@@ -101,8 +123,14 @@ path, `FICTIONAL_MEMOIR` kind, and publisher-lineage group. These are
 defense-in-depth consistency checks, not cover-authenticity or display-rights
 proof. The independently reviewed receipt map remains empty and fail-closed.
 
-Static Pages packaging, the artifact allowlist, and independent rights review
-must be updated and rerun before adding any actual sidecar or image binaries.
+The static Pages package includes only a sidecar passing
+`python3 tools/validate_artwork_release.py --check --verify-git` and any
+locally licensed binaries explicitly named by the reviewed manifest. The
+validator rejects unreviewed entries, mismatched source rows or ISBNs,
+arbitrary image/receipt SHA strings, unsupported media, symlinks and traversal,
+unlisted files, and CSS/HTML tricks that would request remote images before
+visitor opt-in. Separate rights and publisher evidence review remains
+mandatory for any later licensed binary.
 The JavaScript validator is a defense-in-depth contract, **not** a legal
 license examiner; an attacker cannot make unlawful art lawful by supplying
 syntactically valid hash strings.
@@ -112,7 +140,7 @@ On approval, images remain **off by default**. A visitor can choose
 documented API previews. Images are lazy-loaded, `no-referrer`, and degrade
 to `Image unavailable` without hiding the source record or its locator.
 
-## Current open source candidates, not accepted artwork
+## Current source candidates still held from public artwork
 
 The Librarian's [artwork candidate receipts](../proposals/librarian/artwork-source-candidates-20261103/MANIFEST.md)
 include a source-relative Open Library crosswalk for *Star Trek: Picard: The
@@ -123,3 +151,11 @@ row in the current public directory.** Its cover must not be displayed under
 or cover binary is released until exact literary row identity is established.
 Open Library's API route is a display-method record, not publisher permission
 or proof of the jacket's copyright ownership.
+
+The four autobiographies (*Kirk*, *Picard*, *Janeway*, *Spock*) have separate
+edition/visual receipts and are source-local image-display options only. No
+`SOURCE_BOUND`, `FULL_TEXT_AVAILABLE`, or semantic coverage transition follows
+from displaying a cover. Other Commons publicity stills remain **candidates**
+until independently verified image bytes, the Commons rights evidence page,
+notice/licensing review, correct episode-row mapping and visible attribution
+all pass the code-owned licensed-artwork gate.

@@ -354,6 +354,60 @@ class ArtworkReleaseContractTests(unittest.TestCase):
                 with self.assertRaises(art.ArtworkRejected):
                     art.check_static_startup(self.root)
 
+    def test_svg_descendant_href_cannot_fetch_or_launder_remote_art_before_opt_in(self):
+        # A clean outer <svg> is not evidence that nested SVG tags are inert.
+        # SVG <textPath> and <a> can carry external href references.
+        for bad in (
+            '<svg><textPath href="https://covers.openlibrary.org/b/id/13083310-S.jpg">x</textPath></svg>',
+            '<svg><g><textPath xlink:href="https://covers.openlibrary.org/b/id/13083310-S.jpg">x</textPath></g></svg>',
+            '<svg><a href="https://covers.openlibrary.org/b/id/13083310-S.jpg"><path d="M1 2"/></a></svg>',
+            '<svg><g><a xlink:href="https://covers.openlibrary.org/b/id/13083310-S.jpg">x</a></g></svg>',
+            '<svg><g><textPath href="./art-original-episode.svg">x</textPath></g></svg>',
+        ):
+            with self.subTest(svg=bad):
+                html = (ROOT / "explorer/index.html").read_text()
+                (self.root / "explorer/index.html").write_text(html.replace("</body>", bad + "</body>"))
+                with self.assertRaisesRegex(art.ArtworkRejected, "SVG descendant external"):
+                    art.check_static_startup(self.root)
+        # Existing decorative, href-free Starfleet mark stays admitted.
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
+    def test_svg_presentation_url_attributes_cannot_fetch_art_before_opt_in(self):
+        remote = "https://covers.openlibrary.org/b/id/13083310-S.jpg"
+        for attr in ("fill", "stroke", "mask", "clip-path", "filter", "marker-start",
+                     "marker-mid", "marker-end", "cursor", "shape-outside"):
+            with self.subTest(attribute=attr):
+                payload = f'<svg><path {attr}="url({remote})" d="M1 2"/></svg>'
+                html = (ROOT / "explorer/index.html").read_text()
+                (self.root / "explorer/index.html").write_text(
+                    html.replace("</body>", payload + "</body>"))
+                with self.assertRaisesRegex(art.ArtworkRejected, "SVG attribute resource"):
+                    art.check_static_startup(self.root)
+        for payload in (
+            '<svg fill="url(https://covers.openlibrary.org/b/id/1-S.jpg)"></svg>',
+            '<svg><path fill="&#117;rl(&#104;ttps://covers.openlibrary.org/b/id/1-S.jpg)"/></svg>',
+            '<svg><path fill="u\\72l(https://covers.openlibrary.org/b/id/1-S.jpg)"/></svg>',
+            '<svg><path fill="url(./art-original-episode.svg)"/></svg>',
+            '<svg><path fill="image-set(https://covers.openlibrary.org/b/id/1-S.jpg)"/></svg>',
+            '<svg><path fill="u/**/rl(https://covers.openlibrary.org/b/id/1-S.jpg)"/></svg>',
+        ):
+            with self.subTest(payload=payload):
+                html = (ROOT / "explorer/index.html").read_text()
+                (self.root / "explorer/index.html").write_text(
+                    html.replace("</body>", payload + "</body>"))
+                with self.assertRaisesRegex(art.ArtworkRejected, "SVG attribute resource"):
+                    art.check_static_startup(self.root)
+        shutil.copyfile(ROOT / "explorer/index.html", self.root / "explorer/index.html")
+        art.check_static_startup(self.root)
+
+    def test_page_css_remote_art_is_blocked_by_the_actual_startup_artifact_gate(self):
+        css_file = self.root / "explorer/app.css"
+        css_file.write_text(css_file.read_text() +
+                            "\n.card{background-image:url(https://covers.openlibrary.org/b/id/13083310-S.jpg)}")
+        with self.assertRaisesRegex(art.ArtworkRejected, "pre-opt-in"):
+            art.check_static_startup(self.root)
+
 
 if __name__ == "__main__":
     unittest.main()

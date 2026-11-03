@@ -469,15 +469,35 @@ class _StartupHTML(HTMLParser):
     def __init__(self):
         super().__init__()
         self.in_style = False
+        self.svg_stack: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         _ensure(len(values) == len(attrs), "duplicate HTML attributes")
+        if tag == "svg" or self.svg_stack:
+            # Every SVG descendant may be an external-resource reference,
+            # including <textPath>, <a>, and unfamiliar future SVG tags.
+            # Checking href only on the outer <svg> would miss them.
+            _ensure(not ({"href", "xlink:href"} & values.keys()),
+                    "SVG descendant external resource references denied")
+            # SVG paint/presentation attributes such as fill, stroke, mask,
+            # clip-path and markers can also fetch from url(https://...).
+            # No URL-valued SVG attribute is required by the first-party
+            # decorative mark, so reject both local and remote url() values.
+            # HTMLParser decodes character references in attribute values;
+            # reject CSS backslash/comments as well to prevent hidden tokens.
+            for name, value in values.items():
+                _ensure(isinstance(value, str) and "\\" not in value and "/*" not in value and
+                        "*/" not in value and
+                        re.search(r"u\s*r\s*l\s*\(|image-set\s*\(|(?:https?:)?//", value,
+                                  re.IGNORECASE) is None,
+                        f"SVG attribute resource reference denied: {name}")
+            self.svg_stack.append(tag)
         if tag in ("base", "iframe", "object", "embed", "source", "video", "audio", "image",
                    "picture", "use", "feimage", "canvas"):
             raise ArtworkRejected("unreviewed network-capable HTML element")
-        if tag == "svg" and ("href" in values or "xlink:href" in values):
-            raise ArtworkRejected("SVG external resource references denied")
+        if "xlink:href" in values:
+            raise ArtworkRejected("unexpected HTML external resource reference")
         if tag == "style":
             self.in_style = True
         if "style" in values:
@@ -502,6 +522,9 @@ class _StartupHTML(HTMLParser):
             raise ArtworkRejected("automatic HTML redirect/preload denied")
 
     def handle_endtag(self, tag):
+        if self.svg_stack:
+            _ensure(tag == self.svg_stack[-1], "malformed or unbalanced SVG markup")
+            self.svg_stack.pop()
         if tag == "style":
             self.in_style = False
 
@@ -516,6 +539,7 @@ def check_static_startup(root: Path = ROOT) -> None:
     parser = _StartupHTML()
     parser.feed(html)
     parser.close()
+    _ensure(not parser.svg_stack, "unclosed SVG markup")
 
 
 def main() -> int:

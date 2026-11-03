@@ -1,0 +1,506 @@
+{
+  "schema_version": "trek-lit-private-structural-proposal-v1",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "source_kind": "USER_HELD_CONVERTED_OPF_DERIVATIVE_UNVERIFIED",
+  "source_container_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+  "opf_member_sha256": "36c23dc2c9ff5e1ebc3d7009dcff503ac5b42661c5c6376e5e787b49fb562322",
+  "html_spine_sha256": "f509150d56264056b6f1c2dc46361dd52d1a44faba82634af80a0f570078cb5f",
+  "work_candidate_title": "A Time to Kill",
+  "work_candidate_creator": "David Mack",
+  "isbn10_metadata": "0743494075",
+  "isbn13_publisher": "9780743494076",
+  "publisher_url": "https://www.simonandschuster.com/books/A-Star-Trek-The-Next-Generation-Time-7-A-Time-to-Kill/David-Mack/Star-Trek-The-Next-Generation/9780743494076",
+  "extraction_method": "Python HTMLParser; p/div/h1/h2/h3/br/hr insert separators; strip/normalize each nonblank line; chapter headings exactly 'Chapter N'; SHA256 UTF-8 of chapter-specific normalized lines separated by LF",
+  "normalization_scope": "CONVERTED_HTML_NOT_ORIGINAL_LIT",
+  "method_specific_whitespace_token_count": 71974,
+  "normalized_nonblank_line_count": 2225,
+  "chapter_count": 69,
+  "chapters": [
+    {
+      "chapter": 1,
+      "source_relative_normalized_line_start": 33,
+      "source_relative_normalized_line_end_exclusive": 68,
+      "whitespace_token_count": 1657,
+      "segment_sha256": "dad92f995a4faa924ee1e05215201fcd5def049d71c0286cc476371d1ed722e3"
+    },
+    {
+      "chapter": 2,
+      "source_relative_normalized_line_start": 68,
+      "source_relative_normalized_line_end_exclusive": 106,
+      "whitespace_token_count": 1019,
+      "segment_sha256": "067e9271902e2b5d54f5b30e86ab08d9038b55cc13caa9254ae5c13f97099635"
+    },
+    {
+      "chapter": 3,
+      "source_relative_normalized_line_start": 106,
+      "source_relative_normalized_line_end_exclusive": 181,
+      "whitespace_token_count": 2183,
+      "segment_sha256": "9c7b691d4e205485cfca377a5289ccb0b299166e247f4b13e2524209c5513481"
+    },
+    {
+      "chapter": 4,
+      "source_relative_normalized_line_start": 181,
+      "source_relative_normalized_line_end_exclusive": 204,
+      "whitespace_token_count": 1010,
+      "segment_sha256": "4abf546fb93698a5b8d73f6c27e73e29ed03bb5b4ff7292ffe51febc986f938a"
+    },
+    {
+      "chapter": 5,
+      "source_relative_normalized_line_start": 204,
+      "source_relative_normalized_line_end_exclusive": 242,
+      "whitespace_token_count": 1841,
+      "segment_sha256": "6fc54f3000cf2f1f878a9c28932d3bdf20683cf27744e6f7e32af631557a7f5d"
+    },
+    {
+      "chapter": 6,
+      "source_relative_normalized_line_start": 242,
+      "source_relative_normalized_line_end_exclusive": 279,
+      "whitespace_token_count": 1667,
+      "segment_sha256": "dd2c4306e8156e276cac37abf921afc281ecc4ccaf1e1c723077a7d559d9dc82"
+    },
+    {
+      "chapter": 7,
+      "source_relative_normalized_line_start": 279,
+      "source_relative_normalized_line_end_exclusive": 332,
+      "whitespace_token_count": 1190,
+      "segment_sha256": "eda4be991b2ba7548178f7921c2d8c492e49c3ab85d2530597021b663eb56d4e"
+    },
+    {
+      "chapter": 8,
+      "source_relative_normalized_line_start": 332,
+      "source_relative_normalized_line_end_exclusive": 363,
+      "whitespace_token_count": 1278,
+      "segment_sha256": "54f81113047201ae8714905f16883f738d154d60dbb921b706cb628c277e7e4e"
+    },
+    {
+      "chapter": 9,
+      "source_relative_normalized_line_start": 363,
+      "source_relative_normalized_line_end_exclusive": 388,
+      "whitespace_token_count": 1386,
+      "segment_sha256": "efe5f87a661b2210ff36d89fd4a7a84433ea0619623eb762a3fb26834315fa9e"
+    },
+    {
+      "chapter": 10,
+      "source_relative_normalized_line_start": 388,
+      "source_relative_normalized_line_end_exclusive": 406,
+      "whitespace_token_count": 817,
+      "segment_sha256": "08716f930cf51e27c598f40f58d71bc749cb00c125abcf5b9ee519fd46ac57ad"
+    },
+    {
+      "chapter": 11,
+      "source_relative_normalized_line_start": 406,
+      "source_relative_normalized_line_end_exclusive": 452,
+      "whitespace_token_count": 1626,
+      "segment_sha256": "5e60787099abff1fed026d1763bcd615ac00eac390d1ec8d4cb0e9ea47c33857"
+    },
+    {
+      "chapter": 12,
+      "source_relative_normalized_line_start": 452,
+      "source_relative_normalized_line_end_exclusive": 484,
+      "whitespace_token_count": 1017,
+      "segment_sha256": "2a6fef8be57c2e670acad53de78c0e80008004a2078bb11d68612b4123ffb782"
+    },
+    {
+      "chapter": 13,
+      "source_relative_normalized_line_start": 484,
+      "source_relative_normalized_line_end_exclusive": 507,
+      "whitespace_token_count": 1013,
+      "segment_sha256": "e94943d03c941804d883cc9689a58a0e05628a7cca7a4dc1f57c1c676a7f6e32"
+    },
+    {
+      "chapter": 14,
+      "source_relative_normalized_line_start": 507,
+      "source_relative_normalized_line_end_exclusive": 537,
+      "whitespace_token_count": 990,
+      "segment_sha256": "363b5174a3898250eb5930b3f7e2fe2bf1c1f775d6c3d3e69eaa9b6f551ccc04"
+    },
+    {
+      "chapter": 15,
+      "source_relative_normalized_line_start": 537,
+      "source_relative_normalized_line_end_exclusive": 560,
+      "whitespace_token_count": 801,
+      "segment_sha256": "9d5a72a96e85ee81bace3f11e37d269c937de6f941ab62f58282f2fe4908ff95"
+    },
+    {
+      "chapter": 16,
+      "source_relative_normalized_line_start": 560,
+      "source_relative_normalized_line_end_exclusive": 637,
+      "whitespace_token_count": 2135,
+      "segment_sha256": "145d9aad6d47ba751235ce20f607defd2ac88daa05e76759cb0376637537f8c1"
+    },
+    {
+      "chapter": 17,
+      "source_relative_normalized_line_start": 637,
+      "source_relative_normalized_line_end_exclusive": 671,
+      "whitespace_token_count": 1061,
+      "segment_sha256": "6185fb3eac41538e42d8ee7d2ed694d1171176cb44660249618bb45fae7c1dfd"
+    },
+    {
+      "chapter": 18,
+      "source_relative_normalized_line_start": 671,
+      "source_relative_normalized_line_end_exclusive": 698,
+      "whitespace_token_count": 844,
+      "segment_sha256": "b20afa6994fb614b028ce435bf23a1615b5cd06bc08f7192d92a6bdb23ff0f57"
+    },
+    {
+      "chapter": 19,
+      "source_relative_normalized_line_start": 698,
+      "source_relative_normalized_line_end_exclusive": 751,
+      "whitespace_token_count": 1848,
+      "segment_sha256": "862b17b5ad005f16b2161df10a96b9cac9122a9e2a072afd03537e99d9c2d9c8"
+    },
+    {
+      "chapter": 20,
+      "source_relative_normalized_line_start": 751,
+      "source_relative_normalized_line_end_exclusive": 801,
+      "whitespace_token_count": 1686,
+      "segment_sha256": "c1bdcb104cffa48c6b3b98d69d6e2562edafbdf5256d13960db6b1dd714b9461"
+    },
+    {
+      "chapter": 21,
+      "source_relative_normalized_line_start": 801,
+      "source_relative_normalized_line_end_exclusive": 848,
+      "whitespace_token_count": 1366,
+      "segment_sha256": "eec0cb3eea3c21c882a6aef799b093b80d0cc628fe290ce6c31cc8cf4075055a"
+    },
+    {
+      "chapter": 22,
+      "source_relative_normalized_line_start": 848,
+      "source_relative_normalized_line_end_exclusive": 858,
+      "whitespace_token_count": 535,
+      "segment_sha256": "74331296af10aec4f29d9311c2dcea5cfd0d6463bcd96fcfc40902565e749b79"
+    },
+    {
+      "chapter": 23,
+      "source_relative_normalized_line_start": 858,
+      "source_relative_normalized_line_end_exclusive": 876,
+      "whitespace_token_count": 622,
+      "segment_sha256": "ce4908a85db401384a23cba5ae1efd94f6a408711724cb8ec7dbb219ad018a9c"
+    },
+    {
+      "chapter": 24,
+      "source_relative_normalized_line_start": 876,
+      "source_relative_normalized_line_end_exclusive": 906,
+      "whitespace_token_count": 1305,
+      "segment_sha256": "7e8d5cad10bab1b2d9869e817ef0122f193ede44d988aa01a70e324e5ad88696"
+    },
+    {
+      "chapter": 25,
+      "source_relative_normalized_line_start": 906,
+      "source_relative_normalized_line_end_exclusive": 936,
+      "whitespace_token_count": 1093,
+      "segment_sha256": "c4310b04523df8e98bb8f60afd0e770da59bbe12b9a7d810ec8ae3c20b1f3ed3"
+    },
+    {
+      "chapter": 26,
+      "source_relative_normalized_line_start": 936,
+      "source_relative_normalized_line_end_exclusive": 948,
+      "whitespace_token_count": 416,
+      "segment_sha256": "a84a7253b52577ba0de1d615743d4ab657daed1863bec5a7e508a141cdd7e0fe"
+    },
+    {
+      "chapter": 27,
+      "source_relative_normalized_line_start": 948,
+      "source_relative_normalized_line_end_exclusive": 961,
+      "whitespace_token_count": 405,
+      "segment_sha256": "c253606740df4cf440a9ce8c54bb9a9ae53a0dfd192f2bf7940b5bba8bf0c8ec"
+    },
+    {
+      "chapter": 28,
+      "source_relative_normalized_line_start": 961,
+      "source_relative_normalized_line_end_exclusive": 998,
+      "whitespace_token_count": 1582,
+      "segment_sha256": "77f55edf3d2d8ba7b31c97f8e56f95df9d935dcbbac6511585d0b139af22cfce"
+    },
+    {
+      "chapter": 29,
+      "source_relative_normalized_line_start": 998,
+      "source_relative_normalized_line_end_exclusive": 1048,
+      "whitespace_token_count": 1714,
+      "segment_sha256": "c5958063df0ed1d24421bfe4374c4be0c3a461ad0f9c0c87e31674049c6aaf51"
+    },
+    {
+      "chapter": 30,
+      "source_relative_normalized_line_start": 1048,
+      "source_relative_normalized_line_end_exclusive": 1095,
+      "whitespace_token_count": 1483,
+      "segment_sha256": "59f13b1f6996dedb124badc18b3d91c41bae8b0e94ff848772c8d168c7e72d91"
+    },
+    {
+      "chapter": 31,
+      "source_relative_normalized_line_start": 1095,
+      "source_relative_normalized_line_end_exclusive": 1163,
+      "whitespace_token_count": 2628,
+      "segment_sha256": "5c2513d2bea18aa434e839b5c585be3006c7f5947e7234e6542c348950a1f517"
+    },
+    {
+      "chapter": 32,
+      "source_relative_normalized_line_start": 1163,
+      "source_relative_normalized_line_end_exclusive": 1195,
+      "whitespace_token_count": 800,
+      "segment_sha256": "96c85dabe2fa2b3d919a8fff7d68f51f1cb10cb44e50584476656292afa057c3"
+    },
+    {
+      "chapter": 33,
+      "source_relative_normalized_line_start": 1195,
+      "source_relative_normalized_line_end_exclusive": 1221,
+      "whitespace_token_count": 570,
+      "segment_sha256": "2c3ccb00b9b41772ab389a226d21ce80d9dfb2dd205481f7eb6da1a156b3f02b"
+    },
+    {
+      "chapter": 34,
+      "source_relative_normalized_line_start": 1221,
+      "source_relative_normalized_line_end_exclusive": 1264,
+      "whitespace_token_count": 1231,
+      "segment_sha256": "90085a06378f24fca524292e710971a03a950ba3260652d1ad2a589a3909f120"
+    },
+    {
+      "chapter": 35,
+      "source_relative_normalized_line_start": 1264,
+      "source_relative_normalized_line_end_exclusive": 1289,
+      "whitespace_token_count": 1104,
+      "segment_sha256": "35113852c7ee562d89e874ee415f9709611993826acb3d976a16238533529ded"
+    },
+    {
+      "chapter": 36,
+      "source_relative_normalized_line_start": 1289,
+      "source_relative_normalized_line_end_exclusive": 1322,
+      "whitespace_token_count": 1030,
+      "segment_sha256": "363bf29cabd27285d83bc0f5f758a537bf669a411b61c1388bcd87819519c4f9"
+    },
+    {
+      "chapter": 37,
+      "source_relative_normalized_line_start": 1322,
+      "source_relative_normalized_line_end_exclusive": 1344,
+      "whitespace_token_count": 900,
+      "segment_sha256": "206c4251d3bda9323b187b5b23398d0d4eee471fbf0cc6253b07286433a50326"
+    },
+    {
+      "chapter": 38,
+      "source_relative_normalized_line_start": 1344,
+      "source_relative_normalized_line_end_exclusive": 1375,
+      "whitespace_token_count": 1080,
+      "segment_sha256": "58ad068dcb552d972fedc029e561e47f7388abfcbaa7a13a3bcd49cf1fd07ab9"
+    },
+    {
+      "chapter": 39,
+      "source_relative_normalized_line_start": 1375,
+      "source_relative_normalized_line_end_exclusive": 1406,
+      "whitespace_token_count": 1041,
+      "segment_sha256": "a87cbb4c479a5dcc4f350e3b681fa297ea878e4f2224aa362ec93b7dc737b5da"
+    },
+    {
+      "chapter": 40,
+      "source_relative_normalized_line_start": 1406,
+      "source_relative_normalized_line_end_exclusive": 1454,
+      "whitespace_token_count": 1033,
+      "segment_sha256": "05d7a9c6c66db78cbfd3ce0870966664bb61ef1368115bd2e74df969bf576640"
+    },
+    {
+      "chapter": 41,
+      "source_relative_normalized_line_start": 1454,
+      "source_relative_normalized_line_end_exclusive": 1486,
+      "whitespace_token_count": 827,
+      "segment_sha256": "5f37ee2a03133a1c28c7ae24769b62b964dffa7753cded7f5af50516473846e8"
+    },
+    {
+      "chapter": 42,
+      "source_relative_normalized_line_start": 1486,
+      "source_relative_normalized_line_end_exclusive": 1502,
+      "whitespace_token_count": 344,
+      "segment_sha256": "7f94eb01cd903b4373bd19feeeb53a9c3de51e2683881e97a945677efdf589dd"
+    },
+    {
+      "chapter": 43,
+      "source_relative_normalized_line_start": 1502,
+      "source_relative_normalized_line_end_exclusive": 1541,
+      "whitespace_token_count": 1053,
+      "segment_sha256": "f4541a31383e4ddea47bb0394c7205b7636a5f65468ba4b149f3b86cbb3f88ee"
+    },
+    {
+      "chapter": 44,
+      "source_relative_normalized_line_start": 1541,
+      "source_relative_normalized_line_end_exclusive": 1561,
+      "whitespace_token_count": 664,
+      "segment_sha256": "fad354c6db14560c7c42f933de9098efd13ae4c805ae9a8942d7fd19c84a8029"
+    },
+    {
+      "chapter": 45,
+      "source_relative_normalized_line_start": 1561,
+      "source_relative_normalized_line_end_exclusive": 1602,
+      "whitespace_token_count": 1009,
+      "segment_sha256": "758964b55bfe62445beec87993ad6db7563b4a991b926cff74bd695c6bfa6ed0"
+    },
+    {
+      "chapter": 46,
+      "source_relative_normalized_line_start": 1602,
+      "source_relative_normalized_line_end_exclusive": 1629,
+      "whitespace_token_count": 757,
+      "segment_sha256": "d8d72d9a4d8831e00ff37a9fecdd94cc2faac2ed1aae5e7e103b51dde375e799"
+    },
+    {
+      "chapter": 47,
+      "source_relative_normalized_line_start": 1629,
+      "source_relative_normalized_line_end_exclusive": 1677,
+      "whitespace_token_count": 1182,
+      "segment_sha256": "9a0adc2249fddc9579e9251d74d8387bf02fed7dc0c645684f00a3a11e5b5346"
+    },
+    {
+      "chapter": 48,
+      "source_relative_normalized_line_start": 1677,
+      "source_relative_normalized_line_end_exclusive": 1722,
+      "whitespace_token_count": 1659,
+      "segment_sha256": "c4d3494f5d3b783de4a6a52a21de856b5d4853117d427df7f73eb023033d842c"
+    },
+    {
+      "chapter": 49,
+      "source_relative_normalized_line_start": 1722,
+      "source_relative_normalized_line_end_exclusive": 1782,
+      "whitespace_token_count": 1950,
+      "segment_sha256": "dcd102431d9e4d31e557ee76f8c5e615c4dfb5c015264a1a6872268ab251de48"
+    },
+    {
+      "chapter": 50,
+      "source_relative_normalized_line_start": 1782,
+      "source_relative_normalized_line_end_exclusive": 1809,
+      "whitespace_token_count": 656,
+      "segment_sha256": "dc9aea2066774fb78584957259aee4eb8abe6c33039d41805bf9cc8f00fb260b"
+    },
+    {
+      "chapter": 51,
+      "source_relative_normalized_line_start": 1809,
+      "source_relative_normalized_line_end_exclusive": 1826,
+      "whitespace_token_count": 569,
+      "segment_sha256": "769454eecf8c0415b9e4df386490c9dd121186106f2c2471d8d4fb5b995d22bf"
+    },
+    {
+      "chapter": 52,
+      "source_relative_normalized_line_start": 1826,
+      "source_relative_normalized_line_end_exclusive": 1844,
+      "whitespace_token_count": 491,
+      "segment_sha256": "e6223cf779a8d1d876795fd12f87ed6f21adc78147fb3f35feed93a2fd22a195"
+    },
+    {
+      "chapter": 53,
+      "source_relative_normalized_line_start": 1844,
+      "source_relative_normalized_line_end_exclusive": 1863,
+      "whitespace_token_count": 606,
+      "segment_sha256": "a46a818ec6f1806a2666f8909c65f43645408f6b91766ce2662e67dcec7f8f89"
+    },
+    {
+      "chapter": 54,
+      "source_relative_normalized_line_start": 1863,
+      "source_relative_normalized_line_end_exclusive": 1876,
+      "whitespace_token_count": 350,
+      "segment_sha256": "74ed06e5a4b6e281415e8536ab9549f0b6e00f13f977cd7e4f915b122b58836b"
+    },
+    {
+      "chapter": 55,
+      "source_relative_normalized_line_start": 1876,
+      "source_relative_normalized_line_end_exclusive": 1894,
+      "whitespace_token_count": 605,
+      "segment_sha256": "0ccae3b48890f425e6cd5ad32c54c0308383f180942f42a2116284ab577d2c2f"
+    },
+    {
+      "chapter": 56,
+      "source_relative_normalized_line_start": 1894,
+      "source_relative_normalized_line_end_exclusive": 1929,
+      "whitespace_token_count": 803,
+      "segment_sha256": "be62557ac87a7a355c1603151b07532942f3dcced9d4739fec3f194d762952a6"
+    },
+    {
+      "chapter": 57,
+      "source_relative_normalized_line_start": 1929,
+      "source_relative_normalized_line_end_exclusive": 1959,
+      "whitespace_token_count": 1080,
+      "segment_sha256": "f330e4528893479bdbd69ce0894442d57f7cd2ea1cc01e485634e60789e49e7a"
+    },
+    {
+      "chapter": 58,
+      "source_relative_normalized_line_start": 1959,
+      "source_relative_normalized_line_end_exclusive": 1976,
+      "whitespace_token_count": 628,
+      "segment_sha256": "09ef202ecf69739aa5c4b8d1de5dc7e1ad04251156cf388dd8675fa3bc1e7bcc"
+    },
+    {
+      "chapter": 59,
+      "source_relative_normalized_line_start": 1976,
+      "source_relative_normalized_line_end_exclusive": 1991,
+      "whitespace_token_count": 274,
+      "segment_sha256": "83e2552d5df2fa954d8c48958ada1bd39197dcdcba21a8eb207fffbd7a9992a1"
+    },
+    {
+      "chapter": 60,
+      "source_relative_normalized_line_start": 1991,
+      "source_relative_normalized_line_end_exclusive": 2012,
+      "whitespace_token_count": 492,
+      "segment_sha256": "9abc31f2303447dba3202eb5f43fc0b8d8342a1891fb108842b63da0c140c5a3"
+    },
+    {
+      "chapter": 61,
+      "source_relative_normalized_line_start": 2012,
+      "source_relative_normalized_line_end_exclusive": 2054,
+      "whitespace_token_count": 1442,
+      "segment_sha256": "404eae77e5e15bb76f632695527e9e508a8816bddf476deed7baa30cf9f00975"
+    },
+    {
+      "chapter": 62,
+      "source_relative_normalized_line_start": 2054,
+      "source_relative_normalized_line_end_exclusive": 2071,
+      "whitespace_token_count": 452,
+      "segment_sha256": "94b92c45796959e66a024f0de510ea53287c8b30a4a0e46220a76abd8b914aad"
+    },
+    {
+      "chapter": 63,
+      "source_relative_normalized_line_start": 2071,
+      "source_relative_normalized_line_end_exclusive": 2084,
+      "whitespace_token_count": 371,
+      "segment_sha256": "a7a8f132f500d27d61fba91abbf60bd6efb9725bfea2259b7262ea29469bc832"
+    },
+    {
+      "chapter": 64,
+      "source_relative_normalized_line_start": 2084,
+      "source_relative_normalized_line_end_exclusive": 2111,
+      "whitespace_token_count": 597,
+      "segment_sha256": "4fe4bd2ff3e63bc8b28e0724fc6b9ef71b13878557ec3e933164e7930e05b07e"
+    },
+    {
+      "chapter": 65,
+      "source_relative_normalized_line_start": 2111,
+      "source_relative_normalized_line_end_exclusive": 2130,
+      "whitespace_token_count": 385,
+      "segment_sha256": "dee218e5e873c291e61ab3e301b8b18ddce183968814bd8ab3f7a11a5af7d338"
+    },
+    {
+      "chapter": 66,
+      "source_relative_normalized_line_start": 2130,
+      "source_relative_normalized_line_end_exclusive": 2140,
+      "whitespace_token_count": 185,
+      "segment_sha256": "6783b588c86a86c01d4714dbe53a2df1c858ddbb4ae403197c8908a2d6409616"
+    },
+    {
+      "chapter": 67,
+      "source_relative_normalized_line_start": 2140,
+      "source_relative_normalized_line_end_exclusive": 2168,
+      "whitespace_token_count": 1066,
+      "segment_sha256": "2b32c80e441f24b30d5c0cfb4e3a332a854ce113a31592420f33383d9b5b9276"
+    },
+    {
+      "chapter": 68,
+      "source_relative_normalized_line_start": 2168,
+      "source_relative_normalized_line_end_exclusive": 2191,
+      "whitespace_token_count": 547,
+      "segment_sha256": "146d06febbba513b2c9093e5c28ffaebfc6f3025e4fdb946b8de3c6825d34d9e"
+    },
+    {
+      "chapter": 69,
+      "source_relative_normalized_line_start": 2191,
+      "source_relative_normalized_line_end_exclusive": 2225,
+      "whitespace_token_count": 1585,
+      "segment_sha256": "3c6bfb43005eb3ee1adf503e084ff65c84ccf6edda2fccf7014fc37cb653202c"
+    }
+  ]
+}

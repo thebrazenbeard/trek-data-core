@@ -320,6 +320,16 @@ jobs:
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
+          # Independent physical-binary release gate. Today there are zero
+          # approved same-origin image files; a HELD photo may legitimately
+          # exist on a review branch, but must never ride the Pages archive
+          # merely because a manifest or browser button says "display: false".
+          # Release any future pixel by an exact, separately reviewed change
+          # to this Pages barrier as well as the artwork manifest validator.
+          if test -e explorer/licensed-artwork || test -L explorer/licensed-artwork; then
+            echo "Refusing to publish unapproved local image bytes in Explorer" >&2
+            exit 1
+          fi
           for path in explorer/index.html explorer/index.json explorer/app.js explorer/app.css explorer/trek-data-core-hero.jpg; do
             expected="$(git rev-parse "HEAD:$path")"
             actual="$(git hash-object "$path")"

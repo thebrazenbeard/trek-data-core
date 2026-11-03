@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-TXT201-220-20261103",
+  "accepted_main_baseline": "e4348bdf4287d82c2bb6e88db39209f1db5688af",
+  "archive": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "whole_zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "txt_members": 220
+  },
+  "sample": "lexically sorted TXT member ordinals 201-220; VOY filename sequences 011-030",
+  "prior_packets": [
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-DS9-TXT50-20261103",
+      "records_sha256": "56017619758a9e0294384187ec1c18569b1966729bfaf47fbdc85a8d68438553",
+      "range_start": 1,
+      "range_end": 50
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT51-100-20261103",
+      "records_sha256": "59cb068ab6fee0338846c031bcf4f25044c01a055856f156b6acdd4f0cf94d27",
+      "range_start": 51,
+      "range_end": 100
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT101-150-20261103",
+      "records_sha256": "38f4c77d5dcbf1ff20eaea358253f93f6b193934830744948a43d0bf04bbd5e1",
+      "range_start": 101,
+      "range_end": 150
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT151-200-20261103",
+      "records_sha256": "c608f11dde8278eb2a918f0885d99c208d8907cc2565d96f1c905181363380b0",
+      "range_start": 151,
+      "range_end": 200
+    }
+  ],
+  "data_rights": "UNKNOWN",
+  "member_byte_access": "HASHED_WITHOUT_SEMANTIC_READ",
+  "work_coverage_stage": "DISCOVERED",
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "copyrighted_text_exported": false,
+  "private_member_paths_exported": false,
+  "records": [
+    {
+      "source_local_id": "txt-local:0201",
+      "archive_txt_ordinal": 201,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 11,
+      "title_hint": "The Garden",
+      "uncompressed_bytes": 453429,
+      "member_sha256": "f668970392d4d07ac76194a2072ebe0649e807c0c49f47780092c4ab8921e994"
+    },
+    {
+      "source_local_id": "txt-local:0202",
+      "archive_txt_ordinal": 202,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 12,
+      "title_hint": "Chrysalis",
+      "uncompressed_bytes": 385924,
+      "member_sha256": "a9b128f8c2fe6068d4b48f077f309be8f59dc803c8dbfd299d8ee191b0cb214f"
+    },
+    {
+      "source_local_id": "txt-local:0203",
+      "archive_txt_ordinal": 203,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 13,
+      "title_hint": "The Black Shore",
+      "uncompressed_bytes": 474874,
+      "member_sha256": "c9ab5af6c12a4f821326430d9e6b179fe457c53d7f4fe686f5e9a40c475c0bed"
+    },
+    {
+      "source_local_id": "txt-local:0204",
+      "archive_txt_ordinal": 204,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 14,
+      "title_hint": "Marooned",
+      "uncompressed_bytes": 378383,
+      "member_sha256": "e935b87729896bb0696fc8b08b9b682195d89d0698502e8962d16a0bf7b5e957"
+    },
+    {
+      "source_local_id": "txt-local:0205",
+      "archive_txt_ordinal": 205,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 15,
+      "title_hint": "Echoes",
+      "uncompressed_bytes": 328749,
+      "member_sha256": "dfc01548fb7b9cb004746626f37f243b9b9073a53083e42f2653d483eeb9788f"
+    },
+    {
+      "source_local_id": "txt-local:0206",
+      "archive_txt_ordinal": 206,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 16,
+      "title_hint": "Seven of Nine",
+      "uncompressed_bytes": 298284,
+      "member_sha256": "ef342c2249acba9241024cfcc494f258dde163c557b4d34f40829a25f7825677"
+    },
+    {
+      "source_local_id": "txt-local:0207",
+      "archive_txt_ordinal": 207,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 17,
+      "title_hint": "Death of a Neutron Star",
+      "uncompressed_bytes": 296397,
+      "member_sha256": "4448eed555b81a18339b6b8343f82db64c571dc5778b6869837ff3d44ae13e4c"
+    },
+    {
+      "source_local_id": "txt-local:0208",
+      "archive_txt_ordinal": 208,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 18,
+      "title_hint": "Battle Lines",
+      "uncompressed_bytes": 449842,
+      "member_sha256": "9a0d67c45ae921151d99f704f43365fbf764f01872e7a668c2c029ea135e5588"
+    },
+    {
+      "source_local_id": "txt-local:0209",
+      "archive_txt_ordinal": 209,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 19,
+      "title_hint": "Dark Matter - Cloak and Dagger",
+      "uncompressed_bytes": 332856,
+      "member_sha256": "40bb7f187e63e97c330e6bcb52e552970b923f266562f07da1e0fb7c149d1ad1"
+    },
+    {
+      "source_local_id": "txt-local:0210",
+      "archive_txt_ordinal": 210,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 20,
+      "title_hint": "Dark Matter - Ghost Dance",
+      "uncompressed_bytes": 355898,
+      "member_sha256": "a1926862d9365b7f86013c6cdbbf8f604042109545e86ac7a19b8dfd57a06add"
+    },
+    {
+      "source_local_id": "txt-local:0211",
+      "archive_txt_ordinal": 211,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 21,
+      "title_hint": "Dark Matter - Shadow of Heaven",
+      "uncompressed_bytes": 385469,
+      "member_sha256": "3801f76ede9aa0c0e3e2f342353dcc5f1075a496e5a01861a1eab14d7fef1ca6"
+    },
+    {
+      "source_local_id": "txt-local:0212",
+      "archive_txt_ordinal": 212,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 22,
+      "title_hint": "The Nanotech War",
+      "uncompressed_bytes": 480748,
+      "member_sha256": "a3af2ac25be442d0f35933f92d79534696a9102cab7cd5d14a25cc620c7caeae"
+    },
+    {
+      "source_local_id": "txt-local:0213",
+      "archive_txt_ordinal": 213,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 23,
+      "title_hint": "Homecoming",
+      "uncompressed_bytes": 360033,
+      "member_sha256": "dc642b805a967fe5cdeb296f5e5b8e3791a861f86d90e1c39cf4a432ffc7c53d"
+    },
+    {
+      "source_local_id": "txt-local:0214",
+      "archive_txt_ordinal": 214,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 24,
+      "title_hint": "The Farther Shore",
+      "uncompressed_bytes": 378485,
+      "member_sha256": "fdf77cc49cef3fc7200870c0f0e46efd733ee6ccf2fb6ec6524963eded1d6816"
+    },
+    {
+      "source_local_id": "txt-local:0215",
+      "archive_txt_ordinal": 215,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 25,
+      "title_hint": "Old Wounds (Spirit Walk, Book 1)",
+      "uncompressed_bytes": 344269,
+      "member_sha256": "b369ae9e40a62f172121d18b471ad1b21acd83d8d40513ee2628e7777689d694"
+    },
+    {
+      "source_local_id": "txt-local:0216",
+      "archive_txt_ordinal": 216,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 26,
+      "title_hint": "Enemy of my Enemy (Spirit Walk, Book 2)",
+      "uncompressed_bytes": 373846,
+      "member_sha256": "f4092ed1dcf161a36cf0b87fee2ba386f2fba1b59fb61ed0452cd7f1278e179d"
+    },
+    {
+      "source_local_id": "txt-local:0217",
+      "archive_txt_ordinal": 217,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 27,
+      "title_hint": "Cohesion (String Theory, Book 1)",
+      "uncompressed_bytes": 498605,
+      "member_sha256": "d6448a91743aafa36d2b14e8a83c62d2712c4ad6ea31edf1657f3f5713600fe7"
+    },
+    {
+      "source_local_id": "txt-local:0218",
+      "archive_txt_ordinal": 218,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 28,
+      "title_hint": "Fusion (String Theory, Book 2)",
+      "uncompressed_bytes": 611879,
+      "member_sha256": "f2682ba8d0429093a67dcc219ee190081ae225052d8508553dd2dc0f6ac34bb9"
+    },
+    {
+      "source_local_id": "txt-local:0219",
+      "archive_txt_ordinal": 219,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 29,
+      "title_hint": "Distant Shores",
+      "uncompressed_bytes": 743970,
+      "member_sha256": "73623c4ec9c7399a72ee9399bb3fb474bcd0a7ecf3770e09f2250e30d2492828"
+    },
+    {
+      "source_local_id": "txt-local:0220",
+      "archive_txt_ordinal": 220,
+      "series_hint": "VOY",
+      "series_file_sequence_hint": 30,
+      "title_hint": "Evolution (String Theory, Book 3)",
+      "uncompressed_bytes": 670156,
+      "member_sha256": "91d71601273e136a1717bf75d9f0cc8857f464780e5d9388560113a61bb1991f"
+    }
+  ],
+  "records_sha256": "26a578ddb6ca461a771a8a68f33aaf7041c5b4e5c89d8cd1e55f84dbc63673db"
+}

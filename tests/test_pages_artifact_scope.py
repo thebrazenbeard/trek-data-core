@@ -144,6 +144,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertNotIn("! -path explorer/beyond-premiere-*", text)
         self.assertIn("! -path explorer/licensed-artwork", text)
         self.assertIn("! -path 'explorer/licensed-artwork/*'", text)
+        self.assertIn("test -e explorer/licensed-artwork || test -L explorer/licensed-artwork", text)
+        self.assertIn("Refusing to publish unapproved local image bytes in Explorer", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/accepted-source-card-rechecks.json", text)
         self.assertIn("python3 tools/build_accepted_source_card_rechecks.py --check", text)
@@ -321,6 +323,27 @@ class PagesArtifactScopeTests(unittest.TestCase):
             self.assertNotEqual(check().returncode, 0, f"unreviewed {extra} must fail")
             path.unlink()
         self.assertEqual(check().returncode, 0)
+
+    def test_committed_held_jpeg_is_not_public_because_the_button_is_disabled(self):
+        """Pages must refuse every local binary absent an independent release gate."""
+        root = self.fixture()
+        explorer = root / "explorer"
+        images = explorer / "licensed-artwork"
+        images.mkdir()
+        (images / "beyond-premiere-japan-2016-960.jpg").write_bytes(b"\xff\xd8\xfffixture\xff\xd9")
+        self.commit_fixture(root)
+        check = self.check_step("Verify final public artifact boundary", root)
+        self.assertNotEqual(check.returncode, 0)
+        self.assertIn("Refusing to publish unapproved local image bytes in Explorer", check.stderr)
+
+        # Even a wholly empty committed image directory is never a permission
+        # to upload future extras: currently no local pixels are cleared.
+        (images / "beyond-premiere-japan-2016-960.jpg").unlink()
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        images.rmdir()
+        self.assertEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
+        images.symlink_to(".", target_is_directory=True)
+        self.assertNotEqual(self.check_step("Verify final public artifact boundary", root).returncode, 0)
 
     def test_original_abstract_svg_requires_committed_identical_bytes(self):
         root = self.fixture()

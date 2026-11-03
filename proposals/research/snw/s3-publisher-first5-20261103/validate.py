@@ -92,6 +92,10 @@ def validate_records(data):
         require(isinstance(row.get("locator"), str) and "HTML lines" in row["locator"], "missing source-relative locator")
         require(isinstance(row.get("paraphrase"), str) and 40 <= len(row["paraphrase"]) <= 240, "missing or long paraphrase")
         require("<" not in row["paraphrase"] and ">" not in row["paraphrase"], "HTML leaked into paraphrase")
+    # Independent source audit corrected an unsupported interpretation: the
+    # publisher calls the E05 activity a quest, not an investigation.
+    e05 = next(x for x in evidence if x["work_id"] == "snw-s3-e05-pplus")
+    require("quest" in e05["paraphrase"].lower() and "investigation" not in e05["paraphrase"].lower(), "E05 publisher quest semantics lost")
 
     for row in assertions:
         require(row.get("work_id") in works_set, "orphan assertion")

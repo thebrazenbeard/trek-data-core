@@ -179,6 +179,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .directory-card a { display: inline-block; margin-top: 7px; font-size: .79rem; overflow-wrap: anywhere; }
 .directory-card .directory-context { color: var(--muted); }
 .directory-card .directory-source { color: var(--aqua); overflow-wrap: anywhere; }
+.directory-card .directory-recheck { color: var(--orange, #f8b86a); font-size: .85rem; font-weight: 750; }
+.directory-card .directory-recheck-source { display: inline-block; margin-block: .15rem .4rem; }
+.directory-recheck-count { color: var(--aqua); font-weight: 750; }
 .directory-card .directory-provenance { display: block; color: var(--muted); opacity: .87; font: 650 .65rem/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
 .synopsis-panel { margin: 9px 0; padding: 9px 11px; border-left: 5px solid var(--amber); border-radius: 9px 2px 2px 2px; background: #101526; }
 .synopsis-panel .synopsis-label { display: block; color: var(--amber); font-size: .74rem; letter-spacing: .025em; }

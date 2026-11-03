@@ -109,6 +109,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/film-catalog.json", text)
         self.assertIn("! -path explorer/discovery-catalog.json", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
+        self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("Refusing to publish an unexpected Explorer entry", text)
 
     def test_manual_dispatch_cannot_deploy_a_review_branch(self):
@@ -121,7 +122,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 8)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 9)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -172,6 +173,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertLess(text.index("Verify optional Multimedia discovery directory"),
                         text.index("Verify optional publisher-description synopsis release"))
         self.assertLess(text.index("Verify optional publisher-description synopsis release"),
+                        text.index("Verify optional read-only metadata recheck projection"))
+        self.assertLess(text.index("Verify optional read-only metadata recheck projection"),
                         text.index("Verify final public artifact boundary"))
         self.assertLess(text.index("Verify final public artifact boundary"),
                         text.index("Upload Explorer only"))
@@ -185,6 +188,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/metadata-rechecks.json", final)
         self.assertIn("cmp docs/assets/trek-data-core-hero.jpg explorer/trek-data-core-hero.jpg", final)
 
     def test_final_barrier_rejects_post_test_modifications_and_new_files(self):

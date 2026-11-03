@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "DIS.PPLUS.S1.SECOND5.20261103",
+  "lane": "DISCOVERY",
+  "status": "PROPOSAL_ONLY",
+  "accepted_base_sha": "f4ea65391cf1543a55bf19dfcf3ed776dd80ab04",
+  "selection_method": "CONSECUTIVE_UNRESEARCHED_PUBLISHER_GUIDE_CARDS_S1_E06_E10",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "artwork_publication_effect": "NONE",
+  "audiovisual_episodes_watched": false,
+  "full_episode_text_read": false,
+  "source": {
+    "id": "dis-s1-paramount-guide-html-20261103-second5",
+    "kind": "FIRST_PARTY_PUBLISHER_EPISODE_GUIDE",
+    "url": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/1/",
+    "retrieved_date_utc": "2026-11-03",
+    "response_status": 200,
+    "raw_html_bytes": 289669,
+    "raw_html_sha256": "1c428f8c7e85197d50dcfe5c8b2c7546933dc2293874eabb321b1ab03343c77e",
+    "publisher_signed_snapshot": false,
+    "original_html_committed": false,
+    "independence_group": "publisher:paramountplus.com"
+  },
+  "candidate_inventory_crosswalk": {
+    "path": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+    "sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418",
+    "scope": "DISCOVERY_ONLY_EPISODES_6_TO_10_TITLE_AND_SLOT_MATCH",
+    "independent_content_witness": false
+  },
+  "works": [
+    {"id":"dis-s1-e06-local","season":1,"episode":6,"title":"Lethe","raw_html_card_lines":[1667,1694],"source_datetime":"2017-10-22T17:00:00-07:00","video_path":"/shows/video/vyFThfOJ3X8wChksr2USV0_jtv_FaPZe/","publisher_description_length":177,"publisher_description_sha256":"59b565fae7e3ef6981be4b7d986f6a2739df616bbbb6e857c31c362eba655ab1","original_synopsis":"A new crew member draws Discovery's attention as Sarek seeks Burnham's help and Cornwell questions Lorca's decisions.","canonical_work_id":null},
+    {"id":"dis-s1-e07-local","season":1,"episode":7,"title":"Magic to Make the Sanest Man Go Mad","raw_html_card_lines":[1695,1722],"source_datetime":"2017-10-29T17:00:00-07:00","video_path":"/shows/video/gItL4p3bLtsgXU8LwFLlvrPC_lSmrr5g/","publisher_description_length":157,"publisher_description_sha256":"f1d1da5a7c6ba48326e3a99b14351aa67b51826bd70987b0262e973fcdefe2a8","original_synopsis":"A gathering aboard Discovery is interrupted by an unwelcome arrival, setting off a troubling sequence of events.","canonical_work_id":null},
+    {"id":"dis-s1-e08-local","season":1,"episode":8,"title":"Si Vis Pacem, Para Bellum","raw_html_card_lines":[1723,1750],"source_datetime":"2017-11-05T17:00:00-08:00","video_path":"/shows/video/trdn_QshF1DlbsdedG6xdsnd5WwF6032/","publisher_description_length":238,"publisher_description_sha256":"958c772c5afab659429bddba15d8a22e66a62112fbfe3a3fd7824cc700684e18","original_synopsis":"Discovery travels to Pahvo for a high-priority assignment linked to the study of Klingon cloaking technology.","canonical_work_id":null},
+    {"id":"dis-s1-e09-local","season":1,"episode":9,"title":"Into the Forest I Go","raw_html_card_lines":[1751,1778],"source_datetime":"2017-11-12T17:00:00-08:00","video_path":"/shows/video/wzcu2_8ZCWaSXuWUFbHDt7zMjmSGMqSp/","publisher_description_length":165,"publisher_description_sha256":"16f0b7ebd9dc750d505994e1c22fd691c179487d225c91949b705a56c6fb9ad2","original_synopsis":"Lorca defies Starfleet orders and uses Discovery itself in an attempt to bring the Klingon war to an end.","canonical_work_id":null},
+    {"id":"dis-s1-e10-local","season":1,"episode":10,"title":"Despite Yourself","raw_html_card_lines":[1779,1806],"source_datetime":"2018-01-07T17:00:00-08:00","video_path":"/shows/video/_jWBYJwlGmaBmX0rxqcSoBvN40uoaAiJ/","publisher_description_length":166,"publisher_description_sha256":"ded95fc102252062e946f584f54a3256ac5a5f7eb3fe7edafe33ed578c32a227","original_synopsis":"In unfamiliar territory, the Discovery crew improvises against opposing forces while searching for a way home.","canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"id":"dis-e06-sarek","work_id":"dis-s1-e06-local","kind":"PERSON_MENTION","label":"Sarek","global_entity_id":null},
+    {"id":"dis-e07-visitor","work_id":"dis-s1-e07-local","kind":"UNIDENTIFIED_PERSON_MENTION","label":"unwelcome visitor","global_entity_id":null},
+    {"id":"dis-e08-pahvo","work_id":"dis-s1-e08-local","kind":"PLACE_MENTION","label":"Pahvo","global_entity_id":null},
+    {"id":"dis-e09-lorca","work_id":"dis-s1-e09-local","kind":"PERSON_MENTION","label":"Lorca","global_entity_id":null},
+    {"id":"dis-e10-discovery-crew","work_id":"dis-s1-e10-local","kind":"GROUP_MENTION","label":"U.S.S. Discovery crew","global_entity_id":null}
+  ],
+  "evidence": [
+    {"id":"dis-e06-publisher","work_id":"dis-s1-e06-local","source_id":"dis-s1-paramount-guide-html-20261103-second5","entity_ids":["dis-e06-sarek"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1667-1694: title, S1E6, datetime and ep__copy","observation":"The publisher describes Sarek seeking Burnham's assistance while Admiral Cornwell questions Lorca's tactics.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e07-publisher","work_id":"dis-s1-e07-local","source_id":"dis-s1-paramount-guide-html-20261103-second5","entity_ids":["dis-e07-visitor"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1695-1722: title, S1E7, datetime and ep__copy","observation":"The publisher describes an uninvited visitor interrupting a Discovery crew gathering.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e08-publisher","work_id":"dis-s1-e08-local","source_id":"dis-s1-paramount-guide-html-20261103-second5","entity_ids":["dis-e08-pahvo"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1723-1750: title, S1E8, datetime and ep__copy","observation":"The publisher describes an assignment to Pahvo involving the science of Klingon cloaking technology.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e09-publisher","work_id":"dis-s1-e09-local","source_id":"dis-s1-paramount-guide-html-20261103-second5","entity_ids":["dis-e09-lorca"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1751-1778: title, S1E9, datetime and ep__copy","observation":"The publisher describes Lorca using Discovery contrary to Starfleet orders in pursuit of ending the war.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e10-publisher","work_id":"dis-s1-e10-local","source_id":"dis-s1-paramount-guide-html-20261103-second5","entity_ids":["dis-e10-discovery-crew"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1779-1806: title, S1E10, datetime and ep__copy","observation":"The publisher describes Discovery's crew confronting unexpected forces in unfamiliar territory and trying to return home.","scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"id":"dis-e06-publisher-claim","work_id":"dis-s1-e06-local","evidence_id":"dis-e06-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e07-publisher-claim","work_id":"dis-s1-e07-local","evidence_id":"dis-e07-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e08-publisher-claim","work_id":"dis-s1-e08-local","evidence_id":"dis-e08-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e09-publisher-claim","work_id":"dis-s1-e09-local","evidence_id":"dis-e09-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e10-publisher-claim","work_id":"dis-s1-e10-local","evidence_id":"dis-e10-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"id":"dis-s1-e06-held-art","work_id":"dis-s1-e06-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/10/20/1077534787718/CBS_STAR_TREK_DISCOVERY_106_1162331_1920x1080.jpg","source_locator":"raw HTML line 1670","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e07-held-art","work_id":"dis-s1-e07-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/10/28/1083418691850/CBS_STAR_TREK_DISCOVERY_107_654361_1920x1080.jpg","source_locator":"raw HTML line 1698","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e08-held-art","work_id":"dis-s1-e08-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/11/03/1087620675545/CBS_STAR_TREK_DISCOVERY_108_1162336_1920x1080.jpg","source_locator":"raw HTML line 1726","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e09-held-art","work_id":"dis-s1-e09-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/11/10/1092804675637/CBS_STAR_TREK_DISCOVERY_109__654362_1920x1080.jpg","source_locator":"raw HTML line 1754","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e10-held-art","work_id":"dis-s1-e10-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2018/01/05/1130231363574/CBS_STAR_TREK_DISCOVERY_110_1162332_1920x1080.jpg","source_locator":"raw HTML line 1782","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"}
+  ],
+  "limits": [
+    {"kind":"SINGLE_PUBLISHER_SOURCE","note":"Five source cards share Paramount+ lineage; multiple cards are not independent eyewitnesses of episode contents."},
+    {"kind":"NO_FULL_EPISODE","note":"No full episode audiovisual, subtitles or authenticated script was actually reviewed."},
+    {"kind":"UNVERIFIED_RELEASE_DATE_SEMANTICS","note":"Preserved raw datetime strings; local air date and release-window interpretations remain unresolved."}
+  ]
+}

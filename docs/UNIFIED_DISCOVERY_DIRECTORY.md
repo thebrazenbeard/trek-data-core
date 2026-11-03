@@ -54,6 +54,12 @@ The accepted research pipeline remains Source → Work → Local Entity → Evid
 → Assertion and requires separate explicit admission. Do not promote these
 discovery rows automatically, even when titles match.
 
+The optional Explorer directory has separate medium, **series (source-local)**,
+and source-group filters. Series values are derived only from episode-row
+context codes and show counts of source observations, not unique episodes,
+verified Works, or independent evidence. Selecting a series excludes other
+media rather than assigning films, literary works, or shorts to that series.
+
 ## Local verification
 
 ```bash

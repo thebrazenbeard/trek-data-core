@@ -17,7 +17,10 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty',
   'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
   'publisher-isbn-query', 'publisher-isbn-status', 'publisher-isbn-tag',
-  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty'];
+  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
+  'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
+  'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
+  'paramount-list', 'paramount-empty'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -63,7 +66,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -85,6 +88,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('publisher-edition-tag').value = 'all';
   nodes.get('publisher-isbn-status').value = 'all';
   nodes.get('publisher-isbn-tag').value = 'all';
+  nodes.get('paramount-status').value = 'all';
+  nodes.get('paramount-tag').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -128,6 +133,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: isbnStatus, ok: isbnStatus >= 200 && isbnStatus < 300,
       arrayBuffer: async () => isbnBytes.buffer.slice(isbnBytes.byteOffset, isbnBytes.byteOffset + isbnBytes.byteLength)
     };
+    if (path === './paramount-film-rechecks.json') return {
+      status: paramountStatus, ok: paramountStatus >= 200 && paramountStatus < 300,
+      arrayBuffer: async () => paramountBytes.buffer.slice(paramountBytes.byteOffset, paramountBytes.byteOffset + paramountBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   const deterministicCrypto = {
@@ -156,7 +165,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
     './artwork-catalog.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
-    './publisher-isbn-crosschecks.json'];
+    './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json'];
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
@@ -188,6 +197,62 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+test('13 first-party Paramount source-only film page rechecks search by cast, year and held anomaly', async () => {
+  const bytes = readFileSync(new URL('../explorer/paramount-film-rechecks.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, null, 404, null, 404,
+    null, 404, SCRIPT, null, 404, null, 404, false, null, 404, null, 404, null, 404, bytes, 200);
+  assert.equal(nodes.get('paramount-nav-count').textContent, '13');
+  assert.equal(nodes.get('paramount-download').hidden, false);
+  assert.match(nodes.get('paramount-summary').textContent, /^13 of 13/);
+  assert.equal(traverse(nodes.get('paramount-list'), (n) => n.tagName === 'article').length, 13);
+  assert.match(nodes.get('paramount-state').textContent, /3 source discrepancies held/);
+  assert.doesNotMatch(nodes.get('paramount-list').textContent, /poster_asset_locator|original_synopsis_candidate/);
+  nodes.get('paramount-status').value = 'HELD_UNRESOLVED_SOURCE_ANOMALY';
+  nodes.get('paramount-filters').fire('change');
+  assert.match(nodes.get('paramount-summary').textContent, /^3 of 13/);
+  assert.equal(traverse(nodes.get('paramount-list'), (n) => n.className === 'card paramount-card paramount-held').length, 3);
+  nodes.get('paramount-status').value = 'all';
+  nodes.get('paramount-query').value = 'Patrick Stewart';
+  nodes.get('paramount-filters').fire('input');
+  assert.ok(traverse(nodes.get('paramount-list'), (n) => n.tagName === 'article').length >= 1);
+  nodes.get('paramount-query').value = '';
+  nodes.get('paramount-tag').value = 'anomaly:held';
+  nodes.get('paramount-filters').fire('change');
+  assert.match(nodes.get('paramount-summary').textContent, /^3 of 13/);
+});
+
+test('Paramount public sidecar rejects missing bytes, tampering and rehashed source/rights escalation', async () => {
+  const bytes = readFileSync(new URL('../explorer/paramount-film-rechecks.json', import.meta.url));
+  const bad = Buffer.from(bytes.toString('utf8').replace('star-trek-beyond', 'star-trek-forged'));
+  for (const [sample, status] of [[bytes, 404], [bad, 200]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, null, 404, null, 404,
+      null, 404, SCRIPT, null, 404, null, 404, false, null, 404, null, 404, null, 404, sample, status);
+    assert.equal(nodes.get('paramount-nav-count').textContent, '—');
+    assert.match(nodes.get('paramount-summary').textContent, /unavailable; not a verified zero/);
+    assert.equal(nodes.get('paramount-list').children.length, 0);
+  }
+  const original = JSON.parse(bytes.toString('utf8'));
+  const digest = '40d968f1faa11bd888f2af838c6cc4075c1c89ba4b269cf08a2e33878e87e26b';
+  for (const mutate of [
+    (d) => { d.rows[0].source_locator = 'https://evil.example/movies/star-trek-beyond'; },
+    (d) => { d.rows[0].source_input_sha256 = '0'.repeat(64); },
+    (d) => { d.rows[0].coverage_effect = 'CLOSE_READ'; },
+    (d) => { d.rows[0].source_anomaly = 'NEW UNSOURCED ANOMALY NOT_RECONCILED'; },
+    (d) => { d.rows[0].tags.push('work:admitted'); },
+    (d) => { d.rows[0].selected_cast_performers_as_listed[0] = '<img>'; },
+    (d) => { d.rows[0].poster_asset_locator = 'https://example.test/cover.jpg'; }
+  ]) {
+    const data = structuredClone(original);
+    mutate(data);
+    const forged = Buffer.from(JSON.stringify(data));
+    const script = SCRIPT.replace(digest, createHash('sha256').update(forged).digest('hex'));
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, null, 404, null, 404,
+      null, 404, script, null, 404, null, 404, false, null, 404, null, 404, null, 404, forged, 200);
+    assert.equal(nodes.get('paramount-nav-count').textContent, '—');
+    assert.equal(nodes.get('paramount-list').children.length, 0);
+  }
+});
 
 test('39 source-local publisher ISBN crosschecks are independently searchable without Work/edition authentication', async () => {
   const isbnBytes = readFileSync(new URL('../explorer/publisher-isbn-crosschecks.json', import.meta.url));

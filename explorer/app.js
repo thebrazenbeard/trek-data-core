@@ -168,6 +168,8 @@
   const publisherEditionState = { rows: [], available: false };
   const publisherIsbnState = { rows: [], available: false, limit: 12 };
   const publisherIsbnSha256 = '1170e8cb56b4ff3c5beab8d412fa5613b6e3b9d0ab7b5a18f80fe403c5bde3e8';
+  const paramountState = { rows: [], available: false };
+  const paramountSha256 = '40d968f1faa11bd888f2af838c6cc4075c1c89ba4b269cf08a2e33878e87e26b';
   // Independent from the 1,214 multimedia directory and governed Work index.
   // The code-owned digest binds EVERY publisher-edition field and tag, not a
   // self-declared source hash in an untrusted JSON response.
@@ -743,6 +745,176 @@
     } catch (error) {
       setPublisherIsbnAvailability(false,
         `Publisher ISBN crosschecks withheld: ${error.message || 'Source metadata not validated.'} This is unavailable, not a verified zero.`);
+    }
+  }
+
+  // A distinct studio-page observation shelf, not the 14-film discovery
+  // catalog, not a watched-film claim, and not image/synopsis authorization.
+  const paramountBatches = new Map([
+    ['PARAMOUNT-FIRST-SIX', { path: 'proposals/films/paramount-six-source-pages-20261103/records.json',
+      sha: 'c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e',
+      ids: ['film-motion-picture', 'film-wrath-of-khan', 'film-generations', 'film-first-contact', 'film-2009', 'film-into-darkness'] }],
+    ['PARAMOUNT-SECOND-SIX', { path: 'proposals/films/paramount-second-six-pages-20261103/records.json',
+      sha: 'aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41',
+      ids: ['film-search-for-spock', 'film-voyage-home', 'film-final-frontier', 'film-undiscovered-country', 'film-insurrection', 'film-nemesis'] }],
+    ['PARAMOUNT-BEYOND', { path: 'proposals/films/beyond-paramount-metadata-20261103/records.json',
+      sha: 'cde05393657f16d7c846c77c6c87227948bd38a2d2a06a2946bcd727e44cf122',
+      ids: ['film-beyond'] }]
+  ]);
+  const paramountAnomalies = new Set(['film-first-contact', 'film-search-for-spock', 'film-insurrection']);
+
+  function setParamountAvailability(available, message) {
+    paramountState.available = available;
+    if (!available) paramountState.rows = [];
+    byId('paramount-nav-count').textContent = available ? String(paramountState.rows.length) : '—';
+    byId('paramount-state').textContent = message;
+    byId('paramount-download').hidden = !available;
+    renderParamountRechecks();
+    window.requestAnimationFrame(updateNavigationHint);
+  }
+
+  function renderParamountRechecks() {
+    const holder = byId('paramount-list');
+    const empty = byId('paramount-empty');
+    holder.replaceChildren();
+    empty.hidden = true;
+    if (!paramountState.available) {
+      byId('paramount-summary').textContent = 'Paramount metadata source shelf unavailable; not a verified zero.';
+      return;
+    }
+    const typed = byId('paramount-query').value.trim();
+    const terms = typed.length <= 150 ? normalize(typed).split(/\s+/).filter(Boolean) : ['QUERY_TOO_LONG'];
+    const status = byId('paramount-status').value;
+    const tag = byId('paramount-tag').value;
+    const matches = paramountState.rows.filter((row) => {
+      if (status !== 'all' && status !== row.recheck_status) return false;
+      if (tag !== 'all' && !row.tags.includes(tag)) return false;
+      const searchable = normalize([row.source_page_slug, row.source_local_candidate_id,
+        row.genre_as_listed, row.year_as_listed, row.rating_as_listed,
+        ...row.selected_directors_as_listed, ...row.selected_cast_performers_as_listed].join(' '));
+      return terms.every((term) => searchable.includes(term));
+    });
+    byId('paramount-summary').textContent = `${matches.length} of 13 separate source-local Paramount film-page observations match. No films viewed, Works admitted or artwork released.`;
+    if (!matches.length) { empty.hidden = false; return; }
+    for (const row of matches) {
+      const held = row.recheck_status === 'HELD_UNRESOLVED_SOURCE_ANOMALY';
+      const card = el('article', `card paramount-card${held ? ' paramount-held' : ''}`);
+      card.append(el('span', 'kicker', `First-party studio page · ${row.source_batch}`));
+      card.append(el('h3', 'paramount-slug', row.source_page_slug.replaceAll('-', ' ')));
+      card.append(el('p', '', `Paramount-listed ${row.year_as_listed} · ${row.rating_as_listed} · ${row.runtime_as_listed_minutes} minutes · ${row.genre_as_listed}`));
+      card.append(el('p', '', `Listed directors: ${row.selected_directors_as_listed.join(' · ')}`));
+      card.append(el('p', 'paramount-status', held ? 'HELD: unresolved source-page discrepancy' : 'First-party listing observed; source-local only'));
+      if (held) card.append(el('p', 'paramount-custody', row.source_anomaly));
+      card.append(el('small', 'paramount-custody', `${row.source_local_candidate_id} · publisher listing only; not a film copy, global Work or source-independent witness.`));
+      const source = el('a', 'paramount-link', 'Inspect first-party Paramount listing');
+      source.href = row.source_locator;
+      source.target = '_blank';
+      source.rel = 'noopener noreferrer';
+      card.append(source);
+      holder.append(card);
+    }
+  }
+
+  function acceptParamountRechecks(data) {
+    const exactKeys = (value, keys) => value && typeof value === 'object' && !Array.isArray(value) &&
+      Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
+    const rootKeys = ['schema_version', 'data_status', 'row_count', 'source_anomaly_held_count',
+      'publisher_independence_group_count', 'distinct_works_admitted', 'full_films_viewed',
+      'synopses_released', 'artwork_released', 'coverage_effect', 'admission_effect',
+      'accepted_source_input_receipts', 'rows'];
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'SOURCE_LOCAL_PARAMOUNT_FILM_PAGE_METADATA_ONLY' ||
+        data.row_count !== 13 || data.source_anomaly_held_count !== 3 ||
+        data.publisher_independence_group_count !== 1 ||
+        data.distinct_works_admitted !== 0 || data.full_films_viewed !== 0 ||
+        data.synopses_released !== 0 || data.artwork_released !== 0 ||
+        data.coverage_effect !== 'NONE' || data.admission_effect !== 'NONE' ||
+        !Array.isArray(data.rows) || data.rows.length !== 13 ||
+        !Array.isArray(data.accepted_source_input_receipts) || data.accepted_source_input_receipts.length !== 3) {
+      throw new Error('Paramount source metadata envelope elevated or changed.');
+    }
+    const receipts = [...paramountBatches.values()];
+    for (let i = 0; i < receipts.length; i++) {
+      const receipt = data.accepted_source_input_receipts[i];
+      if (!exactKeys(receipt, ['path', 'sha256']) ||
+          receipt.path !== receipts[i].path || receipt.sha256 !== receipts[i].sha) {
+        throw new Error('Paramount accepted upstream source digest mismatched.');
+      }
+    }
+    const rowKeys = ['row_id', 'source_local_candidate_id', 'source_page_slug', 'source_locator',
+      'source_batch', 'source_input', 'source_input_sha256', 'publisher_family', 'year_as_listed',
+      'rating_as_listed', 'runtime_as_listed_minutes', 'genre_as_listed',
+      'selected_directors_as_listed', 'selected_cast_performers_as_listed', 'source_anomaly',
+      'recheck_status', 'tags', 'source_snapshot_class', 'film_viewed', 'source_identity_scope',
+      'work_admission_effect', 'coverage_effect', 'synopsis_release_effect', 'artwork_release_effect'];
+    const seen = new Set(); let heldCount = 0;
+    for (const row of data.rows) {
+      const batch = paramountBatches.get(row?.source_batch);
+      let url;
+      try { url = new URL(row.source_locator); } catch (_) { throw new Error('Invalid Paramount source URL'); }
+      const expectedTags = [
+        'medium:film', 'publisher:paramount.com', 'batch:' + String(row.source_batch).toLowerCase(),
+        'year:' + String(row.year_as_listed), 'rating:' + String(row.rating_as_listed).toLowerCase(),
+        'anomaly:' + (paramountAnomalies.has(row.source_local_candidate_id) ? 'held' : 'none_documented')
+      ].sort();
+      if (!exactKeys(row, rowKeys) || !batch || !batch.ids.includes(row.source_local_candidate_id) ||
+          seen.has(row.source_local_candidate_id) ||
+          row.row_id !== 'paramount-source-local:' + row.source_local_candidate_id ||
+          row.source_input !== batch.path || row.source_input_sha256 !== batch.sha ||
+          row.publisher_family !== 'publisher:paramount.com' ||
+          url.protocol !== 'https:' || url.hostname !== 'www.paramount.com' || url.port ||
+          url.username || url.password || url.search || url.hash ||
+          !/^\/movies\/[a-z0-9-]+$/.test(url.pathname) ||
+          row.source_page_slug !== url.pathname.slice('/movies/'.length) ||
+          !Number.isInteger(row.year_as_listed) || row.year_as_listed < 1900 || row.year_as_listed > 2100 ||
+          !Number.isInteger(row.runtime_as_listed_minutes) || row.runtime_as_listed_minutes < 30 ||
+          row.runtime_as_listed_minutes > 300 ||
+          !['G', 'PG', 'PG-13', 'R', 'NR'].includes(row.rating_as_listed) ||
+          typeof row.genre_as_listed !== 'string' || row.genre_as_listed.length > 100 ||
+          !Array.isArray(row.selected_directors_as_listed) || !row.selected_directors_as_listed.length ||
+          !Array.isArray(row.selected_cast_performers_as_listed) || !row.selected_cast_performers_as_listed.length ||
+          [...row.selected_directors_as_listed, ...row.selected_cast_performers_as_listed].some(
+            (s) => typeof s !== 'string' || !s.trim() || s.length > 100 || s.includes('<') || s.includes('>')) ||
+          !Array.isArray(row.tags) || JSON.stringify(row.tags) !== JSON.stringify(expectedTags) ||
+          row.source_identity_scope !== 'SOURCE_LOCAL_CANDIDATE' ||
+          row.source_snapshot_class !== 'RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY' ||
+          row.film_viewed !== false || row.work_admission_effect !== 'NONE' ||
+          row.coverage_effect !== 'NONE' || row.synopsis_release_effect !== 'NONE' ||
+          row.artwork_release_effect !== 'NONE' ||
+          (paramountAnomalies.has(row.source_local_candidate_id)
+            ? row.recheck_status !== 'HELD_UNRESOLVED_SOURCE_ANOMALY' ||
+              typeof row.source_anomaly !== 'string' || !row.source_anomaly.endsWith('NOT_RECONCILED')
+            : row.recheck_status !== 'SOURCE_LOCAL_PAGE_METADATA_OBSERVED' || row.source_anomaly !== null)) {
+        throw new Error('Paramount source row rights, identity, provenance or status failed.');
+      }
+      if (paramountAnomalies.has(row.source_local_candidate_id)) heldCount++;
+      seen.add(row.source_local_candidate_id);
+    }
+    if (seen.size !== 13 || heldCount !== 3) throw new Error('Paramount source-local denominator drift.');
+    paramountState.rows = data.rows;
+    const select = byId('paramount-tag');
+    select.replaceChildren(new Option('All source-local tags', 'all'));
+    const allTags = [...new Set(data.rows.flatMap((row) => row.tags))].sort();
+    for (const tag of allTags) select.add(new Option(tag.replaceAll('_', ' '), tag));
+    select.value = 'all';
+    setParamountAvailability(true,
+      '13 separate Paramount publisher-page metadata observations; 3 source discrepancies held. Source-local only; no film viewing, Work admission, synopsis or image release.');
+  }
+
+  async function loadParamountRechecks() {
+    try {
+      const response = await fetch('./paramount-film-rechecks.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Paramount metadata shelf unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw new Error('SHA-256 unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength < 2000 || bytes.byteLength > 100000) throw new Error('Paramount metadata shelf size outside pinned scope.');
+      const hash = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(hash), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== paramountSha256) throw new Error('Paramount metadata shelf differs from code-pinned source snapshot.');
+      acceptParamountRechecks(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    } catch (error) {
+      setParamountAvailability(false,
+        `Paramount source metadata withheld: ${error.message || 'Source validation failed.'} Unavailable is not verified zero.`);
     }
   }
 
@@ -1991,14 +2163,20 @@
   publisherIsbnFilters.addEventListener('change', () => { playTone(); publisherIsbnState.limit = 12; renderPublisherIsbnCrosschecks(); });
   publisherIsbnFilters.addEventListener('submit', (event) => { event.preventDefault(); renderPublisherIsbnCrosschecks(); });
   publisherIsbnFilters.addEventListener('reset', () => { publisherIsbnState.limit = 12; window.requestAnimationFrame(renderPublisherIsbnCrosschecks); });
+  const paramountFilters = byId('paramount-filters');
+  paramountFilters.addEventListener('input', renderParamountRechecks);
+  paramountFilters.addEventListener('change', () => { playTone(); renderParamountRechecks(); });
+  paramountFilters.addEventListener('submit', (event) => { event.preventDefault(); renderParamountRechecks(); });
+  paramountFilters.addEventListener('reset', () => window.requestAnimationFrame(renderParamountRechecks));
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   setPublisherEditionAvailability(false, 'Checking the independently indexed publisher-edition sidecar…');
   setPublisherIsbnAvailability(false, 'Checking accepted public publisher ISBN source-local metadata…');
+  setParamountAvailability(false, 'Checking accepted public Paramount film-page metadata…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks()]).then(() => Promise.all([
+  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
     loadMetadataRechecks(), loadPublisherCardChecks()
   ]));

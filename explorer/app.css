@@ -171,6 +171,14 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .publisher-isbn-card.isbn-held .isbn-status { color: var(--peach); }
 .publisher-isbn-card .isbn-source { display: inline-block; margin-top: 8px; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
 .publisher-isbn-card .isbn-custody { font: 650 .7rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--muted); overflow-wrap: anywhere; }
+.paramount-grid { margin-top: 18px; }
+.paramount-card { border-left-color: var(--aqua); min-width: 0; }
+.paramount-card.paramount-held { border-left-color: var(--peach); }
+.paramount-card h3 { margin: 4px 0 8px; font-size: 1rem; text-transform: capitalize; overflow-wrap: anywhere; }
+.paramount-card .paramount-status { color: var(--aqua); font-weight: 760; }
+.paramount-card.paramount-held .paramount-status { color: var(--peach); }
+.paramount-card .paramount-custody { color: var(--muted); font: 650 .72rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+.paramount-card .paramount-link { display: inline-block; margin-top: 8px; overflow-wrap: anywhere; text-underline-offset: 2px; text-decoration: underline; }
 
 .discovery-directory { border: 1px solid var(--line); border-top: 12px solid var(--aqua); border-left: 18px solid var(--peach); border-radius: 44px 4px 4px 4px; padding: 28px; background: var(--surface); }
 .directory-state { color: var(--amber); margin: 8px 0 13px; }

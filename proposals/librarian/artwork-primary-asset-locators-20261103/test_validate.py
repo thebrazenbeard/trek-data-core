@@ -3,10 +3,11 @@ import copy
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
-from validate import errors
+from validate import _read_json, errors
 
 
 ORIGINAL = json.loads((Path(__file__).parent / "records.json").read_text(encoding="utf-8"))
@@ -73,6 +74,36 @@ class ArtworkPacketTest(unittest.TestCase):
     def test_known_source_digest_forgery_fails_even_if_path_exists(self):
         self.mutated(lambda d: d["source_inputs"][2].update(sha256="f" * 64))
 
+    def test_root_rights_escalation_new_field_fails(self):
+        self.mutated(lambda d: d.update(rights_to_republish_images=True))
+
+    def test_per_observation_new_license_claim_fails(self):
+        self.mutated(lambda d: d["observations"][0].update(public_image_license="CLEARED"))
+
+    def test_per_observation_new_public_url_claim_fails(self):
+        self.mutated(lambda d: d["observations"][0].update(public_image_url=d["observations"][0]["image_locator"]))
+
+    def test_per_observation_new_full_text_claim_fails(self):
+        self.mutated(lambda d: d["observations"][6].update(episode_full_text_available=True))
+
+    def test_source_worker_reported_receipt_must_not_claim_extra_rights(self):
+        self.mutated(lambda d: d["observations"][0].update(locator_evidence="Rights holder cleared all public reuse"))
+        self.mutated(lambda d: d["observations"][1].update(locator_evidence="SOURCE_BYTES_VERIFIED"))
+
+    def test_secondary_crosswalk_cannot_claim_independent_license(self):
+        self.mutated(lambda d: d["observations"][0].update(secondary_crosswalk="Rights independently certified"))
+        self.mutated(lambda d: d["observations"][2].update(secondary_crosswalk={"licensed": True}))
+
+    def test_unknown_source_input_evidence_field_fails(self):
+        self.mutated(lambda d: d["source_inputs"][0].update(full_text_verified=True))
+
+    def test_duplicate_json_key_rejected_during_load(self):
+        with tempfile.TemporaryDirectory() as name:
+            path = Path(name) / "dup.json"
+            path.write_text('{"rights_assessment":"NO_PUBLIC_DISPLAY_LICENSE_ESTABLISHED","rights_assessment":"CLEARED"}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
+                _read_json(path)
+
     def test_wrong_edition_fails(self):
         self.mutated(lambda d: d["observations"][3].update(source_local_work_id=d["observations"][4]["source_local_work_id"]))
 
@@ -116,6 +147,20 @@ mutant = copy.deepcopy(base)
 mutant["source_inputs"][0]["path"] = "explorer/discovery-catalog.json"
 if not errors(mutant):
     raise SystemExit("optimized validator accepted source path substitution")
+for target, index, field, value in (
+    ("root", 0, "rights_to_republish_images", True),
+    ("row", 0, "public_image_license", "CLEARED"),
+    ("row", 0, "public_image_url", base["observations"][0]["image_locator"]),
+    ("row", 6, "episode_full_text_available", True),
+    ("row", 0, "locator_evidence", "Rights holder cleared all public reuse"),
+    ("row", 1, "locator_evidence", "SOURCE_BYTES_VERIFIED"),
+    ("row", 0, "secondary_crosswalk", "Rights independently certified"),
+):
+    mutant = copy.deepcopy(base)
+    obj = mutant if target == "root" else mutant["observations"][index]
+    obj[field] = value
+    if not errors(mutant):
+        raise SystemExit("optimized validator accepted rights/provenance spoof " + field)
 '''
         result = subprocess.run([sys.executable, "-O", "-c", source, str(Path(__file__).parent)],
                                 check=False, capture_output=True, text=True, timeout=30)

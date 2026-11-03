@@ -14,7 +14,8 @@ import json
 import sys
 from pathlib import Path
 
-from build_lit_overview_expansion_request import CandidateError, OUTPUT as REQUEST_PATH, ROOT, _read, _render, build
+from build_lit_overview_expansion_request import CandidateError, ROOT, _read, _render
+from build_lit_modal_corrected_request import OUTPUT as REQUEST_PATH, build
 
 REVIEW_PATH = 'proposals/reviews/model-editorial-lit-overviews-18-20261103/receipt.json'
 PUBLIC_PATH = 'explorer/literary-candidate-overviews.json'
@@ -93,6 +94,7 @@ def release(request: dict, receipt: dict) -> dict:
             'observation_path': candidate['observation_path'],
             'observation_sha256': candidate['observation_sha256'],
             'original_paraphrase_sha256': candidate['original_paraphrase_sha256'],
+            'source_correction_path': candidate['display_supersession_source'],
             'editorial_receipt_sha256': reviewer_sha,
             'raw_webpage_sha256': None,
             'identity_status': 'SOURCE_LOCAL_UNRECONCILED',
@@ -110,6 +112,7 @@ def release(request: dict, receipt: dict) -> dict:
         'directory_snapshot_rows_unchanged': request['accepted_directory_snapshot_row_count'],
         'candidate_count': len(rows),
         'review_request_sha256': _sha(_render(request)),
+        'source_local_correction_sha256': request['source_local_correction_sha256'],
         'editorial_receipt_sha256': reviewer_sha,
         'admission_effect': 'NONE',
         'coverage_effect': 'NONE',

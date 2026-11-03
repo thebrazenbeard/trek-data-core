@@ -1,0 +1,22 @@
+# Artwork candidates — source and rights gate
+
+This is a **Librarian proposal**, not an accepted Work/Source binding or public artwork release. There are **four source-relative artwork observations**: one existing TNG episode row, one existing film row, the one literary row in the current directory, and one *additional book edition* not yet indexed as a directory Work. No image bytes, screenshots, covers, posters, or stills are committed. No Briefing, audiovisual or literary deep-read, or coverage state is promoted.
+
+## Precisely tested available thumbnail
+
+- Publisher Work/edition: *Star Trek: Picard: The Last Best Hope*, Una McCormack, ISBN `9781982142186`, at [Simon & Schuster](https://www.simonandschuster.com/books/Star-Trek-Picard-The-Last-Best-Hope/Una-McCormack/Star-Trek-Picard/9781982142186).
+- Open Library edition API: `https://openlibrary.org/isbn/9781982142186.json`, actual JSON response SHA-256 `33c016d2aad3cc9457249246ec231cc4d6d3acb31374424430ef7bfe743a2ba0`; response identified `OL28225124M` and cover ID `10157401`.
+- Header-only image probe at `2026-11-03T00:29Z`: `https://covers.openlibrary.org/b/id/10157401-S.jpg?default=false` **HTTP 200**, `image/jpeg`, after official Open Library/Internet Archive redirect. No image body retrieved or committed. This is a **real and presently retrievable external thumbnail URL**, not an authorization to redistribute the underlying cover.
+- Open Library's [API use guidance](https://openlibrary.org/developers/api) permits human-facing cover lookup, limits heavy traffic, and requests identification for recurring calls. Its [licensing statement](https://openlibrary.org/developers/licensing) explicitly disclaims new copyright over contributed images and warns that rights issues may remain. A public display decision should preserve Open Library credit/link and noncommercial identification context. It must not be presented as a sublicense.
+
+## Not cleared for direct image display
+
+- The existing *Strange New Worlds: Ring of Fire* literature row has publisher cover images but the [Simon & Schuster terms](https://www.simonandschuster.com/p/terms-of-use) restrict copying and external display absent express permission or authorized publisher widgets. The Open Library cover endpoints for all four indexed edition ISBNs (`9781668095898`, `9781668095904`, `9781668095911`, `9781668134559`) each returned **HTTP 404** at this observation, so no currently functioning alternate cover was established for this row.
+- Paramount+'s first-party [episode](https://www.paramountplus.com/shows/video/U3K8gtRktnFknQKIoz_M7z5_zV93Wb7w/) and [film](https://www.paramountplus.com/movies/video/iTGmLzm3gQN57pAqWamGAFpjatqCYgs_/) pages identify artwork, but no licensed image endpoint was established. Its [affiliate FAQ](https://www.paramountplus.com/affiliate-faq/) requires approved creative for affiliate promotional usage; the precise limits of unrelated editorial display remain unresolved.
+- A possible film/episode alternative is [TMDB's developer API](https://developer.themoviedb.org/docs/faq), officially free for noncommercial use with its specified attribution and branding. It requires an API key and its own rights review. No account was created or token assumed.
+
+## Consumer contract
+
+Use the exact `candidate_id` and `subject_row_id` as source-local joins; a `null` subject row means a title has **not** entered the currently accepted directory. A source page or image observation does not reconcile canonical identity. A non-null `image_url` must not trigger automatic mirror, thumbnail publication, asset download, or CSP broadening. `rights_state`, `display_policy`, provider credit and live URL verification gate any rendering. Broken image endpoints fall back to an accessible text/LCARS placeholder. If future authorized images are used, permit only specific HTTPS origins, set image referrer and lazy-loading policy, and keep publisher and Open Library attribution visible.
+
+This batch used ordinary single-page browser/search research and a bounded official Open Library API request; it did not crawl S&S or Paramount+ sites. Exact publisher page-body hashes were **not** obtained (the terms prohibit automated extraction), and the listed publisher page images must not be described as independently image-verified. Rights terms, image availability and repository Source↔Work acceptance can change; downstream implementers must refresh the evidence.

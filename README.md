@@ -72,6 +72,8 @@ The separate `explorer/film-catalog.json` is reproduced by `python3 tools/build_
 
 The optional [multimedia discovery directory](docs/UNIFIED_DISCOVERY_DIRECTORY.md) is a separate, reproducible source-local search index; it does not change the accepted Mission/Briefing/continuity projection. Its public availability depends on a separately reviewed and dispatched Pages release, even after source files land on main.
 
+The Explorer includes **source-aware artwork slots** for episode, film, and book cards, with original LCARS placeholders while images remain unapproved. The current corpus has **no public thumbnail sidecar or licensed cover release**. Future display routes are separately audited local assets with rights receipts or attributed, user-opt-in Open Library Covers API previews for a matched literary edition (underlying copyright can remain unresolved); a title, image URL, or ISBN alone grants no rights. See the [thumbnail rights and display contract](docs/ARTWORK_THUMBNAIL_POLICY.md).
+
 To run the Explorer locally, from the repository root:
 
 ```bash

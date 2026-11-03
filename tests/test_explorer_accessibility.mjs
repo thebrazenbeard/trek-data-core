@@ -11,7 +11,7 @@ const ids = [
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
   'research-count', 'research-state', 'research-list', 'research-empty',
-  'research-summary', 'research-heading', 'tone-toggle'
+  'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state'
 ];
 
 class Node {

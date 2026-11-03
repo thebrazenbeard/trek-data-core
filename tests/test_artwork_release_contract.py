@@ -166,6 +166,17 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         self.assertEqual(self._check()["status"], "ARTWORK_UNAVAILABLE")
         art.check_static_startup(self.root)
 
+    def test_unreviewed_v13_sidecar_rejected_by_strict_schema_and_symlink_gate(self):
+        shutil.rmtree(self.root / "explorer/licensed-artwork")
+        self._json("explorer/artwork-catalog-v1.3.json", {
+            "schema_version": "1.3.0", "artwork_count": 0, "artwork": []})
+        with self.assertRaisesRegex(art.ArtworkRejected, "unexpected or missing keys"):
+            self._check()
+        (self.root / "explorer/artwork-catalog-v1.3.json").unlink()
+        (self.root / "explorer/artwork-catalog-v1.3.json").symlink_to("missing")
+        with self.assertRaisesRegex(art.ArtworkRejected, "symlink"):
+            self._check()
+
     def test_synthetic_license_review_receipt_and_actual_bytes_can_be_verified(self):
         self._manifest([self.local])
         report = self._check(local_pins={FILM_ID: self.local_pin})

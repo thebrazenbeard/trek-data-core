@@ -41,9 +41,17 @@ class FakeNode {
     this.hidden = false;
     this.className = '';
     this.focused = false;
+    this.parentNode = null;
+    this._documentRoot = false;
   }
 
-  set textContent(value) { this._text = String(value); this.children = []; }
+  get isConnected() { return this._documentRoot || Boolean(this.parentNode?.isConnected); }
+  contains(node) { return this === node || this.children.some((child) => child.contains(node)); }
+  set textContent(value) {
+    for (const child of this.children) child.parentNode = null;
+    this._text = String(value);
+    this.children = [];
+  }
   get textContent() { return this._text + this.children.map((child) => child.textContent).join(''); }
   set innerHTML(_) { throw Error('HTML injection sink is forbidden'); }
   set outerHTML(_) { throw Error('HTML injection sink is forbidden'); }
@@ -52,11 +60,24 @@ class FakeNode {
   removeAttribute(key) { this.attributes.delete(key); }
   append(...children) {
     for (const child of children) {
-      if (child.tagName === '#fragment') this.children.push(...child.children);
-      else this.children.push(child);
+      if (child.tagName === '#fragment') {
+        for (const grandchild of child.children) {
+          grandchild.parentNode = this;
+          this.children.push(grandchild);
+        }
+        child.children = [];
+      } else {
+        child.parentNode = this;
+        this.children.push(child);
+      }
     }
   }
-  replaceChildren(...children) { this.children = []; this._text = ''; this.append(...children); }
+  replaceChildren(...children) {
+    for (const child of this.children) child.parentNode = null;
+    this.children = [];
+    this._text = '';
+    this.append(...children);
+  }
   add(option) { this.children.push(option); }
   addEventListener(type, listener) {
     const list = this.handlers.get(type) || [];
@@ -76,6 +97,7 @@ function traverse(node, predicate) {
 
 async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
+  for (const node of nodes.values()) node._documentRoot = true;
   const requested = new Set();
   const inFlightDigests = new Set();
   nodes.get('lore-console').hidden = true;
@@ -1361,6 +1383,16 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
   pendingMediumImage.fire('error');
   assert.equal(pendingMediumImage.src, pendingSrc,
     'late image error after opt-out must not initiate an S fallback request');
+  nodes.get('artwork-toggle').fire('click');
+  const renewedMediumImages = traverse(gallery, (n) => n.tagName === 'img');
+  assert.equal(renewedMediumImages.length, 4, 're-opt-in creates a fresh image generation');
+  assert.ok(renewedMediumImages.every((img) => img.isConnected));
+  assert.equal(pendingMediumImage.isConnected, false);
+  pendingMediumImage.fire('error');
+  assert.equal(pendingMediumImage.src, pendingSrc,
+    'late detached M error after Show-Hide-Show must not use the renewed consent to fetch S');
+  assert.equal(traverse(gallery, (n) => n.tagName === 'img').length, 4,
+    'a stale callback must not mutate current-generation image nodes');
 
   const old = await runMediumArtwork(directory, null, 404, small);
   assert.equal(old.get('artwork-toggle').disabled, false, 'v1.2 fallback must remain displayable');

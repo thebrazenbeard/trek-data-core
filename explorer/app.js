@@ -443,7 +443,7 @@
   // No publisher image URL is inferred from metadata. Licensed local images
   // and the explicitly documented Open Library Covers API are separate,
   // reviewed display routes; remote API thumbnails are opt-in, never mirrored.
-  const artworkState = { entries: new Map(), available: false, enabled: false };
+  const artworkState = { entries: new Map(), available: false, enabled: false, consentEpoch: 0 };
   // No Open Library ISBN-to-cover crosswalk has yet been independently
   // admitted for a public directory row. A sidecar cannot self-certify one:
   // Four exact-edition API previews, independently crosschecked against the
@@ -555,11 +555,16 @@
           COVER: 'Rights-reviewed cover', OTHER: 'Rights-reviewed source image' }[source.artwork_kind]);
       status.textContent = kind;
       let attemptedSmallFallback = false;
+      const imageConsentEpoch = artworkState.consentEpoch;
       img.addEventListener('error', () => {
+        // A delayed error from a removed image must never initiate a request
+        // under a later opt-in, even when the global enabled flag is true.
+        if (!artworkState.enabled || artworkState.consentEpoch !== imageConsentEpoch ||
+            !img.isConnected || !frame.isConnected || !frame.contains(img)) return;
         // The separately reviewed S jacket remains a safe once-only fallback
-        // after a failed M request. No retry is allowed after opt-out, and the
-        // second failure returns to original LCARS index art.
-        if (mediumPreview && !attemptedSmallFallback && artworkState.enabled) {
+        // after a failed M request. The second failure returns to original
+        // LCARS index art, never another network retry.
+        if (mediumPreview && !attemptedSmallFallback) {
           attemptedSmallFallback = true;
           status.textContent = 'Medium jacket unavailable · reviewed small Open Library preview';
           img.src = `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`;
@@ -1475,6 +1480,7 @@
 
   artworkToggle.addEventListener('click', () => {
     if (!artworkState.available) return;
+    artworkState.consentEpoch++;
     artworkState.enabled = !artworkState.enabled;
     artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
     artworkToggle.textContent = artworkState.enabled ? `Hide sourced artwork (${artworkState.entries.size} previews)`

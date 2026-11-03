@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "private-opf-custody-receipt-20261103",
+  "role": "LIBRARIAN",
+  "record_class": "PRIVATE_ARCHIVE_AGGREGATE_INTAKE_RECEIPT",
+  "admission_status": "NOT_ADMITTED",
+  "coverage_effect": "NONE",
+  "accepted_source_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "source_work_binding_effect": "NONE",
+  "rights_status": "USER_HELD_COPYRIGHT_AND_REPUBLICATION_RIGHTS_UNVERIFIED",
+  "private_file_inventory_released": false,
+  "original_archive": {
+    "label": "ST ebooks.zip",
+    "byte_length": 126481241,
+    "sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac"
+  },
+  "converted_archive": {
+    "label": "Star_Trek_OPF_Converted.zip",
+    "byte_length": 95673655,
+    "sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f"
+  },
+  "private_inventory": {
+    "sha256": "125702e5e4832fb3211f9c839ba6889392539559b2aeb09b3487dd452d4d5951",
+    "byte_length": 283361,
+    "owner_only_mode": "0600",
+    "public_location": null
+  },
+  "method": {
+    "accepted_main_sha": "d4ecd970bf28019696abd692011007d7d47f9ff8",
+    "script_path": "tools/inventory_opf_metadata.py",
+    "script_sha256": "efaa3a1c80ae025dce48e8dca111acff145d8abfbf4127a8a9f1a1224483b703",
+    "runtime": "WSL2 Ubuntu-26.04 Python 3.14.4",
+    "observed_date_utc": "2026-11-03",
+    "read_scope": "ZIP_CENTRAL_DIRECTORY_AND_BOUNDED_OPF_METADATA_ONLY"
+  },
+  "summary": {
+    "opf_packages": 347,
+    "parsed_metadata": 347,
+    "matched_unique_original_lit_stems": 345,
+    "review_holds": 15,
+    "original_lit_file_entries": 347,
+    "original_txt_file_entries": 220
+  },
+  "open_gates": [
+    "REVIEW_15_LEGACY_DUBLIN_CORE_NAMESPACE_REPAIRS",
+    "RESOLVE_UNMATCHED_OR_AMBIGUOUS_ORIGINAL_FILE_STEMS",
+    "RECONCILE_EDITION_OMNIBUS_AND_CONVERSION_IDENTITIES",
+    "VERIFY_RIGHTS_AND_SOURCE_ACCESS_PER_EDITION",
+    "BIND_AUTHENTICATED_SOURCE_TO_WORK_BEFORE_CONTENT_RESEARCH"
+  ]
+}

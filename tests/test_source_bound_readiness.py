@@ -111,6 +111,40 @@ class SourceBoundReadinessTests(unittest.TestCase):
                         'binding_id': BINDING['binding_id']}]
         self.assertIn('SOURCE_BOUND_ALREADY_ATTAINED', self.assess()['blockers'])
 
+    def test_revoked_discovered_predecessor_cannot_authorize_source_bound(self):
+        self.records.append({
+            'record_type': 'coverage_event', 'coverage_event_id': 'fixture-revocation',
+            'status': 'ACCEPTED', 'effect': 'REVOKED', 'coverage_state': 'DISCOVERED',
+            'work_id': WORK['work_id'], 'subject_type': 'WORK',
+            'subject_id': WORK['work_id'], 'producer_role': 'LIBRARIAN',
+            'supersedes': DISCOVERED['coverage_event_id'],
+        })
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertEqual(result['accepted_discovered_event_ids'], [])
+        self.assertIn('NO_ACCEPTED_DISCOVERED_PREDECESSOR', result['blockers'])
+
+    def test_wrong_binding_context_remains_blocked_with_matching_source_bytes(self):
+        self.bindings[BINDING['binding_id']]['work_id'] = 'different-episode'
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('BINDING_CONTEXT_MISMATCH', result['blockers'])
+        self.assertNotIn('PRIVATE_BYTE_CUSTODY_REPLAY_OR_SOURCE_MATCH_FAILED', result['blockers'])
+
+    def test_replayed_receipt_with_duplicate_json_key_is_rejected(self):
+        receipt = self.receipt_path.read_text(encoding='utf-8')
+        self.receipt_path.write_text(receipt[:-1] + ',"receipt_id":"ForgedReceipt"}', encoding='utf-8')
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('PRIVATE_BYTE_CUSTODY_REPLAY_OR_SOURCE_MATCH_FAILED', result['blockers'])
+
+    def test_source_hash_change_blocks_both_basis_and_receipt_context(self):
+        self.sources[SOURCE['source_id']]['content_hash'] = 'sha256:' + '0' * 64
+        result = self.assess()
+        self.assertEqual(result['status'], 'BLOCKED')
+        self.assertIn('NO_EXACT_SOURCE_BYTE_HASH_BASIS', result['blockers'])
+        self.assertIn('PRIVATE_BYTE_CUSTODY_REPLAY_OR_SOURCE_MATCH_FAILED', result['blockers'])
+
     def test_no_nonfixture_authoritative_data_on_live_main_remains_blocked(self):
         run = subprocess.run([sys.executable, str(ROOT / 'tools' / 'check_source_bound_readiness.py'),
                               '--work-id', 'none', '--source-id', 'none', '--binding-id', 'none',

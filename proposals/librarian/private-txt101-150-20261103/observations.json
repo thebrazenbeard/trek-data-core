@@ -1,0 +1,487 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-TXT101-150-20261103",
+  "accepted_main_baseline": "05d05de1c0238ed7ff39bd04427795e351f9b68b",
+  "archive": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "whole_zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "txt_members": 220
+  },
+  "sample": "lexically sorted TXT member ordinals 101-150; TNG filename sequences 014-063",
+  "prior_accepted_packets": [
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-DS9-TXT50-20261103",
+      "records_sha256": "56017619758a9e0294384187ec1c18569b1966729bfaf47fbdc85a8d68438553",
+      "range_start": 1,
+      "range_end": 50
+    },
+    {
+      "proposal_id": "LIBRARIAN-PRIVATE-TXT51-100-20261103",
+      "records_sha256": "59cb068ab6fee0338846c031bcf4f25044c01a055856f156b6acdd4f0cf94d27",
+      "range_start": 51,
+      "range_end": 100
+    }
+  ],
+  "data_rights": "UNKNOWN",
+  "member_byte_access": "HASHED_WITHOUT_SEMANTIC_READ",
+  "work_coverage_stage": "DISCOVERED",
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "copyrighted_text_exported": false,
+  "private_member_paths_exported": false,
+  "records": [
+    {
+      "source_local_id": "txt-local:0101",
+      "archive_txt_ordinal": 101,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 14,
+      "title_hint": "Exiles",
+      "uncompressed_bytes": 397418,
+      "member_sha256": "26edf09abfa1687d7bf3eb88a53f6dc1b1f8e4bc4a9a621584ae8cf9b16465e6"
+    },
+    {
+      "source_local_id": "txt-local:0102",
+      "archive_txt_ordinal": 102,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 15,
+      "title_hint": "Fortune's Light",
+      "uncompressed_bytes": 447216,
+      "member_sha256": "ceae69d97c493c1fc8018c86035275b169c8f4a2dfc3e15c18e1aef8d1cbe43f"
+    },
+    {
+      "source_local_id": "txt-local:0103",
+      "archive_txt_ordinal": 103,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 16,
+      "title_hint": "Contamination",
+      "uncompressed_bytes": 429330,
+      "member_sha256": "87bc3b580724b1c17ee6420d69c00059ef93de99e81b5165604161b65789604d"
+    },
+    {
+      "source_local_id": "txt-local:0104",
+      "archive_txt_ordinal": 104,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 17,
+      "title_hint": "Boogeymen",
+      "uncompressed_bytes": 326356,
+      "member_sha256": "7ec13b1e7e261456d9f3608b15a96f53b66bacf2eaf0cee52def5219cf4586a1"
+    },
+    {
+      "source_local_id": "txt-local:0105",
+      "archive_txt_ordinal": 105,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 18,
+      "title_hint": "Q-In-Law",
+      "uncompressed_bytes": 362930,
+      "member_sha256": "8e911fb5fa863485f7a403cc7d9e877be614f7bb1607492083db73e8435a4195"
+    },
+    {
+      "source_local_id": "txt-local:0106",
+      "archive_txt_ordinal": 106,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 19,
+      "title_hint": "Perchance to Dream",
+      "uncompressed_bytes": 350811,
+      "member_sha256": "5fbc81d5eda27ab4f206e5168cd91ba5ff15ff1bb5976e1cc55b17ae30086c59"
+    },
+    {
+      "source_local_id": "txt-local:0107",
+      "archive_txt_ordinal": 107,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 20,
+      "title_hint": "Spartacus",
+      "uncompressed_bytes": 424407,
+      "member_sha256": "e6e1a5f81a9bbffabe74a992393059b6b65f803b4cce85a3a268e30384990999"
+    },
+    {
+      "source_local_id": "txt-local:0108",
+      "archive_txt_ordinal": 108,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 21,
+      "title_hint": "Chains of Command",
+      "uncompressed_bytes": 374226,
+      "member_sha256": "1b06aa4cc1a303dffd801a18a6f4d22ba321e12d0cbb7109fcabb0cd03222985"
+    },
+    {
+      "source_local_id": "txt-local:0109",
+      "archive_txt_ordinal": 109,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 22,
+      "title_hint": "Imbalance",
+      "uncompressed_bytes": 464960,
+      "member_sha256": "febbd10baf644ab02c281d850793b4dc7799eeeee4481dd2c7050154796275d1"
+    },
+    {
+      "source_local_id": "txt-local:0110",
+      "archive_txt_ordinal": 110,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 23,
+      "title_hint": "War Drums",
+      "uncompressed_bytes": 441350,
+      "member_sha256": "239c0bd8f79a63f990dbc123aa74b9e422f5ce551a7e407ff65ffe0e3e7c8691"
+    },
+    {
+      "source_local_id": "txt-local:0111",
+      "archive_txt_ordinal": 111,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 24,
+      "title_hint": "Nightshade",
+      "uncompressed_bytes": 382182,
+      "member_sha256": "f1b860cbed0a983aa508ca85e593feabe1649835408e1f55810d864f847422ad"
+    },
+    {
+      "source_local_id": "txt-local:0112",
+      "archive_txt_ordinal": 112,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 25,
+      "title_hint": "Grounded",
+      "uncompressed_bytes": 399861,
+      "member_sha256": "5203d4a2c3f8a40cb0cd98d0a294e929847961ca476abf3a565fc4b0bb555e4c"
+    },
+    {
+      "source_local_id": "txt-local:0113",
+      "archive_txt_ordinal": 113,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 26,
+      "title_hint": "The Romulan Prize",
+      "uncompressed_bytes": 431078,
+      "member_sha256": "da771759dbcb2a698f760d483244d17608178121601decb1689690ca3ac27820"
+    },
+    {
+      "source_local_id": "txt-local:0114",
+      "archive_txt_ordinal": 114,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 27,
+      "title_hint": "Guises of the Mind",
+      "uncompressed_bytes": 419967,
+      "member_sha256": "0ebbdf0ac3b34a03062c4ef059d6de8e7268afb0807496fcc5b8b172cac2b802"
+    },
+    {
+      "source_local_id": "txt-local:0115",
+      "archive_txt_ordinal": 115,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 28,
+      "title_hint": "Here There Be Dragons",
+      "uncompressed_bytes": 399218,
+      "member_sha256": "b714c9f5788457222b101a65058cf6fc4b58a491b26d1dc996b2c8ecbb58221f"
+    },
+    {
+      "source_local_id": "txt-local:0116",
+      "archive_txt_ordinal": 116,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 29,
+      "title_hint": "Sins of Commission",
+      "uncompressed_bytes": 446693,
+      "member_sha256": "1b0ab3d195cfa6cb7864c9ccb829debd5591b57ef4a1e4ab96d4494b5daa4930"
+    },
+    {
+      "source_local_id": "txt-local:0117",
+      "archive_txt_ordinal": 117,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 30,
+      "title_hint": "Debtors' Planet",
+      "uncompressed_bytes": 431432,
+      "member_sha256": "7629143d37c355adecadf5adbc74673d2bbd9404199c1c317ffd581e655332c2"
+    },
+    {
+      "source_local_id": "txt-local:0118",
+      "archive_txt_ordinal": 118,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 31,
+      "title_hint": "Foreign Foes",
+      "uncompressed_bytes": 418883,
+      "member_sha256": "c318c504ec0c7c620e33afac7c18cd9ba774ae84a8dcc86f46622ef1c6cd70e2"
+    },
+    {
+      "source_local_id": "txt-local:0119",
+      "archive_txt_ordinal": 119,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 32,
+      "title_hint": "Requiem",
+      "uncompressed_bytes": 391571,
+      "member_sha256": "3ce9a9ce5e118ab3b089507ec50436ef4387cad1091280edb83deeb414b13643"
+    },
+    {
+      "source_local_id": "txt-local:0120",
+      "archive_txt_ordinal": 120,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 33,
+      "title_hint": "Balance of Power",
+      "uncompressed_bytes": 520523,
+      "member_sha256": "80c217d58a9d5a07aa42303219754dfc9dcd6bc2bdc89a2788cb048c129ef350"
+    },
+    {
+      "source_local_id": "txt-local:0121",
+      "archive_txt_ordinal": 121,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 34,
+      "title_hint": "Blaze of Glory",
+      "uncompressed_bytes": 374780,
+      "member_sha256": "ecb93d557c65f4464d54b941c7b392ef6185b7206d1aa9f1ed9589aff525082c"
+    },
+    {
+      "source_local_id": "txt-local:0122",
+      "archive_txt_ordinal": 122,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 35,
+      "title_hint": "The Romulan Strategem",
+      "uncompressed_bytes": 443164,
+      "member_sha256": "eefc2792ce8c19833f6401cee05be405fa84df18456ed6e0b5a8176c07cb29c8"
+    },
+    {
+      "source_local_id": "txt-local:0123",
+      "archive_txt_ordinal": 123,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 36,
+      "title_hint": "Into the Nebula",
+      "uncompressed_bytes": 423419,
+      "member_sha256": "4a2cb1e480bb0c8ddee44f3904e7726697d616f153f61f217b071c67cdacf581"
+    },
+    {
+      "source_local_id": "txt-local:0124",
+      "archive_txt_ordinal": 124,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 37,
+      "title_hint": "The Last Stand",
+      "uncompressed_bytes": 424438,
+      "member_sha256": "a0aa20ec95765d07cd1ae59e6baaca0e660b286bb914907660f81e70a5c670e2"
+    },
+    {
+      "source_local_id": "txt-local:0125",
+      "archive_txt_ordinal": 125,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 38,
+      "title_hint": "Dragon's Honor",
+      "uncompressed_bytes": 416430,
+      "member_sha256": "241aa84e1a05a44bbd731fd91704881215b26127983cb616347f24575d1bb6aa"
+    },
+    {
+      "source_local_id": "txt-local:0126",
+      "archive_txt_ordinal": 126,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 39,
+      "title_hint": "Rogue Saucer",
+      "uncompressed_bytes": 368338,
+      "member_sha256": "9b43c25e58035daa0e11ee8a19147de47d1f46d7fdde56c6891e43468b336336"
+    },
+    {
+      "source_local_id": "txt-local:0127",
+      "archive_txt_ordinal": 127,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 40,
+      "title_hint": "Possession",
+      "uncompressed_bytes": 463101,
+      "member_sha256": "e4be6fb3d525925a6482035bd6ef801fd1f424b7a829561a1561e919e814a439"
+    },
+    {
+      "source_local_id": "txt-local:0128",
+      "archive_txt_ordinal": 128,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 41,
+      "title_hint": "The Soldiers of Fear (Invasion, Book 2)",
+      "uncompressed_bytes": 355318,
+      "member_sha256": "ddc55bfd41fc1c901cb2ccc58bb8fe3021892db304308387d4d60a88ae264301"
+    },
+    {
+      "source_local_id": "txt-local:0129",
+      "archive_txt_ordinal": 129,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 42,
+      "title_hint": "Infiltrator",
+      "uncompressed_bytes": 474898,
+      "member_sha256": "a591049bce95145103be509ee61ee16c3aca30a016f9d10b32126ae1199a987b"
+    },
+    {
+      "source_local_id": "txt-local:0130",
+      "archive_txt_ordinal": 130,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 43,
+      "title_hint": "A Fury Scorned",
+      "uncompressed_bytes": 385129,
+      "member_sha256": "e522690155251a47373a1ff181f3e107cb556667f9df06ee47cddf7646d53f36"
+    },
+    {
+      "source_local_id": "txt-local:0131",
+      "archive_txt_ordinal": 131,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 44,
+      "title_hint": "The Death of Princes",
+      "uncompressed_bytes": 378472,
+      "member_sha256": "112ab908e22aba5b919b93f67ddd784c3dd29085fea1c2d7bd905f373bfb9b09"
+    },
+    {
+      "source_local_id": "txt-local:0132",
+      "archive_txt_ordinal": 132,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 45,
+      "title_hint": "Intellivore",
+      "uncompressed_bytes": 313428,
+      "member_sha256": "29e943b55594a6f33477de1becff6ec3d84b6a361e53a453aab64f6a988a34a9"
+    },
+    {
+      "source_local_id": "txt-local:0133",
+      "archive_txt_ordinal": 133,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 46,
+      "title_hint": "To Storm Heaven",
+      "uncompressed_bytes": 432298,
+      "member_sha256": "3f64e3addd990d7b1d5da54880c2b8369b6d28a8b276dac9963aef44de34f305"
+    },
+    {
+      "source_local_id": "txt-local:0134",
+      "archive_txt_ordinal": 134,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 47,
+      "title_hint": "Q-Space (Q Continuum, Book 1)",
+      "uncompressed_bytes": 453934,
+      "member_sha256": "87ad226c6019bd82616a98c85b8dfd5f34558d7ec1d8b3caa26418a0227df0c6"
+    },
+    {
+      "source_local_id": "txt-local:0135",
+      "archive_txt_ordinal": 135,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 48,
+      "title_hint": "Q-Zone (Q Continuum, Book 2)",
+      "uncompressed_bytes": 362965,
+      "member_sha256": "670cb624d9b08b37a5550616472f7dee682345760a9d1d0e2fc58ffb09330568"
+    },
+    {
+      "source_local_id": "txt-local:0136",
+      "archive_txt_ordinal": 136,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 49,
+      "title_hint": "Q-Strike (Q Continuum, Book 3)",
+      "uncompressed_bytes": 372091,
+      "member_sha256": "1d06fc056daa82bc6a041ab9ed27f9d19f9956f4bb409ff41b25c8db5e8a68cd"
+    },
+    {
+      "source_local_id": "txt-local:0137",
+      "archive_txt_ordinal": 137,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 50,
+      "title_hint": "Dyson Sphere",
+      "uncompressed_bytes": 247056,
+      "member_sha256": "2ba439c72f6a9a471149351694862f627f34ddb95c40d512672e4463f9009c5e"
+    },
+    {
+      "source_local_id": "txt-local:0138",
+      "archive_txt_ordinal": 138,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 51,
+      "title_hint": "Infection (Double Helix, Book 1)",
+      "uncompressed_bytes": 266097,
+      "member_sha256": "9c4959a532bdaeb530c725332fb30af2c1a0e7dc21d84ff5b596265c0376a2aa"
+    },
+    {
+      "source_local_id": "txt-local:0139",
+      "archive_txt_ordinal": 139,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 52,
+      "title_hint": "Vectors (Double Helix, Book 2)",
+      "uncompressed_bytes": 342639,
+      "member_sha256": "4b7362082abf0500d0979c2a0e31e922b7c772a838f89b101a3ee74fb0617430"
+    },
+    {
+      "source_local_id": "txt-local:0140",
+      "archive_txt_ordinal": 140,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 53,
+      "title_hint": "Red Sector (Double Helix, Book 3)",
+      "uncompressed_bytes": 539408,
+      "member_sha256": "90973a8ed3be70c366e6fa07323d520d3413d11cee7fbfee74667898d674ee43"
+    },
+    {
+      "source_local_id": "txt-local:0141",
+      "archive_txt_ordinal": 141,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 54,
+      "title_hint": "Quarantine (Double Helix, Book 4)",
+      "uncompressed_bytes": 402236,
+      "member_sha256": "ede5dd7d797e732c6dd9862b60ad74637cb6a918ec3ebe0fea8f173edfdf2402"
+    },
+    {
+      "source_local_id": "txt-local:0142",
+      "archive_txt_ordinal": 142,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 55,
+      "title_hint": "Double or Nothing (Double Helix, Book 5)",
+      "uncompressed_bytes": 560026,
+      "member_sha256": "d6e05dfd4e480e5c7e44da66f23b22f5f64af0027a92dab937be1bc6ffa2d76b"
+    },
+    {
+      "source_local_id": "txt-local:0143",
+      "archive_txt_ordinal": 143,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 56,
+      "title_hint": "The First Virtue (Double Helix, Book 6)",
+      "uncompressed_bytes": 347647,
+      "member_sha256": "e049fb23d7da4ea92a663c9c53068643c13e703860e2581ddd2ce63f30d6a9ed"
+    },
+    {
+      "source_local_id": "txt-local:0144",
+      "archive_txt_ordinal": 144,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 57,
+      "title_hint": "The Forgotten War",
+      "uncompressed_bytes": 371492,
+      "member_sha256": "ffa97f718691df9caf2d4e51c410129ffd9a0e85be4b70627eb4b4cdf3036284"
+    },
+    {
+      "source_local_id": "txt-local:0145",
+      "archive_txt_ordinal": 145,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 58,
+      "title_hint": "Gemworld Book 1",
+      "uncompressed_bytes": 372741,
+      "member_sha256": "edf3ffdaa59bb30dba12f08e556f9b7c4f26afbcf9d346dfddebb2d9ff26e07d"
+    },
+    {
+      "source_local_id": "txt-local:0146",
+      "archive_txt_ordinal": 146,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 59,
+      "title_hint": "Gemworld Book 2",
+      "uncompressed_bytes": 362635,
+      "member_sha256": "3e9e12e97f40c899cc50566ffde28b293e64ae350c20adda209758424cd14df1"
+    },
+    {
+      "source_local_id": "txt-local:0147",
+      "archive_txt_ordinal": 147,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 60,
+      "title_hint": "Tooth and Claw",
+      "uncompressed_bytes": 397990,
+      "member_sha256": "2a29165f7902ee236c2f7b6ce6c662b2965696955fbe7e38254121fa9798e8e7"
+    },
+    {
+      "source_local_id": "txt-local:0148",
+      "archive_txt_ordinal": 148,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 61,
+      "title_hint": "Diplomatic Implausibility",
+      "uncompressed_bytes": 364971,
+      "member_sha256": "cdd89994bd03e6848badde9f83d881b21aaa90b7c7c38304c0dd90e7306e42ad"
+    },
+    {
+      "source_local_id": "txt-local:0149",
+      "archive_txt_ordinal": 149,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 62,
+      "title_hint": "Dead Zone (Maximum Warp, Book 1)",
+      "uncompressed_bytes": 289454,
+      "member_sha256": "148406fcea8927503fb5e5fe450d44bd7c20a850100c9228f5cc4df9714b7921"
+    },
+    {
+      "source_local_id": "txt-local:0150",
+      "archive_txt_ordinal": 150,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 63,
+      "title_hint": "Forever Dark (Maximum Warp, Book 2)",
+      "uncompressed_bytes": 274328,
+      "member_sha256": "adc65c093ce3b5aa2c2591e456bdf607bf118a11cc1a59263c92019cb81bb6ec"
+    }
+  ],
+  "records_sha256": "38f4c77d5dcbf1ff20eaea358253f93f6b193934830744948a43d0bf04bbd5e1"
+}

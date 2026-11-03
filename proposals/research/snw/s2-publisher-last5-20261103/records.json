@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SNW.PPLUS.S2.LAST5.20261103",
+  "lane": "SNW",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "audiovisual_content_inspected": false,
+  "full_primary_source_available": false,
+  "source": {
+    "source_local_id": "snw-s2-paramount-guide-20261103",
+    "kind": "PUBLISHER_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/2/",
+    "retrieved_utc_date": "2026-11-03",
+    "response_status": 200,
+    "response_body_bytes": 273092,
+    "response_sha256": "b8665d256eeee7bb4bb148c6c2d4389ebcdfd1cc398fd36c05bd567ee598cc32",
+    "snapshot_committed": false,
+    "publisher_revision": null
+  },
+  "works": [
+    {"local_work_id":"snw-s2-e06-pplus","season":2,"episode_number":6,"title":"Lost in Translation","source_datetime":"2023-07-20T02:00:00-07:00","card_html_lines":[1639,1651],"source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s2-e07-pplus","season":2,"episode_number":7,"title":"Those Old Scientists","source_datetime":"2023-07-22T18:45:00-07:00","card_html_lines":[1667,1679],"source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s2-e08-pplus","season":2,"episode_number":8,"title":"Under the Cloak of War","source_datetime":"2023-07-27T02:00:00-07:00","card_html_lines":[1695,1707],"source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s2-e09-pplus","season":2,"episode_number":9,"title":"Subspace Rhapsody","source_datetime":"2023-08-03T02:00:00-07:00","card_html_lines":[1723,1735],"source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s2-e10-pplus","season":2,"episode_number":10,"title":"Hegemony","source_datetime":"2023-08-10T02:00:00-07:00","card_html_lines":[1751,1763],"source_binding_id":null,"canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"local_entity_id":"snw-e06-uhura-mention","work_id":"snw-s2-e06-pplus","label":"Uhura","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-e07-boimler-mention","work_id":"snw-s2-e07-pplus","label":"Brad Boimler","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-e07-pike-mention","work_id":"snw-s2-e07-pplus","label":"Captain Pike","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-e08-klingon-defector-mention","work_id":"snw-s2-e08-pplus","label":"unnamed Klingon defector","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-e09-enterprise-mention","work_id":"snw-s2-e09-pplus","label":"U.S.S. Enterprise","kind":"VESSEL_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-e10-pike-mention","work_id":"snw-s2-e10-pplus","label":"Captain Pike","kind":"PERSON_MENTION","global_entity_id":null}
+  ],
+  "evidence": [
+    {"evidence_id":"snw-e06-publisher-copy","work_id":"snw-s2-e06-pplus","source_local_id":"snw-s2-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1639-1651; h2 + neighboring episode number/date + div.ep__copy","paraphrase":"The publisher synopsis centers on Uhura hearing a noise others apparently do not, subsequent distressing perceptions, and an effort to identify its cause.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-e07-publisher-copy","work_id":"snw-s2-e07-pplus","source_local_id":"snw-s2-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1667-1679; h2 + neighboring episode number/date + div.ep__copy","paraphrase":"The publisher synopsis describes Boimler arriving from a later century through a time-portal accident, with Pike's crew seeking his return.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-e08-publisher-copy","work_id":"snw-s2-e08-pplus","source_local_id":"snw-s2-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1695-1707; h2 + neighboring episode number/date + div.ep__copy","paraphrase":"The publisher synopsis describes the Enterprise receiving a Klingon defector and a subsequent disclosure of concealed matters.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-e09-publisher-copy","work_id":"snw-s2-e09-pplus","source_local_id":"snw-s2-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1723-1735; h2 + neighboring episode number/date + div.ep__copy","paraphrase":"The publisher synopsis attributes involuntary singing and expanding effects on other ships to an experimental probability field accident.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-e10-publisher-copy","work_id":"snw-s2-e10-pplus","source_local_id":"snw-s2-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1751-1763; h2 + neighboring episode number/date + div.ep__copy","paraphrase":"The publisher synopsis describes Enterprise crew investigating a colonial attack near Federation space and confronting a returning adversary.","observation_scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"assertion_id":"snw-e06-publisher-claim","work_id":"snw-s2-e06-pplus","evidence_id":"snw-e06-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-e06-uhura-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-e07-publisher-claim","work_id":"snw-s2-e07-pplus","evidence_id":"snw-e07-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-e07-boimler-mention","snw-e07-pike-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-e08-publisher-claim","work_id":"snw-s2-e08-pplus","evidence_id":"snw-e08-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-e08-klingon-defector-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-e09-publisher-claim","work_id":"snw-s2-e09-pplus","evidence_id":"snw-e09-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-e09-enterprise-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-e10-publisher-claim","work_id":"snw-s2-e10-pplus","evidence_id":"snw-e10-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-e10-pike-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"}
+  ],
+  "counterevidence_and_limits": [
+    {"kind":"NOT_INDEPENDENT","statement":"All five synopsis cards derive from one Paramount+ publisher guide and cannot corroborate each other as independent sources."},
+    {"kind":"UNINSPECTED_PRIMARY_AV","statement":"Publisher descriptions do not establish that the audiovisual episodes depict every summarized event; no primary stream or caption file was read."},
+    {"kind":"TIMEZONE_EDGE_CASE","statement":"S2E7's source datetime is July 22 in a -07:00 zone but July 23 UTC; the instant is preserved rather than imposing a calendar-date conflict."}
+  ]
+}

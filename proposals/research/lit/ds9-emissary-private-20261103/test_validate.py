@@ -61,6 +61,16 @@ class EmissaryProposalTests(unittest.TestCase):
     def test_unknown_counterweight(self):
         self.bad(lambda i, r: r["assertions"][0]["counterweight"].append("made-up"))
 
+    def test_false_relevant_counterweight_with_real_evidence_id(self):
+        # A syntactically valid evidence ID is not proof of logical disconfirmation.
+        self.bad(lambda i, r: r["assertions"][1]["counterweight"].append("ev-14"))
+
+    def test_false_counterevidence_status(self):
+        self.bad(lambda i, r: r["assertions"][2].update(counterevidence_status="NONE_FOUND"))
+
+    def test_silent_counterevidence_status_removal(self):
+        self.bad(lambda i, r: r["assertions"][3].pop("counterevidence_status"))
+
     def test_boolean_position(self):
         self.bad(lambda i, r: i["chapters"][0].update(char_start=False))
 

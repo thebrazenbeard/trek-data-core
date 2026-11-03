@@ -26,6 +26,71 @@ ALLOWED_INDEXED_CATEGORIES = {
     "/nl/wiki/Categorie%3AFilms_-_004_-_The_Voyage_Home": "film-voyage-home",
 }
 
+# These are the seven specific source-local labels independently checked for
+# this dated proposal, not a general-purpose URL or image-license whitelist.
+# A new or corrected observation needs its own explicitly reviewed update.
+REVIEWED_BASELINE_SHA = "5b0fb86b322811ccea58f88f20d69bd4e62e9b22"
+REVIEWED_LINEAGE = {
+    "publisher:startrek.com": "Franchise publisher page and gallery; same publishing family; no independent image-title corroboration.",
+    "community:memory-alpha.fandom.com": "Search-indexed wiki category/file-title observations only; direct Fandom page access blocked by robots.txt. Community article license does not grant rights to underlying posters or stills.",
+}
+REVIEWED_OBSERVATIONS = {
+    "films-artwork-tmp-official-poster": (
+        "film-motion-picture", "publisher:startrek.com",
+        "https://www.startrek.com/movies/star-trek-i-the-motion-picture",
+        "PUBLISHER_PAGE_READ", "PUBLISHER_POSTER_LABEL",
+        "Poster Art for Star Trek: The Motion Picture", "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+        "UNRESOLVED_POSTER_VERSION",
+    ),
+    "films-artwork-search-for-spock-official-poster": (
+        "film-search-for-spock", "publisher:startrek.com",
+        "https://www.startrek.com/movies/star-trek-iii-the-search-for-spock",
+        "PUBLISHER_PAGE_READ", "PUBLISHER_POSTER_LABEL",
+        "Poster art for Star Trek III: The Search for Spock", "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+        "UNRESOLVED_POSTER_VERSION",
+    ),
+    "films-artwork-voyage-home-official-poster": (
+        "film-voyage-home", "publisher:startrek.com",
+        "https://www.startrek.com/movies/star-trek-iv-the-voyage-home",
+        "PUBLISHER_PAGE_READ", "PUBLISHER_POSTER_LABEL",
+        "Poster Art for Star Trek IV: The Voyage Home", "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+        "UNRESOLVED_POSTER_VERSION",
+    ),
+    "films-artwork-search-for-spock-official-gallery": (
+        "film-search-for-spock", "publisher:startrek.com",
+        "https://www.startrek.com/gallery/search-for-spock-enterprise",
+        "PUBLISHER_PAGE_READ", "PUBLISHER_STILL_GALLERY_LISTING",
+        "11 Indelible Images from 'The Search for Spock'", "PUBLISHER_GALLERY_HEADING",
+        "ELEVEN_ITEM_GALLERY_NOT_INDIVIDUAL_IMAGE_IDENTITIES",
+    ),
+    "films-artwork-tmp-fandom-directors-edition-poster": (
+        "film-motion-picture", "community:memory-alpha.fandom.com",
+        "https://memory-alpha.fandom.com/wiki/Category%3AMemory_Alpha_images_%28publicity%29",
+        "SEARCH_INDEX_CACHED_NOT_DIRECT", "INDEXED_FILE_TITLE_ONLY",
+        "File:Poster 4K UHD The Motion Picture Director's Edition theatrical screening.jpg",
+        "INDEXED_CATEGORY_FILE_LISTING",
+        "DIRECTORS_EDITION_4K_SCREENING_NOT_1979_THEATRICAL_POSTER",
+    ),
+    "films-artwork-search-for-spock-fandom-vhs-advert": (
+        "film-search-for-spock", "community:memory-alpha.fandom.com",
+        "https://memory-alpha.fandom.com/wiki/Category%3AMemory_Alpha_files_by_production_%28Star_Trek_III%3A_The_Search_for_Spock%29",
+        "SEARCH_INDEX_CACHED_NOT_DIRECT", "INDEXED_FILE_TITLE_ONLY",
+        "File:Search for Spock 1985 VHS advert.jpg", "INDEXED_CATEGORY_FILE_LISTING",
+        "1985_HOME_VIDEO_ADVERT_NOT_1984_THEATRICAL_POSTER",
+    ),
+    "films-artwork-voyage-home-fandom-dutch-poster": (
+        "film-voyage-home", "community:memory-alpha.fandom.com",
+        "https://memory-alpha.fandom.com/nl/wiki/Categorie%3AFilms_-_004_-_The_Voyage_Home",
+        "SEARCH_INDEX_CACHED_NOT_DIRECT", "INDEXED_FILE_TITLE_ONLY",
+        "Bestand:The Voyage Home Poster.jpg", "INDEXED_CATEGORY_FILE_LISTING",
+        "POSTER_VERSION_AND_ORIGINAL_RIGHTS_UNKNOWN",
+    ),
+}
+REVIEWED_FIELDS = (
+    "candidate_film_id", "source_group", "source_locator", "access",
+    "artwork_kind", "evidence", "evidence_scope", "artwork_variant",
+)
+
 
 def ensure(test: bool, message: str) -> None:
     if not test:
@@ -48,19 +113,20 @@ def validate(proposal: dict, film_bundle: dict) -> int:
     for status in ("coverage_effect", "admission_effect", "public_artwork_release_effect"):
         ensure(proposal[status] == "NONE", f"{status} must remain NONE")
     ensure(proposal["source_page_snapshots_available"] is False, "unsupported source snapshot claim")
-    ensure(isinstance(proposal["baseline_accepted_main"], str) and
-           re.fullmatch(r"[0-9a-f]{40}", proposal["baseline_accepted_main"]) is not None, "bad baseline identity")
+    ensure(proposal["baseline_accepted_main"] == REVIEWED_BASELINE_SHA, "unreviewed baseline identity")
     try:
         dt.date.fromisoformat(proposal["observation_date_utc"])
     except (ValueError, TypeError) as exc:
         raise ValueError("bad observation date") from exc
+    ensure(proposal["observation_date_utc"] == "2026-11-03", "unreviewed observation date")
     keys(proposal["source_lineage"], {"publisher:startrek.com", "community:memory-alpha.fandom.com"}, "source_lineage")
-    ensure(all(isinstance(s, str) and len(s) >= 35 for s in proposal["source_lineage"].values()), "insufficient lineage notes")
+    ensure(all(isinstance(s, str) and len(s) <= 220 for s in proposal["source_lineage"].values()), "lineage length exceeds bounded receipt")
+    ensure(proposal["source_lineage"] == REVIEWED_LINEAGE, "unreviewed or misleading source lineage")
 
     ensure(film_bundle.get("proposal_type") == "FILM_DISCOVERY_METADATA", "missing film discovery manifest")
     film_ids = {film["id"] for film in film_bundle["films"]}
     records = proposal["records"]
-    ensure(isinstance(records, list) and len(records) == 7, "expected seven artwork-source leads")
+    ensure(isinstance(records, list) and len(records) == len(REVIEWED_OBSERVATIONS), "expected seven artwork-source leads")
     ids: set[str] = set()
     file_labels: set[str] = set()
     source_groups = set()
@@ -76,6 +142,9 @@ def validate(proposal: dict, film_bundle: dict) -> int:
                f"{label}: invalid local ID")
         ensure(local_id not in ids, f"{label}: duplicate local ID")
         ids.add(local_id)
+        ensure(local_id in REVIEWED_OBSERVATIONS, f"{label}: unknown unreviewed source record")
+        observed = tuple(item[field] for field in REVIEWED_FIELDS)
+        ensure(observed == REVIEWED_OBSERVATIONS[local_id], f"{label}: reviewed source observation or variant mismatch")
         ensure(item["candidate_film_id"] in film_ids, f"{label}: unknown film discovery candidate")
         ensure(item["rights_status"] == "PUBLIC_REUSE_NOT_VERIFIED", f"{label}: rights gate bypass")
         ensure(item["display_eligible"] is False, f"{label}: unauthorized image display")
@@ -120,6 +189,7 @@ def validate(proposal: dict, film_bundle: dict) -> int:
         else:
             raise ValueError(f"{label}: unsupported source group")
     ensure(source_groups == set(proposal["source_lineage"]), "unreferenced or absent source family")
+    ensure(ids == set(REVIEWED_OBSERVATIONS), "reviewed source observations omitted")
     return len(records)
 
 

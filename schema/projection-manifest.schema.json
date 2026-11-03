@@ -18,8 +18,12 @@
     "projection_hash": {"type": "string"},
     "outputs": {
       "type": "object",
-      "required": ["entities.jsonl","facts.jsonl","relations.jsonl","contested.jsonl","unresolved.jsonl","provenance.jsonl","assertion_history.jsonl","reconciliation_history.jsonl"],
+      "required": ["sources.jsonl","works.jsonl","source_work_bindings.jsonl","evidence.jsonl","entities.jsonl","facts.jsonl","relations.jsonl","contested.jsonl","unresolved.jsonl","provenance.jsonl","assertion_history.jsonl","reconciliation_history.jsonl"],
       "properties": {
+        "sources.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"sources"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "works.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"works"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "source_work_bindings.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"source_work_bindings"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
+        "evidence.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"evidence"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
         "entities.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"entities"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
         "facts.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"facts"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},
         "relations.jsonl": {"type":"object","required":["role","hash","count"],"properties":{"role":{"const":"relations"},"hash":{"type":"string"},"count":{"type":"integer"}},"additionalProperties":false},

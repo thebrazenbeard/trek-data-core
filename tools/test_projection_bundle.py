@@ -18,6 +18,9 @@ def rewrite_bundle(root,filename,transform):
  manifest['outputs'][filename]['hash']=bundle.sha256_bytes(payload)
  manifest['outputs'][filename]['count']=len(rows)
  manifest['projection_hash']=bundle.compute_projection_hash(manifest['outputs'])
+ all_rows={name:[json.loads(line) for line in (root/name).read_text(encoding='utf-8').splitlines() if line]
+           for name in bundle.REQUIRED_OUTPUTS}
+ manifest['input_hash']=bundle.compute_input_hash(manifest,all_rows)
  (root/'manifest.json').write_text(json.dumps(manifest),encoding='utf-8')
 
 class ProjectionBundleTests(unittest.TestCase):
@@ -28,6 +31,13 @@ class ProjectionBundleTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); fixture.make_projection(root); m=json.loads((root/'manifest.json').read_text()); m['projection_hash']='sha256:'+'0'*64; (root/'manifest.json').write_text(json.dumps(m));
    with self.assertRaises(ValueError):bundle.verify_projection(root)
+ def test_legacy_projection_version_cannot_label_new_reference_catalog_contract(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   manifest=json.loads((root/'manifest.json').read_text());manifest['projection_version']='0.2.0'
+   (root/'manifest.json').write_text(json.dumps(manifest))
+   with self.assertRaisesRegex(ValueError,'unsupported projection_version'):
+    bundle.verify_projection(root)
  def test_file_hash_mismatch_is_rejected(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); fixture.make_projection(root); (root/'entities.jsonl').write_text('{}\n');
@@ -243,13 +253,163 @@ class ProjectionBundleTests(unittest.TestCase):
      raw=''.join(bundle.canonical(r)+'\n' for r in sorted(entries,key=lambda r:r[bundle.ID_KEYS[filename]])).encode('utf-8')
      (root/filename).write_bytes(raw)
      outputs[filename]={'role':filename.removesuffix('.jsonl'),'hash':bundle.sha256_bytes(raw),'count':len(entries)}
-    manifest={'record_type':'projection_manifest','projection_version':'0.2.0','schema_version':'0.2.0',
+    manifest={'record_type':'projection_manifest','projection_version':'0.3.0','schema_version':'0.2.0',
               'methodology_version':'0.1.0','compiler_commit':'fixture','research_head':'fixture','reconciliation_head':'fixture',
               'predicate_registry_hash':bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'predicates.json').read_text())).encode()),
               'scope_key_registry_hash':bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'scope_keys.json').read_text())).encode()),
-              'input_hash':'sha256:'+'3'*64,'projection_hash':bundle.compute_projection_hash(outputs),'outputs':outputs}
+              'input_hash':None,'projection_hash':bundle.compute_projection_hash(outputs),'outputs':outputs}
+    manifest['input_hash']=bundle.compute_input_hash(manifest,{name:logical[name.removesuffix('.jsonl')] for name in bundle.REQUIRED_OUTPUTS})
     (root/'manifest.json').write_text(json.dumps(manifest),encoding='utf-8')
     self.assertEqual(bundle.verify_projection(root)['manifest']['projection_hash'],manifest['projection_hash'])
+
+ def test_genuine_compiler_unreferenced_work_and_standalone_evidence_close_reference_contract(self):
+  """A valid corpus can contain governed records absent from assertion provenance."""
+  records=producer_fixture.fixture_records()
+  orphan=dict(next(r for r in records if r['record_type']=='work'))
+  orphan.update(work_id='work-without-assertion',title='Accepted unreferenced Work')
+  evidence=dict(next(r for r in records if r['record_type']=='evidence'))
+  evidence.update(evidence_id='evidence-not-in-any-assertion',locator={'line':99})
+  records.extend((orphan,evidence))
+  decisions=[producer_fixture.status_decision('STABLE')]
+  work_scope=producer_fixture.decision('scope-unreferenced-work','SCOPE_RESOLUTION','WORK','work-without-assertion',
+                                        {'resolution_key':'TIMELINE_SCOPE','resolution':'prime'})
+  decisions.append(work_scope)
+  status=decisions[0];status['evidence']=['evidence-not-in-any-assertion']
+  logical=compiler.build_logical_projection(records,decisions)
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);outputs={}
+   for filename in bundle.REQUIRED_OUTPUTS:
+    entries=logical[filename.removesuffix('.jsonl')]
+    raw=''.join(bundle.canonical(row)+'\n' for row in entries).encode('utf-8')
+    (root/filename).write_bytes(raw)
+    outputs[filename]={'role':filename.removesuffix('.jsonl'),'hash':bundle.sha256_bytes(raw),'count':len(entries)}
+   manifest={'record_type':'projection_manifest','projection_version':'0.3.0','schema_version':'0.2.0',
+             'methodology_version':'0.1.0','compiler_commit':'fixture','research_head':'fixture','reconciliation_head':'fixture',
+             'predicate_registry_hash':bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'predicates.json').read_text())).encode()),
+             'scope_key_registry_hash':bundle.sha256_bytes(bundle.canonical(json.loads((bundle.ROOT/'registry'/'scope_keys.json').read_text())).encode()),
+             'input_hash':None,'projection_hash':bundle.compute_projection_hash(outputs),'outputs':outputs}
+   manifest['input_hash']=bundle.compute_input_hash(manifest,{name:logical[name.removesuffix('.jsonl')] for name in bundle.REQUIRED_OUTPUTS})
+   (root/'manifest.json').write_text(json.dumps(manifest),encoding='utf-8')
+   verified=bundle.verify_projection(root)
+   self.assertEqual(verified['rows']['works.jsonl'][-1]['work_id'],'work-without-assertion')
+   self.assertEqual(len(verified['rows']['evidence.jsonl']),2)
+   self.assertTrue(any(d['decision_id']=='scope-unreferenced-work' for d in verified['rows']['reconciliation_history.jsonl']))
+
+ def test_self_rehashed_bundle_cannot_replace_referenced_evidence_catalog(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def forge(rows):rows[0]['observed']={'text':'fiction invented by rehasher'};return rows
+   rewrite_bundle(root,'evidence.jsonl',forge)
+   with self.assertRaisesRegex(ValueError,'evidence differs from reference catalog'):
+    bundle.verify_projection(root)
+
+ def test_standalone_evidence_cannot_claim_unknown_source(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def forge(rows):
+    rows.append({**rows[0],'evidence_id':'e-standalone','source_id':'PHANTOM_SOURCE'})
+    return rows
+   rewrite_bundle(root,'evidence.jsonl',forge)
+   with self.assertRaisesRegex(ValueError,'absent Source/Work'):
+    bundle.verify_projection(root)
+
+ def test_self_rehashed_schema_invalid_phantom_work_with_decision_is_rejected(self):
+  """A forged catalog row is not admitted just because it has a plausible ID."""
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def forge_work(rows):
+    rows.append({'record_type':'work','work_id':'schema-invalid-phantom'})
+    return rows
+   rewrite_bundle(root,'works.jsonl',forge_work)
+   def forge_decision(rows):
+    rows.append({'record_type':'reconciliation_decision','decision_id':'phantom-scope',
+                 'decision_type':'SCOPE_RESOLUTION','subject_type':'WORK','subject_id':'schema-invalid-phantom',
+                 'payload':{'resolution_key':'TIMELINE_SCOPE','resolution':'fake'},
+                 'status':'ACCEPTED','evidence':['e1'],'method':'forged'})
+    return rows
+   rewrite_bundle(root,'reconciliation_history.jsonl',forge_decision)
+   with self.assertRaisesRegex(ValueError,'invalid catalog record.*title'):
+    bundle.verify_projection(root)
+
+ def test_standalone_evidence_cannot_cross_explicit_source_work_binding(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def more_work(rows):
+    rows.append({**rows[0],'work_id':'second-work','title':'Other Work'})
+    return rows
+   rewrite_bundle(root,'works.jsonl',more_work)
+   def crossed_evidence(rows):
+    rows.append({**rows[0],'evidence_id':'other-evidence','work_id':'second-work',
+                 'source_work_binding_id':'binding-1'})
+    return rows
+   rewrite_bundle(root,'evidence.jsonl',crossed_evidence)
+   def supporter(rows):
+    next(r for r in rows if r['decision_id']=='status-1')['evidence']=['other-evidence']
+    return rows
+   rewrite_bundle(root,'reconciliation_history.jsonl',supporter)
+   with self.assertRaisesRegex(ValueError,'explicit binding endpoints'):
+    bundle.verify_projection(root)
+
+ def test_standalone_evidence_requires_unique_accepted_evidence_bearing_binding(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def more_work(rows):
+    rows.append({**rows[0],'work_id':'orphan-work','title':'Work with no Source binding'})
+    return rows
+   rewrite_bundle(root,'works.jsonl',more_work)
+   def add_evidence(rows):
+    rows.append({**rows[0],'evidence_id':'orphan-evidence','work_id':'orphan-work'})
+    return rows
+   rewrite_bundle(root,'evidence.jsonl',add_evidence)
+   def decision_support(rows):
+    next(r for r in rows if r['decision_id']=='status-1')['evidence']=['orphan-evidence']
+    return rows
+   rewrite_bundle(root,'reconciliation_history.jsonl',decision_support)
+   with self.assertRaisesRegex(ValueError,'no uniquely eligible accepted evidence-bearing'):
+    bundle.verify_projection(root)
+
+ def test_unreferenced_binding_cannot_form_self_supersession_cycle(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def loop(rows):
+    rows.append({**rows[0],'binding_id':'binding-loop','lifecycle':'PROPOSED',
+                 'supersedes_binding_id':'binding-loop'})
+    return rows
+   rewrite_bundle(root,'source_work_bindings.jsonl',loop)
+   with self.assertRaisesRegex(ValueError,'binding integrity.*cycle'):
+    bundle.verify_projection(root)
+
+ def test_unreferenced_derived_source_cannot_mint_independent_family(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   def false_independence(rows):
+    rows[0]['independence_group']='upstream-family'
+    rows.append({**rows[0],'source_id':'source-derived','derived_from':['source-1'],
+                 'independence_group':'fake-independent-family'})
+    return rows
+   rewrite_bundle(root,'sources.jsonl',false_independence)
+   # First repair the legitimate fixture's Source snapshot so the falsifier is
+   # caught by the independent lineage contract, not an unrelated mismatch.
+   def update_provenance(rows):
+    for row in rows:row['source_record']['independence_group']='upstream-family'
+    return rows
+   rewrite_bundle(root,'provenance.jsonl',update_provenance)
+   with self.assertRaisesRegex(ValueError,'lineage integrity.*independence_group'):
+    bundle.verify_projection(root)
+
+ def test_unchanged_input_identity_detects_unreferenced_catalog_addition(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);fixture.make_projection(root)
+   accepted_input_hash=json.loads((root/'manifest.json').read_text())['input_hash']
+   def addition(rows):
+    rows.append({**rows[0],'source_id':'unreferenced-added-source'})
+    return rows
+   rewrite_bundle(root,'sources.jsonl',addition)
+   manifest=json.loads((root/'manifest.json').read_text())
+   manifest['input_hash']=accepted_input_hash
+   (root/'manifest.json').write_text(json.dumps(manifest))
+   with self.assertRaisesRegex(ValueError,'input_hash mismatch'):
+    bundle.verify_projection(root)
 
  def test_legitimate_accepted_scope_decisions_replay(self):
   with tempfile.TemporaryDirectory() as td:

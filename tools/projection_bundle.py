@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Shared deterministic verifier for canonical projection bundles consumed by derived adapters."""
 from __future__ import annotations
-import hashlib, json, re
+import hashlib, importlib.util, json, re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 MANIFEST_SCHEMA=ROOT/'schema'/'projection-manifest.schema.json'; RELATION_SCHEMA=ROOT/'schema'/'projection-relation.schema.json'; PROVENANCE_SCHEMA=ROOT/'schema'/'projection-provenance.schema.json'
 RECONCILIATION_SCHEMA=ROOT/'schema'/'reconciliation-decision.schema.json'
-REQUIRED_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
-ID_KEYS={'entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'}
+REQUIRED_OUTPUTS=('sources.jsonl','works.jsonl','source_work_bindings.jsonl','evidence.jsonl','entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
+ID_KEYS={'sources.jsonl':'source_id','works.jsonl':'work_id','source_work_bindings.jsonl':'binding_id','evidence.jsonl':'evidence_id','entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'}
 ASSERTION_PROJECTION_DECORATIONS=frozenset({
  'effective_assertion_status','assertion_disposition_decision_id','projection_status','projection_status_decision_id','projection_reason',
  'resolved_scope','scope_resolution_decision_ids','subject_identity_links','subject_resolved_scope','subject_scope_resolution_decision_ids',
@@ -68,6 +68,148 @@ def parse_jsonl(path,id_key):
  if raw_bytes!=canonical_bytes:raise ValueError(f'{path}: JSONL bytes are not canonical deterministic serialization')
  return rows,raw_bytes
 
+def reference_catalogs(rows):
+ """The complete compiler-exported research catalogs, including otherwise unreferenced records."""
+ catalogs={label:{r[key]:r for r in rows[filename]} for label,filename,key in (
+  ('SOURCE','sources.jsonl','source_id'),('WORK','works.jsonl','work_id'),
+  ('SOURCE_WORK_BINDING','source_work_bindings.jsonl','binding_id'),('EVIDENCE','evidence.jsonl','evidence_id'))}
+ for label,filename,schema_file in (('SOURCE','sources.jsonl','source.schema.json'),
+                                    ('WORK','works.jsonl','work.schema.json'),
+                                    ('SOURCE_WORK_BINDING','source_work_bindings.jsonl','source-work-binding.schema.json'),
+                                    ('EVIDENCE','evidence.jsonl','evidence.schema.json')):
+  schema=json.loads((ROOT/'schema'/schema_file).read_text(encoding='utf-8'))
+  for record in rows[filename]:
+   errors=schema_errors(record,schema)
+   if errors:raise ValueError(f'{filename}: invalid catalog record: '+ '; '.join(errors))
+ for source in catalogs['SOURCE'].values():
+  for parent_id in source.get('derived_from',[]):
+   if parent_id not in catalogs['SOURCE']:raise ValueError(f"source {source['source_id']}: absent source ancestor {parent_id}")
+ for work in catalogs['WORK'].values():
+  parent=work.get('parent_work_id')
+  if parent and parent not in catalogs['WORK']:raise ValueError(f"work {work['work_id']}: absent parent work {parent}")
+ for binding in catalogs['SOURCE_WORK_BINDING'].values():
+  if binding.get('source_id') not in catalogs['SOURCE'] or binding.get('work_id') not in catalogs['WORK']:
+   raise ValueError(f"binding {binding['binding_id']}: absent Source/Work")
+  parent=binding.get('supersedes_binding_id')
+  if parent and parent not in catalogs['SOURCE_WORK_BINDING']:raise ValueError(f"binding {binding['binding_id']}: absent superseded binding")
+ for evidence in catalogs['EVIDENCE'].values():
+  if evidence.get('source_id') not in catalogs['SOURCE'] or evidence.get('work_id') not in catalogs['WORK']:
+   raise ValueError(f"evidence {evidence['evidence_id']}: absent Source/Work")
+  explicit=evidence.get('source_work_binding_id')
+  if explicit:
+   binding=catalogs['SOURCE_WORK_BINDING'].get(explicit)
+   if binding is None:raise ValueError(f"evidence {evidence['evidence_id']}: absent Source/Work binding")
+   if binding.get('source_id')!=evidence['source_id'] or binding.get('work_id')!=evidence['work_id']:
+    raise ValueError(f"evidence {evidence['evidence_id']}: explicit binding endpoints do not match Source/Work")
+ # The exact same eligibility predicate gates evidence during repository
+ # admission. Standalone decision-support Evidence cannot bypass that gate.
+ validator_path=ROOT/'tools'/'validate.py'
+ spec=importlib.util.spec_from_file_location('trek_projection_bundle_admission_validator',validator_path)
+ validator=importlib.util.module_from_spec(spec);spec.loader.exec_module(validator)
+ admission_index={'source':catalogs['SOURCE'],'work':catalogs['WORK'],
+                  'source_work_binding':catalogs['SOURCE_WORK_BINDING']}
+ for evidence in catalogs['EVIDENCE'].values():
+  if validator.eligible_evidence_binding(evidence,admission_index) is None:
+   raise ValueError(f"evidence {evidence['evidence_id']}: no uniquely eligible accepted evidence-bearing Source/Work binding")
+ binding_errors=[]
+ binding_records=[(filename,row) for filename,entries in (
+  ('source_work_bindings.jsonl',rows['source_work_bindings.jsonl']),
+  ('evidence.jsonl',rows['evidence.jsonl'])) for row in entries]
+ validator.validate_binding_integrity(binding_records,admission_index,binding_errors)
+ if binding_errors:raise ValueError('reference catalog binding integrity: '+'; '.join(binding_errors))
+ lineage_errors=[]
+ validator.validate_source_work_lineage(admission_index,lineage_errors)
+ if lineage_errors:raise ValueError('reference catalog lineage integrity: '+'; '.join(lineage_errors))
+ for entity in rows['entities.jsonl']:
+  if entity.get('work_id') not in catalogs['WORK']:
+   raise ValueError(f"local entity {entity['local_entity_id']}: absent Work")
+ # Check ancestry for all records, including sources/works that have no assertion.
+ def assert_acyclic(label,parent_ids):
+  visiting=set(); done=set()
+  def visit(rid):
+   if rid in done:return
+   if rid in visiting:raise ValueError(f'{label} ancestry cycle at {rid}')
+   visiting.add(rid)
+   for parent in parent_ids(rid):visit(parent)
+   visiting.remove(rid);done.add(rid)
+  for rid in sorted(catalogs[label]):visit(rid)
+ assert_acyclic('SOURCE',lambda sid:catalogs['SOURCE'][sid].get('derived_from',[]))
+ assert_acyclic('WORK',lambda wid:[catalogs['WORK'][wid]['parent_work_id']] if catalogs['WORK'][wid].get('parent_work_id') else [])
+ return catalogs
+
+def compute_input_hash(manifest,rows):
+ """Recompute the governed logical-input digest, not just the output file hashes."""
+ input_rows=[*rows['sources.jsonl'],*rows['works.jsonl'],*rows['source_work_bindings.jsonl'],
+             *rows['evidence.jsonl'],*rows['assertion_history.jsonl']]
+ input_rows.extend({k:v for k,v in entity.items() if k not in ENTITY_PROJECTION_DECORATIONS}
+                   for entity in rows['entities.jsonl'])
+ logical_hash=sha256_bytes(''.join(canonical(r)+'\n' for r in sorted(input_rows,key=canonical)).encode('utf-8'))
+ identity={'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],
+           'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],
+           'predicate_registry_hash':manifest['predicate_registry_hash'],
+           'scope_key_registry_hash':manifest['scope_key_registry_hash'],
+           'compiler_commit':manifest['compiler_commit'],'logical_input_records_hash':logical_hash,
+           'reconciliation_history_hash':manifest['outputs']['reconciliation_history.jsonl']['hash']}
+ return sha256_bytes(canonical(identity).encode('utf-8'))
+
+def verify_reference_consistency(rows,catalogs):
+ """Provenance snapshots cannot contradict the complete Source/Work/Binding/Evidence inputs."""
+ entities={row['local_entity_id']:{k:v for k,v in row.items() if k not in ENTITY_PROJECTION_DECORATIONS}
+           for row in rows['entities.jsonl']}
+ assertions={row['assertion_id']:row for row in rows['assertion_history.jsonl']}
+ ref_rows={**catalogs,'LOCAL_ENTITY':entities,'ASSERTION':assertions}
+ for assertion in assertions.values():
+  aid=assertion['assertion_id'];st=assertion.get('subject_type');subject_id=assertion.get('subject')
+  if st in ref_rows and subject_id not in ref_rows[st]:
+   raise ValueError(f'assertion {aid}: subject absent from reference catalog')
+  for eid in assertion.get('evidence',[]):
+   if eid not in catalogs['EVIDENCE']:
+    raise ValueError(f'assertion {aid}: evidence absent from reference catalog')
+  obj=assertion.get('object')
+  if isinstance(obj,dict) and set(obj)=={'ref_type','ref_id'}:
+   if obj['ref_type'] in ref_rows and obj['ref_id'] not in ref_rows[obj['ref_type']]:
+    raise ValueError(f'assertion {aid}: object absent from reference catalog')
+ def source_lineage(source_id):
+  seen=set();ancestors=[]
+  def visit(sid):
+   if sid in seen:return
+   seen.add(sid)
+   for parent in sorted(catalogs['SOURCE'][sid].get('derived_from',[])):visit(parent)
+   if sid!=source_id:ancestors.append(catalogs['SOURCE'][sid])
+  visit(source_id)
+  return sorted(ancestors,key=lambda row:row['source_id'])
+ def work_lineage(work_id):
+  ancestors=[];cur=catalogs['WORK'][work_id]
+  while cur.get('parent_work_id'):
+   cur=catalogs['WORK'][cur['parent_work_id']];ancestors.append(cur)
+  return ancestors
+ for provenance in rows['provenance.jsonl']:
+  eid=provenance['evidence_id']; evidence=catalogs['EVIDENCE'].get(eid)
+  if evidence is None or provenance['evidence_record']!=evidence:
+   raise ValueError(f'provenance {eid}: evidence differs from reference catalog')
+  sid=evidence['source_id']; wid=evidence['work_id']
+  if provenance['source_record']!=catalogs['SOURCE'][sid] or provenance['work_record']!=catalogs['WORK'][wid]:
+   raise ValueError(f'provenance {eid}: Source/Work differs from reference catalog')
+  binding=provenance['source_work_binding_record']; bid=binding.get('binding_id')
+  if bid not in catalogs['SOURCE_WORK_BINDING'] or binding!=catalogs['SOURCE_WORK_BINDING'][bid]:
+   raise ValueError(f'provenance {eid}: binding differs from reference catalog')
+  if binding.get('source_id')!=sid or binding.get('work_id')!=wid:
+   raise ValueError(f'provenance {eid}: evidence binding endpoints mismatch')
+  if provenance['source_lineage_records']!=source_lineage(sid) or provenance['work_lineage_records']!=work_lineage(wid):
+   raise ValueError(f'provenance {eid}: Source/Work ancestry mismatch')
+  assertion=provenance['assertion_record'];st=assertion.get('subject_type');subject_id=assertion.get('subject')
+  expected_subject=ref_rows.get(st,{}).get(subject_id)
+  if provenance.get('subject_record')!=expected_subject:
+   raise ValueError(f'provenance {eid}: subject record differs from reference catalog')
+  obj=assertion.get('object');reference=(obj.get('ref_type'),obj.get('ref_id')) if isinstance(obj,dict) and set(obj)=={'ref_type','ref_id'} else None
+  if reference:
+   if provenance.get('object_record')!=ref_rows.get(reference[0],{}).get(reference[1]):
+    raise ValueError(f'provenance {eid}: object record differs from reference catalog')
+  elif 'object_record' in provenance:raise ValueError(f'provenance {eid}: unreferenced object record')
+  observer=evidence.get('observer_local_entity_id')
+  if provenance.get('observer_local_entity_record')!=entities.get(observer):
+   raise ValueError(f'provenance {eid}: observer record differs from reference catalog')
+
 def verify_reconciliation_replay(rows):
  """Replay compiler-owned fields from accepted decisions, never accepting a bare ID or decoration.
 
@@ -80,17 +222,11 @@ def verify_reconciliation_replay(rows):
  decision_schema=json.loads(RECONCILIATION_SCHEMA.read_text(encoding='utf-8'))
  predicates={p['name']:p for p in json.loads((ROOT/'registry'/'predicates.json').read_text(encoding='utf-8'))['predicates']}
  scope_keys={s['key']:s for s in json.loads((ROOT/'registry'/'scope_keys.json').read_text(encoding='utf-8'))['scope_keys']}
- # The projection does not contain the complete Source/Work/Evidence catalog.
- # Only independently present, referenced records can establish targets here;
- # unverifiable references fail closed rather than inventing a source record.
+ # Complete compiler-exported catalogs close the legitimate unreferenced-record
+ # gap. They still require external accepted-head authentication for provenance.
+ catalogs=reference_catalogs(rows)
  refs={'ASSERTION':set(history),'LOCAL_ENTITY':set(entities),'RECONCILIATION_DECISION':set(decisions),
-       'SOURCE':set(),'WORK':set(),'EVIDENCE':set()}
- for p in rows['provenance.jsonl']:
-  refs['SOURCE'].add(p['source_record']['source_id'])
-  refs['SOURCE'].update(s['source_id'] for s in p['source_lineage_records'])
-  refs['WORK'].add(p['work_record']['work_id'])
-  refs['WORK'].update(w['work_id'] for w in p['work_lineage_records'])
-  refs['EVIDENCE'].add(p['evidence_record']['evidence_id'])
+       'SOURCE':set(catalogs['SOURCE']),'WORK':set(catalogs['WORK']),'EVIDENCE':set(catalogs['EVIDENCE'])}
  def decision_key(d):
   typ=d['decision_type']; base=(typ,d['subject_type'],d['subject_id']); payload=d['payload']
   if typ=='ENTITY_LINK':return base+(payload.get('relation_predicate'),)
@@ -262,6 +398,8 @@ def verify_projection(root):
  if not isinstance(manifest,dict):raise ValueError('projection manifest must be object')
  schema=json.loads(MANIFEST_SCHEMA.read_text(encoding='utf-8')); errors=schema_errors(manifest,schema)
  if errors:raise ValueError('projection manifest schema failure: '+'; '.join(errors))
+ if manifest.get('projection_version')!='0.3.0':
+  raise ValueError('unsupported projection_version for twelve-output reference-custody contract')
  outputs=manifest.get('outputs',{})
  if set(outputs)!=set(REQUIRED_OUTPUTS):raise ValueError(f'projection outputs must be exactly {sorted(REQUIRED_OUTPUTS)}')
  actual_jsonl={p.name for p in root.glob('*.jsonl')}
@@ -299,8 +437,12 @@ def verify_projection(root):
  for row in rows['provenance.jsonl']:
   errs=schema_errors(row,provenance_schema)
   if errs:raise ValueError('invalid projection provenance: '+'; '.join(errs))
+ catalogs=reference_catalogs(rows)
  verify_provenance_links(rows)
+ verify_reference_consistency(rows,catalogs)
  verify_reconciliation_replay(rows)
+ if manifest['input_hash']!=compute_input_hash(manifest,rows):
+  raise ValueError('input_hash mismatch against complete accepted research reference catalogs')
  recomputed=compute_projection_hash(outputs)
  if manifest.get('projection_hash')!=recomputed:raise ValueError(f"projection_hash mismatch: declared {manifest.get('projection_hash')}, expected {recomputed}")
  receipt={'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS)}

@@ -72,6 +72,29 @@ class PhotoReleaseProposalTests(unittest.TestCase):
         with self.assertRaises(MODULE.ReleaseProposalRejected):
             MODULE.validate(self.root)
 
+    def test_forged_commons_url_with_matching_suffix_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(
+            commons_file="https://evil.example/irrelevant%2831784488840%29.jpg"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forged_thumbnail_path_with_matching_suffix_fails(self):
+        self._mutate(lambda r: r["release_rendition"].update(
+            upstream_thumbnail="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/forged-image-unrelated/%2831784488840%29.jpg"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_false_public_domain_license_label_fails(self):
+        self._mutate(lambda r: r["copyright_and_other_rights"].update(
+            photographer_license="Public Domain / CC0"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_unrelated_asset_publication_request_fails(self):
+        self._mutate(lambda r: r.update(requested_effect="PUBLISH_ALL_NONRELATED_PIXELS"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
     def test_unreviewed_public_image_file_fails(self):
         destination = self.root / MODULE.ASSET_PATH
         destination.parent.mkdir(parents=True, exist_ok=True)

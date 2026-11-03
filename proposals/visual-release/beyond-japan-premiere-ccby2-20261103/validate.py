@@ -20,6 +20,9 @@ HELD_CONTRACTS = {
 EXPECTED_RENDITION_SHA = "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f"
 EXPECTED_ORIGINAL_SHA = "7fd481633086f97e7b05e0eccbd3515a90d44f4fa7ce1255180007d9d13b4250"
 ASSET_PATH = "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+COMMONS_URL = "https://commons.wikimedia.org/wiki/File:Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg"
+THUMB_URL = "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg/960px-Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg"
+REQUESTED_EFFECT = "APPROVE_ONE_SOURCE_SPECIFIC_CC_BY_2_0_DOCUMENTARY_PREMIERE_PHOTO_FOR_INFORMATIONAL_EXPLORER_DISPLAY"
 
 
 class ReleaseProposalRejected(ValueError):
@@ -81,12 +84,13 @@ def validate(root: Path = ROOT) -> str:
     _require(proposal["decision_state"] == "AFFIRMATIVE_RELEASE_PROPOSED_REVIEW_PENDING",
              "Unreviewed release status promotion")
     _require(proposal["public_image_display_authorized"] is False, "Unreviewed publication flag")
+    _require(proposal["requested_effect"] == REQUESTED_EFFECT, "Proposal scope broadened")
     _require(proposal["source_local_film_id"] == "film-beyond", "Wrong film context")
 
     photo = proposal["photo_identity"]
     _require(photo["photographer"] == "Dick Thomas Johnson", "Photographer changed")
     _require(photo["commons_oldid"] == 1217252320 and
-             photo["commons_file"].endswith("%2831784488840%29.jpg"), "Commons identity changed")
+             photo["commons_file"] == COMMONS_URL, "Commons identity changed")
     _require(photo["original_flickr"] == "https://www.flickr.com/photos/31029865@N06/31784488840/",
              "Photographer source changed")
     _require(photo["original_sha256"] == EXPECTED_ORIGINAL_SHA and
@@ -97,8 +101,7 @@ def validate(root: Path = ROOT) -> str:
 
     asset = proposal["release_rendition"]
     _require(asset["proposed_same_origin_asset"] == ASSET_PATH, "Proposed asset path changed")
-    _require(asset["upstream_thumbnail"].startswith("https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/") and
-             asset["upstream_thumbnail"].endswith("%2831784488840%29.jpg"),
+    _require(asset["upstream_thumbnail"] == THUMB_URL,
              "Thumbnail identity changed")
     _require(asset["media_type"] == "image/jpeg" and asset["dimensions"] == [960, 640] and
              asset["bytes"] == 116536 and asset["sha256"] == EXPECTED_RENDITION_SHA,
@@ -109,7 +112,8 @@ def validate(root: Path = ROOT) -> str:
              "Missing truthful modification notice")
 
     rights = proposal["copyright_and_other_rights"]
-    _require(rights["license_url"] == "https://creativecommons.org/licenses/by/2.0/" and
+    _require(rights["photographer_license"] == "Creative Commons Attribution 2.0 Generic (CC BY 2.0)" and
+             rights["license_url"] == "https://creativecommons.org/licenses/by/2.0/" and
              rights["license_legalcode"] == "https://creativecommons.org/licenses/by/2.0/legalcode",
              "Photo license/conditions changed")
     _require("publicity" in rights["publicity_trademark_and_backdrop_caveat"].lower() and

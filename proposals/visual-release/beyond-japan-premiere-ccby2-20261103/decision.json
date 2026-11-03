@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "decision_id": "beyond-japan-premiere-one-photo-editorial-release-v2-proposal",
+  "decision_state": "AFFIRMATIVE_RELEASE_PROPOSED_REVIEW_PENDING",
+  "requested_effect": "APPROVE_ONE_SOURCE_SPECIFIC_CC_BY_2_0_DOCUMENTARY_PREMIERE_PHOTO_FOR_INFORMATIONAL_EXPLORER_DISPLAY",
+  "public_image_display_authorized": false,
+  "reason_not_yet_authorized": "This is a proposed affirmative decision, not an accepted reviewer/owner release receipt; an independent exact-head affirmative review and subsequent owner disposition are pending.",
+  "prior_held_decisions_preserved": [
+    {
+      "path": "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json",
+      "sha256": "9ed8d519d8bba7ef7e605ad0d09bdcf74dd7f48c9f9c1ef829dc28772ab8e4a5",
+      "public_image_display_authorized": false
+    },
+    {
+      "path": "explorer/beyond-premiere-release-decision.json",
+      "sha256": "b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89",
+      "public_image_display_authorized": false
+    }
+  ],
+  "source_local_film_id": "film-beyond",
+  "photo_identity": {
+    "image_kind": "REAL_WORLD_JAPAN_PREMIERE_DOCUMENTARY_PHOTO_NOT_FILM_FRAME_POSTER_OR_SITE_BRANDING",
+    "photographer": "Dick Thomas Johnson",
+    "title": "Star Trek Beyond Japan Premiere Red Carpet: J. J. Abrams & Simon Pegg",
+    "commons_file": "https://commons.wikimedia.org/wiki/File:Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg",
+    "commons_oldid": 1217252320,
+    "original_flickr": "https://www.flickr.com/photos/31029865@N06/31784488840/",
+    "event_date": "2016-10-19",
+    "event_date_evidence": "Photographer/Commons descriptive metadata, not a fact proven by image pixels",
+    "original_dimensions": [4552, 3035],
+    "original_bytes": 4134183,
+    "original_sha256": "7fd481633086f97e7b05e0eccbd3515a90d44f4fa7ce1255180007d9d13b4250"
+  },
+  "release_rendition": {
+    "proposed_same_origin_asset": "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg",
+    "upstream_thumbnail": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg/960px-Star_Trek_Beyond_Japan_Premiere_Red_Carpet-_J._J._Abrams_%26_Simon_Pegg_%2831784488840%29.jpg",
+    "media_type": "image/jpeg",
+    "dimensions": [960, 640],
+    "bytes": 116536,
+    "sha256": "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f",
+    "modifications_notice": "Wikimedia Commons resized the source from 4552 × 3035 to 960 × 640; no intentional crop or further edits by this site.",
+    "image_bytes_in_this_proposal": 0
+  },
+  "copyright_and_other_rights": {
+    "photographer_license": "Creative Commons Attribution 2.0 Generic (CC BY 2.0)",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "license_legalcode": "https://creativecommons.org/licenses/by/2.0/legalcode",
+    "scope": "Attribution-licensed photographer's photograph for an isolated factual real-world event reference",
+    "publicity_trademark_and_backdrop_caveat": "Photographer copyright permission does not independently clear depicted persons' privacy/publicity, promotional backdrop trademarks or other third-party rights. Editorial factual context is proposed, not blanket clearance.",
+    "no_endorsement": "No photographer, performer, studio, event organizer or franchise endorsement is implied.",
+    "no_fictional_source_or_coverage_admission": true
+  },
+  "required_adjacent_visible_ui": {
+    "caption": "J. J. Abrams (left) and Simon Pegg (right, holding a microphone) at the October 19, 2016 Japan premiere of Star Trek Beyond. Documentary red-carpet photograph, not a film frame.",
+    "alt": "J. J. Abrams and Simon Pegg at a Star Trek Beyond premiere backdrop; Pegg holds a handheld microphone.",
+    "photographer_title_source_license_and_changes": "Visible photographer and title credit with Commons original, Flickr author/source, CC BY 2.0 license link and exact resizing notice; no-endorsement note adjacent.",
+    "source_click": "Commons exact photo page; do not imply that clicking opens the film source",
+    "network": "Bundled exact-hash same-origin image; no Wikimedia hotlink and no third-party image request preoptin or postoptin",
+    "consent": "Explicit visitor Show/Hide; no image nodes or external image fetch before Show; Hide clears image",
+    "a11y": "Keyboard-accessible Show/Hide and source/license links, descriptive alt, responsive 320/375/1440px no-overflow"
+  },
+  "owner_instruction": {
+    "classification": "USER_AUTHORIZATION_OF_NON_DELETION_REPO_WORK_NOT_EVIDENCE_OF_THIRD_PARTY_RIGHTS",
+    "quote": "yes. you do not need to ask for my authorization on anything pertaining to the trek-data-core repo unless it's deletion",
+    "context": "Trek Research project conversation, November 3 2026, continuing explicit request to populate source-linked visuals in GitHub Explorer",
+    "does_not_waive_review": true
+  },
+  "prior_independent_reviews_not_positive_release_approvals": [
+    {
+      "role": "Lou-Pole hostile source auditor",
+      "github_review_id": "PRR_kwDOT4P-988AAAABVzyYcQ",
+      "pr": 442,
+      "disposition": "GO_HELD_SOURCE_ONLY_NO_PUBLIC_IMAGE_RELEASE"
+    },
+    {
+      "role": "Lou-Pole hostile UI auditor",
+      "github_review_id": "PRR_kwDOT4P-988AAAABV0M7DA",
+      "pr": 450,
+      "disposition": "GO_HELD_UI_ONLY_NO_PUBLIC_IMAGE_RELEASE"
+    },
+    {
+      "role": "Independent Explorer QA auditor",
+      "github_review_id": "PRR_kwDOT4P-988AAAABV0NNpQ",
+      "pr": 450,
+      "disposition": "GO_HELD_UI_ONLY_NO_PUBLIC_IMAGE_RELEASE"
+    }
+  ],
+  "review_author_identity_limit": "These reviews are independent model/role assessments submitted through the same thebrazenbeard GitHub account, not independent human rights-holder permissions.",
+  "required_new_dispositions": {
+    "independent_positive_photo_and_context_review": "PENDING",
+    "independent_positive_exact_asset_and_browser_review": "PENDING",
+    "owner_release_acceptance": "PENDING",
+    "followup_asset_ui_pr": "NOT_OPENED"
+  },
+  "work_admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "site_effect": "NONE",
+  "deletions": 0
+}

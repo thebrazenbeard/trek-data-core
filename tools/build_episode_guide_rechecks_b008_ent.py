@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build held B007 source-local guide-card observations; never admit Works."""
+"""Build held B008-ENT source-local guide-card observations; never admit Works."""
 
 from __future__ import annotations
 
@@ -10,19 +10,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = Path("explorer/discovery-catalog.json")
-SOURCE = Path("proposals/verification/episode-guide-rechecks-b007-20261103/observations.json")
-OUTPUT = Path("proposals/verification/episode-guide-rechecks-b007-20261103/records.json")
+SOURCE = Path("proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json")
+OUTPUT = Path("proposals/verification/episode-guide-rechecks-b008-ent-20261103/records.json")
 CATALOG_SHA256 = "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc"
 
 # Title/number/slot observations copied from the first-party rendered guides, not inferred from Wikidata.
 CARDS = (
-    ("VOY", "Juggernaut", 5, 21),
-    ("VOY", "Infinite Regress", 5, 7),
-    ("VOY", "Natural Law", 7, 22),
-    ("VOY", "Human Error", 7, 18),
-    ("VOY", "Basics, Part 2", 3, 1),
-    ("VOY", "Future's End, Part 2", 3, 9),
-    ("VOY", "Year Of Hell, Part 2", 4, 9),
     ("ENT", "First Flight", 2, 24),
     ("ENT", "Bounty", 2, 25),
     ("ENT", "The Expanse", 2, 26),
@@ -33,7 +26,7 @@ CARDS = (
     ("ENT", "Cold Front", 1, 11),
     ("ENT", "Anomaly", 3, 2),
 )
-HELD = {"lead:0087", "lead:0088", "lead:0089"}
+HELD = set()
 ROW_KEYS = {
     "row_id", "official_card_title", "season", "episode", "title_resolution",
     "official_card_description_read", "original_synopsis_draft",
@@ -73,9 +66,9 @@ def compile_records(catalog, catalog_bytes, observations):
         raise ValueError("discovery catalog snapshot changed")
     if (not isinstance(observations, dict) or set(observations) != TOP_KEYS
             or observations["schema_version"] != "1.0.0"
-            or observations["proposal_id"] != "LIBRARIAN-B007-VOY-ENT-GUIDE-20261103"
+            or observations["proposal_id"] != "LIBRARIAN-B008-ENT-GUIDE-20261103"
             or observations["catalog_sha256"] != CATALOG_SHA256
-            or observations["baseline_accepted_main"] != "3c0b37564123166bf38bcfa66f018abc4d5c9996"
+            or observations["baseline_accepted_main"] != "e49ee5c51e2157ee505603b1394b511313ca50b7"
             or observations["observed_date_utc"] != "2026-11-03"
             or observations["source_family"] != "paramount_corporate_publisher_family"
             or observations["read_surface"] != "RENDERED_OFFICIAL_PARAMOUNT_PLUS_EPISODE_GUIDE_CARDS"
@@ -84,13 +77,13 @@ def compile_records(catalog, catalog_bytes, observations):
             or observations["public_synopsis_authorized"] is not False
             or observations["admission_effect"] != "NONE"
             or observations["coverage_effect"] != "NONE"
-            or not isinstance(observations["rows"], list) or len(observations["rows"]) != 16):
-        raise ValueError("unreviewed B007 source envelope")
+            or not isinstance(observations["rows"], list) or len(observations["rows"]) != 9):
+        raise ValueError("unreviewed B008-ENT source envelope")
     by_id = {row["row_id"]: row for row in catalog["rows"]}
     if len(by_id) != 1214:
         raise ValueError("duplicate discovery row ids")
-    if [x.get("row_id") for x in observations["rows"]] != [f"lead:{i:04d}" for i in range(83, 99)]:
-        raise ValueError("B007 row range altered")
+    if [x.get("row_id") for x in observations["rows"]] != [f"lead:{i:04d}" for i in range(90, 99)]:
+        raise ValueError("B008-ENT row range altered")
 
     result = []
     used = set()
@@ -148,15 +141,15 @@ def compile_records(catalog, catalog_bytes, observations):
             "governed_coverage_state": "NOT_ADMITTED",
             "admission_effect": "NONE", "coverage_effect": "NONE",
         })
-    if sum(x["title_resolution"] == "EXACT_OFFICIAL_CARD_TITLE" for x in result) != 13:
+    if sum(x["title_resolution"] == "EXACT_OFFICIAL_CARD_TITLE" for x in result) != 9:
         raise ValueError("exact match tally drift")
     return {
-        "data_status": "B007_RENDERED_PUBLISHER_METADATA_PROPOSAL_ONLY",
+        "data_status": "B008-ENT_RENDERED_PUBLISHER_METADATA_PROPOSAL_ONLY",
         "catalog_sha256": hashlib.sha256(catalog_bytes).hexdigest(),
         "observation_manifest_sha256": hashlib.sha256(json.dumps(observations, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest(),
         "summary": {
-            "source_local_rows_rechecked": 16, "literal_title_card_matches": 13,
-            "part_numeral_variants_unresolved": 3, "original_drafts_pending_review": 13,
+            "source_local_rows_rechecked": 9, "literal_title_card_matches": 9,
+            "part_numeral_variants_unresolved": 0, "original_drafts_pending_review": 9,
             "public_synopses_approved": 0, "raw_publisher_html_bodies_pinned": 0,
             "governed_source_or_work_admissions": 0,
         },
@@ -175,13 +168,13 @@ def main():
     target = ROOT / OUTPUT
     if args.check:
         if target.is_symlink() or not target.is_file() or target.read_bytes() != encoded:
-            raise SystemExit("B007_DERIVATIVE_STALE_OR_UNREVIEWED")
+            raise SystemExit("B008-ENT_DERIVATIVE_STALE_OR_UNREVIEWED")
     else:
         if target.is_symlink():
-            raise SystemExit("B007_SYMLINK_OUTPUT_REFUSED")
+            raise SystemExit("B008-ENT_SYMLINK_OUTPUT_REFUSED")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(encoded)
-    print("B007_OK: 16 official cards, 13 literal title matches, 3 held part-numeral variants; zero admission")
+    print("B008-ENT_OK: 9 official Enterprise cards, 9 literal title matches, 0 held variants; zero admission")
 
 
 if __name__ == "__main__":

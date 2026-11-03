@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=a78c938469575ec7bc7dce24f50f122b6eb8a4c62c655386a69643a995649850">
-  <script src="./app.js?v=3c5f6132baa9cd2654ff2d41548653cec26f9bf0d377301e6ab06f8a70772ef5" defer></script>
+  <link rel="stylesheet" href="./app.css?v=0b7319729714540d4937b3a7fdf257c835050fd227696b76aca16565cdc0b27f">
+  <script src="./app.js?v=b5330f38f6a8e82bdf6cd1b9ff5c13210dddb03d539a8baa8e88843c6412c176" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -85,8 +85,13 @@
         <div class="field"><label for="discovery-series">Series (source-local)</label><select id="discovery-series" name="series"><option value="all">All series</option></select></div>
         <div class="field"><label for="discovery-kind">Candidate type</label><select id="discovery-kind" name="kind"><option value="all">All candidate types</option></select></div>
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
+        <div class="field"><label for="discovery-overview">Publisher overview (loaded)</label><select id="discovery-overview" name="overview"><option value="all">All overview states</option><option value="reviewed">Reviewed description loaded</option><option value="not-loaded">No reviewed description loaded</option></select></div>
+        <div class="field"><label for="discovery-verification">Official metadata check</label><select id="discovery-verification" name="verification"><option value="all">All check statuses</option><option value="rechecked_exact">Exact title recheck</option><option value="rechecked_unresolved">Unresolved recheck</option><option value="not_rechecked">Not rechecked</option></select></div>
+        <div class="field"><label for="discovery-synopsis">Synopsis status</label><select id="discovery-synopsis" name="synopsis"><option value="all">All synopses</option><option value="reviewed_publisher_paraphrase">Reviewed publisher paraphrase</option><option value="pending">Pending</option></select></div>
+        <div class="field"><label for="discovery-tag">Structural tag</label><select id="discovery-tag" name="tag"><option value="all">All source-grounded tags</option></select></div>
         <div class="filter-action"><button type="reset">Clear directory filters</button></div>
       </form>
+      <p class="directory-state">Machine-readable <a href="./search-catalog.json" download="trek-source-local-search.json">source-local JSON index</a> is available for offline query. It represents unadmitted observations, not unique works, canon, or completed coverage.</p>
       <p class="result-summary" id="discovery-summary" aria-live="polite" aria-atomic="true">Waiting for source-local records.</p>
       <div class="directory-grid" id="discovery-list"></div>
       <p class="empty-state" id="discovery-empty" hidden>No source-local observations match these filters.</p>

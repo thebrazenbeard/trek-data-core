@@ -661,13 +661,33 @@
     const series = byId('discovery-series').value;
     const kind = byId('discovery-kind').value;
     const lineage = byId('discovery-lineage').value;
+    const overview = byId('discovery-overview').value;
+    const verification = byId('discovery-verification').value;
+    const synopsis = byId('discovery-synopsis').value;
+    const tag = byId('discovery-tag').value;
     const terms = query.split(/\s+/).filter(Boolean);
     const rows = directoryState.rows.filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
       if (kind !== 'all' && item.candidate_kind !== kind) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
+      // The facet reflects only currently loaded and validated display-sidecar
+      // records. A missing/failed appendix cannot masquerade as a reviewed read.
+      const hasReviewedOverview = synopsisState.entries.has(artworkKey(item));
+      if (overview === 'reviewed' && !hasReviewedOverview) return false;
+      if (overview === 'not-loaded' && hasReviewedOverview) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
+      const check = metadataRechecks.byId.get(item.row_id);
+      const checkStatus = !check ? 'not_rechecked' : check.title_check === 'EXACT' ? 'rechecked_exact' : 'rechecked_unresolved';
+      const reviewed = synopsisState.entries.has(artworkKey(item));
+      if (verification !== 'all' && checkStatus !== verification) return false;
+      if (synopsis !== 'all' && (reviewed ? 'reviewed_publisher_paraphrase' : 'pending') !== synopsis) return false;
+      if (tag !== 'all' && ![
+        `medium:${item.medium.toLowerCase()}`, `kind:${item.candidate_kind.toLowerCase()}`,
+        `source:${item.source_group.toLowerCase()}`, `metadata:${checkStatus}`,
+        `synopsis:${reviewed ? 'reviewed_publisher_paraphrase' : 'pending'}`,
+        ...(item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode) ? [`series:${seriesCode.toLowerCase()}`] : [])
+      ].includes(tag)) return false;
       const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)
         ? directorySeriesLabels[seriesCode] : '';
       const body = normalize([item.title, item.context, seriesLabel,
@@ -818,6 +838,18 @@
       }
       select.value = 'all';
     }
+    const tagSelect = byId('discovery-tag');
+    tagSelect.replaceChildren(new Option('All source-grounded tags', 'all'));
+    const structuralTags = [
+      ...directoryMediums.map((value) => `medium:${value.toLowerCase()}`),
+      ...[...kindCounts.keys()].map((value) => `kind:${value.toLowerCase()}`),
+      ...[...seriesCounts.keys()].map((value) => `series:${value.toLowerCase()}`),
+      ...[...new Set(data.rows.map((row) => row.source_group))].map((value) => `source:${value.toLowerCase()}`),
+      'metadata:not_rechecked', 'metadata:rechecked_exact', 'metadata:rechecked_unresolved',
+      'synopsis:pending', 'synopsis:reviewed_publisher_paraphrase'
+    ];
+    for (const tag of structuralTags.sort()) tagSelect.add(new Option(tag.replaceAll('_', ' '), tag));
+    tagSelect.value = 'all';
     const metrics = byId('discovery-metrics');
     metrics.replaceChildren();
     for (const label of directoryMediums) {

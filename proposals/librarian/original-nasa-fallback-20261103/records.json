@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "research_effect": "NONE",
+  "coverage_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "current_directory_binding": "NONE",
+  "visual_candidates": [
+    {
+      "candidate_id": "original:source-local-abstract-card-v1",
+      "kind": "ORIGINAL_PROCEDURAL_PLACEHOLDER",
+      "source": "tools/render_original_abstract_art.py in this proposal",
+      "media": ["EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO"],
+      "depicts_fictional_work": false,
+      "title_in_visual_is_metadata_label_only": true,
+      "source_lineage": "project-original-procedural",
+      "public_display_state": "PROPOSED_REVIEW_ONLY",
+      "external_request_count": 0
+    },
+    {
+      "candidate_id": "nasa:apollo17-blue-marble-as17-148-22727",
+      "kind": "REAL_ASTRONOMICAL_PHOTOGRAPH",
+      "source_url": "https://science.nasa.gov/resource/the-blue-marble/",
+      "observed_credit": "NASA Johnson Space Center",
+      "source_lineage": "nasa:apollo17-photography",
+      "observed_subject": "Earth as photographed by Apollo 17",
+      "depicts_fictional_work": false,
+      "possible_role": "DECORATIVE_REAL_SCIENCE_CONTEXT_ONLY",
+      "rights_policy_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "public_display_state": "HELD_PENDING_ITEM_RIGHTS_AND_NONENDORSEMENT_REVIEW",
+      "local_binary_sha256": null,
+      "asset_url": null
+    },
+    {
+      "candidate_id": "nasa:webb-cosmic-cliffs-miri-nircam",
+      "kind": "REAL_ASTRONOMICAL_IMAGE_COMPOSITE",
+      "source_url": "https://science.nasa.gov/asset/webb/cosmic-cliffs-in-the-carina-nebula-nircam-and-miri-composite-image/",
+      "observed_credit": "NASA, ESA, CSA, STScI",
+      "source_lineage": "webb:2022-ero:ngc3324",
+      "observed_subject": "NGC 3324 in the Carina Nebula",
+      "depicts_fictional_work": false,
+      "possible_role": "DECORATIVE_REAL_SCIENCE_CONTEXT_ONLY",
+      "rights_policy_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "public_display_state": "HELD_PENDING_MULTIAGENCY_RIGHTS_AND_CREDIT_REVIEW",
+      "local_binary_sha256": null,
+      "asset_url": null
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "proposal_id": "LIBRARIAN-B007-VOY-ENT-GUIDE-20261103",
-  "baseline_accepted_main": "3c0b37564123166bf38bcfa66f018abc4d5c9996",
+  "proposal_id": "LIBRARIAN-B008-ENT-GUIDE-20261103",
+  "baseline_accepted_main": "e49ee5c51e2157ee505603b1394b511313ca50b7",
   "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
   "observed_date_utc": "2026-11-03",
   "source_family": "paramount_corporate_publisher_family",
@@ -12,69 +12,6 @@
   "admission_effect": "NONE",
   "coverage_effect": "NONE",
   "rows": [
-    {
-      "row_id": "lead:0083",
-      "official_card_title": "Juggernaut",
-      "season": 5,
-      "episode": 21,
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
-      "official_card_description_read": true,
-      "original_synopsis_draft": "Voyager assists with a disabled Malon freighter whose hazardous cargo threatens an inhabited planet. A repair crew races to contain the vessel's toxic danger."
-    },
-    {
-      "row_id": "lead:0084",
-      "official_card_title": "Infinite Regress",
-      "season": 5,
-      "episode": 7,
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
-      "official_card_description_read": true,
-      "original_synopsis_draft": "Seven of Nine begins expressing the personalities of people once assimilated by the Borg, putting her own identity and well-being at risk."
-    },
-    {
-      "row_id": "lead:0085",
-      "official_card_title": "Natural Law",
-      "season": 7,
-      "episode": 22,
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
-      "official_card_description_read": true,
-      "original_synopsis_draft": "Seven of Nine and Chakotay encounter an isolated humanoid community protected by an energy barrier, raising difficult questions about contact with outsiders."
-    },
-    {
-      "row_id": "lead:0086",
-      "official_card_title": "Human Error",
-      "season": 7,
-      "episode": 18,
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE",
-      "official_card_description_read": true,
-      "original_synopsis_draft": "Seven of Nine experiments with a more human life, but her exploration begins to interfere with her responsibilities aboard Voyager."
-    },
-    {
-      "row_id": "lead:0087",
-      "official_card_title": "Basics, Part 2",
-      "season": 3,
-      "episode": 1,
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
-      "official_card_description_read": true,
-      "original_synopsis_draft": null
-    },
-    {
-      "row_id": "lead:0088",
-      "official_card_title": "Future's End, Part 2",
-      "season": 3,
-      "episode": 9,
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
-      "official_card_description_read": true,
-      "original_synopsis_draft": null
-    },
-    {
-      "row_id": "lead:0089",
-      "official_card_title": "Year Of Hell, Part 2",
-      "season": 4,
-      "episode": 9,
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED",
-      "official_card_description_read": true,
-      "original_synopsis_draft": null
-    },
     {
       "row_id": "lead:0090",
       "official_card_title": "First Flight",

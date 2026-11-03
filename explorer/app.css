@@ -154,7 +154,7 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .directory-summary span:nth-child(3) { border-left-color: var(--violet); }
 .directory-summary span:nth-child(4) { border-left-color: var(--amber); }
 .directory-summary span:nth-child(5) { border-left-color: var(--coral); }
-.directory-filters { display: grid; grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(135px, 1fr)) auto; align-items: end; gap: 12px; }
+.directory-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); align-items: end; gap: 12px; }
 .directory-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 18px; }
 .directory-card { min-width: 0; border: 1px solid var(--line); border-left: 12px solid var(--peach); border-radius: 23px 4px 4px 4px; padding: 13px 17px; background: var(--surface2); }
 .directory-card.media-card, .film-grid .media-card { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: start; gap: 14px; }

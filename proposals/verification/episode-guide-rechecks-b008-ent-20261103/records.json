@@ -2,170 +2,9 @@
   "admission_effect": "NONE",
   "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
   "coverage_effect": "NONE",
-  "data_status": "B007_RENDERED_PUBLISHER_METADATA_PROPOSAL_ONLY",
-  "observation_manifest_sha256": "6f0d135ab4988994eb93cd85026e250914b12d2f6f7828a476219ecdfcef6233",
+  "data_status": "B008-ENT_RENDERED_PUBLISHER_METADATA_PROPOSAL_ONLY",
+  "observation_manifest_sha256": "bef2769165c04bb9ea4b3dbffc6f9be49fe1889e2a4bdce96a2e72adef83c5fc",
   "rows": [
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 21,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
-        "raw_webpage_sha256": null,
-        "season": 5,
-        "section_locator": "Episode Guide > Juggernaut > S5 E21 > short description",
-        "title": "Juggernaut"
-      },
-      "original_synopsis_draft": "Voyager assists with a disabled Malon freighter whose hazardous cargo threatens an inhabited planet. A repair crew races to contain the vessel's toxic danger.",
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q16744043",
-      "source_local_row_id": "lead:0083",
-      "source_local_title": "Juggernaut",
-      "synopsis_publication_status": "HUMAN_AND_EDITORIAL_REVIEW_PENDING",
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 7,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
-        "raw_webpage_sha256": null,
-        "season": 5,
-        "section_locator": "Episode Guide > Infinite Regress > S5 E7 > short description",
-        "title": "Infinite Regress"
-      },
-      "original_synopsis_draft": "Seven of Nine begins expressing the personalities of people once assimilated by the Borg, putting her own identity and well-being at risk.",
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q16744066",
-      "source_local_row_id": "lead:0084",
-      "source_local_title": "Infinite Regress",
-      "synopsis_publication_status": "HUMAN_AND_EDITORIAL_REVIEW_PENDING",
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 22,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
-        "raw_webpage_sha256": null,
-        "season": 7,
-        "section_locator": "Episode Guide > Natural Law > S7 E22 > short description",
-        "title": "Natural Law"
-      },
-      "original_synopsis_draft": "Seven of Nine and Chakotay encounter an isolated humanoid community protected by an energy barrier, raising difficult questions about contact with outsiders.",
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q16744191",
-      "source_local_row_id": "lead:0085",
-      "source_local_title": "Natural Law",
-      "synopsis_publication_status": "HUMAN_AND_EDITORIAL_REVIEW_PENDING",
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 18,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
-        "raw_webpage_sha256": null,
-        "season": 7,
-        "section_locator": "Episode Guide > Human Error > S7 E18 > short description",
-        "title": "Human Error"
-      },
-      "original_synopsis_draft": "Seven of Nine experiments with a more human life, but her exploration begins to interfere with her responsibilities aboard Voyager.",
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q16744675",
-      "source_local_row_id": "lead:0086",
-      "source_local_title": "Human Error",
-      "synopsis_publication_status": "HUMAN_AND_EDITORIAL_REVIEW_PENDING",
-      "title_resolution": "EXACT_OFFICIAL_CARD_TITLE"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 1,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
-        "raw_webpage_sha256": null,
-        "season": 3,
-        "section_locator": "Episode Guide > Basics, Part 2 > S3 E1 > short description",
-        "title": "Basics, Part 2"
-      },
-      "original_synopsis_draft": null,
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q25587669",
-      "source_local_row_id": "lead:0087",
-      "source_local_title": "Basics, Part II",
-      "synopsis_publication_status": "HOLD_SOURCE_IDENTITY",
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 9,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/",
-        "raw_webpage_sha256": null,
-        "season": 3,
-        "section_locator": "Episode Guide > Future's End, Part 2 > S3 E9 > short description",
-        "title": "Future's End, Part 2"
-      },
-      "original_synopsis_draft": null,
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q25587671",
-      "source_local_row_id": "lead:0088",
-      "source_local_title": "Future's End, Part II",
-      "synopsis_publication_status": "HOLD_SOURCE_IDENTITY",
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED"
-    },
-    {
-      "admission_effect": "NONE",
-      "coverage_effect": "NONE",
-      "governed_coverage_state": "NOT_ADMITTED",
-      "official_card": {
-        "brief_description_actually_read": true,
-        "episode": 9,
-        "guide_url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/",
-        "raw_webpage_sha256": null,
-        "season": 4,
-        "section_locator": "Episode Guide > Year Of Hell, Part 2 > S4 E9 > short description",
-        "title": "Year Of Hell, Part 2"
-      },
-      "original_synopsis_draft": null,
-      "source_body_custody_status": "NOT_READ_OR_HASHED",
-      "source_local_context": "VOY",
-      "source_local_lineage": "wikidata_collaborative_derivative",
-      "source_local_locator": "https://www.wikidata.org/wiki/Q25587679",
-      "source_local_row_id": "lead:0089",
-      "source_local_title": "Year of Hell, Part II",
-      "synopsis_publication_status": "HOLD_SOURCE_IDENTITY",
-      "title_resolution": "PART_NUMERAL_STYLE_UNRESOLVED"
-    },
     {
       "admission_effect": "NONE",
       "coverage_effect": "NONE",
@@ -376,11 +215,11 @@
   ],
   "summary": {
     "governed_source_or_work_admissions": 0,
-    "literal_title_card_matches": 13,
-    "original_drafts_pending_review": 13,
-    "part_numeral_variants_unresolved": 3,
+    "literal_title_card_matches": 9,
+    "original_drafts_pending_review": 9,
+    "part_numeral_variants_unresolved": 0,
     "public_synopses_approved": 0,
     "raw_publisher_html_bodies_pinned": 0,
-    "source_local_rows_rechecked": 16
+    "source_local_rows_rechecked": 9
   }
 }

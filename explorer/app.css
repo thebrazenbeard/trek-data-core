@@ -180,6 +180,11 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .directory-card .directory-context { color: var(--muted); }
 .directory-card .directory-source { color: var(--aqua); overflow-wrap: anywhere; }
 .directory-card .directory-provenance { display: block; color: var(--muted); opacity: .87; font: 650 .65rem/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+.synopsis-panel { margin: 9px 0; padding: 9px 11px; border-left: 5px solid var(--amber); border-radius: 9px 2px 2px 2px; background: #101526; }
+.synopsis-panel .synopsis-label { display: block; color: var(--amber); font-size: .74rem; letter-spacing: .025em; }
+.synopsis-panel .synopsis-pending { color: var(--muted); font-size: .77rem; margin: 5px 0 0; }
+.synopsis-panel .synopsis-copy { color: var(--text); font-size: .83rem; line-height: 1.48; margin: 7px 0; }
+.synopsis-panel .synopsis-scope { color: var(--muted); font-size: .7rem; line-height: 1.35; }
 .directory-more { grid-column: 1/-1; justify-self: start; }
 
 [hidden] { display: none !important; }

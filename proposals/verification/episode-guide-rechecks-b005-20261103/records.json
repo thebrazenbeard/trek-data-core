@@ -1,0 +1,517 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "coverage_effect": "NONE",
+  "data_status": "B005_PROPOSAL_ONLY_PRIMARY_RENDERED_CARD_TRIAGE",
+  "observation_manifest_sha256": "3a8655c13eb1fca7b4be29ac84656963ce8e12dd9638359dc0960526449bd55f",
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Paradise Lost > S4 E12 > short description",
+          "episode": 12,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Paradise Lost"
+        }
+      ],
+      "original_synopsis_draft": "Sisko and Odo uncover a Starfleet power grab while investigating threats to Earth during the Dominion crisis.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1027888",
+      "source_local_row_id": "lead:0051",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Paradise Lost",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Return To Grace > S4 E14 > short description",
+          "episode": 14,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Return To Grace"
+        }
+      ],
+      "original_synopsis_draft": "Demoted and disgraced, Dukat turns to Kira for help in recovering his standing among Cardassians.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1092502",
+      "source_local_row_id": "lead:0052",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Return to Grace",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "CASE_VARIANT_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Trials and Tribble-ations > S5 E6 > short description",
+          "episode": 6,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "Trials and Tribble-ations"
+        }
+      ],
+      "original_synopsis_draft": "Sisko is transported into the past, encountering an important event in the original Enterprise's history.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2158401",
+      "source_local_row_id": "lead:0053",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Trials and Tribble-ations",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Visitor > S4 E3 > short description",
+          "episode": 3,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "The Visitor"
+        }
+      ],
+      "original_synopsis_draft": null,
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "PUBLISHER_DESCRIPTION_SLOT_CONFLICT_UNRESOLVED",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2890937",
+      "source_local_row_id": "lead:0054",
+      "source_local_series_context": "DS9",
+      "source_local_title": "The Visitor",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "WITHHELD_PUBLISHER_DESCRIPTION_MISASSOCIATED",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Rejoined > S4 E6 > short description",
+          "episode": 6,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Rejoined"
+        }
+      ],
+      "original_synopsis_draft": "Jadzia must weigh her renewed attachment to a former host's wife against restrictions imposed by Trill society.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q2891237",
+      "source_local_row_id": "lead:0055",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Rejoined",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Babel > S1 E5 > short description",
+          "episode": 5,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Babel"
+        }
+      ],
+      "original_synopsis_draft": "A dangerous infection spreads through the station, leaving Kira racing to discover a treatment.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507025",
+      "source_local_row_id": "lead:0056",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Babel",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Past Prologue > S1 E3 > short description",
+          "episode": 3,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Past Prologue"
+        }
+      ],
+      "original_synopsis_draft": "Kira is torn between loyalty to her Bajoran community and responsibilities to the station's Federation partners.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507056",
+      "source_local_row_id": "lead:0057",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Past Prologue",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > A Man Alone > S1 E4 > short description",
+          "episode": 4,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "A Man Alone"
+        }
+      ],
+      "original_synopsis_draft": "Odo is suspected after a longtime adversary is murdered, and he must establish that he is innocent.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q3507090",
+      "source_local_row_id": "lead:0058",
+      "source_local_series_context": "DS9",
+      "source_local_title": "A Man Alone",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The House Of Quark > S3 E3 > short description",
+          "episode": 3,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+          "publisher_source_body_sha256": null,
+          "season": 3,
+          "title": "The House Of Quark"
+        }
+      ],
+      "original_synopsis_draft": "Quark's false boast about killing a Klingon leads to an unwanted marriage with the dead man's widow.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q11863377",
+      "source_local_row_id": "lead:0059",
+      "source_local_series_context": "DS9",
+      "source_local_title": "The House of Quark",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "CASE_VARIANT_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Circle > S2 E2 > short description",
+          "episode": 2,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "The Circle"
+        }
+      ],
+      "original_synopsis_draft": "Removed from her station post, Kira discovers disturbing forces operating behind a Bajoran political movement.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12031611",
+      "source_local_row_id": "lead:0060",
+      "source_local_series_context": "DS9",
+      "source_local_title": "The Circle",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Melora > S2 E6 > short description",
+          "episode": 6,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "Melora"
+        }
+      ],
+      "original_synopsis_draft": "Bashir develops technology intended to help a visiting woman cope with station gravity and her mobility needs.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12036362",
+      "source_local_row_id": "lead:0061",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Melora",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Meridian > S3 E8 > short description",
+          "episode": 8,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+          "publisher_source_body_sha256": null,
+          "season": 3,
+          "title": "Meridian"
+        }
+      ],
+      "original_synopsis_draft": "Dax becomes romantically involved with a man whose planet will soon disappear into another dimension for decades.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12036402",
+      "source_local_row_id": "lead:0062",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Meridian",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Necessary Evil > S2 E8 > short description",
+          "episode": 8,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "Necessary Evil"
+        }
+      ],
+      "original_synopsis_draft": "After Quark is attacked, Odo revisits an old murder investigation in which Kira once came under suspicion.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12041492",
+      "source_local_row_id": "lead:0063",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Necessary Evil",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Homecoming > S2 E1 > short description",
+          "episode": 1,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "The Homecoming"
+        }
+      ],
+      "original_synopsis_draft": "Kira risks provoking a clash with Cardassia when she attempts to free a revered Bajoran resistance figure.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12041709",
+      "source_local_row_id": "lead:0064",
+      "source_local_series_context": "DS9",
+      "source_local_title": "The Homecoming",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Tribunal > S2 E25 > short description",
+          "episode": 25,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "Tribunal"
+        }
+      ],
+      "original_synopsis_draft": "Cardassian authorities arrest O'Brien and prosecute him for an offense he insists he never committed.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q12059643",
+      "source_local_row_id": "lead:0065",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Tribunal",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Inter Arma Enim Silent Leges > S7 E16 > short description",
+          "episode": 16,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+          "publisher_source_body_sha256": null,
+          "season": 7,
+          "title": "Inter Arma Enim Silent Leges"
+        }
+      ],
+      "original_synopsis_draft": "Bashir becomes entangled in a dangerous contest between Romulan intelligence and a secretive Starfleet faction.",
+      "public_synopsis_approval": "NONE",
+      "publisher_brief_description_state": "READ_CARD_DESCRIPTION_CONSISTENT",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744084",
+      "source_local_row_id": "lead:0066",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Inter Arma Enim Silent Leges",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "summary": {
+    "actual_official_cards_read": 16,
+    "exact_title_cases": 14,
+    "governed_work_or_evidence_admissions": 0,
+    "original_synopsis_drafts_pending_human_review": 15,
+    "pinned_raw_publisher_html_bodies": 0,
+    "publicly_approved_synopses": 0,
+    "source_local_row_cases": 16,
+    "unresolved_case_variant_cases": 2,
+    "unresolved_publisher_description_conflict_cases": 1
+  }
+}

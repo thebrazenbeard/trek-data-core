@@ -753,6 +753,10 @@
   // Exact accepted deterministic bytes, generated from the reviewed B001–B004
   // observations. Refuse any modified sidecar before reading its badge claims.
   const metadataRecheckSha256 = '3d8b846bfa9728b02144490c00f03d79d6c1b517f04c86e3e1747f366f6e7be8';
+  // Separate accepted B005–B009 + DIS publisher-card observations. Their 61
+  // titles are NOT added to the historical 56 checks or to Work coverage.
+  const publisherCardChecks = { byId: new Map(), available: false };
+  const publisherCardSha256 = '4ff4246f772117d847ed939a40218679fe6d1621c2c422f539d9c177971804a6';
   const directoryMediums = ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO'];
   // Source-local episode rows use compact catalog codes (for example VOY),
   // while visitors search for the series name they actually recognize.
@@ -796,6 +800,7 @@
     const lineage = byId('discovery-lineage').value;
     const overview = byId('discovery-overview').value;
     const verification = byId('discovery-verification').value;
+    const publisherCheck = byId('discovery-publisher-check').value;
     const synopsis = byId('discovery-synopsis').value;
     const tag = byId('discovery-tag').value;
     const terms = query.split(/\s+/).filter(Boolean);
@@ -813,12 +818,17 @@
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const check = metadataRechecks.byId.get(item.row_id);
       const checkStatus = !check ? 'not_rechecked' : check.title_check === 'EXACT' ? 'rechecked_exact' : 'rechecked_unresolved';
+      const publisherCard = publisherCardChecks.byId.get(item.row_id);
+      const publisherCardStatus = !publisherCardChecks.available ? 'not_loaded' : !publisherCard ? 'not_in_batch'
+        : publisherCard.publisher_title_check === 'EXACT' ? 'title_exact' : 'held_unresolved';
       const reviewed = hasReviewedOverview;
       if (verification !== 'all' && checkStatus !== verification) return false;
+      if (publisherCheck !== 'all' && publisherCardStatus !== publisherCheck) return false;
       if (synopsis !== 'all' && (reviewed ? 'reviewed_publisher_paraphrase' : 'pending') !== synopsis) return false;
       if (tag !== 'all' && ![
         `medium:${item.medium.toLowerCase()}`, `kind:${item.candidate_kind.toLowerCase()}`,
         `source:${item.source_group.toLowerCase()}`, `metadata:${checkStatus}`,
+        `publisher-card:${publisherCardStatus}`,
         `synopsis:${reviewed ? 'reviewed_publisher_paraphrase' : 'pending'}`,
         ...(item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode) ? [`series:${seriesCode.toLowerCase()}`] : [])
       ].includes(tag)) return false;
@@ -826,6 +836,8 @@
         ? directorySeriesLabels[seriesCode] : '';
       const body = normalize([item.title, item.context, seriesLabel,
         item.candidate_kind, item.source_group, item.source_input,
+        publisherCard?.publisher_card_title, publisherCard?.source_batch,
+        publisherCard?.publisher_title_check,
         ...item.details, reviewedOverview?.overview_text || ''].join(' '));
       return terms.every((part) => body.includes(part));
     });
@@ -854,6 +866,24 @@
         evidence.target = '_blank';
         copy.append(evidence);
         copy.append(el('small', 'directory-provenance', `Observed fields: ${check.fields_observed.join(', ')} · rendered page; no raw-page custody, full-work read or identity admission`));
+      }
+      const publisherCard = publisherCardChecks.byId.get(item.row_id);
+      if (publisherCard) {
+        const exact = publisherCard.publisher_title_check === 'EXACT';
+        copy.append(el('p', `directory-publisher-card${exact ? '' : ' held'}`, exact
+          ? `Publisher card title string match · ${publisherCard.source_batch} · source-local metadata only`
+          : `HELD / UNRESOLVED publisher card title or split · ${publisherCard.source_batch} · ${publisherCard.publisher_title_check.replaceAll('_', ' ').toLowerCase()}`));
+        copy.append(el('p', 'directory-publisher-detail',
+          `Rendered card: ${publisherCard.publisher_card_title} · ${publisherCard.publisher_season_episode_slots.map((slot) => `S${slot.season} E${slot.episode}`).join(' / ')} · ${publisherCard.observed_utc_date}`));
+        if (publisherCard.publisher_guide_url) {
+          const evidence = el('a', 'directory-recheck-source', 'Inspect publisher-card source');
+          evidence.href = publisherCard.publisher_guide_url;
+          evidence.rel = 'noopener noreferrer';
+          evidence.target = '_blank';
+          copy.append(evidence);
+        }
+        copy.append(el('small', 'directory-provenance',
+          `Accepted source record: ${publisherCard.accepted_observation_path} · No audiovisual close read, raw publisher page custody, Work identity admission, or approved synopsis`));
       }
       appendSynopsis(copy, item.medium, artworkKey(item));
       copy.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
@@ -980,6 +1010,7 @@
       ...[...seriesCounts.keys()].map((value) => `series:${value.toLowerCase()}`),
       ...[...new Set(data.rows.map((row) => row.source_group))].map((value) => `source:${value.toLowerCase()}`),
       'metadata:not_rechecked', 'metadata:rechecked_exact', 'metadata:rechecked_unresolved',
+      'publisher-card:not_in_batch', 'publisher-card:title_exact', 'publisher-card:held_unresolved',
       'synopsis:pending', 'synopsis:reviewed_publisher_paraphrase'
     ];
     for (const tag of structuralTags.sort()) tagSelect.add(new Option(tag.replaceAll('_', ' '), tag));
@@ -1100,6 +1131,147 @@
       // A corrupt or unavailable projection cannot promote a discovery row.
       metadataRechecks.byId.clear();
       metadataRechecks.available = false;
+    }
+  }
+
+  function acceptPublisherCardChecks(data) {
+    if (!directoryState.available || !data || typeof data !== 'object' ||
+        data.schema_version !== '1.0.0' ||
+        data.data_status !== 'ACCEPTED_SOURCE_ONLY_RENDERED_PUBLISHER_CARDS_NOT_RESEARCH_COVERAGE' ||
+        data.directory_row_count !== 1214 || directoryState.rows.length !== 1214 ||
+        data.prior_metadata_recheck_count_unchanged !== 56 ||
+        data.new_publisher_card_source_local_lead_count !== 61 ||
+        data.new_exact_title_matches !== 46 || data.new_unresolved_title_or_split_cases !== 15 ||
+        data.unmapped_snw_s3_cards_not_joined !== 10 ||
+        data.publisher_source_family_count !== 1 ||
+        data.upstream_wikidata_is_not_independent_corroboration !== true ||
+        data.source_directory_sha256 !== '2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc' ||
+        data.admitted_works !== 0 || data.approved_public_synopses !== 0 ||
+        data.full_audiovisual_content_reads !== 0 || data.raw_publisher_pages_custodied !== 0 ||
+        data.coverage_effect !== 'NONE' || data.admission_effect !== 'NONE' ||
+        !Array.isArray(data.accepted_input_receipts) || data.accepted_input_receipts.length !== 9 ||
+        !Array.isArray(data.rows) || data.rows.length !== 61) {
+      throw new Error('Unapproved publisher-card metadata envelope.');
+    }
+    const batchSpecifications = new Map([
+      ['B005-DS9', { series: 'DS9', begin: 51, end: 66, path: 'proposals/verification/episode-guide-rechecks-b005-20261103/observations.json', allowed: ['EXACT', 'CASE_VARIANT_UNRESOLVED'] }],
+      ['B006-VOY', { series: 'VOY', begin: 70, end: 82, path: 'proposals/verification/episode-guide-rechecks-b006-voy-20261103/observations.json', allowed: ['EXACT', 'CASE_VARIANT_UNRESOLVED', 'MULTIPART_TITLE_SCOPE_UNRESOLVED'] }],
+      ['B007-VOY', { series: 'VOY', begin: 83, end: 89, path: 'proposals/librarian/voy-b007-source-card-20261103/records.json', allowed: ['EXACT', 'ROMAN_NUMERAL_VARIANT_UNRESOLVED', 'NUMERAL_AND_CASE_VARIANT_UNRESOLVED'] }],
+      ['B008-ENT', { series: 'ENT', begin: 90, end: 98, path: 'proposals/verification/episode-guide-rechecks-b008-ent-20261103/observations.json', allowed: ['EXACT_OFFICIAL_CARD_TITLE', 'ROMAN_NUMERAL_VARIANT_UNRESOLVED'] }],
+      ['B009-ENT', { series: 'ENT', begin: 99, end: 107, path: 'proposals/verification/episode-guide-rechecks-b009-ent-20261103/observations.json', allowed: ['EXACT_OFFICIAL_CARD_TITLE', 'PART_NUMERAL_STYLE_UNRESOLVED', 'PUNCTUATION_STYLE_UNRESOLVED', 'COMBINED_CARD_SPLIT_UNRESOLVED'] }],
+      ['DIS-S3-SEVEN', { series: 'DIS', begin: 108, end: 114, path: 'proposals/research/dis/s3-publisher-seven-20261103/records.json', allowed: ['EXACT', 'PART_NUMERAL_STYLE_UNRESOLVED'] }]
+    ]);
+    const receiptPaths = ['explorer/discovery-catalog.json', ...[...batchSpecifications.values()].map((spec) => spec.path),
+      'proposals/research/snw/s3-publisher-first5-20261103/records.json',
+      'proposals/research/snw/s3-publisher-last5-20261103/records.json'];
+    const receipts = new Map();
+    for (let i = 0; i < receiptPaths.length; i++) {
+      const receipt = data.accepted_input_receipts[i];
+      if (!receipt || receipt.path !== receiptPaths[i] || !/^[0-9a-f]{64}$/.test(receipt.sha256)) {
+        throw new Error('Publisher-card accepted source receipt mismatch.');
+      }
+      receipts.set(receipt.path, receipt.sha256);
+    }
+    if (receipts.get('explorer/discovery-catalog.json') !== data.source_directory_sha256) {
+      throw new Error('Publisher-card directory receipt mismatch.');
+    }
+    const sourceRows = new Map(directoryState.rows.map((item) => [item.row_id, item]));
+    const itemKeys = ['accepted_observation_path', 'accepted_observation_sha256', 'admission_effect',
+      'coverage_effect', 'full_episode_or_transcript_read', 'medium', 'observed_utc_date',
+      'original_resolution', 'publisher_card_title', 'publisher_family', 'publisher_guide_url',
+      'publisher_season_episode_slots', 'publisher_surface', 'publisher_title_check',
+      'raw_publisher_page_sha256', 'row_id', 'source_batch', 'source_local_context',
+      'source_local_discovery_state', 'source_local_locator', 'source_local_source_family',
+      'source_local_title', 'synopsis_publication_effect'];
+    const checked = new Map();
+    let exact = 0;
+    for (const item of data.rows) {
+      const spec = batchSpecifications.get(item?.source_batch);
+      const row = sourceRows.get(item?.row_id);
+      const idNumber = /^lead:\d{4}$/.test(item?.row_id || '') ? Number(item.row_id.slice(5)) : -1;
+      const exactTitle = item?.publisher_title_check === 'EXACT';
+      if (!spec || !row || checked.has(item.row_id) ||
+          Object.keys(item).sort().join('|') !== itemKeys.slice().sort().join('|') ||
+          idNumber < spec.begin || idNumber > spec.end || row.medium !== 'EPISODE' ||
+          item.medium !== 'EPISODE' || item.source_local_context !== spec.series ||
+          item.source_local_context !== row.context || item.source_local_title !== row.title ||
+          item.source_local_locator !== row.source_locator ||
+          item.source_local_source_family !== 'wikidata:wdqs' || row.source_group !== 'wikidata:wdqs' ||
+          item.publisher_family !== 'paramount_corporate_publisher_family' ||
+          item.accepted_observation_path !== spec.path ||
+          item.accepted_observation_sha256 !== receipts.get(spec.path) ||
+          !spec.allowed.includes(item.original_resolution) ||
+          item.publisher_title_check !== (item.original_resolution === 'EXACT' ||
+            item.original_resolution === 'EXACT_OFFICIAL_CARD_TITLE' ? 'EXACT' : item.original_resolution) ||
+          typeof item.publisher_card_title !== 'string' || !item.publisher_card_title.trim() ||
+          item.publisher_card_title.length > 200 ||
+          exactTitle !== (item.publisher_card_title === row.title) ||
+          !/^2026-11-03$/.test(item.observed_utc_date) ||
+          item.publisher_surface !== 'RENDERED_PUBLISHER_CARD_SOURCE_ONLY' ||
+          item.raw_publisher_page_sha256 !== null || item.full_episode_or_transcript_read !== false ||
+          item.source_local_discovery_state !== 'CATALOGUED_METADATA_ONLY' ||
+          item.admission_effect !== 'NONE' || item.coverage_effect !== 'NONE' ||
+          item.synopsis_publication_effect !== 'NONE' ||
+          !Array.isArray(item.publisher_season_episode_slots) ||
+          item.publisher_season_episode_slots.length < 1 || item.publisher_season_episode_slots.length > 2 ||
+          item.publisher_season_episode_slots.some((slot) => !slot ||
+            Object.keys(slot).sort().join('|') !== 'episode|season' ||
+            !Number.isSafeInteger(slot.season) || !Number.isSafeInteger(slot.episode) ||
+            slot.season < 1 || slot.episode < 1 || slot.season > 10 || slot.episode > 50)) {
+        throw new Error('Publisher-card status, source ID, provenance, or coverage spoof rejected.');
+      }
+      const guide = item.publisher_guide_url;
+      if (guide !== null) {
+        let url;
+        try { url = new URL(guide); } catch (_) { throw new Error('Invalid publisher-card guide URL.'); }
+        if (url.protocol !== 'https:' || url.hostname !== 'www.paramountplus.com' ||
+            url.username || url.password || url.port || url.search || url.hash) {
+          throw new Error('Publisher-card guide URL outside accepted first-party host.');
+        }
+      }
+      if ((item.source_batch === 'B007-VOY' || item.source_batch === 'DIS-S3-SEVEN') !== (guide !== null)) {
+        throw new Error('Publisher-card URL custody changed from accepted source record.');
+      }
+      checked.set(item.row_id, item);
+      if (exactTitle) exact++;
+    }
+    if (checked.size !== 61 || exact !== 46 ||
+        (checked.get('lead:0106')?.publisher_title_check !== 'COMBINED_CARD_SPLIT_UNRESOLVED') ||
+        (checked.get('lead:0107')?.publisher_title_check !== 'COMBINED_CARD_SPLIT_UNRESOLVED') ||
+        checked.get('lead:0106')?.publisher_card_title !== checked.get('lead:0107')?.publisher_card_title) {
+      throw new Error('Publisher-card accepted source-local scope or unresolved split changed.');
+    }
+    publisherCardChecks.byId = checked;
+    publisherCardChecks.available = true;
+    byId('publisher-card-state').textContent =
+      '61 additional accepted publisher-card reads: 46 exact title-string matches, 15 held/unresolved. One Paramount publisher lineage; 10 SNW cards unjoined. No Work admission, audiovisual close read, or new approved synopsis.';
+    byId('publisher-card-download').hidden = false;
+    byId('discovery-metrics').append(el('span', 'publisher-card-count',
+      'Additional source-local publisher cards: 61 (46 title matches · 15 held), separate from 56 checks'));
+    renderDirectory();
+  }
+
+  async function loadPublisherCardChecks() {
+    try {
+      const response = await fetch('./accepted-source-card-rechecks.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Publisher-card sidecar unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw new Error('Publisher-card digest unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength < 1000 || bytes.byteLength > 130000) throw new Error('Publisher-card bytes outside accepted scope.');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (x) => x.toString(16).padStart(2, '0')).join('');
+      if (hex !== publisherCardSha256) throw new Error('Publisher-card bytes differ from accepted projection.');
+      acceptPublisherCardChecks(JSON.parse(new TextDecoder().decode(bytes)));
+    } catch (_) {
+      // This is an optional source-only layer; don't disturb directory,
+      // B001–B004 badges, reviewed synopses, or separate ISBN edition shelf.
+      publisherCardChecks.byId.clear();
+      publisherCardChecks.available = false;
+    }
+    if (!publisherCardChecks.available) {
+      byId('publisher-card-state').textContent = 'Additional publisher-card checks unavailable or rejected; their state is not loaded, not zero. Directory and older metadata remain separate.';
+      byId('publisher-card-download').hidden = true;
+      renderDirectory();
     }
   }
 
@@ -1628,7 +1800,8 @@
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
   Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex()]).then(() => Promise.all([
-    loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog), loadMetadataRechecks()
+    loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
+    loadMetadataRechecks(), loadPublisherCardChecks()
   ]));
   loadIndex();
 })();

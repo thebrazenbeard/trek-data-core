@@ -14,7 +14,10 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
   'artwork-toggle', 'artwork-state', 'publisher-edition-nav-count', 'publisher-edition-state',
   'publisher-edition-query', 'publisher-edition-tag', 'publisher-edition-filters',
-  'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty'];
+  'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty',
+  'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
+  'publisher-isbn-query', 'publisher-isbn-status', 'publisher-isbn-tag',
+  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -60,7 +63,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -80,6 +83,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-synopsis').value = 'all';
   nodes.get('discovery-tag').value = 'all';
   nodes.get('publisher-edition-tag').value = 'all';
+  nodes.get('publisher-isbn-status').value = 'all';
+  nodes.get('publisher-isbn-tag').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -119,6 +124,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: sourceCardStatus, ok: sourceCardStatus >= 200 && sourceCardStatus < 300,
       arrayBuffer: async () => sourceCardBytes.buffer.slice(sourceCardBytes.byteOffset, sourceCardBytes.byteOffset + sourceCardBytes.byteLength)
     };
+    if (path === './publisher-isbn-crosschecks.json') return {
+      status: isbnStatus, ok: isbnStatus >= 200 && isbnStatus < 300,
+      arrayBuffer: async () => isbnBytes.buffer.slice(isbnBytes.byteOffset, isbnBytes.byteOffset + isbnBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   const deterministicCrypto = {
@@ -146,7 +155,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   // without a guessed fixed delay or swallowing a rejected request.
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
     './artwork-catalog.json', './synopsis-catalog.json',
-    './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json'];
+    './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
+    './publisher-isbn-crosschecks.json'];
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
@@ -178,6 +188,95 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+test('39 source-local publisher ISBN crosschecks are independently searchable without Work/edition authentication', async () => {
+  const isbnBytes = readFileSync(new URL('../explorer/publisher-isbn-crosschecks.json', import.meta.url));
+  const editions = readFileSync(new URL('../explorer/lit-publisher-edition-leads.json', import.meta.url));
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const metadata = readFileSync(new URL('../explorer/metadata-rechecks.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    null, 404, null, 404, SCRIPT, metadata, 200, null, 404, false, editions, 200, null, 404, isbnBytes, 200);
+  assert.equal(nodes.get('publisher-isbn-nav-count').textContent, '39');
+  assert.match(nodes.get('publisher-isbn-state').textContent, /30 source-local identifier agreements, 9 held discrepancies/);
+  assert.equal(nodes.get('publisher-isbn-download').hidden, false);
+  assert.match(nodes.get('publisher-isbn-summary').textContent, /39 of 39 source-local publisher ISBN crosschecks match/);
+  assert.equal(traverse(nodes.get('publisher-isbn-list'), (n) => n.tagName === 'article').length, 12);
+  assert.equal(nodes.get('publisher-edition-nav-count').textContent, '3');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+  assert.match(nodes.get('discovery-metrics').textContent, /metadata rechecked: 56 \/ 1,214/i);
+  assert.doesNotMatch(nodes.get('publisher-isbn-list').textContent, /original_publisher_description_paraphrase|C:\\Users|OneDrive/i);
+  const more = nodes.get('publisher-isbn-list').children.find((n) => n.tagName === 'button');
+  assert.ok(more, '39 records remain navigable in bounded pages');
+  more.fire('click');
+  assert.equal(traverse(nodes.get('publisher-isbn-list'), (n) => n.tagName === 'article').length, 24);
+  nodes.get('publisher-isbn-status').value = 'held';
+  nodes.get('publisher-isbn-filters').fire('change');
+  assert.match(nodes.get('publisher-isbn-summary').textContent, /^9 of 39 source-local/);
+  assert.equal(traverse(nodes.get('publisher-isbn-list'), (n) => n.className === 'card publisher-isbn-card isbn-held').length, 9);
+  assert.match(nodes.get('publisher-isbn-list').textContent, /HELD: publisher\/source-local date discrepancy/);
+  nodes.get('publisher-isbn-status').value = 'agreement';
+  nodes.get('publisher-isbn-query').value = 'grounded';
+  nodes.get('publisher-isbn-filters').fire('input');
+  assert.match(nodes.get('publisher-isbn-summary').textContent, /^1 of 39 source-local/);
+  assert.match(nodes.get('publisher-isbn-list').textContent, /Grounded/);
+  assert.match(nodes.get('publisher-isbn-list').textContent, /private edition unverified/);
+  nodes.get('publisher-isbn-status').value = 'all';
+  nodes.get('publisher-isbn-query').value = '';
+  nodes.get('publisher-isbn-tag').value = 'source-batch:opf-tng-0076-0079';
+  nodes.get('publisher-isbn-filters').fire('change');
+  assert.match(nodes.get('publisher-isbn-summary').textContent, /^4 of 39 source-local/);
+  assert.match(nodes.get('publisher-isbn-list').textContent, /Here There Be Dragons/);
+});
+
+test('publisher ISBN shelf rejects missing/tampered projection without reducing older catalog counts', async () => {
+  const valid = readFileSync(new URL('../explorer/publisher-isbn-crosschecks.json', import.meta.url));
+  const altered = Buffer.from(valid.toString('utf8').replace('Grounded', 'Forged Edition'));
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const editions = readFileSync(new URL('../explorer/lit-publisher-edition-leads.json', import.meta.url));
+  for (const [bytes, status] of [[valid, 404], [altered, 200]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+      null, 404, null, 404, SCRIPT, null, 404, null, 404, false, editions, 200, null, 404, bytes, status);
+    assert.equal(nodes.get('publisher-isbn-nav-count').textContent, '—');
+    assert.equal(nodes.get('publisher-edition-nav-count').textContent, '3');
+    assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+    assert.equal(nodes.get('publisher-isbn-download').hidden, true);
+    assert.match(nodes.get('publisher-isbn-summary').textContent, /withheld or unavailable; its count is not zero/);
+    assert.equal(nodes.get('publisher-isbn-list').children.length, 0);
+  }
+});
+
+test('repinned publisher ISBN JSON cannot smuggle private custody, plot text, external URLs or Work claims', async () => {
+  const valid = JSON.parse(readFileSync(new URL('../explorer/publisher-isbn-crosschecks.json', import.meta.url), 'utf8'));
+  const digest = '1170e8cb56b4ff3c5beab8d412fa5613b6e3b9d0ab7b5a18f80fe403c5bde3e8';
+  const mutations = [
+    (data) => { data.rows[0].crosscheck_state = 'VERIFIED_PRIVATE_EBOOK_WORK_ADMITTED'; },
+    (data) => { data.rows[0].private_edition_equivalence = 'VERIFIED'; },
+    (data) => { data.rows[0].publisher_title = '<script>alert(1)</script>'; },
+    (data) => { data.rows[0].publisher_creators[0] = '<img>'; },
+    (data) => { data.rows[0].publisher_url = 'https://evil.example.test/books/a/b/c/9780743439978'; },
+    (data) => { data.rows[0].publisher_isbn13 = '9780743439979'; },
+    (data) => { data.rows[0].source_local_ref = 'opf-local:9999'; },
+    (data) => { data.rows[0].public_source_record = 'C:\\Users\\patri\\OneDrive\\Books'; },
+    (data) => { data.rows[0].private_archive_path = 'C:\\Users\\patri\\OneDrive\\Books'; },
+    (data) => { data.rows[0].public_synopsis_effect = 'APPROVED'; },
+    (data) => { data.canonical_works_admitted = 39; },
+    (data) => { data.row_count = 40; }
+  ];
+  for (const mutate of mutations) {
+    const forged = structuredClone(valid);
+    mutate(forged);
+    const bytes = Buffer.from(JSON.stringify(forged));
+    const repinned = SCRIPT.replace(digest, createHash('sha256').update(bytes).digest('hex'));
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, null, 404,
+      null, 404, null, 404, repinned, null, 404, null, 404, false, null, 404, null, 404, bytes, 200);
+    assert.match(nodes.get('publisher-isbn-state').textContent, /withheld/);
+    assert.equal(nodes.get('publisher-isbn-list').children.length, 0);
+    const output = nodes.get('publisher-isbn-list').textContent;
+    for (const forbidden of ['VERIFIED_PRIVATE_EBOOK', '<script>', '<img>', 'OneDrive']) {
+      assert.equal(output.includes(forbidden), false);
+    }
+  }
+});
 
 test('61 first-party source-card observations are searchable without inflating 56 checks, 37 synopses, or 3 ISBN leads', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));

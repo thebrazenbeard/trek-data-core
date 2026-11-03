@@ -36,8 +36,13 @@ class MemoryAlphaArtworkDiscoveryTests(unittest.TestCase):
         two_rows = next(c for c in self.packet["file_candidates"] if c["candidate_id"] ==
                         "ma-file-doomsday-remastered-title-card")["source_local_row_ids"]
         self.assertEqual(two_rows, ["lead:0000", "legacy:s2:tos:005"])
-        self.assertNotIn("explorer/artwork-catalog.json", [str(p.relative_to(ROOT)) for p in
-                              ROOT.glob("explorer/artwork-catalog.json")])
+        # A future, separately reviewed Explorer sidecar must not invalidate
+        # this permanently blocked metadata packet.
+        self.assertTrue(all(item["image_url"] is None
+                            for item in self.packet["file_candidates"] +
+                            self.packet["commons_alternative_candidates"]))
+        self.assertFalse(any(path.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+                             for path in FOLDER.rglob("*") if path.is_file()))
 
     def test_no_image_urls_and_no_file_pages_read(self):
         self.assertFalse(self.packet["file_description_pages_read"])

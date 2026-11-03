@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "ENT-S2-B001-PUBLISHER-CARDS-20261103",
+  "baseline_accepted_main": "e5bfab953a9da961fd9d7ebc5d94b432ebca8fbc",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+  "read_surface": "PUBLISHER_RENDERED_GUIDE_AND_RAW_HTML_CARD_METADATA",
+  "raw_html_bytes_archived": false,
+  "audiovisual_episodes_watched": false,
+  "public_synopsis_authorized": false,
+  "artwork_copy_or_publication_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "accepted_ent_bundle_sha256": "b3ba6c175202d0bd55b711a850a939af6aee2786d0900bc1365cbd109086ef84",
+  "accepted_s1_b001_observations_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
+  "accepted_s1_b001_records_sha256": "4a48f7136eebff4693fb516bdc3af9bd320af3f2670abfbd492e48816b4e9fc0",
+  "accepted_s1_b002_observations_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
+  "accepted_s1_b002_records_sha256": "88996d6a16d52d6ea82faeccbc01cf97b924b8657d2f78139f2ec131d2e01ae0",
+  "rows": [
+    {
+      "row_id": "legacy:s2:ent:000",
+      "publisher_title": "Shockwave Part II",
+      "season": 2,
+      "episode": 1,
+      "publisher_description_sha256": "002d314336f29209603e9dc4ff30820ff37ccc87bc9d393460aa1412b9d6970e",
+      "original_synopsis_draft": "While Archer works to return from the thirty-first century, Enterprise's crew resists Silik's interrogations and searches for a way to protect the ship.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Sulibans",
+        "Enterprise",
+        "Silik"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_PART_II_CONTINUATION_CLAIM_NO_WORK_IDENTITY_LINK",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492637/CBS_ENTERPRISE_027_2784417_1920x1080.jpg",
+      "identity_hold": "PUBLISHER_SHOCKWAVE_PART_II_S1_PART_I_LINK_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY"
+    },
+    {
+      "row_id": "legacy:s2:ent:001",
+      "publisher_title": "Carbon Creek",
+      "season": 2,
+      "episode": 2,
+      "publisher_description_sha256": "8cd473070d262c6a33a51eec0ea7d83be938dd82a414b4daa415b33fa0e8b4de",
+      "original_synopsis_draft": "TPol tells Archer and Trip a story of Vulcans living in 1957 Carbon Creek, leaving her listeners unsure whether it is true.",
+      "entity_mentions_source_relative": [
+        "TPol",
+        "Vulcans",
+        "Carbon Creek",
+        "Archer",
+        "Trip"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_REPORTS_CHARACTER_NARRATED_TALE_NOT_AUTHENTICATED_HISTORY",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492074/CBS_ENTERPRISE_028_2784416_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:002",
+      "publisher_title": "Minefield",
+      "season": 2,
+      "episode": 3,
+      "publisher_description_sha256": "df06736f37dd8fafdff4f0a57d9f6cdb0c1f566e39ef5462ab261a3e87896c4c",
+      "original_synopsis_draft": "Reed works to disable a hull-embedded weapon while Archer searches for a rescue amid nearby Romulan danger.",
+      "entity_mentions_source_relative": [
+        "Enterprise",
+        "Reed",
+        "Romulans",
+        "Archer"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490418/CBS_ENTERPRISE_029_2784408_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:003",
+      "publisher_title": "Dead Stop",
+      "season": 2,
+      "episode": 4,
+      "publisher_description_sha256": "5dd65d877019abd6af5d949684675f3db1e2bd5b49b1fba54787940fd3bbb563",
+      "original_synopsis_draft": "Enterprise seeks urgent repairs from an automated station, but its seemingly easy price becomes ominous when Mayweather is found apparently dead.",
+      "entity_mentions_source_relative": [
+        "Mayweather"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_APPARENT_DEATH_NOT_AUTHENTICATED_CHARACTER_DEATH",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492039/CBS_ENTERPRISE_030_2784303_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:004",
+      "publisher_title": "A Night in Sickbay",
+      "season": 2,
+      "episode": 5,
+      "publisher_description_sha256": "35a16decfa3813aaa532b342574231ede51a5d4a0c162d924eb22aad0abdeedc",
+      "original_synopsis_draft": "Archer tends to his quarantined dog and wrestles with an apology to secure an essential part from the Kreetassens.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Porthos",
+        "Kreetassens",
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490437/CBS_ENTERPRISE_031_2784400_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:005",
+      "publisher_title": "Marauders",
+      "season": 2,
+      "episode": 6,
+      "publisher_description_sha256": "68b4109b374fde6c194d56b5f735113eb262d13e24ead999cfe1e30132aec648",
+      "original_synopsis_draft": "Archer seeks to help an alien settlement whose resources are repeatedly taken by Klingon raiders.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Klingons"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492021/CBS_ENTERPRISE_032_2784412_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:006",
+      "publisher_title": "The Seventh",
+      "season": 2,
+      "episode": 7,
+      "publisher_description_sha256": "82b7e0de2e74e260739a0f7be35756c015c0d415938557a2b6af2d03c461422e",
+      "original_synopsis_draft": "TPol tracks a fugitive from her past with assistance from her crew, while troubling memories complicate the search.",
+      "entity_mentions_source_relative": [
+        "Vulcan",
+        "TPol"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_REPORTS_TROUBLING_MEMORY_NOT_VERIFIED_HISTORY",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490516/CBS_ENTERPRISE_033_2784395_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:007",
+      "publisher_title": "The Communicator",
+      "season": 2,
+      "episode": 8,
+      "publisher_description_sha256": "3ee8adb601775a30ee8992264c247ec06e2c17133c4fbc3017d7aa05076f122c",
+      "original_synopsis_draft": "Reed and Archer return to retrieve a misplaced communicator but face suspicion from a society unfamiliar with warp travel.",
+      "entity_mentions_source_relative": [
+        "Reed",
+        "Archer"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_REPORTS_SUSPECTED_SPIES_NOT_ESTABLISHED_SPIES",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490767/CBS_ENTERPRISE_034_2784407_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:008",
+      "publisher_title": "Singularity",
+      "season": 2,
+      "episode": 9,
+      "publisher_description_sha256": "2e7ffc2fcfa631897fadd944ba1e6c90ed54370606f512d3fd8b1cccef3cf378",
+      "original_synopsis_draft": "Routine assignments aboard Enterprise become consuming fixations for members of the crew.",
+      "entity_mentions_source_relative": [
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_BEHAVIOR_DESCRIPTION_NOT_MEDICAL_DIAGNOSIS",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490214/CBS_ENTERPRISE_035_2784406_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:ent:009",
+      "publisher_title": "Vanishing Point",
+      "season": 2,
+      "episode": 10,
+      "publisher_description_sha256": "c96a2ede0435119fc325677be0299ccfab345c9cdfc8f0825055f1c924fca703",
+      "original_synopsis_draft": "After using the transporter for the first time, Hoshi begins questioning her identity amid unexplained events.",
+      "entity_mentions_source_relative": [
+        "Hoshi"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "source_claim_frame": "PUBLISHER_CHARACTER_IDENTITY_DOUBT_NOT_IDENTITY_CHANGE",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41488410/CBS_ENTERPRISE_036_2784410_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

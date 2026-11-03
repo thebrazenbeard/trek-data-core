@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
+  "row_id": "directory:literature:prh-autobiography-kirk",
+  "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+  "isbn": "9781783297481",
+  "cover_id": 13083310,
+  "edition_metadata_sha256": "dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa",
+  "edition_metadata_locator": "https://openlibrary.org/books/OL28813033M.json",
+  "edition_reviewer": "chatgpt.trek.librarian",
+  "source_reviewer": "chatgpt.trek.consolidator",
+  "image_reviewer": "chatgpt.trek.independent_auditor",
+  "image_preview_sha256": "1aee9b2835d96e3f04ca457e3728c98e24584a80c9a07beab6cce2c2350d8ec5",
+  "image_review_status": "COVER_IMAGE_VISUALLY_REVIEWED",
+  "image_review_observation": "Visible illustrated front jacket: The Autobiography of James T. Kirk, credited to David A. Goodman; not an interior title page.",
+  "reviewed_on": "2026-11-03"
+}

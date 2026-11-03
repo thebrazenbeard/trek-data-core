@@ -135,6 +135,9 @@ class PagesArtifactScopeTests(unittest.TestCase):
                           "opf-publisher-crosscheck-fourth-six-20261103"):
             self.assertIn(f"python3 proposals/librarian/{validator}/validate.py", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
+        self.assertIn("! -path explorer/artwork-catalog.json", text)
+        self.assertIn("! -path explorer/licensed-artwork", text)
+        self.assertIn("! -path 'explorer/licensed-artwork/*'", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/accepted-source-card-rechecks.json", text)
         self.assertIn("python3 tools/build_accepted_source_card_rechecks.py --check", text)
@@ -152,7 +155,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 16)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 17)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -209,7 +212,12 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertLess(text.index("Verify optional read-only metadata recheck projection"),
                         text.index("Verify optional original short-form synopsis appendix"))
         self.assertLess(text.index("Verify optional original short-form synopsis appendix"),
+                        text.index("Verify reviewed optional artwork and pre-opt-in network boundary"))
+        self.assertLess(text.index("Verify reviewed optional artwork and pre-opt-in network boundary"),
                         text.index("Verify final public artifact boundary"))
+        artwork = workflow_step("Verify reviewed optional artwork and pre-opt-in network boundary")
+        self.assertIn("python3 tools/validate_artwork_release.py --check --verify-git", artwork)
+        self.assertIn("test ! -L tools/validate_artwork_release.py", artwork)
         self.assertLess(text.index("Verify final public artifact boundary"),
                         text.index("Upload Explorer only"))
         self.assertIn('cmp "${RUNNER_TEMP}/trek-index-expected.json" explorer/index.json', text)

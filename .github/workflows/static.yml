@@ -239,6 +239,16 @@ jobs:
             python3 tools/build_short_publisher_overview_release.py --check
           fi
 
+      - name: Verify reviewed optional artwork and pre-opt-in network boundary
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Source and rights review pins are code-owned; a manifest cannot
+          # approve itself. Missing artwork is safe and needs no network.
+          test -f tools/validate_artwork_release.py
+          test ! -L tools/validate_artwork_release.py
+          python3 tools/validate_artwork_release.py --check --verify-git
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -281,6 +291,9 @@ jobs:
             ! -path explorer/accepted-source-card-rechecks.json \
             ! -path explorer/short-synopsis-catalog.json \
             ! -path explorer/synopsis-catalog.json \
+            ! -path explorer/artwork-catalog.json \
+            ! -path explorer/licensed-artwork \
+            ! -path 'explorer/licensed-artwork/*' \
             ! -path explorer/art-original-episode.svg \
             ! -path explorer/art-original-film.svg \
             ! -path explorer/art-original-literature.svg \

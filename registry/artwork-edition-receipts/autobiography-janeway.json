@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
+  "row_id": "directory:literature:prh-autobiography-janeway",
+  "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+  "isbn": "9781789095333",
+  "cover_id": 12097815,
+  "edition_metadata_sha256": "b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09",
+  "edition_metadata_locator": "https://openlibrary.org/books/OL30052366M.json",
+  "edition_reviewer": "chatgpt.trek.librarian",
+  "source_reviewer": "chatgpt.trek.consolidator",
+  "image_reviewer": "chatgpt.trek.independent_auditor",
+  "image_preview_sha256": "6ac504dee361e64bf5d84f6a79966e3a49d2f0827d59a809b52713ae93de81d6",
+  "image_review_status": "COVER_IMAGE_VISUALLY_REVIEWED",
+  "image_review_observation": "Visible illustrated front jacket: The Autobiography of Kathryn Janeway, credited to Una McCormack; not an interior title page.",
+  "reviewed_on": "2026-11-03"
+}

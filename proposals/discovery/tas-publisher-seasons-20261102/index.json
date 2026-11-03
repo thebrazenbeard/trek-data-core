@@ -1,0 +1,29 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "proposal_status": "DISCOVERY_ONLY",
+  "proposal_type": "PUBLISHER_EPISODE_METADATA_SOURCE_OBSERVATIONS",
+  "publisher": "Paramount+",
+  "schema_version": "1.0.0",
+  "source_pages": [
+    {
+      "listed_slot_count": 16,
+      "mission_id": "tas",
+      "observation_csv_sha256": "7731f528c4e79016d4b20d661c755754d408918d298001a390997ff06a6adf92",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "source_body_bytes": 281559,
+      "source_body_sha256": "64576be49b260ad80473116a8d8826ab437f36de50cdec70db6edf8285880044"
+    },
+    {
+      "listed_slot_count": 6,
+      "mission_id": "tas",
+      "observation_csv_sha256": "8e1cf9ae57c57def2d3177d4b2013643c58978df7a0203b5255070bfe47bfdb5",
+      "official_page": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "source_body_bytes": 256698,
+      "source_body_sha256": "aa055b83af70ee1fe4af340d216f696f17a4f5741d0e14cc6b1733d1ccc9fb4e"
+    }
+  ]
+}

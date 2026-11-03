@@ -2,7 +2,7 @@
   "admission_effect": "NONE",
   "counts_by_medium": {
     "AUDIO": 1,
-    "EPISODE": 1123,
+    "EPISODE": 1155,
     "FILM": 14,
     "LITERATURE": 1,
     "SHORT_FORM": 15
@@ -11,7 +11,7 @@
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 1154,
+  "row_count": 1186,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -18394,6 +18394,560 @@
     },
     {
       "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "Beyond the Farthest Star",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "Yesteryear",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "One of Our Planets is Missing",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Lorelei Signal",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "More Tribbles, More Troubles",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Survivor",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E7",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Infinite Vulcan",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E8",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Magicks of Megas-tu",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E9",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "Once Upon a Planet",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E10",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "Mudd's Passion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E11",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:010",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Terratin Incident",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E12",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:011",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Time Trap",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E13",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:012",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Ambergris Element",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E14",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:013",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Slaver Weapon",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E15",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:014",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Eye of the Beholder",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S1E16",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s1:015",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+      "title": "The Jihad",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E1",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "The Pirates of Orion",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E2",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "Bem",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E3",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "The Practical Joker",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E4",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "Albatross",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E5",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "How Sharper Than a Serpent's Tooth",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "TAS S2E6",
+      "coverage_effect": "NONE",
+      "details": [
+        "Publisher source-local roster; overlapping earlier observations possible"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "publisher:tas:s2:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "source_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+      "title": "The Counterclock Incident",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 1 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:000",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Lost and Found, Part I",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 2 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:001",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Lost and Found, Part II",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 3 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "Starstruck photo caption: Ep#103 (same source)"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:002",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Starstruck",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 4 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:003",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Dreamcatcher",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 5 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:004",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Terror Firma",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 6 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:005",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Kobayashi",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 7 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:006",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "First Con-tact",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 8 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:007",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "Time Amok",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 9 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:008",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "A Moral Star, Part 1",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "PUBLISHER_EPISODE_SLOT",
+      "context": "PRO S1 title-list position 10 (inferred)",
+      "coverage_effect": "NONE",
+      "details": [
+        "Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+        "No separately observed per-title ordinal label"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "EPISODE",
+      "row_id": "studio:mikros-s1a:009",
+      "source_group": "publisher:paramount",
+      "source_input": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "source_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+      "title": "A Moral Star, Part 2",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
       "candidate_kind": "SCRIPTED_SHORT",
       "context": "short-treks · S1E1",
       "coverage_effect": "NONE",
@@ -19216,6 +19770,18 @@
       "sha256": "0bb782819f5c1e25c300f88868f2322eef37d450b75c71dc9d0673adbf009f95"
     },
     {
+      "path": "proposals/discovery/prodigy-mikros-volume1-20261102/index.json",
+      "sha256": "9cd59ad3b9b5524cd5d4c2bc50c826e6f1018684ebb6e75cf65542bef2cc7391"
+    },
+    {
+      "path": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a.csv",
+      "sha256": "17b17170abb753447439bf652c31dd512eabae98215e3ace6b20e10fb403e8f6"
+    },
+    {
+      "path": "proposals/discovery/prodigy-mikros-volume1-20261102/mikros-s1a/bundle.json",
+      "sha256": "55544d1cc60d3694f2abecac8ff240b437ab57be1fc7dc31d945eff3aa7bebfe"
+    },
+    {
       "path": "proposals/discovery/prodigy-startrek-publisher-20261102/index.json",
       "sha256": "ebe77927fda4a09e2f862ec8a53a69799e570e0c9ee580e1d60b4638907b793b"
     },
@@ -19394,6 +19960,26 @@
     {
       "path": "proposals/discovery/shorts-audio-20261102/records.json",
       "sha256": "e7bff0015cdff7eb3ccc27d5274eea6a737188531168a9ffdcc28ba21b6e70b8"
+    },
+    {
+      "path": "proposals/discovery/tas-publisher-seasons-20261102/index.json",
+      "sha256": "a2112a52e97ead33ae63cfbf39e5a6b8fd827e64adbd407cf7f40c99fc3a1971"
+    },
+    {
+      "path": "proposals/discovery/tas-publisher-seasons-20261102/s1.csv",
+      "sha256": "7731f528c4e79016d4b20d661c755754d408918d298001a390997ff06a6adf92"
+    },
+    {
+      "path": "proposals/discovery/tas-publisher-seasons-20261102/s1/bundle.json",
+      "sha256": "d0db39e4a8c85bcfd41d50b65195d78b096a8e41654f0593a63be8e6cfdc768c"
+    },
+    {
+      "path": "proposals/discovery/tas-publisher-seasons-20261102/s2.csv",
+      "sha256": "8e1cf9ae57c57def2d3177d4b2013643c58978df7a0203b5255070bfe47bfdb5"
+    },
+    {
+      "path": "proposals/discovery/tas-publisher-seasons-20261102/s2/bundle.json",
+      "sha256": "aafc2fa9af86c3f43f9aef0ab6e07b4d07f76c44b1219149838461c3ae9b4ac8"
     },
     {
       "path": "proposals/librarian/ring-of-fire-editions-20261102/records.json",

@@ -1,0 +1,27 @@
+{
+  "schema_version":"1.0.0",
+  "data_status":"RENDERED_PRIMARY_EPISODE_GUIDE_CARDS_WITH_MULTIPART_UNRESOLVED",
+  "observed_utc_date":"2026-11-03",
+  "source_family":"paramount_corporate_publisher_family",
+  "source_raw_bytes_pinned":false,
+  "admission_effect":"NONE",
+  "coverage_effect":"NONE",
+  "rows":[
+    {"row_id":"lead:0035","series":"TAS","cards":[{"season":2,"episode":1,"official_title":"The Pirates of Orion"}],"title_resolution":"EXACT","original_synopsis_draft":"After Orion pirates steal crucial medicine, the crew must recover it to save Spock."},
+    {"row_id":"lead:0036","series":"TAS","cards":[{"season":2,"episode":3,"official_title":"The Practical Joker"}],"title_resolution":"EXACT","original_synopsis_draft":"The Enterprise computer begins playing elaborate tricks on its crew after showing signs of sentience."},
+    {"row_id":"lead:0037","series":"TAS","cards":[{"season":1,"episode":6,"official_title":"The Survivor"}],"title_resolution":"EXACT","original_synopsis_draft":"The Enterprise locates an explorer who had been missing for years."},
+    {"row_id":"lead:0038","series":"TAS","cards":[{"season":1,"episode":11,"official_title":"The Terratin Incident"}],"title_resolution":"EXACT","original_synopsis_draft":"Radiation exposure causes members of the Enterprise crew to shrink in size."},
+    {"row_id":"lead:0039","series":"TAS","cards":[{"season":1,"episode":5,"official_title":"More Tribbles, More Troubles"}],"title_resolution":"EXACT","original_synopsis_draft":"Cyrano Jones introduces an unusual kind of tribble that cannot reproduce."},
+    {"row_id":"lead:0040","series":"TNG","cards":[{"season":1,"episode":26,"official_title":"The Neutral Zone"}],"title_resolution":"EXACT","original_synopsis_draft":"While preparing to meet hostile Romulans, the crew discovers a vessel carrying three frozen people from the twentieth century."},
+    {"row_id":"lead:0041","series":"TNG","cards":[{"season":1,"episode":10,"official_title":"Hide and \"Q\""}],"title_resolution":"PUNCTUATION_VARIANT_UNRESOLVED","original_synopsis_draft":"Q challenges the Enterprise again, tempting Riker with extraordinary abilities in return for joining the continuum."},
+    {"row_id":"lead:0042","series":"TNG","cards":[{"season":6,"episode":10,"official_title":"Chain Of Command - Part 1"},{"season":6,"episode":11,"official_title":"Chain Of Command - Part 2"}],"title_resolution":"MULTIPART_SOURCE_LOCAL_TARGET_UNRESOLVED","original_synopsis_draft":null},
+    {"row_id":"lead:0043","series":"TNG","cards":[{"season":1,"episode":23,"official_title":"Skin of Evil"}],"title_resolution":"EXACT","original_synopsis_draft":"A rescue operation ends in tragedy when a hostile alien kills an Enterprise officer."},
+    {"row_id":"lead:0044","series":"TNG","cards":[{"season":6,"episode":23,"official_title":"Rightful Heir"}],"title_resolution":"EXACT","original_synopsis_draft":"Worf's convictions are shaken by the apparent return of a legendary Klingon warrior."},
+    {"row_id":"lead:0045","series":"TNG","cards":[{"season":4,"episode":3,"official_title":"Brothers"}],"title_resolution":"EXACT","original_synopsis_draft":"Called back to his creator, Data comes into conflict with his brother Lore."},
+    {"row_id":"lead:0046","series":"TNG","cards":[{"season":4,"episode":22,"official_title":"Half a Life"}],"title_resolution":"EXACT","original_synopsis_draft":"Picard offers protection to a visiting scientist who wants to escape a ritual death required by his culture."},
+    {"row_id":"lead:0047","series":"TNG","cards":[{"season":5,"episode":4,"official_title":"Silicon Avatar"}],"title_resolution":"EXACT","original_synopsis_draft":"Picard seeks communication with a dangerous entity before a visiting scientist destroys it."},
+    {"row_id":"lead:0048","series":"TNG","cards":[{"season":5,"episode":10,"official_title":"New Ground"}],"title_resolution":"EXACT","original_synopsis_draft":"Worf confronts the difficulties of fatherhood when his son Alexander joins him aboard the Enterprise."},
+    {"row_id":"lead:0049","series":"TNG","cards":[{"season":5,"episode":11,"official_title":"Hero Worship"}],"title_resolution":"EXACT","original_synopsis_draft":"A young survivor of a destroyed vessel begins to imitate Data."},
+    {"row_id":"lead:0050","series":"DS9","cards":[{"season":4,"episode":13,"official_title":"Crossfire"}],"title_resolution":"EXACT","original_synopsis_draft":"Odo's feelings for Kira complicate his assignment protecting a Bajoran leader who is also drawn to her."}
+  ]
+}

@@ -1,0 +1,26 @@
+# Six more literary editions: official descriptions and cover locators held
+
+**Research role:** LIT. **Observation:** 2026-11-03 UTC. **Status:** PROPOSAL_ONLY. This is a separate publisher-source discovery batch, not a Source→Work admission or book close-read.
+
+I opened six ISBN-specific official Simon & Schuster product pages and inspected their **About the Book**, creator/series/title, edition format, publisher/imprint, publication date, page count, ISBN13, and on-page **High Resolution Images** resource before recording each original concise description-based paraphrase. The ISBN-specific high-resolution image URLs were exposed by following official page links. Most returned unsupported image decoding rather than image bytes: the URLs are **held link locators, not downloaded covers or a grant to display them**.
+
+| Edition/page | Exact ISBN | Publisher format/date | Description source |
+|---|---|---|---|
+| *Star Trek: Strange New Worlds: Toward the Night* | 9781668074572 | Pocket Books/Star Trek; trade paperback; 2026-03-17 | [Official publisher](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Toward-the-Night/James-Swallow/Star-Trek-Strange-New-Worlds/9781668074572) |
+| *Star Trek: Strange New Worlds: Asylum* | 9781668051375 | Pocket Books/Star Trek; trade paperback; 2025-11-04 | [Official publisher](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Asylum/Una-McCormack/Star-Trek-Strange-New-Worlds/9781668051375) |
+| *Star Trek: Discovery: Dead Endless* | 9781982123840 | Pocket Books/Star Trek; trade paperback; 2019-12-17 | [Official publisher](https://www.simonandschuster.com/books/Star-Trek-Discovery-Dead-Endless/Dave-Galanter/Star-Trek-Discovery/9781982123840) |
+| *Shadows Have Offended* | 9781982154042 | Pocket Books/Star Trek; trade paperback; 2021-07-13 | [Official publisher](https://www.simonandschuster.com/books/Shadows-Have-Offended/Cassandra-Rose-Clarke/Star-Trek-The-Next-Generation/9781982154042) |
+| *The Higher Frontier* | 9781982133665 | Pocket Books/Star Trek; trade paperback; 2020-03-10 | [Official publisher](https://www.simonandschuster.com/books/The-Higher-Frontier/Christopher-L-Bennett/Star-Trek-The-Original-Series/9781982133665) |
+| *A Dangerous Trade* | 9781665921176 | Simon Spotlight; trade paperback; 2023-01-17 | [Official publisher](https://www.simonandschuster.com/books/A-Dangerous-Trade/Cassandra-Rose-Clarke/Star-Trek-Prodigy/9781665921176) |
+
+## Cross-batch identity and source limitations
+
+- These **six distinct Work-title candidates** do not overlap the previously versioned **21** literary title candidates across #261, #266, #270, #274. The fourth-wave #274 was merged into accepted `main` at `b0e5e6e` while this batch was being developed. **Accepted repository presence is not accepted Source/Work research admission**: the four preceding packets remain proposal-only candidate ledgers, and these six are also only proposed.
+- *The High Country* was considered but excluded because it already appears in #261. Different ISBNs of the same title do not count as separate Works. The selected six include a middle-grade Prodigy novel with a different on-page publisher imprint, but **all six pages share one `simonandschuster.com` upstream publisher lineage**, not six independent corroborations.
+- Publisher marketing descriptions support only a labeled **`PUBLISHER_DESCRIPTION_PARAPHRASE`**. They cannot establish complete plot accuracy, source text custody, source-bound book text, close-read, canonical story-world assertions, or objective character identity. The concise paraphrases are original and no publisher's source prose is duplicated.
+- Exact high-resolution cover image URLs have `RIGHTS_UNVERIFIED_HOLD_NO_PUBLIC_DISPLAY`. No bytes, thumbnails, derivative works or permissions are conveyed; accepted website display still needs an independent rights/use check and Consolidator decision.
+- **Hostile source-scope correction:** A preliminary *Toward the Night* paraphrase called Spock's party "stranded," but the publisher page only described risky transporters and a ground investigation. The final candidate states what Spock's team found without claiming they were unable to leave; a negative regression guards against reinstating that implication.
+- **Second hostile source-scope correction:** A preliminary *A Dangerous Trade* paraphrase implied a completed battery-for-parts exchange. The official page says the crew *decides* on the proposed barter; the corrected synopsis therefore describes only the plan, with a second negative regression.
+- Full text, edition-family exhaustiveness, structural indexing, semantic coverage, entity/evidence creation, and global reconciliation all remain **false/unqualified**. No accepted `Source`, `Work`, `Evidence`, `Assertion`, projection, or coverage count changed.
+
+`observations.json` contains six ISBN-bound rows; `validate.py` pins its raw SHA and the **four** preceding accepted-main publisher-proposal blobs, including #274, for collision checks. The hostile tests check unsupported status promotion, publisher/cover drift, title/edition overlap and source-scope anchors. **Independent publisher-page re-read remains necessary** before any publication or promotion beyond a DRAFT proposal.

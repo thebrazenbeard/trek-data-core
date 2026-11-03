@@ -1,0 +1,423 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-DS9-TXT50-20261103",
+  "accepted_main_baseline": "b75328ef7a75d0dc272323cd7a8478f269027644",
+  "archive": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "whole_zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "txt_members": 220
+  },
+  "sample": "first 50 lexically sorted TXT members (DS9 positions 001-050)",
+  "data_rights": "UNKNOWN",
+  "member_byte_access": "HASHED_WITHOUT_SEMANTIC_READ",
+  "work_coverage_stage": "DISCOVERED",
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "copyrighted_text_exported": false,
+  "private_member_paths_exported": false,
+  "records": [
+    {
+      "source_local_id": "txt-local:0001",
+      "archive_txt_ordinal": 1,
+      "series_file_sequence_hint": 1,
+      "title_hint": "Emissary",
+      "uncompressed_bytes": 363543,
+      "member_sha256": "fb80998ce09f42b096d97cbffda446eb68f1b022d6c8f344d665bc1cf54f5f3e"
+    },
+    {
+      "source_local_id": "txt-local:0002",
+      "archive_txt_ordinal": 2,
+      "series_file_sequence_hint": 2,
+      "title_hint": "The Siege",
+      "uncompressed_bytes": 423375,
+      "member_sha256": "72c60433e98c6d8cc0ad0e2de7edc2713c2db8efaae55a27def51da6aaae5d5f"
+    },
+    {
+      "source_local_id": "txt-local:0003",
+      "archive_txt_ordinal": 3,
+      "series_file_sequence_hint": 3,
+      "title_hint": "Bloodletter",
+      "uncompressed_bytes": 405352,
+      "member_sha256": "2db1acb00ef22ed41eb4bf38bffd4ced2bfd1d64c709ed2522e7cf06515a8dc2"
+    },
+    {
+      "source_local_id": "txt-local:0004",
+      "archive_txt_ordinal": 4,
+      "series_file_sequence_hint": 4,
+      "title_hint": "The Big Game",
+      "uncompressed_bytes": 349424,
+      "member_sha256": "710c3b64ea8bdfa73d193611f6ecb2a8682c9fa226c72229e24bb068dd11dea2"
+    },
+    {
+      "source_local_id": "txt-local:0005",
+      "archive_txt_ordinal": 5,
+      "series_file_sequence_hint": 5,
+      "title_hint": "Fallen Heroes",
+      "uncompressed_bytes": 484043,
+      "member_sha256": "7e3461517e2d417b4aa63b8c55b9f96a8b91c5ea8e7867902746bd887ff94a02"
+    },
+    {
+      "source_local_id": "txt-local:0006",
+      "archive_txt_ordinal": 6,
+      "series_file_sequence_hint": 6,
+      "title_hint": "Betrayal",
+      "uncompressed_bytes": 406643,
+      "member_sha256": "f6a2e73f1745e91c6a4d527f92b1af8413c9d1f4b81119e82133d81a1a0b79ad"
+    },
+    {
+      "source_local_id": "txt-local:0007",
+      "archive_txt_ordinal": 7,
+      "series_file_sequence_hint": 7,
+      "title_hint": "Warchild",
+      "uncompressed_bytes": 461029,
+      "member_sha256": "9e31eb8729181904bbc6c8fe60adc5c32c86fdc4b5f6ecd44fe7be6ee9637513"
+    },
+    {
+      "source_local_id": "txt-local:0008",
+      "archive_txt_ordinal": 8,
+      "series_file_sequence_hint": 8,
+      "title_hint": "Antimatter",
+      "uncompressed_bytes": 412920,
+      "member_sha256": "adb7e52a4a373147bc8f2b33482622946fc6a2dc2537482fa196d80d88bc5b00"
+    },
+    {
+      "source_local_id": "txt-local:0009",
+      "archive_txt_ordinal": 9,
+      "series_file_sequence_hint": 9,
+      "title_hint": "Proud Helios",
+      "uncompressed_bytes": 470856,
+      "member_sha256": "7d2d07e942057809a561cf2fec2d39286384f58ce5719af09d0fd80b599baf98"
+    },
+    {
+      "source_local_id": "txt-local:0010",
+      "archive_txt_ordinal": 10,
+      "series_file_sequence_hint": 10,
+      "title_hint": "Valhalla",
+      "uncompressed_bytes": 397673,
+      "member_sha256": "30c06686fbeed1fad1e897494b1c9a6a74d87d64fb4c2aab1f241da031a52748"
+    },
+    {
+      "source_local_id": "txt-local:0011",
+      "archive_txt_ordinal": 11,
+      "series_file_sequence_hint": 11,
+      "title_hint": "Devil in the Sky",
+      "uncompressed_bytes": 423188,
+      "member_sha256": "a960c4ae9ccda6cf9c9c602dd68d045f7c800ff62247fa04d213b1fd3641d07a"
+    },
+    {
+      "source_local_id": "txt-local:0012",
+      "archive_txt_ordinal": 12,
+      "series_file_sequence_hint": 12,
+      "title_hint": "The Laertian Gamble",
+      "uncompressed_bytes": 323725,
+      "member_sha256": "5aa9abc0337b3437d142b4ffc0228edacb70e0ca384dd1a3992cf245304e851d"
+    },
+    {
+      "source_local_id": "txt-local:0013",
+      "archive_txt_ordinal": 13,
+      "series_file_sequence_hint": 13,
+      "title_hint": "Station Rage",
+      "uncompressed_bytes": 401930,
+      "member_sha256": "e257384852cc6c2688473deceed56d140b5a999827e0b6f73c383105b255440c"
+    },
+    {
+      "source_local_id": "txt-local:0014",
+      "archive_txt_ordinal": 14,
+      "series_file_sequence_hint": 14,
+      "title_hint": "The Long Night",
+      "uncompressed_bytes": 384096,
+      "member_sha256": "1819d075f2415f8fce71dd381325b3ed5b4e84ce54ba28cc8cd77b2561388c15"
+    },
+    {
+      "source_local_id": "txt-local:0015",
+      "archive_txt_ordinal": 15,
+      "series_file_sequence_hint": 15,
+      "title_hint": "Objective Bajor",
+      "uncompressed_bytes": 483741,
+      "member_sha256": "e1343a7e902e0450eb6f56b83ec815ac04048dd6aafea799c1f0a80e0ccca029"
+    },
+    {
+      "source_local_id": "txt-local:0016",
+      "archive_txt_ordinal": 16,
+      "series_file_sequence_hint": 16,
+      "title_hint": "Time's Enemy (Invasion, Book 3)",
+      "uncompressed_bytes": 688129,
+      "member_sha256": "4eedbf7a6c4b703ac125342bec1a0edfecaa15a70eaf0b043035d8095e9a162a"
+    },
+    {
+      "source_local_id": "txt-local:0017",
+      "archive_txt_ordinal": 17,
+      "series_file_sequence_hint": 17,
+      "title_hint": "The Heart of the Warrior",
+      "uncompressed_bytes": 347514,
+      "member_sha256": "7101063bb7f22bb2cf7a54433e9cbe28669949bc9a001ae7fd5c864f1ac29051"
+    },
+    {
+      "source_local_id": "txt-local:0018",
+      "archive_txt_ordinal": 18,
+      "series_file_sequence_hint": 18,
+      "title_hint": "Saratoga",
+      "uncompressed_bytes": 345428,
+      "member_sha256": "913f4ffd3ec53bf1123905bc739b6bb71508acbc38a24db6dbd3f97ced762569"
+    },
+    {
+      "source_local_id": "txt-local:0019",
+      "archive_txt_ordinal": 19,
+      "series_file_sequence_hint": 19,
+      "title_hint": "The Tempest",
+      "uncompressed_bytes": 353054,
+      "member_sha256": "f74eeabb0c89fe0b45caf9b997594351933f812fa3c3dbf368805a4ee0b5675a"
+    },
+    {
+      "source_local_id": "txt-local:0020",
+      "archive_txt_ordinal": 20,
+      "series_file_sequence_hint": 20,
+      "title_hint": "Wrath of the Prophets",
+      "uncompressed_bytes": 354066,
+      "member_sha256": "6445f8fd341f0cb410ff6aa3da0627d0457d266c114cb1ce55d0fe9ad9073321"
+    },
+    {
+      "source_local_id": "txt-local:0021",
+      "archive_txt_ordinal": 21,
+      "series_file_sequence_hint": 21,
+      "title_hint": "Trial by Error",
+      "uncompressed_bytes": 348080,
+      "member_sha256": "90a7bd85008551a6c5e8574034b9275e4a4f8851df833b64752bef1d90006694"
+    },
+    {
+      "source_local_id": "txt-local:0022",
+      "archive_txt_ordinal": 22,
+      "series_file_sequence_hint": 22,
+      "title_hint": "Vengeance",
+      "uncompressed_bytes": 475413,
+      "member_sha256": "27354ae03cf3edfd9395a09a1bc2901de8cecfce44e1ba5bdade58e06ad98386"
+    },
+    {
+      "source_local_id": "txt-local:0023",
+      "archive_txt_ordinal": 23,
+      "series_file_sequence_hint": 23,
+      "title_hint": "The 34th Rule",
+      "uncompressed_bytes": 774957,
+      "member_sha256": "b3dda2110c5d6c21c564c2139b7293ca724c83bbd0e2aa703a2954d589fe4d3e"
+    },
+    {
+      "source_local_id": "txt-local:0024",
+      "archive_txt_ordinal": 24,
+      "series_file_sequence_hint": 24,
+      "title_hint": "The Conquered (Rebels, Book 1)",
+      "uncompressed_bytes": 296192,
+      "member_sha256": "6f450bf79989442de03cf2e041d098b107af14296666d53c12c72a3043f48f31"
+    },
+    {
+      "source_local_id": "txt-local:0025",
+      "archive_txt_ordinal": 25,
+      "series_file_sequence_hint": 25,
+      "title_hint": "The Courageous (Rebels, Book 2)",
+      "uncompressed_bytes": 302922,
+      "member_sha256": "ebe9b612852a955423e1ecd7254ab1f0f16bd7955797d283af8b35e43a5ccaa7"
+    },
+    {
+      "source_local_id": "txt-local:0026",
+      "archive_txt_ordinal": 26,
+      "series_file_sequence_hint": 26,
+      "title_hint": "The Liberated (Rebels, Book 3)",
+      "uncompressed_bytes": 339818,
+      "member_sha256": "dea3d192c6f33448001edae13f7d7933c1c349ba679973d4bf424acfcf1ec512"
+    },
+    {
+      "source_local_id": "txt-local:0027",
+      "archive_txt_ordinal": 27,
+      "series_file_sequence_hint": 27,
+      "title_hint": "The Lives of Dax",
+      "uncompressed_bytes": 522626,
+      "member_sha256": "85449e82f66ead847d51578fbe2b72fbe03b6a78a9e0643d776949fb1d5d50f3"
+    },
+    {
+      "source_local_id": "txt-local:0028",
+      "archive_txt_ordinal": 28,
+      "series_file_sequence_hint": 28,
+      "title_hint": "The Fall of Terok Nor (Millennium, Book 1)",
+      "uncompressed_bytes": 600963,
+      "member_sha256": "8d32ed141022fb790156f7d14c55d055292548fef2d8cb8ee8eb414c9a91643e"
+    },
+    {
+      "source_local_id": "txt-local:0029",
+      "archive_txt_ordinal": 29,
+      "series_file_sequence_hint": 29,
+      "title_hint": "The War of the Prophets (Millennium, Book 2)",
+      "uncompressed_bytes": 549106,
+      "member_sha256": "9828562264cb9868d4e4973014baab642fde9ac9c6453064ad3c9c8c8ba2c6dc"
+    },
+    {
+      "source_local_id": "txt-local:0030",
+      "archive_txt_ordinal": 30,
+      "series_file_sequence_hint": 30,
+      "title_hint": "Inferno (Millennium, Book 3)",
+      "uncompressed_bytes": 660925,
+      "member_sha256": "312851614d9284983c33ad7079a1893e8df2536fef85e853ea6b52bcec3ec20e"
+    },
+    {
+      "source_local_id": "txt-local:0031",
+      "archive_txt_ordinal": 31,
+      "series_file_sequence_hint": 31,
+      "title_hint": "A Stitch in Time",
+      "uncompressed_bytes": 629226,
+      "member_sha256": "66a94e88c48bac5fcdf070d86240f1b533c615fea1f90f7c30b847e7e09f02a9"
+    },
+    {
+      "source_local_id": "txt-local:0032",
+      "archive_txt_ordinal": 32,
+      "series_file_sequence_hint": 32,
+      "title_hint": "Avatar (Book 1)",
+      "uncompressed_bytes": 430828,
+      "member_sha256": "3b547eea574f6070d9d1dabdd39442a39a827265b8f2a9c68120ed400eaf9d36"
+    },
+    {
+      "source_local_id": "txt-local:0033",
+      "archive_txt_ordinal": 33,
+      "series_file_sequence_hint": 33,
+      "title_hint": "Avatar (Book 2)",
+      "uncompressed_bytes": 330868,
+      "member_sha256": "e7ab98ea7540cd4d5db16e76ee12a645192a5dbab088199604086ea08b1175d5"
+    },
+    {
+      "source_local_id": "txt-local:0034",
+      "archive_txt_ordinal": 34,
+      "series_file_sequence_hint": 34,
+      "title_hint": "Twilight (Mission Gamma, Book 1)",
+      "uncompressed_bytes": 1070342,
+      "member_sha256": "5c21d17ff05187ae1440788267bfccfe3d84cdb5d4f7951944eed34efcadb6c6"
+    },
+    {
+      "source_local_id": "txt-local:0035",
+      "archive_txt_ordinal": 35,
+      "series_file_sequence_hint": 35,
+      "title_hint": "This Gray Spirit (Mission Gamma, Book 2)",
+      "uncompressed_bytes": 855220,
+      "member_sha256": "a05508909897bab011ed6e6e385d9da1e60b1a638e8520498ae65dfbe8b3c182"
+    },
+    {
+      "source_local_id": "txt-local:0036",
+      "archive_txt_ordinal": 36,
+      "series_file_sequence_hint": 36,
+      "title_hint": "Cathedral (Mission Gamma, Book 3)",
+      "uncompressed_bytes": 623382,
+      "member_sha256": "69ed5f84568140e43ac1f67a6ea1a5c47effc1e8d43c653a585a2aef5f5d972d"
+    },
+    {
+      "source_local_id": "txt-local:0037",
+      "archive_txt_ordinal": 37,
+      "series_file_sequence_hint": 37,
+      "title_hint": "Lesser Evil (Mission Gamma, Book 4)",
+      "uncompressed_bytes": 348040,
+      "member_sha256": "824e7a71e82495991e1c7fbe1526e779abcebebb58b7c21873748fefc51c5106"
+    },
+    {
+      "source_local_id": "txt-local:0038",
+      "archive_txt_ordinal": 38,
+      "series_file_sequence_hint": 38,
+      "title_hint": "Rising Son",
+      "uncompressed_bytes": 478545,
+      "member_sha256": "8663af9dd3eba65e485d8f241223431d7e10d4d4e2f3ee3c88df2a66f2f67d87"
+    },
+    {
+      "source_local_id": "txt-local:0039",
+      "archive_txt_ordinal": 39,
+      "series_file_sequence_hint": 39,
+      "title_hint": "The Left Hand of Destiny (Book 1)",
+      "uncompressed_bytes": 441694,
+      "member_sha256": "418c01d8c9aaae9b47670d9b69662a25bb342d50a0db199b8347a017be682721"
+    },
+    {
+      "source_local_id": "txt-local:0040",
+      "archive_txt_ordinal": 40,
+      "series_file_sequence_hint": 40,
+      "title_hint": "The Left Hand of Destiny (Book 2)",
+      "uncompressed_bytes": 480763,
+      "member_sha256": "707f5e4d8fe9206eb92a75e81b2dff1ed2355622d9a2a71579cd1e163673a817"
+    },
+    {
+      "source_local_id": "txt-local:0041",
+      "archive_txt_ordinal": 41,
+      "series_file_sequence_hint": 41,
+      "title_hint": "Warped",
+      "uncompressed_bytes": 594531,
+      "member_sha256": "0b491b6627347d266a138147a4cca9b563af5380812f99d0d1c0da2b13856475"
+    },
+    {
+      "source_local_id": "txt-local:0042",
+      "archive_txt_ordinal": 42,
+      "series_file_sequence_hint": 42,
+      "title_hint": "Prophecy and Change",
+      "uncompressed_bytes": 768151,
+      "member_sha256": "aff05a2e369d9284b9bc8e23fe80c6d5315e3785cc4827dba787a9a28825fa6c"
+    },
+    {
+      "source_local_id": "txt-local:0043",
+      "archive_txt_ordinal": 43,
+      "series_file_sequence_hint": 43,
+      "title_hint": "Unity",
+      "uncompressed_bytes": 580551,
+      "member_sha256": "f119280499cca91eb5dbbfcc481516c55b8520224074b130281e3ce919ef9246"
+    },
+    {
+      "source_local_id": "txt-local:0044",
+      "archive_txt_ordinal": 44,
+      "series_file_sequence_hint": 44,
+      "title_hint": "Worlds of Deep Space Nine Volume One",
+      "uncompressed_bytes": 697338,
+      "member_sha256": "2a672adf0c3c0b1e69c84d6e25e5760cd585210abc6d6abb8462f60610e69539"
+    },
+    {
+      "source_local_id": "txt-local:0045",
+      "archive_txt_ordinal": 45,
+      "series_file_sequence_hint": 45,
+      "title_hint": "Worlds of Deep Space Nine Volume Two",
+      "uncompressed_bytes": 748279,
+      "member_sha256": "4c09df6f0bb688f50923ec6e67f27c9eba796ef857d358815cec806339c2ceb2"
+    },
+    {
+      "source_local_id": "txt-local:0046",
+      "archive_txt_ordinal": 46,
+      "series_file_sequence_hint": 46,
+      "title_hint": "Worlds of Deep Space Nine Volume Three",
+      "uncompressed_bytes": 650439,
+      "member_sha256": "44744222a8f8ad51814d2d80d3d2c460a4073d785bd18d7a333d84e4d26fc731"
+    },
+    {
+      "source_local_id": "txt-local:0047",
+      "archive_txt_ordinal": 47,
+      "series_file_sequence_hint": 47,
+      "title_hint": "Hollow Men",
+      "uncompressed_bytes": 544592,
+      "member_sha256": "4d302b9b5de910b0449749015ea8c53f1d5c1c3a1260030e20ae03293f11263a"
+    },
+    {
+      "source_local_id": "txt-local:0048",
+      "archive_txt_ordinal": 48,
+      "series_file_sequence_hint": 48,
+      "title_hint": "Warpath",
+      "uncompressed_bytes": 517393,
+      "member_sha256": "2fdf7f482ca6f5193e9f047058460b6d343eea22a050698c92077aa185271bda"
+    },
+    {
+      "source_local_id": "txt-local:0049",
+      "archive_txt_ordinal": 49,
+      "series_file_sequence_hint": 49,
+      "title_hint": "Terok Nor Day of the Vipers",
+      "uncompressed_bytes": 868650,
+      "member_sha256": "c41a7c3ee54a1a037fbb9a353c4a4e4a07d536273cc5372b4a76307f10f8f1be"
+    },
+    {
+      "source_local_id": "txt-local:0050",
+      "archive_txt_ordinal": 50,
+      "series_file_sequence_hint": 50,
+      "title_hint": "Terok Nor Night of the Wolves",
+      "uncompressed_bytes": 770200,
+      "member_sha256": "168d256c8ce358bb499b497dedc774df901a89a122a7a97a9050fb6fd2cf9661"
+    }
+  ],
+  "records_sha256": "56017619758a9e0294384187ec1c18569b1966729bfaf47fbdc85a8d68438553"
+}

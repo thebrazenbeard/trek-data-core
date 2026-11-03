@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "BOUNDED_PRIMARY_RENDERED_EPISODE_GUIDE_CARD_OBSERVATIONS_UNPINNED",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "raw_source_bytes_pinned": false,
+  "observed_at_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "observations": [
+    {"row_id":"lead:0003","guide_season":1,"guide_episode":2,"official_title":"The Man Trap","title_match":"EXACT","original_synopsis_draft":"A creature capable of changing its form puts the Enterprise crew at risk in its search for salt."},
+    {"row_id":"lead:0004","guide_season":1,"guide_episode":26,"official_title":"The Devil in the Dark","title_match":"EXACT","original_synopsis_draft":"A mysterious creature endangers an important mining operation."},
+    {"row_id":"lead:0005","guide_season":1,"guide_episode":14,"official_title":"The Conscience of the King","title_match":"EXACT","original_synopsis_draft":"Kirk suspects that a Shakespearean performer may be concealing responsibility for mass murder."},
+    {"row_id":"lead:0006","guide_season":1,"guide_episode":3,"official_title":"Charlie \"X\"","title_match":"PUNCTUATION_VARIANT_UNRESOLVED","original_synopsis_draft":"A teenager with extraordinary abilities causes dangerous upheaval aboard the Enterprise."},
+    {"row_id":"lead:0007","guide_season":1,"guide_episode":7,"official_title":"Mudd's Women","title_match":"EXACT","original_synopsis_draft":"The Enterprise rescues Harry Mudd, a con artist traveling with a group of women."},
+    {"row_id":"lead:0008","guide_season":1,"guide_episode":5,"official_title":"The Naked Time","title_match":"EXACT","original_synopsis_draft":"An infection disrupts the Enterprise crew's ability to restrain their behavior."},
+    {"row_id":"lead:0009","guide_season":1,"guide_episode":6,"official_title":"The Enemy Within","title_match":"EXACT","original_synopsis_draft":"A transporter accident produces a threatening counterpart of Captain Kirk."},
+    {"row_id":"lead:0010","guide_season":1,"guide_episode":10,"official_title":"Dagger of the Mind","title_match":"EXACT","original_synopsis_draft":"A newly introduced psychiatric treatment proves to have deadly consequences."},
+    {"row_id":"lead:0011","guide_season":1,"guide_episode":15,"official_title":"Balance of Terror","title_match":"EXACT","original_synopsis_draft":"An attack on an outpost draws the Enterprise into a confrontation with Romulan forces."},
+    {"row_id":"lead:0012","guide_season":2,"guide_episode":4,"official_title":"Mirror, Mirror","title_match":"EXACT","original_synopsis_draft":"Several Enterprise officers find themselves in a parallel version of reality."},
+    {"row_id":"lead:0013","guide_season":2,"guide_episode":22,"official_title":"By Any Other Name","title_match":"EXACT","original_synopsis_draft":"Beings from outside the galaxy seize the Enterprise to carry them toward their distant home."},
+    {"row_id":"lead:0014","guide_season":1,"guide_episode":24,"official_title":"A Taste of Armageddon","title_match":"EXACT","original_synopsis_draft":"The Enterprise becomes entangled in a computerized conflict between two worlds."},
+    {"row_id":"lead:0015","guide_season":2,"guide_episode":14,"official_title":"Wolf in the Fold","title_match":"EXACT","original_synopsis_draft":"Scotty becomes a suspect in a murder investigation with disturbing historical parallels."},
+    {"row_id":"lead:0016","guide_season":2,"guide_episode":19,"official_title":"A Private Little War","title_match":"EXACT","original_synopsis_draft":"Klingon arms shipments upset a fragile balance of power on a previously peaceful world."},
+    {"row_id":"lead:0017","guide_season":3,"guide_episode":4,"official_title":"And the Children Shall Lead","title_match":"EXACT","original_synopsis_draft":"A hostile influence secretly manipulates the actions of a group of children."},
+    {"row_id":"lead:0018","guide_season":2,"guide_episode":7,"official_title":"Catspaw","title_match":"EXACT","original_synopsis_draft":"The Enterprise crew is held captive by aliens intent on conquest."}
+  ]
+}

@@ -113,6 +113,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
             self.assertIn(f"! -path explorer/art-original-{slug}.svg", text)
         self.assertIn("python3 tools/build_explorer_abstract_art.py --check", text)
         self.assertIn("python3 tools/build_source_local_search.py --check", text)
+        self.assertIn("! -path explorer/lit-publisher-edition-leads.json", text)
+        self.assertIn("python3 tools/build_lit_publisher_leads.py --check", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/short-synopsis-catalog.json", text)
@@ -128,7 +130,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 11)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 12)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -177,6 +179,8 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertLess(text.index("Verify optional Film discovery index"),
                         text.index("Verify optional Multimedia discovery directory"))
         self.assertLess(text.index("Verify optional Multimedia discovery directory"),
+                        text.index("Verify separate publisher-edition lead search overlay"))
+        self.assertLess(text.index("Verify separate publisher-edition lead search overlay"),
                         text.index("Verify optional publisher-description synopsis release"))
         self.assertLess(text.index("Verify optional publisher-description synopsis release"),
                         text.index("Verify optional read-only metadata recheck projection"))
@@ -193,6 +197,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("Refusing to publish an unexpected Explorer entry", final)
         self.assertIn("find explorer -mindepth 1", final)
         self.assertIn("git rev-parse HEAD:explorer/research-leads.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/lit-publisher-edition-leads.json", final)
         self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)

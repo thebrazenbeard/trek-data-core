@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SFA-ARTWORK-METADATA-20261103-001",
+  "role": "SFA",
+  "status": "PROPOSAL_ONLY_SOURCE_RELATIVE_ARTWORK_METADATA",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "image_bytes_retrieved": false,
+  "image_bytes_committed": false,
+  "photo_contents_inspected": false,
+  "rights_cleared": false,
+  "external_rights_request_sent": false,
+  "budget_committed_usd": 0,
+  "upstream_proposal": {
+    "path": "proposals/research/sfa-publisher-refresh-20261103/records.json",
+    "sha256": "e6965602a534a5976a371501b457eb91aa5e9375302fdc62c99a42fd9a4136d3",
+    "status": "PROPOSAL_ONLY_PUBLISHER_METADATA",
+    "publisher_source_id": "sfa-cbs-studios-show-20261103",
+    "publisher_source_url": "https://www.paramountpressexpress.com/cbs-studios/shows/star-trek-starfleet-academy/",
+    "publisher_independence_group": "publisher:paramount",
+    "publisher_raw_response_sha256": "c5753b461be1739321643286a5d9c69666d2b67b94e0fa8ab549bed2db67f332",
+    "publisher_observed_after_retrieval_utc": "2026-11-03T01:23:34Z",
+    "source_relative_evidence_id": "sfa-cbs-photo-filename-evidence",
+    "source_relative_evidence_locator": "HTML lines 1056-1150 in exact private CBS Studios response",
+    "private_source_snapshot_available_in_this_batch": false
+  },
+  "rights_review": {
+    "status": "NOT_ESTABLISHED",
+    "license_receipt_sha256": null,
+    "publisher_press_terms_url": "https://www.paramount.com/paramount-press-express-terms-of-use",
+    "cbs_still_licensing_faq_url": "https://www.cbsfootagelicensing.com/faq",
+    "cbs_licensing_request_url": "https://www.cbsfootagelicensing.com/request",
+    "note": "Publisher Press Express supplies limited terms for authorized editorial users, not an unrestricted public-thumbnail license. CBS says public still-image uses require a negotiated license. No authorization, zero-fee waiver, independent talent clearance or image rights receipt was acquired."
+  },
+  "candidate_photo_locators": [
+    {
+      "candidate_id": "sfa-artwork-20261103-photo-200-01",
+      "upstream_photo_metadata_id": "sfa-cbs-photo-200-01",
+      "publisher_source_id": "sfa-cbs-studios-show-20261103",
+      "source_relative_html_line": 1079,
+      "file_label": "SFA_200_BZ_1021_0295_RT.jpg",
+      "caption_subjects_as_publisher_metadata": ["Sandro Rosta", "Kerrice Brooks", "Karim Diané"],
+      "candidate_kind": "PUBLISHER_PHOTO_FILENAME_CAPTION_REFERENCE",
+      "rights_status": "NOT_ESTABLISHED",
+      "image_bytes_retrieved": false,
+      "public_display_effect": "NONE",
+      "interpretation_hold": "Filename and caption metadata do not verify visual appearance, fictional character, episode, plot, or permitted use."
+    },
+    {
+      "candidate_id": "sfa-artwork-20261103-photo-200-02",
+      "upstream_photo_metadata_id": "sfa-cbs-photo-200-02",
+      "publisher_source_id": "sfa-cbs-studios-show-20261103",
+      "source_relative_html_line": 1112,
+      "file_label": "SFA_200_MG_1201_0147_RT.JPG",
+      "caption_subjects_as_publisher_metadata": ["Robert Picardo", "Bill Nighy"],
+      "candidate_kind": "PUBLISHER_PHOTO_FILENAME_CAPTION_REFERENCE",
+      "rights_status": "NOT_ESTABLISHED",
+      "image_bytes_retrieved": false,
+      "public_display_effect": "NONE",
+      "interpretation_hold": "Filename and caption metadata do not verify visual appearance, fictional character, episode, plot, or permitted use."
+    },
+    {
+      "candidate_id": "sfa-artwork-20261103-photo-200-03",
+      "upstream_photo_metadata_id": "sfa-cbs-photo-200-03",
+      "publisher_source_id": "sfa-cbs-studios-show-20261103",
+      "source_relative_html_line": 1145,
+      "file_label": "SFA_200_BZ_1021_0416_RT.JPG",
+      "caption_subjects_as_publisher_metadata": ["Bella Shepard", "Zoë Steiner"],
+      "candidate_kind": "PUBLISHER_PHOTO_FILENAME_CAPTION_REFERENCE",
+      "rights_status": "NOT_ESTABLISHED",
+      "image_bytes_retrieved": false,
+      "public_display_effect": "NONE",
+      "interpretation_hold": "Filename and caption metadata do not verify visual appearance, fictional character, episode, plot, or permitted use."
+    }
+  ],
+  "unresolved": [
+    "No approved public display license or zero-fee exception for any of the three photos.",
+    "The private publisher HTML snapshots were not reprocessed in this derivative candidate batch.",
+    "Season 2 Early Release is promotional publisher metadata and is not accepted as an episode or denominator.",
+    "No image dimensions, pixels, visual subject, or frame content established."
+  ]
+}

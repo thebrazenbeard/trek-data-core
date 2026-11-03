@@ -44,8 +44,13 @@ class ExplorerAbstractArtTests(unittest.TestCase):
                 self.assertIn(f".artwork-slot.artwork-{class_suffix} {{ background-image: url('./art-original-{slug}.svg'); }}", css)
         self.assertEqual(set(re.findall(r"art-original-[a-z-]+\.svg", css)),
                          {path.name for path in BUILD.expected_art()})
+        self.assertIn("@media (max-width: 359px)", css)
+        self.assertIn(".directory-card.media-card, .film-grid .media-card, .publisher-edition-card { grid-template-columns: minmax(0, 1fr); }", css,
+                      "320px media cards must stack their artwork instead of shrinking the metadata column")
         js = (ROOT / "explorer/app.js").read_text(encoding="utf-8")
-        self.assertIn("Artwork not sourced · original abstract", js)
+        self.assertIn("Artwork not sourced · original index art", js)
+        self.assertIn("Original LCARS index graphic for", js,
+                      "generated record graphics must identify themselves as index art, not canon imagery")
         self.assertIn("const source = artworkState.enabled ?", js,
                       "opt-in rights gate must remain distinct from generic placeholders")
 

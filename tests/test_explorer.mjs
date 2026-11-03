@@ -824,15 +824,22 @@ const filmCatalog = {
 };
 
 const licensedArtwork = {
-  schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+  schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
   rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
   artwork: [{
     row_id: 'film:star-trek-2009', image_path: './licensed-artwork/verified-film-cover.webp',
     image_sha256: '1'.repeat(64), alt_text: 'Licensed publisher artwork for Star Trek (2009)',
     source_locator: filmCatalog.films[0].source_locator, rights_status: 'PUBLIC_DISPLAY_PERMISSION_VERIFIED',
-    rights_receipt_sha256: '2'.repeat(64)
+    rights_receipt_sha256: '2'.repeat(64), artwork_kind: 'POSTER',
+    attribution_text: 'Synthetic poster rights fixture · not a public asset',
+    attribution_url: 'https://commons.wikimedia.org/wiki/File:Synthetic_test_poster.webp'
   }]
 };
+
+// Test-only simulation of an independent code-owned release receipt. The
+// shipping script intentionally carries *no* local image authorizations.
+const licensedArtworkTestScript = SCRIPT.replace('const reviewedLocalArtworkReceipts = new Map();',
+  `const reviewedLocalArtworkReceipts = new Map([[${JSON.stringify(licensedArtwork.artwork[0].row_id)}, ${JSON.stringify(licensedArtwork.artwork[0])}]]);`);
 
 const synopsisRelease = {
   schema_version: '1.0.0', data_status: 'EDITORIALLY_REVIEWED_DISPLAY_ONLY',
@@ -1009,7 +1016,12 @@ test('honest LCARS artwork placeholders render without remote image requests or 
   assert.equal(nodes.get('artwork-toggle').disabled, true);
   assert.match(nodes.get('artwork-state').textContent, /not yet display-cleared/);
   assert.match(nodes.get('discovery-list').textContent, /Artwork not sourced/);
-  assert.match(nodes.get('discovery-list').textContent, /original abstract/);
+  assert.match(nodes.get('discovery-list').textContent, /original index art/);
+  assert.match(nodes.get('discovery-list').textContent, /The Doomsday Machine/,
+    'the record-identity graphic includes the exact source-local episode title');
+  assert.match(nodes.get('discovery-list').textContent, /TOS/,
+    'the card graphic includes the accepted source-local series context');
+  assert.ok(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'figure').length > 0);
   assert.match(nodes.get('film-list').textContent, /Artwork not sourced/);
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
@@ -1017,7 +1029,16 @@ test('honest LCARS artwork placeholders render without remote image requests or 
 });
 
 test('explicit artwork opt-in displays only same-origin rights-receipted assets with graceful error fallback', async () => {
-  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, licensedArtwork, 200);
+  assert.ok(SCRIPT.indexOf("img.referrerPolicy = 'no-referrer'") < SCRIPT.indexOf('img.src = remoteLibrary'),
+    'privacy policy must be assigned before src could initiate a request');
+  assert.ok(SCRIPT.indexOf("img.loading = 'lazy'") < SCRIPT.indexOf('img.src = remoteLibrary'),
+    'lazy loading must be assigned before src could initiate a request');
+  const unpinned = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, licensedArtwork, 200);
+  assert.equal(unpinned.get('artwork-toggle').disabled, true,
+    'a manifest with plausible SHA/rights text cannot authorize an unpinned publicity asset');
+  assert.match(unpinned.get('artwork-state').textContent, /independently reviewed/);
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404,
+    licensedArtwork, 200, null, 404, licensedArtworkTestScript);
   const toggle = nodes.get('artwork-toggle');
   assert.equal(toggle.disabled, false);
   assert.equal(toggle.attributes.get('aria-pressed'), 'false');
@@ -1030,9 +1051,16 @@ test('explicit artwork opt-in displays only same-origin rights-receipted assets 
   assert.equal(images[0].loading, 'lazy');
   assert.equal(images[0].referrerPolicy, 'no-referrer');
   assert.match(images[0].alt, /Licensed publisher artwork/);
+  const credits = traverse(nodes.get('film-list'), (n) => n.className === 'artwork-credit');
+  assert.equal(credits.length, 1);
+  assert.equal(credits[0].href, 'https://commons.wikimedia.org/wiki/File:Synthetic_test_poster.webp');
+  assert.match(credits[0].textContent, /Synthetic poster rights fixture/);
+  assert.match(nodes.get('film-list').textContent, /Rights-reviewed poster/);
   images[0].fire('error');
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
   assert.match(nodes.get('film-list').textContent, /Image unavailable/);
+  assert.match(nodes.get('film-list').textContent, /Synthetic poster rights fixture/,
+    'attribution remains visible when an authorized image fails to load');
   toggle.fire('click');
   assert.equal(toggle.attributes.get('aria-pressed'), 'false');
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
@@ -1040,6 +1068,7 @@ test('explicit artwork opt-in displays only same-origin rights-receipted assets 
 
 test('malicious, unreviewed, duplicated or off-origin artwork records are rejected as a whole', async () => {
   const changes = [
+    (r) => { r.schema_version = '1.1.0'; },
     (r) => { r.artwork[0].image_path = 'https://evil.example/track.jpg'; },
     (r) => { r.artwork[0].image_path = './licensed-artwork/../secrets.webp'; },
     (r) => { r.artwork[0].image_path = 'data:image/png;base64,AAAA'; },
@@ -1047,6 +1076,10 @@ test('malicious, unreviewed, duplicated or off-origin artwork records are reject
     (r) => { r.artwork[0].rights_status = 'NOT_ESTABLISHED'; },
     (r) => { r.artwork[0].image_sha256 = 'unknown'; },
     (r) => { r.artwork[0].rights_receipt_sha256 = 'unknown'; },
+    (r) => { r.artwork[0].attribution_url = 'https://evil.example/image'; },
+    (r) => { r.artwork[0].attribution_text = '<script>'; },
+    (r) => { r.artwork[0].artwork_kind = 'COVER'; },
+    (r) => { r.artwork[0].artwork_kind = 'UNVERIFIED'; },
     (r) => { r.artwork[0].admission_status = 'ACCEPTED'; },
     (r) => { r.artwork[0].row_id = 'film:unknown'; },
     (r) => { r.artwork.push(structuredClone(r.artwork[0])); r.artwork_count = 2; },
@@ -1055,7 +1088,8 @@ test('malicious, unreviewed, duplicated or off-origin artwork records are reject
   for (const change of changes) {
     const bad = structuredClone(licensedArtwork);
     change(bad);
-    const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, bad, 200);
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404,
+      bad, 200, null, 404, licensedArtworkTestScript);
     assert.equal(nodes.get('artwork-toggle').disabled, true);
     assert.match(nodes.get('artwork-state').textContent, /rejected/);
     assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
@@ -1078,7 +1112,7 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
   directory.row_count++;
   directory.counts_by_medium.LITERATURE++;
   const apiArtwork = {
-    schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+    schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
     rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
     artwork: [{ row_id: 'directory:fixture:last-best-hope-not-published', provider: 'OPEN_LIBRARY_COVERS_API',
       cover_id: 10157401, isbn: '9781982142186', alt_text: 'Cover image for a fixture novel, via Open Library',
@@ -1158,6 +1192,79 @@ test('Open Library cover claims need a separately reviewed edition-to-cover rece
     assert.equal(rejectedMedium.get('artwork-toggle').disabled, true,
       `Open Library cover previews are not allowed on ${medium} rows`);
   }
+});
+
+test('only four independently visually identified fictional-autobiography jackets are opt-in; a misidentified title page is held', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const reviewed = [
+    ['literature:prh-autobiography-kirk', '9781783297481', 13083310,
+      'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa'],
+    ['literature:prh-autobiography-picard', '9781785659409', 10694457,
+      '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f'],
+    ['literature:prh-autobiography-janeway', '9781789095333', 12097815,
+      'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09'],
+    ['literature:prh-autobiography-spock', '9781785659416', 11945787,
+      'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d']
+  ];
+  const artwork = reviewed.map(([id, isbn, cover, sha]) => {
+    const source = directory.rows.find((row) => row.row_id === id);
+    assert.ok(source, `exact accepted source row ${id} exists`);
+    assert.ok(source.details.some((detail) => detail.includes(isbn)));
+    return {
+      row_id: `directory:${id}`, provider: 'OPEN_LIBRARY_COVERS_API', cover_id: cover, isbn,
+      alt_text: `Optional Open Library jacket preview for ${source.title}; copyright unresolved`,
+      source_locator: source.source_locator,
+      rights_status: 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED',
+      edition_metadata_sha256: sha, attribution_url: `https://openlibrary.org/isbn/${isbn}`
+    };
+  });
+  const sidecar = { schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK',
+    coverage_effect: 'NONE', rights_policy: 'PER_ENTRY_DISPLAY_GATE',
+    artwork_count: artwork.length, artwork };
+  // The shipped release-sidecar is independently validated by the Pages
+  // packaging gate. Check the actual bytes here too, so a future mismatch
+  // between the four code-pinned jackets and public sidecar fails visibly.
+  const shipped = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
+  const key = (entry) => [entry.row_id, entry.isbn, entry.cover_id, entry.edition_metadata_sha256];
+  assert.deepEqual(shipped.artwork.map(key), sidecar.artwork.map(key));
+  assert.equal(shipped.schema_version, '1.2.0');
+  assert.equal(shipped.coverage_effect, 'NONE');
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, shipped, 200);
+  assert.equal(nodes.get('artwork-toggle').disabled, false);
+  assert.match(nodes.get('artwork-state').textContent, /4 Open Library API previews/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'there are no external image URLs in the DOM until a visitor explicitly opts in');
+  nodes.get('discovery-query').value = 'autobiography';
+  nodes.get('discovery-filters').fire('input');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'the four exact cover-bearing rows themselves cannot initiate off-site image requests before opt-in');
+  nodes.get('artwork-toggle').fire('click');
+  const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
+  assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
+  assert.deepEqual(rendered.map((img) => img.src).sort(),
+    reviewed.map(([, , cover]) => `https://covers.openlibrary.org/b/id/${cover}-S.jpg?default=false`).sort());
+  assert.ok(rendered.every((img) => img.loading === 'lazy' && img.referrerPolicy === 'no-referrer'));
+  assert.match(nodes.get('discovery-list').textContent, /Open Library cover preview · copyright unresolved/);
+  const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
+  assert.equal(credits.length, 4);
+  assert.ok(credits.every((link) => link.rel === 'noopener noreferrer'));
+
+  // A matching ISBN/JSON digest alone is not sufficient: this purported
+  // Enterprise War cover ID actually displayed an interior title page.
+  const heldRow = directory.rows.find((row) => row.row_id === 'literature:proposed-lit-discovery-enterprise-war');
+  assert.ok(heldRow);
+  const held = structuredClone(sidecar);
+  held.artwork.push({
+    ...artwork[0], row_id: `directory:${heldRow.row_id}`,
+    source_locator: heldRow.source_locator, isbn: '9781982113315', cover_id: 12857937,
+    attribution_url: 'https://openlibrary.org/isbn/9781982113315',
+    edition_metadata_sha256: 'ecaca36ebb2419de7d96214f8ed8145c13bf1d90a20d0e72ac62e71090425208'
+  });
+  held.artwork_count++;
+  const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, held, 200);
+  assert.equal(rejected.get('artwork-toggle').disabled, true,
+    'a visually rejected interior title page cannot be marketed as a book cover');
+  assert.match(rejected.get('artwork-state').textContent, /crosswalk receipt/);
 });
 
 test('PRH distributor discovery leads require exact fictional-memoir source scope', async () => {

@@ -3,7 +3,8 @@
 
 The source photograph is independently identified; this checks exact local
 release bytes and UI contracts, not anyone's personality/trademark rights.
-No downloaded photograph is stored by this repository.
+An exact-hash binary may be staged for independent review while accepted
+release authorization remains false; staging does not activate public display.
 """
 from __future__ import annotations
 
@@ -29,6 +30,8 @@ DECISION_DIGEST = "b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68c
 ACCEPTED_HELD_CONTRACT = "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json"
 ACCEPTED_HELD_CONTRACT_SHA = "9ed8d519d8bba7ef7e605ad0d09bdcf74dd7f48c9f9c1ef829dc28772ab8e4a5"
 FUTURE_LOCAL_ASSET = "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+STAGED_ASSET_CONTRACT = "explorer/beyond-premiere-asset-candidate-v2.json"
+STAGED_ASSET_CONTRACT_SHA = "e6a5fbc4429f1dca67d1451ecf877a5afa3aa4f8269827a014eb7535a99466ce"
 PHOTO_SHA = "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f"
 ORIGINAL_SHA = "7fd481633086f97e7b05e0eccbd3515a90d44f4fa7ce1255180007d9d13b4250"
 THUMB_URL = ("https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/"
@@ -54,6 +57,72 @@ def read_regular(root: Path, relative: str) -> bytes:
         require(not current.is_symlink(), f"symlink denied: {relative}")
     require(current.is_file() and stat.S_ISREG(current.stat().st_mode), f"missing file: {relative}")
     return current.read_bytes()
+
+
+def jpeg_dimensions(raw: bytes) -> tuple[int, int]:
+    """Locate JPEG SOF dimensions without an optional image dependency."""
+    require(raw.startswith(b"\xff\xd8") and raw.endswith(b"\xff\xd9"), "JPEG boundary mismatch")
+    offset = 2
+    while offset + 4 < len(raw):
+        require(raw[offset] == 0xFF, "Malformed JPEG marker")
+        while offset < len(raw) and raw[offset] == 0xFF:
+            offset += 1
+        marker = raw[offset]
+        offset += 1
+        if marker in {0x01, *range(0xD0, 0xD8)}:
+            continue
+        require(marker not in {0xD9, 0xDA}, "JPEG SOF not present before image data")
+        require(offset + 2 <= len(raw), "Incomplete JPEG marker")
+        segment_size = int.from_bytes(raw[offset:offset+2], "big")
+        require(segment_size >= 2 and offset + segment_size <= len(raw), "Malformed JPEG segment")
+        if marker in {0xC0, 0xC1, 0xC2, 0xC3}:
+            require(segment_size >= 7, "Malformed JPEG SOF")
+            return (int.from_bytes(raw[offset+5:offset+7], "big"),
+                    int.from_bytes(raw[offset+3:offset+5], "big"))
+        offset += segment_size
+    raise ReleaseRejected("No JPEG image dimensions found")
+
+
+def check_staged_image_candidate(root: Path) -> bool:
+    """Allow only the one physically verified *held* asset for later review."""
+    candidate_path = root / STAGED_ASSET_CONTRACT
+    asset_path = root / FUTURE_LOCAL_ASSET
+    if not candidate_path.exists() and not asset_path.exists():
+        require(not candidate_path.is_symlink() and not asset_path.is_symlink(),
+                "unreviewed symlinked image candidate")
+        return False
+    contract_raw = read_regular(root, STAGED_ASSET_CONTRACT)
+    require(hashlib.sha256(contract_raw).hexdigest() == STAGED_ASSET_CONTRACT_SHA,
+            "staged source/rights/held-status contract changed")
+    candidate = json.loads(contract_raw)
+    require(candidate["candidate_status"] == "STAGED_BINARY_SOURCE_VERIFIED_PUBLIC_DISPLAY_HELD" and
+            candidate["public_image_display_authorized"] is False and
+            candidate["runtime_release_activation"] == "DISABLED" and
+            candidate["source_local_film_id"] == "film-beyond" and
+            candidate["image_kind"] == "REAL_WORLD_RED_CARPET_PREMIERE_DOCUMENTARY_PHOTO_NOT_FILM_FRAME_OR_POSTER" and
+            candidate["photographer"] == "Dick Thomas Johnson" and
+            candidate["commons_source"] == SOURCE_URL and
+            candidate["photographer_flickr_source"] == "https://www.flickr.com/photos/31029865@N06/31784488840/" and
+            candidate["license"] == "CC BY 2.0" and
+            candidate["license_url"] == "https://creativecommons.org/licenses/by/2.0/" and
+            candidate["asset_path"] == FUTURE_LOCAL_ASSET and
+            candidate["asset_sha256"] == PHOTO_SHA and
+            candidate["asset_bytes"] == 116536 and
+            candidate["asset_dimensions"] == [960, 640] and
+            candidate["source_original_sha256"] == ORIGINAL_SHA and
+            candidate["accepted_source_contract_sha256"] == ACCEPTED_HELD_CONTRACT_SHA and
+            candidate["accepted_held_decision_sha256"] == DECISION_DIGEST and
+            candidate["proposed_affirmative_decision_head"] == "60ed08f5a8864325e9a0bde10355ad4ffc7b16ee" and
+            candidate["proposed_affirmative_decision_json_sha256"] == "8df2b006b320afe5f365eae340ad9cc99ae998ae570075d1ea1b268b4c90fd81" and
+            candidate["browser_photo_render_review"] == "PENDING" and
+            candidate["owner_photo_release_disposition"] == "PENDING" and
+            candidate["third_party_image_network_requests"] == 0 and
+            candidate["work_admission_effect"] == candidate["coverage_effect"] == candidate["site_effect"] == "NONE",
+            "staged asset cannot promote held release or change source/rights identity")
+    raw = read_regular(root, FUTURE_LOCAL_ASSET)
+    require(len(raw) == 116536 and hashlib.sha256(raw).hexdigest() == PHOTO_SHA and
+            jpeg_dimensions(raw) == (960, 640), "staged exact JPEG bytes/dimensions mismatch")
+    return True
 
 
 class PremiereMarkup(HTMLParser):
@@ -190,8 +259,7 @@ def validate(root: Path = ROOT) -> dict:
             decision["owner_release_disposition"] == "PENDING" and
             decision["coverage_effect"] == decision["work_admission_effect"] == "NONE",
             "unreviewed release promotion or source identity change denied")
-    require(not (root / FUTURE_LOCAL_ASSET).exists() and not (root / FUTURE_LOCAL_ASSET).is_symlink(),
-            "public image binary cannot accompany a held release decision")
+    staged_binary = check_staged_image_candidate(root)
     html = read_regular(root, "explorer/index.html").decode("utf-8")
     css = read_regular(root, "explorer/app.css").decode("utf-8")
     js = read_regular(root, "explorer/app.js").decode("utf-8")
@@ -230,7 +298,8 @@ def validate(root: Path = ROOT) -> dict:
     for name, content in (("app.js", js), ("app.css", css)):
         checksum = hashlib.sha256(content.encode()).hexdigest()
         require(f"./{name}?v={checksum}" in html, f"stale {name} cache key")
-    return {"status": "HELD_SOURCE_BOUND_DOCUMENTARY_PHOTO_CANDIDATE", "photo_count": 1,
+    return {"status": ("HELD_SOURCE_BOUND_VERIFIED_JPEG_CANDIDATE" if staged_binary else
+                       "HELD_SOURCE_BOUND_DOCUMENTARY_PHOTO_CANDIDATE"), "photo_count": 1,
             "image_observed_bytes": 116536, "coverage_effect": "NONE", "work_admission_effect": "NONE"}
 
 

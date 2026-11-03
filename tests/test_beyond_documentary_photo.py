@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools.validate_beyond_documentary_photo import ROOT, ReleaseRejected, validate
+from tools.validate_artwork_release import ArtworkRejected, _check_one_held_premiere_binary
 
 
 class PremiereReleaseContractTests(unittest.TestCase):
@@ -17,18 +18,22 @@ class PremiereReleaseContractTests(unittest.TestCase):
         self.addCleanup(self.directory.cleanup)
         self.root = Path(self.directory.name)
         for filename in ("beyond-premiere-photo.json", "beyond-premiere-release-decision.json",
-                         "index.html", "app.css", "app.js"):
+                         "beyond-premiere-asset-candidate-v2.json", "index.html", "app.css", "app.js"):
             source = ROOT / "explorer" / filename
             dest = self.root / "explorer" / filename
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, dest)
+        photo_relative = Path("explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg")
+        photo_dest = self.root / photo_relative
+        photo_dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / photo_relative, photo_dest)
         accepted_rel = Path("proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json")
         accepted_dest = self.root / accepted_rel
         accepted_dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / accepted_rel, accepted_dest)
 
     def test_exact_candidate_passes_without_claiming_film_admission(self):
-        self.assertEqual(self.expected["status"], "HELD_SOURCE_BOUND_DOCUMENTARY_PHOTO_CANDIDATE")
+        self.assertEqual(self.expected["status"], "HELD_SOURCE_BOUND_VERIFIED_JPEG_CANDIDATE")
         self.assertEqual(self.expected["coverage_effect"], "NONE")
         self.assertEqual(self.expected["work_admission_effect"], "NONE")
         self.assertEqual(self.expected["image_observed_bytes"], 116536)
@@ -48,7 +53,7 @@ class PremiereReleaseContractTests(unittest.TestCase):
         with self.assertRaises(ReleaseRejected):
             validate(self.root)
 
-    def test_false_held_release_decision_never_admits_public_pixels(self):
+    def test_false_held_release_decision_stays_false_and_corrupt_binary_rejected(self):
         decision = self.root / "explorer" / "beyond-premiere-release-decision.json"
         decision.write_text(decision.read_text().replace('"public_image_display_authorized": false',
                                                          '"public_image_display_authorized": true'))
@@ -56,10 +61,54 @@ class PremiereReleaseContractTests(unittest.TestCase):
             validate(self.root)
         shutil.copyfile(ROOT / "explorer" / "beyond-premiere-release-decision.json", decision)
         target = self.root / "explorer" / "licensed-artwork" / "beyond-premiere-japan-2016-960.jpg"
-        target.parent.mkdir(parents=True)
+        target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(b"not allowed prior to the separate rights release")
         with self.assertRaises(ReleaseRejected):
             validate(self.root)
+
+    def test_exact_jpeg_candidate_missing_or_symlinked_rejected(self):
+        path = self.root / "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+        path.unlink()
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+        path.symlink_to(ROOT / "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg")
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+
+    def test_candidate_contract_missing_tampered_or_forged_go_rejected(self):
+        path = self.root / "explorer/beyond-premiere-asset-candidate-v2.json"
+        contents = path.read_text()
+        path.unlink()
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+        path.write_text(contents.replace('"public_image_display_authorized": false',
+                                         '"public_image_display_authorized": true'))
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+        path.write_text(contents.replace('"browser_photo_render_review": "PENDING"',
+                                         '"browser_photo_render_review": "GO"'))
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+
+    def test_one_bit_corruption_rejected_even_with_same_jpeg_shape(self):
+        photo = self.root / "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+        raw = bytearray(photo.read_bytes())
+        raw[2048] ^= 1
+        photo.write_bytes(raw)
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+
+    def test_artwork_directory_only_allows_this_held_source_bound_photo(self):
+        exactly_one = {"explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"}
+        self.assertTrue(_check_one_held_premiere_binary(self.root, exactly_one))
+        self.assertFalse(_check_one_held_premiere_binary(self.root,
+                         exactly_one | {"explorer/licensed-artwork/unreviewed-frame.jpg"}))
+        photo = self.root / "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+        raw = bytearray(photo.read_bytes())
+        raw[2050] ^= 1
+        photo.write_bytes(raw)
+        with self.assertRaises(ArtworkRejected):
+            _check_one_held_premiere_binary(self.root, exactly_one)
 
     def test_accepted_source_contract_missing_or_forged_permission_is_rejected(self):
         contract = self.root / "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json"

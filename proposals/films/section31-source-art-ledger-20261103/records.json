@@ -42,16 +42,22 @@
       "withheld_fields": ["verified_current_streaming_territories", "poster_asset_binary_hash", "release_version_or_cut", "actual_audiovisual_content"]
     },
     {
-      "local_source_id": "section31-paramountplus-stream-listing-index-only",
+      "local_source_id": "section31-paramountplus-stream-listing-access-history",
       "locator": "https://www.paramountplus.com/movies/video/hxLi_fyTiqdAOtq1_cSt2HXQuj9mkZJh/",
-      "reader_receipt": "SEARCH_INDEX_LISTING_CLAIM_1H35M_BUT_DIRECT_WEB_OPEN_REPORTED_404",
-      "source_sections": ["Search-indexed streaming listing card"],
-      "source_observed_fields": [],
-      "indexed_only_leads": ["year:2025", "rating:PG-13", "listed_runtime:1h35m", "publisher_genre:Sci-Fi and Fantasy"],
+      "reader_receipt": "INITIAL_AUTHOR_WEB_OPEN_404_THEN_INDEPENDENT_AND_AUTHOR_WEB_OPEN_RENDERED_LISTING_CRAWLED_TODAY_NO_RAW_HTML_HASH",
+      "access_history": [
+        {"observer": "original_author", "observed_on_utc": "2026-11-03", "result": "FIRST_PARTY_SEARCH_INDEX_SNIPPET_AND_WEB_OPEN_REPORTED_404"},
+        {"observer": "independent_reviewer", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING"},
+        {"observer": "author_corrective_recheck", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING_CRAWLED_TODAY"}
+      ],
+      "source_sections": ["Publisher movie title", "SCI-FI & FANTASY 2025 PG-13 1H 35M", "Sign-up gating text"],
+      "source_observed_fields": ["listing_title:Star Trek: Section 31", "publisher_listing_year:2025", "publisher_listing_rating:PG-13", "publisher_listing_duration_display:1H35M", "publisher_genre:Sci-Fi and Fantasy"],
+      "initial_search_index_leads": ["year:2025", "rating:PG-13", "listed_runtime:1h35m", "publisher_genre:Sci-Fi and Fantasy"],
+      "displayed_listing_minutes_arithmetic": 95,
       "runtime_minutes_verified_directly": null,
-      "runtime_interpretation": "UNVERIFIED_INDEX_ONLY_95_MINUTE_LISTING_NOT_FILM_COPY_OR_CUT_VERIFICATION",
+      "runtime_interpretation": "DIRECTLY_RENDERED_PUBLISHER_LISTING_1H35M_NOT_VERIFIED_FILM_PLAYBACK_CUT_OR_BITSTREAM_RUNTIME",
       "poster_status": "NO_ARTWORK_ASSET_RETRIEVED",
-      "withheld_fields": ["runtime_of_a_specific_cut_or_encoding", "direct_current_streaming_listing_body", "current_playback_availability", "screening_or_frame_evidence"]
+      "withheld_fields": ["runtime_of_a_specific_cut_or_encoding", "raw_listing_html_sha256", "current_authenticated_playback_availability", "screening_or_frame_evidence"]
     }
   ]
 }

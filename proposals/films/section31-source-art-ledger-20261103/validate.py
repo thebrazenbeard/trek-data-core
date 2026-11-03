@@ -12,16 +12,16 @@ ROOT = HERE.parents[2]
 RECORD = HERE / "records.json"
 DISCOVERY = ROOT / "proposals/librarian/films-official-index-20261102/bundle.json"
 PRIOR = ROOT / "proposals/research/films/publisher-synopses-20261103/observations.json"
-RECORD_SHA256 = "e891b460fb5900cae6a6d29d0de1f19b1de48f459281a625d9cb65a2e6624586"
+RECORD_SHA256 = "77027a74ce938a8fc07a28d2c4f272217e4ba726113fd8993bc4a7480450f9c3"
 ROW_SHA256 = {
     "section31-official-film-card": "ededd0606c59884a12570edc3ca1828b320c242598ee947f15d2ba3afcb3944e",
     "section31-official-trailer-poster-announcement": "a46f4a7b3d901bb7baaf8245198e994936b840f762b8e72eb39442e51925d478",
-    "section31-paramountplus-stream-listing-index-only": "dbf5c000cc03fc092f5a4c1371c96898785cf99669e284cb1926a288d00b8288",
+    "section31-paramountplus-stream-listing-access-history": "37e15b72757f2727e024a647affe85ca6f95333f0b379ee030ff5001f7b3e77f",
 }
 URLS = {
     "section31-official-film-card": "https://www.startrek.com/en-un/movies/star-trek-section-31",
     "section31-official-trailer-poster-announcement": "https://www.startrek.com/en-un/news/section-31-official-trailer-poster",
-    "section31-paramountplus-stream-listing-index-only": "https://www.paramountplus.com/movies/video/hxLi_fyTiqdAOtq1_cSt2HXQuj9mkZJh/",
+    "section31-paramountplus-stream-listing-access-history": "https://www.paramountplus.com/movies/video/hxLi_fyTiqdAOtq1_cSt2HXQuj9mkZJh/",
 }
 TOP = {
     "packet_id", "proposal_only", "role", "baseline_accepted_main", "observed_on_utc",
@@ -103,11 +103,23 @@ def validate(data: dict, discovery: dict, prior: dict) -> int:
               "withheld rights or film-copy boundaries removed")
         check(row.get("poster_status", "").startswith(("HELD_", "NO_ARTWORK_")),
               "image license or binary promoted")
-        if source_id.endswith("index-only"):
-            check(row.get("source_observed_fields") == [] and
+        if source_id.endswith("access-history"):
+            history = [
+                {"observer": "original_author", "observed_on_utc": "2026-11-03", "result": "FIRST_PARTY_SEARCH_INDEX_SNIPPET_AND_WEB_OPEN_REPORTED_404"},
+                {"observer": "independent_reviewer", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING"},
+                {"observer": "author_corrective_recheck", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING_CRAWLED_TODAY"},
+            ]
+            check(row.get("access_history") == history and
+                  "INITIAL_AUTHOR_WEB_OPEN_404_THEN_INDEPENDENT_AND_AUTHOR_WEB_OPEN_RENDERED_LISTING_CRAWLED_TODAY_NO_RAW_HTML_HASH" == row.get("reader_receipt"),
+                  "publisher listing access history erased or rewritten")
+            check(row.get("source_observed_fields") == [
+                    "listing_title:Star Trek: Section 31", "publisher_listing_year:2025",
+                    "publisher_listing_rating:PG-13", "publisher_listing_duration_display:1H35M",
+                    "publisher_genre:Sci-Fi and Fantasy"] and
+                  row.get("displayed_listing_minutes_arithmetic") == 95 and
                   row.get("runtime_minutes_verified_directly") is None and
-                  "DIRECT_WEB_OPEN_REPORTED_404" in row.get("reader_receipt", ""),
-                  "indexed streaming listing promoted to directly read film runtime")
+                  "NOT_VERIFIED_FILM_PLAYBACK_CUT_OR_BITSTREAM_RUNTIME" in row.get("runtime_interpretation", ""),
+                  "publisher listing display promoted to verified played film-cut runtime")
         else:
             check(type(row.get("source_observed_fields")) is list and
                   len(row["source_observed_fields"]) >= 4 and
@@ -119,7 +131,7 @@ def validate(data: dict, discovery: dict, prior: dict) -> int:
 
 def main() -> None:
     n = validate(reviewed(), load(DISCOVERY), load(PRIOR))
-    print(f"PASS: Section 31 {n} exact source-local rows; 2 rendered first-party pages, 1 index-only blocked listing; 0 coverage")
+    print(f"PASS: Section 31 {n} exact source-local rows; 3 rendered first-party publisher pages, historical 404 preserved; 0 playback/coverage")
 
 
 if __name__ == "__main__":

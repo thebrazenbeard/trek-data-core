@@ -34,10 +34,22 @@ class Section31SourceArtTests(unittest.TestCase):
         self.assertEqual(v.validate(self.packet, self.discovery, self.prior), 3)
         self.assertEqual(self.packet["candidate_film_id"], "film-section-31")
 
-    def test_cannot_promote_indexed_runtime_into_source_read(self):
+    def test_cannot_promote_displayed_listing_runtime_into_playback_or_cut_identity(self):
         self.reject(lambda p: p["sources"][2].update(runtime_minutes_verified_directly=95))
         self.reject(lambda p: p["sources"][2].update(source_observed_fields=["film_runtime_minutes:95"]))
         self.reject(lambda p: p["sources"][2].update(reader_receipt="LIVE_FIRST_PARTY_200"))
+        self.reject(lambda p: p["sources"][2].update(runtime_interpretation="VERIFIED_PLAYED_CUT_95_MINUTES"))
+
+    def test_source_access_rechecks_preserve_initial_404_and_latest_direct_listing(self):
+        history = self.packet["sources"][2]["access_history"]
+        self.assertEqual([h["observer"] for h in history], [
+            "original_author", "independent_reviewer", "author_corrective_recheck"])
+        self.assertEqual(self.packet["sources"][2]["displayed_listing_minutes_arithmetic"], 95)
+        self.assertIsNone(self.packet["sources"][2]["runtime_minutes_verified_directly"])
+        self.reject(lambda p: p["sources"][2]["access_history"].pop(0))
+        self.reject(lambda p: p["sources"][2]["access_history"].pop())
+        self.reject(lambda p: p["sources"][2].update(displayed_listing_minutes_arithmetic=96))
+        self.reject(lambda p: p["sources"][2]["access_history"][0].update(result="WEB_OPEN_RETURNED_HTTP_200"))
 
     def test_cannot_fabricate_artwork_rights_or_publisher_observation(self):
         self.reject(lambda p: p["sources"][0].update(poster_status="LICENSED_FOR_PUBLIC_REUSE"))
@@ -66,6 +78,7 @@ import copy,sys
 sys.path.insert(0,sys.argv[1]);import validate as v
 p=v.reviewed();d=v.load(v.DISCOVERY);o=v.load(v.PRIOR)
 for edit in (lambda x:x['sources'][2].update(runtime_minutes_verified_directly=95),
+             lambda x:x['sources'][2]['access_history'].pop(0),
              lambda x:x.update(artwork_publication_effect='GRANTED')):
     b=copy.deepcopy(p);edit(b)
     try:v.validate(b,d,o)

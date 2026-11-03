@@ -1,0 +1,115 @@
+{
+  "batch_id": "tos-script-archive-locators-20261103",
+  "role": "TOS",
+  "baseline_accepted_main": "5127598af7e7c9a1148b11bb15863643f2914dfc",
+  "observation_date_utc": "2026-11-03",
+  "status": "PROPOSAL_ONLY_ARCHIVAL_CATALOG_METADATA",
+  "publisher_comparison": {
+    "relative_input": "proposals/librarian/lead-qualification-tos-s1-20261103/selection.json",
+    "kind": "PARAMOUNT_PLUS_SEASON1_HEADING_OBSERVATIONS_NOT_SOURCE_READ",
+    "source_lineage": "paramountplus.com"
+  },
+  "institutional_source": {
+    "holding_institution": "Indiana University Bloomington Lilly Library",
+    "locator": "https://iucat.iu.edu/lilly/19297540",
+    "call_number": "PN6120.S48 S795",
+    "collection_label": "Star trek : scripts, 1966-1969",
+    "kind": "ARCHIVAL_FINDING_AID_AND_BIBLIOGRAPHIC_CATALOG",
+    "raw_html_bytes_captured": false,
+    "raw_html_sha256": null,
+    "script_pages_read": false,
+    "access_note": "Lilly Library by appointment; photocopying only with copyright-holder permission",
+    "source_independence_group": "iu-lilly-catalog"
+  },
+  "script_locator_candidates": [
+    {
+      "work_title_string": "The Man Trap",
+      "publisher_season": 1,
+      "publisher_episode_number": 2,
+      "publisher_crosswalk_qid": "Q1287667",
+      "archive_script_list_number": 1,
+      "archive_contents_heading": "Season 1 (1966/67), no. 1. The man trap",
+      "archive_catalog_writer_credit": "written by George Clayton Johnson",
+      "script_revision_verification": "NOT_READ",
+      "screen_version_match": "UNVERIFIED"
+    },
+    {
+      "work_title_string": "The Corbomite Maneuver",
+      "publisher_season": 1,
+      "publisher_episode_number": 11,
+      "publisher_crosswalk_qid": "Q1187077",
+      "archive_script_list_number": 10,
+      "archive_contents_heading": "no. 10. The Corbomite Maneuver",
+      "archive_catalog_writer_credit": "written by Jerry Sohl",
+      "script_revision_verification": "NOT_READ",
+      "screen_version_match": "UNVERIFIED"
+    },
+    {
+      "work_title_string": "The Devil in the Dark",
+      "publisher_season": 1,
+      "publisher_episode_number": 26,
+      "publisher_crosswalk_qid": "Q1315800",
+      "archive_script_list_number": 25,
+      "archive_contents_heading": "no. 25. The devil in the dark",
+      "archive_catalog_writer_credit": "written by Gene L. Coon",
+      "script_revision_verification": "NOT_READ",
+      "screen_version_match": "UNVERIFIED"
+    },
+    {
+      "work_title_string": "The Conscience of the King",
+      "publisher_season": 1,
+      "publisher_episode_number": 14,
+      "publisher_crosswalk_qid": "Q2406293",
+      "archive_script_list_number": 13,
+      "archive_contents_heading": "no. 13. The conscience of the king",
+      "archive_catalog_writer_credit": "written by Barry Trivers",
+      "script_revision_verification": "NOT_READ",
+      "screen_version_match": "UNVERIFIED"
+    },
+    {
+      "work_title_string": "The Naked Time",
+      "publisher_season": 1,
+      "publisher_episode_number": 5,
+      "publisher_crosswalk_qid": "Q2984478",
+      "archive_script_list_number": 4,
+      "archive_contents_heading": "no. 4. The naked time",
+      "archive_catalog_writer_credit": "written by John D. F. Black",
+      "script_revision_verification": "NOT_READ",
+      "screen_version_match": "UNVERIFIED"
+    }
+  ],
+  "archive_collection_leads": [
+    {
+      "institution": "University of Kansas Kenneth Spencer Research Library",
+      "locator": "https://archives.lib.ku.edu/repositories/3/resources/5928",
+      "call_number": "MS 374",
+      "institutional_description": "Barbara Bohm's Star Trek scripts collection; TOS seasons 1 and 2 plus one TAS script",
+      "access": "Finding aid reports no access restrictions; staff may impose physical-condition use restrictions",
+      "episode_level_holdings_verified": false,
+      "source_independence_group": "ku-spencer-collection-finding-aid"
+    },
+    {
+      "institution": "California State University Fullerton University Archives & Special Collections",
+      "locator": "https://libraryguides.fullerton.edu/visiting/sciencefiction",
+      "institutional_description": "Willis McNelly collection lists draft scripts for 78 of 79 produced TOS episodes",
+      "episode_level_holdings_verified": false,
+      "source_independence_group": "csuf-mcnelly-collection-guide"
+    },
+    {
+      "institution": "Writers Guild Foundation Library & Archive",
+      "locator": "https://www.wgfoundation.org/blog/2026/9/1/read-it-in-the-wgf-library-60-years-of-star-trek",
+      "institutional_description": "WGF describes holdings of almost every TOS script, the 1964 pitch, writer/director materials and 1967 writers guide",
+      "episode_level_holdings_verified": false,
+      "source_independence_group": "wgfoundation-library-announcement"
+    }
+  ],
+  "research_records_generated": {
+    "local_entities": 0,
+    "episode_evidence": 0,
+    "episode_assertions": 0,
+    "accepted_briefings": 0,
+    "coverage_events": 0,
+    "global_reconciliations": 0
+  },
+  "next_gate": "Obtain lawful access to an identified script draft, record exact edition/version and content hash privately, read complete source, then compare source-relative evidence with primary broadcast audiovisual separately"
+}

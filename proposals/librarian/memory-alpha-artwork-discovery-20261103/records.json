@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0.0",
+  "role": "LIBRARIAN",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_provider": "Memory Alpha (Fandom)",
+  "source_independence_group": "secondary:memory-alpha.fandom.com",
+  "retrieval_method": "SEARCH_INDEXED_CATEGORY_OR_ARTICLE_EXCERPT_ONLY",
+  "file_description_pages_read": false,
+  "file_bytes_retrieved": false,
+  "image_urls_released": false,
+  "hotlink_permission_verified": false,
+  "accepted_source_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "rights_policy_sources": [
+    "https://memory-alpha.fandom.com/wiki/Memory_Alpha:File_use_policy",
+    "https://memory-alpha.fandom.com/wiki/Memory_Alpha:Copyrights",
+    "https://support.fandom.com/hc/en-us/articles/360035075654-I-want-to-reuse-text-or-images-from-a-Fandom-wiki",
+    "https://commons.wikimedia.org/wiki/Commons:Fandom_files"
+  ],
+  "commons_alternative_candidates": [
+    {
+      "candidate_id": "commons-henry-ford-tng-props-photo",
+      "file_page": "https://commons.wikimedia.org/wiki/File:Star_Trek_-_The_Next_Generation_Props_-_Star_Trek-_Exploring_New_Worlds_Exhibit_at_the_Henry_Ford_Museum,_Dearborn,_Michigan.jpg",
+      "original_source": "https://www.flickr.com/photos/joeross/49785566691/",
+      "creator": "Joe Ross",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "flickr_license_reviewed_on": "2023-06-15",
+      "candidate_use": "POSSIBLE_DECORATIVE_MUSEUM_PHOTO_NOT_EPISODE_STILL",
+      "photo_license_status": "DOCUMENTED_ON_COMMONS_FILE_PAGE",
+      "underlying_prop_design_and_trademark_status": "UNRESOLVED",
+      "asset_publication": "BLOCKED_PENDING_SEPARATE_REVIEW",
+      "image_url": null
+    },
+    {
+      "candidate_id": "commons-starfleet-of1-insignia",
+      "file_page": "https://commons.wikimedia.org/wiki/File:Starfleet_OF1.png",
+      "original_source": null,
+      "creator": "Sano",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "flickr_license_reviewed_on": null,
+      "candidate_use": "POSSIBLE_STARFLEET_RANK_INSIGNIA_NOT_CANONICAL_BRAND_MARK",
+      "photo_license_status": "DOCUMENTED_ON_COMMONS_FILE_PAGE",
+      "underlying_prop_design_and_trademark_status": "UNRESOLVED",
+      "asset_publication": "BLOCKED_PENDING_SEPARATE_REVIEW",
+      "image_url": null
+    }
+  ],
+  "file_candidates": [
+    {
+      "candidate_id": "ma-file-kirk-autobiography-cover",
+      "medium_hint": "LITERATURE",
+      "file_title_from_index": "The Autobiography of James T. Kirk.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_images_(literature_covers)",
+      "source_local_row_ids": ["literature:prh-autobiography-kirk"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_BOOK_COVER",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-picard-autobiography-cover",
+      "medium_hint": "LITERATURE",
+      "file_title_from_index": "The Autobiography of Jean-Luc Picard cover.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_images_(literature_covers)",
+      "source_local_row_ids": ["literature:prh-autobiography-picard"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_BOOK_COVER",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-janeway-autobiography-cover",
+      "medium_hint": "LITERATURE",
+      "file_title_from_index": "Autobiography of Kathryn Janeway cover.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_images_(literature_covers)",
+      "source_local_row_ids": ["literature:prh-autobiography-janeway"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_BOOK_COVER",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-spock-autobiography-cover",
+      "medium_hint": "LITERATURE",
+      "file_title_from_index": "The Autobiography of Spock cover.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_images_(literature_covers)",
+      "source_local_row_ids": ["literature:prh-autobiography-spock"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_BOOK_COVER",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-sisko-autobiography-cover",
+      "medium_hint": "LITERATURE",
+      "file_title_from_index": "The Autobiography of Benjamin Sisko cover.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_images_(literature_covers)",
+      "source_local_row_ids": ["literature:prh-autobiography-sisko"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_BOOK_COVER",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-doomsday-remastered-title-card",
+      "medium_hint": "EPISODE",
+      "file_title_from_index": "2x06 The Doomsday Machine title card.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_remastered_files_by_production_(TOS:_The_Doomsday_Machine)",
+      "source_local_row_ids": ["lead:0000", "legacy:s2:tos:005"],
+      "subject_mapping": "AMBIGUOUS_SOURCE_LOCAL_EPISODE_ROWS",
+      "image_role_hint": "POSSIBLE_EPISODE_TITLE_CARD",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-wrath-of-khan-artwork",
+      "medium_hint": "FILM",
+      "file_title_from_index": "Star Trek The Wrath of Khan artwork.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_files_by_production_(Star_Trek_II:_The_Wrath_of_Khan)",
+      "source_local_row_ids": ["film:film-wrath-of-khan"],
+      "subject_mapping": "TITLE_MATCH_ONLY_NOT_AN_EDITION_BINDING",
+      "image_role_hint": "POSSIBLE_FILM_PROMOTIONAL_ART",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    },
+    {
+      "candidate_id": "ma-file-uss-constellation-remastered",
+      "medium_hint": "STARSHIP",
+      "file_title_from_index": "USS Constellation remastered.jpg",
+      "category_locator": "https://memory-alpha.fandom.com/wiki/Category:Memory_Alpha_remastered_files_by_production_(TOS:_The_Doomsday_Machine)",
+      "source_local_row_ids": [],
+      "subject_mapping": "NO_ACCEPTED_STARSHIP_ROW",
+      "image_role_hint": "POSSIBLE_SHIP_STILL",
+      "file_page_status": "NOT_READ_ROBOTS_RESTRICTED",
+      "uploader_and_license_status": "UNVERIFIED",
+      "display_status": "BLOCKED_NO_FILE_LEVEL_PERMISSION",
+      "image_url": null
+    }
+  ],
+  "secondary_metadata_leads": [
+    {
+      "article_locator": "https://memory-alpha.fandom.com/wiki/The_High_Country",
+      "title_from_search_excerpt": "The High Country",
+      "isbn10_from_search_excerpt": "1668002388",
+      "existing_source_local_row_id": "literature:proposed-lit-snw-high-country",
+      "mapping_status": "POSSIBLE_DIFFERENT_FORMAT_HARDCOVER_NOT_RESOLVED",
+      "evidence_status": "SECONDARY_WIKI_DISCOVERY_ONLY"
+    },
+    {
+      "article_locator": "https://memory-alpha.fandom.com/wiki/The_Autobiography_of_Kathryn_Janeway",
+      "title_from_search_excerpt": "The Autobiography of Kathryn Janeway",
+      "isbn10_from_search_excerpt": "1789094798",
+      "existing_source_local_row_id": "literature:prh-autobiography-janeway",
+      "mapping_status": "HARDCOVER_VS_LISTED_PAPERBACK_UNRESOLVED",
+      "evidence_status": "SECONDARY_WIKI_DISCOVERY_ONLY"
+    }
+  ]
+}

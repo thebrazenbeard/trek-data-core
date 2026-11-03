@@ -25,7 +25,9 @@ const ids = [
   'episode-source-nav-count', 'episode-source-state', 'episode-source-download',
   'episode-source-query', 'episode-source-series', 'episode-source-status',
   'episode-source-tag', 'episode-source-filters', 'episode-source-summary',
-  'episode-source-list', 'episode-source-empty'
+  'episode-source-list', 'episode-source-empty',
+  'owner-opf-file', 'owner-opf-query', 'owner-opf-clear', 'owner-opf-more',
+  'owner-opf-state', 'owner-opf-summary', 'owner-opf-list', 'owner-opf-empty'
 ];
 
 class Node {

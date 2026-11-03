@@ -25,7 +25,9 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'paramount-list', 'paramount-empty', 'episode-source-nav-count', 'episode-source-state',
   'episode-source-download', 'episode-source-query', 'episode-source-series',
   'episode-source-status', 'episode-source-tag', 'episode-source-filters',
-  'episode-source-summary', 'episode-source-list', 'episode-source-empty'];
+  'episode-source-summary', 'episode-source-list', 'episode-source-empty',
+  'owner-opf-file', 'owner-opf-query', 'owner-opf-clear', 'owner-opf-more',
+  'owner-opf-state', 'owner-opf-summary', 'owner-opf-list', 'owner-opf-empty'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -214,6 +216,96 @@ const catalog = {
 const episodeNodes = (bytes, status = 200, script = SCRIPT) => runWithIndex(catalog, 200,
   null, 404, {}, null, 404, null, 404, null, 404, null, 404, script,
   null, 404, null, 404, false, null, 404, null, 404, null, 404, null, 404, bytes, status);
+
+async function selectLocalOpf(nodes, bytes, declaredSize = bytes.length) {
+  nodes.get('owner-opf-file').files = [{ size: declaredSize, arrayBuffer: async () =>
+    bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) }];
+  nodes.get('owner-opf-file').fire('change');
+  const deadline = Date.now() + 5000;
+  while (Date.now() < deadline) {
+    const status = nodes.get('owner-opf-state').textContent;
+    if (status.startsWith('Exact reviewed') || status.startsWith('Local index rejected')) return;
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  assert.fail('Owner-local OPF selection did not settle');
+}
+
+test('owner OPF shelf requires explicit local file choice and does not change public counts', async () => {
+  const nodes = await runWithIndex(catalog);
+  const publicBefore = ['discovery-top-count', 'publisher-edition-nav-count', 'record-count']
+    .map((id) => nodes.get(id).textContent);
+  assert.equal(nodes.get('owner-opf-list').children.length, 0);
+  assert.match(nodes.get('owner-opf-state').textContent, /No local file selected/);
+  const bytes = readFileSync(new URL('../proposals/librarian/private-opf-metadata-20261103/search-index.json', import.meta.url));
+  await selectLocalOpf(nodes, bytes);
+  assert.match(nodes.get('owner-opf-state').textContent, /browser memory only/);
+  assert.match(nodes.get('owner-opf-summary').textContent, /347 of 347 locally selected OPF metadata observations/);
+  assert.match(nodes.get('owner-opf-summary').textContent, /0 admitted Works, 0 verified edition bindings, 0 book close reads/);
+  assert.equal(traverse(nodes.get('owner-opf-list'), (node) => node.tagName === 'article').length, 40);
+  assert.equal(nodes.get('owner-opf-more').hidden, false);
+  nodes.get('owner-opf-more').fire('click');
+  assert.equal(traverse(nodes.get('owner-opf-list'), (node) => node.tagName === 'article').length, 80);
+  nodes.get('owner-opf-query').value = 'gateways';
+  nodes.get('owner-opf-query').fire('input');
+  assert.match(nodes.get('owner-opf-list').textContent, /star trek gateways/);
+  nodes.get('owner-opf-query').value = 'this title should not exist zzzzz';
+  nodes.get('owner-opf-query').fire('input');
+  assert.equal(nodes.get('owner-opf-empty').hidden, false);
+  nodes.get('owner-opf-clear').fire('click');
+  assert.equal(nodes.get('owner-opf-list').children.length, 0);
+  assert.equal(nodes.get('owner-opf-query').disabled, true);
+  assert.match(nodes.get('owner-opf-summary').textContent, /not loaded/);
+  assert.deepEqual(['discovery-top-count', 'publisher-edition-nav-count', 'record-count']
+    .map((id) => nodes.get(id).textContent), publicBefore);
+});
+
+test('owner OPF shelf rejects altered, oversized and malformed local JSON without data retention', async () => {
+  const nodes = await runWithIndex(catalog);
+  const bytes = readFileSync(new URL('../proposals/librarian/private-opf-metadata-20261103/search-index.json', import.meta.url));
+  const tampered = Buffer.from(bytes.toString('utf8').replace('star trek gateways', '<img src=x onerror=alert(1)>'));
+  await selectLocalOpf(nodes, tampered);
+  assert.match(nodes.get('owner-opf-state').textContent, /Local index rejected/);
+  assert.equal(nodes.get('owner-opf-list').children.length, 0);
+  await selectLocalOpf(nodes, bytes, 512 * 1024 + 1);
+  assert.match(nodes.get('owner-opf-state').textContent, /Local index rejected/);
+  assert.equal(nodes.get('owner-opf-list').children.length, 0);
+  await selectLocalOpf(nodes, Buffer.from('{"records":[]}'));
+  assert.match(nodes.get('owner-opf-state').textContent, /Local index rejected/);
+  assert.equal(nodes.get('owner-opf-query').disabled, true);
+  assert.equal(nodes.get('owner-opf-clear').disabled, true);
+  assert.equal(nodes.get('owner-opf-list').textContent.includes('<img'), false);
+});
+
+test('owner OPF Clear cancels an in-flight local file read without reviving metadata', async () => {
+  const nodes = await runWithIndex(catalog);
+  const bytes = readFileSync(new URL('../proposals/librarian/private-opf-metadata-20261103/search-index.json', import.meta.url));
+  let completeRead;
+  const deferredBytes = new Promise((resolve) => { completeRead = resolve; });
+  nodes.get('owner-opf-file').files = [{ size: bytes.length, arrayBuffer: () => deferredBytes }];
+  nodes.get('owner-opf-file').fire('change');
+  assert.equal(nodes.get('owner-opf-clear').disabled, false, 'Clear must remain available during pending read');
+  assert.match(nodes.get('owner-opf-state').textContent, /Checking selected file locally/);
+  nodes.get('owner-opf-clear').fire('click');
+  completeRead(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+  await new Promise((resolve) => setImmediate(resolve));
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(nodes.get('owner-opf-list').children.length, 0);
+  assert.equal(nodes.get('owner-opf-query').disabled, true);
+  assert.equal(nodes.get('owner-opf-clear').disabled, true);
+  assert.match(nodes.get('owner-opf-state').textContent, /No local file selected/);
+  assert.match(nodes.get('owner-opf-summary').textContent, /not loaded/);
+});
+
+test('owner OPF markup is a manual local file input with clear and distinct private status', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="owner-opf-file" type="file"/);
+  assert.match(html, /id="owner-opf-clear" type="button" disabled/);
+  assert.match(html, /id="owner-opf-query" type="search"[^>]+disabled/);
+  assert.match(html, /nothing is uploaded, fetched automatically, saved/);
+  assert.match(html, /already exists in the public repository/);
+  assert.match(html, /not necessarily one book/);
+  assert.equal(html.includes('./private-opf-metadata-20261103/search-index.json'), false);
+});
 
 test('20 separately validated publisher episode guide cards search by title, series, slot and utterance tag', async () => {
   const bytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));

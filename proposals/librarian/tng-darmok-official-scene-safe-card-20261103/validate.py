@@ -14,7 +14,7 @@ ROOT = HERE.parents[2]
 RECORDS = HERE / "records.json"
 FILES = {"records.json", "MANIFEST.md", "title-card.svg", "validate.py", "test_validate.py"}
 MAX_TEXT_BYTES = 200_000
-EXPECTED_RECORD_FINGERPRINT = "dd3671ee16824b81bbb0e17214307952359e639def5a4ccb6cac994274069544"
+EXPECTED_RECORD_FINGERPRINT = "caff8aa9c0421c131c51e2fe46f3b80b54c83e4f6d876bdd6ec9d7ac03aa4aec"
 EXPECTED_MANIFEST_SHA = "e5459e0ee42c6aa2b8e904ecbe6ef42e2ce997d6dca6b59d0cc0bb0346093c75"
 EXPECTED_CARD_SHA = "90551de489db4b646ef7719278a71229e775b4a6cc984c7d7d93c211ca163ed3"
 
@@ -111,6 +111,8 @@ def validate(packet: dict, root: Path = ROOT, *, directory: Path = HERE) -> None
              row["coverage_effect"]) == ("Darmok", "TNG S5E2", "UNVERIFIED_METADATA", "NONE", "NONE"),
             "source-local row no longer matches accepted main")
     image = packet["actual_scene_candidate"]
+    require(image["visual_class"] == "FIRST_PARTY_EDITORIAL_EPISODE_STILL_REUSE_PERMISSION_UNVERIFIED",
+            "unwarranted conclusion about photo reuse permission")
     require(image["public_image_display_admission"] == "HELD_NO_AFFIRMATIVE_REUSE_LICENSE",
             "unlicensed image release")
     require(image["verified_broadcast_frame"] is False and image["individual_photographer"] ==

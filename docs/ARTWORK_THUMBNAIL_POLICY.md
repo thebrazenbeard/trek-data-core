@@ -35,10 +35,17 @@ The [publisher discovery catalog](PUBLISHER_DISCOVERY_CATALOG.md) documents
 source metadata; it must not silently acquire cover URLs. The independently
 reviewed `explorer/artwork-catalog.json` contains **four opt-in Open Library API
 previews** for exact autobiographical book editions, and no local artwork.
-An older accepted Explorer build expecting schema 1.1.0 rejects the new
-schema 1.2.0 until its separate UI contract is updated and reviewed. If the
-optional sidecar is absent, the browser treats its 404 state as
-`ARTWORK_UNAVAILABLE`, not an empty universe or an episode error.
+The additive proposed `explorer/artwork-catalog-v1.3.json` upgrades only those
+**four** cover previews from Open Library small (`S`, 38-pixel thumbnails) to
+documented medium (`M`, 180-pixel jackets). The original
+`explorer/artwork-catalog.json` (v1.2.0) remains **byte-identical** and
+packaged alongside it indefinitely for cached older Explorer clients.
+The matching dual-reader UI must try only the strictly reviewed v1.3.0
+sidecar first and fall back to unchanged v1.2.0 on missing, invalid or
+unavailable medium images; no remote requests occur before visitor opt-in.
+**No merge or deployment ahead of a compatible independently browser-tested
+UI: no temporary blank cover shelf.** If both optional artwork sidecars are
+absent, the browser reports artwork unavailable, not an empty universe.
 
 ## Future sidecar contract (not a release receipt)
 
@@ -46,7 +53,7 @@ An authorized release may carry exactly the following keys:
 
 | Field | Requirement |
 | --- | --- |
-| `schema_version` | `1.2.0` |
+| `schema_version` | `1.2.0` legacy fallback or `1.3.0` additive medium sidecar (matching dual-reader Explorer UI required) |
 | `data_status` | `PROVENANCE_REVIEWED_ARTWORK` |
 | `coverage_effect` | `NONE` |
 | `rights_policy` | `PER_ENTRY_DISPLAY_GATE` |
@@ -85,26 +92,37 @@ rights gates:
 
 - `provider`: `OPEN_LIBRARY_COVERS_API` (no arbitrary provider URLs).
 - `cover_id`: bounded positive Open Library numeric cover ID; browser derives
-  `https://covers.openlibrary.org/b/id/<id>-S.jpg?default=false` itself.
+  `https://covers.openlibrary.org/b/id/<id>-M.jpg?default=false` itself,
+  strictly after opt-in, in the matching v1.3.0 UI.
+- `image_size`: the exact code-pinned value `M`; no sidecar-selected size,
+  arbitrary URL, provider, or fallback to an unreviewed rendition.
+  [Open Library Covers API](https://openlibrary.org/dev/docs/api/covers)
+  defines `M` as a medium detail-page cover.
 - `isbn`: exact 13-digit edition ISBN; `attribution_url` must be
   `https://openlibrary.org/isbn/<isbn>`.
 - `edition_metadata_sha256`: SHA-256 of the exact Open Library edition
   metadata used for the ISBN-to-cover crosswalk (64 lowercase hex).
 - Independent `registry/artwork-edition-receipts/` records additionally pin
-  the exact viewed `-L.jpg` preview byte SHA-256, a separate visual inspection
-  explicitly confirming a *front jacket rather than an interior title page*,
+  the exact viewed `-L.jpg` preview SHA-256 and now also the distinct
+  `-M.jpg?default=false` **JPEG SHA-256, byte length, 180-pixel width, bounded
+  height, exact provider URL, official API docs, and separate visual reviewer**.
+  Both inspections confirm a *front jacket rather than an interior title page*,
   edition metadata response identity, and distinct review roles. A valid
   ISBN/JSON digest/HTTP 200 alone is insufficient.
+  The medium-byte/visual observation's author is
+  `chatgpt.trek.librarian.private_inventory`, recorded in shared Blotter event
+  #3466; the later Librarian source-only PR #421 is corroborating proposal
+  metadata, not itself publication or an independent license grant.
 - `rights_status`:
   `API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED`, explicitly distinct from
   licensed/public-domain status.
 - The rendered image links visibly to Open Library. It is fetched only after
   opt-in, with `referrerPolicy='no-referrer'`, `loading='lazy'`, and a fallback.
 
-**Current release gate:** four source-local autobiography editions have
+**Staged v1.3.0 release gate:** four source-local autobiography editions have
 independently checked publisher ISBN, Open Library edition JSON and visual
 front-jacket review receipts. The code-owned Python release pins and public
-sidecar include only those four; a separately reviewed Explorer JS code-owned
+medium sidecar include only those four; a separately reviewed Explorer JS code-owned
 receipt map and live browser opt-in qualification must agree before the
 previews display. Sidecar-supplied values cannot approve themselves. These
 are API previews, **not mirrored image copies or copyright clearance**.
@@ -121,7 +139,8 @@ memoir leads use a distinct `Paperback ISBN …` detail format, and their
 source URLs are restricted to that distributor's bounded `/books/<id>/<slug>/`
 path, `FICTIONAL_MEMOIR` kind, and publisher-lineage group. These are
 defense-in-depth consistency checks, not cover-authenticity or display-rights
-proof. The independently reviewed receipt map remains empty and fail-closed.
+proof. The **local licensed-binary** receipt map remains empty and fail-closed;
+the Open Library API cover map contains exactly four reviewed editions.
 
 The static Pages package includes only a sidecar passing
 `python3 tools/validate_artwork_release.py --check --verify-git` and any

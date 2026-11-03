@@ -10,6 +10,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -86,14 +87,22 @@ class ArtworkReleaseContractTests(unittest.TestCase):
 
     def _make_library(self):
         item = {"row_id": BOOK_ID, "provider": "OPEN_LIBRARY_COVERS_API", "cover_id": 13083310,
-                "isbn": ISBN, "alt_text": "Synthetic Open Library edition fixture",
+                "isbn": ISBN, "image_size": "M", "alt_text": "Synthetic Open Library edition fixture",
                 "source_locator": BOOK_LOCATOR,
                 "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
                 "edition_metadata_sha256": digest(b"synthetic Open Library edition metadata"),
                 "attribution_url": f"https://openlibrary.org/isbn/{ISBN}"}
         metadata_locator = "https://openlibrary.org/books/OL28813033M.json"
         preview_sha = digest(b"synthetic inspected front-jacket bytes")
-        receipt = {"schema_version": "1.0.0", "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
+        medium_sha = digest(b"synthetic medium jacket preview bytes")
+        medium_tuple = {
+            "medium_preview_sha256": medium_sha, "medium_preview_bytes": 12800,
+            "medium_preview_width": 180, "medium_preview_height": 273,
+            "medium_preview_mime": "image/jpeg",
+            "medium_preview_locator": "https://covers.openlibrary.org/b/id/13083310-M.jpg?default=false",
+            "medium_provider_doc_url": "https://openlibrary.org/dev/docs/api/covers",
+        }
+        receipt = {"schema_version": "1.1.0", "review_status": "INDEPENDENT_EDITION_CROSSWALK_REVIEW",
                    "row_id": BOOK_ID, "source_locator": BOOK_LOCATOR, "isbn": ISBN,
                    "cover_id": item["cover_id"], "edition_metadata_sha256": item["edition_metadata_sha256"],
                    "edition_metadata_locator": metadata_locator,
@@ -101,11 +110,15 @@ class ArtworkReleaseContractTests(unittest.TestCase):
                    "image_reviewer": "fixture-image-reviewer", "image_preview_sha256": preview_sha,
                    "image_review_status": "COVER_IMAGE_VISUALLY_REVIEWED",
                    "image_review_observation": "Synthetic fixture: a front jacket, not an interior title page",
-                   "reviewed_on": "2026-11-03"}
+                   "reviewed_on": "2026-11-03", "image_size": "M", **medium_tuple,
+                   "medium_visual_reviewer": "fixture-medium-reviewer",
+                   "medium_visual_status": "COVER_IMAGE_VISUALLY_REVIEWED",
+                   "medium_visual_observation": "Synthetic medium image has the same title jacket and is not an inside page",
+                   "medium_reviewed_on": "2026-11-03"}
         receipt_path = "registry/artwork-edition-receipts/synthetic-kirk.json"
         self._json(receipt_path, receipt)
         pin = {**item, "edition_metadata_locator": metadata_locator,
-               "image_preview_sha256": preview_sha,
+               "image_preview_sha256": preview_sha, **medium_tuple,
                "edition_review_receipt_path": receipt_path,
                "edition_review_receipt_sha256": digest((self.root / receipt_path).read_bytes())}
         return item, pin
@@ -138,8 +151,8 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         })
 
     def _manifest(self, entries):
-        self._json("explorer/artwork-catalog.json", {
-            "schema_version": "1.2.0", "data_status": "PROVENANCE_REVIEWED_ARTWORK",
+        self._json("explorer/artwork-catalog-v1.3.json", {
+            "schema_version": "1.3.0", "data_status": "PROVENANCE_REVIEWED_ARTWORK",
             "coverage_effect": "NONE", "rights_policy": "PER_ENTRY_DISPLAY_GATE",
             "artwork_count": len(entries), "artwork": entries})
 
@@ -187,6 +200,72 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         self.assertNotIn(12857937, [pin["cover_id"] for pin in art.REVIEWED_OPEN_LIBRARY_COVER_PINS.values()])
         self.assertEqual(art.validate_manifest(ROOT)["artwork_count"], 4)
 
+    def test_medium_candidate_preserves_immutable_v12_fallback_and_exact_row_crosswalk(self):
+        v12 = ROOT / art.LEGACY_MANIFEST
+        v13 = ROOT / art.MANIFEST
+        self.assertEqual(digest(v12.read_bytes()), art.LEGACY_MANIFEST_SHA256)
+        old = json.loads(v12.read_text())
+        medium = json.loads(v13.read_text())
+        self.assertEqual(old["schema_version"], "1.2.0")
+        self.assertEqual(medium["schema_version"], "1.3.0")
+        self.assertEqual(old["artwork"], [
+            {k: v for k, v in item.items() if k != "image_size"} for item in medium["artwork"]])
+        self.assertTrue(all(item["image_size"] == "M" for item in medium["artwork"]))
+
+    def test_medium_sidecar_rejects_missing_duplicate_reordered_and_small_substitutions(self):
+        # A synthetic mixed batch probes the v1.2/v1.3 pair and its order,
+        # including a mutation that keeps the public v1.2 projection identical.
+        legacy_art = [self.local, {k: v for k, v in self.library.items() if k != "image_size"}]
+        legacy = {
+            "schema_version": "1.2.0", "data_status": "PROVENANCE_REVIEWED_ARTWORK",
+            "coverage_effect": "NONE", "rights_policy": "PER_ENTRY_DISPLAY_GATE",
+            "artwork_count": 2, "artwork": legacy_art,
+        }
+        self._json(art.LEGACY_MANIFEST, legacy)
+        self._manifest([self.local, self.library])
+        self.assertEqual(self._check(local_pins={FILM_ID: self.local_pin},
+                                     library_pins={BOOK_ID: self.library_pin})["artwork_count"], 2)
+
+        attacks = (
+            ("dropped", [self.local], "v1.3 medium sidecar diverges"),
+            ("duplicate", [self.local, self.library, self.library], "v1.3 medium sidecar diverges"),
+            ("reordered", [self.library, self.local], "v1.3 medium sidecar diverges"),
+            ("small rendition", [self.local, {**self.library, "image_size": "S"}],
+             "not independently pinned"),
+            ("cover ID replacement", [self.local, {**self.library, "cover_id": 999}],
+             "v1.3 medium sidecar diverges"),
+        )
+        for label, entries, message in attacks:
+            with self.subTest(label=label):
+                self._manifest(entries)
+                with self.assertRaisesRegex(art.ArtworkRejected, message):
+                    self._check(local_pins={FILM_ID: self.local_pin},
+                                library_pins={BOOK_ID: self.library_pin})
+
+        # The *real* release gate pins the old S fallback by exact file SHA,
+        # not merely semantic JSON equality. Reproduce the project-root check
+        # on this synthetic copy and ensure a whitespace-only change fails.
+        self._manifest([self.local, self.library])
+        legacy_file = self.root / art.LEGACY_MANIFEST
+        baseline_sha = digest(legacy_file.read_bytes())
+        legacy_file.write_bytes(legacy_file.read_bytes() + b"\n")
+        with patch.object(art, "ROOT", self.root), patch.object(
+                art, "LEGACY_MANIFEST_SHA256", baseline_sha):
+            with self.assertRaisesRegex(art.ArtworkRejected, "previously published v1.2 artwork bytes"):
+                self._check(local_pins={FILM_ID: self.local_pin},
+                            library_pins={BOOK_ID: self.library_pin})
+
+    def test_malicious_medium_sidecar_may_not_replace_or_mutate_old_small_fallback(self):
+        shutil.rmtree(self.root / "explorer/licensed-artwork")
+        self._manifest([self.library])
+        self._json("explorer/artwork-catalog.json", {
+            "schema_version": "1.2.0", "data_status": "PROVENANCE_REVIEWED_ARTWORK",
+            "coverage_effect": "NONE", "rights_policy": "PER_ENTRY_DISPLAY_GATE",
+            "artwork_count": 1, "artwork": [
+                {k: (9 if k == "cover_id" else v) for k, v in self.library.items() if k != "image_size"}]})
+        with self.assertRaisesRegex(art.ArtworkRejected, "v1.3 medium sidecar diverges"):
+            self._check(library_pins={BOOK_ID: self.library_pin})
+
     def test_valid_edition_metadata_and_image_digest_do_not_certify_title_page_as_cover(self):
         shutil.rmtree(self.root / "explorer/licensed-artwork")
         self._manifest([self.library])
@@ -207,6 +286,44 @@ class ArtworkReleaseContractTests(unittest.TestCase):
         forged_pin = {**self.library_pin, "image_preview_sha256": "f" * 64}
         with self.assertRaisesRegex(art.ArtworkRejected, "review receipt diverges"):
             self._check(library_pins={BOOK_ID: forged_pin})
+
+    def test_medium_size_cannot_be_downgraded_or_claimed_by_sidecar(self):
+        shutil.rmtree(self.root / "explorer/licensed-artwork")
+        for illegal in ("S", "L", "XL", None):
+            with self.subTest(illegal=illegal):
+                self._manifest([{**self.library, "image_size": illegal}])
+                with self.assertRaisesRegex(art.ArtworkRejected, "not independently pinned"):
+                    self._check(library_pins={BOOK_ID: self.library_pin})
+
+    def test_medium_provider_image_digest_dimensions_and_url_are_code_pinned(self):
+        shutil.rmtree(self.root / "explorer/licensed-artwork")
+        self._manifest([self.library])
+        attacks = (
+            ("medium_preview_sha256", "f" * 64, "review receipt diverges"),
+            ("medium_preview_bytes", 12500, "review receipt diverges"),
+            ("medium_preview_width", 38, "medium rendition"),
+            ("medium_preview_height", 600, "medium rendition"),
+            ("medium_preview_mime", "image/svg+xml", "medium rendition"),
+            ("medium_preview_locator", "https://covers.openlibrary.org/b/id/9-S.jpg?default=false",
+             "medium rendition"),
+            ("medium_provider_doc_url", "https://evil.invalid/cover-policy", "medium rendition"),
+        )
+        for key, changed, message in attacks:
+            with self.subTest(key=key):
+                pin = {**self.library_pin, key: changed}
+                with self.assertRaisesRegex(art.ArtworkRejected, message):
+                    self._check(library_pins={BOOK_ID: pin})
+
+    def test_medium_cover_requires_separate_visual_review_not_just_http200(self):
+        shutil.rmtree(self.root / "explorer/licensed-artwork")
+        self._manifest([self.library])
+        receipt_path = self.root / self.library_pin["edition_review_receipt_path"]
+        receipt = json.loads(receipt_path.read_text())
+        receipt["medium_visual_status"] = "IMAGE_VISUALLY_REJECTED_TITLE_PAGE"
+        self._json(self.library_pin["edition_review_receipt_path"], receipt)
+        pin = {**self.library_pin, "edition_review_receipt_sha256": digest(receipt_path.read_bytes())}
+        with self.assertRaisesRegex(art.ArtworkRejected, "medium jacket not independently inspected"):
+            self._check(library_pins={BOOK_ID: pin})
 
     def test_local_path_hash_media_rights_and_source_attacks_fail_closed(self):
         attacks = [

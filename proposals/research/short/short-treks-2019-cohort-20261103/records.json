@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "status": "SOURCE_RELATIVE_PUBLISHER_METADATA",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "admission_effect": "NONE",
+  "primary_audiovisual_processed": false,
+  "source_independence_group": "publisher:paramount",
+  "observed_on_utc": "2026-11-03",
+  "sources": [
+    {
+      "source_id": "short-2019-nycc-announcement",
+      "url": "https://www.startrek.com/news/star-trek-discovery-season-three-short-treks-nycc",
+      "source_kind": "OFFICIAL_2019_ROLLOUT_ANNOUNCEMENT",
+      "source_locator": "News article published 2019-10-05, lines 48-68 in the 2026-11-03 text retrieval",
+      "response_sha256": "1229c9229a07784b845e52f220e0bc3c9bada8c48083399f97bd5617c4bf6ced",
+      "hash_method": "SHA256_OF_TRANSIENT_HTTP_RESPONSE_NOT_COMMITTED",
+      "source_bytes_committed": false,
+      "independence_group": "publisher:paramount"
+    },
+    {
+      "source_id": "short-current-paramount-guide",
+      "url": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/",
+      "source_kind": "CURRENT_OFFICIAL_EPISODE_GUIDE",
+      "source_locator": "Episode Guide headings and slots, lines 90-122 in the 2026-11-03 text retrieval",
+      "response_sha256": "3639ba01f14412fe386fc3fc74908f57e1268ebbdd7574096f37eda8aba54ecc",
+      "hash_method": "SHA256_OF_TRANSIENT_HTTP_RESPONSE_NOT_COMMITTED",
+      "source_bytes_committed": false,
+      "independence_group": "publisher:paramount"
+    }
+  ],
+  "work_candidates": [
+    {"local_work_id": "short2019-qa", "title": "Q&A", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null},
+    {"local_work_id": "short2019-trouble-edward", "title": "The Trouble with Edward", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null},
+    {"local_work_id": "short2019-ask-not", "title": "Ask Not", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null},
+    {"local_work_id": "short2019-girl-stars", "title": "The Girl Who Made the Stars", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null},
+    {"local_work_id": "short2019-ephraim-dot", "title": "Ephraim and Dot", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null},
+    {"local_work_id": "short2019-children-mars", "title": "Children of Mars", "type": "SCRIPTED_AUDIOVISUAL_SHORT", "accepted_work_id": null}
+  ],
+  "local_entities": [
+    {"local_entity_id": "news-qa", "work_candidate_id": "short2019-qa", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-qa", "work_candidate_id": "short2019-qa", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"},
+    {"local_entity_id": "news-trouble-edward", "work_candidate_id": "short2019-trouble-edward", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-trouble-edward", "work_candidate_id": "short2019-trouble-edward", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"},
+    {"local_entity_id": "news-ask-not", "work_candidate_id": "short2019-ask-not", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-ask-not", "work_candidate_id": "short2019-ask-not", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"},
+    {"local_entity_id": "news-girl-stars", "work_candidate_id": "short2019-girl-stars", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-girl-stars", "work_candidate_id": "short2019-girl-stars", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"},
+    {"local_entity_id": "news-ephraim-dot", "work_candidate_id": "short2019-ephraim-dot", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-ephraim-dot", "work_candidate_id": "short2019-ephraim-dot", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"},
+    {"local_entity_id": "news-children-mars", "work_candidate_id": "short2019-children-mars", "source_id": "short-2019-nycc-announcement", "source_relative_role": "ANNOUNCED_SHORT_TITLE"},
+    {"local_entity_id": "guide-children-mars", "work_candidate_id": "short2019-children-mars", "source_id": "short-current-paramount-guide", "source_relative_role": "GUIDE_LISTING_TITLE"}
+  ],
+  "evidence": [
+    {"evidence_id": "ev-news-qa", "local_entity_id": "news-qa", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 49, 56-58", "announced_date": "2019-10-05", "date_basis": "ARTICLE_DATE_AND_AVAILABLE_NOW", "observed_claim": "Q&A was described as available to stream on the dated announcement"},
+    {"evidence_id": "ev-guide-qa", "local_entity_id": "guide-qa", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 118-122", "source_local_slot": "S1E5", "observed_claim": "Q&A appears in the current Season 1 guide at episode position 5"},
+    {"evidence_id": "ev-news-trouble-edward", "local_entity_id": "news-trouble-edward", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 52, 60", "announced_date": "2019-10-10", "date_basis": "EXPLICIT_SCHEDULE", "observed_claim": "The publisher scheduled The Trouble with Edward for October 10"},
+    {"evidence_id": "ev-guide-trouble-edward", "local_entity_id": "guide-trouble-edward", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 112-116", "source_local_slot": "S1E6", "observed_claim": "The Trouble with Edward appears in the current Season 1 guide at episode position 6"},
+    {"evidence_id": "ev-news-ask-not", "local_entity_id": "news-ask-not", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 61-62", "announced_date": "2019-11-14", "date_basis": "EXPLICIT_SCHEDULE", "observed_claim": "The publisher scheduled Ask Not for November 14"},
+    {"evidence_id": "ev-guide-ask-not", "local_entity_id": "guide-ask-not", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 107-111", "source_local_slot": "S1E7", "observed_claim": "Ask Not appears in the current Season 1 guide at episode position 7"},
+    {"evidence_id": "ev-news-girl-stars", "local_entity_id": "news-girl-stars", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 63-64", "announced_date": "2019-12-12", "date_basis": "EXPLICIT_SCHEDULE", "observed_claim": "The publisher scheduled The Girl Who Made the Stars for December 12"},
+    {"evidence_id": "ev-guide-girl-stars", "local_entity_id": "guide-girl-stars", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 101-105", "source_local_slot": "S1E8", "observed_claim": "The Girl Who Made the Stars appears in the current Season 1 guide at episode position 8"},
+    {"evidence_id": "ev-news-ephraim-dot", "local_entity_id": "news-ephraim-dot", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 65-66", "announced_date": "2019-12-12", "date_basis": "EXPLICIT_SCHEDULE", "observed_claim": "The publisher scheduled Ephraim and Dot for December 12"},
+    {"evidence_id": "ev-guide-ephraim-dot", "local_entity_id": "guide-ephraim-dot", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 96-100", "source_local_slot": "S1E9", "observed_claim": "Ephraim and Dot appears in the current Season 1 guide at episode position 9"},
+    {"evidence_id": "ev-news-children-mars", "local_entity_id": "news-children-mars", "kind": "PUBLISHER_RELEASE_ANNOUNCEMENT", "locator": "News article lines 67-68", "announced_date": "2020-01-09", "date_basis": "EXPLICIT_SCHEDULE_WITH_ARTICLE_YEAR_ROLLOVER", "observed_claim": "The publisher scheduled Children of Mars for January 9 following the 2019 announcement"},
+    {"evidence_id": "ev-guide-children-mars", "local_entity_id": "guide-children-mars", "kind": "PUBLISHER_GUIDE_SLOT", "locator": "Guide lines 90-94", "source_local_slot": "S1E10", "observed_claim": "Children of Mars appears in the current Season 1 guide at episode position 10"}
+  ],
+  "assertions": [
+    {"assertion_id": "as-qa", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-qa", "evidence_ids": ["ev-news-qa", "ev-guide-qa"], "status": "PROPOSED", "global_identity_effect": "NONE"},
+    {"assertion_id": "as-trouble-edward", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-trouble-edward", "evidence_ids": ["ev-news-trouble-edward", "ev-guide-trouble-edward"], "status": "PROPOSED", "global_identity_effect": "NONE"},
+    {"assertion_id": "as-ask-not", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-ask-not", "evidence_ids": ["ev-news-ask-not", "ev-guide-ask-not"], "status": "PROPOSED", "global_identity_effect": "NONE"},
+    {"assertion_id": "as-girl-stars", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-girl-stars", "evidence_ids": ["ev-news-girl-stars", "ev-guide-girl-stars"], "status": "PROPOSED", "global_identity_effect": "NONE"},
+    {"assertion_id": "as-ephraim-dot", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-ephraim-dot", "evidence_ids": ["ev-news-ephraim-dot", "ev-guide-ephraim-dot"], "status": "PROPOSED", "global_identity_effect": "NONE"},
+    {"assertion_id": "as-children-mars", "predicate": "CANDIDATE_SOURCE_LOCAL_TITLE_CORRESPONDENCE", "work_candidate_id": "short2019-children-mars", "evidence_ids": ["ev-news-children-mars", "ev-guide-children-mars"], "status": "PROPOSED", "global_identity_effect": "NONE"}
+  ]
+}

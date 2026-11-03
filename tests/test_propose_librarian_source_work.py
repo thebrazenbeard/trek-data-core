@@ -102,6 +102,7 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
             ("fixture_only", "false"),
             ("work_identity_note", r"C:\Users\Example\Private\source.mp4"),
             ("work_identity_note", "/home/example/private/episode.mkv"),
+            ("work_title", r"Work C:\Users\Example\Private\source.mp4"),
         ):
             self.decl = declaration()
             self.decl[key] = value
@@ -116,6 +117,10 @@ class ProposedLibrarianBridgeTests(unittest.TestCase):
         self.decl["acceptance_effect"] = "ACCEPTED"
         with self.assertRaisesRegex(custody.Rejected, "exact v1 fields"):
             self.build()
+
+    def test_legitimate_slash_in_title_is_preserved_without_private_path(self):
+        self.decl["work_title"] = "Synthetic episode A/B"
+        self.assertEqual(self.build()["work"]["title"], "Synthetic episode A/B")
 
     def test_cli_produces_no_registry_files(self):
         request_file = self.root / "request.json"

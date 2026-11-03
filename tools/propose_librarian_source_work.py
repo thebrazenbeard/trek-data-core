@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 
 import source_custody_receipt as custody
@@ -32,7 +33,12 @@ def proposed_work(item: dict) -> dict:
         custody.ident(item[key], key)
     for key in ("work_title", "work_type", "work_identity_note"):
         value = custody.text(item[key], key, length=240)
-        if "/" in value or "\\" in value:
+        if key == "work_title":
+            # Slash is legitimate punctuation in some titles; block path-shaped
+            # spans rather than every title with a separator.
+            if re.search(r"(?i)(?:[a-z]:[\\/]|\\\\|/(?:users|home|private|mnt|var|tmp)/|file://|\.\.[\\/])", value):
+                raise custody.Rejected("work_title must not embed a private or relative file path")
+        elif "/" in value or "\\" in value:
             raise custody.Rejected(f"{key} must not contain paths or path separators")
     if len(item["work_identity_note"]) < 20:
         raise custody.Rejected("work identity note must explain the operator's specific basis")

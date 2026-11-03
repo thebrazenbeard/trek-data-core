@@ -21,6 +21,7 @@ from urllib.parse import urlsplit
 if __package__:
     from . import build_film_catalog as films
     from . import build_literary_candidates as literature
+    from . import build_prh_autobiography_candidates as prh_literature
     from . import build_legacy_s1_discovery as legacy1
     from . import build_legacy_s2_discovery as legacy
     from . import build_legacy_s3_discovery as legacy3
@@ -39,6 +40,7 @@ if __package__:
 else:
     import build_film_catalog as films
     import build_literary_candidates as literature
+    import build_prh_autobiography_candidates as prh_literature
     import build_legacy_s1_discovery as legacy1
     import build_legacy_s2_discovery as legacy
     import build_legacy_s3_discovery as legacy3
@@ -63,6 +65,7 @@ INPUTS = (
     Path("proposals/discovery/publisher-catalog.json"),
     Path("proposals/librarian/ring-of-fire-editions-20261102/records.json"),
     Path("proposals/librarian/simon-schuster-three-novels-20261103/records.json"),
+    Path("proposals/librarian/prh-star-trek-autobiographies-20261103/records.json"),
 )
 PICARD_COMPANIONS = Path("proposals/librarian/picard-companion-editions-20261103/records.json")
 REVIEWED_NOVELS = {
@@ -89,10 +92,11 @@ SHORTS_INPUT = Path("proposals/discovery/shorts-audio-20261102/records.json")
 SCOUTS_INPUT = scouts.OUTPUT
 MEDIUMS = ("EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO")
 KINDS = ("WIKIDATA_EPISODE", "PUBLISHER_EPISODE_SLOT", "PUBLISHER_REFERENCE",
-         "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "SCRIPTED_SHORT",
+         "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "FICTIONAL_MEMOIR", "SCRIPTED_SHORT",
          "PROMOTIONAL_ANIMATION", "SCRIPTED_AUDIO_SERIES")
 ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com",
-                 "www.simonandschuster.com", "www.mikrosanimation.com", "youtu.be"}
+                 "www.simonandschuster.com", "www.mikrosanimation.com", "youtu.be",
+                 "www.penguinrandomhouse.com"}
 
 
 def _checked_title(value: object) -> str:
@@ -290,6 +294,7 @@ def build_bytes(root: Path) -> bytes:
         (INPUTS[2], publisher.build_bytes(root)),
         (INPUTS[3], literature.build(root)),
         (INPUTS[4], None),
+        (INPUTS[5], prh_literature.build(root)),
         (SHORTS_INPUT, shorts.build(root)),
         (SCOUTS_INPUT, scouts.build(root)),
     ):
@@ -300,6 +305,7 @@ def build_bytes(root: Path) -> bytes:
         if str(path) == str(INPUTS[2]): publisher_catalog = value
         if str(path) == str(INPUTS[3]): novel_catalog = value
         if str(path) == str(INPUTS[4]): three_novels = value
+        if str(path) == str(INPUTS[5]): prh_catalog = value
         if path == SHORTS_INPUT: shorts_catalog = value
         if path == SCOUTS_INPUT: scouts_catalog = value
 
@@ -322,6 +328,15 @@ def build_bytes(root: Path) -> bytes:
             novel_catalog.get("coverage_effect") != "NONE" or
             novel_catalog.get("accepted_work_effect") != "NONE"):
         raise ValueError("literary work not proposal-only")
+    if (prh_catalog.get("proposal_only") is not True or
+            any(prh_catalog.get(field) != "NONE" for field in
+                ("coverage_effect", "accepted_work_effect", "accepted_source_binding_effect",
+                 "deep_read_effect", "raw_html_publication")) or
+            prh_catalog.get("work_count") != 5 or
+            len(prh_catalog.get("works", [])) != 5 or
+            len(prh_catalog.get("edition_candidates", [])) != 5 or
+            len(prh_catalog.get("sources", [])) != 5):
+        raise ValueError("new literary publisher batch not candidate-only")
 
     entries = []
     for idx, lead in enumerate(leads_catalog["leads"]):
@@ -832,6 +847,28 @@ def build_bytes(root: Path) -> bytes:
                         novel_catalog["source_group"], str(INPUTS[3]),
                         source_by_id[editions[0]["source_id"]]["locator"], details))
     entries.extend(_three_novel_rows(three_novels))
+
+    prh_sources = {source["source_id"]: source for source in prh_catalog["sources"]}
+    prh_editions = {edition["work_id"]: edition for edition in prh_catalog["edition_candidates"]}
+    if len(prh_sources) != 5 or len(prh_editions) != 5 or (
+            prh_catalog["collection_container"].get("counted_as_independent_work") is not False):
+        raise ValueError("literary edition or collection identity mismatch")
+    for item in prh_catalog["works"]:
+        edition = prh_editions.get(item["work_id"])
+        if (item["status"] != "PROPOSED" or item["work_type"] != "FICTIONAL_MEMOIR" or
+                not edition or edition["status"] != "PROPOSED" or
+                edition["source_id"] not in prh_sources or
+                prh_sources[edition["source_id"]]["isbn13"] != edition["isbn13"] or
+                prh_sources[edition["source_id"]]["cover_license_verification"] != "NOT_ESTABLISHED"):
+            raise ValueError("distributor Work/edition/source evidence mismatch")
+        entries.append(_row("literature:" + item["work_id"], "LITERATURE", "FICTIONAL_MEMOIR",
+                            item["title"], item["creator"] + " · distributor listing",
+                            prh_catalog["source_group"], str(INPUTS[5]),
+                            prh_sources[edition["source_id"]]["locator"],
+                            ("In-universe fictional autobiography; no close read",
+                             "Paperback ISBN " + edition["isbn13"])))
+    sources[str(prh_literature.SOURCE)] = hashlib.sha256(
+        research.safe_read(root, prh_literature.SOURCE, max_bytes=65_000)).hexdigest()
 
     identities = [r["row_id"] for r in entries]
     if len(set(identities)) != len(identities):

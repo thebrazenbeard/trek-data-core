@@ -40,15 +40,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 1155, "FILM": 14, "LITERATURE": 4,
+            "EPISODE": 1155, "FILM": 14, "LITERATURE": 9,
             "SHORT_FORM": 35, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1209)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1214)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 138)
+        self.assertEqual(len(catalog["source_digests"]), 140)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -65,6 +65,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
             "NOVEL": 4,
+            "FICTIONAL_MEMOIR": 5,
             "SCRIPTED_SHORT": 30,
             "PROMOTIONAL_ANIMATION": 5,
             "SCRIPTED_AUDIO_SERIES": 1,
@@ -85,6 +86,11 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                             for r in new_novels))
         self.assertEqual(len({detail.split("ISBN ", 1)[1]
                               for novel in new_novels for detail in novel["details"]}), 9)
+        memoirs = [r for r in rows if r["candidate_kind"] == "FICTIONAL_MEMOIR"]
+        self.assertEqual(len(memoirs), 5)
+        self.assertTrue(all(r["source_locator"].startswith("https://www.penguinrandomhouse.com/books/")
+                            for r in memoirs))
+        self.assertFalse(any("Captains - The Autobiographies" == r["title"] for r in memoirs))
         for show in ("DS9", "VOY"):
             observed = [r["context"] for r in rows if r["row_id"].startswith(f"roster:{show.lower()}:")]
             self.assertIn(f"{show} S1E1", observed)

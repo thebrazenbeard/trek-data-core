@@ -4,14 +4,14 @@
     "AUDIO": 1,
     "EPISODE": 1155,
     "FILM": 14,
-    "LITERATURE": 4,
+    "LITERATURE": 9,
     "SHORT_FORM": 35
   },
   "coverage_effect": "NONE",
   "data_status": "DISCOVERY_ONLY",
   "denominator_status": "NOT_ESTABLISHED",
   "identity_scope": "SOURCE_LOCAL_NOT_DEDUPLICATED",
-  "row_count": 1209,
+  "row_count": 1214,
   "rows": [
     {
       "admission_effect": "NONE",
@@ -19862,6 +19862,96 @@
       "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Discovery-The-Enterprise-War/John-Jackson-Miller/Star-Trek-Discovery/9781982113315",
       "title": "Star Trek: Discovery: The Enterprise War",
       "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "FICTIONAL_MEMOIR",
+      "context": "David A. Goodman · distributor listing",
+      "coverage_effect": "NONE",
+      "details": [
+        "In-universe fictional autobiography; no close read",
+        "Paperback ISBN 9781783297481"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:prh-autobiography-kirk",
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "title": "The Autobiography of James T. Kirk",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "FICTIONAL_MEMOIR",
+      "context": "David A. Goodman · distributor listing",
+      "coverage_effect": "NONE",
+      "details": [
+        "In-universe fictional autobiography; no close read",
+        "Paperback ISBN 9781785659409"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:prh-autobiography-picard",
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "title": "The Autobiography of Jean-Luc Picard",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "FICTIONAL_MEMOIR",
+      "context": "Una McCormack · distributor listing",
+      "coverage_effect": "NONE",
+      "details": [
+        "In-universe fictional autobiography; no close read",
+        "Paperback ISBN 9781789095333"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:prh-autobiography-janeway",
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "title": "The Autobiography of Kathryn Janeway",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "FICTIONAL_MEMOIR",
+      "context": "Una McCormack · distributor listing",
+      "coverage_effect": "NONE",
+      "details": [
+        "In-universe fictional autobiography; no close read",
+        "Paperback ISBN 9781785659416"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:prh-autobiography-spock",
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "title": "The Autobiography of Mr. Spock",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "FICTIONAL_MEMOIR",
+      "context": "Derek Tyler Attico · distributor listing",
+      "coverage_effect": "NONE",
+      "details": [
+        "In-universe fictional autobiography; no close read",
+        "Paperback ISBN 9781803366258"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:prh-autobiography-sisko",
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_locator": "https://www.penguinrandomhouse.com/books/737400/the-autobiography-of-benjamin-sisko-by-derek-tyler-attico/",
+      "title": "The Autobiography of Benjamin Sisko",
+      "verification_status": "UNVERIFIED_METADATA"
     }
   ],
   "schema_version": "1.0.0",
@@ -20409,6 +20499,14 @@
     {
       "path": "proposals/librarian/picard-companion-editions-20261103/records.json",
       "sha256": "cdbda4dfa33c795bd51a1ebbfb09e41c7d838b73ce17aa6756428bd6ed8d8da4"
+    },
+    {
+      "path": "proposals/librarian/prh-star-trek-autobiographies-20261103/bundle.json",
+      "sha256": "9a64a305fb6bf984993445ce5b67f5371a49d8dd6d15847f8719d4b716db12c0"
+    },
+    {
+      "path": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "sha256": "28660a310e0cb8ad1824f604cf5e00ed6771bfc1cbf9471bfd796cc8d10f24da"
     },
     {
       "path": "proposals/librarian/ring-of-fire-editions-20261102/records.json",

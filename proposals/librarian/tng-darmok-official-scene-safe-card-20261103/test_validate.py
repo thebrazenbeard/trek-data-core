@@ -56,6 +56,12 @@ class DarmokVisualPacketTests(unittest.TestCase):
     def test_official_image_hash_is_pinned(self) -> None:
         self.mutation_rejected(["actual_scene_candidate", "image_sha256"], "0" * 64)
 
+    def test_exact_publisher_embedded_variant_is_pinned_separately(self) -> None:
+        self.mutation_rejected(["actual_scene_candidate", "publisher_embedded_image_sha256"], "0" * 64)
+        self.mutation_rejected(["actual_scene_candidate", "publisher_embedded_image_bytes"], 321843)
+        self.mutation_rejected(["actual_scene_candidate", "publisher_embedded_image_url"],
+                               "https://images.prismic.io/star-trek-untold/ZrrC_EaF0TcGI4Q-_darmok-hd-236.jpg")
+
     def test_no_accepted_work_or_coverage_inflation(self) -> None:
         self.mutation_rejected(["global_work_admission_effect"], "ONE_WORK_ADMITTED")
         self.mutation_rejected(["coverage_effect"], "ONE_EPISODE_CLOSE_READ")

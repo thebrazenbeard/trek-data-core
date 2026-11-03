@@ -14,8 +14,8 @@ ROOT = HERE.parents[2]
 RECORDS = HERE / "records.json"
 FILES = {"records.json", "MANIFEST.md", "title-card.svg", "validate.py", "test_validate.py"}
 MAX_TEXT_BYTES = 200_000
-EXPECTED_RECORD_FINGERPRINT = "caff8aa9c0421c131c51e2fe46f3b80b54c83e4f6d876bdd6ec9d7ac03aa4aec"
-EXPECTED_MANIFEST_SHA = "e5459e0ee42c6aa2b8e904ecbe6ef42e2ce997d6dca6b59d0cc0bb0346093c75"
+EXPECTED_RECORD_FINGERPRINT = "06089464ce8760e43f9d4503ce0bcc1745f92e08fda0bacc24b1a42230d952c2"
+EXPECTED_MANIFEST_SHA = "ebd36f36162400b0eab49b476db26730705519257c6f6da6cca818118ffe6b0c"
 EXPECTED_CARD_SHA = "90551de489db4b646ef7719278a71229e775b4a6cc984c7d7d93c211ca163ed3"
 
 
@@ -111,6 +111,16 @@ def validate(packet: dict, root: Path = ROOT, *, directory: Path = HERE) -> None
              row["coverage_effect"]) == ("Darmok", "TNG S5E2", "UNVERIFIED_METADATA", "NONE", "NONE"),
             "source-local row no longer matches accepted main")
     image = packet["actual_scene_candidate"]
+    require(image["publisher_embedded_image_url"] ==
+            "https://images.prismic.io/star-trek-untold/ZrrC_EaF0TcGI4Q-_darmok-hd-236.jpg?auto=format%2Ccompress" and
+            image["publisher_embedded_image_bytes"] == 113141 and
+            image["publisher_embedded_image_sha256"] ==
+            "f627a83a50d06333fd1c5a7d673df0002905da32ce0f3dbd96605429e2b17676",
+            "exact published transformed JPEG variant mismatch")
+    require(image["source_image_variant"] == "SAME_PRISMIC_IMAGE_PATH_WITHOUT_AUTO_FORMAT_COMPRESS_QUERY" and
+            image["image_bytes"] == 321843 and image["image_sha256"] ==
+            "a7a8ac3ef4ad18d4dcd003b53ac3f0ff73a7c0b49c2c3730f1fffd07bce8ab8c",
+            "untransformed publisher JPEG variant mismatch")
     require(image["visual_class"] == "FIRST_PARTY_EDITORIAL_EPISODE_STILL_REUSE_PERMISSION_UNVERIFIED",
             "unwarranted conclusion about photo reuse permission")
     require(image["public_image_display_admission"] == "HELD_NO_AFFIRMATIVE_REUSE_LICENSE",

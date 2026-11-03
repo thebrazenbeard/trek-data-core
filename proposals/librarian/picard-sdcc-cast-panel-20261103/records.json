@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "picard-sdcc-cast-panel-20261103",
+  "status": "PROPOSAL_SOURCE_METADATA_ONLY",
+  "base_accepted_main": "3e1a49e6d06af28fd8cab89fa02dae14d63ca5f8",
+  "observed_on_utc": "2026-11-03",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_display_effect": "NONE",
+  "image_binary_in_repository": false,
+  "candidates": [
+    {
+      "candidate_id": "commons-picard-sdcc-panel-gage-skidmore-2019",
+      "associated_series_label": "Star Trek: Picard",
+      "subject_context": "Real-world cast and production panel photographed at San Diego Comic-Con, 20 July 2019; not a still from an episode.",
+      "association_evidence": "Wikimedia Commons file description names Star Trek: Picard; association is source-relative, not a canonical Work or character identity binding.",
+      "work_or_episode_row_id": null,
+      "character_identity_inferred": false,
+      "commons_file_title": "File:Dominic Patten, Kirsten Beyer, Heather Kadin, Akiva Goldsman, Michael Chabon, Alex Kurtzman, Patrick Stewart, Isa Briones, Santiago Cabrera, Michelle Hurd, Alison Pill, Harry Treadaway, Evan Evagora, Brent Spiner & Jeri Ryan.jpg",
+      "commons_pinned_oldid": 1076836194,
+      "commons_pinned_revision_url": "https://commons.wikimedia.org/w/index.php?oldid=1076836194&title=File:Dominic_Patten,_Kirsten_Beyer,_Heather_Kadin,_Akiva_Goldsman,_Michael_Chabon,_Alex_Kurtzman,_Patrick_Stewart,_Isa_Briones,_Santiago_Cabrera,_Michelle_Hurd,_Alison_Pill,_Harry_Treadaway,_Evan_Evagora,_Brent_Spiner_%26_Jeri_Ryan.jpg",
+      "flickr_original_url": "https://www.flickr.com/photos/gageskidmore/48445060081/",
+      "photographer": "Gage Skidmore",
+      "photographed_date": "2019-07-20",
+      "photo_license": "CC-BY-SA-2.0",
+      "photo_license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "commons_flickr_license_review": "FlickreviewR 2 confirmed 2019-08-03",
+      "original_dimensions_claim": [6720, 4480],
+      "original_jpeg_size_claim_bytes": 11006630,
+      "original_jpeg_sha1_claim": "968429e937428bd27f026db1ed99a7f3a2235c89",
+      "image_sha_claim_source": "WIKIMEDIA_COMMONS_FILE_PAGE_STRUCTURED_DATA_NOT_INDEPENDENT_BYTE_REHASH",
+      "raw_page_sha256": null,
+      "raw_jpeg_sha256": null,
+      "imageinfo_json_sha256": null,
+      "release_status": "HOLD_EXACT_BYTE_RECEIPT_AND_INDEPENDENT_RIGHTS_VISUAL_REVIEW",
+      "copyright_scope": "PHOTO_LICENSE_ONLY_NO_UNDERLYING_STAR_TREK_IP_OR_PUBLICITY_CLEARANCE",
+      "public_asset_path": null,
+      "public_image_url": null,
+      "attribution_requirement": "Gage Skidmore, CC BY-SA 2.0; link to the pinned file page and license; identify changes if any."
+    }
+  ]
+}

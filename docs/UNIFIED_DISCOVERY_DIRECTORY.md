@@ -39,6 +39,19 @@ can appear multiple times under independent and dependent publisher snapshots.
 Source-group labels are navigation aids, **not** claims of independent
 corroboration. Paramount and Paramount+ labels may share corporate lineage.
 
+`python3 tools/audit_discovery_lineage.py --json` independently reports exact
+URL reuse, normalized `(medium, context, title, source_locator)` overlaps,
+and source-group aliases mapped to conservative upstream independence families.
+The accepted 1214-row catalog has **25 overlapping metadata signatures (50
+source-local rows)**, including 15 pairs where the same Paramount+ season-guide
+URL is labeled `publisher:paramount` in one snapshot and
+`publisher:paramountplus.com` in another; its 1214 rows reference **309 distinct
+URLs**. The ten additional matching signatures within one `publisher:paramount`
+label are separate SFA observations. These are a **review queue, not 25 proven
+Work duplicates**; no row is removed and no global Work merge is proposed.
+Different URL paths on one publisher domain likewise do not create independent
+corporate witnesses. Unknown lineage labels fail the audit until reviewed.
+
 ## Safety and provenance
 
 1. Every input is recomputed through its owning deterministic builder or

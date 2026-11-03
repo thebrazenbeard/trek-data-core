@@ -1374,6 +1374,10 @@
     if (!available) directoryState.rows = [];
     byId('discovery-nav-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
     byId('discovery-top-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
+    byId('discovery-episode-count').textContent = available
+      ? directoryState.rows.filter((row) => row.medium === 'EPISODE').length.toLocaleString() : '—';
+    byId('discovery-literature-count').textContent = available
+      ? directoryState.rows.filter((row) => row.medium === 'LITERATURE').length.toLocaleString() : '—';
     byId('discovery-state').textContent = message;
     if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
     renderDirectory();
@@ -2471,6 +2475,27 @@
   directoryFilters.addEventListener('change', () => { playTone(); directoryState.limit = 40; renderDirectory(); });
   directoryFilters.addEventListener('submit', (event) => { event.preventDefault(); renderDirectory(); });
   directoryFilters.addEventListener('reset', () => { directoryState.limit = 40; window.requestAnimationFrame(renderDirectory); });
+  // Status-board counts are drilldowns, not merely links to an unfiltered list.
+  // Reset stale facets first so a count always opens its complete source-local
+  // category without implying any of these rows are admitted Works.
+  for (const [linkId, medium] of [
+    ['discovery-episode-count', 'EPISODE'],
+    ['discovery-literature-count', 'LITERATURE']
+  ]) {
+    byId(linkId).addEventListener('click', () => {
+      if (!directoryState.available) return;
+      byId('discovery-query').value = '';
+      for (const id of ['discovery-series', 'discovery-kind', 'discovery-lineage',
+        'discovery-overview', 'discovery-verification', 'discovery-publisher-check',
+        'discovery-synopsis', 'discovery-tag']) byId(id).value = 'all';
+      byId('discovery-medium').value = medium;
+      directoryState.limit = 40;
+      renderDirectory();
+      // Keep keyboard/screen-reader focus with the destination after the
+      // category and results update, rather than stranded on the status link.
+      byId('discovery-directory').focus();
+    });
+  }
   const publisherEditionFilters = byId('publisher-edition-filters');
   publisherEditionFilters.addEventListener('input', renderPublisherEditionLeads);
   publisherEditionFilters.addEventListener('change', () => { playTone(); renderPublisherEditionLeads(); });

@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
   <link rel="stylesheet" href="./app.css?v=85a05a5c95a603ad3f3f8f16edde50759bc4d6107160f1b7ccf5119e0d5fab67">
-  <script src="./app.js?v=da5124d892e130493b282923d8938a947cff6f10bef4ef93d03c3649d3c9a387" defer></script>
+  <script src="./app.js?v=b479b4cf523123b59bc972f691cb2a1d74ba86d6732f725b9215de6fdcf1bdae" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -89,15 +89,18 @@
       </div>
       <dl class="stat-grid">
         <div class="stat stat-directory"><dt>Directory observations</dt><dd><a id="discovery-top-count" href="#discovery-directory">—</a></dd></div>
+        <div class="stat stat-directory"><dt>Episode references (source-local)</dt><dd><a id="discovery-episode-count" href="#discovery-directory" aria-label="Show episode references in the source-local directory">—</a></dd></div>
+        <div class="stat stat-directory"><dt>Literary leads (source-local)</dt><dd><a id="discovery-literature-count" href="#discovery-directory" aria-label="Show literary leads in the source-local directory">—</a></dd></div>
         <div class="stat"><dt>Missions (series)</dt><dd id="mission-count">—</dd></div>
         <div class="stat"><dt>Briefings</dt><dd id="briefing-count">—</dd></div>
         <div class="stat"><dt>Continuity records</dt><dd id="record-count">—</dd></div>
         <div class="stat stat-candidates"><dt>Unverified leads</dt><dd id="research-top-count">—</dd></div>
         <div class="stat stat-films"><dt>Film catalog candidates</dt><dd id="film-top-count">—</dd></div>
       </dl>
+      <p class="state-note">Missions are series navigation categories, not an episode count. Source-local observations may overlap and are not admitted Works, completed readings, or continuity facts; only an approved projection supplies those.</p>
     </section>
 
-    <section id="discovery-directory" class="collection discovery-directory" aria-labelledby="discovery-heading">
+    <section id="discovery-directory" class="collection discovery-directory" aria-labelledby="discovery-heading" tabindex="-1">
       <div class="section-heading">
         <div><p class="eyebrow">Multimedia / Source-local discoveries</p><h2 id="discovery-heading">Universe directory</h2></div>
         <p>Browse television episode references, films, literary editions, short-form releases, and scripted audio containers together. Every row is an <strong>unverified source observation</strong>, not necessarily a distinct Work. Matching titles from different publishers remain separate until reconciled. Synopses show a pending state until an original, independently reviewed source-grounded overview has a release receipt.</p>

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-B009-ENT-GUIDE-20261103",
+  "baseline_accepted_main": "a7691f054fff2c55dbc183afb6086762b797cedd",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "observed_date_utc": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "read_surface": "RENDERED_OFFICIAL_PARAMOUNT_PLUS_EPISODE_GUIDE_CARDS",
+  "raw_webpage_bytes_custodied": false,
+  "episode_video_or_transcript_read": false,
+  "public_synopsis_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {"row_id":"lead:0099", "official_card_title":"Sleeping Dogs", "season":1, "episode":14, "title_resolution":"EXACT_OFFICIAL_CARD_TITLE", "official_card_description_read":true, "original_synopsis_draft":"T'Pol, Reed and Hoshi are stranded aboard a disabled Klingon vessel after a Klingon woman takes their shuttlepod."},
+    {"row_id":"lead:0100", "official_card_title":"Desert Crossing", "season":1, "episode":24, "title_resolution":"EXACT_OFFICIAL_CARD_TITLE", "official_card_description_read":true, "original_synopsis_draft":"After Archer and Trip help repair a disabled vessel, its captain invites them to dine at his desert village."},
+    {"row_id":"lead:0101", "official_card_title":"Oasis", "season":1, "episode":20, "title_resolution":"EXACT_OFFICIAL_CARD_TITLE", "official_card_description_read":true, "original_synopsis_draft":"Trip explores a crashed ship on a desolate world and discovers that members of its crew have survived."},
+    {"row_id":"lead:0102", "official_card_title":"In A Mirror, Darkly, Pt 2", "season":4, "episode":19, "title_resolution":"PART_NUMERAL_STYLE_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null},
+    {"row_id":"lead:0103", "official_card_title":"Storm Front, Pt. 1", "season":4, "episode":1, "title_resolution":"PART_NUMERAL_STYLE_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null},
+    {"row_id":"lead:0104", "official_card_title":"Storm Front, Pt. 2", "season":4, "episode":2, "title_resolution":"PART_NUMERAL_STYLE_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null},
+    {"row_id":"lead:0105", "official_card_title":"Shockwave Part I", "season":1, "episode":26, "title_resolution":"PUNCTUATION_STYLE_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null},
+    {"row_id":"lead:0106", "official_card_title":"Broken Bow - Part 1 and 2", "season":1, "episode":1, "title_resolution":"COMBINED_CARD_SPLIT_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null},
+    {"row_id":"lead:0107", "official_card_title":"Broken Bow - Part 1 and 2", "season":1, "episode":1, "title_resolution":"COMBINED_CARD_SPLIT_UNRESOLVED", "official_card_description_read":true, "original_synopsis_draft":null}
+  ]
+}

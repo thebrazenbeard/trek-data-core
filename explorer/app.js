@@ -661,11 +661,17 @@
     const series = byId('discovery-series').value;
     const kind = byId('discovery-kind').value;
     const lineage = byId('discovery-lineage').value;
+    const overview = byId('discovery-overview').value;
     const terms = query.split(/\s+/).filter(Boolean);
     const rows = directoryState.rows.filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
       if (kind !== 'all' && item.candidate_kind !== kind) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
+      // The facet reflects only currently loaded and validated display-sidecar
+      // records. A missing/failed appendix cannot masquerade as a reviewed read.
+      const hasReviewedOverview = synopsisState.entries.has(artworkKey(item));
+      if (overview === 'reviewed' && !hasReviewedOverview) return false;
+      if (overview === 'not-loaded' && hasReviewedOverview) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)

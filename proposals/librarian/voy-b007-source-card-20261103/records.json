@@ -1,0 +1,38 @@
+{
+  "proposal_id": "LIBRARIAN-VOY-B007-RENDERED-GUIDE-CARDS-20261103",
+  "baseline_accepted_main": "3c0b37564123166bf38bcfa66f018abc4d5c9996",
+  "role": "LIBRARIAN",
+  "observed_date_utc": "2026-11-03",
+  "proposal_only": true,
+  "accepted_corpus_effect": "NONE",
+  "source_family": "paramount_corporate_publisher_family",
+  "source_representation": "RENDERED_FIRST_PARTY_PARAMOUNT_PLUS_SEASON_GUIDE_CARDS_NOT_SOURCE_BODY",
+  "raw_http_response_sha256": null,
+  "source_body_read": false,
+  "publisher_blurbs_reproduced": false,
+  "artwork_bytes_retrieved": false,
+  "catalog_snapshot": {
+    "path": "explorer/discovery-catalog.json",
+    "sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+    "row_count": 1214
+  },
+  "candidate_rows": [
+    {"row_id":"lead:0083","source_local_qid_url":"https://www.wikidata.org/wiki/Q16744043","official_title":"Juggernaut","season":5,"episode":21,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/","title_status":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0084","source_local_qid_url":"https://www.wikidata.org/wiki/Q16744066","official_title":"Infinite Regress","season":5,"episode":7,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/","title_status":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0085","source_local_qid_url":"https://www.wikidata.org/wiki/Q16744191","official_title":"Natural Law","season":7,"episode":22,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/","title_status":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0086","source_local_qid_url":"https://www.wikidata.org/wiki/Q16744675","official_title":"Human Error","season":7,"episode":18,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/","title_status":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0087","source_local_qid_url":"https://www.wikidata.org/wiki/Q25587669","official_title":"Basics, Part 2","season":3,"episode":1,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/","title_status":"ROMAN_NUMERAL_VARIANT_UNRESOLVED","brief_description_read":true},
+    {"row_id":"lead:0088","source_local_qid_url":"https://www.wikidata.org/wiki/Q25587671","official_title":"Future's End, Part 2","season":3,"episode":9,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/3/","title_status":"ROMAN_NUMERAL_VARIANT_UNRESOLVED","brief_description_read":true},
+    {"row_id":"lead:0089","source_local_qid_url":"https://www.wikidata.org/wiki/Q25587679","official_title":"Year Of Hell, Part 2","season":4,"episode":9,"guide_url":"https://www.paramountplus.com/shows/star_trek_voyager/episodes/4/","title_status":"NUMERAL_AND_CASE_VARIANT_UNRESOLVED","brief_description_read":true}
+  ],
+  "summary": {
+    "source_local_leads_inspected": 7,
+    "official_rendered_cards_read": 7,
+    "exact_publisher_titles": 4,
+    "unresolved_numeral_variants": 2,
+    "unresolved_numeral_and_case_variants": 1,
+    "approved_synopses": 0,
+    "accepted_work_bindings": 0,
+    "coverage_events": 0
+  }
+}

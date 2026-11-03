@@ -15,6 +15,13 @@ are accepted Explorer directory rows or governed Works.
 URLs, original paraphrases + SHA-256 fingerprints, source artifact SHA-256 hashes,
 and proposed-but-unaccepted row IDs. `--check` fails on output/source drift.
 
+The compiler independently requires exact closed root and candidate field sets
+for each of its three upstream publisher-proposal schemas, checks ISBN-13 digits
+as well as matching URL suffixes, and rejects duplicate JSON keys, injected
+private paths, source-text fields, unauthorized image rights, and source-tier
+promotion. These are **defense-in-depth input gates** alongside the upstream
+source validators; they do not imply that any accepted candidate was contaminated.
+
 The three source records share one publisher lineage. No copyrighted books
 were read or made source-bound by this projection. No source-page bytes are
 custodied. All cover images remain candidate URLs held from public display;

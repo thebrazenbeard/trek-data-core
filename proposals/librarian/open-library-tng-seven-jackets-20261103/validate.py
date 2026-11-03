@@ -8,14 +8,18 @@ It does NOT re-fetch mutable Open Library JSON or JPEGs and grants no display ri
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
+import py_compile
 import re
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKET = Path(__file__).with_name("records.json")
 EXPECTED_PACKET_FILES = {"MANIFEST.md", "records.json", "validate.py", "test_validate.py"}
-MANIFEST_SHA256 = "0b8b8452a493001b5c9eb118544d22d1e13082b5304d9e82974b3c816bb05802"
+CACHE_NAME_RE = re.compile(r"^(validate|test_validate)\.cpython-[0-9]+(?:\.opt-[12])?\.pyc$")
+MANIFEST_SHA256 = "82e1b51a9940afa0fa07dbd35f4ffba887dc160deaba4dd9b64d05bae0d81400"
 MEDIA_OR_EMBED_RE = re.compile(
     r"!\s*\[|<\s*/?\s*[a-z][^>]*>|<\s*!|\bdata\s*:\s*(?:image|audio|video|text/html)\s*/",
     re.IGNORECASE,
@@ -93,10 +97,30 @@ def _validate_source_only_packet(root: Path):
     if not folder.is_dir() or folder.is_symlink():
         raise ValueError("missing or redirected held packet")
     children = list(folder.iterdir())
-    if {p.name for p in children} != EXPECTED_PACKET_FILES:
+    names = {p.name for p in children}
+    if names - {"__pycache__"} != EXPECTED_PACKET_FILES:
         raise ValueError("unreviewed packet file, directory or media payload")
-    if any(not p.is_file() or p.is_symlink() for p in children):
+    if any(not p.is_file() or p.is_symlink()
+           for p in children if p.name != "__pycache__"):
         raise ValueError("redirected, nested or nonregular held packet member")
+    if "__pycache__" in names:
+        cache = folder / "__pycache__"
+        if not cache.is_dir() or cache.is_symlink():
+            raise ValueError("nonstandard Python cache")
+        for bytecode_file in cache.iterdir():
+            match = CACHE_NAME_RE.fullmatch(bytecode_file.name)
+            if not match or not bytecode_file.is_file() or bytecode_file.is_symlink():
+                raise ValueError("unreviewed Python cache member or nested payload")
+            source = (folder / f"{match.group(1)}.py").resolve()
+            compiled_optimization = int(bytecode_file.name[-5]) if ".opt-" in bytecode_file.name else 0
+            actual = bytecode_file.read_bytes()
+            with tempfile.TemporaryDirectory() as temp:
+                expected_path = Path(temp) / "expected.pyc"
+                py_compile.compile(str(source), cfile=str(expected_path), doraise=True,
+                                   optimize=compiled_optimization)
+                expected_code = expected_path.read_bytes()[16:]
+            if (not actual.startswith(importlib.util.MAGIC_NUMBER) or actual[16:] != expected_code):
+                raise ValueError("Python cache not exact compilation of allowed source")
     manifest = folder / "MANIFEST.md"
     if _sha(manifest) != MANIFEST_SHA256:
         raise ValueError("reviewed source-only manifest bytes changed")

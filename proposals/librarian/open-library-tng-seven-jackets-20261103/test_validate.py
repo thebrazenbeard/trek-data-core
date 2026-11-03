@@ -111,6 +111,20 @@ class HeldJacketSourceTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validator.validate(self.payload, root=staged)
                 nested.rmdir()
+            with self.subTest(cache_media_smuggling=True):
+                cache = folder / "__pycache__"
+                cache.mkdir()
+                (cache / "validate.cpython-312.jpg").write_bytes(b"\xff\xd8\xff\xe0")
+                with self.assertRaises(ValueError):
+                    validator.validate(self.payload, root=staged)
+                shutil.rmtree(cache)
+            with self.subTest(cache_nested_payload=True):
+                cache = folder / "__pycache__"
+                cache.mkdir()
+                (cache / "nested").mkdir()
+                with self.assertRaises(ValueError):
+                    validator.validate(self.payload, root=staged)
+                shutil.rmtree(cache)
             with self.subTest(symlink=True):
                 source = folder / "MANIFEST.md"
                 original_copy = staged / "manifest-backup.md"

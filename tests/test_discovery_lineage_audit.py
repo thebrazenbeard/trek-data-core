@@ -48,7 +48,7 @@ class DiscoveryLineageAuditTests(unittest.TestCase):
         one = copy.deepcopy(next(r for r in self.rows if r["row_id"] == "roster:tas:000"))
         other = copy.deepcopy(one)
         other["row_id"] = "adversarial:publisher-alias"
-        other["source_group"] = "publisher:startrek.com"
+        other["source_group"] = "publisher:paramount"
         result = audit_rows([one, other])
         self.assertEqual(result["duplicate_signature_count"], 1)
         self.assertEqual(result["duplicate_signatures"][0]["independence_families"],
@@ -57,7 +57,7 @@ class DiscoveryLineageAuditTests(unittest.TestCase):
         self.assertEqual(result["row_count"], 2)  # neither raw observation lost
 
         other["source_group"] = "wikidata:wdqs"
-        with self.assertRaisesRegex(ValueError, "incompatible independence families"):
+        with self.assertRaisesRegex(ValueError, "source host/lineage mismatch"):
             audit_rows([one, other])
 
     def test_unknown_independence_label_and_false_admission_fail_closed(self):
@@ -69,6 +69,8 @@ class DiscoveryLineageAuditTests(unittest.TestCase):
             ("coverage_effect", "COUNTED"),
             ("admission_effect", "ACCEPTED"),
             ("source_locator", "http://www.wikidata.org/wiki/Q1136071"),
+            ("source_locator", "https://unrelated.example.invalid/forged"),
+            ("source_locator", "https://www.wikidata.org@evil.example.invalid/wiki/Q1136071"),
         ):
             with self.subTest(field=field):
                 changed = copy.deepcopy(source)
@@ -77,6 +79,29 @@ class DiscoveryLineageAuditTests(unittest.TestCase):
                     audit_rows([changed])
         with self.assertRaisesRegex(ValueError, "duplicate source-local row_id"):
             audit_rows([source, copy.deepcopy(source)])
+
+    def test_publisher_group_host_mismatch_and_missing_publisher_url_fail_closed(self):
+        paramount = copy.deepcopy(next(r for r in self.rows
+                                       if r["source_group"] == "publisher:paramount"))
+        for forged in ("https://unrelated.example.invalid/forged",
+                       "https://www.wikidata.org/wiki/Q1136071",
+                       "https://www.paramountplus.com.evil.invalid/shows/a/episodes/1/",
+                       "https://www.paramountplus.com@evil.invalid/shows/a/episodes/1/"):
+            with self.subTest(url=forged):
+                changed = copy.deepcopy(paramount)
+                changed["source_locator"] = forged
+                with self.assertRaisesRegex(ValueError, "source host/lineage mismatch"):
+                    audit_rows([changed])
+        paramount["source_locator"] = None
+        with self.assertRaisesRegex(ValueError, "non-Wikidata source locator missing"):
+            audit_rows([paramount])
+
+        wiki = copy.deepcopy(next(r for r in self.rows if r["source_group"] == "wikidata:wdqs"))
+        wiki["source_locator"] = None
+        report = audit_rows([wiki])
+        self.assertEqual(report["row_count"], 1)
+        self.assertEqual(report["unique_source_locator_count"], 0)
+        self.assertEqual(report["duplicate_signature_count"], 0)
 
 
 if __name__ == "__main__":

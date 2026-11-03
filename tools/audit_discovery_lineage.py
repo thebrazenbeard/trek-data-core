@@ -27,6 +27,20 @@ FAMILIES = {
     "wikidata:wdqs": "wikidata-wdqs-family",
 }
 
+# A publisher label alone is not provenance: it must agree with the URL host.
+# Conservative exceptions for Paramount-attributed Shorts and Mikros studio
+# title-list observations retain their existing source-relative attribution;
+# they are not additional independent corporate witnesses.
+SOURCE_HOSTS = {
+    "publisher:paramount": frozenset({"www.paramountplus.com", "www.startrek.com",
+                                       "www.mikrosanimation.com", "youtu.be"}),
+    "publisher:paramountplus.com": frozenset({"www.paramountplus.com"}),
+    "publisher:startrek.com": frozenset({"www.startrek.com"}),
+    "publisher:simonandschuster.com": frozenset({"www.simonandschuster.com"}),
+    "distributor:penguinrandomhouse.com:titan-books": frozenset({"www.penguinrandomhouse.com"}),
+    "wikidata:wdqs": frozenset({"www.wikidata.org"}),
+}
+
 
 def _norm(value):
     """Normalize text for a *candidate overlap*, never global identity."""
@@ -47,7 +61,7 @@ def audit_rows(rows):
         group = row.get("source_group")
         if group not in FAMILIES:
             raise ValueError(f"unreviewed source independence group in {row_id}: {group!r}")
-        for key in ("medium", "context", "title", "source_locator", "source_input"):
+        for key in ("medium", "context", "title", "source_input"):
             if not isinstance(row.get(key), str) or not row[key].strip():
                 raise ValueError(f"missing source-relative {key} in {row_id}")
         if (row.get("identity_scope") != "SOURCE_LOCAL" or
@@ -55,16 +69,25 @@ def audit_rows(rows):
                 row.get("admission_effect") != "NONE" or
                 row.get("coverage_effect") != "NONE"):
             raise ValueError(f"discovery-only boundary violated in {row_id}")
-        parsed = urlsplit(row["source_locator"])
-        if parsed.scheme != "https" or not parsed.netloc or parsed.username or parsed.password:
+        locator = row.get("source_locator")
+        if locator is None:
+            if group != "wikidata:wdqs":
+                raise ValueError(f"non-Wikidata source locator missing in {row_id}")
+            continue  # no URL witness to compare, not a duplicate signature
+        if not isinstance(locator, str) or not locator.strip():
             raise ValueError(f"invalid source locator in {row_id}")
+        parsed = urlsplit(locator)
+        if (parsed.scheme != "https" or not parsed.netloc or parsed.hostname not in SOURCE_HOSTS[group] or
+                parsed.port is not None or parsed.username or parsed.password or
+                parsed.query or parsed.fragment or not parsed.path.startswith("/")):
+            raise ValueError(f"source host/lineage mismatch or invalid locator in {row_id}")
 
         # Exact URL deliberately retained: we cannot conclude two distinct
         # links identify the same source without independently reviewing them.
         signature = (row["medium"], _norm(row["context"]),
-                     _norm(row["title"]), row["source_locator"])
+                     _norm(row["title"]), locator)
         by_signature[signature].append(row)
-        by_locator[row["source_locator"]].append(row)
+        by_locator[locator].append(row)
 
     duplicates = []
     for signature, cluster in sorted(by_signature.items()):

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -14,6 +15,7 @@ ROOT = HERE.parents[2]
 PACKET = HERE / "contract.json"
 ACCEPTED = ROOT / "proposals/research/nasa-enterprise-rollout-display-decision-20261103/decision.json"
 EXPECTED_DIGEST = "f0cbaadb97d6b759b541bb58187e00f7f6905891323bda4d195da7af283a3eca"
+EXPECTED_MANIFEST_SHA256 = "3686108a8b225c0c8b8ee1f84c3f62eb6db026ecae1ed382172f257dd8459ce9"
 EXPECTED_IMAGE = "e36c3e1c94c53f57fe99ac921169c24a35c63851666885d20af6fdfe902ed6f8"
 EXPECTED_URL = "https://www.nasa.gov/wp-content/uploads/2023/03/ec76-5806-1.jpg"
 PACKET_FILES = {"contract.json", "MANIFEST.md", "validate.py", "test_validate.py"}
@@ -60,10 +62,18 @@ def validate_plaintext(path: Path) -> None:
         raise ValueError("invalid UTF-8 source text") from exc
     if "\x00" in content or any(ord(ch) < 32 and ch not in "\n\r\t" for ch in content):
         raise ValueError("control or NUL byte in source text")
-    if path.suffix == ".md":
-        lower = content.lower()
-        if any(term in lower for term in ("data:image/", "<svg", "<img")):
-            raise ValueError("embedded image disguised as Markdown")
+    lower = content.lower()
+    # Every allowlisted file is GitHub-rendered or reviewable text. Include
+    # `.py` comments and `.json` strings: image payloads hidden in "source"
+    # cannot silently defeat the zero-media promise. Split sentinel literals
+    # so validator/test sources themselves do not embed forbidden sequences.
+    if (("data:" + "image/") in lower
+            or ("!" + "[") in lower
+            or re.search(r"<\s*(?:img|picture|source|svg|iframe|video|audio)\b", lower)
+            or re.search(r"url\s*\(\s*(?:https?://|data:)", lower)):
+        raise ValueError("embedded image, external-media markup, or data URI in reviewed source text")
+    if path.name == "MANIFEST.md" and hashlib.sha256(data).hexdigest() != EXPECTED_MANIFEST_SHA256:
+        raise ValueError("manifest digest changed without review")
 
 
 def validate_tree(directory: Path = HERE) -> None:

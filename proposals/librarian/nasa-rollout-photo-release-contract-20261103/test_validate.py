@@ -66,8 +66,40 @@ class ContractTests(unittest.TestCase):
             (directory / "MANIFEST.md").write_bytes(b"\xff\xd8\xff\xe0image")
             with self.assertRaisesRegex(ValueError, "binary/image magic"):
                 guard.validate(self.contract, directory=directory)
-            (directory / "MANIFEST.md").write_text("![img](data:image/jpeg;base64,ABC)")
+            (directory / "MANIFEST.md").write_text("!" + "[img](data:" + "image/jpeg;base64,ABC)")
             with self.assertRaisesRegex(ValueError, "embedded image"):
+                guard.validate(self.contract, directory=directory)
+
+    def test_valid_filename_cannot_hide_markdown_remote_image(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            markdown_image = "!" + "[NASA orbiter](https://www.nasa.gov/wp-content/uploads/2023/03/ec76-5806-1.jpg)"
+            (directory / "MANIFEST.md").write_text(markdown_image, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "embedded image|manifest digest"):
+                guard.validate(self.contract, directory=directory)
+
+    def test_valid_filename_cannot_hide_html_picture_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            markup = "<" + "picture>" + "<" + "source srcset='https://www.nasa.gov/image.jpg'></picture>"
+            (directory / "MANIFEST.md").write_text(markup, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "embedded image|manifest digest"):
+                guard.validate(self.contract, directory=directory)
+
+    def test_source_code_cannot_hide_data_image_uri(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            disguised = "# " + "data:" + "image/jpeg;base64,AAAA"
+            (directory / "validate.py").write_text(disguised, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "embedded image"):
+                guard.validate(self.contract, directory=directory)
+
+    def test_forged_rights_assertion_in_manifest_is_pinned(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            actual = (guard.HERE / "MANIFEST.md").read_text(encoding="utf-8")
+            (directory / "MANIFEST.md").write_text(actual + "\nNASA permits unrestricted commercial film-still use!\n")
+            with self.assertRaisesRegex(ValueError, "manifest digest"):
                 guard.validate(self.contract, directory=directory)
 
     def test_extra_fields_or_removed_obligations_rejected(self):

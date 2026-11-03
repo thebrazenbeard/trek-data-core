@@ -1,0 +1,76 @@
+{
+  "packet_id": "FILMS-PRIMARY-RELEASE-SOURCE-ACCESS-20261103",
+  "proposal_only": true,
+  "role": "FILMS_SOURCE_ACCESS_AUDIT",
+  "baseline_accepted_main": "a3ca40e94ef4c0a4ba47455333a0c122ded38c9a",
+  "observed_on_utc": "2026-11-03",
+  "purpose": "CANDIDATE_SOURCE_ACCESS_REMEDIATION_ONLY_NOT_NEW_FILM_FACT_COVERAGE",
+  "related_held_proposals": [
+    {"pr": 332, "head_at_review": "2f74b0c6777d980314f9b4a0786df63e41f577a0", "candidate_film_id": "film-2009"},
+    {"pr": 325, "head_at_review": "d4315328935ed1079bd7543f423118be23e3982d", "candidate_film_id": "film-into-darkness"}
+  ],
+  "source_independence": "Paramount Pictures, Paramount Home Entertainment, Paramount Digital Entertainment and StarTrek.com are related corporate publisher lines, not independent audiovisual witnesses",
+  "accepted_film_page_overlap": "Accepted Paramount film metadata packet #329 already covers film-2009 and film-into-darkness page years/runtimes and publisher synopsis candidates; this ledger adds no duplicate synopsis or film page metadata",
+  "raw_upstream_page_sha256": null,
+  "source_work_binding_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "media_or_artwork_bytes_stored": false,
+  "source_access_observations": [
+    {
+      "local_id": "access-2009-itunes-publisher-html",
+      "candidate_film_id": "film-2009",
+      "source_locator": "https://ir.paramount.com/news-releases/news-release-details/paramount-digital-entertainment-releases-never-seen-star-trek",
+      "access_class": "DIRECT_FIRST_PARTY_HTML_READ",
+      "web_reader_status": "RETRIEVED_CONTENT_READ",
+      "reliably_source_observed_fields": ["announcement_date:2009-11-17", "itunes_hd_extras_package_announced", "over_40_images_and_unissued_poster_key_art_marketing_claim"],
+      "withheld_fields": ["individual_key_art_file_identity", "artwork_reuse_license", "current_store_availability", "audiovisual_cut_or_copy_hash"],
+      "notes": "Direct official Paramount Digital Entertainment HTML. Artwork is mentioned, not acquired or cleared. Digital Extras is not proof of a Blu-ray or DVD copy."
+    },
+    {
+      "local_id": "access-2009-home-publisher-pdf",
+      "candidate_film_id": "film-2009",
+      "source_locator": "https://ir.paramount.com/static-files/21c8db87-fe44-48f0-be67-9fa3d6be0bc6",
+      "access_class": "DIRECT_PRIMARY_DOCUMENT_NOT_RETRIEVED_THIS_WAVE",
+      "web_reader_status": "FETCH_FAILED_REPORTED_404",
+      "lappy_curl_head_status": "403_FORBIDDEN",
+      "search_status": "OLDER_SEARCH_INDEX_TEXT_AVAILABLE_NOT_CURRENT_DIRECT_SOURCE_READ",
+      "reliably_source_observed_fields": [],
+      "withheld_fields": ["2009_three_disc_bluray_details", "2009_two_disc_dvd_details", "2009_single_disc_dvd_details", "2009_home_fact_sheet_runtime", "2009_physical_package_source_binding"],
+      "notes": "First-party Paramount Home Entertainment document title discoverable in search index and downstream press reprints, but exact first-party PDF could not be fetched now. Retain proposed #332 edition cards on hold."
+    },
+    {
+      "local_id": "access-2013-star-trek-studio-story",
+      "candidate_film_id": "film-into-darkness",
+      "source_locator": "https://www.startrek.com/news/first-look-star-trek-into-darkness-blu-ray-dvd-box-art",
+      "access_class": "DIRECT_FIRST_PARTY_HTML_READ",
+      "web_reader_status": "RETRIEVED_CONTENT_READ",
+      "reliably_source_observed_fields": ["published_date:2013-07-19", "us_sep_10_bluray_bluray3d_dvd_ondemand_announcement", "us_aug_20_digital_announcement", "publisher_says_box_art_unveiled"],
+      "withheld_fields": ["131_minute_release_sheet_runtime", "2013_disc_codec_details", "box_art_binary_identity", "artwork_reuse_license", "audiovisual_cut_or_copy_hash"],
+      "notes": "StarTrek.com staff page directly read, corroborates announced format families and dates only within the related corporate lineage; does not authenticate the inaccessible original 2013 PDF's runtime and technical details."
+    },
+    {
+      "local_id": "access-2013-home-publisher-pdf",
+      "candidate_film_id": "film-into-darkness",
+      "source_locator": "https://ir.paramount.com/static-files/cf49d3ba-f408-4599-9180-d5141396e7e7",
+      "access_class": "DIRECT_PRIMARY_DOCUMENT_NOT_RETRIEVED_THIS_WAVE",
+      "web_reader_status": "FETCH_FAILED_REPORTED_404",
+      "search_status": "OLDER_SEARCH_INDEX_TEXT_AVAILABLE_NOT_CURRENT_DIRECT_SOURCE_READ",
+      "reliably_source_observed_fields": [],
+      "withheld_fields": ["2013_release_sheet_runtime_131_minutes", "2013_packaging_audio_video_codec_details", "2013_exact_home_package_source_binding"],
+      "notes": "Search engine has indexed studio-hosted PDF text including 131 minutes, but current direct first-party PDF retrieval failed; 131 must not be promoted as a directly reverified source fact or exact cut duration."
+    },
+    {
+      "local_id": "access-2013-home-publisher-html",
+      "candidate_film_id": "film-into-darkness",
+      "source_locator": "https://ir.paramount.com/news-releases/news-release-details/director-jj-abrams-worldwide-blockbuster-sets-course-star-trek/",
+      "access_class": "INDEXED_FIRST_PARTY_HTML_NOT_RETRIEVED_THIS_WAVE",
+      "web_reader_status": "FETCH_FAILED_REPORTED_404",
+      "search_status": "OLDER_SEARCH_INDEX_TEXT_AVAILABLE_NOT_CURRENT_DIRECT_SOURCE_READ",
+      "reliably_source_observed_fields": [],
+      "withheld_fields": ["2013_release_sheet_runtime_131_minutes", "2013_full_press_release_as_current_page_body"],
+      "notes": "Exact Paramount investor-relations press-release page is indexed with detailed first-party text but was not fetchable directly at review time. Not a verified stable fallback locator."
+    }
+  ]
+}

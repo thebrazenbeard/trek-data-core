@@ -174,6 +174,21 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .film-grid .card { border-left-color: var(--coral); }
 .film-grid .card a { overflow-wrap: anywhere; font-weight: 750; }
 .film-grid .kicker { color: var(--coral); }
+.beyond-premiere-panel { min-width: 0; margin: 17px 0 25px; padding: clamp(13px, 3vw, 24px); border: 1px solid var(--line); border-top: 10px solid var(--aqua); border-left: 13px solid var(--peach); border-radius: 35px 4px 4px 4px; background: linear-gradient(145deg, #101c2d, #10101e); }
+.beyond-premiere-panel[hidden] { display: none; }
+.beyond-premiere-heading { display: flex; flex-wrap: wrap; gap: 14px; align-items: start; justify-content: space-between; }
+.beyond-premiere-heading h3 { margin: 4px 0 9px; font-size: clamp(1.12rem, 3vw, 1.65rem); }
+.beyond-premiere-kind { max-width: 290px; padding: 9px 12px; border-left: 7px solid var(--peach); border-radius: 12px 2px 2px 2px; background: var(--surface2); color: var(--peach); font: 760 .7rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.beyond-premiere-panel > p { max-width: 950px; color: var(--muted); font-size: .83rem; }
+.beyond-premiere-panel .beyond-premiere-network { color: var(--aqua); }
+.beyond-premiere-image { min-width: 0; max-width: 900px; min-height: 28px; margin-top: 13px; }
+.beyond-premiere-image-link { display: block; width: 100%; outline-offset: 4px; }
+.beyond-premiere-image img { display: block; width: 100%; max-width: 900px; max-height: 630px; height: auto; object-fit: contain; border: 2px solid var(--aqua); border-radius: 20px 4px 4px 4px; }
+.beyond-premiere-fallback { padding: 24px; color: var(--peach); border: 1px solid var(--peach); border-radius: 18px 4px 4px 4px; }
+.beyond-premiere-credit { min-width: 0; max-width: 960px; font-size: .77rem; color: var(--muted); overflow-wrap: anywhere; }
+.beyond-premiere-links { display: flex; flex-wrap: wrap; gap: 9px 18px; }
+.beyond-premiere-links a { color: var(--aqua); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.beyond-premiere-caveat { font-size: .68rem; color: var(--peach); }
 
 /* ISBN-specific publisher observations are a separate unadmitted shelf, not
    extra directory rows or approved public book synopses. */

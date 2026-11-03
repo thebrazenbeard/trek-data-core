@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=e203e578ef8c28da42e8b7020e065f4fe4132e069e26331f92b3f102c49802d8">
-  <script src="./app.js?v=56d856da7e470dada7d2fe168094812ab520fe7e5944a1269084dc2c42ed44f0" defer></script>
+  <link rel="stylesheet" href="./app.css?v=6e1921429ed13559d8c9d0141381ae1f79b44d96761484076fb72ebeebbd6334">
+  <script src="./app.js?v=0c011f4dcff47d0512838c71418a20174a52a8df149563a41de317624b9e19c8" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -287,6 +287,15 @@
         <input id="film-query" name="film-q" type="search" placeholder="Search the film discovery catalog…" spellcheck="false">
       </form>
       <p id="film-summary" class="result-summary" aria-live="polite">Waiting for film metadata.</p>
+      <section id="beyond-premiere-panel" class="beyond-premiere-panel" aria-labelledby="beyond-premiere-title" hidden>
+        <div class="beyond-premiere-heading"><div><p class="eyebrow">Photographic source / Real-world event</p><h3 id="beyond-premiere-title">Star Trek Beyond · Japan premiere, 2016</h3></div><span class="beyond-premiere-kind">Documentary photograph · NOT a film still</span></div>
+        <p>This is a photographer-licensed red-carpet photograph, not a frame, scene, poster, promotional still, or evidence of the film's fictional events. The associated film title is an <strong>unverified publisher discovery observation</strong>, not an admitted Work.</p>
+        <p class="beyond-premiere-network">The photographer's 960-pixel Commons rendition is source-verified. Public display is HELD pending a separate accepted release decision and the exact licensed 117 KB file on this site. If approved, “Show” will load only that local image after your opt-in; no third-party image request is made.</p>
+        <button type="button" id="beyond-premiere-toggle" aria-pressed="false" aria-controls="beyond-premiere-image" disabled>Show documentary premiere photo</button>
+        <p id="beyond-premiere-status" class="state-note" role="status" aria-live="polite">Checking photographic source identity and credit.</p>
+        <div id="beyond-premiere-image" class="beyond-premiere-image" aria-live="polite"></div>
+        <div id="beyond-premiere-credit" class="beyond-premiere-credit"></div>
+      </section>
       <div id="film-list" class="card-grid film-grid"></div>
     </section>
 

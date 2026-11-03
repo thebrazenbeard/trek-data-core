@@ -165,6 +165,12 @@
   };
   const researchState = { leads: [], available: false };
   const filmState = { films: [], available: false };
+  // This opt-in documentary event source is not a film still, a Work, or
+  // research coverage. Its exact byte pin prevents an unreviewed JSON swap
+  // from changing destination, credit, license, or consent behavior.
+  const premierePhotoManifestSha256 = 'bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634';
+  const premierePhotoReleaseDecisionSha256 = 'd294aacd6ed83276083a4299577eefcd369cf47ab4b213b037c7d342f6a7222b';
+  const premierePhotoState = { manifest: null, authorized: false, enabled: false, epoch: 0 };
   const publisherEditionState = { rows: [], available: false };
   const publisherIsbnState = { rows: [], available: false, limit: 12 };
   const publisherIsbnSha256 = '1170e8cb56b4ff3c5beab8d412fa5613b6e3b9d0ab7b5a18f80fe403c5bde3e8';
@@ -1616,6 +1622,133 @@
     }
   }
 
+  function addPremiereLink(holder, label, href) {
+    const link = el('a', null, label);
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.referrerPolicy = 'no-referrer';
+    holder.append(link);
+  }
+
+  function setPremierePhotoAvailability(manifest, authorized, message) {
+    const panel = byId('beyond-premiere-panel');
+    const button = byId('beyond-premiere-toggle');
+    const holder = byId('beyond-premiere-image');
+    const credit = byId('beyond-premiere-credit');
+    premierePhotoState.epoch++;
+    premierePhotoState.manifest = manifest;
+    premierePhotoState.authorized = Boolean(authorized);
+    premierePhotoState.enabled = false;
+    button.setAttribute('aria-pressed', 'false');
+    button.textContent = 'Show documentary premiere photo';
+    button.disabled = !manifest || !authorized;
+    panel.hidden = !manifest;
+    holder.replaceChildren();
+    credit.replaceChildren();
+    byId('beyond-premiere-status').textContent = message;
+    if (!manifest) return;
+    credit.append(el('p', null, `Photo: ${manifest.photo_title} · Photographer: ${manifest.photographer} · Event: ${manifest.event_date}.`));
+    credit.append(el('p', null, manifest.caption));
+    const links = el('p', 'beyond-premiere-links');
+    addPremiereLink(links, 'Original photographic record (Commons)', manifest.source_url);
+    addPremiereLink(links, 'Photographer’s original Flickr record', manifest.original_flickr_url);
+    addPremiereLink(links, `License: ${manifest.license}`, manifest.license_url);
+    addPremiereLink(links, 'Official film discovery source (not photo rights)', manifest.source_local_film_locator);
+    credit.append(links);
+    credit.append(el('p', 'beyond-premiere-caveat', `Changes: ${manifest.changes_notice} ${manifest.nonendorsement_notice} ${manifest.rights_limit}`));
+  }
+
+  async function loadPremierePhoto() {
+    let verifiedSource = null;
+    try {
+      const film = filmState.available && filmState.films.find((row) => row.id === 'film-beyond');
+      if (!film || film.title !== 'Star Trek Beyond' || film.source_locator !== 'https://www.startrek.com/movies/star-trek-beyond' ||
+          film.verification_status !== 'UNVERIFIED_METADATA') throw Error('The exact film discovery observation is not available.');
+      const response = await fetch('./beyond-premiere-photo.json', { cache: 'no-store' });
+      if (!response.ok) throw Error('Documentary photo release sidecar unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw Error('Source digest verification unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (!bytes.byteLength || bytes.byteLength > 8192) throw Error('Source identity sidecar exceeds 8 KiB.');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== premierePhotoManifestSha256) throw Error('Documentary photo source and rights receipt differs from reviewed bytes.');
+      const source = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
+      if (source.schema_version !== '1.0.0' || source.data_status !== 'PROPOSED_DOCUMENTARY_PHOTOGRAPH_DISPLAY_ONLY' ||
+          source.source_local_film_id !== 'film-beyond' || source.source_local_film_locator !== film.source_locator ||
+          source.image_kind !== 'REAL_WORLD_PREMIERE_DOCUMENTARY_PHOTO_NOT_FILM_STILL' ||
+          source.network_policy !== 'NO_THIRD_PARTY_REQUEST_BEFORE_EXPLICIT_VISITOR_OPT_IN' ||
+          source.coverage_effect !== 'NONE' || source.work_admission_effect !== 'NONE') throw Error('Documentary source is outside display-only scope.');
+      verifiedSource = source;
+      const decisionResponse = await fetch('./beyond-premiere-release-decision.json', { cache: 'no-store' });
+      if (!decisionResponse.ok) throw Error('Separate public-display release decision unavailable.');
+      const decisionBytes = await decisionResponse.arrayBuffer();
+      if (!decisionBytes.byteLength || decisionBytes.byteLength > 8192) throw Error('Release decision exceeds 8 KiB.');
+      const decisionDigest = await globalThis.crypto.subtle.digest('SHA-256', decisionBytes);
+      const decisionHex = Array.from(new Uint8Array(decisionDigest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (decisionHex !== premierePhotoReleaseDecisionSha256) throw Error('Release decision differs from code-owned review digest.');
+      const decision = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(decisionBytes));
+      if (decision.schema_version !== '1.0.0' || decision.source_local_film_id !== 'film-beyond' ||
+          decision.photo_manifest_sha256 !== premierePhotoManifestSha256 ||
+          decision.observed_rendition_sha256 !== source.image_sha256_observed ||
+          decision.observed_rendition_bytes !== source.image_observed_bytes ||
+          decision.coverage_effect !== 'NONE' || decision.work_admission_effect !== 'NONE')
+        throw Error('Photo release decision cannot be bound to exact source/film identity.');
+      const authorized = decision.public_image_display_authorized === true &&
+        decision.decision_status === 'INDEPENDENT_RELEASE_APPROVED' &&
+        decision.independent_image_release_review === 'GO' &&
+        decision.independent_browser_visual_review === 'GO' &&
+        decision.owner_release_disposition === 'RELEASE_AUTHORIZED' &&
+        decision.proposed_same_origin_asset === './licensed-artwork/beyond-premiere-japan-2016-960.jpg';
+      setPremierePhotoAvailability(source, authorized, authorized
+        ? 'Separate release decision verified. Image remains unloaded until you opt in.'
+        : 'HELD: Source identity and photographer credit are available, but public image display has not been independently released.');
+    } catch (error) {
+      setPremierePhotoAvailability(verifiedSource, false,
+        `HELD: Documentary photograph not display-authorized. ${error.message || 'Source or release decision unresolved.'}`);
+    }
+  }
+
+  function togglePremierePhoto() {
+    if (!premierePhotoState.manifest || !premierePhotoState.authorized) return;
+    const source = premierePhotoState.manifest;
+    const holder = byId('beyond-premiere-image');
+    const button = byId('beyond-premiere-toggle');
+    const status = byId('beyond-premiere-status');
+    const epoch = ++premierePhotoState.epoch;
+    premierePhotoState.enabled = !premierePhotoState.enabled;
+    button.setAttribute('aria-pressed', String(premierePhotoState.enabled));
+    button.textContent = premierePhotoState.enabled ? 'Hide documentary premiere photo' : 'Show documentary premiere photo';
+    holder.replaceChildren();
+    if (!premierePhotoState.enabled) {
+      status.textContent = 'Photograph hidden; remote image node removed. Source and license links remain available.';
+      return;
+    }
+    const imageLink = el('a', 'beyond-premiere-image-link');
+    imageLink.href = source.source_url;
+    imageLink.target = '_blank';
+    imageLink.rel = 'noopener noreferrer';
+    imageLink.referrerPolicy = 'no-referrer';
+    const image = el('img');
+    image.alt = source.alt_text;
+    image.width = source.image_observed_width;
+    image.height = source.image_observed_height;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.referrerPolicy = 'no-referrer';
+    image.addEventListener('error', () => {
+      if (!premierePhotoState.enabled || premierePhotoState.epoch !== epoch || !image.isConnected || !holder.contains(image)) return;
+      holder.replaceChildren(el('p', 'beyond-premiere-fallback', 'Photograph unavailable · original LCARS source card retained below.'));
+      status.textContent = 'Remote photo could not load. No alternative source was requested.';
+    });
+    imageLink.append(image);
+    holder.append(imageLink);
+    // Only a distinct, independently approved same-origin asset is eligible;
+    // remote source/thumbnail URLs remain provenance links, never image loads.
+    image.src = './licensed-artwork/beyond-premiere-japan-2016-960.jpg';
+    status.textContent = 'Versioned documentary photograph enabled from this site after your opt-in.';
+  }
+
   const directoryState = { rows: [], available: false, limit: 40 };
   // This is a separate display-only source-read layer. Discovery status stays
   // UNVERIFIED_METADATA and no Work/evidence/coverage state is promoted.
@@ -2744,6 +2877,7 @@
   filmFilters.addEventListener('change', () => { playTone(); renderFilms(); });
   filmFilters.addEventListener('submit', (event) => { event.preventDefault(); renderFilms(); });
   filmFilters.addEventListener('reset', () => window.requestAnimationFrame(renderFilms));
+  byId('beyond-premiere-toggle').addEventListener('click', togglePremierePhoto);
   const directoryFilters = byId('discovery-filters');
   directoryFilters.addEventListener('input', () => { directoryState.limit = 40; renderDirectory(); });
   directoryFilters.addEventListener('change', () => { playTone(); directoryState.limit = 40; renderDirectory(); });
@@ -2792,6 +2926,7 @@
   episodeSourceFilters.addEventListener('reset', () => window.requestAnimationFrame(renderEpisodeSourceCards));
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
+  setPremierePhotoAvailability(null, false, 'Checking a separately reviewed documentary event source…');
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   setPublisherEditionAvailability(false, 'Checking the independently indexed publisher-edition sidecar…');
   setPublisherIsbnAvailability(false, 'Checking accepted public publisher ISBN source-local metadata…');
@@ -2801,7 +2936,7 @@
   // on an unrelated governed Mission index being available.
   Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks(), loadEpisodeSourceCards()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
-    loadMetadataRechecks(), loadPublisherCardChecks()
+    loadMetadataRechecks(), loadPublisherCardChecks(), loadPremierePhoto()
   ]));
   loadIndex();
 })();

@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
+  'explorer-navigation', 'navigation-scroll-hint',
   'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
@@ -29,6 +30,8 @@ class FakeNode {
   set innerHTML(_) { throw Error('HTML injection sink is forbidden'); }
   set outerHTML(_) { throw Error('HTML injection sink is forbidden'); }
   setAttribute(key, value) { this.attributes.set(key, String(value)); }
+  getAttribute(key) { return this.attributes.get(key) || null; }
+  removeAttribute(key) { this.attributes.delete(key); }
   append(...children) {
     for (const child of children) {
       if (child.tagName === '#fragment') this.children.push(...child.children);
@@ -55,6 +58,7 @@ function traverse(node, predicate) {
 
 async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
+  nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
   nodes.get('kind-filter').value = 'all';
@@ -71,6 +75,8 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       assert.ok(nodes.has(id), `unknown DOM ID ${id}`);
       return nodes.get(id);
     },
+    querySelector: (selector) => selector === '.lcars-navigation' ? nodes.get('explorer-navigation')
+      : selector === '.navigation-scroll-hint' ? nodes.get('navigation-scroll-hint') : null,
     createElement: (tag) => new FakeNode(tag),
     createDocumentFragment: () => new FakeNode('#fragment')
   };
@@ -518,9 +524,59 @@ test('interface tones fail closed when the browser has no audio support', async 
   assert.equal(toggle.textContent, 'Interface tones unavailable');
 });
 
+test('LCARS navigation cue is directional, responsive, accessible and absent when tabs fit', async () => {
+  let resize;
+  const nodes = await runWithIndex(catalog, 200, null, 404, {
+    addEventListener: (type, handler) => { if (type === 'resize') resize = handler; }
+  });
+  const nav = nodes.get('explorer-navigation');
+  const hint = nodes.get('navigation-scroll-hint');
+  assert.equal(hint.hidden, true, 'no cue when section links fit the rail');
+  assert.equal(nav.attributes.has('aria-describedby'), false, 'no hidden stale description');
+  assert.equal(typeof resize, 'function', 'viewport resize listener installed');
+
+  nav.clientWidth = 375;
+  nav.scrollWidth = 1030;
+  nav.scrollLeft = 0;
+  resize();
+  assert.equal(hint.hidden, false, 'real horizontal overflow shows a visible cue');
+  assert.match(hint.textContent, /More sections →/);
+  assert.match(hint.textContent, /Swipe, scroll or Tab/);
+  assert.equal(nav.attributes.get('aria-describedby'), 'navigation-scroll-hint');
+
+  nav.scrollLeft = 300;
+  nav.fire('scroll');
+  assert.match(hint.textContent, /Sections both ways ↔/);
+  nav.scrollLeft = 655;
+  nav.fire('scroll');
+  assert.match(hint.textContent, /Earlier sections ←/);
+
+  nav.clientWidth = 1030;
+  resize();
+  assert.equal(hint.hidden, true, 'cue disappears when every link fits');
+  assert.equal(nav.attributes.has('aria-describedby'), false);
+});
+
+test('LCARS overflow cue updates after a badge widens through ResizeObserver', async () => {
+  let observer;
+  class FakeResizeObserver {
+    constructor(callback) { observer = { callback, targets: [] }; }
+    observe(target) { observer.targets.push(target); }
+  }
+  const nodes = await runWithIndex(catalog, 200, null, 404, { ResizeObserver: FakeResizeObserver });
+  const nav = nodes.get('explorer-navigation');
+  const hint = nodes.get('navigation-scroll-hint');
+  assert.deepEqual(observer.targets, [nav]);
+  nav.clientWidth = 480;
+  nav.scrollWidth = 530;
+  observer.callback();
+  assert.equal(hint.hidden, false, 'dynamic content does not strand offscreen links without a hint');
+});
+
 test('HTML exposes the separate research search and status elements', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
-  assert.match(html, /<nav class="lcars-navigation" aria-label="Explorer sections">/);
+  assert.match(html, /<nav id="explorer-navigation" class="lcars-navigation" aria-label="Explorer sections">/);
+  assert.match(html, /<p id="navigation-scroll-hint" class="navigation-scroll-hint" hidden>/, 'overflow cue is hidden before layout is measured');
   assert.match(html, /href="#research-leads">Episode research leads/);
   assert.match(html, /href="#films">Films/);
   assert.match(html, /id="film-list"/);

@@ -24,6 +24,42 @@
   const RESEARCH_PAGE_SIZE = 30;
   let visibleResearchLimit = RESEARCH_PAGE_SIZE;
 
+  // Keep the section rail native-scrollable. Its cue is informational, not a
+  // fake navigation control, and only appears when real links are offscreen.
+  const navigation = document.querySelector?.('.lcars-navigation');
+  const navigationHint = document.querySelector?.('.navigation-scroll-hint');
+  const updateNavigationHint = () => {
+    if (!navigation || !navigationHint) return;
+    const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
+    const overflowing = maxScroll > 2;
+    navigationHint.hidden = !overflowing;
+    if (!overflowing) {
+      navigation.removeAttribute('aria-describedby');
+      return;
+    }
+    const atStart = navigation.scrollLeft <= 2;
+    const atEnd = navigation.scrollLeft >= maxScroll - 2;
+    const message = atStart ? 'More sections → Swipe, scroll or Tab'
+      : atEnd ? 'Earlier sections ← Swipe, scroll or Tab'
+        : 'Sections both ways ↔ Swipe, scroll or Tab';
+    if (navigationHint.textContent !== message) navigationHint.textContent = message;
+    if (navigation.getAttribute('aria-describedby') !== 'navigation-scroll-hint') {
+      navigation.setAttribute('aria-describedby', 'navigation-scroll-hint');
+    }
+  };
+  if (navigation && navigationHint) {
+    navigation.addEventListener('scroll', updateNavigationHint, { passive: true });
+    window.addEventListener?.('resize', updateNavigationHint);
+    // The nav links' count badges grow after asynchronous catalog loads.
+    // Observe links as well as the outer rail because only scrollWidth may grow.
+    if (typeof window.ResizeObserver === 'function') {
+      const observer = new window.ResizeObserver(updateNavigationHint);
+      observer.observe(navigation);
+      for (const child of navigation.children) observer.observe(child);
+    }
+    window.requestAnimationFrame(updateNavigationHint);
+  }
+
   // Original, short interface signals. Audio is strictly user-opt-in: no
   // playback or AudioContext construction during startup, loading, or typing.
   let tonesEnabled = false;
@@ -138,6 +174,7 @@
     byId('film-nav-count').textContent = count;
     byId('film-state').textContent = message;
     renderFilms();
+    window.requestAnimationFrame(updateNavigationHint);
   }
 
   function renderFilms() {
@@ -238,6 +275,7 @@
     byId('discovery-state').textContent = message;
     if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
     renderDirectory();
+    window.requestAnimationFrame(updateNavigationHint);
   }
 
   function renderDirectory() {
@@ -597,6 +635,7 @@
     renderResearch();
     // Mission cards must reflect the same validated candidate-only snapshot.
     render();
+    window.requestAnimationFrame(updateNavigationHint);
   }
 
   function renderResearch() {

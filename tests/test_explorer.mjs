@@ -463,6 +463,7 @@ test('honest LCARS artwork placeholders render without remote image requests or 
   assert.equal(nodes.get('artwork-toggle').disabled, true);
   assert.match(nodes.get('artwork-state').textContent, /not yet display-cleared/);
   assert.match(nodes.get('discovery-list').textContent, /Artwork not sourced/);
+  assert.match(nodes.get('discovery-list').textContent, /original abstract/);
   assert.match(nodes.get('film-list').textContent, /Artwork not sourced/);
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);

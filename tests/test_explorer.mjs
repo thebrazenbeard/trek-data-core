@@ -1241,6 +1241,24 @@ test('multimedia source-local directory is independently searchable, paged, and 
     'episode observations surface as source-local leads, not accepted episode Works');
   assert.equal(nodes.get('discovery-literature-count').textContent, '9',
     'literary discovery leads surface separately from admitted Works');
+  nodes.get('discovery-query').value = 'Voyager';
+  nodes.get('discovery-medium').value = 'AUDIO';
+  nodes.get('discovery-series').value = 'VOY';
+  nodes.get('discovery-tag').value = 'source:not-present';
+  nodes.get('discovery-episode-count').fire('click');
+  assert.equal(nodes.get('discovery-directory').focused, true,
+    'count drilldown focuses the newly filtered directory section');
+  assert.equal(nodes.get('discovery-medium').value, 'EPISODE');
+  assert.equal(nodes.get('discovery-query').value, '');
+  assert.equal(nodes.get('discovery-series').value, 'all');
+  assert.equal(nodes.get('discovery-tag').value, 'all');
+  assert.match(nodes.get('discovery-summary').textContent, /^1,155 source-local metadata rows match/);
+  nodes.get('discovery-literature-count').fire('click');
+  assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
+  assert.match(nodes.get('discovery-summary').textContent, /^9 source-local metadata rows match/);
+  assert.equal(nodes.get('discovery-list').children.length, 9);
+  nodes.get('discovery-medium').value = 'all';
+  nodes.get('discovery-filters').fire('change');
   assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
   assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 1,155/);
   assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
@@ -1709,10 +1727,14 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="film-filters"[^>]*aria-label="Search film discovery titles"/);
   assert.match(html, /id="film-state"[^>]*role="status"/);
   assert.match(html, /id="discovery-directory"/);
+  assert.match(html, /id="discovery-directory"[^>]*tabindex="-1"/,
+    'the directory anchor must accept keyboard focus for count drilldowns');
   assert.match(html, /id="discovery-top-count"[^>]*href="#discovery-directory"/,
     'prominent directory count links to the source-local listing rather than implying 12 total episodes');
   assert.match(html, /id="discovery-episode-count"[^>]*href="#discovery-directory"/);
   assert.match(html, /id="discovery-literature-count"[^>]*href="#discovery-directory"/);
+  assert.match(html, /id="discovery-episode-count"[^>]*aria-label="Show episode references in the source-local directory"/);
+  assert.match(html, /id="discovery-literature-count"[^>]*aria-label="Show literary leads in the source-local directory"/);
   assert.match(html, /Missions are series navigation categories, not an episode count/,
     'the front status board must make the twelve-Mission denominator explicit');
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);

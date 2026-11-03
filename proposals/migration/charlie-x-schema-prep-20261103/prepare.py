@@ -46,6 +46,20 @@ def prepare() -> dict:
     for field, expected in original["MANIFEST_IDENTITY"].items():
         require(manifest.get(field) == expected,
                 f"legacy manifest identity drift: {field}")
+    # The derivative transcript's lineage and the candidate Work description
+    # are part of the source-relative identity envelope, too. Validating only
+    # the on-disk copy would miss a caller's in-memory substitution.
+    for field, expected in original["WORK_IDENTITY"].items():
+        require(manifest["work"].get(field) == expected,
+                f"legacy work identity drift: {field}")
+    require(manifest["source"].get("upstream_self_report") ==
+            original["UPSTREAM_SELF_REPORT"], "legacy upstream provenance drift")
+    require(set(manifest) == original["MANIFEST_FIELDS"],
+            "unexpected manifest fields")
+    require(set(manifest["source"]) == original["SOURCE_FIELDS"],
+            "unexpected source fields")
+    require(set(manifest["work"]) == original["WORK_FIELDS"],
+            "unexpected work fields")
     for name, digest in manifest["files_sha256"].items():
         actual = hashlib.sha256((LEGACY / name).read_bytes()).hexdigest()
         require(actual == digest, f"legacy source file changed: {name}")
@@ -172,3 +186,4 @@ if __name__ == "__main__":
         "canonical_source_id": preview["canonical_source_id"],
         "canonical_work_id": preview["canonical_work_id"],
     }, indent=2, sort_keys=True))
+

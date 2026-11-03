@@ -126,6 +126,13 @@ class PublisherSixSeriesExpansionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "stranded party"):
             module.validate_source_scope(rows)
 
+    def test_dangerous_trade_not_completed_exchange(self):
+        rows = copy.deepcopy(module.EXPECTED["candidate_works"])
+        self.assertIn("plan to trade", rows[5]["synopsis"].casefold())
+        rows[5]["synopsis"] += " The crew exchanged the battery."
+        with self.assertRaisesRegex(ValueError, "completed battery exchange"):
+            module.validate_source_scope(rows)
+
     def test_prior_snapshot_custody_fail_closed(self):
         original = module.PRIOR_SHA256
         try:

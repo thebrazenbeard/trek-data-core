@@ -6,7 +6,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-PINNED_SHA256 = "a0d3aed8620c3202b44f0e29eae9b085e57887d3efa04b1b7b14a9433d33662e"
+PINNED_SHA256 = "590bcba5feb89923a8989f6a4b16f0cfd984c4b60cbb62293b6b4d5af269de62"
 PRIOR_PATHS = (
     ROOT / "proposals/research/lit-three-publisher-editions-20261103/observations.json",
     ROOT / "proposals/research/lit-ring-memoir-publisher-20261103/observations.json",
@@ -69,6 +69,8 @@ def validate_source_scope(rows):
             raise ValueError("publisher synopsis anchors missing or mixed between works")
         if row["isbn13"] == "9781668074572" and "strand" in synopsis:
             raise ValueError("Toward the Night publisher page does not establish a stranded party")
+        if row["isbn13"] == "9781665921176" and any(term in synopsis for term in ("they exchange", "they exchanged", "crew exchanges", "crew exchanged")):
+            raise ValueError("A Dangerous Trade publisher page does not establish completed battery exchange")
     return True
 
 

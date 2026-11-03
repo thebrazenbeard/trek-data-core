@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "image_bytes_committed": false,
+  "source_observation_type": "PUBLIC_FILE_DESCRIPTION_OR_PROVIDER_DOCUMENTATION",
+  "asset_candidates": [
+    {
+      "candidate_id": "artwork-wave2-commons-trek-wordmark",
+      "category": "FRANCHISE_IDENTITY",
+      "target_scope": "REPOSITORY_BRANDING_CANDIDATE",
+      "source_provider": "Wikimedia Commons",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Star_Trek_Logo_1.png",
+      "source_revision_url": "https://commons.wikimedia.org/w/index.php?title=File:Star_Trek_Logo_1.png&oldid=1282184342",
+      "asset_title": "Star Trek Logo 1.png",
+      "depicted_subject": "Star Trek wordmark",
+      "creator_credit_as_listed": "The Refinery, Mr Wonderful; Wikimedia revision by K7yz3",
+      "source_claimed_license": "PD-textlogo (simple text/geometric logo)",
+      "source_listed_sha1": "9102a65ef5f4def5571ce7e9d95efa457f6d3cf5",
+      "source_sha1_independently_recomputed": false,
+      "copyright_status": "SOURCE_CLAIMS_INELIGIBLE_FOR_COPYRIGHT",
+      "trademark_status": "UNRESOLVED",
+      "display_status": "BLOCK_PENDING_TRADEMARK_AND_ATTRIBUTION_REVIEW",
+      "release_asset_path": null,
+      "evidence_note": "Commons file-description and historical revision are direct observations of Commons' copyright characterization, not independent review of trademark use or a license from Paramount. Do not use as an endorsement mark."
+    },
+    {
+      "candidate_id": "artwork-wave2-commons-starfleet-shoulder-patch",
+      "category": "FAN_CREATED_FRANCHISE_INSIGNIA",
+      "target_scope": "REPOSITORY_BRANDING_CANDIDATE",
+      "source_provider": "Wikimedia Commons",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Starfleet_Shoulder_Patch.svg",
+      "source_revision_url": "https://commons.wikimedia.org/w/index.php?title=File:Starfleet_Shoulder_Patch.svg&oldid=690293298",
+      "asset_title": "Starfleet Shoulder Patch.svg",
+      "depicted_subject": "Starfleet shoulder patch with Ad astra per aspera inscription",
+      "creator_credit_as_listed": "Shisma",
+      "source_claimed_license": "CC BY 3.0 Unported",
+      "source_license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source_sha1_independently_recomputed": false,
+      "copyright_status": "UPLOADER_GRANTS_CC_BY_3_0_ON_OWN_WORK",
+      "underlying_franchise_rights_status": "UNRESOLVED",
+      "display_status": "BLOCK_PENDING_UNDERLYING_RIGHTS_AND_TRADEMARK_REVIEW",
+      "release_asset_path": null,
+      "evidence_note": "CC BY attribution concerns the uploader's contribution; it is not a Paramount permission grant for pre-existing fictional insignia design, and no SVG was downloaded or audited for embedded external resources."
+    }
+  ],
+  "provider_routes": [
+    {
+      "provider_id": "tmdb-noncommercial-image-api",
+      "media": ["EPISODE", "FILM"],
+      "source_provider": "TMDB",
+      "policy_url": "https://developer.themoviedb.org/docs/faq",
+      "image_documentation_url": "https://developer.themoviedb.org/docs/image-basics",
+      "film_image_endpoint_documentation_url": "https://developer.themoviedb.org/reference/movie-images",
+      "episode_image_endpoint_documentation_url": "https://developer.themoviedb.org/reference/tv-episode-images",
+      "fee_claim": "FREE_NONCOMMERCIAL_API_WITH_ATTRIBUTION",
+      "required_conditions": [
+        "Legitimate developer account and API agreement/key",
+        "Approved TMDB logo and visible TMDB credit/disclaimer",
+        "Exact media-to-source-local-row mapping with no automatic identity reconciliation",
+        "Per-image copyright and display review because TMDB does not claim ownership",
+        "No key in repository or browser source, no bulk imagery mirrored"
+      ],
+      "api_key_available_or_used": false,
+      "specific_image_retrieved": false,
+      "display_status": "NOT_IMPLEMENTED_AND_RIGHTS_UNRESOLVED"
+    },
+    {
+      "provider_id": "open-library-edition-cover-api",
+      "media": ["LITERATURE"],
+      "source_provider": "Open Library",
+      "policy_url": "https://openlibrary.org/dev/docs/api/covers",
+      "rights_caveat_url": "https://openlibrary.org/developers/licensing",
+      "existing_receipt_path": "proposals/librarian/artwork-source-candidates-20261103/records.json",
+      "fee_claim": "DOCUMENTED_PUBLIC_FACING_COVER_DISPLAY_API",
+      "required_conditions": [
+        "Exact ISBN-edition and published source-local row match",
+        "Pin cover ID and exact edition metadata digest",
+        "Visitor opt-in, small remote thumbnail, visible Open Library attribution",
+        "No cover mirroring and no inference of underlying cover copyright"
+      ],
+      "existing_covered_work_accepted_in_directory": false,
+      "display_status": "EXISTING_WORKING_COVER_HAS_NO_MATCHING_DIRECTORY_ROW"
+    },
+    {
+      "provider_id": "private-ebook-opf-image-inventory",
+      "media": ["LITERATURE"],
+      "source_provider": "Patrick-owned private source archive",
+      "policy_url": null,
+      "fee_claim": "LOCAL_PRIVATE_INVENTORY_NO_NEW_COST",
+      "required_conditions": [
+        "Inventory OPF packaging and likely cover references privately, without unpacking into public checkout",
+        "Hash archive and candidate image bytes in private custody",
+        "Correlate edition with publisher metadata and immutable locators",
+        "Do not display or redistribute cover assets until rights to public display are established"
+      ],
+      "specific_image_retrieved": false,
+      "display_status": "PRIVATE_SOURCE_ONLY_NO_PUBLIC_LICENSE"
+    }
+  ]
+}

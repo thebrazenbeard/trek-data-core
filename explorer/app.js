@@ -446,9 +446,39 @@
   const artworkState = { entries: new Map(), available: false, enabled: false };
   // No Open Library ISBN-to-cover crosswalk has yet been independently
   // admitted for a public directory row. A sidecar cannot self-certify one:
-  // pin reviewed row/locator/ISBN/cover/hash tuples here only after a separate
-  // source-relative custody and release review. Empty means fail closed.
-  const reviewedOpenLibraryEditionReceipts = new Map();
+  // Four exact-edition API previews, independently crosschecked against the
+  // publisher rows, Open Library edition JSON and visibly inspected jackets.
+  // Their COPYRIGHT_UNRESOLVED status means opt-in only. A fifth candidate,
+  // Enterprise War cover ID 12857937, is deliberately HELD: the image is a
+  // title page rather than the book jacket. This map is a source identity
+  // allowlist, not a grant of artwork copyright or automatic network access.
+  const reviewedOpenLibraryEditionReceipts = new Map([
+    ['directory:literature:prh-autobiography-kirk', {
+      source_locator: 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/',
+      isbn: '9781783297481', cover_id: 13083310,
+      edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa'
+    }],
+    ['directory:literature:prh-autobiography-picard', {
+      source_locator: 'https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/',
+      isbn: '9781785659409', cover_id: 10694457,
+      edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f'
+    }],
+    ['directory:literature:prh-autobiography-janeway', {
+      source_locator: 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/',
+      isbn: '9781789095333', cover_id: 12097815,
+      edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09'
+    }],
+    ['directory:literature:prh-autobiography-spock', {
+      source_locator: 'https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/',
+      isbn: '9781785659416', cover_id: 11945787,
+      edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d'
+    }]
+  ]);
+  // Likewise, a self-attested file digest/permission string in an optional
+  // JSON sidecar cannot authorize a locally copied publicity still. Only
+  // separately reviewed, code-pinned exact row/asset/rights/credit tuples may
+  // cross this gate. The release validator additionally hashes actual bytes.
+  const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
 
@@ -456,38 +486,78 @@
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
   }
 
-  function makeArtworkSlot(medium, key) {
+  // The abstract graphic is a navigable *record identifier*, generated only
+  // from validated source-local metadata. It is never presented as a frame
+  // grab, poster or jacket. Actual imagery requires a separately admitted,
+  // rights-reviewed artwork sidecar and explicit visitor opt-in.
+  function makeArtworkSlot(medium, key, row) {
     const label = artworkKinds[medium] || 'Media';
+    const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
+    const series = String(row?.context || row?.publisher_series || row?.work_type || '').split('·', 1)[0].trim();
+    const titleText = String(row?.title || label);
+    const sourceName = String(row?.source_group || '').replace(/^(?:publisher:|distributor:|wikidata:)/, '').slice(0, 28);
+    const initials = titleText.split(/[^A-Za-z0-9]+/).filter(Boolean)
+      .filter((word) => !['THE', 'A', 'AN', 'OF', 'AND', 'STAR', 'TREK'].includes(word.toUpperCase()))
+      .slice(0, 2).map((word) => word[0].toUpperCase()).join('') || label.slice(0, 2).toUpperCase();
+    frame.setAttribute('role', 'img');
+    frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; not an official still, poster or cover`);
     const title = el('span', 'artwork-kind', label);
-    const missing = el('span', 'artwork-missing', 'Artwork not sourced · original abstract');
-    frame.append(title, missing);
+    const locator = el('span', 'artwork-record-context', series.slice(0, 22) || 'SOURCE-LOCAL');
+    const sigil = el('span', 'artwork-record-mark', initials);
+    const shortTitle = el('span', 'artwork-record-title', titleText);
+    const missing = el('span', 'artwork-missing', 'Artwork not sourced · original index art');
+    frame.append(title, locator, sigil, shortTitle, missing);
+    const caption = el('figcaption', 'artwork-caption');
+    const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
+    caption.append(status);
+    if (row?.source_locator) {
+      const sourceLink = el('a', 'artwork-record-source', 'Metadata source');
+      sourceLink.href = row.source_locator;
+      sourceLink.target = '_blank';
+      sourceLink.rel = 'noopener noreferrer';
+      sourceLink.setAttribute('aria-label', `Open source metadata for ${titleText}`);
+      caption.append(sourceLink);
+    }
     const source = artworkState.enabled ? artworkState.entries.get(key) : null;
     if (source) {
       const img = el('img');
       const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
-      img.src = remoteLibrary
-        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`
-        : source.image_path;
       img.alt = source.alt_text;
-      img.width = 76;
-      img.height = 105;
+      img.width = 112;
+      img.height = 142;
       img.loading = 'lazy';
       img.decoding = 'async';
       img.referrerPolicy = 'no-referrer';
+      frame.removeAttribute('role');
+      frame.removeAttribute('aria-label');
+      frame.className += ' artwork-has-source';
+      const kind = remoteLibrary ? 'Open Library cover preview · copyright unresolved' :
+        ({ PUBLICITY_STILL: 'Rights-reviewed publicity still', POSTER: 'Rights-reviewed poster',
+          COVER: 'Rights-reviewed cover', OTHER: 'Rights-reviewed source image' }[source.artwork_kind]);
+      status.textContent = kind;
       img.addEventListener('error', () => {
-        frame.replaceChildren(title, el('span', 'artwork-missing', 'Image unavailable'));
+        frame.className = frame.className.replace(' artwork-has-source', '');
+        frame.setAttribute('role', 'img');
+        frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
+        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
+        status.textContent = 'Sourced image unavailable · LCARS record graphic';
       });
+      // Assign src only after non-leaking loading/referrer policy and error
+      // behavior are installed; a browser may request on src assignment.
+      img.src = remoteLibrary
+        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`
+        : source.image_path;
       frame.append(img);
-      if (remoteLibrary) {
-        const credit = el('a', 'artwork-credit', 'Open Library');
-        credit.href = source.attribution_url;
-        credit.target = '_blank';
-        credit.rel = 'noopener noreferrer';
-        frame.append(credit);
-      }
+      const credit = el('a', 'artwork-credit', remoteLibrary ? 'Open Library · edition record' : source.attribution_text);
+      credit.href = source.attribution_url;
+      credit.target = '_blank';
+      credit.rel = 'noopener noreferrer';
+      caption.append(credit);
     }
-    return frame;
+    if (sourceName) caption.setAttribute('data-source-family', sourceName);
+    panel.append(frame, caption);
+    return panel;
   }
 
   // ISBN-specific *edition* discovery, not another count of distinct Works or
@@ -522,10 +592,7 @@
     const fragment = document.createDocumentFragment();
     for (const row of rows) {
       const article = el('article', 'card publisher-edition-card');
-      const art = el('div', 'artwork-slot artwork-literature');
-      art.setAttribute('role', 'img');
-      art.setAttribute('aria-label', 'Original abstract literature placeholder, not the book cover');
-      art.append(el('span', 'artwork-kind', 'Literature'), el('span', 'artwork-missing', 'Original abstract · cover not sourced'));
+      const art = makeArtworkSlot('LITERATURE', null, row);
       const copy = el('div', 'publisher-edition-copy');
       copy.append(el('span', 'kicker', 'Publisher edition candidate · not an admitted Work'));
       copy.append(el('h3', '', row.title));
@@ -1160,13 +1227,26 @@
     renderFilms();
   }
 
+  function validArtworkAttributionUrl(value) {
+    if (typeof value !== 'string' || value.length > 700) return false;
+    try {
+      const url = new URL(value);
+      return url.href === value && url.protocol === 'https:' && !url.username && !url.password &&
+        !url.port && !url.search && !url.hash &&
+        (url.hostname === 'commons.wikimedia.org' && url.pathname.startsWith('/wiki/File:') ||
+         ['www.startrek.com', 'www.simonandschuster.com', 'www.penguinrandomhouse.com',
+           'openlibrary.org', 'www.paramountplus.com'].includes(url.hostname));
+    } catch (_) { return false; }
+  }
+
   function acceptArtworkCatalog(data) {
     const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
       Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
-    const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator', 'rights_status', 'rights_receipt_sha256'];
+    const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator',
+      'rights_status', 'rights_receipt_sha256', 'artwork_kind', 'attribution_text', 'attribution_url'];
     const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
-    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.1.0' ||
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.2.0' ||
         data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
         data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
         !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
@@ -1178,6 +1258,8 @@
     for (const row of filmState.films) sourceRows.set(artworkKey(row), row);
     const entries = new Map();
     for (const item of data.artwork) {
+      const rowMedium = sourceRows.get(item?.row_id)?.medium ||
+        (typeof item?.row_id === 'string' && item.row_id.startsWith('film:') ? 'FILM' : null);
       if (typeof item?.row_id !== 'string' || !sourceRows.has(item.row_id) || entries.has(item.row_id) ||
           typeof item.alt_text !== 'string' || !item.alt_text.trim() || item.alt_text.length > 180 ||
           item.source_locator !== sourceRows.get(item.row_id).source_locator) {
@@ -1221,8 +1303,22 @@
                  item.image_path.includes('..') ||
                  item.rights_status !== 'PUBLIC_DISPLAY_PERMISSION_VERIFIED' ||
                  !/^[a-f0-9]{64}$/.test(item.image_sha256 || '') ||
-                 !/^[a-f0-9]{64}$/.test(item.rights_receipt_sha256 || '')) {
+                 !/^[a-f0-9]{64}$/.test(item.rights_receipt_sha256 || '') ||
+                 !['PUBLICITY_STILL', 'POSTER', 'COVER', 'OTHER'].includes(item.artwork_kind) ||
+                 (item.artwork_kind === 'COVER' && rowMedium !== 'LITERATURE') ||
+                 (item.artwork_kind === 'POSTER' && !['FILM', 'SHORT_FORM'].includes(rowMedium)) ||
+                 typeof item.attribution_text !== 'string' ||
+                 !item.attribution_text.trim() || item.attribution_text.length > 160 ||
+                 /[\x00-\x1f\x7f]/.test(item.attribution_text) ||
+                 !validArtworkAttributionUrl(item.attribution_url)) {
         throw new Error('Local artwork lacks immutable image hash or verified public-display permission.');
+      } else {
+        const receipt = reviewedLocalArtworkReceipts.get(item.row_id);
+        if (!receipt || ['image_path', 'image_sha256', 'rights_receipt_sha256',
+          'artwork_kind', 'attribution_text', 'attribution_url', 'source_locator', 'alt_text']
+          .some((field) => receipt[field] !== item[field])) {
+          throw new Error('Local artwork lacks an independently reviewed, code-pinned asset/rights/attribution receipt.');
+        }
       }
       entries.set(item.row_id, item);
     }
@@ -1278,7 +1374,7 @@
     for (const row of matched) {
       const card = el('article', 'card media-card');
       const copy = el('div', 'media-card-copy');
-      card.append(makeArtworkSlot('FILM', artworkKey(row)), copy);
+      card.append(makeArtworkSlot('FILM', artworkKey(row), row), copy);
       copy.append(el('span', 'kicker', row.work_type === 'STREAMING_ORIGINAL_FILM' ? 'Streaming movie · discovery' : 'Feature film · discovery'));
       copy.append(el('h3', null, row.title));
       copy.append(el('p', null, 'Publisher-listed title · metadata only · not source-reviewed'));
@@ -1449,7 +1545,7 @@
     for (const item of visible) {
       const card = el('article', 'directory-card media-card');
       const copy = el('div', 'media-card-copy');
-      card.append(makeArtworkSlot(item.medium, artworkKey(item)), copy);
+      card.append(makeArtworkSlot(item.medium, artworkKey(item), item), copy);
       copy.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
       copy.append(el('h3', null, item.title));
       copy.append(el('p', 'directory-context', item.context));

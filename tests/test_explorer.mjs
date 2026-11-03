@@ -60,6 +60,8 @@ function traverse(node, predicate) {
 
 async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
+  const requested = new Set();
+  const inFlightDigests = new Set();
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
@@ -86,6 +88,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   };
   const fetch = async (path, opts) => {
     assert.equal(opts.cache, 'no-store');
+    requested.add(path);
     if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
@@ -102,12 +105,38 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     };
     assert.fail('Unexpected data request: ' + path);
   };
+  const deterministicCrypto = {
+    subtle: {
+      digest(algorithm, bytes) {
+        // Real WebCrypto is asynchronous on CI. Track every actual digest
+        // completion rather than assuming one setImmediate settles sidecars.
+        const pending = webcrypto.subtle.digest(algorithm, bytes);
+        inFlightDigests.add(pending);
+        pending.finally(() => inFlightDigests.delete(pending));
+        return pending;
+      }
+    }
+  };
   vm.runInNewContext(appScript, {
-    document, fetch, Option: OptionNode, URL, crypto: webcrypto, TextDecoder,
+    document, fetch, Option: OptionNode, URL, crypto: deterministicCrypto, TextDecoder,
     location: { origin: 'https://example.test' },
     window: { requestAnimationFrame: (fn) => fn(), ...browserAudio }, console
   }, { filename: 'app.js' });
-  await new Promise((resolve) => setImmediate(resolve));
+  // Every fixture must reach the optional loader frontier and finish every
+  // observed WebCrypto task. A second quiet event-loop turn lets chained
+  // Promise callbacks update the DOM. This avoids machine-load timing races
+  // without a guessed fixed delay or swallowing a rejected request.
+  const optionalPaths = ['./film-catalog.json', './discovery-catalog.json',
+    './artwork-catalog.json', './synopsis-catalog.json',
+    './metadata-rechecks.json', './short-synopsis-catalog.json'];
+  const deadline = Date.now() + 5000;
+  let quietTurns = 0;
+  while (quietTurns < 2 && Date.now() < deadline) {
+    await new Promise((resolve) => setImmediate(resolve));
+    if (optionalPaths.every((path) => requested.has(path)) && inFlightDigests.size === 0) quietTurns++;
+    else quietTurns = 0;
+  }
+  assert.equal(quietTurns, 2, 'Explorer fixture optional requests/WebCrypto did not reach settled state');
   return nodes;
 }
 

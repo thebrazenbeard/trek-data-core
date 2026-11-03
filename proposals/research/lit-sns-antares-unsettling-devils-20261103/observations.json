@@ -1,0 +1,100 @@
+{
+  "schema_version": "lit-sns-antares-unsettling-devils-source-local-v1",
+  "role": "LIT",
+  "observation_date_utc": "2026-11-03",
+  "proposal_only": true,
+  "upstream_lineage": "publisher:simonandschuster.com",
+  "distinct_upstream_sources": 1,
+  "candidate_work_count": 3,
+  "edition_pages_read": 3,
+  "original_publisher_description_paraphrases": 3,
+  "raw_page_bytes_custodied": false,
+  "full_book_text_read": false,
+  "full_text_available": false,
+  "close_read": false,
+  "source_work_binding_effect": "NONE",
+  "identity_reconciliation_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_explorer_effect": "NONE",
+  "cover_use_rights_verified": false,
+  "candidates": [
+    {
+      "source_local_entity_id": "lit-sns-antares-maelstrom-2019-tpb-20261103",
+      "publisher_title": "The Antares Maelstrom",
+      "author": "Greg Cox",
+      "publisher_series": "Star Trek: The Original Series",
+      "edition": {
+        "isbn13": "9781982113209",
+        "format": "TRADE_PAPERBACK",
+        "imprint": "Pocket Books/Star Trek",
+        "release_date": "2019-08-13",
+        "extent_pages": 368,
+        "source_url": "https://www.simonandschuster.com/books/The-Antares-Maelstrom/Greg-Cox/Star-Trek-The-Original-Series/9781982113209"
+      },
+      "evidence": [
+        {"id": "lit-antares-metadata", "kind": "PUBLISHER_PRODUCT_METADATA", "section": "Product Details", "supports": "EDITION_LISTING_ONLY"},
+        {"id": "lit-antares-description", "kind": "PUBLISHER_ABOUT_BOOK", "section": "About the Book", "supports": "PUBLISHER_CLAIM_ONLY"}
+      ],
+      "assertions": [
+        {"id": "lit-antares-a1", "predicate": "PUBLISHER_DESCRIBES_CONFLICT", "object": "Resource prospectors around Baldur-3 prompt a Starfleet response near the Antares Maelstrom.", "evidence_id": "lit-antares-description", "status": "SOURCE_RELATIVE_UNVERIFIED_IN_BOOK"}
+      ],
+      "original_publisher_description_paraphrase": "The publisher places Kirk and the Enterprise on a mission near the Antares Maelstrom, where prospectors converging on Baldur-3 seek a newly discovered energy resource. Regional disruption and sabotage bring Starfleet into a volatile situation outside Federation space.",
+      "description_anchor_terms": ["Kirk", "Baldur-3", "Antares Maelstrom"],
+      "cover_on_publisher_page": true,
+      "cover_publication_state": "HELD_RIGHTS_UNVERIFIED",
+      "text_equivalence_and_global_identity": "UNRESOLVED"
+    },
+    {
+      "source_local_entity_id": "lit-sns-unsettling-stars-2020-tpb-20261103",
+      "publisher_title": "The Unsettling Stars",
+      "author": "Alan Dean Foster",
+      "publisher_series": "Star Trek",
+      "edition": {
+        "isbn13": "9781982140601",
+        "format": "TRADE_PAPERBACK",
+        "imprint": "Pocket Books/Star Trek",
+        "release_date": "2020-04-14",
+        "extent_pages": 304,
+        "source_url": "https://www.simonandschuster.com/books/The-Unsettling-Stars/Alan-Dean-Foster/Star-Trek/9781982140601"
+      },
+      "evidence": [
+        {"id": "lit-unsettling-metadata", "kind": "PUBLISHER_PRODUCT_METADATA", "section": "Product Details", "supports": "EDITION_LISTING_ONLY"},
+        {"id": "lit-unsettling-description", "kind": "PUBLISHER_ABOUT_BOOK", "section": "About the Book", "supports": "PUBLISHER_CLAIM_ONLY"}
+      ],
+      "assertions": [
+        {"id": "lit-unsettling-a1", "predicate": "PUBLISHER_DESCRIBES_CONTINUITY_SCOPE", "object": "The publisher places the novel in the alternate timeline associated with the Kelvin incident.", "evidence_id": "lit-unsettling-description", "status": "SOURCE_RELATIVE_UNVERIFIED_IN_BOOK"}
+      ],
+      "original_publisher_description_paraphrase": "The publisher situates this story in the alternate Kelvin timeline. Kirk's Enterprise responds to an endangered Perenorean refugee vessel, and what initially appears to be a straightforward rescue develops into a more complicated mystery about the attackers and refugees.",
+      "description_anchor_terms": ["Kelvin", "Kirk", "Perenorean"],
+      "cover_on_publisher_page": true,
+      "cover_publication_state": "HELD_RIGHTS_UNVERIFIED",
+      "text_equivalence_and_global_identity": "UNRESOLVED"
+    },
+    {
+      "source_local_entity_id": "lit-sns-devils-bargain-2013-mmp-20261103",
+      "publisher_title": "Star Trek: The Original Series: Devil's Bargain",
+      "author": "Tony Daniel",
+      "publisher_series": "Star Trek: The Original Series",
+      "edition": {
+        "isbn13": "9781476700472",
+        "format": "MASS_MARKET_PAPERBACK",
+        "imprint": "Pocket Books/Star Trek",
+        "release_date": "2013-02-26",
+        "extent_pages": 320,
+        "source_url": "https://www.simonandschuster.com/books/Star-Trek-The-Original-Series-Devils-Bargain/Tony-Daniel/Star-Trek-The-Original-Series/9781476700472"
+      },
+      "evidence": [
+        {"id": "lit-devils-metadata", "kind": "PUBLISHER_PRODUCT_METADATA", "section": "Product Details", "supports": "EDITION_LISTING_ONLY"},
+        {"id": "lit-devils-description", "kind": "PUBLISHER_ABOUT_BOOK", "section": "About the Book", "supports": "PUBLISHER_CLAIM_ONLY"}
+      ],
+      "assertions": [
+        {"id": "lit-devils-a1", "predicate": "PUBLISHER_DESCRIBES_CONFLICT", "object": "The publisher describes the colony Vesbius resisting evacuation during an existential threat.", "evidence_id": "lit-devils-description", "status": "SOURCE_RELATIVE_UNVERIFIED_IN_BOOK"}
+      ],
+      "original_publisher_description_paraphrase": "The publisher sends Kirk and the Enterprise to evacuate Vesbius, a threatened mining colony in the Omega sector. Its residents refuse rescue without fully explaining why, leading Spock to suggest an unconventional way to avert catastrophe.",
+      "description_anchor_terms": ["Kirk", "Vesbius", "Spock"],
+      "cover_on_publisher_page": true,
+      "cover_publication_state": "HELD_RIGHTS_UNVERIFIED",
+      "text_equivalence_and_global_identity": "UNRESOLVED"
+    }
+  ]
+}

@@ -62,6 +62,7 @@ INPUTS = (
     Path("explorer/research-leads.json"),
     Path("proposals/discovery/publisher-catalog.json"),
     Path("proposals/librarian/ring-of-fire-editions-20261102/records.json"),
+    Path("proposals/librarian/simon-schuster-three-novels-20261103/records.json"),
 )
 EPISODES = Path("proposals/discovery/ds9-voy-episode-slots-20261102")
 ROSTER_BATCHES = (
@@ -135,6 +136,67 @@ def _row(ident: str, medium: str, kind: str, title: str, context: str,
     }
 
 
+def _three_novel_rows(proposal: dict) -> list[dict]:
+    """Project unadmitted publisher editions, without a global Work reconciliation."""
+    if (not isinstance(proposal, dict) or proposal.get("schema_version") != "1.0.0" or
+            proposal.get("proposal_only") is not True or
+            proposal.get("source_access") != "FULL_RENDERED_PUBLISHER_PRODUCT_PAGE_WEB_READER_NO_RAW_BYTE_CUSTODY" or
+            proposal.get("independence_group") != "publisher:simonandschuster.com" or
+            proposal.get("accepted_effects") != {"sources": "NONE", "works": "NONE",
+                                                 "bindings": "NONE", "coverage": "NONE"}):
+        raise ValueError("three-novel metadata is not unadmitted publisher discovery")
+    works = proposal.get("works")
+    editions = proposal.get("editions")
+    if not isinstance(works, list) or len(works) != 3 or not isinstance(editions, list) or len(editions) != 9:
+        raise ValueError("three-novel source Work/edition count changed")
+    if any(not isinstance(work, dict) for work in works) or any(not isinstance(item, dict) for item in editions):
+        raise ValueError("three-novel source object types changed")
+    work_ids = [work.get("candidate_work_id") for work in works]
+    if any(not isinstance(ident, str) for ident in work_ids) or len(set(work_ids)) != 3:
+        raise ValueError("three-novel source Work identity conflict")
+    required_formats = {"TRADE_PAPERBACK", "EBOOK", "UNABRIDGED_AUDIO_DOWNLOAD"}
+    rows = []
+    seen_isbns = set()
+    for work in works:
+        ident = work["candidate_work_id"]
+        if (not isinstance(ident, str) or not re.fullmatch(r"proposed-lit-[a-z0-9-]{4,90}", ident) or
+                work.get("status") != "PROPOSED" or work.get("medium") != "LITERATURE" or
+                work.get("work_type") != "NOVEL" or not isinstance(work.get("creator"), str) or
+                not work["creator"].strip() or not isinstance(work.get("series"), str) or
+                not work["series"].strip()):
+            raise ValueError("three-novel Work admission or identity changed")
+        matches = [edition for edition in editions if edition.get("candidate_work_id") == ident]
+        if (len(matches) != 3 or
+                any(not isinstance(item.get("format"), str) for item in matches) or
+                {item["format"] for item in matches} != required_formats):
+            raise ValueError("three-novel edition formats do not form one source-local candidate")
+        details = []
+        locator = None
+        for item in matches:
+            isbn = item.get("isbn13")
+            if (not literature.isbn13_valid(isbn) or isbn in seen_isbns or
+                    item.get("status") != "PROPOSED_METADATA_ONLY" or
+                    item.get("raw_response_sha256") is not None or
+                    item.get("source_version") is not None):
+                raise ValueError("three-novel source edition improperly promoted or duplicated")
+            seen_isbns.add(isbn)
+            url = _checked_url(item.get("publisher_product_url"))
+            if (not isinstance(url, str) or
+                    urlsplit(url).netloc != "www.simonandschuster.com" or
+                    not urlsplit(url).path.startswith("/books/") or
+                    not urlsplit(url).path.endswith("/" + isbn)):
+                raise ValueError("three-novel ISBN lacks exact publisher locator")
+            details.append(f"{item['format'].replace('_', ' ').title()} · ISBN {isbn}")
+            if item["format"] == "TRADE_PAPERBACK":
+                locator = url
+        rows.append(_row("literature:" + ident, "LITERATURE", "NOVEL",
+                         work["title"], f"{work['creator']} · three publisher-format observations",
+                         proposal["independence_group"], str(INPUTS[4]), locator, tuple(details)))
+    if len(seen_isbns) != 9:
+        raise ValueError("three-novel edition identities were not disjoint")
+    return rows
+
+
 def build_bytes(root: Path) -> bytes:
     sources = {}
     for path, builder in (
@@ -142,6 +204,7 @@ def build_bytes(root: Path) -> bytes:
         (INPUTS[1], research.build_bytes(root)),
         (INPUTS[2], publisher.build_bytes(root)),
         (INPUTS[3], literature.build(root)),
+        (INPUTS[4], None),
         (SHORTS_INPUT, shorts.build(root)),
         (SCOUTS_INPUT, scouts.build(root)),
     ):
@@ -151,6 +214,7 @@ def build_bytes(root: Path) -> bytes:
         if str(path) == str(INPUTS[1]): leads_catalog = value
         if str(path) == str(INPUTS[2]): publisher_catalog = value
         if str(path) == str(INPUTS[3]): novel_catalog = value
+        if str(path) == str(INPUTS[4]): three_novels = value
         if path == SHORTS_INPUT: shorts_catalog = value
         if path == SCOUTS_INPUT: scouts_catalog = value
 
@@ -678,6 +742,7 @@ def build_bytes(root: Path) -> bytes:
                         work["title"], f"{work['creator']} · {len(editions)} publisher editions",
                         novel_catalog["source_group"], str(INPUTS[3]),
                         source_by_id[editions[0]["source_id"]]["locator"], details))
+    entries.extend(_three_novel_rows(three_novels))
 
     identities = [r["row_id"] for r in entries]
     if len(set(identities)) != len(identities):

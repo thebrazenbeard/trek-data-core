@@ -14,7 +14,10 @@ const ids = [
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
-  'publisher-edition-list', 'publisher-edition-empty'
+  'publisher-edition-list', 'publisher-edition-empty',
+  'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
+  'publisher-isbn-query', 'publisher-isbn-status', 'publisher-isbn-tag',
+  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty'
 ];
 
 class Node {
@@ -125,4 +128,15 @@ test('publisher-card filter and availability use explicit accessible source-only
   assert.match(html, /id="publisher-card-download"[^>]*hidden>/);
   assert.match(html, /Publisher card title string match/);
   assert.match(html, /Held title \/ split unresolved/);
+});
+
+test('public publisher ISBN shelf distinguishes unverified private edition state from first-party metadata', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<section id="publisher-isbn-crosschecks"[^>]*aria-labelledby="publisher-isbn-heading"/);
+  assert.match(html, /<label for="publisher-isbn-query">Title, creator, ISBN or source-local reference<\/label>/);
+  assert.match(html, /<label for="publisher-isbn-status">ISBN crosscheck status<\/label>/);
+  assert.match(html, /<label for="publisher-isbn-tag">Source \/ discrepancy tag<\/label>/);
+  assert.match(html, /id="publisher-isbn-state"[^>]*role="status" aria-live="polite"/);
+  assert.match(html, /id="publisher-isbn-download"[^>]*hidden>/);
+  assert.match(html, /Not an owner-private ebook authentication/);
 });

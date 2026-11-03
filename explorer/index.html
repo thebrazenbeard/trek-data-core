@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=79b8a7be28adf5e2f9aa0bdaae96f66ac489c62ef4850c728b239d729925c4f4">
-  <script src="./app.js?v=88745df9e465ca392b596efaaeaa13e1c028aa59f0ea89c89396c3f9a1fa208d" defer></script>
+  <link rel="stylesheet" href="./app.css?v=49fb9845756e426a4a1312ddc4c7ad17ca4191a876cea3935102ca1063e129fd">
+  <script src="./app.js?v=f6a761fd8cb56dc1f52bfc68cb0ba5aa81ae22b249b4eaeeae18bbc969c0e0fe" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -26,6 +26,7 @@
     <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
     <a href="#films">Films <span id="film-nav-count">—</span></a>
     <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
+    <a href="#publisher-isbn-crosschecks">ISBN crosschecks <span id="publisher-isbn-nav-count">—</span></a>
     <a href="#missions">Missions</a>
     <a href="#briefings">Briefings</a>
     <a href="#records">Continuity</a>
@@ -116,6 +117,24 @@
       <p id="publisher-edition-summary" class="result-summary" aria-live="polite" aria-atomic="true">Waiting for publisher-edition leads.</p>
       <div id="publisher-edition-list" class="card-grid publisher-edition-grid"></div>
       <p id="publisher-edition-empty" class="empty-state" hidden>No publisher edition candidates match these filters.</p>
+    </section>
+
+    <section id="publisher-isbn-crosschecks" class="collection publisher-isbn-crosschecks" aria-labelledby="publisher-isbn-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Librarian / First-party public metadata</p><h2 id="publisher-isbn-heading">Publisher ISBN crosschecks</h2></div>
+        <p>Source-local Simon &amp; Schuster product-page title, creator, and ISBN observations. <strong>Not an owner-private ebook authentication, edition identity decision, full-book read, or new Work.</strong> Separate from the three literary publisher-edition candidates and the 1,214-row universe directory.</p>
+      </div>
+      <p id="publisher-isbn-state" class="directory-state" role="status" aria-live="polite">Checking accepted first-party ISBN crosscheck metadata…</p>
+      <form id="publisher-isbn-filters" class="publisher-edition-filters" role="search" aria-label="Search public publisher ISBN metadata" autocomplete="off">
+        <div class="field"><label for="publisher-isbn-query">Title, creator, ISBN or source-local reference</label><input id="publisher-isbn-query" type="search" name="isbn-q" maxlength="200" placeholder="e.g. Here There Be Dragons, John Peel, 9780743421119…" spellcheck="false"></div>
+        <div class="field"><label for="publisher-isbn-status">ISBN crosscheck status</label><select id="publisher-isbn-status" name="isbn-status"><option value="all">All metadata crosschecks</option><option value="agreement">Publisher identifier agreement · identity held</option><option value="held">Held source-local discrepancy</option></select></div>
+        <div class="field"><label for="publisher-isbn-tag">Source / discrepancy tag</label><select id="publisher-isbn-tag" name="isbn-tag"><option value="all">All source-local tags</option></select></div>
+        <div class="filter-action"><button type="reset">Clear ISBN filters</button></div>
+      </form>
+      <p class="directory-state"><a id="publisher-isbn-download" href="./publisher-isbn-crosschecks.json" download="trek-public-publisher-isbn-crosschecks.json" hidden>Download source-only ISBN crosscheck JSON</a>. The offline query utility recompiles and validates the five accepted public publisher metadata batches. No private paths, ebook content, plot descriptions or covers are served.</p>
+      <p id="publisher-isbn-summary" class="result-summary" aria-live="polite" aria-atomic="true">Publisher ISBN metadata not yet loaded.</p>
+      <div id="publisher-isbn-list" class="card-grid publisher-isbn-grid"></div>
+      <p id="publisher-isbn-empty" class="empty-state" hidden>No accepted public publisher ISBN crosscheck matches these filters.</p>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">

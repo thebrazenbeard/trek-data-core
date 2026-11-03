@@ -126,6 +126,25 @@ jobs:
           python3 tools/build_lit_publisher_leads.py --check
           python3 tools/query_lit_publisher_leads.py --validate-sources --limit 1 > /dev/null
 
+      - name: Verify separate public publisher ISBN crosscheck overlay
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Only accepted first-party public metadata; never owner-private ebook authentication.
+          test -f explorer/publisher-isbn-crosschecks.json
+          test ! -L explorer/publisher-isbn-crosschecks.json
+          test ! -L tools/build_publisher_isbn_crosschecks.py
+          test ! -L tools/query_publisher_isbn_crosschecks.py
+          # The original code-owned per-row review pins and source/OPF custody
+          # checks are mandatory; a 39/30/9 checksum alone is insufficient.
+          python3 proposals/librarian/opf-publisher-crosscheck-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-next-ten-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-third-ten-20261103/validate.py
+          python3 proposals/librarian/tng-opf-0076-0079-publisher-crosswalk-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-fourth-six-20261103/validate.py
+          python3 tools/build_publisher_isbn_crosschecks.py --check
+          python3 tools/query_publisher_isbn_crosschecks.py --validate-sources --limit 1 > /dev/null
+
       - name: Verify optional publisher-description synopsis release
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -220,6 +239,7 @@ jobs:
             ! -path explorer/discovery-catalog.json \
             ! -path explorer/search-catalog.json \
             ! -path explorer/lit-publisher-edition-leads.json \
+            ! -path explorer/publisher-isbn-crosschecks.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/accepted-source-card-rechecks.json \
@@ -304,6 +324,19 @@ jobs:
             fi
           elif test -e explorer/lit-publisher-edition-leads.json || test -L explorer/lit-publisher-edition-leads.json; then
             echo "Refusing to deploy an uncommitted publisher edition lead overlay" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/publisher-isbn-crosschecks.json 2>/dev/null; then
+            test -f explorer/publisher-isbn-crosschecks.json
+            test ! -L explorer/publisher-isbn-crosschecks.json
+            expected="$(git rev-parse HEAD:explorer/publisher-isbn-crosschecks.json)"
+            actual="$(git hash-object explorer/publisher-isbn-crosschecks.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified public publisher ISBN crosscheck overlay" >&2
+              exit 1
+            fi
+          elif test -e explorer/publisher-isbn-crosschecks.json || test -L explorer/publisher-isbn-crosschecks.json; then
+            echo "Refusing to deploy an uncommitted publisher ISBN crosscheck overlay" >&2
             exit 1
           fi
           if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null; then

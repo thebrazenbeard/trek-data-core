@@ -115,6 +115,13 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("python3 tools/build_source_local_search.py --check", text)
         self.assertIn("! -path explorer/lit-publisher-edition-leads.json", text)
         self.assertIn("python3 tools/build_lit_publisher_leads.py --check", text)
+        self.assertIn("! -path explorer/publisher-isbn-crosschecks.json", text)
+        self.assertIn("python3 tools/build_publisher_isbn_crosschecks.py --check", text)
+        self.assertIn("python3 tools/query_publisher_isbn_crosschecks.py --validate-sources --limit 1", text)
+        for validator in ("opf-publisher-crosscheck-20261103", "opf-publisher-crosscheck-next-ten-20261103",
+                          "opf-publisher-crosscheck-third-ten-20261103", "tng-opf-0076-0079-publisher-crosswalk-20261103",
+                          "opf-publisher-crosscheck-fourth-six-20261103"):
+            self.assertIn(f"python3 proposals/librarian/{validator}/validate.py", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/accepted-source-card-rechecks.json", text)
@@ -133,7 +140,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 13)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 14)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -201,6 +208,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("find explorer -mindepth 1", final)
         self.assertIn("git rev-parse HEAD:explorer/research-leads.json", final)
         self.assertIn("git rev-parse HEAD:explorer/lit-publisher-edition-leads.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/publisher-isbn-crosschecks.json", final)
         self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)

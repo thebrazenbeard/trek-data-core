@@ -166,6 +166,8 @@
   const researchState = { leads: [], available: false };
   const filmState = { films: [], available: false };
   const publisherEditionState = { rows: [], available: false };
+  const publisherIsbnState = { rows: [], available: false, limit: 12 };
+  const publisherIsbnSha256 = '1170e8cb56b4ff3c5beab8d412fa5613b6e3b9d0ab7b5a18f80fe403c5bde3e8';
   // Independent from the 1,214 multimedia directory and governed Work index.
   // The code-owned digest binds EVERY publisher-edition field and tag, not a
   // self-declared source hash in an untrusted JSON response.
@@ -550,6 +552,197 @@
       acceptPublisherEditionIndex(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
     } catch (error) {
       setPublisherEditionAvailability(false, `Publisher edition leads withheld: ${error.message || 'Verify accepted source index.'}`);
+    }
+  }
+
+  // Public first-party publisher product metadata only. These 39 source-local
+  // ISBN records are disjoint from the 3 edition candidates and 1,214-row
+  // multimedia directory; an OPF-local ref is NOT proof of a private ebook.
+  const isbnCrosscheckLabels = Object.freeze({
+    ISBN_IDENTIFIER_AGREEMENT_SOURCE_LOCAL: 'Publisher ISBN identifier agreement · private edition unverified',
+    HELD_ISBN_FORMAT_DISCREPANCY: 'HELD: publisher ISBN / format discrepancy',
+    HELD_CREATOR_RENDERING_DISCREPANCY: 'HELD: creator rendering discrepancy',
+    HELD_TITLE_SPELLING_DISCREPANCY: 'HELD: title spelling discrepancy',
+    HELD_PUBLISHER_DATE_DISCREPANCY: 'HELD: publisher/source-local date discrepancy'
+  });
+
+  function setPublisherIsbnAvailability(available, message) {
+    publisherIsbnState.available = available;
+    if (!available) publisherIsbnState.rows = [];
+    byId('publisher-isbn-nav-count').textContent = available ? String(publisherIsbnState.rows.length) : '—';
+    byId('publisher-isbn-state').textContent = message;
+    byId('publisher-isbn-download').hidden = !available;
+    renderPublisherIsbnCrosschecks();
+    window.requestAnimationFrame(updateNavigationHint);
+  }
+
+  function renderPublisherIsbnCrosschecks() {
+    const holder = byId('publisher-isbn-list');
+    const empty = byId('publisher-isbn-empty');
+    holder.replaceChildren();
+    empty.hidden = true;
+    if (!publisherIsbnState.available) {
+      byId('publisher-isbn-summary').textContent = 'Public publisher ISBN crosscheck layer withheld or unavailable; its count is not zero.';
+      return;
+    }
+    const rawQuery = byId('publisher-isbn-query').value.trim();
+    const terms = rawQuery.length <= 200 ? normalize(rawQuery).split(/\s+/).filter(Boolean) : ['QUERY_TOO_LONG'];
+    const status = byId('publisher-isbn-status').value;
+    const tag = byId('publisher-isbn-tag').value;
+    const rows = publisherIsbnState.rows.filter((row) => {
+      const agreement = row.crosscheck_state === 'ISBN_IDENTIFIER_AGREEMENT_SOURCE_LOCAL';
+      if (status !== 'all' && status !== (agreement ? 'agreement' : 'held')) return false;
+      const tags = [`source-batch:${row.source_batch.toLowerCase()}`,
+        `crosscheck:${row.crosscheck_state.toLowerCase()}`, 'publisher:simonandschuster.com'];
+      if (tag !== 'all' && !tags.includes(tag)) return false;
+      const text = normalize([row.publisher_title, ...row.publisher_creators, row.publisher_isbn13,
+        row.source_local_ref, row.source_batch, row.crosscheck_state].join(' '));
+      return terms.every((term) => text.includes(term));
+    });
+    const shown = rows.slice(0, publisherIsbnState.limit);
+    byId('publisher-isbn-summary').textContent = `${rows.length} of 39 source-local publisher ISBN crosschecks match` +
+      (shown.length < rows.length ? ` · displaying ${shown.length}` : '') +
+      '. These do not authenticate private books or establish distinct Works.';
+    if (!rows.length) { empty.hidden = false; return; }
+    for (const row of shown) {
+      const agreement = row.crosscheck_state === 'ISBN_IDENTIFIER_AGREEMENT_SOURCE_LOCAL';
+      const card = el('article', `card publisher-isbn-card${agreement ? '' : ' isbn-held'}`);
+      const kicker = el('span', 'kicker isbn-kicker', `Public publisher metadata · ${row.source_batch}`);
+      card.append(kicker, el('h3', '', row.publisher_title));
+      card.append(el('p', '', `${row.publisher_creators.join(' · ')} · eBook ISBN ${row.publisher_isbn13}`));
+      card.append(el('p', 'isbn-status', isbnCrosscheckLabels[row.crosscheck_state]));
+      card.append(el('p', 'isbn-custody', `Source-local reference ${row.source_local_ref}; no private ebook authentication, plot text, artwork, or Work admission.`));
+      const link = el('a', 'isbn-source', 'Inspect first-party publisher product metadata');
+      link.href = row.publisher_url;
+      link.rel = 'noopener noreferrer';
+      link.target = '_blank';
+      card.append(link);
+      card.append(el('small', 'isbn-custody', `Accepted public crosscheck: ${row.public_source_record}`));
+      holder.append(card);
+    }
+    if (shown.length < rows.length) {
+      const more = el('button', 'directory-more', `Show next ${Math.min(12, rows.length - shown.length)} ISBN source rows`);
+      more.type = 'button';
+      more.addEventListener('click', () => {
+        playTone();
+        const start = shown.length;
+        publisherIsbnState.limit += 12;
+        renderPublisherIsbnCrosschecks();
+        focusNewPage(holder, start);
+      });
+      holder.append(more);
+    }
+  }
+
+  function acceptPublisherIsbnCrosschecks(data) {
+    const sourceBatches = new Map([
+      ['OPF-FIRST-NINE', { path: 'proposals/librarian/opf-publisher-crosscheck-20261103/records.json', ids: [9, 10, 15, 28, 29, 31, 34, 50, 51] }],
+      ['OPF-NEXT-TEN', { path: 'proposals/librarian/opf-publisher-crosscheck-next-ten-20261103/records.json', ids: [52, 53, 54, 55, 56, 57, 58, 59, 60, 61] }],
+      ['OPF-THIRD-TEN', { path: 'proposals/librarian/opf-publisher-crosscheck-third-ten-20261103/records.json', ids: [62, 63, 64, 65, 67, 68, 69, 70, 74, 75] }],
+      ['OPF-TNG-0076-0079', { path: 'proposals/librarian/tng-opf-0076-0079-publisher-crosswalk-20261103/records.json', ids: [76, 77, 78, 79] }],
+      ['OPF-FOURTH-SIX', { path: 'proposals/librarian/opf-publisher-crosscheck-fourth-six-20261103/records.json', ids: [73, 82, 84, 85, 87, 88] }]
+    ]);
+    const exactKeys = (object, keys) => object && typeof object === 'object' && !Array.isArray(object) &&
+      Object.keys(object).length === keys.length && keys.every((key) => Object.hasOwn(object, key));
+    const rootKeys = ['schema_version', 'data_status', 'row_count', 'publisher_isbn_identifier_agreements',
+      'held_discrepancy_count', 'existing_publisher_edition_leads_count_unchanged',
+      'existing_directory_rows_count_unchanged', 'private_ebooks_authenticated', 'canonical_works_admitted',
+      'synopses_published', 'artwork_published', 'publisher_independence_group_count',
+      'admission_effect', 'coverage_effect', 'accepted_public_input_receipts', 'rows'];
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'PUBLIC_PUBLISHER_ISBN_SOURCE_LOCAL_CROSSCHECKS_ONLY' ||
+        data.row_count !== 39 || data.publisher_isbn_identifier_agreements !== 30 ||
+        data.held_discrepancy_count !== 9 ||
+        data.existing_publisher_edition_leads_count_unchanged !== 3 ||
+        data.existing_directory_rows_count_unchanged !== 1214 ||
+        data.private_ebooks_authenticated !== 0 || data.canonical_works_admitted !== 0 ||
+        data.synopses_published !== 0 || data.artwork_published !== 0 ||
+        data.publisher_independence_group_count !== 1 ||
+        data.admission_effect !== 'NONE' || data.coverage_effect !== 'NONE' ||
+        !Array.isArray(data.accepted_public_input_receipts) || data.accepted_public_input_receipts.length !== 5 ||
+        !Array.isArray(data.rows) || data.rows.length !== 39) {
+      throw new Error('Public publisher ISBN index envelope was changed or elevated.');
+    }
+    const receipts = new Map();
+    for (const [i, [, spec]] of [...sourceBatches].entries()) {
+      const receipt = data.accepted_public_input_receipts[i];
+      if (!exactKeys(receipt, ['path', 'sha256']) || receipt.path !== spec.path ||
+          !/^[0-9a-f]{64}$/.test(receipt.sha256)) {
+        throw new Error('Public publisher source receipt mismatch.');
+      }
+      receipts.set(receipt.path, receipt.sha256);
+    }
+    const rowKeys = ['row_id', 'source_local_ref', 'publisher_title', 'publisher_creators',
+      'publisher_isbn13', 'publisher_format', 'publisher_url', 'publisher_lineage',
+      'crosscheck_state', 'source_batch', 'public_source_record', 'public_source_record_sha256',
+      'private_edition_equivalence', 'work_identity', 'public_synopsis_effect',
+      'artwork_effect', 'admission_effect', 'coverage_effect'];
+    const sourceIds = new Set();
+    const isbns = new Set();
+    let agreement = 0;
+    for (const row of data.rows) {
+      const spec = sourceBatches.get(row?.source_batch);
+      const number = /^publisher-isbn-crosscheck:\d{4}$/.test(row?.row_id || '') ? Number(row.row_id.slice(-4)) : -1;
+      const sourceId = `opf-local:${String(number).padStart(4, '0')}`;
+      let url;
+      try { url = new URL(row.publisher_url); } catch (_) { throw new Error('Publisher ISBN product URL invalid.'); }
+      if (!exactKeys(row, rowKeys) || !spec || !spec.ids.includes(number) ||
+          row.source_local_ref !== sourceId || sourceIds.has(sourceId) ||
+          row.public_source_record !== spec.path || row.public_source_record_sha256 !== receipts.get(spec.path) ||
+          row.publisher_lineage !== 'publisher:simonandschuster.com' || row.publisher_format !== 'EBOOK' ||
+          row.private_edition_equivalence !== 'UNVERIFIED' || row.work_identity !== 'NOT_RECONCILED' ||
+          row.public_synopsis_effect !== 'NONE' || row.artwork_effect !== 'NONE' ||
+          row.admission_effect !== 'NONE' || row.coverage_effect !== 'NONE' ||
+          !Object.hasOwn(isbnCrosscheckLabels, row.crosscheck_state) ||
+          typeof row.publisher_title !== 'string' || !row.publisher_title.trim() ||
+          row.publisher_title.length > 180 || row.publisher_title.includes('<') || row.publisher_title.includes('>') ||
+          !Array.isArray(row.publisher_creators) || !row.publisher_creators.length ||
+          row.publisher_creators.length > 8 ||
+          row.publisher_creators.some((name) => typeof name !== 'string' || !name.trim() ||
+            name.length > 110 || name.includes('<') || name.includes('>')) ||
+          typeof row.publisher_isbn13 !== 'string' || !/^97[89]\d{10}$/.test(row.publisher_isbn13) ||
+          isbns.has(row.publisher_isbn13) ||
+          url.protocol !== 'https:' || url.hostname !== 'www.simonandschuster.com' ||
+          url.username || url.password || url.port || url.search || url.hash ||
+          !/^\/books\/[A-Za-z0-9-]+\/[A-Za-z0-9-]+\/[A-Za-z0-9-]+\/97[89]\d{10}$/.test(url.pathname) ||
+          !url.pathname.endsWith('/' + row.publisher_isbn13)) {
+        throw new Error('Public publisher ISBN title, identity, status, source or rights boundary rejected.');
+      }
+      sourceIds.add(sourceId);
+      isbns.add(row.publisher_isbn13);
+      if (row.crosscheck_state === 'ISBN_IDENTIFIER_AGREEMENT_SOURCE_LOCAL') agreement++;
+    }
+    if (sourceIds.size !== 39 || isbns.size !== 39 || agreement !== 30) {
+      throw new Error('Public publisher ISBN source-local denominator drift.');
+    }
+    publisherIsbnState.rows = data.rows;
+    publisherIsbnState.limit = 12;
+    const tagSelect = byId('publisher-isbn-tag');
+    tagSelect.replaceChildren(new Option('All source-local tags', 'all'));
+    const tags = [...new Set(data.rows.flatMap((row) => [
+      `source-batch:${row.source_batch.toLowerCase()}`, `crosscheck:${row.crosscheck_state.toLowerCase()}`,
+      'publisher:simonandschuster.com'
+    ]))].sort();
+    for (const tag of tags) tagSelect.add(new Option(tag.replaceAll('_', ' '), tag));
+    tagSelect.value = 'all';
+    setPublisherIsbnAvailability(true,
+      '39 first-party publisher ISBN metadata crosschecks loaded: 30 source-local identifier agreements, 9 held discrepancies. One publisher lineage; no private book authentication, Work admission, plot text or cover release.');
+  }
+
+  async function loadPublisherIsbnCrosschecks() {
+    try {
+      const response = await fetch('./publisher-isbn-crosschecks.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Publisher ISBN sidecar unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw new Error('SHA-256 unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength < 1000 || bytes.byteLength > 100000) throw new Error('Publisher ISBN sidecar size outside accepted scope.');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== publisherIsbnSha256) throw new Error('Publisher ISBN sidecar differs from accepted source-derived digest.');
+      acceptPublisherIsbnCrosschecks(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    } catch (error) {
+      setPublisherIsbnAvailability(false,
+        `Publisher ISBN crosschecks withheld: ${error.message || 'Source metadata not validated.'} This is unavailable, not a verified zero.`);
     }
   }
 
@@ -1793,13 +1986,19 @@
   publisherEditionFilters.addEventListener('change', () => { playTone(); renderPublisherEditionLeads(); });
   publisherEditionFilters.addEventListener('submit', (event) => { event.preventDefault(); renderPublisherEditionLeads(); });
   publisherEditionFilters.addEventListener('reset', () => window.requestAnimationFrame(renderPublisherEditionLeads));
+  const publisherIsbnFilters = byId('publisher-isbn-filters');
+  publisherIsbnFilters.addEventListener('input', () => { publisherIsbnState.limit = 12; renderPublisherIsbnCrosschecks(); });
+  publisherIsbnFilters.addEventListener('change', () => { playTone(); publisherIsbnState.limit = 12; renderPublisherIsbnCrosschecks(); });
+  publisherIsbnFilters.addEventListener('submit', (event) => { event.preventDefault(); renderPublisherIsbnCrosschecks(); });
+  publisherIsbnFilters.addEventListener('reset', () => { publisherIsbnState.limit = 12; window.requestAnimationFrame(renderPublisherIsbnCrosschecks); });
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   setPublisherEditionAvailability(false, 'Checking the independently indexed publisher-edition sidecar…');
+  setPublisherIsbnAvailability(false, 'Checking accepted public publisher ISBN source-local metadata…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex()]).then(() => Promise.all([
+  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
     loadMetadataRechecks(), loadPublisherCardChecks()
   ]));

@@ -162,6 +162,15 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .publisher-edition-card details { grid-column: 2; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); }
 .publisher-edition-card summary { cursor: pointer; color: var(--aqua); font-size: .78rem; }
 .publisher-edition-card .edition-tag-list { margin: 10px 0 0; padding-left: 19px; font: 650 .72rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+.publisher-isbn-grid { margin-top: 18px; }
+.publisher-isbn-card { border-left-color: var(--aqua); min-width: 0; }
+.publisher-isbn-card.isbn-held { border-left-color: var(--peach); }
+.publisher-isbn-card h3 { margin: 4px 0 8px; font-size: 1rem; overflow-wrap: anywhere; }
+.publisher-isbn-card .isbn-kicker { color: var(--aqua); }
+.publisher-isbn-card .isbn-status { color: var(--aqua); font-weight: 760; font-size: .83rem; }
+.publisher-isbn-card.isbn-held .isbn-status { color: var(--peach); }
+.publisher-isbn-card .isbn-source { display: inline-block; margin-top: 8px; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.publisher-isbn-card .isbn-custody { font: 650 .7rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--muted); overflow-wrap: anywhere; }
 
 .discovery-directory { border: 1px solid var(--line); border-top: 12px solid var(--aqua); border-left: 18px solid var(--peach); border-radius: 44px 4px 4px 4px; padding: 28px; background: var(--surface); }
 .directory-state { color: var(--amber); margin: 8px 0 13px; }

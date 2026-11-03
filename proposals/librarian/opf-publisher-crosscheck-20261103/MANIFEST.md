@@ -34,7 +34,13 @@ Full publisher product URLs appear in `records.json`; all are first-party links,
 
 ## Repeatable checks
 
-From this directory, run `python3 validate.py`, `python3 -O validate.py`, and `python3 -m unittest -v test_validate.py`. The validator pins the accepted OPF observation digest and nine reviewed source-local IDs, checks ISBN-10 checksums and ISBN-13 conversions, publisher locator origin/path, reviewed title/date/lead-author metadata and held/matched state, and rejects any claim to raw byte custody, private edition equivalence, Work admission, or coverage increase. It is an internal mechanical consistency audit, **not** an independent publisher source retrieval.
+From this directory, run `python3 validate.py`, `python3 -O validate.py`, `python3 -m unittest -v test_validate.py`, and `python3 -O -m unittest -v test_validate.py`.
+
+**Hostile-review correction:** The original validator only anchored some individual source fields. An independent reviewer demonstrated four bypasses: an extra non-lead author containing a private path, invented canonical-claim wording in an otherwise bounded synopsis, a private path in the uncertainty paragraph, and an unknown `source_private_local_path` key. That exact proposed head was held.
+
+The corrected validator adds a recursive private-path scan over all strings and map keys, exact envelope and record field sets, and a trusted code-owned SHA-256 of the **complete canonical JSON of each of the nine reviewed records**. Any change to an author list, paraphrase, uncertainty, source locator, status, or any other field now requires an explicit source review and new pin. All four hostile mutations and two additional schema/privacy probes must fail in normal and optimized Python. The checksum, ISBN conversion, and explicit no-admission checks remain.
+
+These are internal mechanical consistency and review-snapshot checks, **not** independently reproducible publisher raw-byte retrieval and not an assertion that the publisher information is unchangeable.
 
 ## Next frontier
 

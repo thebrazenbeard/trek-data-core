@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SNW.PPLUS.S3.FIRST5.20261103",
+  "lane": "SNW",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "explorer_effect": "NONE",
+  "audiovisual_content_inspected": false,
+  "full_primary_source_available": false,
+  "source": {
+    "source_local_id": "snw-s3-paramount-guide-20261103",
+    "kind": "PUBLISHER_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/",
+    "retrieved_utc_date": "2026-11-03",
+    "response_status": 200,
+    "response_body_bytes": 271774,
+    "response_sha256": "a2b3363d658b003c83732945b75c23621f16bb4fc782fb395b2b0c2a79796863",
+    "second_response_sha256": "dffc10f7e996ab0de9f2acc671823468d720c93cabed2f687a3c742843994254",
+    "response_digest_stability": "VOLATILE_WITH_SAME_BYTE_COUNT",
+    "snapshot_committed": false,
+    "publisher_revision": null
+  },
+  "works": [
+    {"local_work_id":"snw-s3-e01-pplus","season":3,"episode_number":1,"title":"Hegemony, Part II","source_datetime":"2025-07-17T03:00:00-07:00","card_html_lines":[1490,1512],"publisher_video_url":"https://www.paramountplus.com/shows/video/XtVgXfmXQ9ISGBQndRU1ac1dxiKTPhxu/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e02-pplus","season":3,"episode_number":2,"title":"Wedding Bell Blues","source_datetime":"2025-07-17T03:00:00-07:00","card_html_lines":[1518,1540],"publisher_video_url":"https://www.paramountplus.com/shows/video/uSf5ddrokHrmQypySc_sFHUFdEcjtqd2/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e03-pplus","season":3,"episode_number":3,"title":"Shuttle to Kenfori","source_datetime":"2025-07-24T03:00:00-07:00","card_html_lines":[1546,1568],"publisher_video_url":"https://www.paramountplus.com/shows/video/MWXJeJFujqgM_RhiPoaxVP_TWziQDTv4/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e04-pplus","season":3,"episode_number":4,"title":"A Space Adventure Hour","source_datetime":"2025-07-31T03:00:00-07:00","card_html_lines":[1574,1596],"publisher_video_url":"https://www.paramountplus.com/shows/video/SgNBVkK6LRg1s8EvgDcc_r_pzX1CaySu/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"snw-s3-e05-pplus","season":3,"episode_number":5,"title":"Through the Lens of Time","source_datetime":"2025-08-07T03:00:00-07:00","card_html_lines":[1602,1624],"publisher_video_url":"https://www.paramountplus.com/shows/video/T54ykNcTORKZb1ufdABAemtqXRWXheph/","source_binding_id":null,"canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"local_entity_id":"snw-s3-e01-pike-mention","work_id":"snw-s3-e01-pplus","label":"Pike","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e02-spock-mention","work_id":"snw-s3-e02-pplus","label":"Spock","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e03-pike-mention","work_id":"snw-s3-e03-pplus","label":"Pike","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e03-mbenga-mention","work_id":"snw-s3-e03-pplus","label":"M'Benga","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e03-batel-mention","work_id":"snw-s3-e03-pplus","label":"Batel","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e04-laan-mention","work_id":"snw-s3-e04-pplus","label":"La'An","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e05-chapel-mention","work_id":"snw-s3-e05-pplus","label":"Chapel","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e05-korby-mention","work_id":"snw-s3-e05-pplus","label":"Korby","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"snw-s3-e05-enterprise-mention","work_id":"snw-s3-e05-pplus","label":"Enterprise","kind":"VESSEL_MENTION","global_entity_id":null}
+  ],
+  "evidence": [
+    {"evidence_id":"snw-s3-e01-publisher-copy","work_id":"snw-s3-e01-pplus","source_local_id":"snw-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1499-1511; h2, season/episode abbr, time datetime, div.ep__copy","paraphrase":"The publisher describes Pike directing a dangerous rescue across enemy lines while a stranded landing party tries to escape its pursuers.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e02-publisher-copy","work_id":"snw-s3-e02-pplus","source_local_id":"snw-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1527-1539; h2, season/episode abbr, time datetime, div.ep__copy","paraphrase":"The publisher says an unexpected guest interrupts a Federation celebration and affects Spock and the crew's reflections.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e03-publisher-copy","work_id":"snw-s3-e03-pplus","source_local_id":"snw-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1555-1567; h2, season/episode abbr, time datetime, div.ep__copy","paraphrase":"The publisher describes Pike and M'Benga entering Klingon space to seek a cure for Batel, with M'Benga's past resurfacing on a perilous planet.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e04-publisher-copy","work_id":"snw-s3-e04-pplus","source_local_id":"snw-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1583-1595; h2, season/episode abbr, time datetime, div.ep__copy","paraphrase":"The publisher describes La'An testing a prototype holodeck by working through a fictional case that only she can solve.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"snw-s3-e05-publisher-copy","work_id":"snw-s3-e05-pplus","source_local_id":"snw-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1611-1623; h2, season/episode abbr, time datetime, div.ep__copy","paraphrase":"The publisher says Chapel and Korby's investigation takes the Enterprise to ancient ruins where a dangerous secret is concealed.","observation_scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"assertion_id":"snw-s3-e01-publisher-claim","work_id":"snw-s3-e01-pplus","evidence_id":"snw-s3-e01-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e01-pike-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e02-publisher-claim","work_id":"snw-s3-e02-pplus","evidence_id":"snw-s3-e02-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e02-spock-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e03-publisher-claim","work_id":"snw-s3-e03-pplus","evidence_id":"snw-s3-e03-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e03-pike-mention","snw-s3-e03-mbenga-mention","snw-s3-e03-batel-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e04-publisher-claim","work_id":"snw-s3-e04-pplus","evidence_id":"snw-s3-e04-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e04-laan-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"snw-s3-e05-publisher-claim","work_id":"snw-s3-e05-pplus","evidence_id":"snw-s3-e05-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["snw-s3-e05-chapel-mention","snw-s3-e05-korby-mention","snw-s3-e05-enterprise-mention"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"work_id":"snw-s3-e01-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432598595937/PPUSA_STARTREKSTRANGENEWWORLDS_301_V1_3291934_1920x1080.jpg","html_line":1493,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e02-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432598595946/PPUSA_STARTREKSTRANGENEWWORLDS_302_V1_3291476_1920x1080.jpg","html_line":1521,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e03-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432598595966/PPUSA_STARTREKSTRANGENEWWORLDS_303_V2_3307546_1920x1080.jpg","html_line":1549,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e04-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432597059774/PPUSA_STARTREKSTRANGENEWWORLDS_304_3324877_1920x1080.jpg","html_line":1577,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"},
+    {"work_id":"snw-s3-e05-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432597059776/PPUSA_STARTREKSTRANGENEWWORLDS_305_3319865_1920x1080.jpg","html_line":1605,"source_kind":"PUBLISHER_CARD_THUMBNAIL","rights_status":"UNASSESSED","local_copy":false,"repo_distribution":"NONE","explorer_effect":"NONE"}
+  ],
+  "counterevidence_and_limits": [
+    {"kind":"NOT_INDEPENDENT","statement":"Five cards in one Paramount+ publisher episode guide are a single publication lineage and cannot independently corroborate the storyline."},
+    {"kind":"DYNAMIC_HTML_DIGEST","statement":"Two same-day HTTP 200 retrieves returned the same 271,774-byte count but different whole-response SHA-256 values; digest is a per-retrieval receipt, not a permanent immutable content-address."},
+    {"kind":"UNINSPECTED_PRIMARY_AV","statement":"No episode stream, caption track, transcript, or screenplay was inspected; synopsis claims describe publisher text rather than verified depicted events."},
+    {"kind":"CROSS_SEASON_TITLE_UNRESOLVED","statement":"Season 2 Hegemony and Season 3 Hegemony, Part II share a title motif, but no global Work identity or sequel assertion is admitted by title similarity alone."},
+    {"kind":"ARTWORK_RIGHTS_UNASSESSED","statement":"Official thumbnail URLs are candidate locators, not permission to download, hotlink, sublicense, or ship artwork in Explorer."}
+  ]
+}

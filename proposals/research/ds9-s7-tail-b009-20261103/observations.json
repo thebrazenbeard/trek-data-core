@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-s7-tail-b009-20261103",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_main_at_selection": "5b59deec9cf832ed030f25bd09c6fd7c318efb90",
+  "observed_utc_date": "2026-11-03",
+  "source_scope": "PUBLIC_RENDERED_PARAMOUNT_S7_GUIDE_TITLE_SLOT_ONLY",
+  "publisher_guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/7/",
+  "publisher_source_family": "paramount_corporate_publisher_family",
+  "source_directory_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "historical_publisher_csv_sha256": "1dbfe6a4b6af54a5eb2831108d358c8c3f984346b1b3a79de6301ccf2dc22aea",
+  "accepted_s7e7_e11_source_record_sha256": "294f90c60e5a94c6b21998a9b728f1738b42efedcb81c7a962fba456eb7d84b9",
+  "accepted_s7e12_e16_source_record_sha256": "1d39066d421acff9851778d54ba6ed5f0acbac0e20489a19896c1166a234e1c7",
+  "current_raw_html_sha256": null,
+  "current_raw_html_captured": false,
+  "actual_episode_or_script_read": false,
+  "synopsis_policy": "DESCRIPTION_BLOCKS_VISIBLE_NO_TEXT_OR_PARAPHRASE_STORED",
+  "accepted_source_work_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "records": [
+    {"observation_id":"ds9-b009-p01","source_local_row_id":"publisher:s7:ds9:016","season":7,"episode":17,"publisher_card_title":"Penumbra","card_locator":"Season 7 Episode Guide > S7 E17 > Penumbra","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p02","source_local_row_id":"publisher:s7:ds9:017","season":7,"episode":18,"publisher_card_title":"'Til Death Do Us Part","card_locator":"Season 7 Episode Guide > S7 E18 > 'Til Death Do Us Part","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p03","source_local_row_id":"publisher:s7:ds9:018","season":7,"episode":19,"publisher_card_title":"Strange Bedfellows","card_locator":"Season 7 Episode Guide > S7 E19 > Strange Bedfellows","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p04","source_local_row_id":"publisher:s7:ds9:019","season":7,"episode":20,"publisher_card_title":"The Changing Face of Evil","card_locator":"Season 7 Episode Guide > S7 E20 > The Changing Face of Evil","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p05","source_local_row_id":"publisher:s7:ds9:020","season":7,"episode":21,"publisher_card_title":"When It Rains...","card_locator":"Season 7 Episode Guide > S7 E21 > When It Rains...","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p06","source_local_row_id":"publisher:s7:ds9:021","season":7,"episode":22,"publisher_card_title":"Tacking Into The Wind","card_locator":"Season 7 Episode Guide > S7 E22 > Tacking Into The Wind","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p07","source_local_row_id":"publisher:s7:ds9:022","season":7,"episode":23,"publisher_card_title":"Extreme Measures","card_locator":"Season 7 Episode Guide > S7 E23 > Extreme Measures","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p08","source_local_row_id":"publisher:s7:ds9:023","season":7,"episode":24,"publisher_card_title":"The Dogs of War","card_locator":"Season 7 Episode Guide > S7 E24 > The Dogs of War","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null},
+    {"observation_id":"ds9-b009-p09","source_local_row_id":"publisher:s7:ds9:024","season":7,"episode":25,"publisher_card_title":"What You Leave Behind","card_locator":"Season 7 Episode Guide > S7 E25 > What You Leave Behind","title_slot_status":"SAME_PUBLISHER_RECHECK_MATCH","synopsis_status":"HELD_NO_PUBLIC_TEXT_OR_PARAPHRASE","accepted_work_id":null}
+  ],
+  "finale_presentation_hold": {
+    "source_local_row_id": "publisher:s7:ds9:024",
+    "paramount_guide_single_card_slot": "S7E25",
+    "franchise_history_description": "TWO_HOUR_SERIES_FINALE_BROADCAST_CLAIM",
+    "franchise_history_url": "https://www.startrek.com/news/what-you-leave-behind-aired-18-years-ago-today",
+    "source_relation": "SAME_CORPORATE_FAMILY_DIFFERENT_PRESENTATION_CONTEXTS",
+    "split_episode_or_work_decision": "UNRESOLVED",
+    "additional_s7e26_inferred": false
+  }
+}

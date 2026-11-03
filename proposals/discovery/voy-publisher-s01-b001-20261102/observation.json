@@ -1,0 +1,10 @@
+{
+  "batch_id": "voy-publisher-s01-b001-20261102",
+  "mission_id": "voy",
+  "publisher": "Paramount+",
+  "independence_group": "paramount-franchise-publishing",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/videos/star-trek-voyager-communication",
+  "csv_sha256": "e9bad425540e9722248a7812deb0c804d11770ab2ae7c78b1d5093339927c5e5"
+}

@@ -120,10 +120,15 @@ def validate(data, mission_catalog):
                   "publisher_revision", "audiovisual_content_inspected"}, "observation")
     text(observation["publisher"], "publisher", 100)
     text(observation["independence_group"], "independence group", 100)
+    observed_on = text(observation["observed_on"], "observed date", 10)
     try:
-        date.fromisoformat(text(observation["observed_on"], "observed date", 10))
+        observed_date = date.fromisoformat(observed_on)
     except ValueError as exc:
         raise Rejected("observed_on must be ISO calendar date") from exc
+    if observed_date.isoformat() != observed_on:
+        raise Rejected("observed_on must be canonical YYYY-MM-DD date")
+    if observed_date > date.today():
+        raise Rejected("observed_on cannot be in the future")
     safe_locator(observation["primary_locator"], "primary locator")
     safe_locator(observation["crosscheck_locator"], "crosscheck locator")
     if observation["scope"] != "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY":

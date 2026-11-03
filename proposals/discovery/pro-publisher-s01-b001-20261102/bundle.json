@@ -1,0 +1,67 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "pro-appletv-us-s01-b001-20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Lost & Found, Pt. 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Starstruck"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Dreamcatcher"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Terror Firma"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Kobayashi"
+    }
+  ],
+  "listed_slot_count": 5,
+  "mission_id": "pro",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.startrek.com/en-un/series/star-trek-prodigy",
+    "independence_group": "INDEPENDENCE_UNRESOLVED",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://tv.apple.com/us/show/star-trek-prodigy/umc.cmc.1zqk40gcoayvwt9tai2555wkp",
+    "publisher": "Apple TV US (first-party distributor listing)",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

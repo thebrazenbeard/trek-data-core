@@ -1,0 +1,10 @@
+{
+  "batch_id": "tas-paramountplus-s01-b001-20261102",
+  "mission_id": "tas",
+  "publisher": "Paramount+",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+  "crosscheck_locator": "https://www.paramountplus.com/shows/star_trek_animated/",
+  "csv_sha256": "f105ae674d20c6a32ddc13488b31014452898ebe245fbb9f7a94450feee69af4"
+}

@@ -1,0 +1,67 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "ent-paramountplus-s01-b001-20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Broken Bow - Part 1 and 2"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Fight or Flight"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Strange New World"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Unexpected"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Terra Nova"
+    }
+  ],
+  "listed_slot_count": 5,
+  "mission_id": "ent",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.startrek.com/news/star-trek-day-streaming-schedule",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+    "publisher": "Paramount+",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

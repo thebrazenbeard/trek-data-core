@@ -1,0 +1,10 @@
+{
+  "batch_id": "ds9-paramountplus-s01-b001-20261102",
+  "mission_id": "ds9",
+  "publisher": "Paramount+",
+  "independence_group": "publisher:paramount",
+  "observed_on": "2026-11-02",
+  "primary_locator": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+  "crosscheck_locator": "https://www.startrek.com/news/ds9-premiere-emissary-aired-22-years-ago-this-week",
+  "csv_sha256": "9684e64c8a8b6848d9562505ae2f743ff25f14da6618f540b128af2bd8481c66"
+}

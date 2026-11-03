@@ -29,6 +29,16 @@ class ReleaseError(ValueError):
     pass
 
 
+def _unique_json_object(pairs: list[tuple[str, object]]) -> dict:
+    """A last-key-wins parse cannot attest source or editorial effect fields."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ReleaseError(f'Duplicate JSON key in publisher release input: {key!r}')
+        result[key] = value
+    return result
+
+
 def _raw(path: str) -> bytes:
     target = ROOT / path
     if target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(ROOT):
@@ -37,7 +47,7 @@ def _raw(path: str) -> bytes:
 
 
 def _load(path: str) -> dict:
-    value = json.loads(_raw(path))
+    value = json.loads(_raw(path), object_pairs_hook=_unique_json_object)
     if not isinstance(value, dict):
         raise ReleaseError(f'Expected object: {path}')
     return value

@@ -6,11 +6,12 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-from build_source_local_search import build, encoded, normalized  # noqa: E402
+from build_source_local_search import INPUTS, build, encoded, load_inputs, normalized  # noqa: E402
 from query_trek_index import query, validate  # noqa: E402
 
 
@@ -27,6 +28,24 @@ class SourceLocalSearchTests(unittest.TestCase):
         self.assertEqual(self.index["facet_counts"]["synopsis_status"]["reviewed_publisher_paraphrase"], 37)
         self.assertEqual(sum(count for key, count in self.index["facet_counts"]["metadata_recheck_status"].items() if key != "not_rechecked"), 56)
         self.assertEqual(sum(self.index["facet_counts"]["medium"].values()), 1214)
+
+    def test_reject_conflicting_duplicate_keys_in_every_source_sidecar(self):
+        original_read = Path.read_bytes
+        for relative in INPUTS:
+            with self.subTest(sidecar=relative):
+                def injected_read(path):
+                    raw = original_read(path)
+                    if path == ROOT / relative:
+                        # Last-key-wins JSON would silently turn a conflicting
+                        # promotion into the innocuous-looking NONE value.
+                        raw = raw.rstrip()
+                        self.assertTrue(raw.endswith(b"}"))
+                        return raw[:-1] + b', "coverage_effect":"CLOSE_READ","coverage_effect":"NONE"}\n'
+                    return raw
+
+                with mock.patch.object(Path, "read_bytes", injected_read):
+                    with self.assertRaisesRegex(ValueError, "Duplicate JSON key"):
+                        load_inputs(ROOT)
 
     def test_exact_source_local_ids_preserve_duplicate_leads(self):
         result = query(self.rows, text="Doomsday Machine", series="TOS")

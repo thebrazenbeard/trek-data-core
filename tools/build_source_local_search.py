@@ -28,6 +28,16 @@ VALID_MEDIA = frozenset("EPISODE FILM LITERATURE SHORT_FORM AUDIO".split())
 ROW_ID = re.compile(r"^[a-z0-9:_.-]{3,210}$")
 
 
+def _unique_json_object(pairs: list[tuple[str, object]]) -> dict:
+    """Reject ambiguous source JSON at every nesting level before projection."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"Duplicate JSON key in source-local search input: {key!r}")
+        result[key] = value
+    return result
+
+
 def normalized(value: object) -> str:
     """Normalize for retrieval only. Preserve original spelling in results."""
     return unicodedata.normalize("NFKD", str(value)).casefold()
@@ -45,7 +55,7 @@ def load_inputs(root: Path = ROOT) -> tuple[dict[str, dict], list[dict]]:
         if not path.is_file() or path.is_symlink():
             raise ValueError(f"Missing or symlinked public sidecar: {relative}")
         content = path.read_bytes()
-        data[relative] = json.loads(content)
+        data[relative] = json.loads(content, object_pairs_hook=_unique_json_object)
         digests.append({"path": relative, "sha256": hashlib.sha256(content).hexdigest()})
     return data, digests
 

@@ -61,6 +61,21 @@ class PublisherSynopsisReleaseTests(unittest.TestCase):
             self.assertEqual(entry['research_observation_sha256'], builder._digest(builder._raw(entry['research_observation_path'])))
             self.assertIsNone(entry['raw_webpage_sha256'])
 
+    def test_conflicting_duplicate_publication_effect_keys_are_rejected(self):
+        # This is a deliberately small producer artifact; validation must
+        # reject its ambiguous serialization before reading any semantic keys.
+        forged = (b'{"proposal_only":true,"observed_on_utc":"2026-11-03",'
+                  b'"source_bound":false,"accepted_coverage_effect":"CLOSE_READ",'
+                  b'"accepted_coverage_effect":"NONE","accepted_evidence_effect":"NONE"}')
+        with mock.patch.object(builder, '_raw', return_value=forged):
+            with self.assertRaisesRegex(builder.ReleaseError, 'Duplicate JSON key'):
+                builder._source_artifact('forged.json')
+
+        nested = b'{"receipt":{"coverage_effect":"AUDITED","coverage_effect":"NONE"}}'
+        with mock.patch.object(builder, '_raw', return_value=nested):
+            with self.assertRaisesRegex(builder.ReleaseError, 'Duplicate JSON key'):
+                builder._load('forged.json')
+
     def test_cross_edition_source_change_or_wrong_work_family_rejected(self):
         original_source = builder._source_artifact
 

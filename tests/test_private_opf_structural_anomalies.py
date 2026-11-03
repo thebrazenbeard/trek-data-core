@@ -64,9 +64,11 @@ class OPFStructuralAnomalyTests(unittest.TestCase):
         self.assertNotEqual(mod.uri_member_target(opf, "author_%26_friend.htm"), actual)
         self.assertEqual(mod.uri_member_target(opf, "author_%2526_friend.htm"), actual)
 
-    def test_unicode_replacement_filename_must_remain_unresolved(self):
-        self.assertEqual(mod.original_filename_pairing_state("Search For Spock \ufffd"),
-                         "UNRESOLVED_REPLACEMENT_CHARACTER")
+    def test_utf8_middle_dot_filename_is_unresolved_without_fabricated_replacement(self):
+        self.assertEqual(mod.original_filename_pairing_state("Search For Spock \u00b7"),
+                         "UNRESOLVED_UTF8_MIDDLE_DOT")
+        with self.assertRaisesRegex(ValueError, "unsubstantiated replacement"):
+            mod.original_filename_pairing_state("Search For Spock \ufffd")
         self.assertEqual(mod.original_filename_pairing_state("Search For Spock A"), "CANDIDATE_ONLY")
 
     def test_admission_and_private_path_injection_fail(self):
@@ -92,7 +94,15 @@ class OPFStructuralAnomalyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             mod.validate(bad, self.source)
         bad = copy.deepcopy(self.data)
-        bad["original_lit_stem_encoding_candidate"]["original_to_converted_filename_pairing"] = "VERIFIED"
+        bad["original_lit_stem_pairing_candidate"]["original_to_converted_filename_pairing"] = "VERIFIED"
+        with self.assertRaises(ValueError):
+            mod.validate(bad, self.source)
+        bad = copy.deepcopy(self.data)
+        bad["original_lit_stem_pairing_candidate"]["original_lit_unicode_codepoint"] = "U+FFFD"
+        with self.assertRaises(ValueError):
+            mod.validate(bad, self.source)
+        bad = copy.deepcopy(self.data)
+        bad["original_lit_stem_pairing_candidate"]["original_lit_zip_filename_utf8_flag"] = False
         with self.assertRaises(ValueError):
             mod.validate(bad, self.source)
 

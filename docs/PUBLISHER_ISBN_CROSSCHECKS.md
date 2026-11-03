@@ -8,7 +8,7 @@ These observations are disjoint from the already accepted **3** literary publish
 
 ## Reproducible source boundary
 
-The compiler reads exactly five accepted, public `proposals/librarian` `records.json` files and checks their source-family/custody/no-admission boundaries, unique local IDs, valid ISBN-13 checksums, publisher-host URLs and status allowlist. The JSON contains a SHA-256 receipt for every accepted public input and has deterministic sorted records. It fails closed on unknown source IDs, duplicates, new status labels, unexpected batch counts and stale bytes.
+The compiler reads exactly five accepted, public `proposals/librarian` `records.json` files and checks their source-family/custody/no-admission boundaries, unique local IDs, valid ISBN-13 checksums, publisher-host URLs and status allowlist. **All five original upstream validators must pass**, and every row must match its original validator's code-owned full-row SHA-256 review pin. This prevents swapping HELD/agreement labels or reassigning same-host ISBN/title/creator/URL tuples while preserving the aggregate 39/30/9 counts. The JSON contains a SHA-256 receipt for every accepted public input and has deterministic sorted records. It fails closed on unknown source IDs, duplicates, new status labels, unexpected batch counts and stale bytes.
 
 ```sh
 python3 tools/build_publisher_isbn_crosschecks.py --check

@@ -12,6 +12,9 @@ import argparse
 import hashlib
 import json
 import re
+import runpy
+import subprocess
+import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -33,6 +36,9 @@ STATES = {
 }
 EXPECTED_IDS = frozenset({9, 10, 15, 28, 29, 31, 34, 50, 51, *range(52, 66), 67, 68, 69,
                           70, 73, 74, 75, 76, 77, 78, 79, 82, 84, 85, 87, 88})
+PIN_LABELS = {"OPF-FIRST-NINE": "REVIEWED_ROW_SHA256", "OPF-NEXT-TEN": "REVIEWED_ROW_SHA256",
+              "OPF-THIRD-TEN": "REVIEWED_ROW_SHA256", "OPF-TNG-0076-0079": "REVIEWED_ROWS_SHA256",
+              "OPF-FOURTH-SIX": "PIN"}
 
 
 def sha(data: bytes) -> str:
@@ -76,12 +82,42 @@ def publisher_product_url(url: str, isbn: str) -> bool:
         return False
 
 
+def accepted_review_pins(batch: str, source_path: Path, count: int) -> dict:
+    """Reuse the *code-owned*, per-row reviewed receipts, not JSON self-claims."""
+    validator = ROOT / source_path.parent / "validate.py"
+    if validator.is_symlink() or not validator.is_file() or validator.stat().st_size > 100_000:
+        raise ValueError(f"missing/symlinked/oversized accepted validator: {source_path}")
+    namespace = runpy.run_path(str(validator))
+    pins = namespace.get(PIN_LABELS[batch])
+    if (not isinstance(pins, dict) or len(pins) != count or
+            any(not isinstance(k, str) or not isinstance(v, str) or
+                re.fullmatch(r"[0-9a-f]{64}", v) is None for k, v in pins.items())):
+        raise ValueError(f"unrecognized code-owned row-review pins: {batch}")
+    return pins
+
+
+def verify_all_accepted_source_validators() -> None:
+    """Mandatory original source/custody/identity validators for all five inputs."""
+    for batch, path, _ in INPUTS:
+        validator = ROOT / path.parent / "validate.py"
+        try:
+            result = subprocess.run([sys.executable, str(validator)], cwd=ROOT,
+                                    capture_output=True, text=True, timeout=30, check=False)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise ValueError(f"accepted upstream validator unavailable: {batch}") from exc
+        if result.returncode != 0:
+            raise ValueError(f"accepted upstream source-review validator rejected {batch}: "
+                             f"{(result.stderr or result.stdout).strip()[:250]}")
+
+
 def build() -> dict:
+    verify_all_accepted_source_validators()
     rows = []
     receipts = []
     opf_ids, isbns, source_urls = set(), set(), set()
     for batch, path, expected in INPUTS:
         data, raw = load(path)
+        reviewed = accepted_review_pins(batch, path, expected)
         receipts.append({"path": path.as_posix(), "sha256": sha(raw)})
         source_rows = data.get("records")
         if not isinstance(source_rows, list) or len(source_rows) != expected:
@@ -109,6 +145,11 @@ def build() -> dict:
                 raise ValueError("accepted publisher crosscheck custody/admission drift")
         for original in source_rows:
             source_id = original["opf_id"] if batch == "OPF-TNG-0076-0079" else original["opf_source_local_id"]
+            pinned_id = original["id"] if batch == "OPF-TNG-0076-0079" else source_id
+            source_row_digest = sha(json.dumps(original, sort_keys=True, separators=(",", ":"),
+                                               ensure_ascii=False).encode("utf-8"))
+            if reviewed.get(pinned_id) != source_row_digest:
+                raise ValueError(f"unreviewed publisher row/status/ISBN binding: {batch}:{pinned_id}")
             match = re.fullmatch(r"opf-local:(\d{4})", source_id)
             if match is None or source_id in opf_ids:
                 raise ValueError("duplicate or invalid source-local ID")

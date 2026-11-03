@@ -3,7 +3,10 @@
 import copy
 import hashlib
 import json
+import shutil
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -109,6 +112,57 @@ class PublisherIsbnCrosscheckTests(unittest.TestCase):
         with patch.object(build, "load", side_effect=corrupt):
             with self.assertRaisesRegex(ValueError, "custody/admission"):
                 build.build()
+
+    def test_preserved_aggregate_status_swap_and_same_host_isbn_title_rebinding_fail(self):
+        """39/30/9 can still hold when source-row identities are maliciously exchanged."""
+        real_load = build.load
+        for variant in ("status_swap", "isbn_title_url_creator_rebinding"):
+            def corrupt(path):
+                data, raw = real_load(path)
+                if path == build.INPUTS[0][1]:
+                    data = copy.deepcopy(data)
+                    first, second = data["records"][:2]  # OPF 0009 HELD, OPF 0010 agreement
+                    fields = (["crosscheck_state"] if variant == "status_swap" else
+                              ["crosscheck_state", "publisher_locator", "publisher_isbn13",
+                               "publisher_title", "publisher_authors"])
+                    for field in fields:
+                        first[field], second[field] = second[field], first[field]
+                    # Both variants retain the 39 distinct local IDs and the
+                    # 30 agreement / 9 held aggregate, and only same-host URLs.
+                return data, raw
+            with self.subTest(variant=variant), patch.object(build, "load", side_effect=corrupt):
+                with self.assertRaisesRegex(ValueError, "unreviewed publisher row/status/ISBN binding"):
+                    build.build()
+
+    def test_original_upstream_source_validator_failure_blocks_every_projection_build(self):
+        broken = subprocess.CompletedProcess(["python"], returncode=1,
+                                             stderr="Unreviewed record mutation: opf-local:0009")
+        with patch.object(build.subprocess, "run", return_value=broken) as runner:
+            with self.assertRaisesRegex(ValueError, "accepted upstream source-review validator rejected"):
+                build.build()
+            self.assertEqual(runner.call_count, 1)
+
+    def test_tampered_on_disk_accepted_source_rejected_before_digest_repin(self):
+        """An altered input file with preserved 39/30/9 must fail original source pins."""
+        for variant in ("status", "isbn_url_title_creator"):
+            with self.subTest(variant=variant), tempfile.TemporaryDirectory() as directory:
+                sandbox = Path(directory)
+                shutil.copytree(ROOT / "proposals/librarian", sandbox / "proposals/librarian")
+                (sandbox / "explorer").mkdir()
+                shutil.copy2(ROOT / "explorer/discovery-catalog.json",
+                             sandbox / "explorer/discovery-catalog.json")
+                path = sandbox / build.INPUTS[0][1]
+                packet = json.loads(path.read_text(encoding="utf-8"))
+                first, second = packet["records"][:2]
+                fields = (["crosscheck_state"] if variant == "status" else
+                          ["crosscheck_state", "publisher_locator", "publisher_isbn13",
+                           "publisher_title", "publisher_authors"])
+                for field in fields:
+                    first[field], second[field] = second[field], first[field]
+                path.write_text(json.dumps(packet, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                with patch.object(build, "ROOT", sandbox):
+                    with self.assertRaisesRegex(ValueError, "upstream source-review validator rejected"):
+                        build.build()
 
 
 if __name__ == "__main__":

@@ -135,6 +135,13 @@ jobs:
           test ! -L explorer/publisher-isbn-crosschecks.json
           test ! -L tools/build_publisher_isbn_crosschecks.py
           test ! -L tools/query_publisher_isbn_crosschecks.py
+          # The original code-owned per-row review pins and source/OPF custody
+          # checks are mandatory; a 39/30/9 checksum alone is insufficient.
+          python3 proposals/librarian/opf-publisher-crosscheck-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-next-ten-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-third-ten-20261103/validate.py
+          python3 proposals/librarian/tng-opf-0076-0079-publisher-crosswalk-20261103/validate.py
+          python3 proposals/librarian/opf-publisher-crosscheck-fourth-six-20261103/validate.py
           python3 tools/build_publisher_isbn_crosschecks.py --check
           python3 tools/query_publisher_isbn_crosschecks.py --validate-sources --limit 1 > /dev/null
 

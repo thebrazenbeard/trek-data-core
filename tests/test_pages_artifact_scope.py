@@ -118,6 +118,10 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/publisher-isbn-crosschecks.json", text)
         self.assertIn("python3 tools/build_publisher_isbn_crosschecks.py --check", text)
         self.assertIn("python3 tools/query_publisher_isbn_crosschecks.py --validate-sources --limit 1", text)
+        for validator in ("opf-publisher-crosscheck-20261103", "opf-publisher-crosscheck-next-ten-20261103",
+                          "opf-publisher-crosscheck-third-ten-20261103", "tng-opf-0076-0079-publisher-crosswalk-20261103",
+                          "opf-publisher-crosscheck-fourth-six-20261103"):
+            self.assertIn(f"python3 proposals/librarian/{validator}/validate.py", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
         self.assertIn("! -path explorer/accepted-source-card-rechecks.json", text)

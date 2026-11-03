@@ -2,7 +2,7 @@
  * Hosted and heavyweight-model transports remain optional and dormant by default.
  */
 
-import { createLoreSemanticEngine } from './lore-semantic-chat.js?v=579b9cad294b9e02817301a17846946ec61b454d0d6b1c092a8df8c7326b2309';
+import { createLoreSemanticEngine } from './lore-semantic-chat.js?v=c14146a5398ed700ab1febff28d4e51dc221658e5e3134f105c86f9133f03a0c';
 
 const CHAT_LIMIT = 500;
 const HISTORY_LIMIT = 10;

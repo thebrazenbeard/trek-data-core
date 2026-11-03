@@ -102,3 +102,20 @@ test('less literal comparison requests still distinguish warp core and holodeck'
   assert.match(engine.ask('What distinguishes those two?').text, /warp core.*holodeck/i);
   assert.match(engine.ask('Hypothesize a ship powered by a holodeck.').text, /hypothetical|imaginary|energy/i);
 });
+
+test('grief and anti-teasing language preempt character sarcasm across consecutive turns', () => {
+  const cases = [
+    ['I had to put my dog down this morning.', 'I am devastated.', 'Please stop teasing me.'],
+    ['I lost my cat yesterday.', 'I am not okay.', 'No sarcasm, please.'],
+    ['My friend passed away.', 'Please be gentle.', 'I just need someone to listen.'],
+  ];
+  for (const prompts of cases) {
+    const engine = createLoreSemanticEngine();
+    for (const prompt of prompts) {
+      const { text, references } = engine.ask(prompt);
+      assert.match(text, /sorry|listen|gentle|take your time|difficult|sarcasm|no jokes/i, prompt);
+      assert.doesNotMatch(text, /entertaining|refreshingly direct|inconveniently accurate|laugh|catastroph/i, prompt);
+      assert.deepEqual(references, []);
+    }
+  }
+});

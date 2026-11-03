@@ -77,7 +77,7 @@ function rememberVisitorStatement(text, state) {
 }
 
 function distressSignal(text) {
-  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying)|\b(i (feel|am) (completely |so |very )?(sad|down|hurt|lost)|someone (died|passed away)|my (friend|parent|mother|father|partner|child|sibling|relative) (died|passed away))\b/i.test(text);
+  return /\b(bad|rough|hard|terrible|awful|devastating|horrible|tragic)\s+(day|news|time|experience)|\b(shaken|shaking|grieving|grief|heartbroken|overwhelmed|exhausted|upset|scared|frightened|lonely|stressed|crying|devastated|bereaved|mourning|euthani[sz]ed|heartache|hopeless|not okay|not ok)|\b(i (feel|am) (completely |so |very )?(sad|down|hurt|lost)|someone (died|passed away)|my (friend|parent|mother|father|partner|child|sibling|relative|pet|dog|cat) (died|passed away))\b|\b(put (?:my|our|the) .{0,25} down|had to say goodbye to|lost (?:my|our) (?:friend|pet|dog|cat|partner|parent|child))\b/i.test(text);
 }
 
 function repairSignal(text) {
@@ -87,7 +87,7 @@ function repairSignal(text) {
 function quietSignal(text) {
   return /\b(just listen|only listen|please listen|no jokes|stop joking|don't joke|do not joke|not (in the mood|ready) for jokes|be serious|take this seriously)\b/i.test(text)
     || /\b(no|do not|don't|stop|without)\b.{0,35}\b(joke|jokes|humor|humour|laugh|sarcasm|advice)\b/i.test(text)
-    || /\b(be gentle|gentle with me|only someone to hear me|need someone to hear|just need to be heard)\b/i.test(text);
+    || /\b(be gentle|gentle with me|only someone to hear me|need someone to hear|just need to be heard|stop teasing|please stop teasing|quit teasing|no sarcasm|don't mock me)\b/i.test(text);
 }
 
 function giveDirectAnswer(question) {
@@ -138,6 +138,9 @@ function personalReply(text, state, previous) {
     return 'All right. No jokes, no theories, no fixing. I am here to listen. You can take your time.';
   }
   if (distressSignal(text)) {
+    if (/\b(died|death|passed away|put .{0,25} down|euthani[sz]ed|devastated|mourning|grief|lost (?:my|our))\b/i.test(text)) {
+      return 'I am sorry you are dealing with that. I will not make a joke of grief or pretend to solve it with a clever line. I am listening if you want to talk.';
+    }
     return 'That sounds genuinely difficult. I will put the clever remarks aside. Tell me as much or as little as you want; I am listening.';
   }
   if (state.repairTarget && /\b(answer (?:me |it )?directly|answer (?:the )?question|try again|say it plainly|give me (?:a |the )?answer|stop dodging)\b/i.test(lower)) {
@@ -243,6 +246,7 @@ function personalReply(text, state, previous) {
   if (/\b(actual lore|real lore|website pretending|are you the (real|actual))\b/i.test(lower)) {
     return 'A website performing a fictional Lore, quite openly. I can keep the wit and the conversation, but I am not evidence of the actual character—or a consciousness trapped in your browser.';
   }
+  if (state.supportive) return 'I am still listening. I will leave the sarcasm aside. Take your time and tell me what matters most.';
   return null;
 }
 
@@ -347,7 +351,7 @@ function intentFor(text, state) {
 function makeText(intent, text, topic, state, references) {
   const turn = state.turnCount;
   const seed = text.toLowerCase();
-  const opening = choose(OPENERS, seed, turn, 1);
+  const opening = topic === 'open' ? 'I am listening.' : choose(OPENERS, seed, turn, 1);
   const view = choose(TOPIC_VIEWS[topic], seed, turn, 2);
   const question = choose(QUESTIONS[topic], seed, turn, 3);
   const previous = state.turns.at(-1);

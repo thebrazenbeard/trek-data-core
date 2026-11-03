@@ -1752,6 +1752,17 @@
   }
 
   const directoryState = { rows: [], available: false, limit: 40 };
+  // Immutable 1,214-row directory remains the input of historical metadata
+  // receipts. The Picard supplement is an optional, separately pinned *view*
+  // only: never append it to directoryState.rows.
+  const picardLiteratureSupplement = { rows: [], available: false };
+  const picardLiteratureSha256 = 'ab8e5d15f7b33bf1311aec0afb2755322b41bca73978d3c7889f1272dbfe21c8';
+  const picardSupplementRows = new Map([
+    ['literature:proposed-lit-picard-the-dark-veil', ['Star Trek: Picard: The Dark Veil',
+      'https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073']],
+    ['literature:proposed-lit-picard-rogue-elements', ['Star Trek: Picard: Rogue Elements',
+      'https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207']]
+  ]);
   // This is a separate display-only source-read layer. Discovery status stays
   // UNVERIFIED_METADATA and no Work/evidence/coverage state is promoted.
   const metadataRechecks = { byId: new Map(), available: false };
@@ -1778,15 +1789,35 @@
   const directoryFields = ['row_id', 'medium', 'candidate_kind', 'title', 'context', 'source_group',
     'source_input', 'source_locator', 'details', 'verification_status', 'identity_scope', 'coverage_effect', 'admission_effect'];
 
-  function setDirectoryAvailability(available, message) {
-    directoryState.available = available;
-    if (!available) directoryState.rows = [];
-    byId('discovery-nav-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
-    byId('discovery-top-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
+  function searchableDirectoryRows() {
+    return directoryState.available ? [...directoryState.rows, ...picardLiteratureSupplement.rows] : [];
+  }
+
+  function updateDirectoryCounts() {
+    const rows = searchableDirectoryRows();
+    const available = directoryState.available;
+    byId('discovery-nav-count').textContent = available ? rows.length.toLocaleString() : '—';
+    byId('discovery-top-count').textContent = available ? rows.length.toLocaleString() : '—';
     byId('discovery-episode-count').textContent = available
       ? directoryState.rows.filter((row) => row.medium === 'EPISODE').length.toLocaleString() : '—';
     byId('discovery-literature-count').textContent = available
-      ? directoryState.rows.filter((row) => row.medium === 'LITERATURE').length.toLocaleString() : '—';
+      ? rows.filter((row) => row.medium === 'LITERATURE').length.toLocaleString() : '—';
+    const literatureMetric = [...byId('discovery-metrics').children]
+      .find((child) => child.dataset?.directoryMedium === 'LITERATURE');
+    if (literatureMetric && available) {
+      literatureMetric.textContent = `Literary leads: ${rows.filter((row) => row.medium === 'LITERATURE').length}` +
+        (picardLiteratureSupplement.available ? ' (9 historical + 2 source-local publisher metadata proposals)' : '');
+    }
+  }
+
+  function setDirectoryAvailability(available, message) {
+    directoryState.available = available;
+    if (!available) {
+      directoryState.rows = [];
+      picardLiteratureSupplement.rows = [];
+      picardLiteratureSupplement.available = false;
+    }
+    updateDirectoryCounts();
     byId('discovery-state').textContent = message;
     if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
     renderDirectory();
@@ -1813,7 +1844,7 @@
     const synopsis = byId('discovery-synopsis').value;
     const tag = byId('discovery-tag').value;
     const terms = query.split(/\s+/).filter(Boolean);
-    const rows = directoryState.rows.filter((item) => {
+    const rows = searchableDirectoryRows().filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
       if (kind !== 'all' && item.candidate_kind !== kind) return false;
       if (lineage !== 'all' && item.source_group !== lineage) return false;
@@ -1853,7 +1884,8 @@
     const visible = rows.slice(0, directoryState.limit);
     byId('discovery-summary').textContent = `${rows.length.toLocaleString()} source-local metadata rows match` +
       (visible.length < rows.length ? ` · Displaying ${visible.length.toLocaleString()}` : '') +
-      '. These are not distinct or admitted Works.';
+      (picardLiteratureSupplement.available ? ' · 1,214 historical directory + 2 separately pinned Picard metadata proposals' :
+        ' · historical directory only') + '. These are not distinct or admitted Works.';
     if (!rows.length) { empty.hidden = false; return; }
     for (const item of visible) {
       const card = el('article', 'directory-card media-card');
@@ -2031,7 +2063,9 @@
         EPISODE: 'Episode refs', FILM: 'Film rows', LITERATURE: 'Literary leads',
         SHORT_FORM: 'Short-form releases', AUDIO: 'Audio containers'
       }[label];
-      metrics.append(el('span', null, `${name}: ${counts[label].toLocaleString()}`));
+      const metric = el('span', null, `${name}: ${counts[label].toLocaleString()}`);
+      metric.dataset.directoryMedium = label;
+      metrics.append(metric);
     }
     setDirectoryAvailability(true, `${data.rows.length.toLocaleString()} source-local discovery rows loaded; not a franchise total or admitted continuity record count.`);
   }
@@ -2047,6 +2081,69 @@
       acceptDirectory(await response.json());
     } catch (error) {
       setDirectoryAvailability(false, `Multimedia discovery data rejected: ${error.message || 'Check discovery-catalog.json.'}`);
+    }
+  }
+
+  function acceptPicardSupplement(data) {
+    const expectedKeys = ['admission_effect', 'artwork_release_effect', 'base_directory_row_count',
+      'base_directory_sha256', 'coverage_effect', 'data_status', 'full_text_read', 'identity_scope',
+      'row_count', 'rows', 'schema_version', 'source_input', 'source_input_sha256'];
+    if (!data || Array.isArray(data) || typeof data !== 'object' ||
+        Object.keys(data).sort().join('|') !== expectedKeys.sort().join('|') ||
+        data.schema_version !== '1.0.0' || data.data_status !== 'PICARD_LITERATURE_SOURCE_LOCAL_SUPPLEMENT_ONLY' ||
+        data.base_directory_sha256 !== '2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc' ||
+        data.base_directory_row_count !== 1214 || directoryState.rows.length !== 1214 ||
+        data.source_input !== 'proposals/librarian/picard-companion-editions-20261103/records.json' ||
+        data.source_input_sha256 !== 'cdbda4dfa33c795bd51a1ebbfb09e41c7d838b73ce17aa6756428bd6ed8d8da4' ||
+        data.row_count !== 2 || !Array.isArray(data.rows) || data.rows.length !== 2 ||
+        data.identity_scope !== 'SOURCE_LOCAL_NOT_RECONCILED' || data.full_text_read !== false ||
+        ['admission_effect', 'artwork_release_effect', 'coverage_effect'].some((key) => data[key] !== 'NONE')) {
+      throw new Error('Picard source-local supplement envelope not accepted');
+    }
+    const present = new Set(directoryState.rows.map((row) => row.row_id));
+    const seen = new Set();
+    for (const row of data.rows) {
+      const pin = picardSupplementRows.get(row?.row_id);
+      if (!pin || seen.has(row.row_id) || present.has(row.row_id) ||
+          Object.keys(row).sort().join('|') !== directoryFields.slice().sort().join('|') ||
+          row.medium !== 'LITERATURE' || row.candidate_kind !== 'NOVEL' || row.title !== pin[0] ||
+          row.source_locator !== pin[1] ||
+          row.source_group !== 'publisher:simonandschuster.com' || row.source_input !== data.source_input ||
+          row.verification_status !== 'UNVERIFIED_METADATA' || row.identity_scope !== 'SOURCE_LOCAL' ||
+          row.coverage_effect !== 'NONE' || row.admission_effect !== 'NONE' ||
+          typeof row.context !== 'string' || row.context.length > 160 ||
+          !Array.isArray(row.details) || row.details.length !== 2 ||
+          row.details.some((detail) => typeof detail !== 'string' || detail.length > 150)) {
+        throw new Error('Picard supplement row identity/provenance mismatch');
+      }
+      seen.add(row.row_id);
+    }
+    if (seen.size !== picardSupplementRows.size) throw new Error('Picard supplement incomplete');
+    picardLiteratureSupplement.rows = data.rows;
+    picardLiteratureSupplement.available = true;
+    updateDirectoryCounts();
+    byId('discovery-state').textContent =
+      '1,214 original source-local rows + 2 separately pinned Picard metadata proposals; no Work admission or full-book read.';
+    renderDirectory();
+  }
+
+  async function loadPicardSupplement() {
+    if (!directoryState.available) return;
+    try {
+      const response = await fetch('./picard-literature-overlay.json', { cache: 'no-store' });
+      if (!response.ok || !globalThis.crypto?.subtle || typeof TextDecoder !== 'function')
+        throw new Error('Optional Picard supplement unavailable');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength > 16_384) throw new Error('Picard supplement too large');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== picardLiteratureSha256) throw new Error('Picard supplement changed from reviewed bytes');
+      acceptPicardSupplement(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    } catch (_) {
+      picardLiteratureSupplement.rows = [];
+      picardLiteratureSupplement.available = false;
+      updateDirectoryCounts();
+      renderDirectory();
     }
   }
 
@@ -2824,7 +2921,7 @@
       return;
     }
     const terms = normalize(typed).split(/\s+/).filter(Boolean);
-    const directoryMatches = directoryState.available ? directoryState.rows.filter((item) => {
+    const directoryMatches = directoryState.available ? searchableDirectoryRows().filter((item) => {
       const seriesCode = item.medium === 'EPISODE' ? item.context.split(/\s+/, 1)[0] : '';
       const series = Object.hasOwn(directorySeriesLabels, seriesCode) ? directorySeriesLabels[seriesCode] : '';
       return terms.every((term) => normalize([item.title, item.context, series, item.medium, item.candidate_kind].join(' ')).includes(term));
@@ -2843,7 +2940,9 @@
       }
       return;
     }
-    const directoryCount = directoryState.available ? `${directoryMatches.length} directory observations` : 'Directory shelf unavailable';
+    const directoryCount = directoryState.available
+      ? `${directoryMatches.length} directory observations${picardLiteratureSupplement.available ? ' (including separately pinned Picard metadata proposals)' : ''}`
+      : 'Directory shelf unavailable';
     const guideCount = episodeSourceState.available ? `${guideMatches.length} HELD publisher-guide cards` : 'Publisher-guide shelf unavailable';
     loreAnswer.append(el('p', '', `${directoryCount} / ${guideCount} match “${typed}”. These are source-local records, not unique Works, confirmed events, or canonical answers.`));
     const results = el('ul');
@@ -3107,7 +3206,7 @@
   setEpisodeSourceAvailability(false, 'Checking accepted HELD publisher episode-guide cards…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks(), loadEpisodeSourceCards()]).then(() => Promise.all([
+  Promise.all([loadFilmCatalog(), loadDirectory().then(loadPicardSupplement), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks(), loadEpisodeSourceCards()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
     loadMetadataRechecks(), loadPublisherCardChecks(), loadPremierePhoto()
   ]));

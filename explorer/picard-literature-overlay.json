@@ -1,0 +1,52 @@
+{
+  "admission_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "base_directory_row_count": 1214,
+  "base_directory_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "coverage_effect": "NONE",
+  "data_status": "PICARD_LITERATURE_SOURCE_LOCAL_SUPPLEMENT_ONLY",
+  "full_text_read": false,
+  "identity_scope": "SOURCE_LOCAL_NOT_RECONCILED",
+  "row_count": 2,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "NOVEL",
+      "context": "John Jackson Miller · one publisher trade-paperback edition candidate",
+      "coverage_effect": "NONE",
+      "details": [
+        "Trade Paperback · ISBN 9781982175207",
+        "Publisher: 416 pages · 2022-06-07"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:proposed-lit-picard-rogue-elements",
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/picard-companion-editions-20261103/records.json",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207",
+      "title": "Star Trek: Picard: Rogue Elements",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "candidate_kind": "NOVEL",
+      "context": "James Swallow · one publisher trade-paperback edition candidate",
+      "coverage_effect": "NONE",
+      "details": [
+        "Trade Paperback · ISBN 9781982154073",
+        "Publisher: 336 pages · 2021-09-07"
+      ],
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "row_id": "literature:proposed-lit-picard-the-dark-veil",
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/picard-companion-editions-20261103/records.json",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073",
+      "title": "Star Trek: Picard: The Dark Veil",
+      "verification_status": "UNVERIFIED_METADATA"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_input": "proposals/librarian/picard-companion-editions-20261103/records.json",
+  "source_input_sha256": "cdbda4dfa33c795bd51a1ebbfb09e41c7d838b73ce17aa6756428bd6ed8d8da4"
+}

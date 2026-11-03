@@ -112,11 +112,19 @@ def validate(index: dict, records: dict, librarian: dict | None = None) -> None:
     ids = [a.get("id") for a in assertions]
     _ensure(len(ids) == len(set(ids)), "duplicate assertion")
     for a in assertions:
+        _ensure(set(a) == {"id", "type", "predicate", "subject", "object",
+                           "supported_by", "counterweight", "counterevidence_status", "status"},
+                "assertion fields / unsupported semantic extension")
         _ensure(a["type"] == "INTERPRETIVE" and a["status"] == "SOURCE_LOCAL_INTERPRETATION",
                 "assertion must not be global fact")
         _ensure(a["subject"] in local_ids, "assertion subject local")
         _ensure(set(a["supported_by"]).issubset(ev_ids) and a["supported_by"], "missing evidence links")
-        _ensure(set(a["counterweight"]).issubset(ev_ids), "unknown counterweight evidence")
+        # This particular draft has *no documented source-relative disconfirmation*.
+        # Mere existence of a valid ev-ID does not establish a semantic counterweight.
+        # To introduce one, the research design and tests must first be revised with
+        # a specific, reviewable relation/rationale, not an arbitrary evidence link.
+        _ensure(a["counterweight"] == [], "unsupported counterweight evidence")
+        _ensure(a["counterevidence_status"] == "UNKNOWN", "false counterevidence status")
     unresolved = records.get("unresolved")
     _ensure(isinstance(unresolved, list) and len(unresolved) >= 4, "uncertainty ledger")
     _ensure({"EDITION_IDENTITY", "TEXT_COMPLETENESS", "CONTINUITY", "ENTITY_IDENTITY"}.issubset(

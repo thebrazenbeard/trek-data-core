@@ -9,10 +9,16 @@ MANIFEST_SCHEMA=ROOT/'schema'/'projection-manifest.schema.json'; RELATION_SCHEMA
 REQUIRED_OUTPUTS=('entities.jsonl','facts.jsonl','relations.jsonl','contested.jsonl','unresolved.jsonl','provenance.jsonl','assertion_history.jsonl','reconciliation_history.jsonl')
 ID_KEYS={'entities.jsonl':'local_entity_id','facts.jsonl':'assertion_id','relations.jsonl':'relation_id','contested.jsonl':'assertion_id','unresolved.jsonl':'assertion_id','provenance.jsonl':'provenance_id','assertion_history.jsonl':'assertion_id','reconciliation_history.jsonl':'decision_id'}
 HASH_RE=re.compile(r'^sha256:[0-9a-f]{64}$')
+UPSTREAM_IDENTITY_FIELDS=('research_head','reconciliation_head','compiler_commit','schema_version','methodology_version','predicate_registry_hash','scope_key_registry_hash','input_hash')
 
 def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"))
 def sha256_bytes(data): return 'sha256:'+hashlib.sha256(data).hexdigest()
 def compute_projection_hash(outputs): return sha256_bytes(canonical({name:outputs[name]['hash'] for name in REQUIRED_OUTPUTS}).encode())
+def require_unaliased_bundle_path(path):
+ """Inspect lexical path components before filesystem resolution erases aliases."""
+ path=Path(path); absolute=path if path.is_absolute() else Path.cwd()/path
+ for component in (absolute,*absolute.parents):
+  if component.is_symlink():raise ValueError(f'projection bundle path has symlinked ancestor: {component}')
 def tool_identity(*paths):
  material=[]
  for path in sorted((Path(p) for p in paths),key=lambda p:str(p)): material.append({'path':path.name,'hash':sha256_bytes(path.read_bytes())})
@@ -60,9 +66,20 @@ def parse_jsonl(path,id_key):
  canonical_bytes=''.join(canonical(r)+'\n' for r in sorted(rows,key=lambda r:(str(r.get(id_key,'')),canonical(r)))).encode('utf-8')
  if raw_bytes!=canonical_bytes:raise ValueError(f'{path}: JSONL bytes are not canonical deterministic serialization')
  return rows,raw_bytes
-def verify_projection(root):
- root=Path(root); manifest_path=root/'manifest.json'
+def verify_projection(root,*,expected_identity=None):
+ """Validate bundle bytes; upstream manifest claims need separately sourced pins."""
+ if expected_identity is None:expected_identity={}
+ if not isinstance(expected_identity,dict) or set(expected_identity)-set(UPSTREAM_IDENTITY_FIELDS):
+  raise ValueError('unsupported expected identity fields')
+ if any(not isinstance(value,str) or not value.strip() for value in expected_identity.values()):
+  raise ValueError('expected identity values must be nonempty strings')
+ root=Path(root)
+ require_unaliased_bundle_path(root)
+ manifest_path=root/'manifest.json'
+ if manifest_path.is_symlink():raise ValueError('projection manifest is a symlink')
  if not manifest_path.exists():raise ValueError('projection manifest is missing')
+ if not manifest_path.is_file():raise ValueError('projection manifest must be a regular file')
+ if manifest_path.stat().st_nlink>1:raise ValueError('projection manifest is hardlinked')
  try:manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
  except Exception as exc:raise ValueError(f'invalid projection manifest: {exc}') from exc
  if not isinstance(manifest,dict):raise ValueError('projection manifest must be object')
@@ -81,7 +98,10 @@ def verify_projection(root):
   meta=outputs[name]
   if meta.get('role')!=name.removesuffix('.jsonl'):raise ValueError(f'{name}: role mismatch')
   path=root/name
+  if path.is_symlink():raise ValueError(f'{name}: symlinked projection output is forbidden')
   if not path.exists():raise ValueError(f'{name}: required output missing')
+  if not path.is_file():raise ValueError(f'{name}: projection output must be a regular file')
+  if path.stat().st_nlink>1:raise ValueError(f'{name}: hardlinked projection output is forbidden')
   parsed,raw_bytes=parse_jsonl(path,ID_KEYS[name]); rows[name]=parsed
   if meta.get('hash')!=sha256_bytes(raw_bytes):raise ValueError(f'{name}: content hash mismatch')
   if meta.get('count')!=len(parsed):raise ValueError(f'{name}: record count mismatch')
@@ -102,5 +122,11 @@ def verify_projection(root):
   if errs:raise ValueError('invalid projection provenance: '+'; '.join(errs))
  recomputed=compute_projection_hash(outputs)
  if manifest.get('projection_hash')!=recomputed:raise ValueError(f"projection_hash mismatch: declared {manifest.get('projection_hash')}, expected {recomputed}")
- receipt={'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS)}
+ upstream_identity_status={}
+ for key in UPSTREAM_IDENTITY_FIELDS:
+  if key in expected_identity:
+   if manifest[key]!=expected_identity[key]:raise ValueError(f'{key}: expected external identity {expected_identity[key]!r}, got manifest declaration {manifest[key]!r}')
+   upstream_identity_status[key]='EXTERNAL_EXPECTATION_MATCHED'
+  else:upstream_identity_status[key]='UNVERIFIED_DECLARATION'
+ receipt={'projection_hash':manifest['projection_hash'],'input_hash':manifest['input_hash'],'projection_version':manifest['projection_version'],'schema_version':manifest['schema_version'],'methodology_version':manifest['methodology_version'],'compiler_commit':manifest['compiler_commit'],'research_head':manifest['research_head'],'reconciliation_head':manifest['reconciliation_head'],'predicate_registry_hash':manifest['predicate_registry_hash'],'scope_key_registry_hash':manifest['scope_key_registry_hash'],'upstream_identity_status':upstream_identity_status,'verified_outputs':{name:outputs[name] for name in REQUIRED_OUTPUTS},'imported_output_contract':list(REQUIRED_OUTPUTS)}
  receipt_hash=sha256_bytes(canonical(receipt).encode('utf-8')); return {'manifest':manifest,'rows':rows,'receipt':receipt,'receipt_hash':receipt_hash}

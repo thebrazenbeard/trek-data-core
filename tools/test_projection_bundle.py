@@ -10,6 +10,32 @@ class ProjectionBundleTests(unittest.TestCase):
  def test_valid_bundle_returns_verified_receipt(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); manifest=fixture.make_projection(root); verified=bundle.verify_projection(root); self.assertEqual(verified['manifest']['projection_hash'],manifest['projection_hash']); self.assertEqual(set(verified['rows']),set(bundle.REQUIRED_OUTPUTS)); self.assertTrue(verified['receipt_hash'].startswith('sha256:'))
+ def test_unpinned_upstream_identity_remains_an_unverified_declaration(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   checked=bundle.verify_projection(root)
+   self.assertEqual(checked['receipt']['upstream_identity_status']['research_head'],'UNVERIFIED_DECLARATION')
+   self.assertEqual(checked['receipt']['upstream_identity_status']['input_hash'],'UNVERIFIED_DECLARATION')
+ def test_forged_research_head_is_not_authenticated_by_matching_bundle_bytes(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); original=fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; changed=json.loads(manifest_path.read_text(encoding='utf-8'))
+   changed['research_head']='FAKE_GIT_HEAD_UNVERIFIED'
+   manifest_path.write_text(json.dumps(changed),encoding='utf-8')
+   unpinned=bundle.verify_projection(root)
+   self.assertEqual(unpinned['manifest']['input_hash'],original['input_hash'],'input hash has not authenticated the changed head')
+   self.assertEqual(unpinned['receipt']['upstream_identity_status']['research_head'],'UNVERIFIED_DECLARATION')
+   with self.assertRaisesRegex(ValueError,'research_head.*expected'):
+    bundle.verify_projection(root,expected_identity={'research_head':original['research_head']})
+ def test_external_identity_expectations_bind_only_the_supplied_fields(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); manifest=fixture.make_projection(root)
+   receipt=bundle.verify_projection(root,expected_identity={'research_head':manifest['research_head'],'input_hash':manifest['input_hash']})['receipt']
+   self.assertEqual(receipt['upstream_identity_status']['research_head'],'EXTERNAL_EXPECTATION_MATCHED')
+   self.assertEqual(receipt['upstream_identity_status']['input_hash'],'EXTERNAL_EXPECTATION_MATCHED')
+   self.assertEqual(receipt['upstream_identity_status']['reconciliation_head'],'UNVERIFIED_DECLARATION')
+   with self.assertRaisesRegex(ValueError,'unsupported expected identity'):
+    bundle.verify_projection(root,expected_identity={'unreviewed_extra':'x'})
  def test_manifest_arbitrary_projection_hash_is_rejected(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); fixture.make_projection(root); m=json.loads((root/'manifest.json').read_text()); m['projection_hash']='sha256:'+'0'*64; (root/'manifest.json').write_text(json.dumps(m));
@@ -38,4 +64,45 @@ class ProjectionBundleTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); fixture.make_projection(root); (root/'bonus.jsonl').write_text('');
    with self.assertRaises(ValueError):bundle.verify_projection(root)
+ def test_byte_identical_symlinked_output_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); root=base/'bundle'; root.mkdir(); fixture.make_projection(root)
+   outside=base/'outside-entities.jsonl'; (root/'entities.jsonl').replace(outside)
+   (root/'entities.jsonl').symlink_to(outside)
+   with self.assertRaisesRegex(ValueError,'symlink'):
+    bundle.verify_projection(root)
+ def test_symlinked_manifest_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); root=base/'bundle'; root.mkdir(); fixture.make_projection(root)
+   outside=base/'outside-manifest.json'; (root/'manifest.json').replace(outside)
+   (root/'manifest.json').symlink_to(outside)
+   with self.assertRaisesRegex(ValueError,'symlink'):
+    bundle.verify_projection(root)
+ def test_symlinked_bundle_directory_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); root=base/'bundle'; root.mkdir(); fixture.make_projection(root)
+   alias=base/'alias'; alias.symlink_to(root,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlink'):
+    bundle.verify_projection(alias)
+ def test_symlinked_ancestor_cannot_hide_an_otherwise_valid_bundle(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); outside=base/'outside'; outside.mkdir()
+   root=outside/'bundle'; root.mkdir(); fixture.make_projection(root)
+   alias=base/'alias'; alias.symlink_to(outside,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlinked ancestor'):
+    bundle.verify_projection(alias/'bundle')
+ def test_dotdot_path_cannot_hide_symlinked_ancestor(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); outside=base/'outside'; outside.mkdir()
+   root=base/'bundle'; root.mkdir(); fixture.make_projection(root)
+   alias=base/'alias'; alias.symlink_to(outside,target_is_directory=True)
+   # The path resolves to base/bundle, but first traverses the aliased parent.
+   with self.assertRaisesRegex(ValueError,'symlinked ancestor'):
+    bundle.verify_projection(alias/'..'/'bundle')
+ def test_byte_identical_hardlinked_output_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); root=base/'bundle'; root.mkdir(); fixture.make_projection(root)
+   (base/'outside-entities.jsonl').hardlink_to(root/'entities.jsonl')
+   with self.assertRaisesRegex(ValueError,'hardlinked'):
+    bundle.verify_projection(root)
 if __name__=='__main__':unittest.main()

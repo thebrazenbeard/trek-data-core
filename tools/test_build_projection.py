@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import importlib.util
+import importlib.util, tempfile
 from pathlib import Path
 import unittest
 MODULE_PATH=Path(__file__).with_name('build_projection.py'); spec=importlib.util.spec_from_file_location('trek_build_projection',MODULE_PATH); projection=importlib.util.module_from_spec(spec); spec.loader.exec_module(projection)
@@ -15,6 +15,43 @@ def decision(i,t,subject_type,subject_id,payload,status='ACCEPTED',sup=None):
  return r
 def status_decision(value='STABLE',assertion_id='assertion-1',decision_id='status-1'):return decision(decision_id,'ASSERTION_PROJECTION_STATUS','ASSERTION',assertion_id,{'projection_status':value})
 class LogicalProjectionTests(unittest.TestCase):
+ def test_output_preflight_rejects_external_symlink_before_replacing_bytes(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); out=base/'bundle'; out.mkdir()
+   outside=base/'external-facts.jsonl'; outside.write_text('sentinel\n',encoding='utf-8')
+   (out/'facts.jsonl').symlink_to(outside)
+   with self.assertRaisesRegex(ValueError,'symlink'):
+    projection.prepare_output_directory(out)
+   self.assertEqual(outside.read_text(encoding='utf-8'),'sentinel\n')
+ def test_output_preflight_rejects_symlinked_directory(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); real=base/'real'; real.mkdir()
+   alias=base/'alias'; alias.symlink_to(real,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlink'):
+    projection.prepare_output_directory(alias)
+   self.assertEqual(list(real.iterdir()),[])
+ def test_output_preflight_rejects_symlinked_ancestor_without_writing(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); outside=base/'outside'; outside.mkdir()
+   alias=base/'alias'; alias.symlink_to(outside,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlinked ancestor'):
+    projection.prepare_output_directory(alias/'bundle')
+   self.assertFalse((outside/'bundle').exists())
+ def test_output_preflight_rejects_dotdot_after_symlinked_component(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); outside=base/'outside'; outside.mkdir()
+   alias=base/'alias'; alias.symlink_to(outside,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlinked ancestor'):
+    projection.prepare_output_directory(alias/'..'/'bundle')
+   self.assertFalse((base/'bundle').exists())
+ def test_output_preflight_rejects_hardlinked_file_before_replacing_bytes(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=Path(td); out=base/'bundle'; out.mkdir()
+   outside=base/'external-facts.jsonl'; outside.write_text('sentinel\n',encoding='utf-8')
+   (out/'facts.jsonl').hardlink_to(outside)
+   with self.assertRaisesRegex(ValueError,'hardlinked'):
+    projection.prepare_output_directory(out)
+   self.assertEqual(outside.read_text(encoding='utf-8'),'sentinel\n')
  def test_accepted_assertion_without_projection_decision_fails_closed_to_unresolved(self):
   result=projection.build_logical_projection(fixture_records(proposed='STABLE'),[]);self.assertEqual(result['facts'],[]);self.assertEqual(result['contested'],[]);self.assertEqual(result['unresolved'][0]['projection_status'],'UNRESOLVED');self.assertEqual(result['unresolved'][0]['projection_reason'],'MISSING_PROJECTION_STATUS')
  def test_worker_proposed_projection_status_is_preserved_but_not_authoritative(self):

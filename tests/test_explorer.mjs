@@ -12,6 +12,8 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
+  'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
+  'discovery-directory', 'episode-source-cards',
   'artwork-toggle', 'artwork-state', 'publisher-edition-nav-count', 'publisher-edition-state',
   'publisher-edition-query', 'publisher-edition-tag', 'publisher-edition-filters',
   'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty',
@@ -73,6 +75,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
+  nodes.get('lore-console').hidden = true;
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
   nodes.get('mission-filter').value = 'all';
@@ -1721,4 +1724,82 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /Unofficial, independent Star Trek research/);
   assert.match(html, /id="filters" role="search" aria-label="Search governed Mission index"/);
   assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
+});
+
+test('optional fictional Lore console opens outside hero, restores focus, and closes with Escape', async () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="lore-toggle"[^>]*aria-expanded="false"[^>]*aria-controls="lore-console"/);
+  assert.match(html, /<main id="main"[\s\S]*?<section id="lore-console"[^>]*hidden>/);
+  assert.match(html, /Fictional simulation/);
+  assert.match(html, /not an AI model, a trapped consciousness, or an authority on canon/);
+  assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
+
+  const nodes = await runWithIndex(catalog);
+  const toggle = nodes.get('lore-toggle');
+  const panel = nodes.get('lore-console');
+  assert.equal(panel.hidden, true);
+  toggle.fire('click');
+  assert.equal(panel.hidden, false);
+  assert.equal(toggle.attributes.get('aria-expanded'), 'true');
+  assert.equal(nodes.get('lore-query').focused, true);
+  let prevented = false;
+  panel.fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.equal(panel.hidden, true);
+  assert.equal(toggle.attributes.get('aria-expanded'), 'false');
+  assert.equal(toggle.focused, true);
+});
+
+test('Lore panel stays in flow and Explorer cache keys match the exact local script and style bytes', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  const cssHash = createHash('sha256').update(css).digest('hex');
+  const jsHash = createHash('sha256').update(SCRIPT).digest('hex');
+  assert.ok(html.includes(`./app.css?v=${cssHash}`));
+  assert.ok(html.includes(`./app.js?v=${jsHash}`));
+  const panelStyles = css.match(/\.lore-console\s*\{([^}]*)\}/)?.[1];
+  assert.ok(panelStyles, 'Lore has a dedicated layout instead of reusing the hero copy');
+  assert.doesNotMatch(panelStyles, /position:\s*(absolute|fixed)/,
+    'Lore must remain in flow and never cover or duplicate the masthead');
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.lore-stations \{ grid-template-columns: 1fr; \}/);
+  assert.match(css, /\.lore-answer \{[^}]*color: var\(--text\)/,
+    'terminal text is high contrast against its dark local response surface');
+});
+
+test('Lore searches validated local directory records, labels source limits and offers native inspection', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  nodes.get('lore-query').value = 'Voyager';
+  nodes.get('lore-form').fire('submit', { preventDefault() {} });
+  const answer = nodes.get('lore-answer');
+  assert.match(answer.textContent, /directory observations/);
+  assert.match(answer.textContent, /Publisher-guide shelf unavailable/,
+    'a missing secondary shelf must not be represented as zero matches');
+  assert.match(answer.textContent, /source-local records, not unique Works/);
+  const inspect = traverse(answer, (node) => node.tagName === 'button' && node.textContent === 'Inspect directory matches')[0];
+  assert.ok(inspect);
+  inspect.fire('click');
+  assert.equal(nodes.get('discovery-query').value, 'Voyager');
+  assert.equal(nodes.get('discovery-query').focused, true);
+  assert.match(nodes.get('discovery-summary').textContent, /source-local metadata rows match/);
+});
+
+test('Lore fails closed on absent local data and never interprets hostile search text as HTML', async () => {
+  const noShelves = await runWithIndex(catalog);
+  noShelves.get('lore-query').value = 'Datalore';
+  noShelves.get('lore-form').fire('submit', { preventDefault() {} });
+  assert.match(noShelves.get('lore-answer').textContent, /Neither validated local shelf is available/);
+  assert.doesNotMatch(noShelves.get('lore-answer').textContent, /0 directory observations/);
+
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  const payload = '<img src=x onerror=alert(1)>';
+  nodes.get('lore-query').value = payload;
+  nodes.get('lore-form').fire('submit', { preventDefault() {} });
+  assert.ok(nodes.get('lore-answer').textContent.includes(payload), 'query may be shown as inert text');
+  assert.equal(traverse(nodes.get('lore-answer'), (node) => ['img', 'script', 'svg'].includes(node.tagName)).length, 0);
+  nodes.get('lore-query').value = 'x'.repeat(101);
+  nodes.get('lore-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-answer').textContent, /1–100 characters/);
+  assert.equal(nodes.get('lore-answer').textContent.includes('directory observations'), false);
 });

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 import shutil
+import subprocess
 import tempfile
 from pathlib import Path
 import unittest
@@ -72,6 +74,25 @@ class SiskoSourceOnlyTest(unittest.TestCase):
         path.write_text(raw.replace('"batch_id":', '"batch_id": "forged", "batch_id":', 1),
                         encoding="utf-8")
         self.assert_rejects("duplicate key must not be accepted")
+
+    def test_fake_cache_with_magic_and_jpeg_in_non_git_fixture_rejected(self):
+        cache = self.root / PACKET / "__pycache__"
+        cache.mkdir()
+        (cache / "validate.cpython-312.pyc").write_bytes(
+            importlib.util.MAGIC_NUMBER + b"\xff\xd8\xff\xe0JFIF")
+        self.assert_rejects("magic plus image is not an authentic cache")
+
+    def test_git_tracked_bytecode_cache_rejected(self):
+        cache = self.root / PACKET / "__pycache__"
+        cache.mkdir()
+        (cache / "validate.cpython-312.pyc").write_bytes(
+            importlib.util.MAGIC_NUMBER + b"\xff\xd8\xff\xe0JFIF")
+        steps = [("init", "-q"), ("add", "--", str(PACKET / "__pycache__"))]
+        for args in steps:
+            run = subprocess.run(["git", *args], cwd=self.root,
+                                 capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+        self.assert_rejects("even a staged bytecode binary is disallowed")
 
 
 if __name__ == "__main__":

@@ -9,10 +9,13 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import io
 import json
+import marshal
 from pathlib import Path
 import re
 import subprocess
+from types import CodeType
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKET = Path("proposals/librarian/prh-sisko-paperback-cover-20261103")
@@ -53,21 +56,46 @@ def validate(root: Path = ROOT) -> dict:
     require(folder.is_dir() and not folder.is_symlink(), "missing/symlink packet directory")
     contents = {entry.name for entry in folder.iterdir()}
     if "__pycache__" in contents:
-        # Running the Python fixture creates compiler cache artifacts, which
-        # are not packet artifacts and must never be committed as evidence.
+        # Only local, Git-proven *untracked* interpreter caches are tolerable.
+        # In source-only fixtures (or published Git artifacts), any cache is an
+        # unexpected binary: magic bytes alone are not provenance evidence.
+        require((root / ".git").exists(), "bytecode cache needs a real Git checkout")
+        identity = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"], cwd=root,
+            capture_output=True, text=True,
+        )
+        require(identity.returncode == 0 and
+                Path(identity.stdout.strip()).resolve() == root.resolve(),
+                "bytecode cache not in exact Git checkout")
         cache = folder / "__pycache__"
         require(cache.is_dir() and not cache.is_symlink(), "unsafe bytecode cache")
+        tracked = subprocess.run(
+            ["git", "ls-files", "--cached", "--", str(PACKET / "__pycache__")],
+            cwd=root, capture_output=True, text=True,
+        )
+        require(tracked.returncode == 0 and not tracked.stdout.strip(),
+                "tracked bytecode is not allowed")
         for entry in cache.iterdir():
-            require(entry.is_file() and not entry.is_symlink() and
-                    re.fullmatch(r"(?:validate|test_validate)\.cpython-\d+\.pyc", entry.name)
-                    is not None and entry.read_bytes().startswith(importlib.util.MAGIC_NUMBER),
-                    "unexpected bytecode cache content")
-        if (root / ".git").exists():
-            tracked = subprocess.run(
-                ["git", "ls-files", "--cached", "--", str(PACKET / "__pycache__")],
-                cwd=root, capture_output=True, check=True, text=True,
-            )
-            require(not tracked.stdout.strip(), "tracked bytecode is not allowed")
+            match = re.fullmatch(r"(validate|test_validate)\.cpython-\d+\.pyc", entry.name)
+            require(entry.is_file() and not entry.is_symlink() and match is not None,
+                    "unexpected bytecode cache entry")
+            raw = entry.read_bytes()
+            require(16 < len(raw) < 2_000_000 and
+                    raw[:4] == importlib.util.MAGIC_NUMBER and
+                    int.from_bytes(raw[4:8], "little") in (0, 1, 3),
+                    "invalid CPython cache header")
+            source = (folder / (match.group(1) + ".py")).resolve()
+            require(source.is_file() and not source.is_symlink(),
+                    "bytecode source is not a regular reviewed file")
+            try:
+                stream = io.BytesIO(raw[16:])
+                bytecode = marshal.load(stream)
+            except (EOFError, ValueError, TypeError) as exc:
+                raise ValueError("invalid CPython cache payload") from exc
+            require(type(bytecode) is CodeType and
+                    Path(bytecode.co_filename).resolve() == source and
+                    stream.tell() == len(raw) - 16,
+                    "non-source or appended binary in bytecode cache")
         contents.remove("__pycache__")
     require(contents == ALLOWED_PACKET_FILES, "unexpected or missing packet file")
     require(all((folder / name).is_file() and not (folder / name).is_symlink()

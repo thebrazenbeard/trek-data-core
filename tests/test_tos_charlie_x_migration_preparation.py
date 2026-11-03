@@ -43,6 +43,8 @@ class CharlieXMigrationPreparation(unittest.TestCase):
             ("MANIFEST.json", ("source", "private_source_custody"), "DURABLE_AUTHENTICATED_SOURCE"),
             ("MANIFEST.json", ("records", "coverage_events"), 1),
             ("MANIFEST.json", ("source", "authenticated_primary_av_or_studio_script"), True),
+            ("MANIFEST.json", ("source", "rendered_text_sha256"), "0" * 64),
+            ("MANIFEST.json", ("source", "raw_html_sha256"), "0" * 64),
             ("MANIFEST.json", ("files_sha256", "evidence.json"), "0" * 64),
             ("local_entities.json", ("entities", 0, "id"), "charlie"),
             ("evidence.json", ("evidence", 0, "start_line"), 0),

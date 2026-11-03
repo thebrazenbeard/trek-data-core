@@ -20,7 +20,7 @@ The existing packet at `proposals/research/tos-charlie-x-derivative-close-read-2
 | `context_evidence_ids/counter_evidence_ids/counter_evidence_search/falsifier` | Same-named **proposal-only extensions** | Preserve original counterargument rather than flattening it into support. |
 | `scope/proposed_projection_status` | Same governed fields | Interpretive contest remains scoped to derivative text. |
 
-`prepare.py` builds a **memory-only schema-shaped preview** and prints only counts/custody status. No JSONL batch, authoritative registry mutation, or corpus staging output is written. `tests/test_tos_charlie_x_migration_preparation.py` checks required schema fields/enums, exact source-file SHA-256 identities, referential links, locators within 833 derivative lines, count invariants, and negative tampering cases that fail closed.
+`prepare.py` first invokes the **original legacy `validate.py`**, then independently checks each original validator-pinned source/manifest identity field (including the rendered-text and raw-HTML SHA-256s) against the in-memory migration input. A mutable `MANIFEST.json` may not silently change the transcript hash while retaining valid referenced record-file hashes. The adapter builds a **memory-only schema-shaped preview** and prints only counts/custody status. No JSONL batch, authoritative registry mutation, or corpus staging output is written. `tests/test_tos_charlie_x_migration_preparation.py` checks required schema fields/enums, exact source-file SHA-256 identities, referential links, locators within 833 derivative lines, count invariants, and negative tampering cases that fail closed.
 
 ## Gaps blocking admission
 

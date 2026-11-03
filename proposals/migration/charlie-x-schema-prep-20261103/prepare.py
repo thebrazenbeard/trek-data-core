@@ -8,8 +8,11 @@ below are explicitly local to an *unadmitted* migration preview.
 from __future__ import annotations
 
 import hashlib
+import contextlib
+import io
 import json
 from pathlib import Path
+import runpy
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -28,6 +31,21 @@ def load(name: str) -> dict:
 
 def prepare() -> dict:
     manifest = load("MANIFEST.json")
+    # The original proposal validator pins the source identity and guards the
+    # complete legacy packet, including flags this adapter does not interpret.
+    # Invoke it on the immutable on-disk packet before making any preview.
+    original = runpy.run_path(str(LEGACY / "validate.py"))
+    with contextlib.redirect_stdout(io.StringIO()):
+        original["validate"]()
+    # A caller may supply an in-memory manifest (e.g. to test a potential
+    # migration). Check that against the original validator's pinned identity
+    # too: file SHA-256s do not pin fields stored in MANIFEST.json itself.
+    for field, expected in original["SOURCE_IDENTITY"].items():
+        require(manifest["source"].get(field) == expected,
+                f"legacy source identity drift: {field}")
+    for field, expected in original["MANIFEST_IDENTITY"].items():
+        require(manifest.get(field) == expected,
+                f"legacy manifest identity drift: {field}")
     for name, digest in manifest["files_sha256"].items():
         actual = hashlib.sha256((LEGACY / name).read_bytes()).hexdigest()
         require(actual == digest, f"legacy source file changed: {name}")

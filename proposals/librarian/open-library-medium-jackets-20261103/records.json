@@ -1,0 +1,69 @@
+{
+  "schema": "trek-open-library-medium-cover-candidates-v1",
+  "provenance": {
+    "source_reviewer": "chatgpt.trek.librarian.private_inventory",
+    "blotter_seq": 3466,
+    "observation_date": "2026-11-03",
+    "api_documentation": "https://openlibrary.org/dev/docs/api/covers",
+    "license_context": "https://openlibrary.org/developers/licensing",
+    "scope": "source_local_medium_api_previews_only",
+    "release_effect": "NONE"
+  },
+  "candidates": [
+    {
+      "row_id": "directory:literature:prh-autobiography-kirk",
+      "isbn": "9781783297481",
+      "cover_id": 13083310,
+      "variant": "M",
+      "width_px_observed": 180,
+      "image_sha256": "aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a",
+      "image_url": "https://covers.openlibrary.org/b/id/13083310-M.jpg?default=false",
+      "image_visual_observation": "independently identified jacket; small/medium normalized pixels near-identical",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "release_status": "CANDIDATE_REQUIRES_SEPARATE_REVIEW"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-picard",
+      "isbn": "9781785659409",
+      "cover_id": 10694457,
+      "variant": "M",
+      "width_px_observed": 180,
+      "image_sha256": "9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887",
+      "image_url": "https://covers.openlibrary.org/b/id/10694457-M.jpg?default=false",
+      "image_visual_observation": "independently identified jacket; small/medium normalized pixels near-identical",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "release_status": "CANDIDATE_REQUIRES_SEPARATE_REVIEW"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-janeway",
+      "isbn": "9781789095333",
+      "cover_id": 12097815,
+      "variant": "M",
+      "width_px_observed": 180,
+      "image_sha256": "8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051",
+      "image_url": "https://covers.openlibrary.org/b/id/12097815-M.jpg?default=false",
+      "image_visual_observation": "independently identified jacket; small/medium normalized pixels near-identical",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "release_status": "CANDIDATE_REQUIRES_SEPARATE_REVIEW"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-spock",
+      "isbn": "9781785659416",
+      "cover_id": 11945787,
+      "variant": "M",
+      "width_px_observed": 180,
+      "image_sha256": "6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0",
+      "image_url": "https://covers.openlibrary.org/b/id/11945787-M.jpg?default=false",
+      "image_visual_observation": "independently identified jacket; small/medium normalized pixels near-identical",
+      "rights_status": "API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED",
+      "release_status": "CANDIDATE_REQUIRES_SEPARATE_REVIEW"
+    }
+  ],
+  "holds": [
+    {
+      "row_id": "directory:literature:proposed-lit-discovery-enterprise-war",
+      "cover_id": 12857937,
+      "reason": "VISUALLY_REJECTED_INTERIOR_TITLE_PAGE"
+    }
+  ]
+}

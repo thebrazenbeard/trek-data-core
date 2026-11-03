@@ -291,6 +291,8 @@ jobs:
             ! -path explorer/publisher-isbn-crosschecks.json \
             ! -path explorer/paramount-film-rechecks.json \
             ! -path explorer/episode-source-cards.json \
+            ! -path explorer/beyond-premiere-photo.json \
+            ! -path explorer/beyond-premiere-release-decision.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/accepted-source-card-rechecks.json \
@@ -316,6 +318,34 @@ jobs:
               exit 1
             fi
           done
+          # Optional source-only HELD photo receipts: neither may authorize
+          # pixels, and a partial, uncommitted, or modified pair is rejected.
+          held_photo_receipt_count=0
+          for path in explorer/beyond-premiere-photo.json explorer/beyond-premiere-release-decision.json; do
+            if git cat-file -e "HEAD:$path" 2>/dev/null; then
+              test -f "$path"
+              test ! -L "$path"
+              expected="$(git rev-parse "HEAD:$path")"
+              actual="$(git hash-object "$path")"
+              if test "$actual" != "$expected"; then
+                echo "Refusing to deploy modified HELD documentary photo receipt: $path" >&2
+                exit 1
+              fi
+              held_photo_receipt_count=$((held_photo_receipt_count + 1))
+            elif test -e "$path" || test -L "$path"; then
+              echo "Refusing to deploy uncommitted HELD documentary photo receipt: $path" >&2
+              exit 1
+            fi
+          done
+          if test "$held_photo_receipt_count" -eq 1; then
+            echo "Refusing to deploy partial HELD documentary photo receipts" >&2
+            exit 1
+          fi
+          if test "$held_photo_receipt_count" -eq 2; then
+            test -f tools/validate_beyond_documentary_photo.py
+            test ! -L tools/validate_beyond_documentary_photo.py
+            python3 tools/validate_beyond_documentary_photo.py
+          fi
           if git cat-file -e HEAD:explorer/research-leads.json 2>/dev/null; then
             test -f explorer/research-leads.json
             test ! -L explorer/research-leads.json

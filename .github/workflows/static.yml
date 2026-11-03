@@ -291,6 +291,8 @@ jobs:
             ! -path explorer/publisher-isbn-crosschecks.json \
             ! -path explorer/paramount-film-rechecks.json \
             ! -path explorer/episode-source-cards.json \
+            ! -path explorer/beyond-premiere-photo.json \
+            ! -path explorer/beyond-premiere-release-decision.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/accepted-source-card-rechecks.json \
@@ -316,6 +318,21 @@ jobs:
               exit 1
             fi
           done
+          # These are two committed, source-only HELD photo receipts, not
+          # permission to release the photographer's JPEG or change image CSP.
+          for path in explorer/beyond-premiere-photo.json explorer/beyond-premiere-release-decision.json; do
+            test -f "$path"
+            test ! -L "$path"
+            expected="$(git rev-parse "HEAD:$path")"
+            actual="$(git hash-object "$path")"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified HELD documentary photo receipt: $path" >&2
+              exit 1
+            fi
+          done
+          test -f tools/validate_beyond_documentary_photo.py
+          test ! -L tools/validate_beyond_documentary_photo.py
+          python3 tools/validate_beyond_documentary_photo.py
           if git cat-file -e HEAD:explorer/research-leads.json 2>/dev/null; then
             test -f explorer/research-leads.json
             test ! -L explorer/research-leads.json

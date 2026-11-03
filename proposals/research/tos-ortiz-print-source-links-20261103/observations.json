@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "tos-ortiz-print-source-links-20261103",
+  "accepted_main_at_selection": "2070b0153228272b5dd667b0a23465ff49a95a5f",
+  "proposal_only": true,
+  "source_class": "FIRST_PARTY_EDITORIAL_ARTWORK_PRODUCT_ANNOUNCEMENT",
+  "source_family": "startrek_com_editorial",
+  "source_access": "PUBLIC_WEB_TEXT_READ_2026-11-03_NOT_AUTHENTICATED_RAW_HTML",
+  "raw_source_sha256": null,
+  "accepted_source_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_artwork_effect": "NONE",
+  "records": [
+    {
+      "source_local_id": "startrek:ortiz:2014-02-03:cage",
+      "source_url": "https://www.startrek.com/news/four-new-star-trek-art-prints-now-available",
+      "source_published": "2014-02-03",
+      "observed_title": "The Cage",
+      "creator": "Juan Ortiz",
+      "medium": "announced art print",
+      "evidence": "Publisher announcement lists The Cage among four February 2014 Ortiz TOS art prints and describes printed editions.",
+      "assertion": "A source-local commercial print candidate exists; it is not an authorized Explorer thumbnail.",
+      "original_short_synopsis": "A retro-style print created for the original Star Trek pilot, discussed by its artist as a distinct treatment from the later two-part adaptation.",
+      "editorial_status": "PROPOSED_SOURCE_DESCRIPTION_ONLY",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "image_binary_included": false,
+      "work_identity": "UNRESOLVED"
+    },
+    {
+      "source_local_id": "startrek:ortiz:2013-05-01:menagerie1",
+      "source_url": "https://www.startrek.com/news/juan-ortiz-unveils-may-2013-tos-art-prints",
+      "source_published": "2013-05-01",
+      "observed_title": "The Menagerie: Part 1",
+      "creator": "Juan Ortiz",
+      "medium": "announced art print",
+      "evidence": "Publisher interview identifies a May 2013 Ortiz print for The Menagerie Part I and discusses the Pike chair design and Jeffrey Hunter credit.",
+      "assertion": "The artist distinguishes integrated Cage footage from the separate print design; no image reuse rights follow.",
+      "original_short_synopsis": "A Pike-centered graphic print for the first installment of The Menagerie, described by the artist as emphasizing the captain's condition.",
+      "editorial_status": "PROPOSED_SOURCE_DESCRIPTION_ONLY",
+      "artwork_rights": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "image_binary_included": false,
+      "work_identity": "UNRESOLVED"
+    }
+  ],
+  "limitations": [
+    "Publisher text inspected; image bytes not downloaded or hashed",
+    "These are artwork-product observations, not audiovisual close reading",
+    "Do not merge with episode Work or count as licensed thumbnails",
+    "Independent hostile reviewer and deterministic gate still required"
+  ]
+}

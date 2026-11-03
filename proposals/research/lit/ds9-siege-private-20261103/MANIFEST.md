@@ -1,6 +1,6 @@
 # LIT — private *The Siege* TXT deep read (proposed, not admitted)
 
-**Lane:** literary source-relative research only. **Batch:** `LIT-DS9-SIEGE-TXT-20261103`. **Base accepted main:** `969626ae8866602ff263f3189b2dcb1dd61d9d3b` (2026-11-03). No global Work/character reconciliation, deployment, public source-text redistribution, artwork, or accepted coverage effects.
+**Lane:** literary source-relative research only. **Batch:** `LIT-DS9-SIEGE-TXT-20261103`. **Base accepted main:** `885df8dc60122e55d9f37195eabd0b1a7c67b3c6` (2026-11-03, GitHub-confirmed PR #478 base at creation). No global Work/character reconciliation, deployment, public source-text redistribution, artwork, or accepted coverage effects.
 
 ## Source and independently checked provenance
 

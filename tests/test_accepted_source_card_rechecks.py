@@ -85,6 +85,26 @@ class AcceptedSourceCardTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "false EXACT"):
                 projection.build()
 
+    def test_forged_unresolved_suffix_cannot_smuggle_work_admission(self):
+        forged = "AUDITED_WORK_ADMITTED_FULL_TEXT_AVAILABLE_UNRESOLVED"
+        real_load = projection.load
+        def corrupt(path):
+            data, raw = real_load(path)
+            if path == projection.SOURCES[4][1]:
+                data = copy.deepcopy(data)
+                data["rows"][3]["title_resolution"] = forged
+            return data, raw
+        with patch.object(projection, "load", side_effect=corrupt):
+            with self.assertRaisesRegex(ValueError, "unapproved publisher title resolution"):
+                projection.build()
+        with self.assertRaisesRegex(ValueError, "unapproved publisher title resolution"):
+            projection._status("B009-ENT", forged, "Broken Bow, Part I", "Broken Bow - Part 1 and 2")
+
+    def test_every_projected_resolution_is_in_exact_batch_vocabulary(self):
+        for row in self.result["rows"]:
+            self.assertIn(row["original_resolution"],
+                          projection.APPROVED_TITLE_RESOLUTIONS[row["source_batch"]])
+
     def test_duplicate_or_fabricated_directory_mapping_fails_closed(self):
         real_load = projection.load
         for fake in ("lead:0051", "lead:1200"):

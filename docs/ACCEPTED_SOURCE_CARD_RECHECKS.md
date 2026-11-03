@@ -34,7 +34,8 @@ python -m unittest tests.test_accepted_source_card_rechecks -v
 
 The compiler reads accepted proposal JSON, pins their SHA-256 checksums,
 requires directory digest `2326f882…`, validates explicit lead IDs/series,
-and refuses false exact-title claims or unexpected batches. The committed
+and refuses false exact-title claims, unapproved status vocabulary (including
+forged admission-like strings ending in `UNRESOLVED`), or unexpected batches. The committed
 sidecar is reproducible byte-for-byte. The CLI queries **only** a projection
 whose current bytes equal a fresh source rebuild, so tampered/stale downloads
 fail closed. Output includes original source paths and hashes, publisher card

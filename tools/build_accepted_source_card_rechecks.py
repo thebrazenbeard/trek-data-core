@@ -34,6 +34,15 @@ UNMAPPED_SNW_INPUTS = (
 EXPECTED_LEADS = [*(f"lead:{n:04d}" for n in range(51, 67)),
                   *(f"lead:{n:04d}" for n in range(70, 115))]
 EXPECTED_DIRECTORY_SHA256 = "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc"
+APPROVED_TITLE_RESOLUTIONS = {
+    "B005-DS9": frozenset({"EXACT", "CASE_VARIANT_UNRESOLVED"}),
+    "B006-VOY": frozenset({"EXACT", "CASE_VARIANT_UNRESOLVED", "MULTIPART_TITLE_SCOPE_UNRESOLVED"}),
+    "B007-VOY": frozenset({"EXACT", "NUMERAL_AND_CASE_VARIANT_UNRESOLVED", "ROMAN_NUMERAL_VARIANT_UNRESOLVED"}),
+    "B008-ENT": frozenset({"EXACT_OFFICIAL_CARD_TITLE", "ROMAN_NUMERAL_VARIANT_UNRESOLVED"}),
+    "B009-ENT": frozenset({"EXACT_OFFICIAL_CARD_TITLE", "PART_NUMERAL_STYLE_UNRESOLVED",
+                            "PUNCTUATION_STYLE_UNRESOLVED", "COMBINED_CARD_SPLIT_UNRESOLVED"}),
+    "DIS-S3-SEVEN": frozenset({"EXACT", "PART_NUMERAL_STYLE_UNRESOLVED"}),
+}
 
 
 def load(path: Path) -> tuple[dict, bytes]:
@@ -62,16 +71,16 @@ def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def _status(value: str, directory_title: str, observed_title: str) -> str:
-    if not isinstance(value, str) or not value:
-        raise ValueError("missing explicit title resolution")
+def _status(batch: str, value: str, directory_title: str, observed_title: str) -> str:
+    # The closed vocabulary is a positive permission boundary. A suffix such
+    # as *_UNRESOLVED cannot legitimize arbitrary research/admission claims.
+    if value not in APPROVED_TITLE_RESOLUTIONS[batch]:
+        raise ValueError(f"unapproved publisher title resolution for {batch}: {value!r}")
     exact = value in {"EXACT", "EXACT_OFFICIAL_CARD_TITLE"}
     if exact and observed_title != directory_title:
         raise ValueError("false EXACT publisher title claim")
     if not exact and observed_title == directory_title:
         raise ValueError("false unresolved publisher title claim")
-    if not exact and "UNRESOLVED" not in value:
-        raise ValueError("unknown title check status")
     return "EXACT" if exact else value
 
 
@@ -163,7 +172,7 @@ def build() -> dict:
 
             if not isinstance(observed_title, str) or not observed_title.strip():
                 raise ValueError("missing publisher card title")
-            status = _status(resolution, row["title"], observed_title)
+            status = _status(batch, resolution, row["title"], observed_title)
             if not isinstance(season_slots, list) or any(
                 type(s["season"]) is not int or type(s["episode"]) is not int
                 or s["season"] < 1 or s["episode"] < 1 for s in season_slots

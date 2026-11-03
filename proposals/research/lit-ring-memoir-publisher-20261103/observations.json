@@ -1,0 +1,187 @@
+{
+  "schema_version": "trek-lit-publisher-observation-v2",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "verification_class": "DIRECT_OFFICIAL_PUBLISHER_OR_DISTRIBUTOR_PAGE_FIELDS_ONLY",
+  "reader": "RENDERED_WEB_PAGE_NO_RAW_HTML_BYTE_CUSTODY",
+  "distinct_upstream_lineages": 2,
+  "source_lineages": [
+    "publisher:simonandschuster.com",
+    "distributor:penguinrandomhouse.com:titan-books"
+  ],
+  "verified_candidate_work_count": 6,
+  "verified_edition_page_count": 9,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "source_bound": false,
+  "full_text_available": false,
+  "full_text_read": false,
+  "semantic_close_read": false,
+  "edition_family_completeness_verified": false,
+  "artwork_display_rights_verified": false,
+  "records": [
+    {
+      "candidate_work_id": "proposed-lit-snw-ring-of-fire",
+      "title": "Star Trek: Strange New Worlds: Ring of Fire",
+      "creator": "David Mack",
+      "isbn13": "9781668095898",
+      "format": "HARDCOVER",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publication_date": "2025-10-07",
+      "publisher_extent": "336 pages",
+      "narrator": null,
+      "publisher_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "proposed-lit-snw-ring-of-fire",
+      "title": "Star Trek: Strange New Worlds: Ring of Fire",
+      "creator": "David Mack",
+      "isbn13": "9781668095904",
+      "format": "TRADE_PAPERBACK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publication_date": "2026-07-28",
+      "publisher_extent": "336 pages",
+      "narrator": null,
+      "publisher_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095904",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "proposed-lit-snw-ring-of-fire",
+      "title": "Star Trek: Strange New Worlds: Ring of Fire",
+      "creator": "David Mack",
+      "isbn13": "9781668095911",
+      "format": "EBOOK",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "publication_date": "2025-10-07",
+      "publisher_extent": "336 pages",
+      "narrator": null,
+      "publisher_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095911",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "proposed-lit-snw-ring-of-fire",
+      "title": "Star Trek: Strange New Worlds: Ring of Fire",
+      "creator": "David Mack",
+      "isbn13": "9781668134559",
+      "format": "UNABRIDGED_AUDIO_DOWNLOAD",
+      "publisher_imprint": "Simon & Schuster Audio",
+      "publication_date": "2025-10-07",
+      "publisher_extent": "11 hours 59 minutes",
+      "narrator": "Robert Petkoff",
+      "publisher_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668134559",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "prh-autobiography-kirk",
+      "title": "The Autobiography of James T. Kirk",
+      "creator": "David A. Goodman",
+      "isbn13": "9781783297481",
+      "format": "PAPERBACK",
+      "publisher_imprint": "Titan Books",
+      "publication_date": "2016-07-05",
+      "publisher_extent": "288 pages",
+      "narrator": null,
+      "publisher_url": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "prh-autobiography-picard",
+      "title": "The Autobiography of Jean-Luc Picard",
+      "creator": "David A. Goodman",
+      "isbn13": "9781785659409",
+      "format": "PAPERBACK",
+      "publisher_imprint": "Titan Books",
+      "publication_date": "2018-07-24",
+      "publisher_extent": "288 pages",
+      "narrator": null,
+      "publisher_url": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "prh-autobiography-janeway",
+      "title": "The Autobiography of Kathryn Janeway",
+      "creator": "Una McCormack",
+      "isbn13": "9781789095333",
+      "format": "PAPERBACK",
+      "publisher_imprint": "Titan Books",
+      "publication_date": "2021-11-16",
+      "publisher_extent": "224 pages",
+      "narrator": null,
+      "publisher_url": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "prh-autobiography-spock",
+      "title": "The Autobiography of Mr. Spock",
+      "creator": "Una McCormack",
+      "isbn13": "9781785659416",
+      "format": "PAPERBACK",
+      "publisher_imprint": "Titan Books",
+      "publication_date": "2025-09-09",
+      "publisher_extent": "256 pages",
+      "narrator": null,
+      "publisher_url": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    },
+    {
+      "candidate_work_id": "prh-autobiography-sisko",
+      "title": "The Autobiography of Benjamin Sisko",
+      "creator": "Derek Tyler Attico",
+      "isbn13": "9781803366258",
+      "format": "PAPERBACK",
+      "publisher_imprint": "Titan Books",
+      "publication_date": "2025-10-07",
+      "publisher_extent": "320 pages",
+      "narrator": null,
+      "publisher_url": "https://www.penguinrandomhouse.com/books/737400/the-autobiography-of-benjamin-sisko-by-derek-tyler-attico/",
+      "field_verdict": "DIRECT_PAGE_FIELDS_MATCH"
+    }
+  ],
+  "work_synopses": [
+    {
+      "candidate_work_id": "proposed-lit-snw-ring-of-fire",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_PUBLISHER_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898",
+      "synopsis": "The publisher sends Pike and the Enterprise to a research station near a black hole after sabotage threatens a secret mission. An earlier tragedy involving Pike and concealed information from the station director complicate the crew's effort to prevent another disaster."
+    },
+    {
+      "candidate_work_id": "prh-autobiography-kirk",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_DISTRIBUTOR_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "synopsis": "Presented as a fictional first-person account, the book surveys James T. Kirk's life and Starfleet career. The distributor describes an illustrated, in-universe memoir of the Enterprise captain, framed as his own recollections."
+    },
+    {
+      "candidate_work_id": "prh-autobiography-picard",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_DISTRIBUTOR_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "synopsis": "The distributor frames this fictional memoir around Picard's Starfleet life, including personal setbacks, Cardassian captivity, Borg assimilation, and command of the Enterprise. These events are publisher-described subjects, not independently verified book scenes."
+    },
+    {
+      "candidate_work_id": "prh-autobiography-janeway",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_DISTRIBUTOR_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "synopsis": "The distributor presents Janeway recounting her Starfleet command, Voyager's long journey through the Delta Quadrant, her mixed Starfleet–Maquis crew, and encounters with the Borg. The promotional outline also includes her later advancement to vice admiral."
+    },
+    {
+      "candidate_work_id": "prh-autobiography-spock",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_DISTRIBUTOR_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "synopsis": "The distributor outlines Spock's fictional memoir from Vulcan childhood with Michael Burnham through Starfleet Academy and Enterprise service under Pike and Kirk. It also describes later diplomatic work and a concealed mission to Romulus."
+    },
+    {
+      "candidate_work_id": "prh-autobiography-sisko",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "source_kind": "OFFICIAL_DISTRIBUTOR_PROMOTIONAL_COPY_NOT_BOOK_TEXT",
+      "source_locator": "https://www.penguinrandomhouse.com/books/737400/the-autobiography-of-benjamin-sisko-by-derek-tyler-attico/",
+      "synopsis": "The distributor presents Sisko's life as a Starfleet officer, father, Bajoran emissary, and wartime leader. Its description spans Defiant development, the Dominion War, and his relationships with allies and adversaries aboard Deep Space Nine."
+    }
+  ]
+}

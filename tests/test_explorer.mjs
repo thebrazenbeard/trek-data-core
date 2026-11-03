@@ -269,7 +269,12 @@ test('repinned malicious publisher-card labels, admission, URLs, and IDs still f
       null, 404, null, 404, repinned, null, 404, null, 404, false, null, 404, bytes, 200);
     assert.match(nodes.get('publisher-card-state').textContent, /unavailable or rejected/);
     assert.doesNotMatch(nodes.get('discovery-metrics').textContent, /Additional source-local publisher cards: 61/);
-    assert.doesNotMatch(nodes.get('discovery-list').textContent, /AUDITED_WORK_ADMITTED|<script>|<img/);
+    // The renderer uses textContent; these assertions check that a rejected
+    // sidecar adds no forged card text. They are not HTML filtering logic.
+    const visibleText = nodes.get('discovery-list').textContent;
+    for (const rejectedLiteral of ['AUDITED_WORK_ADMITTED', '<script>', '<img']) {
+      assert.equal(visibleText.includes(rejectedLiteral), false);
+    }
   }
 });
 

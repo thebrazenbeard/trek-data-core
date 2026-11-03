@@ -1,0 +1,40 @@
+{
+  "schema_version": "trek-lit-overview-source-local-supersession-v2",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "supersedes_source_path": "proposals/research/lit-six-next-publisher-works-20261103/observations.json",
+  "supersedes_source_sha256": "a2e3fb75419559fde85ec5341bcc30823172b65d1bad20d2a4fe863e5ac81f3f",
+  "prior_editorial_request_path": "proposals/publication/lit-overview-expansion-20261103/editorial-request.json",
+  "prior_editorial_request_sha256": "bf9cc901d772a11b9c6e92260575a1116e4de132938a037ea087a6be036b5f42",
+  "source_class": "DIRECT_RENDERED_OFFICIAL_PUBLISHER_ABOUT_THE_BOOK_NO_RAW_PAGE_CUSTODY",
+  "source_group": "publisher:simonandschuster.com",
+  "independent_source_count": 1,
+  "correction_count": 2,
+  "accepted_source_work_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "public_release_effect": "NONE",
+  "original_source_packet_mutated": false,
+  "corrections": [
+    {
+      "candidate_work_id": "lit-source-local-sns-discovery-somewhere-to-belong-20261103",
+      "publisher_edition_isbn13": "9781668002292",
+      "publisher_edition_url": "https://www.simonandschuster.com/books/Star-Trek-Discovery-Somewhere-to-Belong/Dayton-Ward/Star-Trek-Discovery/9781668002292",
+      "prior_paraphrase_sha256": "5be7e097d8fd01e37ef68d0d2942fe5eefcc009ea3ce6fcd3ffefc99a65cee21",
+      "correction_kind": "UNSUPPORTED_ASSERTED_OUTCOME_RESTORED_TO_PUBLISHER_MODALITY",
+      "reason": "The publisher presents the resulting crisis as a possibility; the earlier paraphrase asserted that danger actually follows.",
+      "replacement_paraphrase": "The publisher follows Discovery's crew as they adjust to a distant-future Federation weakened by the Burn. A distress call after another reconnection mission connects to their twenty-third-century past and may lead to a new crisis that places them in danger.",
+      "editorial_status": "INDEPENDENT_RECHECK_REQUIRED"
+    },
+    {
+      "candidate_work_id": "lit-source-local-sns-picard-firewall-20261103",
+      "publisher_edition_isbn13": "9781668046364",
+      "publisher_edition_url": "https://www.simonandschuster.com/books/Star-Trek-Picard-Firewall/David-Mack/Star-Trek-Picard/9781668046364",
+      "prior_paraphrase_sha256": "2f622457b1d4093d5f33c45600dde0b019827fc83ed9006061410f60966afd73",
+      "correction_kind": "PUBLISHER_ASSERTED_EVENT_UNDERSTATED_AS_CONSIDERATION",
+      "reason": "The publisher states Seven finds a home with the Rangers, rather than merely considers joining them.",
+      "replacement_paraphrase": "The publisher places Seven of Nine two years after Voyager's return, when Starfleet rejects her application. She finds a new home with the Fenris Rangers, but this choice may jeopardize her former life and friendship with Admiral Janeway.",
+      "editorial_status": "INDEPENDENT_RECHECK_REQUIRED"
+    }
+  ]
+}

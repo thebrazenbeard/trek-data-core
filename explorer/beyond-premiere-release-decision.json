@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "decision_id": "beyond-premiere-japan-2016-editorial-image-v1",
+  "decision_status": "HELD_PENDING_INDEPENDENT_RELEASE_REVIEW",
+  "public_image_display_authorized": false,
+  "scope": "ONE_INFORMATIONAL_DOCUMENTARY_EVENT_IMAGE_NOT_FILM_FRAME_OR_BRANDING",
+  "source_local_film_id": "film-beyond",
+  "accepted_held_source_contract": "proposals/librarian/beyond-japan-premiere-ccby-display-criteria-20261103/contract.json",
+  "accepted_held_source_contract_sha256": "9ed8d519d8bba7ef7e605ad0d09bdcf74dd7f48c9f9c1ef829dc28772ab8e4a5",
+  "photo_manifest_sha256": "bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634",
+  "observed_rendition_sha256": "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f",
+  "observed_rendition_bytes": 116536,
+  "proposed_same_origin_asset": "./licensed-artwork/beyond-premiere-japan-2016-960.jpg",
+  "source_packet": "https://github.com/thebrazenbeard/trek-data-core/pull/442",
+  "source_only_review_status": "INDEPENDENT_SOURCE_ONLY_GO_NO_PUBLICATION_APPROVAL",
+  "independent_image_release_review": "PENDING",
+  "independent_browser_visual_review": "PENDING",
+  "owner_release_disposition": "PENDING",
+  "rights_scope_caveat": "CC BY 2.0 photographer rights do not grant blanket publicity, privacy, trademark or endorsement rights.",
+  "coverage_effect": "NONE",
+  "work_admission_effect": "NONE"
+}

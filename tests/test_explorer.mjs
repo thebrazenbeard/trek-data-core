@@ -7,7 +7,7 @@ import { webcrypto, createHash } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -96,7 +96,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404, premiereBytes = null, premiereStatus = 404, decisionBytes = null, decisionStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   for (const node of nodes.values()) node._documentRoot = true;
   const requested = new Set();
@@ -145,6 +145,14 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './index.json') return { status, ok: status >= 200 && status < 300, json: async () => index };
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
+    if (path === './beyond-premiere-photo.json') return {
+      status: premiereStatus, ok: premiereStatus >= 200 && premiereStatus < 300,
+      arrayBuffer: async () => premiereBytes.buffer.slice(premiereBytes.byteOffset, premiereBytes.byteOffset + premiereBytes.byteLength)
+    };
+    if (path === './beyond-premiere-release-decision.json') return {
+      status: decisionStatus, ok: decisionStatus >= 200 && decisionStatus < 300,
+      arrayBuffer: async () => decisionBytes.buffer.slice(decisionBytes.byteOffset, decisionBytes.byteOffset + decisionBytes.byteLength)
+    };
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
     if (path === './artwork-catalog-v1.3.json') return { status: mediumStatus, ok: mediumStatus >= 200 && mediumStatus < 300, json: async () => mediumArtwork };
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
@@ -206,6 +214,15 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     './artwork-catalog-v1.3.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
     './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json', './episode-source-cards.json'];
+  if (filmStatus === 200 && films?.films?.some((f) => f.id === 'film-beyond' && f.title === 'Star Trek Beyond' &&
+      f.source_locator === 'https://www.startrek.com/movies/star-trek-beyond')) {
+    optionalPaths.push('./beyond-premiere-photo.json');
+    if (premiereStatus === 200 && premiereBytes &&
+        appScript.includes('bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634') &&
+        createHash('sha256').update(premiereBytes).digest('hex') ===
+          'bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634')
+      optionalPaths.push('./beyond-premiere-release-decision.json');
+  }
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
@@ -879,6 +896,108 @@ const filmCatalog = {
     { id: 'section-31', title: 'Star Trek: Section 31', source_locator: 'https://www.startrek.com/news/star-trek-section-31-premieres-january-24', source_group: 'publisher:startrek.com', work_type: 'STREAMING_ORIGINAL_FILM', verification_status: 'UNVERIFIED_METADATA', discovery_source: 'OFFICIAL_ANNOUNCEMENT' }
   ]
 };
+
+const beyondFilmCatalog = {
+  ...filmCatalog, film_count: 1,
+  films: [{ id: 'film-beyond', title: 'Star Trek Beyond',
+    source_locator: 'https://www.startrek.com/movies/star-trek-beyond',
+    source_group: 'publisher:startrek.com', work_type: 'FEATURE_FILM',
+    verification_status: 'UNVERIFIED_METADATA', discovery_source: 'OFFICIAL_DIRECTORY' }]
+};
+
+const premiereBytes = readFileSync(new URL('../explorer/beyond-premiere-photo.json', import.meta.url));
+const premiereReleaseBytes = readFileSync(new URL('../explorer/beyond-premiere-release-decision.json', import.meta.url));
+function premiereNodes(bytes = premiereBytes, status = 200, films = beyondFilmCatalog, script = SCRIPT,
+  decision = premiereReleaseBytes, decisionStatus = 200) {
+  return runWithIndex(catalog, 200, null, 404, {}, films, 200, null, 404,
+    null, 404, null, 404, script, null, 404, null, 404, false,
+    null, 404, null, 404, null, 404, null, 404, null, 404,
+    null, 404, bytes, status, decision, decisionStatus);
+}
+
+test('CC BY 2.0 Beyond source remains visible but public image display HELD under exact accepted decision', async () => {
+  assert.equal(createHash('sha256').update(premiereBytes).digest('hex'),
+    'bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634');
+  const nodes = await premiereNodes();
+  const panel = nodes.get('beyond-premiere-panel');
+  const button = nodes.get('beyond-premiere-toggle');
+  const holder = nodes.get('beyond-premiere-image');
+  const credit = nodes.get('beyond-premiere-credit');
+  assert.equal(panel.hidden, false);
+  assert.equal(button.disabled, true);
+  assert.equal(button.getAttribute('aria-pressed'), 'false');
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 0, 'zero pixels before independent release');
+  assert.match(nodes.get('beyond-premiere-status').textContent, /HELD/);
+  assert.match(credit.textContent, /Dick Thomas Johnson/);
+  assert.match(credit.textContent, /not a frame from the film/);
+  assert.match(credit.textContent, /No .*studio.* endorsement/i);
+  const links = traverse(credit, (n) => n.tagName === 'a');
+  assert.equal(links.length, 4);
+  assert.ok(links.some((n) => n.href === 'https://creativecommons.org/licenses/by/2.0/'));
+  assert.ok(links.every((n) => n.rel === 'noopener noreferrer' && n.referrerPolicy === 'no-referrer'));
+  button.fire('click');
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 0,
+    'programmatic click also cannot bypass held release decision');
+});
+
+test('hypothetical independently approved exact decision keeps image local and opt-in gated', async () => {
+  const approved = JSON.parse(premiereReleaseBytes);
+  approved.public_image_display_authorized = true;
+  approved.decision_status = 'INDEPENDENT_RELEASE_APPROVED';
+  approved.independent_image_release_review = 'GO';
+  approved.independent_browser_visual_review = 'GO';
+  approved.owner_release_disposition = 'RELEASE_AUTHORIZED';
+  const bytes = Buffer.from(JSON.stringify(approved));
+  const decisionSha = createHash('sha256').update(bytes).digest('hex');
+  const patched = SCRIPT.replace('b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89', decisionSha);
+  const nodes = await premiereNodes(premiereBytes, 200, beyondFilmCatalog, patched, bytes);
+  const button = nodes.get('beyond-premiere-toggle');
+  const holder = nodes.get('beyond-premiere-image');
+  assert.equal(button.disabled, false);
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 0, 'even approved source starts unloaded');
+  button.fire('click');
+  const photos = traverse(holder, (n) => n.tagName === 'img');
+  assert.equal(photos.length, 1);
+  assert.equal(photos[0].src, './licensed-artwork/beyond-premiere-japan-2016-960.jpg');
+  assert.equal(photos[0].alt, JSON.parse(premiereBytes).alt_text);
+  assert.equal(photos[0].referrerPolicy, 'no-referrer');
+  assert.equal(photos[0].parentNode.href, JSON.parse(premiereBytes).source_url);
+  assert.equal(button.getAttribute('aria-pressed'), 'true');
+  button.fire('click');
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 0);
+  assert.equal(button.getAttribute('aria-pressed'), 'false');
+  button.fire('click');
+  photos[0].fire('error');
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 1,
+    'detached error cannot remove new opt-in image or schedule stale retry');
+  traverse(holder, (n) => n.tagName === 'img')[0].fire('error');
+  assert.equal(traverse(holder, (n) => n.tagName === 'img').length, 0);
+  assert.match(holder.textContent, /Photograph unavailable/);
+  assert.match(nodes.get('beyond-premiere-status').textContent, /No alternative source/);
+});
+
+test('premiere release fails closed when film observation, digest, bytes or source receipt is missing', async () => {
+  const missingFilm = await premiereNodes(premiereBytes, 200, filmCatalog);
+  assert.equal(missingFilm.get('beyond-premiere-panel').hidden, true);
+  assert.equal(missingFilm.get('beyond-premiere-toggle').disabled, true);
+  const missingManifest = await premiereNodes(null, 404);
+  assert.equal(missingManifest.get('beyond-premiere-panel').hidden, true);
+  const tampered = Buffer.from(premiereBytes);
+  tampered[30] ^= 1;
+  const bad = await premiereNodes(tampered);
+  assert.equal(bad.get('beyond-premiere-panel').hidden, true);
+  assert.match(bad.get('beyond-premiere-status').textContent, /differs from reviewed bytes/);
+  const noCrypto = await premiereNodes(premiereBytes, 200, beyondFilmCatalog,
+    SCRIPT.replace('bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634', '0'.repeat(64)));
+  assert.equal(noCrypto.get('beyond-premiere-panel').hidden, true);
+  const noDecision = await premiereNodes(premiereBytes, 200, beyondFilmCatalog, SCRIPT, null, 404);
+  assert.equal(noDecision.get('beyond-premiere-toggle').disabled, true);
+  const fakeDecision = Buffer.from(premiereReleaseBytes);
+  fakeDecision[50] ^= 1;
+  const tamperedDecision = await premiereNodes(premiereBytes, 200, beyondFilmCatalog, SCRIPT, fakeDecision);
+  assert.equal(tamperedDecision.get('beyond-premiere-toggle').disabled, true);
+  assert.match(tamperedDecision.get('beyond-premiere-status').textContent, /HELD/);
+});
 
 const licensedArtwork = {
   schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',

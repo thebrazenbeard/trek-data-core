@@ -1,0 +1,63 @@
+{
+  "packet_id": "FILMS-SECTION31-PUBLISHER-SOURCE-ART-20261103",
+  "proposal_only": true,
+  "role": "FILMS_SOURCE_LOCAL_RESEARCH",
+  "baseline_accepted_main": "2070b0153228272b5dd667b0a23465ff49a95a5f",
+  "observed_on_utc": "2026-11-03",
+  "candidate_film_id": "film-section-31",
+  "candidate_title": "Star Trek: Section 31",
+  "kind_as_publisher_described": "ORIGINAL_STREAMING_MOVIE_NOT_THEATRICAL_RELEASE_ASSERTION",
+  "source_family": "publisher:startrek.com and paramountplus.com corporate lineage",
+  "source_independence": "StarTrek.com, CBS Studios and Paramount+ are related publisher/distributor sources; not independent film witnesses",
+  "accepted_overlap": "Accepted publisher-synopses-20261103 already has a Section 31 StarTrek.com synopsis candidate and premiere announcement locator; this adds source-local production credit, poster and streaming-runtime-access distinctions, not a second independent synopsis or new Work",
+  "raw_source_page_sha256": null,
+  "film_viewed": false,
+  "source_work_binding_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_publication_effect": "NONE",
+  "media_or_artwork_bytes_stored": false,
+  "sources": [
+    {
+      "local_source_id": "section31-official-film-card",
+      "locator": "https://www.startrek.com/en-un/movies/star-trek-section-31",
+      "reader_receipt": "WEB_OPEN_RENDERED_FIRST_PARTY_PAGE_CONTENT_CRAWLED_SIX_DAYS_EARLIER_NO_RAW_HTML_HASH",
+      "source_sections": ["Title", "Synopsis", "2025 • PG-13", "Official movie poster image link"],
+      "source_observed_fields": ["film_label:Star Trek: Section 31", "display_year:2025", "rating:PG-13", "publisher_character_setup_georgiou_joins_secret_starfleet_division"],
+      "poster_page_image_link": "https://images.prismic.io/star-trek-untold/Z1Sov5bqstJ98MxD_section-31-official-key-art.jpg?auto=format%2Ccompress",
+      "poster_locator_discovery": "Web reader's linked official poster image target; image click returned fetch error; poster binary not retrieved or authenticated",
+      "poster_status": "HELD_IMAGE_FETCH_FAILED_AND_NO_PUBLIC_REUSE_PERMISSION_VERIFIED",
+      "synopsis_candidate": "A former imperial ruler, Philippa Georgiou, joins a secret Starfleet unit and must confront the consequences of her past while serving a mission to protect the Federation.",
+      "synopsis_status": "HELD_DUPLICATIVE_OF_ACCEPTED_PUBLISHER_SYNOPSIS_CANDIDATE_NO_EDITORIAL_RELEASE",
+      "withheld_fields": ["poster_image_hash", "poster_redistribution_license", "film_runtime_minutes", "film_copy_or_cut_identity"]
+    },
+    {
+      "local_source_id": "section31-official-trailer-poster-announcement",
+      "locator": "https://www.startrek.com/en-un/news/section-31-official-trailer-poster",
+      "reader_receipt": "WEB_OPEN_RENDERED_FIRST_PARTY_ARTICLE_CRAWLED_ABOUT_1_9_YEARS_EARLIER_NO_RAW_HTML_HASH",
+      "source_sections": ["Published Dec 7, 2024", "Official trailer and poster", "Production credits"],
+      "source_observed_fields": ["announcement_published:2024-12-07", "announcement_premiere_day:2025-01-24", "announced_distribution:Paramount+ U.S. and available international markets", "director:Olatunde Osunsanmi", "screenplay:Craig Sweeny", "story:Bo Yeon Kim and Erika Lippoldt", "production:CBS Studios with Secret Hideout and Roddenberry Entertainment", "key_art_announced:official_poster"],
+      "release_status": "HISTORICAL_ANNOUNCEMENT_NOT_STREAM_AVAILABILITY_PROBE",
+      "poster_status": "HELD_ANNOUNCEMENT_NOT_ARTWORK_LICENSE",
+      "withheld_fields": ["verified_current_streaming_territories", "poster_asset_binary_hash", "release_version_or_cut", "actual_audiovisual_content"]
+    },
+    {
+      "local_source_id": "section31-paramountplus-stream-listing-access-history",
+      "locator": "https://www.paramountplus.com/movies/video/hxLi_fyTiqdAOtq1_cSt2HXQuj9mkZJh/",
+      "reader_receipt": "INITIAL_AUTHOR_WEB_OPEN_404_THEN_INDEPENDENT_AND_AUTHOR_WEB_OPEN_RENDERED_LISTING_CRAWLED_TODAY_NO_RAW_HTML_HASH",
+      "access_history": [
+        {"observer": "original_author", "observed_on_utc": "2026-11-03", "result": "FIRST_PARTY_SEARCH_INDEX_SNIPPET_AND_WEB_OPEN_REPORTED_404"},
+        {"observer": "independent_reviewer", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING"},
+        {"observer": "author_corrective_recheck", "observed_on_utc": "2026-11-03", "result": "WEB_OPEN_RETURNED_RENDERED_FIRST_PARTY_STREAMING_LISTING_CRAWLED_TODAY"}
+      ],
+      "source_sections": ["Publisher movie title", "SCI-FI & FANTASY 2025 PG-13 1H 35M", "Sign-up gating text"],
+      "source_observed_fields": ["listing_title:Star Trek: Section 31", "publisher_listing_year:2025", "publisher_listing_rating:PG-13", "publisher_listing_duration_display:1H35M", "publisher_genre:Sci-Fi and Fantasy"],
+      "initial_search_index_leads": ["year:2025", "rating:PG-13", "listed_runtime:1h35m", "publisher_genre:Sci-Fi and Fantasy"],
+      "displayed_listing_minutes_arithmetic": 95,
+      "runtime_minutes_verified_directly": null,
+      "runtime_interpretation": "DIRECTLY_RENDERED_PUBLISHER_LISTING_1H35M_NOT_VERIFIED_FILM_PLAYBACK_CUT_OR_BITSTREAM_RUNTIME",
+      "poster_status": "NO_ARTWORK_ASSET_RETRIEVED",
+      "withheld_fields": ["runtime_of_a_specific_cut_or_encoding", "raw_listing_html_sha256", "current_authenticated_playback_availability", "screening_or_frame_evidence"]
+    }
+  ]
+}

@@ -1,0 +1,511 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "coverage_effect": "NONE",
+  "data_status": "B004_PROPOSAL_ONLY_PRIMARY_RENDERED_CARD_TRIAGE",
+  "observation_manifest_sha256": "1755d8972617f246fdc4fca7b869e8d4aaaa42deefa3506683398d7a66df9aa0",
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Pirates of Orion > S2 E1 > short description",
+          "episode": 1,
+          "guide_page_series_label": "Star Trek The Animated Series",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "The Pirates of Orion"
+        }
+      ],
+      "original_synopsis_draft": "After Orion pirates steal crucial medicine, the crew must recover it to save Spock.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q7757264",
+      "source_local_row_id": "lead:0035",
+      "source_local_series_context": "TAS",
+      "source_local_title": "The Pirates of Orion",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Practical Joker > S2 E3 > short description",
+          "episode": 3,
+          "guide_page_series_label": "Star Trek The Animated Series",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_animated/episodes/2/",
+          "publisher_source_body_sha256": null,
+          "season": 2,
+          "title": "The Practical Joker"
+        }
+      ],
+      "original_synopsis_draft": "The Enterprise computer begins playing elaborate tricks on its crew after showing signs of sentience.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q7757988",
+      "source_local_row_id": "lead:0036",
+      "source_local_series_context": "TAS",
+      "source_local_title": "The Practical Joker",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Survivor > S1 E6 > short description",
+          "episode": 6,
+          "guide_page_series_label": "Star Trek The Animated Series",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "The Survivor"
+        }
+      ],
+      "original_synopsis_draft": "The Enterprise locates an explorer who had been missing for years.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q7767549",
+      "source_local_row_id": "lead:0037",
+      "source_local_series_context": "TAS",
+      "source_local_title": "The Survivor",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Terratin Incident > S1 E11 > short description",
+          "episode": 11,
+          "guide_page_series_label": "Star Trek The Animated Series",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "The Terratin Incident"
+        }
+      ],
+      "original_synopsis_draft": "Radiation exposure causes members of the Enterprise crew to shrink in size.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q11729803",
+      "source_local_row_id": "lead:0038",
+      "source_local_series_context": "TAS",
+      "source_local_title": "The Terratin Incident",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > More Tribbles, More Troubles > S1 E5 > short description",
+          "episode": 5,
+          "guide_page_series_label": "Star Trek The Animated Series",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_animated/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "More Tribbles, More Troubles"
+        }
+      ],
+      "original_synopsis_draft": "Cyrano Jones introduces an unusual kind of tribble that cannot reproduce.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q11774134",
+      "source_local_row_id": "lead:0039",
+      "source_local_series_context": "TAS",
+      "source_local_title": "More Tribbles, More Troubles",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > The Neutral Zone > S1 E26 > short description",
+          "episode": 26,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "The Neutral Zone"
+        }
+      ],
+      "original_synopsis_draft": "While preparing to meet hostile Romulans, the crew discovers a vessel carrying three frozen people from the twentieth century.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1058477",
+      "source_local_row_id": "lead:0040",
+      "source_local_series_context": "TNG",
+      "source_local_title": "The Neutral Zone",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Hide and \"Q\" > S1 E10 > short description",
+          "episode": 10,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Hide and \"Q\""
+        }
+      ],
+      "original_synopsis_draft": "Q challenges the Enterprise again, tempting Riker with extraordinary abilities in return for joining the continuum.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1102231",
+      "source_local_row_id": "lead:0041",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Hide and Q",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "PUNCTUATION_VARIANT_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Chain Of Command - Part 1 > S6 E10 > short description",
+          "episode": 10,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Chain Of Command - Part 1"
+        },
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Chain Of Command - Part 2 > S6 E11 > short description",
+          "episode": 11,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Chain Of Command - Part 2"
+        }
+      ],
+      "original_synopsis_draft": null,
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1141170",
+      "source_local_row_id": "lead:0042",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Chain of Command",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "WITHHELD_MULTIPART_WORK_IDENTITY_UNRESOLVED",
+      "title_resolution": "MULTIPART_SOURCE_LOCAL_TARGET_UNRESOLVED"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Skin of Evil > S1 E23 > short description",
+          "episode": 23,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+          "publisher_source_body_sha256": null,
+          "season": 1,
+          "title": "Skin of Evil"
+        }
+      ],
+      "original_synopsis_draft": "A rescue operation ends in tragedy when a hostile alien kills an Enterprise officer.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1392472",
+      "source_local_row_id": "lead:0043",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Skin of Evil",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Rightful Heir > S6 E23 > short description",
+          "episode": 23,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/6/",
+          "publisher_source_body_sha256": null,
+          "season": 6,
+          "title": "Rightful Heir"
+        }
+      ],
+      "original_synopsis_draft": "Worf's convictions are shaken by the apparent return of a legendary Klingon warrior.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q10361338",
+      "source_local_row_id": "lead:0044",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Rightful Heir",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Brothers > S4 E3 > short description",
+          "episode": 3,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Brothers"
+        }
+      ],
+      "original_synopsis_draft": "Called back to his creator, Data comes into conflict with his brother Lore.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q14045941",
+      "source_local_row_id": "lead:0045",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Brothers",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Half a Life > S4 E22 > short description",
+          "episode": 22,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Half a Life"
+        }
+      ],
+      "original_synopsis_draft": "Picard offers protection to a visiting scientist who wants to escape a ritual death required by his culture.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744047",
+      "source_local_row_id": "lead:0046",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Half a Life",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Silicon Avatar > S5 E4 > short description",
+          "episode": 4,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "Silicon Avatar"
+        }
+      ],
+      "original_synopsis_draft": "Picard seeks communication with a dangerous entity before a visiting scientist destroys it.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744119",
+      "source_local_row_id": "lead:0047",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Silicon Avatar",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > New Ground > S5 E10 > short description",
+          "episode": 10,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "New Ground"
+        }
+      ],
+      "original_synopsis_draft": "Worf confronts the difficulties of fatherhood when his son Alexander joins him aboard the Enterprise.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744120",
+      "source_local_row_id": "lead:0048",
+      "source_local_series_context": "TNG",
+      "source_local_title": "New Ground",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Hero Worship > S5 E11 > short description",
+          "episode": 11,
+          "guide_page_series_label": "Star Trek: The Next Generation",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/5/",
+          "publisher_source_body_sha256": null,
+          "season": 5,
+          "title": "Hero Worship"
+        }
+      ],
+      "original_synopsis_draft": "A young survivor of a destroyed vessel begins to imitate Data.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q16744121",
+      "source_local_row_id": "lead:0049",
+      "source_local_series_context": "TNG",
+      "source_local_title": "Hero Worship",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "governed_research_coverage_state": "NOT_ADMITTED",
+      "observed_utc_date": "2026-11-03",
+      "official_card_candidates": [
+        {
+          "brief_description_actually_read": true,
+          "card_locator": "Episode Guide > Crossfire > S4 E13 > short description",
+          "episode": 13,
+          "guide_page_series_label": "Star Trek: Deep Space Nine",
+          "guide_url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+          "publisher_source_body_sha256": null,
+          "season": 4,
+          "title": "Crossfire"
+        }
+      ],
+      "original_synopsis_draft": "Odo's feelings for Kira complicate his assignment protecting a Bajoran leader who is also drawn to her.",
+      "public_synopsis_approval": "NONE",
+      "publisher_family": "paramount_corporate_publisher_family",
+      "source_local_discovery_state": "CATALOGUED_METADATA_ONLY",
+      "source_local_family": "wikidata_collaborative_derivative",
+      "source_local_locator": "https://www.wikidata.org/wiki/Q1027877",
+      "source_local_row_id": "lead:0050",
+      "source_local_series_context": "DS9",
+      "source_local_title": "Crossfire",
+      "source_representation": "OFFICIAL_RENDERED_CARD_TEXT_UNPINNED",
+      "synopsis_status": "ORIGINAL_BLURB_PARAPHRASE_DRAFT_PENDING_HUMAN_REVIEW",
+      "title_resolution": "EXACT"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "summary": {
+    "actual_official_cards_read": 17,
+    "exact_title_cases": 14,
+    "governed_work_or_evidence_admissions": 0,
+    "original_synopsis_drafts_pending_human_review": 15,
+    "pinned_raw_publisher_html_bodies": 0,
+    "publicly_approved_synopses": 0,
+    "source_local_row_cases": 16,
+    "unresolved_multipart_work_identity_cases": 1,
+    "unresolved_punctuation_alias_cases": 1
+  }
+}

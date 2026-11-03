@@ -27,6 +27,15 @@ class ProjectionBundleTests(unittest.TestCase):
    self.assertEqual(unpinned['receipt']['upstream_identity_status']['research_head'],'UNVERIFIED_DECLARATION')
    with self.assertRaisesRegex(ValueError,'research_head.*expected'):
     bundle.verify_projection(root,expected_identity={'research_head':original['research_head']})
+ def test_duplicate_manifest_identity_claim_rejected_even_when_last_key_matches(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); original=fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; original_bytes=manifest_path.read_text().rstrip()
+   # JSON's default last-key-wins parsing previously accepted this conflicting
+   # first declaration and issued an apparently valid projection receipt.
+   manifest_path.write_text(original_bytes[:-1]+',"research_head":"FORGED","research_head":'+json.dumps(original['research_head'])+'}')
+   with self.assertRaisesRegex(ValueError,'duplicate JSON key'):
+    bundle.verify_projection(root)
  def test_external_identity_expectations_bind_only_the_supplied_fields(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); manifest=fixture.make_projection(root)

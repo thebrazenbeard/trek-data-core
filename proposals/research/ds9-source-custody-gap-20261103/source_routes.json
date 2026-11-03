@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-source-custody-gap-20261103",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "full_primary_episode_or_script_read": false,
+  "scope": "SOURCE_CUSTODY_AND_FIDELITY_ROUTE_AUDIT_ONLY",
+  "accepted_main_at_selection": "afe25c07400ff14534e79b635c7551c5bed18c57",
+  "director_queue_hold": "https://github.com/thebrazenbeard/trek-data-core/issues/23",
+  "observed_date_utc": "2026-11-03",
+  "target_source_local_cards": [
+    "ds9-s1-e01-guide",
+    "ds9-s1-e03-guide",
+    "ds9-s1-e04-guide",
+    "ds9-s1-e05-guide",
+    "ds9-s1-e06-guide"
+  ],
+  "target_work_identity_status": "UNBOUND_CANDIDATE_CARDS_NOT_ACCEPTED_WORKS",
+  "routes": [
+    {
+      "route_id": "ds9-licensed-companion-cdrom",
+      "candidate_material": "1999 Simon & Schuster Star Trek: Deep Space Nine Companion PC CD-ROM",
+      "source_class": "PUBLISHER_RELEASED_SCRIPT_LIBRARY_CANDIDATE",
+      "lineage_group": "simon-schuster-cdrom-product-description",
+      "public_observation_urls": [
+        "https://gaming.trekcore.com/ds9companion/description.html",
+        "https://www.nobleknight.com/P/2148381541/Star-Trek---Deep-Space-Nine-Companion"
+      ],
+      "observed_claim": "Transcribed box-back description says its searchable library contains shooting scripts for all episodes; reseller lists the edition as a Simon & Schuster 1999 PC CD-ROM",
+      "claim_evidence_class": "PUBLISHER_BOX_TEXT_TRANSCRIBED_BY_THIRD_PARTY_PLUS_RESELLER_METADATA",
+      "exact_media_hash": null,
+      "publisher_master_or_custody_chain_verified": false,
+      "script_versions_and_revision_pages_verified": false,
+      "matching_target_script_bytes_read": false,
+      "rights_to_republish_script_text": "UNVERIFIED",
+      "access_status": "NO_AUTHENTICATED_CDROM_SOURCE_IN_CUSTODY",
+      "next_gate": "Locate authorized physical disc or bit-preserved image, hash medium and per-episode extract privately, verify packaging/publisher identity and script draft/revision labels"
+    },
+    {
+      "route_id": "ds9-wgf-library",
+      "candidate_material": "Writers Guild Foundation original script copies and archival material",
+      "source_class": "INSTITUTION_HELD_PRODUCTION_SCRIPT_CANDIDATE",
+      "lineage_group": "institution:wgfoundation",
+      "public_observation_urls": [
+        "https://www.wgfoundation.org/blog/2026/9/1/read-it-in-the-wgf-library-60-years-of-star-trek",
+        "https://www.wgfoundation.org/frequently-asked-questions"
+      ],
+      "observed_claim": "Institution reports a few DS9 scripts in its library and permits in-person research; its FAQ explicitly excludes remote script copies and loans",
+      "claim_evidence_class": "PRIMARY_INSTITUTION_HOLDINGS_AND_ACCESS_POLICY_STATEMENT",
+      "exact_target_titles_located_in_catalog": false,
+      "source_pages_or_images_read": false,
+      "remote_access_status": "ON_SITE_ONLY_NO_REMOTE_COPY",
+      "rights_to_republish_script_text": "UNVERIFIED",
+      "next_gate": "Obtain item-level catalog identity and permitted supervised consultation; document draft title/date/version without copying protected text"
+    },
+    {
+      "route_id": "ds9-ucr-ms379",
+      "candidate_material": "UC Riverside MS 379 Film and television scripts collection",
+      "source_class": "INSTITUTION_HELD_DRAFT_SCRIPT_CANDIDATE",
+      "lineage_group": "institution:ucr-ms379",
+      "public_observation_urls": [
+        "https://oac.cdlib.org/findaid/ark:/13030/c84t6grz"
+      ],
+      "observed_claim": "The archive reports preliminary, first, and final DS9/Voyager script drafts, donated in 2011, with research access and reproduction/rights restrictions",
+      "claim_evidence_class": "PRIMARY_ARCHIVAL_FINDING_AID",
+      "collection_identifier": "MS 379",
+      "exact_target_titles_located_in_catalog": false,
+      "source_pages_or_images_read": false,
+      "remote_access_status": "COLLECTION_DESCRIBED_NO_SCRIPT_BYTES_RETRIEVED",
+      "rights_to_republish_script_text": "UNVERIFIED",
+      "next_gate": "Resolve exact DS9 box/folder/draft identifiers and permissible access at UCR before comparing against any episode cut or other draft"
+    },
+    {
+      "route_id": "ds9-st-minutiae-scripts",
+      "candidate_material": "Public Star Trek Minutiae collected DS9 script index",
+      "source_class": "THIRD_PARTY_TEXT_DERIVATIVE_OR_UNVERIFIED_PROVENANCE",
+      "lineage_group": "unverified:st-minutiae",
+      "public_observation_urls": [
+        "https://www.memoryalpha.st-minutiae.com/resources/scripts/index.html"
+      ],
+      "observed_claim": "Public index links DS9 episode scripts and an all-series ZIP; original production-copy custody and edition fidelity not established by this inventory",
+      "claim_evidence_class": "THIRD_PARTY_INDEX_DISCOVERY_ONLY",
+      "source_pages_or_images_read": false,
+      "episode_text_read": false,
+      "remote_access_status": "INDEX_DISCOVERED_CONTENT_NOT_READ_DUE_QUEUE_HOLD",
+      "rights_to_republish_script_text": "UNVERIFIED",
+      "next_gate": "Obtain allowed item-level source lineage and compare only after Director hold lifts; do not treat mirror and CD content as independent witnesses"
+    },
+    {
+      "route_id": "ds9-paramount-streaming",
+      "candidate_material": "Paramount+ licensed audiovisual episodes",
+      "source_class": "PRIMARY_AIRING_CUT_POTENTIAL_BUT_NOT_VIEWED",
+      "lineage_group": "publisher:paramount",
+      "public_observation_urls": [
+        "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/"
+      ],
+      "observed_claim": "Publisher's episode catalog provides cards and metadata but is not itself a viewed audiovisual performance",
+      "claim_evidence_class": "PUBLISHER_CATALOG_OBSERVATION",
+      "episode_video_or_audio_read": false,
+      "remote_access_status": "NO_AUTHORIZED_STREAM_CAPTURE_OR_FULL_SOURCE_READ",
+      "rights_to_republish_episode_media": "UNVERIFIED",
+      "next_gate": "Within authorized access and after queue resume, log edition/region/cut/runtime and timecode evidence without reproducing audiovisual bytes publicly"
+    }
+  ],
+  "public_catalog_or_policy_pages_read": 5,
+  "primary_script_or_av_reads_completed": 0,
+  "new_close_read_batches_created": 0,
+  "admitted_briefings": 0,
+  "global_identity_links_created": 0
+}

@@ -1,0 +1,58 @@
+{
+  "batch_id": "tos-cage-menagerie-source-lineage-20261103",
+  "status": "PROPOSAL_ONLY",
+  "observed_date": "2026-11-03",
+  "source_records": [
+    {
+      "id": "startrek-2014-cage-production",
+      "url": "https://www.startrek.com/news/the-cage-started-50-years-ago-today",
+      "publisher": "StarTrek.com",
+      "published": "2014-11-27",
+      "observed": "2026-11-03",
+      "claim": "The Cage began production on November 27, 1964; NBC declined that pilot but ordered a second.",
+      "evidence_class": "PUBLISHER_EDITORIAL_ARTICLE"
+    },
+    {
+      "id": "startrek-2023-menagerie-retrospective",
+      "url": "https://www.startrek.com/news/revisiting-the-menagerie",
+      "publisher": "StarTrek.com",
+      "published": "2023-11-17",
+      "original_publication": "2016-11-11",
+      "observed": "2026-11-03",
+      "claim": "The Menagerie used a newly filmed framing story with substantial footage from The Cage, making two broadcast installments; publicity reused The Cage photographs.",
+      "evidence_class": "PUBLISHER_EDITORIAL_ARTICLE"
+    }
+  ],
+  "source_local_work_candidates": [
+    "The Cage (pilot)",
+    "The Menagerie, Part I",
+    "The Menagerie, Part II"
+  ],
+  "proposed_relations": [
+    {
+      "subject": "The Menagerie, Part I / Part II",
+      "predicate": "INCORPORATES_FOOTAGE_FROM",
+      "object": "The Cage",
+      "status": "SOURCE_SUPPORTED_PROPOSAL"
+    },
+    {
+      "subject": "The Menagerie publicity stills",
+      "predicate": "REUSES_MATERIAL_FROM",
+      "object": "The Cage publicity",
+      "status": "SOURCE_REPORTED_PROPOSAL"
+    }
+  ],
+  "original_source_attributed_synopsis": "Spock's attempt to return his former captain Christopher Pike to Talos IV leads to a disciplinary hearing, framed by footage of Pike's earlier encounter with the Talosians. The two-part broadcast narrative incorporates material produced for the separate original pilot.",
+  "synopsis_status": "HELD_SOURCE_BASED_NOT_EPISODE_VIEWED",
+  "artwork": {
+    "candidate": "Publisher article images include a recycled pilot publicity photograph and later retouched/deleted-scene frames.",
+    "license": "UNKNOWN_NO_PUBLIC_REUSE",
+    "image_bytes_stored": 0
+  },
+  "identity_hold": "Do not merge the pilot with either broadcast installment or count shared footage as duplicate Work identity.",
+  "coverage_effect": 0,
+  "accepted_work_effect": 0,
+  "public_explorer_effect": 0,
+  "independence_note": "Both articles share corporate franchise publisher lineage; not independent corroboration.",
+  "verification": "Two first-party rendered articles opened and inspected; no audiovisual viewing or raw HTML byte fingerprint claimed."
+}

@@ -2430,7 +2430,9 @@
       }
       return;
     }
-    loreAnswer.append(el('p', '', `${directoryMatches.length} directory observations and ${guideMatches.length} HELD publisher-guide cards match “${typed}”. These are source-local records, not unique Works, confirmed events, or canonical answers.`));
+    const directoryCount = directoryState.available ? `${directoryMatches.length} directory observations` : 'Directory shelf unavailable';
+    const guideCount = episodeSourceState.available ? `${guideMatches.length} HELD publisher-guide cards` : 'Publisher-guide shelf unavailable';
+    loreAnswer.append(el('p', '', `${directoryCount} / ${guideCount} match “${typed}”. These are source-local records, not unique Works, confirmed events, or canonical answers.`));
     const results = el('ul');
     const sample = [
       ...directoryMatches.slice(0, 3).map((row) => ({ title: row.title, detail: `${row.medium.replaceAll('_', ' ')} · ${row.context} · source group: ${row.source_group}` })),

@@ -1773,6 +1773,8 @@ test('Lore searches validated local directory records, labels source limits and 
   nodes.get('lore-form').fire('submit', { preventDefault() {} });
   const answer = nodes.get('lore-answer');
   assert.match(answer.textContent, /directory observations/);
+  assert.match(answer.textContent, /Publisher-guide shelf unavailable/,
+    'a missing secondary shelf must not be represented as zero matches');
   assert.match(answer.textContent, /source-local records, not unique Works/);
   const inspect = traverse(answer, (node) => node.tagName === 'button' && node.textContent === 'Inspect directory matches')[0];
   assert.ok(inspect);

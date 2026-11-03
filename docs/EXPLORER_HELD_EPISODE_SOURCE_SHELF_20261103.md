@@ -37,9 +37,13 @@ Callable local search (no network credentials, telemetry, or paid service):
 python tools/build_episode_source_cards.py --check
 python tools/query_episode_source_cards.py --validate-sources --series SNW --q Pike --limit 5
 python tools/query_episode_source_cards.py --status HELD_PUBLISHER_GUIDE_ONLY --tag publisher-utterance:picard --limit 20
+python tools/query_episode_source_cards.py --id pic-s1-e06-pplus-guide --facets
+python tools/query_episode_source_cards.py --source-batch SNW-LAST5 --limit 2 --offset 2 --facets
 ```
 
 `--validate-sources` is explicit for readability; source validation occurs **unconditionally** in the query command. Search is bounded to 160 query characters and twenty output rows. JSON query responses include source-local status and no admission/coverage effect.
+
+Exact `--id` lookup accepts a **source-local card ID**, not an admitted Work ID. `--source-batch` selects an exact reviewed packet; `--offset` and `--limit` page stable sorted rows. `--facets` reports series, packet, held-source status, and *publisher-utterance label* counts across the matched source-local rows **before pagination**; it does not establish independent corroboration, verified depiction, or global entity identity. Responses include `identity_scope`, `next_offset`, and a zero-effects envelope. These additions affect query tooling only: no source data, Work records, search-catalog directory, artwork, synopsis, or deployment artifacts change.
 
 ## Hostile tests
 

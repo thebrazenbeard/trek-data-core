@@ -94,6 +94,24 @@ class SourceLocalVisualCoverageTests(unittest.TestCase):
         self.assertEqual(categories["EPISODE"]["unmapped_source_local_rows"], 1)
         self.assertEqual(sum(row["source_local_metadata_rows"] for row in report["per_medium"]), 6)
 
+    def test_append_unrelated_source_row_changes_only_its_metadata_denominator(self):
+        # This isolates the report from the separately owned artwork release
+        # validator. It is NOT evidence that the current historical whole-file
+        # source hash gate accepts an append; that needs its own custody patch.
+        baseline = self._report()
+        self.sources.append({"row_id": "literature:book-c", "medium": "LITERATURE",
+                             "source_locator": "https://example.org/book-c"})
+        self._write()
+        changed = self._report()
+        literary = next(row for row in changed["per_medium"] if row["medium"] == "LITERATURE")
+        self.assertEqual(changed["source_local_metadata_row_total"],
+                         baseline["source_local_metadata_row_total"] + 1)
+        self.assertEqual(literary["source_local_metadata_rows"], 3)
+        self.assertEqual(literary["reviewed_artwork_mappings"], 1)
+        self.assertEqual(literary["historical_held_artwork_proposals"], 1)
+        self.assertEqual(changed["reviewed_artwork_mapping_total"],
+                         baseline["reviewed_artwork_mapping_total"])
+
     def test_directory_and_film_aliases_cannot_double_count_one_film_row(self):
         self.artwork[1] = {**self.artwork[0], "row_id": "directory:film:film-a"}
         self._write()

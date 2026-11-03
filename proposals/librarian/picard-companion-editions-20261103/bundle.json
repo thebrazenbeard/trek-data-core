@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "observed_on": "2026-11-03",
+  "source_group": "publisher:simonandschuster.com",
+  "works": [
+    {
+      "work_id": "proposed-lit-picard-the-dark-veil",
+      "title": "Star Trek: Picard: The Dark Veil",
+      "creator": "James Swallow",
+      "publisher_series_position": "Book #2 of Star Trek: Picard",
+      "isbn13": "9781982154073",
+      "format": "TRADE_PAPERBACK",
+      "publication_date": "2021-09-07",
+      "length_pages": 336,
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073"
+    },
+    {
+      "work_id": "proposed-lit-picard-rogue-elements",
+      "title": "Star Trek: Picard: Rogue Elements",
+      "creator": "John Jackson Miller",
+      "publisher_series_position": "Book #3 of Star Trek: Picard",
+      "isbn13": "9781982175207",
+      "format": "TRADE_PAPERBACK",
+      "publication_date": "2022-06-07",
+      "length_pages": 416,
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207"
+    },
+    {
+      "work_id": "proposed-lit-picard-second-self",
+      "title": "Star Trek: Picard: Second Self",
+      "creator": "Una McCormack",
+      "publisher_series_position": "Part of Star Trek: Picard",
+      "isbn13": "9781982194833",
+      "format": "TRADE_PAPERBACK",
+      "publication_date": "2023-09-19",
+      "length_pages": 320,
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833"
+    }
+  ]
+}

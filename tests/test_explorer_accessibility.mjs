@@ -12,6 +12,7 @@ const ids = [
   'research-query', 'research-mission', 'research-reset', 'research-filters',
   'research-count', 'research-state', 'research-list', 'research-empty',
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
+  'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
   'publisher-edition-list', 'publisher-edition-empty',
@@ -70,6 +71,7 @@ const research = {
 
 async function load(researchPayload, researchStatus = 200) {
   const nodes = new Map(ids.map((id) => [id, new Node()]));
+  nodes.get('lore-console').hidden = true;
   for (const id of ['scope-filter', 'mission-filter', 'kind-filter', 'status-filter', 'research-mission', 'publisher-edition-tag']) nodes.get(id).value = 'all';
   const document = {
     baseURI: 'https://example.test/explorer/index.html',

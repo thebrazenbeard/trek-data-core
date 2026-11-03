@@ -2364,6 +2364,91 @@
   const resetPageCounts = () => {
     for (const section of Object.keys(visibleLimits)) visibleLimits[section] = PAGE_SIZE;
   };
+
+  // This is a small, deterministic local-search *character interface*, not a
+  // model or a semantic/canon engine. It consumes only the same validated
+  // source-local shelves the Explorer has already admitted for display.
+  const loreToggle = byId('lore-toggle');
+  const lorePanel = byId('lore-console');
+  const loreClose = byId('lore-close');
+  const loreForm = byId('lore-form');
+  const loreQuery = byId('lore-query');
+  const loreAnswer = byId('lore-answer');
+  const setLoreOpen = (open) => {
+    lorePanel.hidden = !open;
+    loreToggle.setAttribute('aria-expanded', String(open));
+    loreToggle.textContent = open ? 'Close Lore console' : 'Open Lore console';
+    if (open) loreQuery.focus();
+    else loreToggle.focus();
+  };
+  loreToggle.addEventListener('click', () => { playTone(); setLoreOpen(lorePanel.hidden); });
+  loreClose.addEventListener('click', () => setLoreOpen(false));
+  lorePanel.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') { event.preventDefault(); setLoreOpen(false); }
+  });
+
+  const addLoreShortcut = (label, targetId, queryField, renderView, query) => {
+    const button = el('button', '', label);
+    button.type = 'button';
+    button.addEventListener('click', () => {
+      queryField.value = query;
+      renderView();
+      byId(targetId).scrollIntoView({ block: 'start' });
+      queryField.focus();
+    });
+    loreAnswer.append(button);
+  };
+  loreForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const typed = loreQuery.value.trim();
+    loreAnswer.replaceChildren();
+    if (!typed || typed.length > 100) {
+      loreAnswer.append(el('p', '', 'Enter a subject of 1–100 characters. I am a local index search, not a guessing machine.'));
+      return;
+    }
+    if (/^(hello|hi|help|who are you|status)\??$/i.test(typed)) {
+      loreAnswer.append(el('p', '', 'Fictional Lore interface online. My considerable talents are confined to searching validated local metadata. Try an episode title, a series, or a book title.'));
+      return;
+    }
+    const terms = normalize(typed).split(/\s+/).filter(Boolean);
+    const directoryMatches = directoryState.available ? directoryState.rows.filter((item) => {
+      const seriesCode = item.medium === 'EPISODE' ? item.context.split(/\s+/, 1)[0] : '';
+      const series = Object.hasOwn(directorySeriesLabels, seriesCode) ? directorySeriesLabels[seriesCode] : '';
+      return terms.every((term) => normalize([item.title, item.context, series, item.medium, item.candidate_kind].join(' ')).includes(term));
+    }) : [];
+    const guideMatches = episodeSourceState.available ? episodeSourceState.rows.filter((row) =>
+      terms.every((term) => normalize([row.title, row.series_title, `S${row.season}E${String(row.episode).padStart(2, '0')}`,
+        ...row.publisher_utterance_labels, ...row.tags].join(' ')).includes(term))) : [];
+    if (!directoryState.available && !episodeSourceState.available) {
+      loreAnswer.append(el('p', '', 'Neither validated local shelf is available. No result count or factual answer can be established.'));
+      return;
+    }
+    if (!directoryMatches.length && !guideMatches.length) {
+      loreAnswer.append(el('p', '', `No matching source-local rows for “${typed}” in the loaded shelves. This is not evidence that a subject is absent from Star Trek.`));
+      if (!directoryState.available || !episodeSourceState.available) {
+        loreAnswer.append(el('p', 'lore-row-label', 'One or more shelves could not be checked.'));
+      }
+      return;
+    }
+    loreAnswer.append(el('p', '', `${directoryMatches.length} directory observations and ${guideMatches.length} HELD publisher-guide cards match “${typed}”. These are source-local records, not unique Works, confirmed events, or canonical answers.`));
+    const results = el('ul');
+    const sample = [
+      ...directoryMatches.slice(0, 3).map((row) => ({ title: row.title, detail: `${row.medium.replaceAll('_', ' ')} · ${row.context} · source group: ${row.source_group}` })),
+      ...guideMatches.slice(0, 3).map((row) => ({ title: row.title, detail: `${row.series_title} · S${row.season}E${String(row.episode).padStart(2, '0')} · HELD: ${row.publisher_family}` }))
+    ].slice(0, 5);
+    for (const item of sample) {
+      const row = el('li');
+      row.append(el('strong', '', item.title), el('span', 'lore-row-label', ` — ${item.detail}`));
+      results.append(row);
+    }
+    loreAnswer.append(results);
+    if (directoryMatches.length) addLoreShortcut('Inspect directory matches', 'discovery-directory', byId('discovery-query'), renderDirectory, typed);
+    if (guideMatches.length) addLoreShortcut('Inspect held guide cards', 'episode-source-cards', byId('episode-source-query'), renderEpisodeSourceCards, typed);
+    if (!directoryState.available || !episodeSourceState.available) {
+      loreAnswer.append(el('p', 'lore-row-label', 'Unavailable shelves were excluded; their result counts are unknown.'));
+    }
+  });
+
   const filters = byId('filters');
   filters.addEventListener('input', () => { resetPageCounts(); render(); });
   filters.addEventListener('change', () => { playTone(); resetPageCounts(); render(); });

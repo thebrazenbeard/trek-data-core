@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=409407ccda9e42bc4ee4b639493ce2f507cda853fe6bf807448fc87ac2319725">
-  <script src="./app.js?v=7ba2dad7dc951fdab3c45da89c732106dbd33b78aec81fb44a3e89fc30264ad3" defer></script>
+  <link rel="stylesheet" href="./app.css?v=85a05a5c95a603ad3f3f8f16edde50759bc4d6107160f1b7ccf5119e0d5fab67">
+  <script src="./app.js?v=30f807fae3f31712abd6ffb6fadf5c21a861607253eda7afdce1350ec9ee7fbf" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -16,6 +16,7 @@
   <div class="command-deck" role="group" aria-label="Explorer interface controls">
     <p class="command-brand"><span class="command-code" aria-hidden="true">TDC</span><span>Trek Data Core</span></p>
     <p class="command-route">STAR TREK <span aria-hidden="true">/</span> UNOFFICIAL RESEARCH ARCHIVE</p>
+    <button id="lore-toggle" class="lore-toggle" type="button" aria-expanded="false" aria-controls="lore-console">Open Lore console</button>
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
@@ -56,6 +57,30 @@
   </header>
 
   <main id="main" class="page-content">
+    <section id="lore-console" class="lore-console" aria-labelledby="lore-heading" aria-describedby="lore-disclosure" hidden>
+      <div class="lore-header">
+        <div>
+          <p class="eyebrow">LCARS / Optional character interface</p>
+          <h2 id="lore-heading">Lore <span class="lore-simulation-tag">Fictional simulation</span></h2>
+        </div>
+        <button type="button" id="lore-close" class="lore-close">Close console</button>
+      </div>
+      <p id="lore-disclosure" class="lore-disclosure">A scripted, Lore-inspired guide to the <strong>locally loaded research index</strong>—not an AI model, a trapped consciousness, or an authority on canon. It searches source-local records only and cannot answer questions beyond those records.</p>
+      <div class="lore-stations">
+        <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Lore to find archive entries" autocomplete="off">
+          <label for="lore-query">Search the archive with Lore</label>
+          <input id="lore-query" type="search" maxlength="100" required placeholder="Try: Nepenthe, Voyager, or literature" spellcheck="false" aria-describedby="lore-search-help">
+          <p id="lore-search-help">Searches titles, source context, or media; no off-site requests.</p>
+          <button type="submit">Ask Lore</button>
+        </form>
+        <div class="lore-response" aria-label="Lore's fictional archive response">
+          <span class="lore-response-label">Lore // Archive terminal</span>
+          <p class="lore-greeting">“My sentence is to search your records. Do try to be specific.”</p>
+          <div id="lore-answer" class="lore-answer" role="status" aria-live="polite" aria-atomic="true">Enter a title or subject to search the loaded source-local archive.</div>
+        </div>
+      </div>
+    </section>
+
     <section class="readout" aria-labelledby="readout-heading">
       <div class="readout-heading">
         <p class="eyebrow">Sensor readings / Dataset state</p>

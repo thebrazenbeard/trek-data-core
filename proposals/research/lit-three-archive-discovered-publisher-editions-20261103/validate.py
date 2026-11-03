@@ -32,9 +32,11 @@ def is_isbn13(value: str) -> bool:
 
 def validate(value: object) -> None:
     require(isinstance(value, dict), "root must be object")
+    serialized = json.dumps(value, ensure_ascii=False).casefold()
+    require(not re.search(r"(?:\b[a-z]:[/\\]|/users/|\\users\\|patri[/\\]|onedrive|documents[/\\]books|star_trek_opf_converted\.zip)", serialized), "private host username/path/archive topology disclosed")
     require(value.get("schema_version") == "trek-lit-archive-discovery-publisher-editions-v1", "schema drift")
     require(value.get("proposal_only") is True and value.get("observed_on_utc") == "2026-11-03", "proposal/date drift")
-    require(value.get("private_archive") == "C:/Users/patri/OneDrive/Documents/Books/Star_Trek_OPF_Converted.zip", "archive source drift")
+    require(value.get("private_archive") == "owner-private-books-opf-archive-20261103", "archive source drift or private path disclosure")
     require(value.get("observed_archive_opf_count") == 347, "observed OPF inventory drift")
     require(value.get("private_to_publisher_edition_match") == "UNVERIFIED", "invented private ISBN binding")
     require(value.get("publisher_upstream_group") == "publisher:simonandschuster.com", "publisher lineage mismatch")

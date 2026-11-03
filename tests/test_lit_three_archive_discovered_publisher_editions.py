@@ -31,6 +31,18 @@ class PublisherEditionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             module.validate(bad)
 
+    def test_private_absolute_path_not_public(self):
+        bad = copy.deepcopy(self.good)
+        bad["private_archive"] = "C:/Users/private-user/OneDrive/Documents/Books/archive.zip"
+        with self.assertRaises(ValueError):
+            module.validate(bad)
+
+    def test_private_topology_rejected_even_outside_archive_field(self):
+        bad = copy.deepcopy(self.good)
+        bad["owner_note"] = "C:/Users/private-user/Documents/Books"
+        with self.assertRaises(ValueError):
+            module.validate(bad)
+
     def test_abridged_audio_not_mislabeled_as_full_ebook(self):
         bad = copy.deepcopy(self.good)
         bad["candidates"][1]["publisher_edition_format"] = "EBOOK"

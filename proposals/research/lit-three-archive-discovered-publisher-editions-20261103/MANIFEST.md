@@ -2,7 +2,7 @@
 
 **Status:** source-relative proposal only; no public release, accepted evidence, or book-close-read effect.
 
-The authorized Lappy read-only inventory of `OneDrive/Documents/Books` observed a ZIP containing 347 OPF metadata files. Three OPF title/author observations prompted independent publisher-page lookups. The source editions below are **official publisher products**, while the private OPF entries are only title/creator discovery leads. The edition/ISBN identity between any private file and these publisher products is **UNVERIFIED**. No private EPUB/LIT/TXT/OPF/JPG bytes, book passages, cover images, or copyrighted publisher descriptions were uploaded.
+The authorized Lappy read-only inventory of the owner's private literary archive observed a ZIP containing 347 OPF metadata files. Three OPF title/author observations prompted independent publisher-page lookups. The source editions below are **official publisher products**, while the private OPF entries are only title/creator discovery leads. The edition/ISBN identity between any private file and these publisher products is **UNVERIFIED**. No private EPUB/LIT/TXT/OPF/JPG bytes, book passages, cover images, or copyrighted publisher descriptions were uploaded. The owner-local path and username are intentionally withheld from this public repository.
 
 Directly read first-party *About the Book* and *Product Details* sections, 2026-11-03:
 

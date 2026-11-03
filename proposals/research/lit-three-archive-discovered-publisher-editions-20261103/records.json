@@ -3,7 +3,7 @@
   "proposal_only": true,
   "observed_on_utc": "2026-11-03",
   "method": "PRIVATE_OPF_TITLE_AUTHOR_DISCOVERY_THEN_DIRECT_FIRST_PARTY_PUBLISHER_PAGE_READ",
-  "private_archive": "C:/Users/patri/OneDrive/Documents/Books/Star_Trek_OPF_Converted.zip",
+  "private_archive": "owner-private-books-opf-archive-20261103",
   "private_archive_metadata_scope": "TITLE_CREATOR_OPF_LEADS_ONLY_NO_PRIVATE_BYTES_UPLOADED",
   "observed_archive_opf_count": 347,
   "publisher_upstream_group": "publisher:simonandschuster.com",

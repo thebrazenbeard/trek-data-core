@@ -22,3 +22,5 @@ Hostile falsifier: captions such as “frame from Arena,” “on-set production
 ## Reproducibility
 
 Run `python3 proposals/librarian/arena-gorn-museum-20261103/test_validate.py` and `python3 proposals/librarian/arena-gorn-museum-20261103/validate.py`. These check the accepted discovery row, exact source/byte fields, pinned documentary label and held gates. Tests do not call the network, and the copyrighted image binary is **not** committed.
+
+The validator recursively rejects nested image extensions, image-file magic disguised with another extension, and symlinks in this proposal partition; corresponding hostile regression tests exercise the first two bypasses.

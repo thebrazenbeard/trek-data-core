@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import copy
+import tempfile
 import unittest
+from pathlib import Path
 
 from validate import ROOT, RECORD, read_json, validate, unique_pairs
 
@@ -65,6 +67,20 @@ class TestArenaMuseumCustody(unittest.TestCase):
         modified["candidate"]["fictional_episode_scene"] = "Arena"
         with self.assertRaises(ValueError):
             validate(modified)
+
+    def test_fail_nested_jpeg_upload(self) -> None:
+        with tempfile.TemporaryDirectory(dir=RECORD.parent) as directory:
+            nested = Path(directory) / "screenshot"
+            nested.mkdir()
+            (nested / "episode.jpg").write_bytes(b"\xff\xd8\xff" + b"not a real scene")
+            with self.assertRaises(ValueError):
+                validate(self.original)
+
+    def test_fail_disguised_binary(self) -> None:
+        with tempfile.TemporaryDirectory(dir=RECORD.parent) as directory:
+            (Path(directory) / "ordinary.dat").write_bytes(b"\xff\xd8\xff" + b"disguised")
+            with self.assertRaises(ValueError):
+                validate(self.original)
 
 
 if __name__ == "__main__":

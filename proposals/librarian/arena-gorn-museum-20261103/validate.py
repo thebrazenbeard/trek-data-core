@@ -104,8 +104,16 @@ def validate(packet: dict, root: Path = ROOT) -> None:
     require(type(candidate) is dict and set(candidate) == set(fixed_candidate), "candidate schema drift")
     for key, value in fixed_candidate.items():
         require(type(candidate[key]) is type(value) and candidate[key] == value, f"candidate field: {key}")
-    require(all(p.suffix.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"}
-                for p in RECORD.parent.iterdir()), "binary image committed into proposal directory")
+    for path in RECORD.parent.rglob("*"):
+        require(not path.is_symlink(), "symlink in proposal subtree")
+        if not path.is_file():
+            continue
+        require(path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"},
+                "image extension in proposal subtree")
+        signature = path.read_bytes()[:20]
+        require(not (signature.startswith((b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF87a", b"GIF89a"))
+                     or signature[:4] == b"RIFF" and signature[8:12] == b"WEBP"),
+                "image binary disguised by extension in proposal subtree")
 
 
 if __name__ == "__main__":

@@ -25,9 +25,10 @@ continuity assertions, canonical Work IDs, or episode denominators.
 - `proposals/discovery/scouts-firstparty-video-s1-20261103/` — **20 *Star Trek: Scouts* first-party publisher-video observations** from the official Nickelodeon/Blaze YouTube account's individually captured oEmbed metadata. The associated StarTrek.com/CBS announcement identifies a 20-installment short-form order. Six complete TrekCore captures provide *discovery crosswalks* to 19 publisher video IDs, not independent corroboration; the tenth Asteroid Blasters video is separately verified against publisher oEmbed. Both Asteroid Blasters and Holodeck Rescues use source-local #1–#10 numbering, **not** promoted to globally verified season ordinals, accepted Works or Briefings. Only titles, direct publisher links and source-body hashes are public; no video bytes. This publisher is in Paramount's corporate provenance family.
 - `explorer/film-catalog.json` — 14 publisher film metadata candidates.
 - `proposals/librarian/ring-of-fire-editions-20261102/records.json` — one proposed literary Work with four publisher editions, not four novels.
+- `proposals/librarian/prh-star-trek-autobiographies-20261103/records.json` — five additional **fictional in-universe memoir** Work candidates, one ISBN edition observation each, sourced from full raw Penguin Random House (Titan Books distributor) HTML+JSON-LD page receipts. A Kirk/Picard/Janeway boxed set is separately recorded as a **container** and never a sixth new Work in this batch. [Source identity and rights caveats](../proposals/librarian/prh-star-trek-autobiographies-20261103/MANIFEST.md). No raw publisher HTML or cover image is in the public repository.
 
-The proposed expansion has **1206 source-local rows**: 1155 episode-related metadata
-references, 14 films, one literary Work with four editions, 35 short-form
+The proposed expansion has **1211 source-local rows**: 1155 episode-related metadata
+references, 14 films, six literary Work candidates (one novel with four editions, five fictional memoirs), 35 short-form
 releases and one audio-series container. These numbers
 are not a count of distinct Star Trek Works, complete episodes, admitted
 Briefings, verified sources, or a denominator for the universe. The same Work

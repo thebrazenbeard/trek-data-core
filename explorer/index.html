@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=395c331937c63f4826fcd15f0f04e72104606906f585cd94e7c6342f976aa355">
-  <script src="./app.js?v=2d79c426f65ebe14d2605c75d6e97e57fb64dc0d322436ca7c701a48474cc22e" defer></script>
+  <link rel="stylesheet" href="./app.css?v=7d3fb7e8a0d286b11477a0fc6bce1f47329e4c76aafc90a0d8cd00b538faa144">
+  <script src="./app.js?v=7798e32142c2c5a517c36a31aca29c3b9bd8e97d1b1c0289aac80095d936af40" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -19,7 +19,7 @@
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
-  <nav class="lcars-navigation" aria-label="Explorer sections">
+  <nav id="explorer-navigation" class="lcars-navigation" aria-label="Explorer sections">
     <span class="navigation-label" aria-hidden="true">Archive stations</span>
     <a href="#main">Status</a>
     <a class="navigation-primary" href="#discovery-directory">Universe directory <span id="discovery-nav-count">—</span></a>
@@ -29,6 +29,7 @@
     <a href="#briefings">Briefings</a>
     <a href="#records">Continuity</a>
   </nav>
+  <p id="navigation-scroll-hint" class="navigation-scroll-hint" hidden>More sections → Swipe, scroll or Tab</p>
 
   <header class="masthead">
     <img class="masthead-art" src="./trek-data-core-hero.jpg?v=689794354abd322e438d4e02202dfcb99ee5e21f2e2c4f6a6916ada0d0262ed3" width="1536" height="512" alt="Panoramic starship bridge facing a luminous celestial navigation chart" decoding="async" fetchpriority="high">

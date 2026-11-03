@@ -805,14 +805,15 @@
       if (lineage !== 'all' && item.source_group !== lineage) return false;
       // The facet reflects only currently loaded and validated display-sidecar
       // records. A missing/failed appendix cannot masquerade as a reviewed read.
-      const hasReviewedOverview = synopsisState.entries.has(artworkKey(item));
+      const reviewedOverview = synopsisState.entries.get(artworkKey(item));
+      const hasReviewedOverview = Boolean(reviewedOverview);
       if (overview === 'reviewed' && !hasReviewedOverview) return false;
       if (overview === 'not-loaded' && hasReviewedOverview) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const check = metadataRechecks.byId.get(item.row_id);
       const checkStatus = !check ? 'not_rechecked' : check.title_check === 'EXACT' ? 'rechecked_exact' : 'rechecked_unresolved';
-      const reviewed = synopsisState.entries.has(artworkKey(item));
+      const reviewed = hasReviewedOverview;
       if (verification !== 'all' && checkStatus !== verification) return false;
       if (synopsis !== 'all' && (reviewed ? 'reviewed_publisher_paraphrase' : 'pending') !== synopsis) return false;
       if (tag !== 'all' && ![
@@ -824,8 +825,8 @@
       const seriesLabel = item.medium === 'EPISODE' && Object.hasOwn(directorySeriesLabels, seriesCode)
         ? directorySeriesLabels[seriesCode] : '';
       const body = normalize([item.title, item.context, seriesLabel,
-        item.candidate_kind, item.source_group,
-        ...item.details].join(' '));
+        item.candidate_kind, item.source_group, item.source_input,
+        ...item.details, reviewedOverview?.overview_text || ''].join(' '));
       return terms.every((part) => body.includes(part));
     });
     const visible = rows.slice(0, directoryState.limit);

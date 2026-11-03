@@ -105,6 +105,20 @@ h1 span { color: var(--peach); }
 .lore-chat-turn p { margin: 0; }
 .lore-chat-sources { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 7px; color: var(--muted); font-size: .78rem; }
 .lore-chat-sources li { margin-top: 3px; }
+.lore-web-station { margin: 14px 0 24px; padding: 21px; background: #081e2b; border: 1px solid var(--aqua); border-left: 12px solid var(--peach); border-radius: 26px 4px 4px 4px; }
+.lore-web-heading-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.lore-web-heading-row h3 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 9px; font-size: 1.3rem; }
+.lore-web-mode { padding: 6px 11px; border: 1px solid var(--aqua); border-radius: 16px 3px 3px 16px; font: 800 .68rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--aqua); text-transform: uppercase; }
+.lore-web-instructions { margin: 0 0 11px; max-width: 100ch; color: var(--muted); font-size: .88rem; line-height: 1.6; }
+.lore-web-privacy { font-size: .78rem; }
+.lore-web-start-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 13px 0 8px; }
+.lore-web-log { max-height: 380px; min-height: 65px; padding: 12px 0; margin-bottom: 10px; }
+.lore-web-log:empty::before { content: 'Awaiting first transmission. Lore is not exactly known for patience.'; display: block; padding: 12px; color: var(--muted); font-style: italic; }
+.lore-web-station textarea { width: 100%; min-width: 0; max-width: 100%; background: var(--deep); border: 1px solid var(--line); border-radius: 4px; color: var(--text); padding: 11px; resize: vertical; font: inherit; }
+.lore-web-station button:disabled { opacity: .55; cursor: not-allowed; }
+.lore-legacy-options { margin: 10px 0 24px; color: var(--muted); font-size: .82rem; }
+.lore-legacy-options > summary { cursor: pointer; max-width: max-content; padding: 8px 4px; }
+.lore-legacy-options[open] > summary { color: var(--amber); }
 .readout { display: grid; grid-template-columns: 1fr 1.7fr; align-items: center; gap: 28px; border: 1px solid var(--line); border-top: 12px solid var(--peach); border-left: 18px solid var(--violet); padding: 30px; background: var(--surface); border-radius: 48px 4px 4px 4px; }
 h2 { margin: 0; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.02em; }
 .state-note { margin: 13px 0 0; color: var(--muted); max-width: 480px; }

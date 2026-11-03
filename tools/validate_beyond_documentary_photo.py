@@ -112,9 +112,16 @@ class PremiereMarkup(HTMLParser):
                     re.fullmatch(r"\./trek-data-core-hero\.jpg\?v=[a-f0-9]{64}", values.get("src") or "") is not None,
                     "unreviewed static image before visitor opt-in")
         if "src" in values and tag != "img":
-            require(tag == "script" and
-                    re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", values["src"] or "") is not None,
-                    "unreviewed HTML src resource before visitor opt-in")
+            require(tag == "script", "unreviewed HTML src resource before visitor opt-in")
+            source = values["src"] or ""
+            if re.fullmatch(r"\./app\.js\?v=[a-f0-9]{64}", source):
+                require(set(values) == {"src", "defer"} and values["defer"] is None,
+                        "unreviewed main script attributes")
+            elif re.fullmatch(r"\./(?:lore-web-model|lore-public-chat)\.js\?v=[a-f0-9]{64}", source):
+                require(set(values) == {"src", "type"} and values["type"] == "module",
+                        "unreviewed Lore module attributes")
+            else:
+                raise ReleaseRejected("unreviewed HTML src resource before visitor opt-in")
         if tag in {"picture", "source", "video", "iframe", "object", "embed", "image", "feimage", "use", "foreignobject"}:
             raise ReleaseRejected("unreviewed pre-consent image-capable HTML element")
         if self.panel_depth is not None and tag == "img":
@@ -204,14 +211,17 @@ def validate(root: Path = ROOT) -> dict:
     require(markup.panels == markup.buttons == 1 and markup.images_before_consent == 0,
             "premiere DOM must have one disabled consent gate and zero startup image nodes")
     require(markup.csp is not None, "missing CSP")
-    # Narrow chat-only loopback POST permission is not a photo/image release.
-    # Preserve exact allowed endpoints; an arbitrary connect-src or widened
-    # img-src remains prohibited while the documentary photo is held.
+    # The public Lore model is loaded only after an explicit visitor action.
+    # Its non-image CDN connections do not authorize held photo image loads.
+    # Reject any widened image scope or unreviewed connection origin here.
     chat_connections = markup.csp.split("connect-src ", 1)[1].split(";", 1)[0] if "connect-src " in markup.csp else ""
     require("img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org;" in markup.csp and
             "https://thumb.wikimedia.org" not in markup.csp and
             "https://upload.wikimedia.org" not in markup.csp and
-            chat_connections == "'self' http://127.0.0.1:9877",
+            chat_connections == ("'self' http://127.0.0.1:9877 https://cdn.jsdelivr.net "
+                                 "https://huggingface.co https://*.huggingface.co https://*.hf.co "
+                                 "https://raw.githubusercontent.com https://*.githubusercontent.com "
+                                 "https://challenges.cloudflare.com"),
             "premiere photo must not extend image network CSP before public release")
     require(DIGEST in js and DECISION_DIGEST in js and
             "fetch('./beyond-premiere-photo.json'" in js and

@@ -34,6 +34,12 @@ class OPFFourthSixTests(unittest.TestCase):
     def test_previous_id_reused(self):
         self.rejected(lambda x: x["records"][0].update(opf_source_local_id="opf-local:0062"))
 
+    def test_newly_accepted_345_id_reused(self):
+        self.rejected(lambda x: x["records"][0].update(opf_source_local_id="opf-local:0076"))
+
+    def test_newly_accepted_345_last_id_reused(self):
+        self.rejected(lambda x: x["records"][0].update(opf_source_local_id="opf-local:0079"))
+
     def test_duplicate_row(self):
         self.rejected(lambda x: x["records"][1].update(opf_source_local_id="opf-local:0073"))
 

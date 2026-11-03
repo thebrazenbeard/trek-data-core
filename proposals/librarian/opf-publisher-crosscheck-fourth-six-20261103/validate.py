@@ -16,23 +16,25 @@ OLDER = tuple(REPO / f"proposals/librarian/{name}/records.json" for name in (
     "opf-publisher-crosscheck-next-ten-20261103",
     "opf-publisher-crosscheck-third-ten-20261103",
 ))
+# Independently accepted main crosswalk #345 (merged while this draft was in flight).
+ACCEPTED_345_SOURCE_IDS = frozenset(f"opf-local:{number:04d}" for number in range(76, 80))
 MATCH = "PUBLISHER_ISBN_METADATA_MATCH_PRIVATE_EQUIVALENCE_UNVERIFIED"
 HELD = "HELD_PUBLISHER_PARAPHRASE_NO_PRIVATE_TEXT"
 EXPECTED = {
     "opf-local:0073": ("9780743421089", "Grounded", ("David Bischoff",), "Grounded/David-Bischoff"),
-    "opf-local:0076": ("9780743421119", "Here There Be Dragons", ("John Peel",), "Here-There-Be-Dragons/John-Peel"),
-    "opf-local:0079": ("9780743421140", "Foreign Foes", ("Dave Galanter", "Greg Brodeur"), "Foreign-Foes/Dave-Galanter"),
     "opf-local:0082": ("9780743421232", "Blaze of Glory", ("Simon Hawke",), "Blaze-of-Glory/Simon-Hawke"),
     "opf-local:0084": ("9780743421379", "Into the Nebula", ("Gene DeWeese",), "Into-the-Nebula/Gene-DeWeese"),
     "opf-local:0085": ("9780743421393", "The Last Stand", ("Brad Ferguson",), "The-Last-Stand/Brad-Ferguson"),
+    "opf-local:0087": ("9780743421164", "Rogue Saucer", ("John Vornholt",), "Rogue-Saucer/John-Vornholt"),
+    "opf-local:0088": ("9780743421171", "Possession", ("J.M. Dillard", "Kathleen O'malley"), "Possession/J-M-Dillard"),
 }
 PIN = {
     "opf-local:0073": "fbe1e767182ff5be856ee2c749dc0ac2b209abab2826a660c13de558b6e51e7f",
-    "opf-local:0076": "5b267786b587eb63cbacd6b838eeaecb9a8e93a7e56d5c40afaf78a3145578ce",
-    "opf-local:0079": "b94498aa3c20afee6c2978b840f679d461e3f214c2bd5ffd259f22cb0b6e9274",
     "opf-local:0082": "731964c07a549928914b266339e9e3a6f9c06d700ba722035a70ce894ffd4341",
     "opf-local:0084": "342cd636afa4db303115a7413b527aed5a8ead16ea7add758b3b6a3dd7aa1fd6",
     "opf-local:0085": "aeda58453d58888c343c4ebceb6951186c3032357c09e9f2bc519690ad953fc7",
+    "opf-local:0087": "e254cf2264db4f1dfef408043e8387181979eb3be8c362879986d8c0fe705341",
+    "opf-local:0088": "585787f5f05b249cf5c7d8caa43ce030d015dfb1e50b07401bb8789b0d39cc6d",
 }
 ENVELOPE = frozenset({
     "schema_version", "proposal_id", "source_observation_path", "source_observation_sha256",
@@ -123,6 +125,8 @@ def validate(data: dict, observations: dict, source_bytes: bytes, older: tuple[d
             "Previous publisher batches changed")
     previous_ids = {r["opf_source_local_id"] for p in older for r in p["records"]}
     require(previous_ids.isdisjoint(EXPECTED), "Duplicate source-local ID against accepted publisher tranches")
+    require(ACCEPTED_345_SOURCE_IDS.isdisjoint(EXPECTED),
+            "Duplicate source-local ID against accepted #345 OPF crosswalk")
     rows = data["records"]
     require(isinstance(rows, list) and len(rows) == 6
             and all(isinstance(r, dict) and set(r) == ROW for r in rows),

@@ -1,0 +1,479 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-PRIVATE-TXT51-100-20261103",
+  "accepted_main_baseline": "69f0a5c46e78b9d034ff168d969374892fc997e0",
+  "archive": {
+    "opaque_id": "OWNER_PRIVATE_ST_EBOOK_ARCHIVE_B",
+    "whole_zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "bytes": 126481241,
+    "zip_members": 573,
+    "txt_members": 220
+  },
+  "sample": "lexically sorted TXT member ordinals 51-100; six series filename hints",
+  "prior_accepted_packet": {
+    "proposal_id": "LIBRARIAN-PRIVATE-DS9-TXT50-20261103",
+    "records_sha256": "56017619758a9e0294384187ec1c18569b1966729bfaf47fbdc85a8d68438553",
+    "range_start": 1,
+    "range_end": 50
+  },
+  "data_rights": "UNKNOWN",
+  "member_byte_access": "HASHED_WITHOUT_SEMANTIC_READ",
+  "work_coverage_stage": "DISCOVERED",
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "copyrighted_text_exported": false,
+  "private_member_paths_exported": false,
+  "records": [
+    {
+      "source_local_id": "txt-local:0051",
+      "archive_txt_ordinal": 51,
+      "series_hint": "DS9",
+      "series_file_sequence_hint": 51,
+      "title_hint": "Terok Nor Dawn of the Eagles",
+      "uncompressed_bytes": 717229,
+      "member_sha256": "0680613379e50eac43750a737377ab4b1cd81b677e2410faf4a2a9596f612145"
+    },
+    {
+      "source_local_id": "txt-local:0052",
+      "archive_txt_ordinal": 52,
+      "series_hint": "DS9",
+      "series_file_sequence_hint": 52,
+      "title_hint": "Fearful Symmetry",
+      "uncompressed_bytes": 454396,
+      "member_sha256": "0a81c68ee017d850595fb652b1d68dc59af40ca33cb4f07c6519a90761849498"
+    },
+    {
+      "source_local_id": "txt-local:0053",
+      "archive_txt_ordinal": 53,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 1,
+      "title_hint": "House of Cards",
+      "uncompressed_bytes": 207565,
+      "member_sha256": "a4c026d4eda696371d661d81a3a7a0e483119bc974623aa923d505db64f8221a"
+    },
+    {
+      "source_local_id": "txt-local:0054",
+      "archive_txt_ordinal": 54,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 2,
+      "title_hint": "Into the Void",
+      "uncompressed_bytes": 175042,
+      "member_sha256": "e0d6529a831fb6b1f88b84dbeaf06f51e53f8aefcdd883997846dea9ac71c11d"
+    },
+    {
+      "source_local_id": "txt-local:0055",
+      "archive_txt_ordinal": 55,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 3,
+      "title_hint": "The Two-Front War",
+      "uncompressed_bytes": 180085,
+      "member_sha256": "43064116f8954d8d693f931cddc8b176d75410c134701ed4320982a1a1da492d"
+    },
+    {
+      "source_local_id": "txt-local:0056",
+      "archive_txt_ordinal": 56,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 4,
+      "title_hint": "End Game",
+      "uncompressed_bytes": 235862,
+      "member_sha256": "cc8119ededa094f244068585c248e334dad1e4fd5719ef676e878f4dcc894f1e"
+    },
+    {
+      "source_local_id": "txt-local:0057",
+      "archive_txt_ordinal": 57,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 5,
+      "title_hint": "Martyr",
+      "uncompressed_bytes": 434329,
+      "member_sha256": "568e423f2536c54655f0e46902d9bd3a6941702a758cfe7472a0019be8c5ada8"
+    },
+    {
+      "source_local_id": "txt-local:0058",
+      "archive_txt_ordinal": 58,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 6,
+      "title_hint": "Fire On High",
+      "uncompressed_bytes": 393317,
+      "member_sha256": "639d5ae26bfc3793e4828b9bda8027c5d40ee257e9cb600d0cfd47cf5d3181e7"
+    },
+    {
+      "source_local_id": "txt-local:0059",
+      "archive_txt_ordinal": 59,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 7,
+      "title_hint": "The Quiet Place",
+      "uncompressed_bytes": 408836,
+      "member_sha256": "f04175e8c3506c7e89740258df15c0a7e7f327279e4552be8031aec37e985078"
+    },
+    {
+      "source_local_id": "txt-local:0060",
+      "archive_txt_ordinal": 60,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 8,
+      "title_hint": "Dark Allies",
+      "uncompressed_bytes": 384822,
+      "member_sha256": "de65a41a164bbaf7714c3696e993fb09fd9a0f42af748caf0d2aabdac296a9c9"
+    },
+    {
+      "source_local_id": "txt-local:0061",
+      "archive_txt_ordinal": 61,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 9,
+      "title_hint": "Excalibur 1 - Requiem",
+      "uncompressed_bytes": 396057,
+      "member_sha256": "c90da658f07c9de4a3ae657cdf0b5daa2df24ce774283cab77bd6dd85501ffbf"
+    },
+    {
+      "source_local_id": "txt-local:0062",
+      "archive_txt_ordinal": 62,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 10,
+      "title_hint": "Excalibur 2 - Rennaissance",
+      "uncompressed_bytes": 396697,
+      "member_sha256": "3f4dceaa3aa39697d1dad694977f1a28d106f9ae687e70c3d9654bc18e3b449b"
+    },
+    {
+      "source_local_id": "txt-local:0063",
+      "archive_txt_ordinal": 63,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 11,
+      "title_hint": "Excalibur 3 - Restoration",
+      "uncompressed_bytes": 757760,
+      "member_sha256": "599731f90db17d432fb7f9bf4f1dba16af0f3ce53293edd83d4eefb10a843cb5"
+    },
+    {
+      "source_local_id": "txt-local:0064",
+      "archive_txt_ordinal": 64,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 12,
+      "title_hint": "Being Human",
+      "uncompressed_bytes": 375469,
+      "member_sha256": "035899905131b9a8d8c3472da2c5c67ccd19f3a42efe2342cec044e31f65950a"
+    },
+    {
+      "source_local_id": "txt-local:0065",
+      "archive_txt_ordinal": 65,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 13,
+      "title_hint": "Gods Above",
+      "uncompressed_bytes": 471208,
+      "member_sha256": "c6384deb06f28017fa886b121ca584b9ab3865b30ea7e3062c84bd13837b19cb"
+    },
+    {
+      "source_local_id": "txt-local:0066",
+      "archive_txt_ordinal": 66,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 14,
+      "title_hint": "Stone and Anvil",
+      "uncompressed_bytes": 558915,
+      "member_sha256": "f5ecf1237b1adaaeb0c8b6472bffe2fa7301e75f09b09345dbfc7ae24778d848"
+    },
+    {
+      "source_local_id": "txt-local:0067",
+      "archive_txt_ordinal": 67,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 15,
+      "title_hint": "No Limits",
+      "uncompressed_bytes": 800291,
+      "member_sha256": "e8938caad963cd1070c851fc279ed6af4f967f1709a44ff3dd7504f05a667923"
+    },
+    {
+      "source_local_id": "txt-local:0068",
+      "archive_txt_ordinal": 68,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 16,
+      "title_hint": "After the Fall",
+      "uncompressed_bytes": 488045,
+      "member_sha256": "0bd9b8e89cb1c1b5be541fe614ce590fac75221a1922bb5de20b248bb640068d"
+    },
+    {
+      "source_local_id": "txt-local:0069",
+      "archive_txt_ordinal": 69,
+      "series_hint": "New Frontier",
+      "series_file_sequence_hint": 17,
+      "title_hint": "Missing in Action",
+      "uncompressed_bytes": 521912,
+      "member_sha256": "a8df1a5bd45b9b153913aba29b42ecc683107153ef704227819b99d477bdcddf"
+    },
+    {
+      "source_local_id": "txt-local:0070",
+      "archive_txt_ordinal": 70,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 1,
+      "title_hint": "A Sea of Troubles",
+      "uncompressed_bytes": 155299,
+      "member_sha256": "eaff93084773931fbff1fcf3cc355aa65262d39e47c8c0609da9edc402805289"
+    },
+    {
+      "source_local_id": "txt-local:0071",
+      "archive_txt_ordinal": 71,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 2,
+      "title_hint": "The Oppressor's Wrong",
+      "uncompressed_bytes": 222269,
+      "member_sha256": "073a0993e88dbec541895e4b149e107385afe8f017f97aee5b4570151b56c96f"
+    },
+    {
+      "source_local_id": "txt-local:0072",
+      "archive_txt_ordinal": 72,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 3,
+      "title_hint": "The Insolence of Office",
+      "uncompressed_bytes": 144489,
+      "member_sha256": "ca12932fab4ed71fdfba875eff6a61023abd455255f947f811e5d9c6e0d8ed29"
+    },
+    {
+      "source_local_id": "txt-local:0073",
+      "archive_txt_ordinal": 73,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 4,
+      "title_hint": "That Sleep of Death",
+      "uncompressed_bytes": 64375,
+      "member_sha256": "bf32d8dce8121a27bb4b013ff32067da3f26b1e7238e0fce5c1f615c85240ad1"
+    },
+    {
+      "source_local_id": "txt-local:0074",
+      "archive_txt_ordinal": 74,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 5,
+      "title_hint": "A Weary Life",
+      "uncompressed_bytes": 158399,
+      "member_sha256": "5c463a2aea13442ec4d0b9ccf7c4e1b7b7c9ef2099d33a56363b31757c716b15"
+    },
+    {
+      "source_local_id": "txt-local:0075",
+      "archive_txt_ordinal": 75,
+      "series_hint": "Slings and Arrows",
+      "series_file_sequence_hint": 6,
+      "title_hint": "Enterprises of Great Pitch and Moment",
+      "uncompressed_bytes": 103601,
+      "member_sha256": "21429ec96e5cd39ee654e9d641eff162d99909cf99de7b95745fd85af5c3a9fd"
+    },
+    {
+      "source_local_id": "txt-local:0076",
+      "archive_txt_ordinal": 76,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 1,
+      "title_hint": "Gauntlet",
+      "uncompressed_bytes": 370001,
+      "member_sha256": "56212404890f0cbb992b2c6e19033e90ede2cda14d1d49680ac0d84602f1c75e"
+    },
+    {
+      "source_local_id": "txt-local:0077",
+      "archive_txt_ordinal": 77,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 2,
+      "title_hint": "Progenitor",
+      "uncompressed_bytes": 380310,
+      "member_sha256": "7bd77d41bcc24ca21c4756966b884a721365dc186f538e15426fac8ea57b1c16"
+    },
+    {
+      "source_local_id": "txt-local:0078",
+      "archive_txt_ordinal": 78,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 3,
+      "title_hint": "Three",
+      "uncompressed_bytes": 332187,
+      "member_sha256": "4dc5610b63101d44f146e3544c5383c2ab4b99e30e8801387d1066342614b091"
+    },
+    {
+      "source_local_id": "txt-local:0079",
+      "archive_txt_ordinal": 79,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 4,
+      "title_hint": "Oblivion",
+      "uncompressed_bytes": 342192,
+      "member_sha256": "639e2c066c24a48aaea73924977180230243cd1b2a1b30b4b08867c08677ecf5"
+    },
+    {
+      "source_local_id": "txt-local:0080",
+      "archive_txt_ordinal": 80,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 5,
+      "title_hint": "Enigma",
+      "uncompressed_bytes": 335887,
+      "member_sha256": "a270ebb63e2835aa0d3df1c424064e12b3fc083d1fd0d49c46079cf40b13eca6"
+    },
+    {
+      "source_local_id": "txt-local:0081",
+      "archive_txt_ordinal": 81,
+      "series_hint": "Stargazer",
+      "series_file_sequence_hint": 6,
+      "title_hint": "Maker",
+      "uncompressed_bytes": 359373,
+      "member_sha256": "6e7a1506405beaa8d4c7c26e358902e5d749a104eaaf83731325b91a42403723"
+    },
+    {
+      "source_local_id": "txt-local:0082",
+      "archive_txt_ordinal": 82,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 1,
+      "title_hint": "Taking Wing",
+      "uncompressed_bytes": 571710,
+      "member_sha256": "85d3e61aff4a9c3f89a0c530e6eabbeb221f70a64030322c51455857a54a0790"
+    },
+    {
+      "source_local_id": "txt-local:0083",
+      "archive_txt_ordinal": 83,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 2,
+      "title_hint": "Red King",
+      "uncompressed_bytes": 577136,
+      "member_sha256": "b5f92d6f9e845b4b0e1dcd540a746cfbe771b8a99fed0293085319ecab15d16c"
+    },
+    {
+      "source_local_id": "txt-local:0084",
+      "archive_txt_ordinal": 84,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 3,
+      "title_hint": "Orion's Hounds",
+      "uncompressed_bytes": 621070,
+      "member_sha256": "9de3947a4f9cb3184bf14343bb2a03c2d1fa586bc7baf5d49efabc0cdced5ce6"
+    },
+    {
+      "source_local_id": "txt-local:0085",
+      "archive_txt_ordinal": 85,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 4,
+      "title_hint": "Sword of Damocles",
+      "uncompressed_bytes": 535826,
+      "member_sha256": "a05b484d49eae0321585eeb3602b4faa990f95aa4bf81e8b43436d62e68f7c2b"
+    },
+    {
+      "source_local_id": "txt-local:0086",
+      "archive_txt_ordinal": 86,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 5,
+      "title_hint": "Gods of Night (Destiny, Book 1)",
+      "uncompressed_bytes": 573620,
+      "member_sha256": "63a2dcf62f4b9aa3f434fd9447e4ff0135a3fbd0390248811a5e30d589c49e73"
+    },
+    {
+      "source_local_id": "txt-local:0087",
+      "archive_txt_ordinal": 87,
+      "series_hint": "Titan",
+      "series_file_sequence_hint": 6,
+      "title_hint": "Mere Mortals (Destiny, Book 2)",
+      "uncompressed_bytes": 588632,
+      "member_sha256": "fc05b67ce52cfa72849ddfa32d191f340be17339b1b4de5c0cafe4dd848e8dcd"
+    },
+    {
+      "source_local_id": "txt-local:0088",
+      "archive_txt_ordinal": 88,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 1,
+      "title_hint": "Ghost Ship",
+      "uncompressed_bytes": 394669,
+      "member_sha256": "80eaa51253b55bc213d6bf0dbfad692ad91ce078e327821e7f40c0cebb9ffaed"
+    },
+    {
+      "source_local_id": "txt-local:0089",
+      "archive_txt_ordinal": 89,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 2,
+      "title_hint": "The Peacekeepers",
+      "uncompressed_bytes": 388043,
+      "member_sha256": "1fdbcb48c43fbf8938ef3250a0b3cfdb7c97ec725ca6a2f1fb2534d8216e178c"
+    },
+    {
+      "source_local_id": "txt-local:0090",
+      "archive_txt_ordinal": 90,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 3,
+      "title_hint": "The Children of Hamlin",
+      "uncompressed_bytes": 369027,
+      "member_sha256": "51f22ebc36e9c2ec6176ca3b2dc8c29cfd23c3b7140f2b04351feb55f09993e4"
+    },
+    {
+      "source_local_id": "txt-local:0091",
+      "archive_txt_ordinal": 91,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 4,
+      "title_hint": "Survivors",
+      "uncompressed_bytes": 456766,
+      "member_sha256": "ad844d1387889f6447e7a577b80672e79c25003982af8d81e27d3ea6e8ebc3bf"
+    },
+    {
+      "source_local_id": "txt-local:0092",
+      "archive_txt_ordinal": 92,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 5,
+      "title_hint": "Strike Zone",
+      "uncompressed_bytes": 407847,
+      "member_sha256": "c1f41f5c96f90c00211c40504a2c146274601416418152f98e5d6fd27b8d9fe0"
+    },
+    {
+      "source_local_id": "txt-local:0093",
+      "archive_txt_ordinal": 93,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 6,
+      "title_hint": "Power Hungry",
+      "uncompressed_bytes": 386613,
+      "member_sha256": "f0002d71ee700cc1de414593a97450aa23e4a9088a6a8d381797f08b45ebe3a5"
+    },
+    {
+      "source_local_id": "txt-local:0094",
+      "archive_txt_ordinal": 94,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 7,
+      "title_hint": "Masks",
+      "uncompressed_bytes": 449545,
+      "member_sha256": "606abaf739f1daa2dd3e2f3afad1c2b813e8bb8bb7defd29ff089fcbd132b5cb"
+    },
+    {
+      "source_local_id": "txt-local:0095",
+      "archive_txt_ordinal": 95,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 8,
+      "title_hint": "The Captain's Honor",
+      "uncompressed_bytes": 337904,
+      "member_sha256": "6a6704fb743fb653fa071dfef9251fba8540db6b163ca90c07731ddb6991b441"
+    },
+    {
+      "source_local_id": "txt-local:0096",
+      "archive_txt_ordinal": 96,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 9,
+      "title_hint": "A Call to Darkness",
+      "uncompressed_bytes": 465720,
+      "member_sha256": "f34d00add13968ff6851935cb25486d583725631abb55bd7e0900458605ce76b"
+    },
+    {
+      "source_local_id": "txt-local:0097",
+      "archive_txt_ordinal": 97,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 10,
+      "title_hint": "A Rock and a Hard Place",
+      "uncompressed_bytes": 391953,
+      "member_sha256": "49a4717508f5df1c2ca3a5b122ea825e31c5501aa2016790b9bd6c22a849c40d"
+    },
+    {
+      "source_local_id": "txt-local:0098",
+      "archive_txt_ordinal": 98,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 11,
+      "title_hint": "Gulliver's Fugitives",
+      "uncompressed_bytes": 436011,
+      "member_sha256": "89ccded2018eb30b2f0883348a60596fff44a981a27d703cad08564ec57751ce"
+    },
+    {
+      "source_local_id": "txt-local:0099",
+      "archive_txt_ordinal": 99,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 12,
+      "title_hint": "Doomsday World",
+      "uncompressed_bytes": 414508,
+      "member_sha256": "5d0c631695d55289c8d9bdb5bc295b261a3d8308afd52d28c2a9d3693789ec69"
+    },
+    {
+      "source_local_id": "txt-local:0100",
+      "archive_txt_ordinal": 100,
+      "series_hint": "TNG",
+      "series_file_sequence_hint": 13,
+      "title_hint": "The Eyes of the Beholders",
+      "uncompressed_bytes": 392983,
+      "member_sha256": "d84f65db48510e4693160a061eda03401bce65ceb47db57c9c0844146609e5ce"
+    }
+  ],
+  "records_sha256": "59cb068ab6fee0338846c031bcf4f25044c01a055856f156b6acdd4f0cf94d27"
+}

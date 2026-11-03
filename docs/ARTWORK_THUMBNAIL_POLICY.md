@@ -80,6 +80,16 @@ rights gates:
 - The rendered image links visibly to Open Library. It is fetched only after
   opt-in, with `referrerPolicy='no-referrer'`, `loading='lazy'`, and a fallback.
 
+**Current release gate:** no Open Library edition-to-cover receipt has been
+independently reviewed and pinned to a public directory row. The Explorer
+therefore rejects **all** Open Library artwork sidecar entries, including
+entries with plausible ISBNs, cover IDs and 64-character metadata hashes.
+Before enabling one, a separate source-relative review must pin the exact
+directory row, publisher locator, edition ISBN, Open Library cover ID, and
+edition-metadata digest in the audited Explorer release. Sidecar-supplied
+values cannot approve themselves. This does not establish jacket copyright
+clearance; the external API rights warning and visitor opt-in still apply.
+
 Static Pages packaging, the artifact allowlist, and independent rights review
 must be updated and rerun before adding any actual sidecar or image binaries.
 The JavaScript validator is a defense-in-depth contract, **not** a legal

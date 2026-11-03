@@ -1,0 +1,38 @@
+{
+  "record_type": "PROPOSED_SOURCE_ROUTE_ASSERTIONS_NOT_FICTIONAL_FACTS",
+  "batch_id": "ds9-source-custody-gap-20261103",
+  "assertions": [
+    {
+      "id": "a01",
+      "predicate": "AUTHENTICATED_PRIMARY_SOURCE_ACCESS_PENDING",
+      "subject": "ds9-source-custody-gap-20261103",
+      "object": "No exact primary episode audiovisual cut or authenticated shooting-script bytes were accessible to this work unit.",
+      "evidence_ids": ["r01", "r02", "r03", "r05"],
+      "counter_evidence_ids": [],
+      "status": "PROPOSED_UNRESOLVED",
+      "falsifier": "A rights-authorized local disc image, verified collection item, or actually viewed licensed cut may establish a bounded primary-source read."
+    },
+    {
+      "id": "a02",
+      "predicate": "SOURCE_VERSION_RECONCILIATION_REQUIRED",
+      "subject": "ds9-licensed-companion-cdrom",
+      "object": "The marketing claim of a complete shooting-script library cannot identify each episode's exact draft revision or prove concordance with an aired cut without disc and item inspection.",
+      "evidence_ids": ["r01", "r03"],
+      "counter_evidence_ids": [],
+      "status": "PROPOSED_UNRESOLVED",
+      "falsifier": "An independently verified bit-preserved disc plus per-item headers and comparison against an independently authenticated studio draft or aired cut."
+    },
+    {
+      "id": "a03",
+      "predicate": "DERIVATIVE_INDEPENDENCE_UNVERIFIED",
+      "subject": "ds9-st-minutiae-scripts",
+      "object": "The public script index is not itself an independent authenticated source or a source-rights grant.",
+      "evidence_ids": ["r04"],
+      "counter_evidence_ids": [],
+      "status": "PROPOSED_UNRESOLVED",
+      "falsifier": "A documented original producer release chain, verified source bytes/edition and rights agreement for the specific published copy."
+    }
+  ],
+  "accepted_assertions": 0,
+  "projection_effect": "NONE"
+}

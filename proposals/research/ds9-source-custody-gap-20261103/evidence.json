@@ -1,0 +1,49 @@
+{
+  "record_type": "SOURCE_ROUTE_CATALOG_EVIDENCE_NOT_EPISODE_EVIDENCE",
+  "batch_id": "ds9-source-custody-gap-20261103",
+  "source_scope": "PUBLIC_CATALOG_HOLDINGS_AND_ACCESS_DESCRIPTIONS",
+  "evidence": [
+    {
+      "id": "r01",
+      "route_id": "ds9-licensed-companion-cdrom",
+      "kind": "PRODUCT_DESCRIPTION_AND_RESELLER_METADATA",
+      "locator": "TrekCore product-description lines 14-29; Noble Knight retail product metadata",
+      "observation": "A third-party transcription of product packaging describes a searchable shooting-script library, while a retailer identifies a Simon & Schuster PC CD-ROM issued in 1999. Neither provides authenticated disc bytes or a revision manifest.",
+      "source_level": "PRODUCT_CLAIM_NOT_SCRIPT_FIDELITY_PROOF"
+    },
+    {
+      "id": "r02",
+      "route_id": "ds9-wgf-library",
+      "kind": "INSTITUTIONAL_HOLDINGS_AND_POLICY",
+      "locator": "WGF 60 Years of Star Trek article, library-materials section; WGF FAQ Library and Archive script-copy section",
+      "observation": "The Foundation reports holding a few DS9 scripts, but says consultation is onsite and remote script copies or loans are unavailable. Episode-specific holdings were not verified.",
+      "source_level": "PRIMARY_INSTITUTION_SELF_REPORT_NO_SCRIPT_READ"
+    },
+    {
+      "id": "r03",
+      "route_id": "ds9-ucr-ms379",
+      "kind": "ARCHIVAL_FINDING_AID",
+      "locator": "OAC UC Riverside MS379 Summary, Scope and Content, Access and Use",
+      "observation": "Collection-level finding aid documents mixed preliminary, first and final DS9/Voyager script drafts. It does not authenticate a particular episode cut, and reproduction restrictions remain applicable.",
+      "source_level": "PRIMARY_ARCHIVE_COLLECTION_DESCRIPTION_NOT_ITEM_EXAMINATION"
+    },
+    {
+      "id": "r04",
+      "route_id": "ds9-st-minutiae-scripts",
+      "kind": "DERIVATIVE_INDEX_DISCOVERY",
+      "locator": "Public Collected Star Trek Scripts index, DS9 seasons and aggregate ZIP listing",
+      "observation": "The indexed website exposes DS9 script links, but the viewed index does not establish possession of an original studio master, precise draft revision, or rights to redistribute the text. No script body was opened during this queue hold.",
+      "source_level": "DISCOVERY_ONLY_NO_AUTHENTICATED_SCRIPT"
+    },
+    {
+      "id": "r05",
+      "route_id": "ds9-paramount-streaming",
+      "kind": "PUBLISHER_EPISODE_CATALOG",
+      "locator": "Paramount+ DS9 Season 1 episode guide; accepted publisher-guide proposal in this repository",
+      "observation": "Publisher episode cards give titles, slots and descriptions, but the catalog is not itself a watched audiovisual source. Full episode content and exact regional cut remain unobserved.",
+      "source_level": "PUBLISHER_METADATA_NOT_PRIMARY_AV_CONTENT"
+    }
+  ],
+  "episode_scene_or_dialogue_evidence_count": 0,
+  "source_route_observation_count": 5
+}

@@ -166,6 +166,135 @@
   const researchState = { leads: [], available: false };
   const filmState = { films: [], available: false };
 
+  // Artwork is a separate, explicitly rights-reviewed release artifact. The
+  // episode/film/source-local JSON schemas must not grow unaudited image URLs.
+  // No publisher image URL is inferred from metadata. Licensed local images
+  // and the explicitly documented Open Library Covers API are separate,
+  // reviewed display routes; remote API thumbnails are opt-in, never mirrored.
+  const artworkState = { entries: new Map(), available: false, enabled: false };
+  const artworkToggle = byId('artwork-toggle');
+  const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
+
+  function artworkKey(row) {
+    return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
+  }
+
+  function makeArtworkSlot(medium, key) {
+    const label = artworkKinds[medium] || 'Media';
+    const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
+    const title = el('span', 'artwork-kind', label);
+    const missing = el('span', 'artwork-missing', 'Artwork not sourced');
+    frame.append(title, missing);
+    const source = artworkState.enabled ? artworkState.entries.get(key) : null;
+    if (source) {
+      const img = el('img');
+      const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
+      img.src = remoteLibrary
+        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`
+        : source.image_path;
+      img.alt = source.alt_text;
+      img.width = 76;
+      img.height = 105;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', () => {
+        frame.replaceChildren(title, el('span', 'artwork-missing', 'Image unavailable'));
+      });
+      frame.append(img);
+      if (remoteLibrary) {
+        const credit = el('a', 'artwork-credit', 'Open Library');
+        credit.href = source.attribution_url;
+        credit.target = '_blank';
+        credit.rel = 'noopener noreferrer';
+        frame.append(credit);
+      }
+    }
+    return frame;
+  }
+
+  function setArtworkAvailability(available, message) {
+    artworkState.available = available;
+    if (!available) { artworkState.entries.clear(); artworkState.enabled = false; }
+    artworkToggle.disabled = !available;
+    artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
+    artworkToggle.textContent = artworkState.enabled ? 'Hide sourced artwork' : 'Show sourced artwork';
+    byId('artwork-state').textContent = message;
+    renderDirectory();
+    renderFilms();
+  }
+
+  function acceptArtworkCatalog(data) {
+    const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
+      Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
+    const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
+    const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator', 'rights_status', 'rights_receipt_sha256'];
+    const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.1.0' ||
+        data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
+        data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
+        !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
+        data.artwork_count !== data.artwork.length) {
+      throw new Error('Artwork release manifest has an invalid or unreviewed envelope.');
+    }
+    const sourceRows = new Map();
+    for (const row of directoryState.rows) sourceRows.set(artworkKey(row), row);
+    for (const row of filmState.films) sourceRows.set(artworkKey(row), row);
+    const entries = new Map();
+    for (const item of data.artwork) {
+      if (typeof item?.row_id !== 'string' || !sourceRows.has(item.row_id) || entries.has(item.row_id) ||
+          typeof item.alt_text !== 'string' || !item.alt_text.trim() || item.alt_text.length > 180 ||
+          item.source_locator !== sourceRows.get(item.row_id).source_locator) {
+        throw new Error('Artwork references an unknown or mismatched source record.');
+      }
+      if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
+        if (!exactKeys(item, openLibraryKeys) ||
+            sourceRows.get(item.row_id).medium !== 'LITERATURE' ||
+            !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
+            typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
+            item.attribution_url !== `https://openlibrary.org/isbn/${item.isbn}` ||
+            item.rights_status !== 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED' ||
+            !/^[a-f0-9]{64}$/.test(item.edition_metadata_sha256 || '')) {
+          throw new Error('External cover has no pinned Open Library edition or documented API display scope.');
+        }
+      } else if (!exactKeys(item, localKeys) ||
+                 !/^\.\/licensed-artwork\/[a-z0-9][a-z0-9._-]{1,128}\.(?:png|jpe?g|webp)$/.test(item.image_path) ||
+                 item.image_path.includes('..') ||
+                 item.rights_status !== 'PUBLIC_DISPLAY_PERMISSION_VERIFIED' ||
+                 !/^[a-f0-9]{64}$/.test(item.image_sha256 || '') ||
+                 !/^[a-f0-9]{64}$/.test(item.rights_receipt_sha256 || '')) {
+        throw new Error('Local artwork lacks immutable image hash or verified public-display permission.');
+      }
+      entries.set(item.row_id, item);
+    }
+    artworkState.entries = entries;
+    const apiCount = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API').length;
+    setArtworkAvailability(true, `${entries.size.toLocaleString()} source-attributed image options (${apiCount} Open Library API previews; underlying copyright may remain unresolved). Off until you choose Show sourced artwork.`);
+  }
+
+  async function loadArtworkCatalog() {
+    try {
+      const response = await fetch('./artwork-catalog.json', { cache: 'no-store' });
+      if (response.status === 404) {
+        setArtworkAvailability(false, 'Artwork is not yet display-cleared. Cards show original LCARS placeholders; no off-site image requests are made.');
+        return;
+      }
+      if (!response.ok) throw new Error(`Artwork manifest returned HTTP ${response.status}.`);
+      acceptArtworkCatalog(await response.json());
+    } catch (error) {
+      setArtworkAvailability(false, `Artwork release was rejected: ${error.message || 'Check artwork rights receipts.'}`);
+    }
+  }
+
+  artworkToggle.addEventListener('click', () => {
+    if (!artworkState.available) return;
+    artworkState.enabled = !artworkState.enabled;
+    artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
+    artworkToggle.textContent = artworkState.enabled ? 'Hide sourced artwork' : 'Show sourced artwork';
+    renderDirectory();
+    renderFilms();
+  });
+
   function setFilmAvailability(available, message) {
     filmState.available = available;
     if (!available) filmState.films = [];
@@ -188,15 +317,17 @@
     const matched = filmState.films.filter((row) => normalize(row.title).includes(search));
     byId('film-summary').textContent = `${matched.length.toLocaleString()} of ${filmState.films.length.toLocaleString()} publisher-listed film candidates shown · unverified metadata.`;
     for (const row of matched) {
-      const card = el('article', 'card');
-      card.append(el('span', 'kicker', row.work_type === 'STREAMING_ORIGINAL_FILM' ? 'Streaming movie · discovery' : 'Feature film · discovery'));
-      card.append(el('h3', null, row.title));
-      card.append(el('p', null, 'Publisher-listed title · metadata only · not source-reviewed'));
+      const card = el('article', 'card media-card');
+      const copy = el('div', 'media-card-copy');
+      card.append(makeArtworkSlot('FILM', artworkKey(row)), copy);
+      copy.append(el('span', 'kicker', row.work_type === 'STREAMING_ORIGINAL_FILM' ? 'Streaming movie · discovery' : 'Feature film · discovery'));
+      copy.append(el('h3', null, row.title));
+      copy.append(el('p', null, 'Publisher-listed title · metadata only · not source-reviewed'));
       const link = el('a', null, 'Open official source');
       link.href = row.source_locator;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      card.append(link);
+      copy.append(link);
       container.append(card);
     }
   }
@@ -308,19 +439,21 @@
       '. These are not distinct or admitted Works.';
     if (!rows.length) { empty.hidden = false; return; }
     for (const item of visible) {
-      const card = el('article', 'directory-card');
-      card.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
-      card.append(el('h3', null, item.title));
-      card.append(el('p', 'directory-context', item.context));
-      card.append(el('p', 'directory-source', `${item.source_group} · unverified · source-local`));
-      card.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
-      if (item.details.length) card.append(el('p', 'directory-context', item.details.join(' · ')));
+      const card = el('article', 'directory-card media-card');
+      const copy = el('div', 'media-card-copy');
+      card.append(makeArtworkSlot(item.medium, artworkKey(item)), copy);
+      copy.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
+      copy.append(el('h3', null, item.title));
+      copy.append(el('p', 'directory-context', item.context));
+      copy.append(el('p', 'directory-source', `${item.source_group} · unverified · source-local`));
+      copy.append(el('small', 'directory-provenance', `Data receipt: ${item.source_input}`));
+      if (item.details.length) copy.append(el('p', 'directory-context', item.details.join(' · ')));
       if (item.source_locator) {
         const link = el('a', null, 'Inspect attributed source');
         link.href = item.source_locator;
         link.rel = 'noopener noreferrer';
         link.target = '_blank';
-        card.append(link);
+        copy.append(link);
       }
       holder.append(card);
     }
@@ -936,7 +1069,6 @@
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  loadFilmCatalog();
-  loadDirectory();
+  Promise.all([loadFilmCatalog(), loadDirectory()]).then(loadArtworkCatalog);
   loadIndex();
 })();

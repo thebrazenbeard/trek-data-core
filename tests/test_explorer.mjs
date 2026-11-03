@@ -10,7 +10,8 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
-  'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle'];
+  'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
+  'artwork-toggle', 'artwork-state'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -56,7 +57,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
@@ -86,6 +87,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
+    if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
     assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(SCRIPT, {
@@ -125,6 +127,130 @@ const filmCatalog = {
     { id: 'section-31', title: 'Star Trek: Section 31', source_locator: 'https://www.startrek.com/news/star-trek-section-31-premieres-january-24', source_group: 'publisher:startrek.com', work_type: 'STREAMING_ORIGINAL_FILM', verification_status: 'UNVERIFIED_METADATA', discovery_source: 'OFFICIAL_ANNOUNCEMENT' }
   ]
 };
+
+const licensedArtwork = {
+  schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+  rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
+  artwork: [{
+    row_id: 'film:star-trek-2009', image_path: './licensed-artwork/verified-film-cover.webp',
+    image_sha256: '1'.repeat(64), alt_text: 'Licensed publisher artwork for Star Trek (2009)',
+    source_locator: filmCatalog.films[0].source_locator, rights_status: 'PUBLIC_DISPLAY_PERMISSION_VERIFIED',
+    rights_receipt_sha256: '2'.repeat(64)
+  }]
+};
+
+test('honest LCARS artwork placeholders render without remote image requests or licensed assets', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, discovery, 200);
+  assert.equal(nodes.get('artwork-toggle').disabled, true);
+  assert.match(nodes.get('artwork-state').textContent, /not yet display-cleared/);
+  assert.match(nodes.get('discovery-list').textContent, /Artwork not sourced/);
+  assert.match(nodes.get('film-list').textContent, /Artwork not sourced/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'image presentation never changes admission');
+});
+
+test('explicit artwork opt-in displays only same-origin rights-receipted assets with graceful error fallback', async () => {
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, licensedArtwork, 200);
+  const toggle = nodes.get('artwork-toggle');
+  assert.equal(toggle.disabled, false);
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0, 'nothing auto-loads');
+  toggle.fire('click');
+  assert.equal(toggle.attributes.get('aria-pressed'), 'true');
+  const images = traverse(nodes.get('film-list'), (n) => n.tagName === 'img');
+  assert.equal(images.length, 1);
+  assert.equal(images[0].src, './licensed-artwork/verified-film-cover.webp');
+  assert.equal(images[0].loading, 'lazy');
+  assert.equal(images[0].referrerPolicy, 'no-referrer');
+  assert.match(images[0].alt, /Licensed publisher artwork/);
+  images[0].fire('error');
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
+  assert.match(nodes.get('film-list').textContent, /Image unavailable/);
+  toggle.fire('click');
+  assert.equal(toggle.attributes.get('aria-pressed'), 'false');
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
+});
+
+test('malicious, unreviewed, duplicated or off-origin artwork records are rejected as a whole', async () => {
+  const changes = [
+    (r) => { r.artwork[0].image_path = 'https://evil.example/track.jpg'; },
+    (r) => { r.artwork[0].image_path = './licensed-artwork/../secrets.webp'; },
+    (r) => { r.artwork[0].image_path = 'data:image/png;base64,AAAA'; },
+    (r) => { r.artwork[0].source_locator = 'https://www.startrek.com@evil.invalid/x'; },
+    (r) => { r.artwork[0].rights_status = 'NOT_ESTABLISHED'; },
+    (r) => { r.artwork[0].image_sha256 = 'unknown'; },
+    (r) => { r.artwork[0].rights_receipt_sha256 = 'unknown'; },
+    (r) => { r.artwork[0].admission_status = 'ACCEPTED'; },
+    (r) => { r.artwork[0].row_id = 'film:unknown'; },
+    (r) => { r.artwork.push(structuredClone(r.artwork[0])); r.artwork_count = 2; },
+    (r) => { r.coverage_effect = 'AUDITED'; },
+  ];
+  for (const change of changes) {
+    const bad = structuredClone(licensedArtwork);
+    change(bad);
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, bad, 200);
+    assert.equal(nodes.get('artwork-toggle').disabled, true);
+    assert.match(nodes.get('artwork-state').textContent, /rejected/);
+    assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
+    assert.equal(nodes.get('film-list').children.length, 2, 'film metadata remains visible');
+  }
+});
+
+test('documented Open Library API cover stays tied to its ISBN and only loads after explicit opt-in', async () => {
+  // Synthetic *test fixture* only: this title does NOT yet have a row in the
+  // accepted public directory. Never attach its cover to the Ring of Fire row.
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const lastBestHopeUrl = 'https://www.simonandschuster.com/books/Star-Trek-Picard-The-Last-Best-Hope/Una-McCormack/Star-Trek-Picard/9781982142186';
+  const original = directory.rows.find((row) => row.medium === 'LITERATURE');
+  assert.ok(original);
+  directory.rows.push({ ...original,
+    row_id: 'fixture:last-best-hope-not-published', title: 'Fixture novel — not a public Work',
+    context: 'TEST FIXTURE ONLY — literature', source_locator: lastBestHopeUrl,
+    source_input: 'proposals/fixtures/artwork-test.json', details: ['No real release from this test']
+  });
+  directory.row_count++;
+  directory.counts_by_medium.LITERATURE++;
+  const apiArtwork = {
+    schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+    rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
+    artwork: [{ row_id: 'directory:fixture:last-best-hope-not-published', provider: 'OPEN_LIBRARY_COVERS_API',
+      cover_id: 10157401, isbn: '9781982142186', alt_text: 'Cover image for a fixture novel, via Open Library',
+      source_locator: lastBestHopeUrl, rights_status: 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED',
+      edition_metadata_sha256: '33c016d2aad3cc9457249246ec231cc4d6d3acb31374424430ef7bfe743a2ba0',
+      attribution_url: 'https://openlibrary.org/isbn/9781982142186'
+    }]
+  };
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, apiArtwork, 200);
+  assert.equal(nodes.get('artwork-toggle').disabled, false);
+  assert.match(nodes.get('artwork-state').textContent, /underlying copyright may remain unresolved/);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
+  nodes.get('discovery-query').value = 'fixture novel';
+  nodes.get('discovery-filters').fire('input');
+  nodes.get('artwork-toggle').fire('click');
+  const imgs = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
+  assert.equal(imgs.length, 1);
+  assert.equal(imgs[0].src, 'https://covers.openlibrary.org/b/id/10157401-S.jpg?default=false');
+  assert.equal(imgs[0].referrerPolicy, 'no-referrer');
+  const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
+  assert.equal(credits.length, 1);
+  assert.equal(credits[0].href, 'https://openlibrary.org/isbn/9781982142186');
+  const forged = structuredClone(apiArtwork);
+  forged.artwork[0].row_id = `directory:${original.row_id}`;
+  const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forged, 200);
+  assert.equal(rejected.get('artwork-toggle').disabled, true, 'different novel may never inherit this cover');
+});
+
+test('Open Library variant fails closed for forged URL, identifier, medium and rights', async () => {
+  const bad = structuredClone(licensedArtwork);
+  bad.artwork[0] = { row_id: 'film:star-trek-2009', provider: 'OPEN_LIBRARY_COVERS_API',
+    cover_id: 10157401, isbn: '9781982142186', alt_text: 'Unreviewed unrelated art',
+    source_locator: filmCatalog.films[0].source_locator, rights_status: 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED',
+    edition_metadata_sha256: 'a'.repeat(64), attribution_url: 'https://openlibrary.org/isbn/9781982142186' };
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, null, 404, bad, 200);
+  assert.equal(nodes.get('artwork-toggle').disabled, true, 'book-cover API cannot silently decorate a film');
+});
 
 test('catalog-only payload never admits injected briefings or records', async () => {
   const nodes = await runWithIndex({
@@ -605,6 +731,11 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /<h2 id="briefings-heading">Briefings<\/h2>/);
   assert.match(html, /src="\.\/trek-data-core-hero\.jpg\?v=[0-9a-f]{64}"/);
   assert.match(html, /id="tone-toggle"[^>]*aria-pressed="false"/);
+  assert.match(html, /Star Trek \/ Independent research archive/);
+  assert.match(html, /class="archive-navigation-mark"/);
+  assert.match(html, /id="artwork-toggle"[^>]*aria-pressed="false" disabled/);
+  assert.match(html, /img-src 'self' https:\/\/covers\.openlibrary\.org/, 'only explicit image-provider family extends the local CSP');
+  assert.match(html, /Unofficial, independent Star Trek research/);
   assert.match(html, /id="filters" role="search" aria-label="Search governed Mission index"/);
   assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
 });

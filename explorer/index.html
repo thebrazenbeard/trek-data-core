@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=7d3fb7e8a0d286b11477a0fc6bce1f47329e4c76aafc90a0d8cd00b538faa144">
-  <script src="./app.js?v=96f2375014518eb5c9ed8597983fe1dc1f786b16a4000679d0f261d7d3e78cd3" defer></script>
+  <link rel="stylesheet" href="./app.css?v=9e9b2e35ae980c405d84718949068fccc92eec7e86045f5657deffcf7ef09c3c">
+  <script src="./app.js?v=2f6c4691fff3a0606b3012bbcd04219a3f1237956076c18f3764ca11ba71aae5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
 
   <div class="command-deck" role="group" aria-label="Explorer interface controls">
     <p class="command-brand"><span class="command-code" aria-hidden="true">TDC</span><span>Trek Data Core</span></p>
-    <p class="command-route">RESEARCH ARCHIVE <span aria-hidden="true">/</span> SOURCE-AWARE INDEX</p>
+    <p class="command-route">STAR TREK <span aria-hidden="true">/</span> UNOFFICIAL RESEARCH ARCHIVE</p>
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
@@ -34,7 +34,13 @@
   <header class="masthead">
     <img class="masthead-art" src="./trek-data-core-hero.jpg?v=689794354abd322e438d4e02202dfcb99ee5e21f2e2c4f6a6916ada0d0262ed3" width="1536" height="512" alt="Panoramic starship bridge facing a luminous celestial navigation chart" decoding="async" fetchpriority="high">
     <div class="masthead-copy">
-      <p class="eyebrow">ARCHIVE CONTROL / RESEARCH INTERFACE</p>
+      <div class="masthead-identity">
+        <svg class="archive-navigation-mark" viewBox="0 0 58 58" fill="none" aria-hidden="true" focusable="false">
+          <path d="M29 4 51 52 30 39 8 52 29 4Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          <path d="m29 18 1 21M13 46l16-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p class="eyebrow">Star Trek / Independent research archive</p>
+      </div>
       <h1>Chart the known.<br><span>Keep the unknown visible.</span></h1>
       <p class="lead">A source-aware mission index and continuity explorer. Browse the catalog, inspect admitted research, and follow the evidence without mistaking a proposal for a fact.</p>
       <div class="mission-flags">
@@ -68,6 +74,10 @@
       </div>
       <p class="directory-state" id="discovery-state" role="status" aria-live="polite">Checking the discovery index…</p>
       <div class="directory-summary" id="discovery-metrics" aria-label="Discovery source-local row counts">Counts unavailable until index validation.</div>
+      <div class="artwork-controls" role="group" aria-label="Publisher artwork controls">
+        <button type="button" id="artwork-toggle" aria-pressed="false" disabled>Show sourced artwork</button>
+        <p id="artwork-state" class="artwork-note" role="status" aria-live="polite">Checking whether display-cleared artwork is available…</p>
+      </div>
       <form id="discovery-filters" class="directory-filters" role="search" aria-label="Search multimedia discovery metadata" autocomplete="off">
         <div class="field directory-search-field"><label for="discovery-query">Search discoveries</label><input id="discovery-query" type="search" name="discovery-q" placeholder="Title, publisher, source, series…" spellcheck="false"></div>
         <div class="field"><label for="discovery-medium">Medium</label><select id="discovery-medium" name="medium"><option value="all">All media</option></select></div>

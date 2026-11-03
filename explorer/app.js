@@ -350,7 +350,7 @@
     }
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
-    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com']);
+    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be']);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
           typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||
@@ -368,7 +368,9 @@
         let url;
         try { url = new URL(item.source_locator); } catch (_) { throw new Error('Invalid discovery source URL.'); }
         if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.port || url.search || url.hash ||
-            url.username || url.password || !url.pathname.startsWith('/')) {
+            url.username || url.password || !url.pathname.startsWith('/') ||
+            (url.hostname === 'youtu.be' &&
+              !/^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(item.source_locator))) {
           throw new Error('Source URL outside the explicit publisher/catalog allowlist.');
         }
       }

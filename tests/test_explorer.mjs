@@ -257,16 +257,16 @@ test('separate official film discovery remains unadmitted and strictly source-sc
 test('multimedia source-local directory is independently searchable, paged, and never admitted', async () => {
   const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, discovery, 200);
-  assert.equal(nodes.get('discovery-nav-count').textContent, '1,186');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,206');
   assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
   assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 1,155/);
   assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
   assert.match(nodes.get('discovery-metrics').textContent, /Literary Works: 1/);
-  assert.match(nodes.get('discovery-metrics').textContent, /Short-form releases: 15/);
+  assert.match(nodes.get('discovery-metrics').textContent, /Short-form releases: 35/);
   assert.match(nodes.get('discovery-metrics').textContent, /Audio containers: 1/);
   assert.match(nodes.get('discovery-list').textContent, /Data receipt: explorer\/research-leads\.json/);
   assert.equal(nodes.get('briefing-count').textContent, '0');
-  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 1,186 cards on load');
+  assert.equal(nodes.get('discovery-list').children.length, 41, '40 rows and Show next, not 1,206 cards on load');
   nodes.get('discovery-list').children.at(-1).fire('click');
   assert.equal(nodes.get('discovery-list').children.length, 81, 'second directory page is reachable');
   assert.equal(nodes.get('discovery-list').children[40].focused, true, 'focus first newly shown source row');
@@ -280,8 +280,9 @@ test('multimedia source-local directory is independently searchable, paged, and 
   nodes.get('discovery-filters').fire('input');
   nodes.get('discovery-medium').value = 'SHORT_FORM';
   nodes.get('discovery-filters').fire('change');
-  assert.equal(nodes.get('discovery-list').children.length, 15);
+  assert.equal(nodes.get('discovery-list').children.length, 35);
   assert.match(nodes.get('discovery-list').textContent, /Announced promotional release order/);
+  assert.match(nodes.get('discovery-list').textContent, /Star Trek: Scouts/);
   nodes.get('discovery-medium').value = 'AUDIO';
   nodes.get('discovery-filters').fire('change');
   assert.equal(nodes.get('discovery-list').children.length, 1);
@@ -315,12 +316,23 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   forged.rows[0].source_locator = 'https://www.startrek.com@evil.invalid/bogus';
   const noLink = await runWithIndex(catalog, 200, null, 404, {}, null, 404, forged, 200);
   assert.equal(noLink.get('discovery-nav-count').textContent, '—');
+  for (const malicious of ['https://youtu.be/j-KvjtSgfJs/redirect',
+                            'https://youtu.be/x/../j-KvjtSgfJs',
+                            'https://youtu.be/j-KvjtSgfJs?continue=https://evil.invalid/',
+                            'https://youtu.be.evil.invalid/j-KvjtSgfJs']) {
+    const maliciousCatalog = structuredClone(catalogData);
+    const scoutsRow = maliciousCatalog.rows.findIndex(row => row.row_id.startsWith('short:scouts:'));
+    assert.ok(scoutsRow >= 0);
+    maliciousCatalog.rows[scoutsRow].source_locator = malicious;
+    const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, maliciousCatalog, 200);
+    assert.equal(rejected.get('discovery-nav-count').textContent, '—');
+  }
   const duplicate = structuredClone(catalogData);
   duplicate.rows[1].row_id = duplicate.rows[0].row_id;
   const noDuplicate = await runWithIndex(catalog, 200, null, 404, {}, null, 404, duplicate, 200);
   assert.equal(noDuplicate.get('discovery-nav-count').textContent, '—');
   const absent = await runWithIndex(null, 404, null, 404, {}, null, 404, catalogData, 200);
-  assert.equal(absent.get('discovery-nav-count').textContent, '1,186', 'discovery does not depend on governed Mission index');
+  assert.equal(absent.get('discovery-nav-count').textContent, '1,206', 'discovery does not depend on governed Mission index');
   assert.equal(absent.get('mission-count').textContent, '—');
 });
 

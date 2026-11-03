@@ -31,6 +31,7 @@ if __package__:
     from . import build_publisher_s7_discovery as season7
     from . import build_tas_publisher_roster as tas
     from . import build_prodigy_mikros_s1a_discovery as mikros
+    from . import build_scouts_publisher_discovery as scouts
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -48,6 +49,7 @@ else:
     import build_publisher_s7_discovery as season7
     import build_tas_publisher_roster as tas
     import build_prodigy_mikros_s1a_discovery as mikros
+    import build_scouts_publisher_discovery as scouts
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -72,11 +74,13 @@ ROSTER_BATCHES = (
      ("dis", "pic", "ld", "snw"), "modern-s3", 43),
 )
 SHORTS_INPUT = Path("proposals/discovery/shorts-audio-20261102/records.json")
+SCOUTS_INPUT = scouts.OUTPUT
 MEDIUMS = ("EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO")
 KINDS = ("WIKIDATA_EPISODE", "PUBLISHER_EPISODE_SLOT", "PUBLISHER_REFERENCE",
          "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "SCRIPTED_SHORT",
          "PROMOTIONAL_ANIMATION", "SCRIPTED_AUDIO_SERIES")
-ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com", "www.simonandschuster.com", "www.mikrosanimation.com"}
+ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com",
+                 "www.simonandschuster.com", "www.mikrosanimation.com", "youtu.be"}
 
 
 def _checked_title(value: object) -> str:
@@ -96,6 +100,8 @@ def _checked_url(value: object) -> str | None:
             parsed.username or parsed.password or parsed.query or parsed.fragment or
             not parsed.path.startswith("/") or ".." in parsed.path):
         raise ValueError("discovery locator outside approved source domains")
+    if parsed.netloc == "youtu.be" and not re.fullmatch(r"/[A-Za-z0-9_-]{11}", parsed.path):
+        raise ValueError("source-local YouTube video locator must have an exact video ID")
     return value
 
 
@@ -137,6 +143,7 @@ def build_bytes(root: Path) -> bytes:
         (INPUTS[2], publisher.build_bytes(root)),
         (INPUTS[3], literature.build(root)),
         (SHORTS_INPUT, shorts.build(root)),
+        (SCOUTS_INPUT, scouts.build(root)),
     ):
         value, digest = _document(root, path, builder)
         sources[str(path)] = digest
@@ -145,6 +152,7 @@ def build_bytes(root: Path) -> bytes:
         if str(path) == str(INPUTS[2]): publisher_catalog = value
         if str(path) == str(INPUTS[3]): novel_catalog = value
         if path == SHORTS_INPUT: shorts_catalog = value
+        if path == SCOUTS_INPUT: scouts_catalog = value
 
     if (film_catalog.get("data_status") != "DISCOVERY_ONLY" or
             film_catalog.get("coverage_effect") != "NONE" or
@@ -614,6 +622,30 @@ def build_bytes(root: Path) -> bytes:
                             shorts_catalog["publisher_independence_group"], str(SHORTS_INPUT),
                             item["source_url"], ("Official episode slot" if kind == "SCRIPTED_SHORT"
                                                   else "Announced promotional release order",)))
+    # The new publisher's official twenty short videos have two #1-#10
+    # strands, not verified global television season ordinals. Preserve the
+    # title/URL lineage and explicit no-admission boundary.
+    if (scouts_catalog.get("schema_version") != "1.0.0" or
+            scouts_catalog.get("data_status") != "DISCOVERY_ONLY" or
+            scouts_catalog.get("admission_effect") != "NONE" or
+            scouts_catalog.get("coverage_effect") != "NONE" or
+            scouts_catalog.get("publisher_independence_group") != "publisher:paramount" or
+            scouts_catalog.get("source_input") != str(scouts.SOURCE) or
+            scouts_catalog.get("short_candidate_count") != 20 or
+            len(scouts_catalog.get("short_candidates", [])) != 20):
+        raise ValueError("Scouts discovery source changed its no-admission boundary")
+    for item in scouts_catalog["short_candidates"]:
+        if (item.get("verification_status") != "UNVERIFIED_METADATA" or
+                item.get("accepted_work_id", "unexpected") is not None):
+            raise ValueError("Scouts candidate illegally promoted to an accepted Work")
+        entries.append(_row("short:" + item["candidate_id"], "SHORT_FORM", "SCRIPTED_SHORT",
+                            item["title"], "SCOUTS · " + item["strand"].replace("_", " ") +
+                            " " + item["source_local_slot"],
+                            scouts_catalog["publisher_independence_group"], str(SCOUTS_INPUT),
+                            item["source_locator"], ("Publisher video title; video not watched",
+                                                    "Source-local strand number, not global season ordinal")))
+    sources[str(scouts.SOURCE)] = hashlib.sha256(research.safe_read(root, scouts.SOURCE,
+                                                                max_bytes=35_000)).hexdigest()
     audio = [item for item in shorts_catalog["container_candidates"] if item["medium"] == "SCRIPTED_AUDIO"]
     if (len(audio) != 1 or audio[0]["candidate_id"] != "khan-audio" or
             audio[0]["work_type"] != "SCRIPTED_AUDIO_SERIES" or

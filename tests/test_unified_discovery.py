@@ -40,14 +40,14 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
             "EPISODE": 1155, "FILM": 14, "LITERATURE": 1,
-            "SHORT_FORM": 15, "AUDIO": 1,
+            "SHORT_FORM": 35, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1186)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1206)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 134)
+        self.assertEqual(len(catalog["source_digests"]), 136)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -64,7 +64,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
             "NOVEL": 1,
-            "SCRIPTED_SHORT": 10,
+            "SCRIPTED_SHORT": 30,
             "PROMOTIONAL_ANIMATION": 5,
             "SCRIPTED_AUDIO_SERIES": 1,
         })
@@ -160,6 +160,14 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertTrue(any("Ep#103 (same source)" in detail for detail in starstruck["details"]))
         self.assertEqual(len([r for r in rows if r["medium"] == "AUDIO"]), 1,
                          "one container, no invented audio episodes")
+        scouts = [r for r in rows if r["row_id"].startswith("short:scouts:")]
+        self.assertEqual(len(scouts), 20)
+        self.assertEqual(len([r for r in scouts if "ASTEROID BLASTERS" in r["context"]]), 10)
+        self.assertEqual(len([r for r in scouts if "HOLODECK RESCUES" in r["context"]]), 10)
+        self.assertTrue(all(r["medium"] == "SHORT_FORM" and r["source_group"] == "publisher:paramount"
+                            and r["source_locator"].startswith("https://youtu.be/")
+                            and r["admission_effect"] == r["coverage_effect"] == "NONE"
+                            for r in scouts))
 
     def test_invalid_url_and_field_rejected(self):
         with self.assertRaises(ValueError):
@@ -171,6 +179,13 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                            "lineage", "explorer/index.json", "https://evil.example/a")
         with self.assertRaises(ValueError):
             discovery._checked_title(" <script>\n")
+        self.assertEqual(discovery._checked_url("https://youtu.be/j-KvjtSgfJs"),
+                         "https://youtu.be/j-KvjtSgfJs")
+        for forged in ("https://youtu.be/j-KvjtSgfJs/extra", "https://youtu.be/j-KvjtSgfJs?redirect=evil",
+                       "https://youtu.be.evil.example/j-KvjtSgfJs", "https://youtu.be/../bad"):
+            with self.subTest(forged=forged):
+                with self.assertRaises(ValueError):
+                    discovery._checked_url(forged)
 
     def test_stale_input_rejected_without_corroborating_generator(self):
         with patch.object(discovery.films, "build", return_value=b"{}"):

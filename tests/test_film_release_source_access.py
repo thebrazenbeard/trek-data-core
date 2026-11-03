@@ -30,17 +30,30 @@ class SourceAccessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             v.validate(bad, self.discovery, self.prior)
 
-    def test_two_direct_html_and_three_blocked_source_locs(self):
-        self.assertEqual(v.validate(self.packet, self.discovery, self.prior), 5)
+    def test_one_reverified_html_and_five_held_source_locs(self):
+        self.assertEqual(v.validate(self.packet, self.discovery, self.prior), 6)
+        rows = self.packet["source_access_observations"]
+        self.assertEqual(sum(r["access_class"] == "DIRECT_FIRST_PARTY_HTML_READ" for r in rows), 1)
+        self.assertEqual(sum(not r["reliably_source_observed_fields"] for r in rows), 5)
 
     def test_cannot_promote_cached_snippet_to_direct_source(self):
         self.reject(lambda p: p["source_access_observations"][1].update(access_class="DIRECT_FIRST_PARTY_HTML_READ"))
-        self.reject(lambda p: p["source_access_observations"][3].update(reliably_source_observed_fields=["runtime_131_verified"]))
-        self.reject(lambda p: p["source_access_observations"][4].update(web_reader_status="RETRIEVED_CONTENT_READ"))
+        self.reject(lambda p: p["source_access_observations"][2].update(access_class="DIRECT_FIRST_PARTY_HTML_READ"))
+        self.reject(lambda p: p["source_access_observations"][4].update(reliably_source_observed_fields=["runtime_131_verified"]))
+        self.reject(lambda p: p["source_access_observations"][5].update(web_reader_status="RETRIEVED_CONTENT_READ"))
         self.reject(lambda p: p["source_access_observations"][1].update(web_reader_status="HTTP_200"))
 
+    def test_cannot_turn_historical_author_read_into_current_custody(self):
+        self.reject(lambda p: p["source_access_observations"][0].update(access_class="DIRECT_FIRST_PARTY_HTML_READ"))
+        self.reject(lambda p: p["source_access_observations"][0].update(web_reader_status="RETRIEVED_CONTENT_READ"))
+        self.reject(lambda p: p["source_access_observations"][0].update(reliably_source_observed_fields=["iTunes package verified now"]))
+        self.reject(lambda p: p["source_access_observations"][0].update(author_originally_observed_fields=[]))
+        self.reject(lambda p: p["source_access_observations"][0].update(lappy_curl_head_status="200_OK"))
+        self.reject(lambda p: p["independent_reaudit"].update(retrieval_attempt_at_utc="2026-11-02T13:01:34Z"))
+        self.reject(lambda p: p["independent_reaudit"].update(disposition="MERGE_GO"))
+
     def test_cannot_swap_sources_film_or_targets(self):
-        self.reject(lambda p: p["source_access_observations"][2].update(candidate_film_id="film-2009"))
+        self.reject(lambda p: p["source_access_observations"][3].update(candidate_film_id="film-2009"))
         self.reject(lambda p: p["source_access_observations"][0].update(source_locator=p["source_access_observations"][1]["source_locator"]))
         self.reject(lambda p: p["related_held_proposals"][0].update(pr=325))
         self.reject(lambda p: p.update(accepted_film_page_overlap="independent synopsis"))
@@ -51,7 +64,7 @@ class SourceAccessTests(unittest.TestCase):
         self.reject(lambda p: p.update(public_synopsis_release_effect="RELEASED"))
         self.reject(lambda p: p.update(artwork_release_effect="LICENSED"))
         self.reject(lambda p: p.update(media_or_artwork_bytes_stored=True))
-        self.reject(lambda p: p["source_access_observations"][2]["withheld_fields"].remove("audiovisual_cut_or_copy_hash"))
+        self.reject(lambda p: p["source_access_observations"][3]["withheld_fields"].remove("audiovisual_cut_or_copy_hash"))
 
     def test_duplicate_key_and_extra_fields(self):
         self.reject(lambda p: p["source_access_observations"][0].update(public_image_url="https://example.com/poster.jpg"))
@@ -64,7 +77,8 @@ class SourceAccessTests(unittest.TestCase):
 import copy,sys
 sys.path.insert(0,sys.argv[1]); import validate as v
 p=v.reviewed();d=v.load(v.DISCOVERY);o=v.load(v.PR329)
-for edit in (lambda x:x['source_access_observations'][3].update(access_class='DIRECT_FIRST_PARTY_HTML_READ'),
+for edit in (lambda x:x['source_access_observations'][0].update(access_class='DIRECT_FIRST_PARTY_HTML_READ'),
+             lambda x:x['source_access_observations'][4].update(access_class='DIRECT_FIRST_PARTY_HTML_READ'),
              lambda x:x.update(accepted_coverage_effect='CLOSE_READ')):
     b=copy.deepcopy(p);edit(b)
     try:v.validate(b,d,o)

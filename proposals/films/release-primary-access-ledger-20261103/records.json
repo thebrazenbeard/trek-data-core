@@ -4,6 +4,14 @@
   "role": "FILMS_SOURCE_ACCESS_AUDIT",
   "baseline_accepted_main": "a3ca40e94ef4c0a4ba47455333a0c122ded38c9a",
   "observed_on_utc": "2026-11-03",
+  "independent_reaudit": {
+    "auditor": "chatgpt.trek.film-source-access-independent-reviewer",
+    "retrieval_attempt_at_utc": "2026-11-03T13:01:34Z",
+    "review_blotter_seq": 3278,
+    "reviewed_head": "7c7d5ab1025f75da28a474ff1dd91f2bbb406fff",
+    "disposition": "HOLD_2009_PUBLISHER_HTML_NO_LONGER_DIRECTLY_REPRODUCIBLE_AT_REAUDIT",
+    "historical_author_read_preserved": true
+  },
   "purpose": "CANDIDATE_SOURCE_ACCESS_REMEDIATION_ONLY_NOT_NEW_FILM_FACT_COVERAGE",
   "related_held_proposals": [
     {"pr": 332, "head_at_review": "2f74b0c6777d980314f9b4a0786df63e41f577a0", "candidate_film_id": "film-2009"},
@@ -22,11 +30,14 @@
       "local_id": "access-2009-itunes-publisher-html",
       "candidate_film_id": "film-2009",
       "source_locator": "https://ir.paramount.com/news-releases/news-release-details/paramount-digital-entertainment-releases-never-seen-star-trek",
-      "access_class": "DIRECT_FIRST_PARTY_HTML_READ",
-      "web_reader_status": "RETRIEVED_CONTENT_READ",
-      "reliably_source_observed_fields": ["announcement_date:2009-11-17", "itunes_hd_extras_package_announced", "over_40_images_and_unissued_poster_key_art_marketing_claim"],
-      "withheld_fields": ["individual_key_art_file_identity", "artwork_reuse_license", "current_store_availability", "audiovisual_cut_or_copy_hash"],
-      "notes": "Direct official Paramount Digital Entertainment HTML. Artwork is mentioned, not acquired or cleared. Digital Extras is not proof of a Blu-ray or DVD copy."
+      "access_class": "HISTORIC_AUTHOR_DIRECT_READ_NOW_HELD_UNREPRODUCIBLE",
+      "web_reader_status": "INDEPENDENT_REAUDIT_FETCH_FAILED_REPORTED_404",
+      "lappy_curl_head_status": "INDEPENDENT_REAUDIT_403_FORBIDDEN",
+      "author_original_access_class": "DIRECT_FIRST_PARTY_HTML_READ_ON_2026_11_03",
+      "author_originally_observed_fields": ["announcement_date:2009-11-17", "itunes_hd_extras_package_announced", "over_40_images_and_unissued_poster_key_art_marketing_claim"],
+      "reliably_source_observed_fields": [],
+      "withheld_fields": ["current_2009_itunes_html_body_retrieval", "individual_key_art_file_identity", "artwork_reuse_license", "current_store_availability", "audiovisual_cut_or_copy_hash"],
+      "notes": "Author's earlier rendered first-party HTML observation is preserved as dated testimony. Independent same-day direct web retrieval reported 404 and Lappy HEAD 403 at the reviewed PR head; current direct-source reproducibility is HELD, without calling the earlier author read false or asserting permanent host unavailability."
     },
     {
       "local_id": "access-2009-home-publisher-pdf",
@@ -39,6 +50,17 @@
       "reliably_source_observed_fields": [],
       "withheld_fields": ["2009_three_disc_bluray_details", "2009_two_disc_dvd_details", "2009_single_disc_dvd_details", "2009_home_fact_sheet_runtime", "2009_physical_package_source_binding"],
       "notes": "First-party Paramount Home Entertainment document title discoverable in search index and downstream press reprints, but exact first-party PDF could not be fetched now. Retain proposed #332 edition cards on hold."
+    },
+    {
+      "local_id": "access-2009-itunes-publisher-pdf-indexed",
+      "candidate_film_id": "film-2009",
+      "source_locator": "https://ir.paramount.com/static-files/65c97927-b964-415f-801a-329ab6d2883e",
+      "access_class": "FIRST_PARTY_PDF_SEARCH_INDEX_ONLY_NOT_DIRECTLY_RETRIEVED",
+      "web_reader_status": "FETCH_FAILED_REPORTED_404",
+      "search_status": "OLDER_SEARCH_INDEX_TEXT_AVAILABLE_NOT_CURRENT_DIRECT_SOURCE_READ",
+      "reliably_source_observed_fields": [],
+      "withheld_fields": ["2009_itunes_pdf_body_custody", "iTunes_40_plus_images_exact_list", "unissued_poster_key_art_file_identity", "artwork_reuse_license", "current_store_availability"],
+      "notes": "Alternative Paramount-owned press attachment was indexed by search with an older crawl, but direct fetch failed. It is not a recovered source, not independent corroboration of the author's earlier HTML read, and not artwork reuse permission."
     },
     {
       "local_id": "access-2013-star-trek-studio-story",

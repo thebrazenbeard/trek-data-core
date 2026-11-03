@@ -3,7 +3,7 @@
 **Batch:** `SNS.PUBLIC.SEVEN.EDITION.LOCATORS.20261103`  
 **Role:** Librarian source/edition inventory; proposal-only, no published source/Work, no rights or coverage effect.  
 **Accepted main at final branch preparation:** `6271a861f6dbf5337a6a6792bb4b5ee355311157` (2026-11-03 UTC; refreshed from earlier selection `f2a98d5a958ce6263ca37ac0bf44e3d074751211`).  
-**Records SHA-256:** `1282efa5b5bf1632c09471640bcca5a0e7fdd521d0f7feb484c565268b825d6a`
+**Records SHA-256:** `87b2567138265ff76a709233c47f5d0490d5f6cb52f74fc4866342ffa1cd881e`
 
 ## First-party pages actually read
 
@@ -15,7 +15,7 @@ The publisher's own HTML was not available through the Lappy direct HTTP route, 
 | *Pliable Truths* `9781668046425` | eBook; Pocket Books/Star Trek | 2024-05-21; 352 pp. | [First-party edition](https://www.simonandschuster.com/books/Pliable-Truths/Dayton-Ward/Star-Trek-The-Next-Generation/9781668046425) |
 | *Star Trek: Picard: No Man's Land* `9781668066133` | Trade paperback **published script**; Pocket Books/Star Trek | 2024-09-24; 160 pp. | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Picard-No-Mans-Land/Kirsten-Beyer/9781668066133) |
 | *Star Trek: Picard: No Man's Land* `9781668066140` | eBook **published script**; Pocket Books/Star Trek | 2024-09-24; 160 pp. | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Picard-No-Mans-Land/Kirsten-Beyer/9781668066140) |
-| *Star Trek: Picard: No Man's Land* `9781797124537` | **Original audio drama**; Simon & Schuster Audio Originals, ensemble cast | 2022-02-22; 1h 39m | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Picard-No-Mans-Land/Kirsten-Beyer/Star-Trek-Picard/9781797124537) |
+| *Star Trek: Picard: No Man's Land* `9781797124537` | Unabridged audio download (**original audio drama**); Simon & Schuster Audio Originals, ensemble cast | 2022-02-22; 1h 39m | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Picard-No-Mans-Land/Kirsten-Beyer/Star-Trek-Picard/9781797124537) |
 | *Star Trek: Strange New Worlds: Toward the Night* `9781668074565` | Hardcover; Pocket Books/Star Trek | 2025-04-29; 336 pp. | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Toward-the-Night/James-Swallow/Star-Trek-Strange-New-Worlds/9781668074565) |
 | *Star Trek: Strange New Worlds: Toward the Night* `9781668116968` | Unabridged audio; Simon & Schuster Audio; Robert Petkoff | 2025-04-29; 9h 56m | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Toward-the-Night/James-Swallow/Star-Trek-Strange-New-Worlds/9781668116968) |
 

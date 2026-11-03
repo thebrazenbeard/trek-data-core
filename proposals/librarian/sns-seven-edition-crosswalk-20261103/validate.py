@@ -61,7 +61,7 @@ PINS = [
      "3480f4b02c12b7f301e78d1bdf19c6f70b86cc42c559cf1dbd34b0f1c83da011", 807,
      "star-trek-picard-no-mans-land", "NO_FULL_SCRIPT_OR_PUBLISHER_DESCRIPTION_REPUBLICATION", SCRIPT_IDENTITY),
     ("9781797124537", "Star Trek: Picard: No Man's Land", ("Kirsten Beyer", "Mike Johnson"),
-     "Star Trek: Picard", "ORIGINAL_AUDIO_DRAMA_DOWNLOAD", "Simon & Schuster Audio Originals",
+     "Star Trek: Picard", "UNABRIDGED_AUDIO_DOWNLOAD", "Simon & Schuster Audio Originals",
      "2022-02-22", None, 99, "FULL_CAST_PUBLISHER_CREDITS_PRESENT_NOT_COPIED_INTO_THIS_BATCH",
      "Star-Trek-Picard-No-Mans-Land/Kirsten-Beyer/Star-Trek-Picard",
      "3480f4b02c12b7f301e78d1bdf19c6f70b86cc42c559cf1dbd34b0f1c83da011", 807,

@@ -1,0 +1,169 @@
+{
+  "schema_version": "trek-film-publisher-description-paraphrase-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_family": "publisher:startrek.com",
+  "source_access": "RENDERED_OFFICIAL_WEB_PAGE_READ_NO_RAW_HTML_CUSTODY",
+  "upstream_source_families": 1,
+  "verification_class": "PUBLISHER_DESCRIPTION_FIELD_READ_NOT_FILM_VIEWED",
+  "film_count": 14,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "full_film_viewed": false,
+  "source_bound": false,
+  "close_read": false,
+  "raw_source_page_sha256": null,
+  "records": [
+    {
+      "candidate_film_id": "film-motion-picture",
+      "directory_row_id": "film:film-motion-picture",
+      "title": "Star Trek: The Motion Picture",
+      "source_locator": "https://www.startrek.com/movies/star-trek-i-the-motion-picture",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1979",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The publisher describes a mysterious threat approaching Earth, bringing Kirk and a newly refitted Enterprise back into service for an urgent defense mission."
+    },
+    {
+      "candidate_film_id": "film-wrath-of-khan",
+      "directory_row_id": "film:film-wrath-of-khan",
+      "title": "Star Trek II: The Wrath of Khan",
+      "source_locator": "https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1982",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A former exile with extraordinary engineered abilities seeks revenge against Kirk, forcing the admiral to face the consequences of an earlier encounter."
+    },
+    {
+      "candidate_film_id": "film-search-for-spock",
+      "directory_row_id": "film:film-search-for-spock",
+      "title": "Star Trek III: The Search for Spock",
+      "source_locator": "https://www.startrek.com/movies/star-trek-iii-the-search-for-spock",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1982",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "After Spock's apparent death, the studio's description places evidence of his survival on the Genesis planet, where his body had been taken."
+    },
+    {
+      "candidate_film_id": "film-voyage-home",
+      "directory_row_id": "film:film-voyage-home",
+      "title": "Star Trek IV: The Voyage Home",
+      "source_locator": "https://www.startrek.com/movies/star-trek-iv-the-voyage-home",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1986",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "With Earth imperiled in their own era, the Enterprise crew travels to the 1980s aboard a Klingon vessel to bring back whales that may avert disaster."
+    },
+    {
+      "candidate_film_id": "film-final-frontier",
+      "directory_row_id": "film:film-final-frontier",
+      "title": "Star Trek V: The Final Frontier",
+      "source_locator": "https://www.startrek.com/movies/star-trek-v-the-final-frontier",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1989",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "Sybok, Spock's half-brother, takes control of the Enterprise and sets a course toward the galactic center in pursuit of a being he regards as divine."
+    },
+    {
+      "candidate_film_id": "film-undiscovered-country",
+      "directory_row_id": "film:film-undiscovered-country",
+      "title": "Star Trek VI: The Undiscovered Country",
+      "source_locator": "https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1991",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A catastrophe at a key Klingon energy facility makes peace negotiations possible. Kirk's crew escorts the Klingon leader toward talks while factions on both sides try to prevent reconciliation."
+    },
+    {
+      "candidate_film_id": "film-generations",
+      "directory_row_id": "film:film-generations",
+      "title": "Star Trek Generations",
+      "source_locator": "https://www.startrek.com/movies/star-trek-generations",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1994",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The studio synopsis brings Captains Picard and Kirk together through a time-defying phenomenon and has them combine their efforts against a planetary threat."
+    },
+    {
+      "candidate_film_id": "film-first-contact",
+      "directory_row_id": "film:film-first-contact",
+      "title": "Star Trek: First Contact",
+      "source_locator": "https://www.startrek.com/movies/star-trek-viii-first-contact",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1996",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The Borg travel into Earth's past, and Picard sends the Enterprise after them to protect a historic first warp-spaceflight."
+    },
+    {
+      "candidate_film_id": "film-insurrection",
+      "directory_row_id": "film:film-insurrection",
+      "title": "Star Trek: Insurrection",
+      "source_locator": "https://www.startrek.com/movies/star-trek-ix-insurrection",
+      "source_section": "Synopsis",
+      "publisher_display_year": "1998",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "Picard challenges a Starfleet plan to move a planet's inhabitants so others can exploit the world's unusual natural properties."
+    },
+    {
+      "candidate_film_id": "film-nemesis",
+      "directory_row_id": "film:film-nemesis",
+      "title": "Star Trek Nemesis",
+      "source_locator": "https://www.startrek.com/movies/star-trek-nemesis",
+      "source_section": "Synopsis",
+      "publisher_display_year": "2002",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "An engineered duplicate of Picard pursues vengeance and endangers the Federation using a weapon capable of widespread destruction."
+    },
+    {
+      "candidate_film_id": "film-2009",
+      "directory_row_id": "film:film-2009",
+      "title": "Star Trek (2009)",
+      "source_locator": "https://www.startrek.com/movies/star-trek-2009",
+      "source_section": "Synopsis",
+      "publisher_display_year": "2009",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A young Kirk struggles with expectations tied to his father's legacy while a future-displaced Romulan directs his grief and anger against the Federation."
+    },
+    {
+      "candidate_film_id": "film-into-darkness",
+      "directory_row_id": "film:film-into-darkness",
+      "title": "Star Trek Into Darkness",
+      "source_locator": "https://www.startrek.com/movies/star-trek-into-darkness",
+      "source_section": "Synopsis",
+      "publisher_display_year": "2013",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "An attack deep inside Federation territory sends Kirk's crew across hostile space in pursuit of a dangerous opponent with extraordinary abilities."
+    },
+    {
+      "candidate_film_id": "film-beyond",
+      "directory_row_id": "film:film-beyond",
+      "title": "Star Trek Beyond",
+      "source_locator": "https://www.startrek.com/movies/star-trek-beyond",
+      "source_section": "Synopsis",
+      "publisher_display_year": "2016",
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "During an extended mission into unexplored space, the Enterprise encounters a new adversary who tests both the crew and the Federation principles they represent."
+    },
+    {
+      "candidate_film_id": "film-section-31",
+      "directory_row_id": "film:film-section-31",
+      "title": "Star Trek: Section 31",
+      "source_locator": "https://www.startrek.com/news/star-trek-section-31-premieres-january-24",
+      "source_section": "Announcement paragraph beginning 'In the movie'",
+      "publisher_display_year": null,
+      "status": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The studio announcement describes Philippa Georgiou joining a covert Starfleet organization tasked with defending the Federation while she confronts the consequences of her past."
+    }
+  ],
+  "source_year_conflict": {
+    "candidate_film_id": "film-search-for-spock",
+    "publisher_page_displays": "1982",
+    "independent_catalog_name": "AFI Catalog of Feature Films",
+    "independent_catalog_locator": "https://catalog.afi.com/Film/57202-STAR-TREK-III-THE-SEARCH-FOR-SPOCK",
+    "catalog_lists_release_date": "1984-06-01",
+    "disposition": "UNRESOLVED_SOURCE_YEAR_CONTRADICTION_NOT_RECONCILED"
+  }
+}

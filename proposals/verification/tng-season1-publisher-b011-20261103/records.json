@@ -1,0 +1,327 @@
+{
+  "admission_effect": "NONE",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "combined_multipart_identity_holds": 0,
+  "coverage_effect": "NONE",
+  "data_status": "B011-TNG-S1-PUBLISHER_SOURCE_RECHECK_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "observations_sha256": "4fa2be6fb305e68a301907343f6b50f311dd4d6177f88de509f443fd1d74e81f",
+  "original_synopsis_drafts_held": 10,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 10,
+  "publisher_card_slots_read": 10,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "An android resembling Data devises a scheme that threatens the Enterprise.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 13,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "a3970bf53329e5ba9dd7e0c51e76231398932c85e46ee6d2d19fec6097808370",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Datalore > S1 E13 > short description",
+        "title": "Datalore"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26450499987/CBS_TNG_114_HD_IMAGE_CIAN_R_3164052_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E13",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:011",
+      "source_local_title": "Datalore",
+      "source_relative_entity_mentions": [
+        "Data",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "An away team tries to rescue male fugitives while a contagious illness spreads aboard the Enterprise.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 14,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "d9e6871dee039a5c166b7edc521c2bbf9c24d4bab5824d50a2e6c4859f208fae",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Angel One > S1 E14 > short description",
+        "title": "Angel One"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453571626/CBS_TNG_115_HD_IMAGE_CIAN_R_3164051_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E14",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:012",
+      "source_local_title": "Angel One",
+      "source_relative_entity_mentions": [
+        "away team",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Alien hijackers seize the Enterprise's computer to help repair a failing system on their planet.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 15,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "3bc6d753d4d0c77d78bac368cd10dc43734d3eba35b02c2f0f59bfb3709e4e7e",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > 11001001 > S1 E15 > short description",
+        "title": "11001001"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26451523796/CBS_TNG_116_HD_IMAGE_CIAN_1122571_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E15",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:013",
+      "source_local_title": "11001001",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A hostage negotiation becomes entangled with a governor's revenge against a Federation admiral.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 16,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "4fe0e5419e507beea982b0d6351aa31010a17dc2367255705c9731616e9d3af9",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Too Short a Season > S1 E16 > short description",
+        "title": "Too Short a Season"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26451523622/CBS_TNG_112_HD_IMAGE_CIAN_1122570_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E16",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:014",
+      "source_local_title": "Too Short a Season",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Federation"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Wesley and other Enterprise children are abducted by a society unable to reproduce.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 17,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "5adf27fff80bda0bc17756bf8c3d53ae35207d9434313ec478414bdded5789b9",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > When the Bough Breaks > S1 E17 > short description",
+        "title": "When the Bough Breaks"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035910/CBS_TNG_118_HD_IMAGE_CIAN_1122568_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E17",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:015",
+      "source_local_title": "When the Bough Breaks",
+      "source_relative_entity_mentions": [
+        "Wesley",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A tiny but powerful life-form commandeers the Enterprise's systems and threatens the ship.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 18,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "ba80c2f4087047eb1a3b9cd5c96bf78b4165df9434cdf3505f2549e758d7b466",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Home Soil > S1 E18 > short description",
+        "title": "Home Soil"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035841/CBS_TNG_117_HD_IMAGE_CIAN_1122574_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E18",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:016",
+      "source_local_title": "Home Soil",
+      "source_relative_entity_mentions": [
+        "humans",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Wesley takes a Starfleet Academy entrance examination while Picard's command comes under scrutiny.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 19,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "ddb289b70d50e68289bad71c1d9d10156c44ece981537b0cd1bbe495ff720709",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Coming of Age > S1 E19 > short description",
+        "title": "Coming of Age"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107532/CBS_TNG_119_HD_IMAGE_CIAN_1122567_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E19",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:017",
+      "source_local_title": "Coming of Age",
+      "source_relative_entity_mentions": [
+        "Wesley",
+        "Starfleet Academy",
+        "Captain Picard"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Worf's loyalties are tested when two Klingon fugitives commandeer the Enterprise.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 20,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "856cd6a6f476dcdc8b8698d16d0b29e156123ec04c898e2aa6984969ea9d029b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Heart of Glory > S1 E20 > short description",
+        "title": "Heart of Glory"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452547870/CBS_TNG_120_HD_IMAGE_CIAN_1122563_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E20",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:018",
+      "source_local_title": "Heart of Glory",
+      "source_relative_entity_mentions": [
+        "Lt. Worf",
+        "Enterprise",
+        "Klingon"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Picard and his team struggle to survive a planet controlled by automated weapons.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 21,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "37bcc6c6f321c32ca8da9ba47457a200f8d59ade42524d1a0bf092d39db322d6",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > The Arsenal of Freedom > S1 E21 > short description",
+        "title": "The Arsenal of Freedom"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453059797/CBS_TNG_121_HD_IMAGE_CIAN_1122575_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E21",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:019",
+      "source_local_title": "The Arsenal of Freedom",
+      "source_relative_entity_mentions": [
+        "Picard",
+        "away team"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_ADMISSION_OR_IMAGE_COPY",
+      "assertion_frame": "MENTIONS_IN_PUBLISHER_DESCRIPTION_NOT_EPISODE_TRUTH",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "The Enterprise becomes caught in a dispute over lifesaving cargo between two alien peoples.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 22,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+        "publisher_description_sha256": "6d4df41b58780d58ae3f7590db6e815a26d77a0c4c1d48728b64dd1ebf28a5ee",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "section_locator": "Episode Guide > Symbiosis > S1 E22 > short description",
+        "title": "Symbiosis"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26456131538/CBS_TNG_123_HD_IMAGE_CIAN_1122561_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_context": "TNG S1E22",
+      "source_local_lineage": "paramount_publisher_guide_prior_listing",
+      "source_local_row_id": "legacy:s1:tng:020",
+      "source_local_title": "Symbiosis",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_HUMAN_AND_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_rows_rechecked": 10
+}

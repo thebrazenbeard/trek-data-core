@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "TNG-S1-B011-PUBLISHER-CARDS-20261103",
+  "baseline_accepted_main": "a81d1829b394af66fb1a1d1a2c93a6b374fa81ef",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/",
+  "read_surface": "PUBLISHER_RENDERED_GUIDE_AND_RAW_HTML_CARD_METADATA",
+  "raw_html_bytes_archived": false,
+  "audiovisual_episodes_watched": false,
+  "public_synopsis_authorized": false,
+  "artwork_copy_or_publication_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "row_id": "legacy:s1:tng:011",
+      "publisher_title": "Datalore",
+      "season": 1,
+      "episode": 13,
+      "publisher_description_sha256": "a3970bf53329e5ba9dd7e0c51e76231398932c85e46ee6d2d19fec6097808370",
+      "original_synopsis_draft": "An android resembling Data devises a scheme that threatens the Enterprise.",
+      "entity_mentions_source_relative": ["Data", "Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26450499987/CBS_TNG_114_HD_IMAGE_CIAN_R_3164052_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:012",
+      "publisher_title": "Angel One",
+      "season": 1,
+      "episode": 14,
+      "publisher_description_sha256": "d9e6871dee039a5c166b7edc521c2bbf9c24d4bab5824d50a2e6c4859f208fae",
+      "original_synopsis_draft": "An away team tries to rescue male fugitives while a contagious illness spreads aboard the Enterprise.",
+      "entity_mentions_source_relative": ["away team", "Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453571626/CBS_TNG_115_HD_IMAGE_CIAN_R_3164051_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:013",
+      "publisher_title": "11001001",
+      "season": 1,
+      "episode": 15,
+      "publisher_description_sha256": "3bc6d753d4d0c77d78bac368cd10dc43734d3eba35b02c2f0f59bfb3709e4e7e",
+      "original_synopsis_draft": "Alien hijackers seize the Enterprise's computer to help repair a failing system on their planet.",
+      "entity_mentions_source_relative": ["Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26451523796/CBS_TNG_116_HD_IMAGE_CIAN_1122571_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:014",
+      "publisher_title": "Too Short a Season",
+      "season": 1,
+      "episode": 16,
+      "publisher_description_sha256": "4fe0e5419e507beea982b0d6351aa31010a17dc2367255705c9731616e9d3af9",
+      "original_synopsis_draft": "A hostage negotiation becomes entangled with a governor's revenge against a Federation admiral.",
+      "entity_mentions_source_relative": ["Enterprise", "Federation"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26451523622/CBS_TNG_112_HD_IMAGE_CIAN_1122570_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:015",
+      "publisher_title": "When the Bough Breaks",
+      "season": 1,
+      "episode": 17,
+      "publisher_description_sha256": "5adf27fff80bda0bc17756bf8c3d53ae35207d9434313ec478414bdded5789b9",
+      "original_synopsis_draft": "Wesley and other Enterprise children are abducted by a society unable to reproduce.",
+      "entity_mentions_source_relative": ["Wesley", "Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035910/CBS_TNG_118_HD_IMAGE_CIAN_1122568_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:016",
+      "publisher_title": "Home Soil",
+      "season": 1,
+      "episode": 18,
+      "publisher_description_sha256": "ba80c2f4087047eb1a3b9cd5c96bf78b4165df9434cdf3505f2549e758d7b466",
+      "original_synopsis_draft": "A tiny but powerful life-form commandeers the Enterprise's systems and threatens the ship.",
+      "entity_mentions_source_relative": ["humans", "Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035841/CBS_TNG_117_HD_IMAGE_CIAN_1122574_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:017",
+      "publisher_title": "Coming of Age",
+      "season": 1,
+      "episode": 19,
+      "publisher_description_sha256": "ddb289b70d50e68289bad71c1d9d10156c44ece981537b0cd1bbe495ff720709",
+      "original_synopsis_draft": "Wesley takes a Starfleet Academy entrance examination while Picard's command comes under scrutiny.",
+      "entity_mentions_source_relative": ["Wesley", "Starfleet Academy", "Captain Picard"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26455107532/CBS_TNG_119_HD_IMAGE_CIAN_1122567_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:018",
+      "publisher_title": "Heart of Glory",
+      "season": 1,
+      "episode": 20,
+      "publisher_description_sha256": "856cd6a6f476dcdc8b8698d16d0b29e156123ec04c898e2aa6984969ea9d029b",
+      "original_synopsis_draft": "Worf's loyalties are tested when two Klingon fugitives commandeer the Enterprise.",
+      "entity_mentions_source_relative": ["Lt. Worf", "Enterprise", "Klingon"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452547870/CBS_TNG_120_HD_IMAGE_CIAN_1122563_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:019",
+      "publisher_title": "The Arsenal of Freedom",
+      "season": 1,
+      "episode": 21,
+      "publisher_description_sha256": "37bcc6c6f321c32ca8da9ba47457a200f8d59ade42524d1a0bf092d39db322d6",
+      "original_synopsis_draft": "Picard and his team struggle to survive a planet controlled by automated weapons.",
+      "entity_mentions_source_relative": ["Picard", "away team"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26453059797/CBS_TNG_121_HD_IMAGE_CIAN_1122575_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:tng:020",
+      "publisher_title": "Symbiosis",
+      "season": 1,
+      "episode": 22,
+      "publisher_description_sha256": "6d4df41b58780d58ae3f7590db6e815a26d77a0c4c1d48728b64dd1ebf28a5ee",
+      "original_synopsis_draft": "The Enterprise becomes caught in a dispute over lifesaving cargo between two alien peoples.",
+      "entity_mentions_source_relative": ["Enterprise"],
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26456131538/CBS_TNG_123_HD_IMAGE_CIAN_1122561_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "trek-scouts-holodeck-06to09-publisher-description-v1",
+  "proposal_only": true,
+  "observed_on_utc": "2026-11-03",
+  "source_access": "SEARCH_RETRIEVED_PUBLIC_YOUTUBE_VIDEO_DESCRIPTION_NOT_VIDEO_PAGE_OPENED",
+  "verification_class": "PUBLISHER_DESCRIPTION_METADATA_READ_NOT_ANIMATION_VIEWED",
+  "source_family": "publisher:paramount-nickelodeon-youtube",
+  "publisher_channel_display_name": "Blaze and the Monster Machines",
+  "independent_upstream_families": 1,
+  "short_count": 4,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "animations_viewed": false,
+  "video_pages_opened": false,
+  "source_bound": false,
+  "close_read": false,
+  "raw_source_page_sha256": null,
+  "description_paraphrases": [
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:06",
+      "publisher_video_id": "-m7ISEuAhac",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=-m7ISEuAhac",
+      "publisher_video_display_date": "2026-02-14",
+      "publisher_video_title": "Holodeck Rescues #6 | Star Trek Scouts Defeat ROBOTS on the Moon! 🌕 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A dispute between robots over a pogo stick threatens a moonchuck's home, and the Scouts bring a transporter watch and replicator to the rescue."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:07",
+      "publisher_video_id": "cYRzkzu_zhg",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=cYRzkzu_zhg",
+      "publisher_video_display_date": "2026-02-28",
+      "publisher_video_title": "Holodeck Rescues #7 | Star Trek Scouts Save a Chameleon's Invisible Power! 💥 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "Shadowtrix deprives a baby chameleon of its disappearing ability; the Scouts enlist Zips's tracking nose and a phaser to pursue a rescue."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:08",
+      "publisher_video_id": "O5wUrGB_6qw",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=O5wUrGB_6qw",
+      "publisher_video_display_date": "2026-03-07",
+      "publisher_video_title": "Holodeck Rescues #8 | Star Trek Scouts Rescue a Moon Alien! 👽 | Star Trek: Scouts",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "The Scouts try to stop Shadowtrix from forcing an alien to mine rocks on the moon, using Sprocket's bionic arm and their astro boots."
+    },
+    {
+      "directory_row_id": "short:scouts:holodeck_rescues:09",
+      "publisher_video_id": "TbZFOtuHpxk",
+      "youtube_video_locator": "https://www.youtube.com/watch?v=TbZFOtuHpxk",
+      "publisher_video_display_date": "2026-03-16",
+      "publisher_video_title": "Sprocket Gets Stuck in an Underwater Whirlpool! 🌊 | Star Trek: Scouts | Holodeck Rescues Episode #9",
+      "description_locator": "Official YouTube video search result > Description > first episode-specific paragraph",
+      "description_class": "PUBLISHER_DESCRIPTION_PARAPHRASE",
+      "synopsis": "A holodeck rescue sends the Scouts beneath an alien planet's ocean, where a giant crab complicates the mission."
+    }
+  ],
+  "held_following_row": {
+    "directory_row_id": "short:scouts:holodeck_rescues:10",
+    "discovery_video_id": "vlez2Dtu95E",
+    "source_locator": "https://youtu.be/vlez2Dtu95E",
+    "status": "HOLD_FIRST_PARTY_DESCRIPTION_NOT_RETRIEVED",
+    "reason": "Derivative episode directories syndicate a plot paragraph, but the exact first-party YouTube video search Description for this video ID was not retrieved in this wave; do not infer first-party source from downstream copying.",
+    "synopsis": null
+  }
+}

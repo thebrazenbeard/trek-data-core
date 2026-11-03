@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "voy-region-split-20261103",
+  "role": "VOY",
+  "base_accepted_main": "d4ecd970bf28019696abd692011007d7d47f9ff8",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "full_av_or_transcript_read": false,
+  "raw_source_snapshots_archived": false,
+  "observation_date_utc": "2026-11-03",
+  "sources": [
+    {
+      "id": "paramount-us-s5",
+      "url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/5/",
+      "lineage_group": "PARAMOUNT_CBS_STUDIO",
+      "kind": "PUBLISHER_EPISODE_GUIDE",
+      "existing_repo_receipt": "proposals/discovery/publisher-season5-20261102/index.json",
+      "new_raw_snapshot_digest": null
+    },
+    {
+      "id": "paramount-us-s7",
+      "url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/7/",
+      "lineage_group": "PARAMOUNT_CBS_STUDIO",
+      "kind": "PUBLISHER_EPISODE_GUIDE",
+      "existing_repo_receipt": "proposals/discovery/publisher-season7-20261102/index.json",
+      "new_raw_snapshot_digest": null
+    },
+    {
+      "id": "paramount-au-s5",
+      "url": "https://www.intl.paramountplus.com/au/shows/star_trek_voyager/episodes/5/",
+      "lineage_group": "PARAMOUNT_CBS_STUDIO",
+      "kind": "REGIONAL_PUBLISHER_EPISODE_GUIDE",
+      "existing_repo_receipt": null,
+      "new_raw_snapshot_digest": null
+    },
+    {
+      "id": "paramount-au-s7",
+      "url": "https://www.intl.paramountplus.com/au/shows/star_trek_voyager/episodes/7/",
+      "lineage_group": "PARAMOUNT_CBS_STUDIO",
+      "kind": "REGIONAL_PUBLISHER_EPISODE_GUIDE",
+      "existing_repo_receipt": null,
+      "new_raw_snapshot_digest": null
+    },
+    {
+      "id": "bbfc-voyager",
+      "url": "https://www.bbfc.co.uk/release/star-trek-voyager-q29sbgvjdglvbjpwwc00mtixnjm",
+      "lineage_group": "BBFC_CLASSIFICATION_RECORD",
+      "kind": "REGULATOR_DISTRIBUTION_VERSION_METADATA",
+      "existing_repo_receipt": null,
+      "new_raw_snapshot_digest": null
+    }
+  ],
+  "local_entities": [
+    {"id": "au-voy-s5-e15-card", "source_id": "paramount-au-s5", "season": 5, "ordinal": 15, "display_title": "Dark Frontier, Part 1"},
+    {"id": "au-voy-s5-e16-card", "source_id": "paramount-au-s5", "season": 5, "ordinal": 16, "display_title": "Dark Frontier, Part 2"},
+    {"id": "au-voy-s7-e9-card", "source_id": "paramount-au-s7", "season": 7, "ordinal": 9, "display_title": "Flesh & Blood, Part 1"},
+    {"id": "au-voy-s7-e10-card", "source_id": "paramount-au-s7", "season": 7, "ordinal": 10, "display_title": "Flesh & Blood, Part 2"},
+    {"id": "au-voy-s7-e25-card", "source_id": "paramount-au-s7", "season": 7, "ordinal": 25, "display_title": "Endgame Part 1"},
+    {"id": "au-voy-s7-e26-card", "source_id": "paramount-au-s7", "season": 7, "ordinal": 26, "display_title": "Endgame Part 2"}
+  ],
+  "evidence": [
+    {"id": "ev-au-s5-e15", "source_id": "paramount-au-s5", "local_entity_id": "au-voy-s5-e15-card", "kind": "PUBLISHER_LISTING", "locator": "Season 5 > Dark Frontier, Part 1 > S5 E15", "establishes": "The Australian publisher guide displays a separate ordinal-15 card."},
+    {"id": "ev-au-s5-e16", "source_id": "paramount-au-s5", "local_entity_id": "au-voy-s5-e16-card", "kind": "PUBLISHER_LISTING", "locator": "Season 5 > Dark Frontier, Part 2 > S5 E16", "establishes": "The Australian publisher guide displays a separate ordinal-16 card."},
+    {"id": "ev-au-s7-e9", "source_id": "paramount-au-s7", "local_entity_id": "au-voy-s7-e9-card", "kind": "PUBLISHER_LISTING", "locator": "Season 7 > Flesh & Blood, Part 1 > S7 E9", "establishes": "The Australian publisher guide displays a separate ordinal-9 card."},
+    {"id": "ev-au-s7-e10", "source_id": "paramount-au-s7", "local_entity_id": "au-voy-s7-e10-card", "kind": "PUBLISHER_LISTING", "locator": "Season 7 > Flesh & Blood, Part 2 > S7 E10", "establishes": "The Australian publisher guide displays a separate ordinal-10 card."},
+    {"id": "ev-au-s7-e25", "source_id": "paramount-au-s7", "local_entity_id": "au-voy-s7-e25-card", "kind": "PUBLISHER_LISTING", "locator": "Season 7 > Endgame Part 1 > S7 E25", "establishes": "The Australian publisher guide displays a separate ordinal-25 card."},
+    {"id": "ev-au-s7-e26", "source_id": "paramount-au-s7", "local_entity_id": "au-voy-s7-e26-card", "kind": "PUBLISHER_LISTING", "locator": "Season 7 > Endgame Part 2 > S7 E26", "establishes": "The Australian publisher guide displays a separate ordinal-26 card."},
+    {"id": "ev-us-s5-gap", "source_id": "paramount-us-s5", "local_entity_id": null, "kind": "PUBLISHER_LISTING_ABSENCE", "locator": "Unadmitted main proposal CSV: publisher-season5-20261102/voy.csv", "establishes": "Captured United States publisher source omitted ordinal 16 between 15 and 17."},
+    {"id": "ev-us-s7-gaps", "source_id": "paramount-us-s7", "local_entity_id": null, "kind": "PUBLISHER_LISTING_ABSENCE", "locator": "Unadmitted main proposal CSV: publisher-season7-20261102/voy.csv", "establishes": "Captured United States publisher source omitted ordinals 10 and 26."},
+    {"id": "ev-bbfc-dark-frontier", "source_id": "bbfc-voyager", "local_entity_id": null, "kind": "REGULATOR_CLASSIFICATION_LISTING", "locator": "Dark Frontier: Part 1 and Part 2, Episodes 15 and 16, 1999 and 2004 classification variants", "establishes": "BBFC independently lists two separately numbered parts and distinct classified versions; this does not decide global Work identity."},
+    {"id": "ev-bbfc-flesh-blood", "source_id": "bbfc-voyager", "local_entity_id": null, "kind": "REGULATOR_CLASSIFICATION_LISTING", "locator": "Flesh And Blood: Part 1 and Part 2, Episodes 9 and 10, 2001 and 2005 classification variants", "establishes": "BBFC independently lists two separately numbered parts and distinct classified versions; this does not decide global Work identity."}
+  ],
+  "assertions": [
+    {"id": "as-s5-packaging-variance", "predicate": "SOURCE_LISTING_DIFFERS_BY_REGION", "status": "PROPOSED", "scope": "VOY Season 5 publisher listing, not canon or global Work identity", "evidence_ids": ["ev-au-s5-e16", "ev-us-s5-gap", "ev-bbfc-dark-frontier"], "claim": "The ordinal-16 gap in the United States catalog is not evidence that a second Dark Frontier listing or version does not exist.", "counterevidence_search": "US guide has one combined Dark Frontier card at ordinal 15; treat as packaging-variance candidate, not an automatic two-Work reconciliation."},
+    {"id": "as-s7-packaging-variance", "predicate": "SOURCE_LISTING_DIFFERS_BY_REGION", "status": "PROPOSED", "scope": "VOY Season 7 publisher listing, not canon or global Work identity", "evidence_ids": ["ev-au-s7-e10", "ev-au-s7-e26", "ev-us-s7-gaps", "ev-bbfc-flesh-blood"], "claim": "Australian source enumerates ordinals 10 and 26 where the United States captured guide does not.", "counterevidence_search": "A combined program or numbering scheme remains plausible; no global count is inferred from distinct regional display cards."}
+  ],
+  "coverage_update": {"events_added": 0, "admitted_briefings": 0, "source_bound_works_added": 0, "full_text_available_added": 0, "close_read_added": 0, "denominator_status": "DENOMINATOR_UNRESOLVED"}
+}

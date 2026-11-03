@@ -1,0 +1,323 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_ent_bundle_sha256": "b3ba6c175202d0bd55b711a850a939af6aee2786d0900bc1365cbd109086ef84",
+  "accepted_s1_b001_observations_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
+  "accepted_s1_b001_records_sha256": "4a48f7136eebff4693fb516bdc3af9bd320af3f2670abfbd492e48816b4e9fc0",
+  "accepted_s1_b002_observations_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
+  "accepted_s1_b002_records_sha256": "88996d6a16d52d6ea82faeccbc01cf97b924b8657d2f78139f2ec131d2e01ae0",
+  "admission_effect": "NONE",
+  "combined_multipart_cards_preserved_as_single_source_slot": 0,
+  "coverage_effect": "NONE",
+  "cross_season_shockwave_work_links_resolved": 0,
+  "data_status": "B001-ENT-S2-PUBLISHER_SOURCE_CARD_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "identity_doubts_promoted_to_identity_changes": 0,
+  "independent_corroborations": 0,
+  "new_source_local_title_slot_rechecks": 10,
+  "observations_sha256": "84fbe7b0d9a0db437bcc4881015dd0352e06cb43a1bdc9b8fa50e45a4f02f049",
+  "original_synopsis_drafts_held": 10,
+  "public_synopses_or_images_published": 0,
+  "publisher_apparent_deaths_treated_as_confirmed_deaths": 0,
+  "publisher_artwork_url_leads_held": 10,
+  "publisher_narrated_tales_treated_as_historical_truth": 0,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "PUBLISHER_SHOCKWAVE_PART_II_S1_PART_I_LINK_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY",
+      "original_synopsis_draft": "While Archer works to return from the thirty-first century, Enterprise's crew resists Silik's interrogations and searches for a way to protect the ship.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 1,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "002d314336f29209603e9dc4ff30820ff37ccc87bc9d393460aa1412b9d6970e",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Shockwave Part II"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_PART_II_CONTINUATION_CLAIM_NO_WORK_IDENTITY_LINK",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492637/CBS_ENTERPRISE_027_2784417_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:000",
+      "source_local_title": "Shockwave Part II",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Sulibans",
+        "Enterprise",
+        "Silik"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "TPol tells Archer and Trip a story of Vulcans living in 1957 Carbon Creek, leaving her listeners unsure whether it is true.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 2,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "8cd473070d262c6a33a51eec0ea7d83be938dd82a414b4daa415b33fa0e8b4de",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Carbon Creek"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_REPORTS_CHARACTER_NARRATED_TALE_NOT_AUTHENTICATED_HISTORY",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492074/CBS_ENTERPRISE_028_2784416_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:001",
+      "source_local_title": "Carbon Creek",
+      "source_relative_entity_mentions": [
+        "TPol",
+        "Vulcans",
+        "Carbon Creek",
+        "Archer",
+        "Trip"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Reed works to disable a hull-embedded weapon while Archer searches for a rescue amid nearby Romulan danger.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 3,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "df06736f37dd8fafdff4f0a57d9f6cdb0c1f566e39ef5462ab261a3e87896c4c",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Minefield"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490418/CBS_ENTERPRISE_029_2784408_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:002",
+      "source_local_title": "Minefield",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Reed",
+        "Romulans",
+        "Archer"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Enterprise seeks urgent repairs from an automated station, but its seemingly easy price becomes ominous when Mayweather is found apparently dead.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 4,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "5dd65d877019abd6af5d949684675f3db1e2bd5b49b1fba54787940fd3bbb563",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Dead Stop"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_APPARENT_DEATH_NOT_AUTHENTICATED_CHARACTER_DEATH",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492039/CBS_ENTERPRISE_030_2784303_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:003",
+      "source_local_title": "Dead Stop",
+      "source_relative_entity_mentions": [
+        "Mayweather"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer tends to his quarantined dog and wrestles with an apology to secure an essential part from the Kreetassens.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 5,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "35a16decfa3813aaa532b342574231ede51a5d4a0c162d924eb22aad0abdeedc",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "A Night in Sickbay"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490437/CBS_ENTERPRISE_031_2784400_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:004",
+      "source_local_title": "A Night in Sickbay",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Porthos",
+        "Kreetassens",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer seeks to help an alien settlement whose resources are repeatedly taken by Klingon raiders.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 6,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "68b4109b374fde6c194d56b5f735113eb262d13e24ead999cfe1e30132aec648",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Marauders"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_PLOT_DESCRIPTION_NOT_AV_EPISODE_DEPICTION",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492021/CBS_ENTERPRISE_032_2784412_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:005",
+      "source_local_title": "Marauders",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Klingons"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "TPol tracks a fugitive from her past with assistance from her crew, while troubling memories complicate the search.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 7,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "82b7e0de2e74e260739a0f7be35756c015c0d415938557a2b6af2d03c461422e",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "The Seventh"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_REPORTS_TROUBLING_MEMORY_NOT_VERIFIED_HISTORY",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490516/CBS_ENTERPRISE_033_2784395_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:006",
+      "source_local_title": "The Seventh",
+      "source_relative_entity_mentions": [
+        "Vulcan",
+        "TPol"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Reed and Archer return to retrieve a misplaced communicator but face suspicion from a society unfamiliar with warp travel.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 8,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "3ee8adb601775a30ee8992264c247ec06e2c17133c4fbc3017d7aa05076f122c",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "The Communicator"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_REPORTS_SUSPECTED_SPIES_NOT_ESTABLISHED_SPIES",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490767/CBS_ENTERPRISE_034_2784407_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:007",
+      "source_local_title": "The Communicator",
+      "source_relative_entity_mentions": [
+        "Reed",
+        "Archer"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Routine assignments aboard Enterprise become consuming fixations for members of the crew.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 9,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "2e7ffc2fcfa631897fadd944ba1e6c90ed54370606f512d3fd8b1cccef3cf378",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Singularity"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_BEHAVIOR_DESCRIPTION_NOT_MEDICAL_DIAGNOSIS",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490214/CBS_ENTERPRISE_035_2784406_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:008",
+      "source_local_title": "Singularity",
+      "source_relative_entity_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "After using the transporter for the first time, Hoshi begins questioning her identity amid unexplained events.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 10,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/2/",
+        "publisher_description_sha256": "c96a2ede0435119fc325677be0299ccfab345c9cdfc8f0825055f1c924fca703",
+        "raw_webpage_sha256": null,
+        "season": 2,
+        "title": "Vanishing Point"
+      },
+      "publisher_description_claim_frame": "PUBLISHER_CHARACTER_IDENTITY_DOUBT_NOT_IDENTITY_CHANGE",
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41488410/CBS_ENTERPRISE_036_2784410_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s2:ent:009",
+      "source_local_title": "Vanishing Point",
+      "source_relative_entity_mentions": [
+        "Hoshi"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 10
+}

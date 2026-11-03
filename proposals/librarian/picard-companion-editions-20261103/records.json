@@ -1,0 +1,243 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "bindings": [
+    {
+      "basis": [
+        {
+          "kind": "PUBLISHER_PRODUCT_URL",
+          "value": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073"
+        }
+      ],
+      "binding_id": "proposed-picard-binding-9781982154073",
+      "exclusive_scope_key": null,
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "method": "PUBLISHER_PRODUCT_TITLE_AUTHOR_ISBN_MATCH_UNVERIFIED",
+      "notes": "Not a reading or an evidence-bearing Source-to-Work binding.",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-picard-publisher-source-9781982154073",
+      "source_scope": {
+        "locator": null,
+        "scope_type": "WHOLE"
+      },
+      "supersedes_binding_id": null,
+      "work_id": "proposed-lit-picard-the-dark-veil",
+      "work_scope": {
+        "component_label": null,
+        "scope_type": "WHOLE"
+      }
+    },
+    {
+      "basis": [
+        {
+          "kind": "PUBLISHER_PRODUCT_URL",
+          "value": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207"
+        }
+      ],
+      "binding_id": "proposed-picard-binding-9781982175207",
+      "exclusive_scope_key": null,
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "method": "PUBLISHER_PRODUCT_TITLE_AUTHOR_ISBN_MATCH_UNVERIFIED",
+      "notes": "Not a reading or an evidence-bearing Source-to-Work binding.",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-picard-publisher-source-9781982175207",
+      "source_scope": {
+        "locator": null,
+        "scope_type": "WHOLE"
+      },
+      "supersedes_binding_id": null,
+      "work_id": "proposed-lit-picard-rogue-elements",
+      "work_scope": {
+        "component_label": null,
+        "scope_type": "WHOLE"
+      }
+    },
+    {
+      "basis": [
+        {
+          "kind": "PUBLISHER_PRODUCT_URL",
+          "value": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833"
+        }
+      ],
+      "binding_id": "proposed-picard-binding-9781982194833",
+      "exclusive_scope_key": null,
+      "fixture_only": false,
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "method": "PUBLISHER_PRODUCT_TITLE_AUTHOR_ISBN_MATCH_UNVERIFIED",
+      "notes": "Not a reading or an evidence-bearing Source-to-Work binding.",
+      "record_type": "source_work_binding",
+      "source_id": "proposed-picard-publisher-source-9781982194833",
+      "source_scope": {
+        "locator": null,
+        "scope_type": "WHOLE"
+      },
+      "supersedes_binding_id": null,
+      "work_id": "proposed-lit-picard-second-self",
+      "work_scope": {
+        "component_label": null,
+        "scope_type": "WHOLE"
+      }
+    }
+  ],
+  "coverage_effect": "NONE",
+  "crosswalks": [],
+  "edition_candidates": [
+    {
+      "edition_candidate_id": "proposed-picard-edition-9781982154073",
+      "format": "TRADE_PAPERBACK",
+      "isbn13": "9781982154073",
+      "publisher_series_position": "Book #2 of Star Trek: Picard",
+      "source_id": "proposed-picard-publisher-source-9781982154073",
+      "status": "PROPOSED",
+      "verification": "PUBLISHER_METADATA_ONLY",
+      "work_id": "proposed-lit-picard-the-dark-veil"
+    },
+    {
+      "edition_candidate_id": "proposed-picard-edition-9781982175207",
+      "format": "TRADE_PAPERBACK",
+      "isbn13": "9781982175207",
+      "publisher_series_position": "Book #3 of Star Trek: Picard",
+      "source_id": "proposed-picard-publisher-source-9781982175207",
+      "status": "PROPOSED",
+      "verification": "PUBLISHER_METADATA_ONLY",
+      "work_id": "proposed-lit-picard-rogue-elements"
+    },
+    {
+      "edition_candidate_id": "proposed-picard-edition-9781982194833",
+      "format": "TRADE_PAPERBACK",
+      "isbn13": "9781982194833",
+      "publisher_series_position": "Part of Star Trek: Picard",
+      "source_id": "proposed-picard-publisher-source-9781982194833",
+      "status": "PROPOSED",
+      "verification": "PUBLISHER_METADATA_ONLY",
+      "work_id": "proposed-lit-picard-second-self"
+    }
+  ],
+  "observed_on": "2026-11-03",
+  "proposal_only": true,
+  "schema_version": "1.0.0",
+  "source_group": "publisher:simonandschuster.com",
+  "sources": [
+    {
+      "content_fingerprint": null,
+      "content_hash": null,
+      "derived_from": [],
+      "fixture_only": false,
+      "independence_group": "publisher:simonandschuster.com",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073",
+      "notes": "Publisher product metadata only; no exact page-byte receipt or book-text read.",
+      "provenance_family": "SIMON_SCHUSTER_PICARD_PRODUCT_PAGES",
+      "provider": "Simon & Schuster",
+      "provider_metadata": {
+        "creator": "James Swallow",
+        "format": "TRADE_PAPERBACK",
+        "isbn13": "9781982154073",
+        "length_pages": 336,
+        "publication_date": "2021-09-07",
+        "publisher_series_position": "Book #2 of Star Trek: Picard",
+        "title": "Star Trek: Picard: The Dark Veil"
+      },
+      "record_type": "source",
+      "retrieved_at": null,
+      "source_id": "proposed-picard-publisher-source-9781982154073",
+      "source_kind": "PUBLISHER_EDITION_METADATA",
+      "source_variant": "publisher trade paperback product page",
+      "source_version": null,
+      "status": "PROPOSED"
+    },
+    {
+      "content_fingerprint": null,
+      "content_hash": null,
+      "derived_from": [],
+      "fixture_only": false,
+      "independence_group": "publisher:simonandschuster.com",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207",
+      "notes": "Publisher product metadata only; no exact page-byte receipt or book-text read.",
+      "provenance_family": "SIMON_SCHUSTER_PICARD_PRODUCT_PAGES",
+      "provider": "Simon & Schuster",
+      "provider_metadata": {
+        "creator": "John Jackson Miller",
+        "format": "TRADE_PAPERBACK",
+        "isbn13": "9781982175207",
+        "length_pages": 416,
+        "publication_date": "2022-06-07",
+        "publisher_series_position": "Book #3 of Star Trek: Picard",
+        "title": "Star Trek: Picard: Rogue Elements"
+      },
+      "record_type": "source",
+      "retrieved_at": null,
+      "source_id": "proposed-picard-publisher-source-9781982175207",
+      "source_kind": "PUBLISHER_EDITION_METADATA",
+      "source_variant": "publisher trade paperback product page",
+      "source_version": null,
+      "status": "PROPOSED"
+    },
+    {
+      "content_fingerprint": null,
+      "content_hash": null,
+      "derived_from": [],
+      "fixture_only": false,
+      "independence_group": "publisher:simonandschuster.com",
+      "locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833",
+      "notes": "Publisher product metadata only; no exact page-byte receipt or book-text read.",
+      "provenance_family": "SIMON_SCHUSTER_PICARD_PRODUCT_PAGES",
+      "provider": "Simon & Schuster",
+      "provider_metadata": {
+        "creator": "Una McCormack",
+        "format": "TRADE_PAPERBACK",
+        "isbn13": "9781982194833",
+        "length_pages": 320,
+        "publication_date": "2023-09-19",
+        "publisher_series_position": "Part of Star Trek: Picard",
+        "title": "Star Trek: Picard: Second Self"
+      },
+      "record_type": "source",
+      "retrieved_at": null,
+      "source_id": "proposed-picard-publisher-source-9781982194833",
+      "source_kind": "PUBLISHER_EDITION_METADATA",
+      "source_variant": "publisher trade paperback product page",
+      "source_version": null,
+      "status": "PROPOSED"
+    }
+  ],
+  "works": [
+    {
+      "component_label": null,
+      "fixture_only": false,
+      "notes": "Publisher-attributed Work hypothesis; creator James Swallow; not reconciled.",
+      "parent_work_id": null,
+      "record_type": "work",
+      "status": "PROPOSED",
+      "title": "Star Trek: Picard: The Dark Veil",
+      "work_id": "proposed-lit-picard-the-dark-veil",
+      "work_type": "NOVEL"
+    },
+    {
+      "component_label": null,
+      "fixture_only": false,
+      "notes": "Publisher-attributed Work hypothesis; creator John Jackson Miller; not reconciled.",
+      "parent_work_id": null,
+      "record_type": "work",
+      "status": "PROPOSED",
+      "title": "Star Trek: Picard: Rogue Elements",
+      "work_id": "proposed-lit-picard-rogue-elements",
+      "work_type": "NOVEL"
+    },
+    {
+      "component_label": null,
+      "fixture_only": false,
+      "notes": "Publisher-attributed Work hypothesis; creator Una McCormack; not reconciled.",
+      "parent_work_id": null,
+      "record_type": "work",
+      "status": "PROPOSED",
+      "title": "Star Trek: Picard: Second Self",
+      "work_id": "proposed-lit-picard-second-self",
+      "work_type": "NOVEL"
+    }
+  ]
+}

@@ -74,7 +74,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -123,6 +123,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
     if (path === './research-leads.json') return { status: researchStatus, ok: researchStatus >= 200 && researchStatus < 300, json: async () => research };
     if (path === './film-catalog.json') return { status: filmStatus, ok: filmStatus >= 200 && filmStatus < 300, json: async () => films };
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
+    if (path === './artwork-catalog-v1.3.json') return { status: mediumStatus, ok: mediumStatus >= 200 && mediumStatus < 300, json: async () => mediumArtwork };
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
     if (path === './synopsis-catalog.json') return { status: synopsisStatus, ok: synopsisStatus >= 200 && synopsisStatus < 300, json: async () => synopsis };
     if (path === './metadata-rechecks.json') return {
@@ -179,14 +180,16 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   // Promise callbacks update the DOM. This avoids machine-load timing races
   // without a guessed fixed delay or swallowing a rejected request.
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
-    './artwork-catalog.json', './synopsis-catalog.json',
+    './artwork-catalog-v1.3.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
     './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json', './episode-source-cards.json'];
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
     await new Promise((resolve) => setImmediate(resolve));
-    if (optionalPaths.every((path) => requested.has(path)) && inFlightDigests.size === 0) quietTurns++;
+    if (optionalPaths.every((path) => requested.has(path)) &&
+        (requested.has('./artwork-catalog.json') || mediumStatus >= 200 && mediumStatus < 300) &&
+        inFlightDigests.size === 0) quietTurns++;
     else quietTurns = 0;
   }
   assert.equal(quietTurns, 2, 'Explorer fixture optional requests/WebCrypto did not reach settled state');
@@ -217,6 +220,12 @@ const catalog = {
 const episodeNodes = (bytes, status = 200, script = SCRIPT) => runWithIndex(catalog, 200,
   null, 404, {}, null, 404, null, 404, null, 404, null, 404, script,
   null, 404, null, 404, false, null, 404, null, 404, null, 404, null, 404, bytes, status);
+
+const runMediumArtwork = (directory, mediumArtwork, mediumStatus = 200, smallArtwork = null) =>
+  runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    smallArtwork, smallArtwork ? 200 : 404, null, 404, SCRIPT,
+    null, 404, null, 404, false, null, 404, null, 404, null, 404,
+    null, 404, null, 404, mediumArtwork, mediumStatus);
 
 async function selectLocalOpf(nodes, bytes, declaredSize = bytes.length) {
   nodes.get('owner-opf-file').files = [{ size: declaredSize, arrayBuffer: async () =>
@@ -1299,6 +1308,103 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(rejected.get('artwork-toggle').disabled, true,
     'a visually rejected interior title page cannot be marketed as a book cover');
   assert.match(rejected.get('artwork-state').textContent, /crosswalk receipt/);
+});
+
+test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old browser clients', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const small = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
+  assert.equal(small.schema_version, '1.2.0', 'the legacy URL must remain unchanged for old cached app.js');
+  const medium = structuredClone(small);
+  medium.schema_version = '1.3.0';
+  for (const entry of medium.artwork) entry.image_size = 'M';
+  const nodes = await runMediumArtwork(directory, medium, 200, small);
+  assert.equal(nodes.get('artwork-toggle').disabled, false);
+  assert.equal(nodes.get('artwork-gallery').hidden, false,
+    'accepted #420 preserves source-linked LCARS gallery before image consent');
+  assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'off');
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 4);
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0);
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'no Open Library images enter the DOM before the explicit consent click');
+  nodes.get('artwork-toggle').fire('click');
+  const gallery = nodes.get('artwork-gallery-list');
+  const galleryImages = traverse(gallery, (n) => n.tagName === 'img');
+  assert.equal(galleryImages.length, 4);
+  assert.deepEqual(galleryImages.map((img) => img.src).sort(),
+    medium.artwork.map((a) => `https://covers.openlibrary.org/b/id/${a.cover_id}-M.jpg?default=false`).sort());
+  assert.ok(galleryImages.every((img) => img.width === 180 &&
+    img.height >= 271 && img.height <= 275 && img.loading === 'lazy' &&
+    img.referrerPolicy === 'no-referrer'));
+  assert.equal(traverse(gallery, (n) => n.className === 'artwork-panel artwork-panel-medium').length, 4,
+    'native-width medium jackets need their own responsive gallery presentation');
+  assert.match(gallery.textContent, /Medium Open Library API jacket preview · 180 pixels wide .*copyright unresolved/);
+  assert.doesNotMatch(gallery.textContent, /Enterprise War/);
+  const credits = traverse(gallery, (n) => n.className === 'artwork-credit');
+  assert.equal(credits.length, 4);
+  assert.ok(credits.every((a) => /^https:\/\/openlibrary\.org\/isbn\/978\d{10}$/.test(a.href)));
+  const firstMediumImage = galleryImages[0];
+  const firstMediumSrc = firstMediumImage.src;
+  firstMediumImage.fire('error');
+  assert.match(firstMediumImage.src, /-S\.jpg\?default=false$/,
+    'a failed M request may retry only its exact already-approved S jacket');
+  assert.equal(firstMediumImage.referrerPolicy, 'no-referrer');
+  assert.equal(firstMediumImage.loading, 'lazy');
+  firstMediumImage.fire('error');
+  assert.equal(traverse(gallery, (n) => n === firstMediumImage).length, 0,
+    'a failed M and S must return to original LCARS art, without an infinite network retry');
+  assert.match(gallery.textContent, /Sourced image unavailable · LCARS record graphic/);
+  assert.notEqual(firstMediumSrc, firstMediumImage.src);
+  const pendingMediumImage = galleryImages[1];
+  const pendingSrc = pendingMediumImage.src;
+  nodes.get('artwork-toggle').fire('click');
+  assert.equal(traverse(gallery, (n) => n.tagName === 'img').length, 0);
+  pendingMediumImage.fire('error');
+  assert.equal(pendingMediumImage.src, pendingSrc,
+    'late image error after opt-out must not initiate an S fallback request');
+
+  const old = await runMediumArtwork(directory, null, 404, small);
+  assert.equal(old.get('artwork-toggle').disabled, false, 'v1.2 fallback must remain displayable');
+  old.get('artwork-toggle').fire('click');
+  const oldImages = traverse(old.get('artwork-gallery-list'), (n) => n.tagName === 'img');
+  assert.equal(oldImages.length, 4);
+  assert.ok(oldImages.every((img) => /-S\.jpg\?default=false$/.test(img.src)));
+  assert.equal(traverse(old.get('artwork-gallery-list'), (n) => n.className === 'artwork-panel artwork-panel-medium').length, 0);
+});
+
+test('forged medium manifests fail independently and cannot erase approved small jackets', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const small = JSON.parse(readFileSync(new URL('../explorer/artwork-catalog.json', import.meta.url), 'utf8'));
+  const medium = structuredClone(small);
+  medium.schema_version = '1.3.0';
+  for (const entry of medium.artwork) entry.image_size = 'M';
+  const mutations = [
+    (data) => { data.artwork[0].image_size = 'L'; },
+    (data) => { delete data.artwork[0].image_size; },
+    (data) => { data.artwork.pop(); data.artwork_count--; },
+    (data) => { data.artwork.shift(); data.artwork_count--; },
+    (data) => { data.artwork[0].cover_id = 12857937; },
+    (data) => { data.artwork[0].provider = 'UNREVIEWED_COVER_HOST'; },
+    (data) => { data.artwork[0].rights_status = 'PUBLIC_DISPLAY_PERMISSION_VERIFIED'; },
+    (data) => { data.artwork[0].alt_text = 'Paramount officially licensed original movie frame; public domain rights granted'; },
+    (data) => { data.artwork[0].attribution_url = 'https://evil.example/'; },
+    (data) => { data.schema_version = '1.2.0'; },
+  ];
+  for (const mutate of mutations) {
+    const forged = structuredClone(medium);
+    mutate(forged);
+    const nodes = await runMediumArtwork(directory, forged, 200, small);
+    assert.equal(nodes.get('artwork-toggle').disabled, false,
+      'an invalid v1.3 candidate must not break separately reviewed v1.2 fallback');
+    assert.match(nodes.get('artwork-state').textContent, /Medium rendition held/);
+    nodes.get('artwork-toggle').fire('click');
+    const urls = traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').map((n) => n.src);
+    assert.equal(urls.length, 4);
+    assert.ok(urls.every((url) => /-S\.jpg\?default=false$/.test(url)), 'forged variant must never be fetched');
+  }
+  const missingOld = await runMediumArtwork(directory, medium, 200);
+  assert.equal(missingOld.get('artwork-toggle').disabled, false, 'valid new medium manifest stands alone');
+  missingOld.get('artwork-toggle').fire('click');
+  assert.equal(traverse(missingOld.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
 });
 
 test('PRH distributor discovery leads require exact fictional-memoir source scope', async () => {

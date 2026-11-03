@@ -94,6 +94,14 @@ class SiegeProposalTests(unittest.TestCase):
     def test_false_reconciliation_effect(self):
         self.rejects(lambda i, r: r["reading"].update(global_reconciliation_effect="GLOBAL_ENTITY_LINKED"))
 
+    def test_decoy_quark_is_not_a_participant(self):
+        # The accepted packet's next-chapter reveal identifies the apparent
+        # Quark in ev-19/20 as a local occurrence of Odo, not actual Quark.
+        self.rejects(lambda i, r: next(e for e in r["evidence"] if e["id"] == "ev-19")
+                     ["participants"].append("lit-ds9-siege:quark"))
+        self.rejects(lambda i, r: next(e for e in r["evidence"] if e["id"] == "ev-20")
+                     ["participants"].append("lit-ds9-siege:quark"))
+
     def test_malformed_segment_digest(self):
         self.rejects(lambda i, r: i["chapters"][0].update(segment_sha256="none"))
 

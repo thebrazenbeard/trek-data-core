@@ -96,6 +96,14 @@ def validate(index: dict, records: dict, librarian: dict | None = None) -> None:
               "source-locally described observation only")
         check(isinstance(ev["frame"], str) and ev["frame"].strip(), "missing frame")
 
+    by_id = {e["id"]: e for e in evidence}
+    for eid in ("ev-19", "ev-20"):
+        check(eid in by_id, "missing local decoy evidence")
+        participants = by_id[eid]["participants"]
+        check("lit-ds9-siege:odo" in participants and
+              "lit-ds9-siege:quark" not in participants,
+              "Quark decoy incorrectly bound to Quark occurrence")
+
     assertions = records.get("assertions")
     check(isinstance(assertions, list) and len(assertions) >= 6, "assertions")
     assertion_ids = [a.get("id") for a in assertions]

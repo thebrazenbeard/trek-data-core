@@ -480,6 +480,18 @@ class _StartupHTML(HTMLParser):
             # Checking href only on the outer <svg> would miss them.
             _ensure(not ({"href", "xlink:href"} & values.keys()),
                     "SVG descendant external resource references denied")
+            # SVG paint/presentation attributes such as fill, stroke, mask,
+            # clip-path and markers can also fetch from url(https://...).
+            # No URL-valued SVG attribute is required by the first-party
+            # decorative mark, so reject both local and remote url() values.
+            # HTMLParser decodes character references in attribute values;
+            # reject CSS backslash/comments as well to prevent hidden tokens.
+            for name, value in values.items():
+                _ensure(isinstance(value, str) and "\\" not in value and "/*" not in value and
+                        "*/" not in value and
+                        re.search(r"u\s*r\s*l\s*\(|image-set\s*\(|(?:https?:)?//", value,
+                                  re.IGNORECASE) is None,
+                        f"SVG attribute resource reference denied: {name}")
             self.svg_stack.append(tag)
         if tag in ("base", "iframe", "object", "embed", "source", "video", "audio", "image",
                    "picture", "use", "feimage", "canvas"):

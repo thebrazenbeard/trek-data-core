@@ -1,0 +1,76 @@
+{
+  "packet_id": "FILMS-STAR-TREK-2009-FORMATS-20261103",
+  "role": "FILMS",
+  "proposal_only": true,
+  "baseline_accepted_main": "1b4a91cda50f6f5b7c1d7d7ad424cdb58b951e8b",
+  "observed_on_utc": "2026-11-03",
+  "candidate_film_id": "film-2009",
+  "source_group": "publisher:paramount-corporate-family",
+  "independence_note": "Paramount film page, Paramount Home Entertainment and Paramount Digital Entertainment are related divisions, not independent witnesses to runtime, product identity or image rights.",
+  "source_body_sha256": null,
+  "media_bytes_fetched": false,
+  "artwork_bytes_fetched": false,
+  "film_viewed": false,
+  "accepted_source_work_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_synopsis_release_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "sources": {
+    "paramount_film_page": "https://www.paramount.com/movies/star-trek-2009",
+    "home_release_2009_pdf": "https://ir.paramount.com/static-files/21c8db87-fe44-48f0-be67-9fa3d6be0bc6",
+    "digital_extras_2009_pdf": "https://ir.paramount.com/static-files/65c97927-b964-415f-801a-329ab6d2883e"
+  },
+  "source_observations": {
+    "film_page_year_as_listed": 2009,
+    "film_page_rating_as_listed": "PG-13",
+    "film_page_runtime_as_listed_minutes": 127,
+    "home_sheet_runtime_as_listed_minutes": 127,
+    "runtime_scope": "TWO_SAME_CORPORATE_FAMILY_LISTINGS_NO_VERSION_SPECIFIC_COPY_CHECK",
+    "home_release_announcement_date": "2009-07-17",
+    "digital_extras_announcement_date": "2009-11-17",
+    "source_relative_synopsis_candidate": "Kirk and Spock enter a difficult partnership aboard a young Enterprise crew as a vengeful threat puts the Federation at risk.",
+    "synopsis_status": "PUBLISHER_DESCRIPTION_PARAPHRASE_NOT_REVIEWED_OR_RELEASED"
+  },
+  "cards": [
+    {
+      "local_id": "phe-2009-bluray-three-disc",
+      "source_key": "home_release_2009_pdf",
+      "source_section": "Three-disc Blu-ray and Blu-ray feature sections",
+      "historical_release_date": "2009-11-17",
+      "edition_type": "THREE_DISC_BLURAY_WITH_DIGITAL_COPY",
+      "publisher_media_description": "1080p high definition Blu-ray, English 5.1 Dolby TrueHD, additional supplements, third-disc digital copy",
+      "artwork_lead": "NOT_SPECIFIED_FOR_THIS_EDITION",
+      "display_eligible": false
+    },
+    {
+      "local_id": "phe-2009-dvd-two-disc",
+      "source_key": "home_release_2009_pdf",
+      "source_section": "Two-disc DVD section",
+      "historical_release_date": "2009-11-17",
+      "edition_type": "TWO_DISC_DVD_WITH_DIGITAL_COPY",
+      "publisher_media_description": "16:9 enhanced-widescreen DVD, commentary and deleted scenes, second-disc digital copy",
+      "artwork_lead": "NOT_SPECIFIED_FOR_THIS_EDITION",
+      "display_eligible": false
+    },
+    {
+      "local_id": "phe-2009-dvd-single-disc",
+      "source_key": "home_release_2009_pdf",
+      "source_section": "Single-disc DVD paragraph",
+      "historical_release_date": "2009-11-17",
+      "edition_type": "SINGLE_DISC_DVD",
+      "publisher_media_description": "16:9 enhanced-widescreen DVD with commentary, A New Vision featurette and gag reel",
+      "artwork_lead": "NOT_SPECIFIED_FOR_THIS_EDITION",
+      "display_eligible": false
+    },
+    {
+      "local_id": "pde-2009-itunes-extras",
+      "source_key": "digital_extras_2009_pdf",
+      "source_section": "iTunes Extras release and content list",
+      "historical_release_date": "2009-11-17",
+      "edition_type": "ITUNES_HD_WITH_EXTRAS",
+      "publisher_media_description": "HD iTunes Extras package with featurettes, international trailers and more than forty described images",
+      "artwork_lead": "POSTER_KEY_ART_MENTIONED_NO_IMAGE_FILE_CUSTODY_OR_REUSE_LICENSE",
+      "display_eligible": false
+    }
+  ]
+}

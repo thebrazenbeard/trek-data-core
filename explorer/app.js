@@ -1315,6 +1315,8 @@
     artworkState.available = available;
     if (!available) { artworkState.entries.clear(); artworkState.enabled = false; }
     artworkToggle.disabled = !available;
+    byId('artwork-nav-link').hidden = !available;
+    byId('artwork-nav-count').textContent = available ? String(artworkState.entries.size) : '—';
     artworkToggle.setAttribute('aria-pressed', String(artworkState.enabled));
     artworkToggle.textContent = artworkState.enabled ? `Hide sourced artwork (${artworkState.entries.size} previews)`
       : `Show sourced artwork (${available ? artworkState.entries.size : 0} previews)`;

@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=b88604eb5f637dab56ea4c938e302da7b3d4a00ea0a4f48c33397f36c2f3d11d">
-  <script src="./app.js?v=26165693bc59fc6b0170e762a28e1d057fdc5803a7531277497658b637226e12" defer></script>
+  <link rel="stylesheet" href="./app.css?v=b6160c782f3b3f681e82f6b786380d4138eb0d5fab1ede1a8101476205ec0aea">
+  <script src="./app.js?v=d9edcee81e552887e9b1bf3a33c1fb92365fe62aceaa451c8457dc4343c7906f" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -24,6 +24,7 @@
     <span class="navigation-label" aria-hidden="true">Archive stations</span>
     <a href="#main">Status</a>
     <a class="navigation-primary" href="#discovery-directory">Universe directory <span id="discovery-nav-count">—</span></a>
+    <a id="artwork-nav-link" class="navigation-artwork" href="#artwork-gallery" hidden>Artwork <span id="artwork-nav-count">—</span></a>
     <a class="navigation-primary" href="#research-leads">Episode research leads <span id="research-nav-count">—</span></a>
     <a href="#films">Films <span id="film-nav-count">—</span></a>
     <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
@@ -115,7 +116,7 @@
         </div>
         <p id="artwork-state" class="artwork-note" role="status" aria-live="polite">Checking whether display-cleared artwork is available…</p>
       </div>
-      <section id="artwork-gallery" class="artwork-gallery" aria-labelledby="artwork-gallery-heading" hidden>
+      <section id="artwork-gallery" class="artwork-gallery" aria-labelledby="artwork-gallery-heading" tabindex="-1" hidden>
         <div class="artwork-gallery-heading">
           <div><p class="eyebrow">LCARS / Source-bound imagery</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
           <p>These are individually reviewed <strong>image-to-source references</strong>, not admitted Works or visual proof of a fictional event. Source-linked LCARS cards are visible now. Select <strong>Show sourced artwork</strong> to load the matching Open Library jackets; copyright is unresolved, so no external image loads without your permission.</p>

@@ -13,7 +13,7 @@ const ids = [
   'research-count', 'research-state', 'research-list', 'research-empty',
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
   'artwork-gallery', 'artwork-gallery-summary', 'artwork-gallery-list',
-  'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
+  'artwork-nav-link', 'artwork-nav-count', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
   'publisher-edition-list', 'publisher-edition-empty',

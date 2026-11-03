@@ -123,6 +123,32 @@ class PhotoReleaseProposalTests(unittest.TestCase):
         with self.assertRaises(MODULE.ReleaseProposalRejected):
             MODULE.validate(self.root)
 
+    def test_hidden_unreviewed_jpeg_magic_bin_fails(self):
+        (self.root / MODULE.FOLDER / "unreviewed-photo.bin").write_bytes(b"\xff\xd8\xff\xe0JFIF")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_nested_false_approval_document_fails(self):
+        nested = self.root / MODULE.FOLDER / "nested"
+        nested.mkdir()
+        (nested / "approval.md").write_text("Public image authorized and approved", encoding="utf-8")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forged_python_cache_binary_fails(self):
+        cache = self.root / MODULE.FOLDER / "__pycache__"
+        cache.mkdir()
+        (cache / "validate.cpython-312.pyc").write_bytes(b"\xff\xd8\xff\xe0JFIF")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_inline_data_image_in_manifest_fails(self):
+        manifest = self.root / MODULE.FOLDER / "MANIFEST.md"
+        manifest.write_text(manifest.read_text(encoding="utf-8") +
+                            "\n![not reviewed](data:image/png;base64,AAAABBBB)\n", encoding="utf-8")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
     def test_missing_manifest_or_tests_fails(self):
         for leaf in ("MANIFEST.md", "test_validate.py"):
             target = self.root / MODULE.FOLDER / leaf

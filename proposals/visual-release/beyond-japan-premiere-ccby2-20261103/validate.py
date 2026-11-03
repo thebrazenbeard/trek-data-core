@@ -7,8 +7,10 @@ publication permission or substitute for independent review or browser QA.
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -57,6 +59,40 @@ def _require(expression: bool, message: str) -> None:
 
 def validate(root: Path = ROOT) -> str:
     folder = root / FOLDER
+    expected_files = {"decision.json", "MANIFEST.md", "validate.py", "test_validate.py"}
+    _require(folder.is_dir() and not folder.is_symlink(), "Release proposal directory unavailable")
+    observed = list(folder.rglob("*"))
+    authored = []
+    for path in observed:
+        relative = path.relative_to(folder)
+        _require(not path.is_symlink(), "Symlink in release packet")
+        if relative.parts[0] == "__pycache__":
+            # Importlib may generate *untracked*, non-source bytecode in local
+            # test runs. It is not part of the Git packet or review material.
+            if relative.parts == ("__pycache__",):
+                _require(path.is_dir(), "Python cache path changed type")
+            else:
+                _require(len(relative.parts) == 2 and path.is_file() and
+                         re.fullmatch(r"(?:validate|test_validate)\.cpython-\d+\.pyc", path.name) is not None and
+                         path.read_bytes().startswith(importlib.util.MAGIC_NUMBER),
+                         "Unexpected data or executable in Python cache directory")
+            continue
+        _require(path.is_file() and len(relative.parts) == 1,
+                 "Nested directories or payloads not permitted in text-only release packet")
+        authored.append(path)
+    _require({p.name for p in authored} == expected_files,
+             "Unexpected/missing file in four-file text-only release packet")
+    for path in authored:
+        raw = path.read_bytes()
+        try:
+            decoded = raw.decode("utf-8", errors="strict")
+        except UnicodeDecodeError as exc:
+            raise ReleaseProposalRejected("Non-UTF-8 binary content in text-only release packet") from exc
+        _require("\x00" not in decoded and not raw.startswith((b"\xff\xd8", b"\x89PNG", b"GIF8")),
+                 "Embedded binary payload in text-only release packet")
+        if path.name in {"decision.json", "MANIFEST.md"}:
+            _require("data:image" not in decoded.lower() and "base64," not in decoded.lower(),
+                     "Embedded inline image/data payload in text-only decision")
     proposal = _load_json(folder / "decision.json")
     _require(hashlib.sha256((folder / "decision.json").read_bytes()).hexdigest() ==
              EXPECTED_DECISION_SHA256, "Versioned decision fields changed; create reviewed successor")

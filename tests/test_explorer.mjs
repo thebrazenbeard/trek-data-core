@@ -148,15 +148,70 @@ const synopsisRelease = {
   synopses: [{
     row_id: 'film:star-trek-2009', title: 'Star Trek (2009)', medium: 'FILM',
     source_locator: filmCatalog.films[0].source_locator,
+    overview_evidence_locator: filmCatalog.films[0].source_locator,
     source_group: 'publisher:startrek.com', source_input: 'explorer/film-catalog.json', source_context: 'FEATURE_FILM',
     overview_text: 'Synthetic display fixture: this sentence tests the overview rendering contract without asserting any film events.',
     overview_basis: 'PUBLISHER_DESCRIPTION_PARAPHRASE', source_snapshot_date: '2026-11-03',
     research_observation_path: 'proposals/research/fixture/observations.json',
     research_observation_sha256: '1'.repeat(64), raw_webpage_sha256: null,
-    editorial_receipt_sha256: '2'.repeat(64),
+    editorial_receipt_sha256: '2'.repeat(64), directory_alias_row_id: null, directory_alias_context: null,
     admission_effect: 'NONE', coverage_effect: 'NONE'
   }]
 };
+
+test('reviewed publisher release renders exactly nine literary and fourteen film overviews in both source surfaces', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const published = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  assert.equal(published.synopsis_count, 23);
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, published, 200);
+  assert.equal(nodes.get('film-list').children.length, 14);
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14);
+  assert.doesNotMatch(nodes.get('film-list').textContent, /Synopsis pending source verification/);
+  for (const [medium, expectedReviewed] of [['LITERATURE', 9], ['FILM', 14]]) {
+    nodes.get('discovery-medium').value = medium;
+    nodes.get('discovery-filters').fire('input');
+    const cards = nodes.get('discovery-list').children.filter((n) => n.tagName === 'article');
+    assert.equal(cards.length, expectedReviewed);
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length,
+      expectedReviewed, 'film directory aliases must be explicitly reviewed source-local display crosswalks');
+    assert.ok(cards.every((c) => c.textContent.includes('Publisher-description-based overview')));
+    assert.ok(cards.every((c) => !c.textContent.includes('Synopsis pending source verification')));
+  }
+  for (const medium of ['EPISODE', 'SHORT_FORM', 'AUDIO']) {
+    nodes.get('discovery-medium').value = medium;
+    nodes.get('discovery-filters').fire('input');
+    const cards = nodes.get('discovery-list').children.filter((n) => n.tagName === 'article');
+    assert.ok(cards.length > 0);
+    assert.ok(cards.every((c) => c.textContent.includes('Synopsis pending source verification')));
+  }
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+});
+
+test('published review pins reject changed evidence edition or film directory aliases as a whole', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const published = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const changes = [
+    (x) => { x.synopses.find((r) => r.title.includes('Second Self')).overview_evidence_locator = 'https://www.simonandschuster.com/books/Star-Trek-Picard-Second-Self/Una-McCormack/Star-Trek-Picard/9781982194833'; },
+    (x) => { x.synopses.find((r) => r.medium === 'FILM').directory_alias_row_id = 'directory:film:film-nemesis'; },
+    (x) => { x.synopses.find((r) => r.medium === 'FILM').directory_alias_context = 'Fictional Work'; },
+    (x) => { x.synopses.find((r) => r.medium === 'FILM').editorial_receipt_sha256 = 'f'.repeat(64); },
+    (x) => { x.synopses.find((r) => r.medium === 'LITERATURE').raw_webpage_sha256 = 'f'.repeat(64); },
+  ];
+  for (const change of changes) {
+    const forged = structuredClone(published);
+    change(forged);
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+      null, 404, forged, 200);
+    assert.match(nodes.get('film-list').textContent, /Synopsis pending source verification/);
+    nodes.get('discovery-medium').value = 'LITERATURE';
+    nodes.get('discovery-filters').fire('input');
+    assert.match(nodes.get('discovery-list').textContent, /Synopsis pending source verification/);
+    assert.doesNotMatch(nodes.get('discovery-list').textContent, /Publisher-description-based overview/);
+  }
+});
 
 test('all five discovery media and sampled research leads carry an honest synopsis state without source reads', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
@@ -181,13 +236,15 @@ test('a self-attested synopsis sidecar cannot publish unreviewed or mismatched t
   assert.doesNotMatch(unpinned.get('film-list').textContent, /Synthetic display fixture/);
   const reviewed = synopsisRelease.synopses[0];
   const pin = { title: reviewed.title, source_locator: reviewed.source_locator,
+    overview_evidence_locator: reviewed.overview_evidence_locator,
     source_group: reviewed.source_group, source_input: reviewed.source_input, source_context: reviewed.source_context,
+    directory_alias_row_id: null, directory_alias_context: null,
     overview_text: reviewed.overview_text, source_snapshot_date: reviewed.source_snapshot_date,
     research_observation_path: reviewed.research_observation_path,
     research_observation_sha256: reviewed.research_observation_sha256,
     raw_webpage_sha256: null,
     editorial_receipt_sha256: reviewed.editorial_receipt_sha256 };
-  const trustedScript = SCRIPT.replace('const reviewedSynopsisReceipts = new Map();',
+  const trustedScript = SCRIPT.replace(/const reviewedSynopsisReceipts = new Map\(\[[\s\S]*?\]\);/,
     `const reviewedSynopsisReceipts = new Map([['film:star-trek-2009', ${JSON.stringify(pin)}]]);`);
   assert.notEqual(trustedScript, SCRIPT, 'the test must patch only a deliberately pinned synthetic review fixture');
   const valid = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200,
@@ -197,6 +254,9 @@ test('a self-attested synopsis sidecar cannot publish unreviewed or mismatched t
   for (const change of [
     (x) => { x.synopses[0].overview_text += ' Changed without review'; },
     (x) => { x.synopses[0].source_locator = 'https://www.startrek.com/movies/star-trek-into-darkness'; },
+    (x) => { x.synopses[0].overview_evidence_locator = 'https://www.startrek.com/movies/star-trek-into-darkness'; },
+    (x) => { x.synopses[0].overview_evidence_locator = 'https://evil.invalid/tracker'; },
+    (x) => { x.synopses[0].directory_alias_row_id = 'directory:film:bogus'; },
     (x) => { x.synopses[0].source_input = 'proposals/forged.json'; },
     (x) => { x.synopses[0].source_snapshot_date = '2025-01-01'; },
     (x) => { x.synopses[0].research_observation_sha256 = '3'.repeat(64); },

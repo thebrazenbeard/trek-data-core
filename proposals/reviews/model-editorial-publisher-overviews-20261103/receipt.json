@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "review_kind": "MODEL_EDITORIAL_REVIEW",
+  "review_result": "PASS_23_SOURCE_LABELED_PROMOTIONAL_PARAPHRASES_ONLY",
+  "reviewed_on_utc": "2026-11-03",
+  "reviewer_agent": "/root/repo_workflow_merger_audit",
+  "provider": "OpenAI",
+  "runtime": "ChatGPT native subagent (model identity not externally attested)",
+  "review_independence": "SEPARATE_MODEL_AGENT_FROM_CANDIDATE_AND_RELEASE_AUTHORS",
+  "review_request_sha256": "7910e122aaa0f8720f11fb49175e8f337d1a82c2d78debc41c4c8c4d66917ffd",
+  "accepted_observation_commit": "61c9bd6419e60e8800c4462d023def868f711ccd",
+  "source_artifacts": [
+    {
+      "path": "proposals/research/lit-three-publisher-editions-20261103/observations.json",
+      "sha256": "908070be21a187c305b56f7aec880f30eb69cb2d12911f07663a4d2c3c616826",
+      "reviewed_paraphrases": 3
+    },
+    {
+      "path": "proposals/research/lit-ring-memoir-publisher-20261103/observations.json",
+      "sha256": "9fb292b443ddaa2f332568981e4a6629f43bfa7b31fc7d58687be90d432a9514",
+      "reviewed_paraphrases": 6
+    },
+    {
+      "path": "proposals/research/films/publisher-synopses-20261103/observations.json",
+      "sha256": "e128e74c474bf696947e12c159c1bda32cc07ded98df82faf9d89c347d88b378",
+      "reviewed_paraphrases": 14
+    }
+  ],
+  "reviewed_paraphrase_count": 23,
+  "passed_paraphrase_count": 23,
+  "failed_paraphrase_count": 0,
+  "source_review_method": "Independent reading of official rendered Simon & Schuster product descriptions, Penguin Random House/Titan product descriptions, fourteen official StarTrek.com film synopses or the Section 31 studio announcement, compared against exact accepted observation text and identity links; no copyrighted work or raw publisher HTML bytes obtained.",
+  "reviewed_paraphrases": [
+    ["directory:literature:prh-autobiography-janeway", "d4a190a650ce1805f3d55c6adec6f16d7f083c608a42b5416b01cbca62f65aa2"],
+    ["directory:literature:prh-autobiography-kirk", "b118ac8edd575572db04092b475a700f13102b3739e8e6dd10cd8fd851bdcef4"],
+    ["directory:literature:prh-autobiography-picard", "cdf9b7aaa4ae4ead8866f88803ac21b7b629599f360ca24bab1638b76cce704b"],
+    ["directory:literature:prh-autobiography-sisko", "00341731e199c786dd32e061ec11a2e0f7a5f0aab45f1caffff87520d768a11e"],
+    ["directory:literature:prh-autobiography-spock", "410e624e13fab1798fece140c05b0f1b21d7ebea2ef25ac8caa1fcab132c5433"],
+    ["directory:literature:proposed-lit-discovery-enterprise-war", "a5d638aeefb07febdbe0ab36410d6c344590145639232443c22060db61340d57"],
+    ["directory:literature:proposed-lit-picard-second-self", "7f9a17d05bcebdecf38298b943514ed23c7714f8cd7e0ceddb9f0f1a6bef2fa5"],
+    ["directory:literature:proposed-lit-snw-high-country", "97f3b25618f6aa3f0a4514b4115c7f40df5504d5ff0acc67d35e4a71740974b1"],
+    ["directory:literature:proposed-lit-snw-ring-of-fire", "126eadcec2c0c2c1f2ff95c1afe157d9a693e6ebe2bf61c554b9c9f5293a28cf"],
+    ["film:film-2009", "923db8b41aaa46aab79f42eb2e3162eb2dff7eec511bddc548074a3ba1d595a6"],
+    ["film:film-beyond", "02776f9e9918c8b6554c47f24ddbb31309eadd0b034342293529ce41fd30a739"],
+    ["film:film-final-frontier", "899f6b4e18c1e13e192aed616078db22558d09bf66c2bce034c352fbd28d32a7"],
+    ["film:film-first-contact", "613cf8532228cbb58a3647a655f9e8e610b8c155940f818b5783b59f341cc7fe"],
+    ["film:film-generations", "0ad2c7dd76ca0c585d75acdfd18ed1b64308ff4054ad54325a294b44ba6e1626"],
+    ["film:film-insurrection", "a0358bae4488a2161fa8654050bd0c7f652a7fcbac46104db2547befd6ed947f"],
+    ["film:film-into-darkness", "16ff8aa2dc8500f4de4e5c30d7dac128baefa75bb7341003a32d284811e2c787"],
+    ["film:film-motion-picture", "0e089796ffb6387a488ad302d93d7fce3a0e931b408cdeeea09468fc742a7c0a"],
+    ["film:film-nemesis", "747073c27cbe8931300b37a1214800f297b825fb640db664f09c8e13a5dcd412"],
+    ["film:film-search-for-spock", "3c535e6ef793e01731ababcbbeb18a6e98ef6fd465b89bef65c66f3a1c373e56"],
+    ["film:film-section-31", "450e7c81b841fceec7f6254719c1b5d11d6379324d34ba1254ded57a0aabe6fd"],
+    ["film:film-undiscovered-country", "ef039f21cedd401704a93bc79604c0e5ce933e189fb838bf345e880c3f99383c"],
+    ["film:film-voyage-home", "637e8eb21548289ff1da3cca608973d20b3c2f31f7183a990eb1a6b6c81a19d2"],
+    ["film:film-wrath-of-khan", "da07f447242d7e40f6bef10ea3b31ea63e4975e4c97743c6bf0c99415c3891c4"]
+  ],
+  "material_qualifications": [
+    "This is an internal independent model-agent editorial review, not independent human, external-provider, rights-holder, or legal review.",
+    "All 23 texts paraphrase publisher or studio promotional descriptions; they do not establish full book or film viewing, SOURCE_BOUND, CLOSE_READ, semantic analysis, fictional-world truth, work identity, or accepted research coverage.",
+    "Three Simon & Schuster descriptions use ebook ISBNs different from the Explorer paperback ISBNs: Second Self 9781982194840 versus 9781982194833, The High Country 9781668002407 versus 9781668002391, The Enterprise War 9781982113322 versus 9781982113315. Release requires separate exact same-candidate publisher-edition crosswalk and a pinned evidence URL distinct from display row URL.",
+    "The StarTrek.com The Search for Spock page contains an erroneous displayed year of 1982; the paraphrase does not assert a film year. Do not carry that date into accepted facts.",
+    "The Section 31 synopsis derives from a studio announcement, not a completed movie viewing or a verified closed audiovisual work source.",
+    "The exact film catalog and discovery directory contain separate source-local presentation rows. Reusing an overview across both must use an explicit, separately validated same-source display alias, never silent global Work reconciliation.",
+    "Publisher descriptions were read through rendered web retrieval. Raw webpage bytes and cryptographic page custody were unavailable; raw_webpage_sha256 must remain null.",
+    "This receipt does not grant copyright, trademark, image, transcript, ebook, or media reproduction rights, nor does it authorize a GitHub merge, deployment, or publication. Any release needs a separate technical security test and the user's applicable authorization."
+  ],
+  "source_admission_effect": "NONE",
+  "work_admission_effect": "NONE",
+  "evidence_admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "site_release_effect": "NONE"
+}

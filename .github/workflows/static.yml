@@ -95,6 +95,21 @@ jobs:
             python3 tools/build_unified_discovery.py --check
           fi
 
+      - name: Verify optional publisher-description synopsis release
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # Separate explicit editorial/source observation receipts are
+          # required before exposing any publisher-derived plot overview.
+          if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null || \
+             test -e explorer/synopsis-catalog.json || test -L explorer/synopsis-catalog.json; then
+            test -f explorer/synopsis-catalog.json
+            test ! -L explorer/synopsis-catalog.json
+            test -f tools/build_publisher_synopsis_release.py
+            test ! -L tools/build_publisher_synopsis_release.py
+            python3 tools/build_publisher_synopsis_release.py --check
+          fi
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -127,7 +142,8 @@ jobs:
             ! -path explorer/trek-data-core-hero.jpg \
             ! -path explorer/research-leads.json \
             ! -path explorer/discovery-catalog.json \
-            ! -path explorer/film-catalog.json -print -quit | grep -q .; then
+            ! -path explorer/film-catalog.json \
+            ! -path explorer/synopsis-catalog.json -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
@@ -176,6 +192,19 @@ jobs:
             fi
           elif test -e explorer/discovery-catalog.json || test -L explorer/discovery-catalog.json; then
             echo "Refusing to deploy uncommitted Multimedia directory" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null; then
+            test -f explorer/synopsis-catalog.json
+            test ! -L explorer/synopsis-catalog.json
+            expected="$(git rev-parse HEAD:explorer/synopsis-catalog.json)"
+            actual="$(git hash-object explorer/synopsis-catalog.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified publisher synopsis release" >&2
+              exit 1
+            fi
+          elif test -e explorer/synopsis-catalog.json || test -L explorer/synopsis-catalog.json; then
+            echo "Refusing to deploy an uncommitted publisher synopsis release" >&2
             exit 1
           fi
 

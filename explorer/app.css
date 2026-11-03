@@ -355,4 +355,11 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .publisher-edition-card { grid-template-columns: 82px minmax(0,1fr); gap: 11px; padding: 12px; }
   .footer { border-left-width: 12px; border-top-width: 9px; padding: 24px 20px 30px; }
 }
+@media (max-width: 359px) {
+  /* Keep record title, source and synopsis readable on 320px screens instead
+     of squeezing them into a ~100px column beside the illustrated key. */
+  .directory-card.media-card, .film-grid .media-card, .publisher-edition-card { grid-template-columns: minmax(0, 1fr); }
+  .artwork-panel { width: 100%; display: grid; grid-template-columns: 82px minmax(0, 1fr); align-items: center; gap: 12px; }
+  .artwork-caption { min-width: 0; text-align: left; font-size: .58rem; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

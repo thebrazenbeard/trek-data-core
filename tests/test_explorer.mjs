@@ -1228,6 +1228,8 @@ test('only four independently visually identified fictional-autobiography jacket
     'there are no external image URLs in the DOM until a visitor explicitly opts in');
   nodes.get('discovery-query').value = 'autobiography';
   nodes.get('discovery-filters').fire('input');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'the four exact cover-bearing rows themselves cannot initiate off-site image requests before opt-in');
   nodes.get('artwork-toggle').fire('click');
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');

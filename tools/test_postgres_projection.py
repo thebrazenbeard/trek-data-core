@@ -10,10 +10,10 @@ pg=load('build_postgres.py','trek_build_postgres'); fixture=load('test_projectio
 class PostgresProjectionTests(unittest.TestCase):
  def test_generated_sql_is_deterministic_verified_and_projection_pinned(self):
   with tempfile.TemporaryDirectory() as td:
-   root=Path(td)/'projection'; manifest=fixture.make_projection(root); first=pg.generate_sql(root); second=pg.generate_sql(root); self.assertEqual(first,second); self.assertIn(manifest['projection_hash'],first); self.assertIn('CREATE SCHEMA trek_projection_v0_2',first); self.assertIn('SET standard_conforming_strings = on',first)
+   root=Path(td)/'projection'; manifest=fixture.make_projection(root); first=pg.generate_sql(root); second=pg.generate_sql(root); self.assertEqual(first,second); self.assertIn(manifest['projection_hash'],first); self.assertIn('CREATE SCHEMA trek_projection_v0_3',first); self.assertIn('SET standard_conforming_strings = on',first)
  def test_generated_sql_preserves_history_relations_and_projection_states(self):
   with tempfile.TemporaryDirectory() as td:
-   root=Path(td)/'projection'; fixture.make_projection(root); sql=pg.generate_sql(root); self.assertIn('STRUCTURAL_PARADOX',sql); self.assertIn('assertion_history',sql); self.assertIn('reconciliation_history',sql); self.assertIn('ASSERTION_PREDICATE',sql)
+   root=Path(td)/'projection'; fixture.make_projection(root); sql=pg.generate_sql(root); self.assertIn('STRUCTURAL_PARADOX',sql); self.assertIn('assertion_history',sql); self.assertIn('reconciliation_history',sql); self.assertIn('ASSERTION_PREDICATE',sql); self.assertIn('source_work_bindings',sql)
  def test_sql_literal_escaping_is_deterministic_for_hostile_text(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td)/'projection'; fixture.make_projection(root,stable_value="It's a fixture\\path\n'; DROP SCHEMA public; --"); sql=pg.generate_sql(root); self.assertIn("It''s a fixture",sql); self.assertIn('DROP SCHEMA public',sql); self.assertIn('standard_conforming_strings',sql)

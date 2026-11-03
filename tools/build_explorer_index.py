@@ -15,9 +15,9 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL_OUTPUTS = (
+    "sources.jsonl", "works.jsonl", "source_work_bindings.jsonl", "evidence.jsonl",
     "entities.jsonl", "facts.jsonl", "relations.jsonl", "contested.jsonl",
-    "unresolved.jsonl", "provenance.jsonl", "assertion_history.jsonl",
-    "reconciliation_history.jsonl",
+    "unresolved.jsonl", "provenance.jsonl", "assertion_history.jsonl", "reconciliation_history.jsonl",
 )
 STATUS_FILES = {"facts.jsonl": "STABLE", "contested.jsonl": "CONTESTED", "unresolved.jsonl": "UNRESOLVED"}
 APPROVED_HASHES = ROOT / "registry" / "approved_projection_hashes.json"

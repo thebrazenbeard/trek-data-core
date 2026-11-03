@@ -1,0 +1,16 @@
+{
+  "record_type": "PROPOSED_SOURCE_LOCAL_ENTITIES",
+  "source_local_id": "paramount-ds9-s1-guide-20261103",
+  "entities": [
+    {"id": "slot-e01", "type": "SOURCE_LOCAL_EPISODE_CARD", "label": "The Emissary, Parts I and II", "identity_status": "NOT_RECONCILED"},
+    {"id": "slot-e03", "type": "SOURCE_LOCAL_EPISODE_CARD", "label": "Past Prologue", "identity_status": "NOT_RECONCILED"},
+    {"id": "slot-e04", "type": "SOURCE_LOCAL_EPISODE_CARD", "label": "A Man Alone", "identity_status": "NOT_RECONCILED"},
+    {"id": "slot-e05", "type": "SOURCE_LOCAL_EPISODE_CARD", "label": "Babel", "identity_status": "NOT_RECONCILED"},
+    {"id": "slot-e06", "type": "SOURCE_LOCAL_EPISODE_CARD", "label": "Captive Pursuit", "identity_status": "NOT_RECONCILED"},
+    {"id": "kira-mentioned", "type": "PUBLISHER_SUMMARY_MENTION", "label": "Kira", "identity_status": "NOT_RECONCILED"},
+    {"id": "odo-mentioned", "type": "PUBLISHER_SUMMARY_MENTION", "label": "Odo", "identity_status": "NOT_RECONCILED"},
+    {"id": "obrien-mentioned", "type": "PUBLISHER_SUMMARY_MENTION", "label": "O'Brien", "identity_status": "NOT_RECONCILED"}
+  ],
+  "global_identity_links_created": 0,
+  "accepted_entities": 0
+}

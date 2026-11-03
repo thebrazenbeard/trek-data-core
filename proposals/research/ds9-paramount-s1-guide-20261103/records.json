@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-paramount-s1-guide-20261103",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "admitted_briefings": 0,
+  "source": {
+    "local_id": "paramount-ds9-s1-guide-20261103",
+    "provider": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/1/",
+    "retrieval_date_utc": "2026-11-03",
+    "retrieval_method": "DIRECT_HTTP_GET_AND_RENDERED_WEB_VIEW",
+    "http_status": 200,
+    "raw_html_bytes": 298872,
+    "raw_html_sha256": "2862e1bf5e8e3541ee697b16a3b195b1139e094393e83c8576c51d0fd7f246fd",
+    "raw_html_retained_in_public_repo": false,
+    "full_primary_audiovisual_content_read": false,
+    "scope": "FULL_PUBLISHER_SEASON_GUIDE_METADATA_NOT_EPISODE_CONTENT"
+  },
+  "source_local_episode_slots": [
+    {"id": "ds9-s1-e01-guide", "season": 1, "episode_number": 1, "title": "The Emissary, Parts I and II", "summary_code": "NEW_CREW_ON_REMOTE_OUTPOST", "guide_line_window": [113, 117], "video_url": "https://www.paramountplus.com/shows/video/zbYJuXEpNDasxVJf48I7BRo3vg5ogjuF/", "guide_date_indexed": "1993-01-04", "video_page_date_indexed": "1993-01-03"},
+    {"id": "ds9-s1-e03-guide", "season": 1, "episode_number": 3, "title": "Past Prologue", "summary_code": "KIRA_LOYALTY_VS_DUTY", "guide_line_window": [118, 122], "video_url": "https://www.paramountplus.com/shows/video/B8iwoYdTgzQd6XXiE9L8hiQL73E0XEar/", "guide_date_indexed": "1993-01-11", "video_page_date_indexed": "1993-01-10"},
+    {"id": "ds9-s1-e04-guide", "season": 1, "episode_number": 4, "title": "A Man Alone", "summary_code": "ODO_MURDER_SUSPICION", "guide_line_window": [124, 128], "video_url": "https://www.paramountplus.com/shows/video/98levBtEWk4kMsTkEse1gOOXUbb6n2T_/", "guide_date_indexed": "1993-01-18", "video_page_date_indexed": "1993-01-17"},
+    {"id": "ds9-s1-e05-guide", "season": 1, "episode_number": 5, "title": "Babel", "summary_code": "STATION_ILLNESS_AND_ANTIDOTE", "guide_line_window": [130, 134], "video_url": "https://www.paramountplus.com/shows/video/CnOtv5JvGqoBVJfyM9F3tu3HJrFdk1yF/", "guide_date_indexed": "1993-01-25", "video_page_date_indexed": "1993-01-24"},
+    {"id": "ds9-s1-e06-guide", "season": 1, "episode_number": 6, "title": "Captive Pursuit", "summary_code": "OBRIEN_BEFRIENDS_HUNTED_BEING", "guide_line_window": [135, 139], "video_url": "https://www.paramountplus.com/shows/video/5D_1m9MMJBeWpDQkLlBl9aSR3o8hg1WF/", "guide_date_indexed": "1993-02-01", "video_page_date_indexed": "1993-01-31"}
+  ],
+  "date_observation_caveat": {
+    "source_class": "SEARCH_INDEX_EXCERPTS_NOT_PINNED_PAGE_BYTES",
+    "guide_date_observation": "Index-rendered Paramount+ season guide excerpts; these date labels were not isolated in the directly retrieved raw HTML receipt",
+    "video_date_observation": "Indexed individual Paramount+ video-page excerpts; attempts to GET direct video pages returned HTTP 500 or regional redirect",
+    "broadcast_date_reconciliation": "UNRESOLVED",
+    "reason": "Same publisher, two display surfaces, systematic one-day difference. Could reflect a UTC/local-date transformation or field semantics; neither explanation has been independently established."
+  }
+}

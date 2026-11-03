@@ -1,0 +1,14 @@
+{
+  "record_type": "PROPOSED_SOURCE_RELATIVE_ASSERTIONS",
+  "source_local_id": "paramount-ds9-s1-guide-20261103",
+  "assertions": [
+    {"id": "a01", "subject": "slot-e01", "predicate": "PUBLISHER_DESCRIBES", "object": "A combined pilot card introduces an untested station crew.", "evidence_ids": ["e01"], "counter_evidence_ids": [], "status": "PROPOSED", "truth_scope": "PUBLISHER_GUIDE_TEXT_ONLY"},
+    {"id": "a03", "subject": "slot-e03", "predicate": "PUBLISHER_DESCRIBES", "object": "Kira faces a loyalty-and-duty decision.", "evidence_ids": ["e03"], "counter_evidence_ids": [], "status": "PROPOSED", "truth_scope": "PUBLISHER_GUIDE_TEXT_ONLY"},
+    {"id": "a04", "subject": "slot-e04", "predicate": "PUBLISHER_DESCRIBES", "object": "Odo faces suspicion in a murder investigation.", "evidence_ids": ["e04"], "counter_evidence_ids": [], "status": "PROPOSED", "truth_scope": "PUBLISHER_GUIDE_TEXT_ONLY"},
+    {"id": "a05", "subject": "slot-e05", "predicate": "PUBLISHER_DESCRIBES", "object": "A disease emergency and remedy search involve Kira.", "evidence_ids": ["e05"], "counter_evidence_ids": [], "status": "PROPOSED", "truth_scope": "PUBLISHER_GUIDE_TEXT_ONLY"},
+    {"id": "a06", "subject": "slot-e06", "predicate": "PUBLISHER_DESCRIBES", "object": "O'Brien befriends a being targeted by hunters.", "evidence_ids": ["e06"], "counter_evidence_ids": [], "status": "PROPOSED", "truth_scope": "PUBLISHER_GUIDE_TEXT_ONLY"},
+    {"id": "a-date-variance", "subject": "paramount-ds9-s1-guide-20261103", "predicate": "HAS_UNRESOLVED_METADATA_DISCREPANCY", "object": "Five indexed individual video-page date labels are each one calendar day before the corresponding indexed US season-guide labels.", "evidence_ids": ["d01", "d03", "d04", "d05", "d06"], "counter_evidence_ids": [], "status": "PROPOSED_UNRESOLVED", "truth_scope": "SEARCH_INDEX_RENDERING_NOT_RAW_VIDEO_PAGE_RECEIPTS", "falsifier": "Retrieve pinned source representations of both page types, inspect date-field semantics and locale/time-zone transformations, and compare an independent airdate source before choosing any broadcast date."}
+  ],
+  "admitted_assertions": 0,
+  "projection_effect": "NONE"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "LIBRARIAN-B006-VOY-RENDERED-METADATA-20261103",
+  "baseline_accepted_main": "5ea4a8d562e76931218329b8386e363e3c40845f",
+  "catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "read_surface": "RENDERED_OFFICIAL_PARAMOUNT_PLUS_EPISODE_GUIDE_CARDS",
+  "raw_webpage_bytes_available": false,
+  "source_body_read": false,
+  "public_synopsis_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {"row_id":"lead:0070","official_title":"Q2","season":7,"episode":19,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0071","official_title":"The Cloud","season":1,"episode":6,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0072","official_title":"The Omega Directive","season":4,"episode":21,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0073","official_title":"Time And Again","season":1,"episode":4,"title_resolution":"CASE_VARIANT_UNRESOLVED","brief_description_read":true},
+    {"row_id":"lead:0074","official_title":"Caretaker, Part 1 & 2","season":1,"episode":1,"title_resolution":"MULTIPART_TITLE_SCOPE_UNRESOLVED","brief_description_read":true},
+    {"row_id":"lead:0075","official_title":"In the Flesh","season":5,"episode":4,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0076","official_title":"Initiations","season":2,"episode":2,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0077","official_title":"Investigations","season":2,"episode":20,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0078","official_title":"Virtuoso","season":6,"episode":13,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0079","official_title":"Ashes to Ashes","season":6,"episode":18,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0080","official_title":"Jetrel","season":1,"episode":15,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0081","official_title":"The Q and the Grey","season":3,"episode":11,"title_resolution":"EXACT","brief_description_read":true},
+    {"row_id":"lead:0082","official_title":"Think Tank","season":5,"episode":20,"title_resolution":"EXACT","brief_description_read":true}
+  ]
+}

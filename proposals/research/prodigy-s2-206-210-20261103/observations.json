@@ -1,0 +1,59 @@
+﻿{
+    "source_url":  "https://www.startrek.com/news/star-trek-prodigy-season-2-now-available",
+    "source_publication_date":  "2024-07-01",
+    "retrieved_date":  "2026-11-03",
+    "source_independence_group":  "StarTrek.com corporate publisher",
+    "source_evidence":  "Publisher guide text, slots 206-210; no full episode viewing",
+    "records":  [
+                    {
+                        "publisher_slot":  "206",
+                        "coverage_effect":  "NONE",
+                        "original_source_relative_synopsis":  "The crew creates holographic stand-ins to slip away from Voyager, but the duplicates complicate the attempt to locate the Protostar.",
+                        "work_identity":  "UNRESOLVED",
+                        "publisher_title":  "Imposter Syndrome",
+                        "artwork_rights":  "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+                        "source_local_id":  "startrek-pro-s2-206",
+                        "source_status":  "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY"
+                    },
+                    {
+                        "publisher_slot":  "207",
+                        "coverage_effect":  "NONE",
+                        "original_source_relative_synopsis":  "A shortcut through a transwarp conduit leads the crew into a dangerous competition imposed by a Kazon warlord.",
+                        "work_identity":  "UNRESOLVED",
+                        "publisher_title":  "The Fast and the Curious",
+                        "artwork_rights":  "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+                        "source_local_id":  "startrek-pro-s2-207",
+                        "source_status":  "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY"
+                    },
+                    {
+                        "publisher_slot":  "208",
+                        "coverage_effect":  "NONE",
+                        "original_source_relative_synopsis":  "After Zero loses the use of their suit, the crew seeks help from incorporeal beings who may offer the Medusan a new physical form.",
+                        "work_identity":  "UNRESOLVED",
+                        "publisher_title":  "Is There in Beauty No Truth?",
+                        "artwork_rights":  "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+                        "source_local_id":  "startrek-pro-s2-208",
+                        "source_status":  "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY"
+                    },
+                    {
+                        "publisher_slot":  "209",
+                        "coverage_effect":  "NONE",
+                        "original_source_relative_synopsis":  "Following coordinates provided by the mysterious helper, the crew reaches a concealed world and encounters an unexpected figure.",
+                        "work_identity":  "UNRESOLVED",
+                        "publisher_title":  "The Devourer of All Things, Part I",
+                        "artwork_rights":  "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+                        "source_local_id":  "startrek-pro-s2-209",
+                        "source_status":  "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY"
+                    },
+                    {
+                        "publisher_slot":  "210",
+                        "coverage_effect":  "NONE",
+                        "original_source_relative_synopsis":  "The crew learns more about the entity guiding their search before the Loom attacks and Voyager arrives.",
+                        "work_identity":  "UNRESOLVED",
+                        "publisher_title":  "The Devourer of All Things, Part II",
+                        "artwork_rights":  "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+                        "source_local_id":  "startrek-pro-s2-210",
+                        "source_status":  "SOURCE_BOUND_PUBLISHER_DESCRIPTION_ONLY"
+                    }
+                ]
+}

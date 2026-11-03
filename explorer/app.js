@@ -431,6 +431,7 @@
     directoryState.available = available;
     if (!available) directoryState.rows = [];
     byId('discovery-nav-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
+    byId('discovery-top-count').textContent = available ? directoryState.rows.length.toLocaleString() : '—';
     byId('discovery-state').textContent = message;
     if (!available) byId('discovery-metrics').textContent = 'No verified discovery index loaded; row counts are unknown.';
     renderDirectory();

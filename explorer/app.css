@@ -59,8 +59,11 @@ h1 span { color: var(--peach); }
 .readout { display: grid; grid-template-columns: 1fr 1.7fr; align-items: center; gap: 28px; border: 1px solid var(--line); border-top: 12px solid var(--peach); border-left: 18px solid var(--violet); padding: 30px; background: var(--surface); border-radius: 48px 4px 4px 4px; }
 h2 { margin: 0; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.02em; }
 .state-note { margin: 13px 0 0; color: var(--muted); max-width: 480px; }
-.stat-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 0; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; }
 .stat { min-width: 0; padding: 18px 13px; border: 1px solid var(--line); border-top: 9px solid var(--peach); border-radius: 4px 4px 22px 4px; background: var(--surface2); }
+.stat-directory { border-top-color: var(--aqua); }
+.stat-directory dt { color: var(--aqua); }
+.stat dd a { color: inherit; text-decoration-color: var(--aqua); text-underline-offset: 4px; }
 .stat:nth-child(2) { border-top-color: var(--violet); }
 .stat:nth-child(3) { border-top-color: var(--aqua); }
 .stat:nth-child(4) { border-top-color: var(--amber); }

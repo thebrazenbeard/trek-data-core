@@ -87,12 +87,21 @@ def parse_research_tree(raw: bytes) -> list[tuple[str, str, str, str]]:
             continue
         components = path.split("/")
         if (
-            len(components) < 3
-            or any(p in ("", ".", "..") for p in components)
+            any(p in ("", ".", "..") for p in components)
             or not re.fullmatch(r"[0-7]{6}", mode)
             or object_type not in ("blob", "commit")
             or not OID.fullmatch(oid)
         ):
+            raise InventoryError("invalid historical research tree entry")
+        # Historical heads include the root research/README.md, which describes
+        # the research partition but is not itself a lane's evidence artifact.
+        # Ignore *only* this exact regular documentation file; unsafe modes or
+        # other top-level paths must still fail closed.
+        if path == "research/README.md":
+            if (mode, object_type) != ("100644", "blob"):
+                raise InventoryError("unsafe historical root research README")
+            continue
+        if len(components) < 3:
             raise InventoryError("invalid historical research tree entry")
         records.append((path, mode, object_type, oid))
         if len(records) > MAX_RESEARCH_ENTRIES:

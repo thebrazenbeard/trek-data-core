@@ -99,7 +99,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404, premiereBytes = null, premiereStatus = 404, decisionBytes = null, decisionStatus = 404, chatBackend = null) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404, mediumArtwork = null, mediumStatus = 404, premiereBytes = null, premiereStatus = 404, decisionBytes = null, decisionStatus = 404, chatBackend = null, picardBytes = null, picardStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   for (const node of nodes.values()) node._documentRoot = true;
   const requested = new Set();
@@ -165,6 +165,14 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       arrayBuffer: async () => decisionBytes.buffer.slice(decisionBytes.byteOffset, decisionBytes.byteOffset + decisionBytes.byteLength)
     };
     if (path === './discovery-catalog.json') return { status: directoryStatus, ok: directoryStatus >= 200 && directoryStatus < 300, json: async () => directory };
+    if (path === './picard-literature-overlay.json') {
+      const bytes = picardBytes ?? browserAudio.picardBytes;
+      const sidecarStatus = browserAudio.picardStatus ?? picardStatus;
+      return {
+        status: sidecarStatus, ok: sidecarStatus >= 200 && sidecarStatus < 300,
+        arrayBuffer: async () => bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
+      };
+    }
     if (path === './artwork-catalog-v1.3.json') return { status: mediumStatus, ok: mediumStatus >= 200 && mediumStatus < 300, json: async () => mediumArtwork };
     if (path === './artwork-catalog.json') return { status: artworkStatus, ok: artworkStatus >= 200 && artworkStatus < 300, json: async () => artwork };
     if (path === './synopsis-catalog.json') return { status: synopsisStatus, ok: synopsisStatus >= 200 && synopsisStatus < 300, json: async () => synopsis };
@@ -1862,6 +1870,46 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.equal(nodes.get('discovery-list').children.length, 1);
   assert.match(nodes.get('discovery-list').textContent, /Section 31/);
   assert.equal(nodes.get('mission-count').textContent, '2', 'directory is segregated from Mission catalog');
+});
+
+test('two separately pinned Picard literary proposals augment only Explorer and Lore view, not historical ledger', async () => {
+  const historical = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const picardBytes = readFileSync(new URL('../explorer/picard-literature-overlay.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, { picardBytes, picardStatus: 200 },
+    null, 404, historical, 200);
+  assert.equal(historical.rows.length, 1214, 'accepted metadata recheck denominator stays immutable');
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,216');
+  assert.equal(nodes.get('discovery-top-count').textContent, '1,216');
+  assert.equal(nodes.get('discovery-literature-count').textContent, '11');
+  assert.match(nodes.get('discovery-state').textContent, /1,214 original source-local rows \+ 2 separately pinned Picard metadata proposals/);
+  nodes.get('discovery-query').value = 'Rogue Elements';
+  nodes.get('discovery-medium').value = 'LITERATURE';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^1 source-local metadata rows match/);
+  assert.match(nodes.get('discovery-list').textContent, /John Jackson Miller/);
+  assert.match(nodes.get('discovery-list').textContent, /UNVERIFIED_METADATA|unadmitted discovery/);
+  assert.equal(traverse(nodes.get('discovery-list'), (node) => node.tagName === 'img').length, 0,
+    'unreleased cover art is not silently fetched');
+  nodes.get('lore-query').value = 'The Dark Veil';
+  nodes.get('lore-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-answer').textContent, /The Dark Veil/);
+});
+
+test('missing or digest-tampered Picard supplement leaves original 1,214 directory and nine literary rows', async () => {
+  const historical = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const raw = readFileSync(new URL('../explorer/picard-literature-overlay.json', import.meta.url));
+  const forged = Buffer.from(raw);
+  forged[0] ^= 1;
+  for (const input of [{}, { picardBytes: forged, picardStatus: 200 }, { picardBytes: raw, picardStatus: 500 }]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, input, null, 404, historical, 200);
+    assert.equal(nodes.get('discovery-top-count').textContent, '1,214');
+    assert.equal(nodes.get('discovery-literature-count').textContent, '9');
+    nodes.get('discovery-query').value = 'Rogue Elements';
+    nodes.get('discovery-medium').value = 'LITERATURE';
+    nodes.get('discovery-filters').fire('change');
+    assert.equal(nodes.get('discovery-list').children.length, 0,
+      'tampered, absent or error sidecar must never silently appear');
+  }
 });
 
 test('series facet filters source-local episode observations without counting them as distinct Works', async () => {

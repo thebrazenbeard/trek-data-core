@@ -61,13 +61,25 @@ def safe_members(archive: ZipFile) -> list[ZipInfo]:
     names = set()
     for info in entries:
         name = info.filename
-        path = PurePosixPath(name)
-        if (not name or "\\" in name or "\x00" in name or path.is_absolute()
-                or ".." in path.parts or "." in path.parts):
+        # Validate literal ZIP segments *before* pathlib can collapse dot/empty
+        # components. Windows drive syntax is not an absolute POSIX path.
+        normalized = unicodedata.normalize("NFKC", name)
+        if normalized.count("/") != name.count("/"):
             raise IntakeError("archive contains an unsafe member path")
-        if name in names:
-            raise IntakeError("archive contains duplicate member paths")
-        names.add(name)
+        for candidate in (name, normalized):
+            parts = candidate.rstrip("/").split("/")
+            if (not candidate or candidate.startswith("/") or "//" in candidate
+                    or "\\" in candidate or "\x00" in candidate
+                    or any(not part or part in (".", "..") or ":" in part for part in parts)
+                    or any(unicodedata.category(ch) in ("Cc", "Cf", "Cs")
+                           for ch in candidate)):
+                raise IntakeError("archive contains an unsafe member path")
+        # A case-insensitive/NFKC file system can collapse distinct ZIP names;
+        # reject rather than let an arbitrary file win an OPF/source match.
+        key = normalized.rstrip("/").casefold()
+        if key in names:
+            raise IntakeError("archive contains duplicate member paths (normalization-colliding)")
+        names.add(key)
         if stat.S_ISLNK(info.external_attr >> 16):
             raise IntakeError("archive contains a symbolic-link member")
     return entries

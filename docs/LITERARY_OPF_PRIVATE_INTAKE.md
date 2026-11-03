@@ -20,6 +20,12 @@ recognized; invalid, unbound or unsafe XML is flagged for review. XML encodings
 whose markup cannot be safely scanned as bytes (including UTF-16/UTF-32) are
 held for review, not silently admitted.
 
+ZIP member names are checked before path normalization: dot/empty components,
+drive-like paths, Unicode normalization that creates separators, and
+casefold/NFKC-colliding names are refused. This guards ambiguous source-file
+selection; it does not establish that an otherwise valid ZIP is a genuine
+edition or independently sourced literary Work.
+
 ## Run privately
 
 With Python 3.10+ and the two user-held ZIPs at their own local paths:

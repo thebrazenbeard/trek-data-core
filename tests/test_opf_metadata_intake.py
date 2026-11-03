@@ -100,7 +100,10 @@ class PrivateOpfIntakeTests(unittest.TestCase):
     def test_unsafe_zip_paths_and_symlinks_rejected_without_extraction(self):
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "unsafe.zip"
-            for name in ("../escape/Book.opf", "/absolute/Book.opf", "dir\\Book.opf"):
+            for name in ("../escape/Book.opf", "/absolute/Book.opf", "dir\\Book.opf",
+                         "dir/./Book.opf", "dir//Book.opf", "dir//",
+                         "C:/Book.opf", "dir/\uff0e/Book.opf",
+                         "dir/Book\uff0fAnother.opf"):
                 zip_fixture(path, [(name, package())])
                 with self.subTest(name=name), self.assertRaisesRegex(mod.IntakeError, "unsafe member path"):
                     mod.build_inventory(path)
@@ -117,6 +120,12 @@ class PrivateOpfIntakeTests(unittest.TestCase):
             zip_fixture(path, [("Book.opf", package()), ("Book.opf", package())])
             with self.assertRaisesRegex(mod.IntakeError, "duplicate member paths"):
                 mod.build_inventory(path)
+            for names in (("Book.opf", "book.OPF"),
+                          ("caf\u00e9.opf", "cafe\u0301.opf")):
+                with self.subTest(names=names):
+                    zip_fixture(path, [(name, package()) for name in names])
+                    with self.assertRaisesRegex(mod.IntakeError, "duplicate member paths"):
+                        mod.build_inventory(path)
 
     def test_lit_stem_matches_are_a_hint_not_a_work_identity(self):
         with tempfile.TemporaryDirectory() as temp:

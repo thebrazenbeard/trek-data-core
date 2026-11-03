@@ -22,6 +22,7 @@
 
 - Replace caption with “public domain screenshot,” “officially licensed for any fan site,” or assert an unverified named photographer → validation must fail.
 - Promote image into Explorer, infer global Work identity, count episode coverage, or include `.jpg/.png` files (including nested/disguised) in this source packet → fail.
+- An exact four-file flat tracked inventory and pinned manifest prose reject unreviewed `notes.md`, nested `data:image` material, false public-domain captions, and JPEG/PNG signatures concealed after a text prefix. These gates cover **source packet safety**, not permission to display the underlying still.
 - The official 2023 promotional-stills gallery is **episode-specific**, but this distinct JPEG's membership in that gallery must remain `false` until directly proven.
 
 Run `python3 proposals/librarian/snw-broken-circle-official-still-20261103/test_validate.py` and `python3 proposals/librarian/snw-broken-circle-official-still-20261103/validate.py`. No network required by validator; image bytes are not committed.

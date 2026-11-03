@@ -5,10 +5,11 @@ from __future__ import annotations
 
 import copy
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
-from validate import RECORD, load_packet, validate, no_duplicate_keys
+from validate import ALLOWED_PACKET_FILES, RECORD, load_packet, validate, no_duplicate_keys
 
 
 class FirstPartyEpisodeStillTests(unittest.TestCase):
@@ -75,6 +76,66 @@ class FirstPartyEpisodeStillTests(unittest.TestCase):
             (Path(directory) / "rights.dat").write_bytes(b"\xff\xd8\xff" + b"bad")
             with self.assertRaises(ValueError):
                 validate(self.packet)
+
+    def test_nested_markdown_data_image_smuggling_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            nested = staging / "unreviewed"
+            nested.mkdir()
+            (nested / "notes.md").write_text("![" + "still](data:" + "image/jpeg;base64,/9j/...)", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    def test_nested_markdown_false_public_domain_assertion_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            nested = staging / "unreviewed"
+            nested.mkdir()
+            (nested / "notes.md").write_text("unrestricted public-domain screenshot from TOS Arena", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    def test_nested_markdown_jpeg_magic_after_text_prefix_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            nested = staging / "unreviewed"
+            nested.mkdir()
+            (nested / "notes.md").write_bytes(b"ordinary heading\n" + b"\xff\xd8\xff" + b"payload")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    def test_nested_markdown_png_magic_after_text_prefix_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            nested = staging / "unreviewed"
+            nested.mkdir()
+            (nested / "notes.md").write_bytes(b"ordinary heading\n" + b"\x89PNG\r\n\x1a\n" + b"payload")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    def test_permitted_manifest_path_cannot_rewrite_rights_or_scene_caption(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            manifest = staging / "MANIFEST.md"
+            manifest.write_text(manifest.read_text(encoding="utf-8")
+                                + "\nunrestricted public-domain screenshot from TOS Arena\n",
+                                encoding="utf-8")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    def test_flat_packet_cannot_hide_encoded_image_in_permitted_text(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            staging = self.staged_packet(Path(directory))
+            test_file = staging / "test_validate.py"
+            test_file.write_bytes(test_file.read_bytes() + b"\n# data:" + b"image/jpeg;base64,/9j/...\n")
+            with self.assertRaises(ValueError):
+                validate(self.packet, directory=staging)
+
+    @staticmethod
+    def staged_packet(staging: Path) -> Path:
+        for name in ALLOWED_PACKET_FILES:
+            shutil.copyfile(RECORD.parent / name, staging / name)
+        return staging
 
 
 if __name__ == "__main__":

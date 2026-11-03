@@ -992,6 +992,11 @@
       const card = el('article', 'card episode-source-card');
       card.append(el('span', 'kicker', `${row.series_title} · S${row.season} E${row.episode}`));
       card.append(el('h3', '', row.title));
+      const chips = el('div', 'episode-source-chips');
+      chips.append(el('span', 'badge proposed', 'Publisher source card'));
+      chips.append(el('span', 'badge', 'HELD · 0 coverage'));
+      chips.append(el('span', 'badge', 'Artwork not released'));
+      card.append(chips);
       card.append(el('p', 'episode-source-status', 'HELD · First-party publisher guide card; episode content not independently read'));
       if (row.publisher_utterance_labels.length) {
         card.append(el('p', 'episode-source-labels', `Publisher description terms (source-local, not identity): ${row.publisher_utterance_labels.join(' · ')}`));

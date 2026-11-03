@@ -219,6 +219,9 @@ test('20 separately validated publisher episode guide cards search by title, ser
   assert.equal(nodes.get('episode-source-download').hidden, false);
   assert.match(nodes.get('episode-source-summary').textContent, /^20 of 20/);
   assert.equal(traverse(nodes.get('episode-source-list'), (n) => n.tagName === 'article').length, 20);
+  assert.equal(traverse(nodes.get('episode-source-list'), (n) => n.className === 'episode-source-chips').length, 20);
+  assert.match(nodes.get('episode-source-list').textContent, /HELD · 0 coverage/);
+  assert.match(nodes.get('episode-source-list').textContent, /Artwork not released/);
   assert.match(nodes.get('episode-source-list').textContent, /The Impossible Box/);
   assert.match(nodes.get('episode-source-list').textContent, /Hegemony, Part II/);
   for (const forbidden of ['CLOSE_READ', 'AUDITED_WORK_ADMITTED', 'thumbnail_url', 'synopsis_paraphrase_candidate']) {

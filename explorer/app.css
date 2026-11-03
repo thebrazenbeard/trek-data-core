@@ -181,6 +181,8 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .paramount-card .paramount-link { display: inline-block; margin-top: 8px; overflow-wrap: anywhere; text-underline-offset: 2px; text-decoration: underline; }
 .episode-source-card { border-left-color: var(--peach); min-width: 0; }
 .episode-source-card h3 { margin: 4px 0 8px; font-size: 1.02rem; overflow-wrap: anywhere; }
+.episode-source-chips { display: flex; gap: 7px; flex-wrap: wrap; margin: 6px 0 10px; }
+.episode-source-chips .badge { white-space: normal; overflow-wrap: anywhere; }
 .episode-source-card .episode-source-status { color: var(--peach); font-weight: 760; }
 .episode-source-card .episode-source-labels { color: var(--aqua); font-size: .85rem; overflow-wrap: anywhere; }
 .episode-source-card .paramount-custody { color: var(--muted); font: 650 .72rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }

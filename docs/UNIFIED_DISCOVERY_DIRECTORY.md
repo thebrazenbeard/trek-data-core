@@ -22,11 +22,12 @@ continuity assertions, canonical Work IDs, or episode denominators.
 - `proposals/discovery/prodigy-mikros-volume1-20261102/` — ten titles from original animation studio Mikros Animation's Season 1 Volume 1 article. The publisher prose lists titles in order but does not number them: positions 1–10 are **inferred**, not a verified official episode-slot guide. A separate image caption in that same article labels `“Starstruck” Ep#103`, retained as a narrow same-source exception, not independent corroboration or justification to promote the other inferred positions. The original HTML is private; its response hash/size and CSV receipt remain reviewable.
 - `proposals/discovery/prodigy-startrek-publisher-20261102/` — 30 StarTrek.com title-list slots for *Prodigy* Season 1 Episodes 11–20 and Season 2 Episodes 1–20. Publisher-numbered primary evidence for Season 1 Episodes 1–10 is **unresolved in this tranche**, not declared absent from the series. These observations share the Paramount corporate independence group and are not independent corroboration.
 - `proposals/discovery/shorts-audio-20261102/records.json` — 10 *Short Treks* guide slots, five **promotional** *very Short Treks* releases, and one *Khan* audio-series container. The audio listing represents **zero evidenced audio episodes**. It is not merged with possible later literary/audio references under the same title.
+- `proposals/discovery/scouts-firstparty-video-s1-20261103/` — **20 *Star Trek: Scouts* first-party publisher-video observations** from the official Nickelodeon/Blaze YouTube account's individually captured oEmbed metadata. The associated StarTrek.com/CBS announcement identifies a 20-installment short-form order. Six complete TrekCore captures provide *discovery crosswalks* to 19 publisher video IDs, not independent corroboration; the tenth Asteroid Blasters video is separately verified against publisher oEmbed. Both Asteroid Blasters and Holodeck Rescues use source-local #1–#10 numbering, **not** promoted to globally verified season ordinals, accepted Works or Briefings. Only titles, direct publisher links and source-body hashes are public; no video bytes. This publisher is in Paramount's corporate provenance family.
 - `explorer/film-catalog.json` — 14 publisher film metadata candidates.
 - `proposals/librarian/ring-of-fire-editions-20261102/records.json` — one proposed literary Work with four publisher editions, not four novels.
 
-The proposed expansion has **1186 source-local rows**: 1155 episode-related metadata
-references, 14 films, one literary Work with four editions, 15 short-form
+The proposed expansion has **1206 source-local rows**: 1155 episode-related metadata
+references, 14 films, one literary Work with four editions, 35 short-form
 releases and one audio-series container. These numbers
 are not a count of distinct Star Trek Works, complete episodes, admitted
 Briefings, verified sources, or a denominator for the universe. The same Work

@@ -1,0 +1,276 @@
+{
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "crosswalk_sources": [
+    {
+      "byte_count": 235977,
+      "key": "oct2025",
+      "locator": "https://blog.trekcore.com/2025/10/star-trek-khan-star-trek-scouts-episode-roundup/",
+      "sha256": "69e210e181e881f9c9d0002b727f5b5cab276eb31a3b799c6755182b5c90a8ac"
+    },
+    {
+      "byte_count": 234430,
+      "key": "octlatest",
+      "locator": "https://blog.trekcore.com/2025/10/star-trek-khan-scouts-latest-episodes-oct25/",
+      "sha256": "f2d981421d970d1a3c3fb2584162acb0a5df59d1feb0a263108fc9f9c412c40a"
+    },
+    {
+      "byte_count": 232048,
+      "key": "nov",
+      "locator": "https://blog.trekcore.com/2025/11/catch-up-on-latest-episodes-of-the-star-trek-scouts-webseries/",
+      "sha256": "62b97627a957a979dba29395e2cd97ce45751ae57ed0c8eaaac4140706efee02"
+    },
+    {
+      "byte_count": 232824,
+      "key": "jan",
+      "locator": "https://blog.trekcore.com/2026/01/the-star-trek-scouts-explore-the-holodeck-in-newest-webisodes/",
+      "sha256": "1c30e92692b64f2b48292d9f5522648bd7b66b4d9f5afb72b379e39cc278f10b"
+    },
+    {
+      "byte_count": 232505,
+      "key": "feb",
+      "locator": "https://blog.trekcore.com/2026/02/star-trek-scouts-holodeck-adventures-continue/",
+      "sha256": "7186abf45042592cc69cd577973aef0bef2c2552551e81845e1944e462cfba60"
+    },
+    {
+      "byte_count": 232771,
+      "key": "mar",
+      "locator": "https://blog.trekcore.com/2026/03/the-star-trek-scouts-conclude-their-animated-adventures-latest-webisodes/",
+      "sha256": "aedcb10562d14c330d7b81eb8204702e3da4ec8d238068b567cd8e1e1db216d6"
+    }
+  ],
+  "denominator_effect": "NONE",
+  "identity_scope": "SOURCE_LOCAL_NOT_RECONCILED",
+  "observed_on": "2026-11-03",
+  "proposal_status": "DISCOVERY_ONLY",
+  "publisher_announcement": {
+    "byte_count": 1236279,
+    "locator": "https://www.startrek.com/news/star-trek-60th-2026-fan-centric-celebrations",
+    "sha256": "f41b49edebafc3aee8ab04169b3ccfd50005f0225f5de41a0990e268e6bf4b1a"
+  },
+  "publisher_lineage": "publisher:paramount",
+  "schema_version": "1.0.0",
+  "source_note": "Secondary TrekCore embeds are discovery crosswalks, not independent evidence. YouTube oEmbed is publisher-authored metadata; no video was watched. Two #1-#10 strands are source-relative; global season ordinals unresolved.",
+  "videos": [
+    {
+      "byte_count": 977,
+      "discovery_crosswalk_key": "oct2025",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dj-KvjtSgfJs&format=json",
+      "sha256": "6e4652f2ad163ac6bdf5e7be340e6f7e37abda71547d75a81200805d6c4bb496",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 1,
+      "title": "Star Trek Scouts Defeat a SOAPY Asteroid in Space! 🧼 | Asteroid Blasters #1 | Star Trek: Scouts",
+      "video_id": "j-KvjtSgfJs",
+      "watch_url": "https://www.youtube.com/watch?v=j-KvjtSgfJs"
+    },
+    {
+      "byte_count": 981,
+      "discovery_crosswalk_key": "oct2025",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dx1mIN62O00s&format=json",
+      "sha256": "5fa683c5ffa814550b112e85952ed5b55e07241b31c703a85f4415d4ad9a08cd",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 2,
+      "title": "Star Trek Scouts SMASH a Meatball Asteroid in Space! 🍝 | Asteroid Blasters #2 | Star Trek: Scouts",
+      "video_id": "x1mIN62O00s",
+      "watch_url": "https://www.youtube.com/watch?v=x1mIN62O00s"
+    },
+    {
+      "byte_count": 983,
+      "discovery_crosswalk_key": "oct2025",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DPfaNbFeRCm4&format=json",
+      "sha256": "2369bb6b4fa557554b41a38e326edd5920d244274671fd6817b5a2a861c65b88",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 3,
+      "title": "Star Trek Scouts Make FIREWORKS In Space! 🎆💥 | Asteroid Blasters #3 | Star Trek: Scouts",
+      "video_id": "PfaNbFeRCm4",
+      "watch_url": "https://www.youtube.com/watch?v=PfaNbFeRCm4"
+    },
+    {
+      "byte_count": 993,
+      "discovery_crosswalk_key": "oct2025",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dj3asH2YbKz8&format=json",
+      "sha256": "90d0e80f87adcb3200c87ee6d42274a97ce70833b08458bdcb9b0397a949b9ed",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 4,
+      "title": "Star Trek Scouts Hit a Pickle Filled PIÑATA In Space! 🪅 | Asteroid Blasters #4 | Star Trek: Scouts",
+      "video_id": "j3asH2YbKz8",
+      "watch_url": "https://www.youtube.com/watch?v=j3asH2YbKz8"
+    },
+    {
+      "byte_count": 1001,
+      "discovery_crosswalk_key": "octlatest",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D60SkYJy-_2U&format=json",
+      "sha256": "08ce00490d6841a5132a022c947d76eba0f20a25571568f73a1c49e72040aeac",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 5,
+      "title": "Star Trek Scouts Blast a BOOGER Asteroid In Space! 🤢🤧 | Asteroid Blasters #5 | Star Trek: Scouts",
+      "video_id": "60SkYJy-_2U",
+      "watch_url": "https://www.youtube.com/watch?v=60SkYJy-_2U"
+    },
+    {
+      "byte_count": 1005,
+      "discovery_crosswalk_key": "octlatest",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DPs3cQdL1By0&format=json",
+      "sha256": "a5bda34b6540deeb590587341db0f8c8db7f5cabf228c6496855d457205a43c6",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 6,
+      "title": "Star Trek Scouts Zap a Kernel Asteroid Into POPCORN! 🍿🚀 | Asteroid Blasters #6 | Star Trek: Scouts",
+      "video_id": "Ps3cQdL1By0",
+      "watch_url": "https://www.youtube.com/watch?v=Ps3cQdL1By0"
+    },
+    {
+      "byte_count": 1003,
+      "discovery_crosswalk_key": "nov",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DGtJpqUH3gTA&format=json",
+      "sha256": "6116496e8a2e5b48e0fd9ebd6e9cfe0d48290c4e06d171df120221f0f1e1cbb0",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 7,
+      "title": "Star Trek Scouts Have a Disco Asteroid DANCE Party! 🪩🕺 | Asteroid Blasters #7 | Star Trek: Scouts",
+      "video_id": "GtJpqUH3gTA",
+      "watch_url": "https://www.youtube.com/watch?v=GtJpqUH3gTA"
+    },
+    {
+      "byte_count": 983,
+      "discovery_crosswalk_key": "nov",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D6lnl4qzwHt8&format=json",
+      "sha256": "dd8187250419cb7fd13941b657c207b4bcb492cd8fe7bdaed9c057aa5c3b4adb",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 8,
+      "title": "Star Trek Scouts Chomp Through a Bubble Gum Asteroid! 😬 | Asteroid Blasters #8 | Star Trek: Scouts",
+      "video_id": "6lnl4qzwHt8",
+      "watch_url": "https://www.youtube.com/watch?v=6lnl4qzwHt8"
+    },
+    {
+      "byte_count": 987,
+      "discovery_crosswalk_key": "nov",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DODb0D3ZTgug&format=json",
+      "sha256": "46679d89e2f682b2c2e6e8e01a754e8d9cabc69c0951e26147710d696034a0d2",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 9,
+      "title": "Star Trek Scouts CRUMBLE a Cookie Asteroid! 🍪😋 | Asteroid Blasters #9 | Star Trek: Scouts",
+      "video_id": "ODb0D3ZTgug",
+      "watch_url": "https://www.youtube.com/watch?v=ODb0D3ZTgug"
+    },
+    {
+      "byte_count": 971,
+      "discovery_crosswalk_key": null,
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DfSRr1CGFYiY&format=json",
+      "sha256": "5ff0c914eb1b5dd74b546d08c04e2c3d630a452ac76e67f45d0e68aea4ca3df9",
+      "strand": "ASTEROID_BLASTERS",
+      "strand_ordinal": 10,
+      "title": "Star Trek Scouts Blast a Horta in Outer Space! 💎 | Asteroid Blasters #10 | Star Trek: Scouts",
+      "video_id": "fSRr1CGFYiY",
+      "watch_url": "https://www.youtube.com/watch?v=fSRr1CGFYiY"
+    },
+    {
+      "byte_count": 997,
+      "discovery_crosswalk_key": "jan",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D69jkEMz87co&format=json",
+      "sha256": "b1d12e5a0300a3c7f879ec37b3b0287ab235828654c0175c6be6f6ecb7c3cefe",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 1,
+      "title": "Scouts Save a Baby Animal from Hot Lava! 🌋🫐  | Star Trek: Scouts | Holodeck Rescues Episode #1",
+      "video_id": "69jkEMz87co",
+      "watch_url": "https://www.youtube.com/watch?v=69jkEMz87co"
+    },
+    {
+      "byte_count": 997,
+      "discovery_crosswalk_key": "jan",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D6AAJlEn3DeY&format=json",
+      "sha256": "a40847e2c438a236792521d5654b8ff469eb461032620bb0bffcdc73197d57ef",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 2,
+      "title": "Scouts Save a Baby Monkey in Outer Space! 🐵🚀 | Star Trek: Scouts | Holodeck Rescues Episode #2",
+      "video_id": "6AAJlEn3DeY",
+      "watch_url": "https://www.youtube.com/watch?v=6AAJlEn3DeY"
+    },
+    {
+      "byte_count": 999,
+      "discovery_crosswalk_key": "jan",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DfybF9xOzXs4&format=json",
+      "sha256": "e471dfccb02cf4beac4a4c0f549742122726c18745298b345d007e5bca2063d0",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 3,
+      "title": "The Star Trek Scouts Save a Planet's Dinosaurs! 🦖 | Star Trek: Scouts | Holodeck Rescues Episode #3",
+      "video_id": "fybF9xOzXs4",
+      "watch_url": "https://www.youtube.com/watch?v=fybF9xOzXs4"
+    },
+    {
+      "byte_count": 1007,
+      "discovery_crosswalk_key": "jan",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DM02cKstXmjo&format=json",
+      "sha256": "bcf47c990f5523fb82f10f2fd4f13319a32ba3afa8545b30acb02128aff61722",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 4,
+      "title": "Roo Helps a Space Whale Stuck in a Black Hole! 🐋🌟 | Star Trek: Scouts | Holodeck Rescues Episode #4",
+      "video_id": "M02cKstXmjo",
+      "watch_url": "https://www.youtube.com/watch?v=M02cKstXmjo"
+    },
+    {
+      "byte_count": 1013,
+      "discovery_crosswalk_key": "feb",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdZznmiZYV-A&format=json",
+      "sha256": "a453e50baf526b78106b488bb8539b1f2fc0f5df06de83e88b6560e65835ca92",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 5,
+      "title": "Star Trek Scouts Save a Sea Animal's Glow! 🌊🌟 | Star Trek: Scouts | Holodeck Rescues Episode #5",
+      "video_id": "dZznmiZYV-A",
+      "watch_url": "https://www.youtube.com/watch?v=dZznmiZYV-A"
+    },
+    {
+      "byte_count": 985,
+      "discovery_crosswalk_key": "feb",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-m7ISEuAhac&format=json",
+      "sha256": "6ac2fb5719fa484d7fbebb9c6c7d76c81975fdc7e4070068844eca68a1f8d6a4",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 6,
+      "title": "Star Trek Scouts Go to the Moon to Fight ROBOTS! 🤖| Star Trek: Scouts | Holodeck Rescues Episode #6",
+      "video_id": "-m7ISEuAhac",
+      "watch_url": "https://www.youtube.com/watch?v=-m7ISEuAhac"
+    },
+    {
+      "byte_count": 995,
+      "discovery_crosswalk_key": "feb",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DcYRzkzu_zhg&format=json",
+      "sha256": "3a8c5f73a28435e8f4fa4d16b66711e348730e9f21892365cf12301f9def7109",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 7,
+      "title": "JR's Pet Dog Sniffs Out Invisible Chameleons! 🐶 | Star Trek: Scouts | Holodeck Rescues Episode #7",
+      "video_id": "cYRzkzu_zhg",
+      "watch_url": "https://www.youtube.com/watch?v=cYRzkzu_zhg"
+    },
+    {
+      "byte_count": 1019,
+      "discovery_crosswalk_key": "mar",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DO5wUrGB_6qw&format=json",
+      "sha256": "402593f26b1f3045e95b5645cc03241714f27d31fdfc34683109d1f77f840328",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 8,
+      "title": "The Scouts Save an Alien & Its Moon Treasure! 🌕👽 | Star Trek: Scouts | Holodeck Rescues Episode #8",
+      "video_id": "O5wUrGB_6qw",
+      "watch_url": "https://www.youtube.com/watch?v=O5wUrGB_6qw"
+    },
+    {
+      "byte_count": 985,
+      "discovery_crosswalk_key": "mar",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DTbZFOtuHpxk&format=json",
+      "sha256": "92ad88b4153b3dc15db91c7a1dd6ccc1922bd93e1a0df0b2d98c0e8de6c23c2e",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 9,
+      "title": "Sprocket Gets Stuck in an Underwater Whirlpool! 🌊 | Star Trek: Scouts | Holodeck Rescues Episode #9",
+      "video_id": "TbZFOtuHpxk",
+      "watch_url": "https://www.youtube.com/watch?v=TbZFOtuHpxk"
+    },
+    {
+      "byte_count": 985,
+      "discovery_crosswalk_key": "mar",
+      "oembed_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvlez2Dtu95E&format=json",
+      "sha256": "63181949ab7e837510df9a136181481422f55dc9c72b1a5032f8ca13b7d74154",
+      "strand": "HOLODECK_RESCUES",
+      "strand_ordinal": 10,
+      "title": "Scouts Help a Farm with an Alien Infestation ! 🌽 | Star Trek: Scouts | Holodeck Rescues Episode #10",
+      "video_id": "vlez2Dtu95E",
+      "watch_url": "https://www.youtube.com/watch?v=vlez2Dtu95E"
+    }
+  ]
+}

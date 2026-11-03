@@ -1,0 +1,29 @@
+{
+  "record_type": "PROPOSED_SOURCE_LOCAL_ENTITIES",
+  "source_local_id": "tvmeg-tos-charlie-x-20261103",
+  "work_local_id": "tos-charlie-x-candidate-20261103",
+  "entities": [
+    {"id": "kirk", "label": "Kirk", "kind": "ATTRIBUTED_SPEAKER", "notes": "Captain and log voice in this derivative text; not a globally reconciled identity."},
+    {"id": "charlie", "label": "Charles Evans / Charlie", "kind": "ATTRIBUTED_SPEAKER", "notes": "Passenger described as a human adolescent and crash survivor; claims about personal history and abilities require their own evidence."},
+    {"id": "rand", "label": "Yeoman Janice Rand", "kind": "ATTRIBUTED_SPEAKER", "notes": "Expresses boundaries, requests help and later is referred to by others during an apparent absence."},
+    {"id": "spock", "label": "Spock", "kind": "ATTRIBUTED_SPEAKER", "notes": "Officer making analytical and sensor claims; one later text segment suggests speech interference."},
+    {"id": "mccoy", "label": "McCoy", "kind": "ATTRIBUTED_SPEAKER", "notes": "Medical officer; dialogue labels are editorial attributions, not independent voice authentication."},
+    {"id": "uhura", "label": "Uhura", "kind": "ATTRIBUTED_SPEAKER", "notes": "Communications reports include Antares contact, loss of transmissions and a later Thasian message."},
+    {"id": "ramart", "label": "Captain Ramart", "kind": "ATTRIBUTED_SPEAKER", "notes": "Antares captain who transfers Charlie and later makes an interrupted warning."},
+    {"id": "nellis", "label": "Tom Nellis", "kind": "ATTRIBUTED_SPEAKER", "notes": "Navigator introduced by Ramart; no global identification inferred."},
+    {"id": "tina", "label": "Tina Lawton", "kind": "ATTRIBUTED_SPEAKER", "notes": "Rand introduces Tina as an age-near peer, and Charlie rejects the introduction."},
+    {"id": "sam", "label": "Sam", "kind": "ATTRIBUTED_SPEAKER", "notes": "Participant in the gym demonstration; later Kirk and Charlie discuss an apparent disappearance. Transcript lacks confirming staging."},
+    {"id": "thasian_speaker", "label": "THASIAN-labeled interlocutor", "kind": "ATTRIBUTED_SPEAKER", "notes": "Final contact speaks for a Thasian collective; neither physical nature nor truth of testimony is independently authenticated."},
+    {"id": "thasian_group", "label": "Thasians as reported", "kind": "REPORTED_COLLECTIVE", "notes": "Legend/hypothesis in crew dialogue, and an asserted collective in a later THASIAN-labeled statement."},
+    {"id": "antares", "label": "Antares", "kind": "VESSEL_REFERENT", "notes": "Transfer ship, later reported lost; cause is first hypothetical, then subject of Charlie's admission and Thasian testimony."},
+    {"id": "enterprise", "label": "Enterprise", "kind": "VESSEL_REFERENT", "notes": "Ship and setting of crew decisions in the candidate transcript."},
+    {"id": "thasus", "label": "Thasus", "kind": "LOCATION_REFERENT", "notes": "Location associated in attributed accounts with Charlie's reported isolation and Thasian survival assistance."},
+    {"id": "colony_five", "label": "Colony Five / Colony Alpha Five", "kind": "LOCATION_REFERENT", "notes": "Proposed destination; text uses two names, not independently reconciled beyond local context."},
+    {"id": "missing_crew", "label": "People reported missing or restored", "kind": "UNRESOLVED_OCCURRENCE_SET", "notes": "Crew losses and reversals are speech- and report-relative; no individual/global identity restoration edges created."},
+    {"id": "communications", "label": "Ship communications and sensors", "kind": "REPORTED_SYSTEM", "notes": "Instrument/status reports in dialogue are not an independently inspected system log."},
+    {"id": "chess", "label": "Three-dimensional chess board and pieces", "kind": "OBJECT_REFERENT", "notes": "Participants describe a game and unusual piece behavior, without an authenticated visual staging witness."},
+    {"id": "charlie_power_claim", "label": "Attributed ability to alter or remove things", "kind": "PROPOSED_CAPABILITY_REFERENT", "notes": "A source-local topic assembled from testimony and reports; not a distinct canonical ontological entity."}
+  ],
+  "global_identity_edges_created": 0,
+  "canonical_status": "NOT_ADMITTED"
+}

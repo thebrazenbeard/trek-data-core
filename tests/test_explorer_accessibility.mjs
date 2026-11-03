@@ -11,7 +11,10 @@ const ids = [
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
   'research-count', 'research-state', 'research-list', 'research-empty',
-  'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state'
+  'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
+  'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
+  'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
+  'publisher-edition-list', 'publisher-edition-empty'
 ];
 
 class Node {
@@ -57,7 +60,7 @@ const research = {
 
 async function load(researchPayload, researchStatus = 200) {
   const nodes = new Map(ids.map((id) => [id, new Node()]));
-  for (const id of ['scope-filter', 'mission-filter', 'kind-filter', 'status-filter', 'research-mission']) nodes.get(id).value = 'all';
+  for (const id of ['scope-filter', 'mission-filter', 'kind-filter', 'status-filter', 'research-mission', 'publisher-edition-tag']) nodes.get(id).value = 'all';
   const document = {
     baseURI: 'https://example.test/explorer/index.html',
     getElementById: (id) => { assert.ok(nodes.has(id), `missing fake ${id}`); return nodes.get(id); },

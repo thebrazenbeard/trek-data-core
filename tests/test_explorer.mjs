@@ -12,7 +12,9 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
-  'artwork-toggle', 'artwork-state'];
+  'artwork-toggle', 'artwork-state', 'publisher-edition-nav-count', 'publisher-edition-state',
+  'publisher-edition-query', 'publisher-edition-tag', 'publisher-edition-filters',
+  'publisher-edition-summary', 'publisher-edition-list', 'publisher-edition-empty'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -58,7 +60,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -76,6 +78,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-verification').value = 'all';
   nodes.get('discovery-synopsis').value = 'all';
   nodes.get('discovery-tag').value = 'all';
+  nodes.get('publisher-edition-tag').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -107,6 +110,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: shortStatus, ok: shortStatus >= 200 && shortStatus < 300,
       arrayBuffer: async () => shortBytes.buffer.slice(shortBytes.byteOffset, shortBytes.byteOffset + shortBytes.byteLength)
     };
+    if (path === './lit-publisher-edition-leads.json') return {
+      status: publisherStatus, ok: publisherStatus >= 200 && publisherStatus < 300,
+      arrayBuffer: async () => publisherBytes.buffer.slice(publisherBytes.byteOffset, publisherBytes.byteOffset + publisherBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   const deterministicCrypto = {
@@ -132,7 +139,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   // observed WebCrypto task. A second quiet event-loop turn lets chained
   // Promise callbacks update the DOM. This avoids machine-load timing races
   // without a guessed fixed delay or swallowing a rejected request.
-  const optionalPaths = ['./film-catalog.json', './discovery-catalog.json',
+  const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
     './artwork-catalog.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json'];
   const deadline = Date.now() + 5000;
@@ -166,6 +173,52 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+test('accepted publisher editions appear as three searchable metadata-only cards without inflating universe or synopsis counts', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const base = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const short = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const publisher = readFileSync(new URL('../explorer/lit-publisher-edition-leads.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, base, 200, SCRIPT, null, 404, short, 200, false, publisher, 200);
+  const shelf = nodes.get('publisher-edition-list');
+  assert.equal(nodes.get('publisher-edition-nav-count').textContent, '3');
+  assert.equal(shelf.children.length, 3);
+  assert.match(shelf.textContent, /The Kobayashi Maru/);
+  assert.match(shelf.textContent, /Genesis Wave Book 3/);
+  assert.match(shelf.textContent, /Shadows of the Sun/);
+  assert.match(shelf.textContent, /Synopsis held/);
+  assert.doesNotMatch(shelf.textContent, /shuttlecraft-stranding.*mission for peace/i);
+  assert.equal(traverse(shelf, (node) => node.className === 'artwork-slot artwork-literature').length, 3,
+    'publisher candidates only receive original abstract art, not a fabricated publisher cover');
+  assert.equal(traverse(shelf, (node) => node.className === 'edition-source').length, 3);
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+  nodes.get('discovery-overview').value = 'reviewed';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^37 source-local metadata rows match/);
+  nodes.get('publisher-edition-query').value = 'Ecklar 9780743419987';
+  nodes.get('publisher-edition-filters').fire('input');
+  assert.equal(shelf.children.length, 1);
+  assert.match(shelf.textContent, /The Kobayashi Maru/);
+  nodes.get('publisher-edition-query').value = '';
+  nodes.get('publisher-edition-tag').value = 'publisher-claim:character:leonard-mccoy';
+  nodes.get('publisher-edition-filters').fire('change');
+  assert.equal(shelf.children.length, 1);
+  assert.match(shelf.textContent, /Shadows of the Sun/);
+});
+
+test('publisher edition viewer fails closed for missing or tampered accepted bytes', async () => {
+  const exact = readFileSync(new URL('../explorer/lit-publisher-edition-leads.json', import.meta.url));
+  const forged = Buffer.from(exact.toString('utf8').replace('254 pages', '999 pages'));
+  for (const [bytes, status, rejectDigest] of [[exact, 404, false], [forged, 200, false], [exact, 200, true]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, null, 404,
+      null, 404, null, 404, SCRIPT, null, 404, null, 404, rejectDigest, bytes, status);
+    assert.equal(nodes.get('publisher-edition-nav-count').textContent, '—');
+    assert.equal(nodes.get('publisher-edition-list').children.length, 0);
+    assert.match(nodes.get('publisher-edition-state').textContent, /withheld/i);
+  }
+});
 
 test('separate internally reviewed Short Trek appendix yields fourteen real publisher premises and one null hold', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));

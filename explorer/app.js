@@ -165,6 +165,12 @@
   };
   const researchState = { leads: [], available: false };
   const filmState = { films: [], available: false };
+  const publisherEditionState = { rows: [], available: false };
+  // Independent from the 1,214 multimedia directory and governed Work index.
+  // The code-owned digest binds EVERY publisher-edition field and tag, not a
+  // self-declared source hash in an untrusted JSON response.
+  const publisherEditionIndexSHA256 = '0568db4c7313f3a3da4b3cd4a5d9e56430fe09e64ed0687d8d9690d782df67d5';
+  const publisherEditionIsbns = new Set(['9780743419987', '9780743546591', '9780743546744']);
 
   // Source-local discoveries are not plot reads. A separate reviewed display
   // artifact may eventually supply ORIGINAL publisher-description paraphrases.
@@ -418,6 +424,133 @@
       }
     }
     return frame;
+  }
+
+  // ISBN-specific *edition* discovery, not another count of distinct Works or
+  // a public release channel for held publisher-description paraphrases.
+  function setPublisherEditionAvailability(available, message) {
+    publisherEditionState.available = available;
+    if (!available) publisherEditionState.rows = [];
+    byId('publisher-edition-nav-count').textContent = available ? String(publisherEditionState.rows.length) : '—';
+    byId('publisher-edition-state').textContent = message;
+    renderPublisherEditionLeads();
+  }
+
+  function renderPublisherEditionLeads() {
+    const holder = byId('publisher-edition-list');
+    const empty = byId('publisher-edition-empty');
+    holder.replaceChildren();
+    empty.hidden = true;
+    if (!publisherEditionState.available) {
+      byId('publisher-edition-summary').textContent = 'Publisher-edition index unavailable; no candidate records are displayed.';
+      return;
+    }
+    const query = normalize(byId('publisher-edition-query').value.trim());
+    const tag = byId('publisher-edition-tag').value;
+    const terms = query.length <= 240 ? query.split(/\s+/).filter(Boolean) : ['QUERY_TOO_LONG'];
+    const rows = publisherEditionState.rows.filter((row) => {
+      if (tag !== 'all' && !row.query_tags.includes(tag)) return false;
+      const corpus = normalize(`${row.search_text} ${row.title} ${row.creator} ${row.isbn13} ${row.query_tags.join(' ')}`);
+      return terms.every((term) => corpus.includes(term));
+    });
+    byId('publisher-edition-summary').textContent = `${rows.length} of ${publisherEditionState.rows.length} source-local publisher edition candidates match · Excluded from the 1,214-row universe directory and admitted Works.`;
+    empty.hidden = rows.length !== 0;
+    const fragment = document.createDocumentFragment();
+    for (const row of rows) {
+      const article = el('article', 'card publisher-edition-card');
+      const art = el('div', 'artwork-slot artwork-literature');
+      art.setAttribute('role', 'img');
+      art.setAttribute('aria-label', 'Original abstract literature placeholder, not the book cover');
+      art.append(el('span', 'artwork-kind', 'Literature'), el('span', 'artwork-missing', 'Original abstract · cover not sourced'));
+      const copy = el('div', 'publisher-edition-copy');
+      copy.append(el('span', 'kicker', 'Publisher edition candidate · not an admitted Work'));
+      copy.append(el('h3', '', row.title));
+      copy.append(el('p', '', `${row.creator} · ${humanize(row.edition_format)} · ISBN ${row.isbn13}`));
+      copy.append(el('p', 'edition-scope', `${row.publisher_series} · ${row.publisher_imprint} · ${row.publisher_publication_date} · ${row.publisher_extent}`));
+      copy.append(el('p', 'edition-status', 'Synopsis held · no full-book reading or identity reconciliation'));
+      copy.append(el('p', 'edition-scope', 'Source-local publisher description tags are discovery hints, not verified plot facts. Private archive format equivalence is unresolved.'));
+      const link = el('a', 'edition-source', 'Inspect publisher edition source');
+      link.href = row.source_locator;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      copy.append(link);
+      const disclosure = el('details', 'edition-tags');
+      disclosure.append(el('summary', '', 'Inspect source-relative search tags'));
+      const list = el('ul', 'edition-tag-list');
+      for (const claim of row.query_tags) list.append(el('li', '', claim));
+      disclosure.append(list);
+      article.append(art, copy, disclosure);
+      fragment.append(article);
+    }
+    holder.append(fragment);
+  }
+
+  function acceptPublisherEditionIndex(data) {
+    const rootFields = ['admission_effect', 'artwork_release_effect', 'coverage_effect', 'data_status',
+      'denominator_effect', 'identity_scope', 'public_synopsis_effect', 'row_count', 'rows',
+      'schema_version', 'source_accepted_commit', 'source_input', 'source_input_sha256'];
+    const fields = ['admission_effect', 'coverage_effect', 'creator', 'edition_format', 'identity_scope',
+      'isbn13', 'private_edition_equivalence', 'promotional_claim_scope', 'publisher_extent',
+      'publisher_imprint', 'publisher_publication_date', 'publisher_series', 'query_tags',
+      'row_id', 'search_text', 'source_group', 'source_input', 'source_locator', 'synopsis_status', 'title'];
+    const hasExactFields = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
+      Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
+    if (!hasExactFields(data, rootFields) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'PUBLISHER_EDITION_LEADS_SEARCH_OVERLAY_ONLY' ||
+        data.row_count !== 3 || !Array.isArray(data.rows) || data.rows.length !== 3 ||
+        !/^[a-f0-9]{64}$/.test(data.source_input_sha256) ||
+        !/^[a-f0-9]{40}$/.test(data.source_accepted_commit) ||
+        ['admission_effect', 'coverage_effect', 'denominator_effect', 'public_synopsis_effect', 'artwork_release_effect']
+          .some((key) => data[key] !== 'NONE') ||
+        data.identity_scope !== 'SOURCE_LOCAL_EDITION_NOT_RECONCILED') {
+      throw new Error('Publisher edition index envelope violates source-local boundaries.');
+    }
+    const ids = new Set();
+    for (const row of data.rows) {
+      let source;
+      try { source = new URL(row?.source_locator); } catch (_) { throw new Error('Invalid edition source URL.'); }
+      if (!hasExactFields(row, fields) || !publisherEditionIsbns.has(row.isbn13) ||
+          row.row_id !== `publisher-edition:${row.isbn13}` || ids.has(row.row_id) ||
+          row.identity_scope !== 'EDITION_CANDIDATE_SOURCE_LOCAL' ||
+          row.coverage_effect !== 'NONE' || row.admission_effect !== 'NONE' ||
+          row.private_edition_equivalence !== 'UNVERIFIED' ||
+          row.synopsis_status !== 'UNREVIEWED_PARAPHRASE_HELD_NOT_PUBLIC' ||
+          row.promotional_claim_scope !== 'PUBLISHER_COPY_TAGS_NOT_FICTIONAL_TRUTH' ||
+          row.source_group !== 'publisher:simonandschuster.com' ||
+          row.source_input !== data.source_input ||
+          source.protocol !== 'https:' || source.hostname !== 'www.simonandschuster.com' ||
+          source.username || source.password || source.search || source.hash ||
+          !source.pathname.startsWith('/books/') || !source.pathname.endsWith('/' + row.isbn13) ||
+          !Array.isArray(row.query_tags) || row.query_tags.length !== 8 ||
+          row.query_tags.some((tag) => typeof tag !== 'string' || tag.length > 145) ||
+          !['EBOOK', 'ADAPTED_AUDIO_DOWNLOAD', 'ABRIDGED_AUDIO_DOWNLOAD'].includes(row.edition_format)) {
+        throw new Error('Publisher edition row failed source, scope or identity validation.');
+      }
+      ids.add(row.row_id);
+    }
+    publisherEditionState.rows = data.rows;
+    const tagSelect = byId('publisher-edition-tag');
+    tagSelect.replaceChildren(new Option('All tags', 'all'));
+    for (const tag of [...new Set(data.rows.flatMap((row) => row.query_tags))].sort()) {
+      tagSelect.add(new Option(tag, tag));
+    }
+    setPublisherEditionAvailability(true, 'Three ISBN-specific publisher edition leads loaded · metadata only; no edition equivalence, full-book analysis, or public synopsis release.');
+  }
+
+  async function loadPublisherEditionIndex() {
+    try {
+      const response = await fetch('./lit-publisher-edition-leads.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Publisher edition sidecar unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw new Error('SHA-256 verification unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength > 65_536) throw new Error('Publisher edition sidecar exceeds 64 KiB.');
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== publisherEditionIndexSHA256) throw new Error('Publisher edition data differs from the accepted source-derived digest.');
+      acceptPublisherEditionIndex(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    } catch (error) {
+      setPublisherEditionAvailability(false, `Publisher edition leads withheld: ${error.message || 'Verify accepted source index.'}`);
+    }
   }
 
   function setArtworkAvailability(available, message) {
@@ -1482,12 +1615,18 @@
   directoryFilters.addEventListener('change', () => { playTone(); directoryState.limit = 40; renderDirectory(); });
   directoryFilters.addEventListener('submit', (event) => { event.preventDefault(); renderDirectory(); });
   directoryFilters.addEventListener('reset', () => { directoryState.limit = 40; window.requestAnimationFrame(renderDirectory); });
+  const publisherEditionFilters = byId('publisher-edition-filters');
+  publisherEditionFilters.addEventListener('input', renderPublisherEditionLeads);
+  publisherEditionFilters.addEventListener('change', () => { playTone(); renderPublisherEditionLeads(); });
+  publisherEditionFilters.addEventListener('submit', (event) => { event.preventDefault(); renderPublisherEditionLeads(); });
+  publisherEditionFilters.addEventListener('reset', () => window.requestAnimationFrame(renderPublisherEditionLeads));
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
+  setPublisherEditionAvailability(false, 'Checking the independently indexed publisher-edition sidecar…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory()]).then(() => Promise.all([
+  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog), loadMetadataRechecks()
   ]));
   loadIndex();

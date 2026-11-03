@@ -42,7 +42,7 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
             'artwork_release_effect': 'NONE',
         }
 
-    def _receipt_fixture(self, fn):
+    def _receipt_fixture(self, fn, *, pin=False):
         original_read = release._read
 
         def read(path):
@@ -50,16 +50,23 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
                 return release._render(self.receipt)
             return original_read(path)
 
+        approved_sha = release._sha(release._render(self.receipt)) if pin else None
         with mock.patch.object(release, '_read', side_effect=read):
-            return fn()
+            with mock.patch.object(release, 'APPROVED_RECEIPT_SHA256', approved_sha):
+                return fn()
 
     def test_default_missing_editorial_receipt_fails_closed(self):
         with self.assertRaises((OSError, release.ReleaseError, release.CandidateError)):
             release._load(release.REVIEW_PATH)
 
+    def test_forged_full_receipt_cannot_authorize_itself(self):
+        with self.assertRaisesRegex(release.ReleaseError, 'separately approved immutable hash pin'):
+            self._receipt_fixture(lambda: release.release(self.request, self.receipt))
+
     def test_simulated_complete_receipt_maps_18_unadmitted_candidates(self):
-        result = self._receipt_fixture(lambda: release.release(self.request, self.receipt))
+        result = self._receipt_fixture(lambda: release.release(self.request, self.receipt), pin=True)
         self.assertEqual(result['candidate_count'], 18)
+        self.assertEqual(result['source_local_correction_sha256'], self.request['source_local_correction_sha256'])
         self.assertEqual(result['directory_snapshot_rows_unchanged'], 1214)
         self.assertTrue(result['separate_from_directory'])
         self.assertEqual(result['admission_effect'], 'NONE')
@@ -70,6 +77,7 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
             self.assertIsNone(c['accepted_directory_row_id'])
             self.assertIsNone(c['raw_webpage_sha256'])
             self.assertEqual(c['artwork_release_effect'], 'NONE')
+        self.assertEqual(sum(c['source_correction_path'] is not None for c in result['candidates']), 2)
 
     def test_self_review_or_bad_source_tuple_rejected(self):
         for make_change in (
@@ -83,7 +91,7 @@ class LiteraryCandidateReleaseTests(unittest.TestCase):
             tampered = copy.deepcopy(self.receipt)
             make_change(tampered)
             with self.assertRaises(release.ReleaseError):
-                self._receipt_fixture(lambda: release.verify_receipt(self.request, tampered))
+                self._receipt_fixture(lambda: release.verify_receipt(self.request, tampered), pin=True)
 
 
 if __name__ == '__main__':

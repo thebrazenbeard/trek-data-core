@@ -14,10 +14,15 @@ import json
 import sys
 from pathlib import Path
 
-from build_lit_overview_expansion_request import CandidateError, OUTPUT as REQUEST_PATH, ROOT, _read, _render, build
+from build_lit_overview_expansion_request import CandidateError, ROOT, _read, _render
+from build_lit_modal_corrected_request import OUTPUT as REQUEST_PATH, build
 
 REVIEW_PATH = 'proposals/reviews/model-editorial-lit-overviews-18-20261103/receipt.json'
 PUBLIC_PATH = 'explorer/literary-candidate-overviews.json'
+# No review is approved at this checkpoint. A separate authorized, reviewed
+# change must pin the exact accepted receipt bytes before any release attempt.
+# A self-authored JSON claim of independent review is not authentication.
+APPROVED_RECEIPT_SHA256: str | None = None
 
 
 class ReleaseError(ValueError):
@@ -41,6 +46,9 @@ def _expected_source_tuples(request: dict) -> list[tuple[str, str, str]]:
 
 
 def verify_receipt(request: dict, receipt: dict) -> str:
+    receipt_sha = _sha(_read(REVIEW_PATH))
+    if APPROVED_RECEIPT_SHA256 is None or receipt_sha != APPROVED_RECEIPT_SHA256:
+        raise ReleaseError('Editorial receipt lacks a separately approved immutable hash pin')
     exact_keys = {
         'schema_version', 'review_kind', 'review_result', 'reviewer_agent', 'provider', 'runtime',
         'review_independence', 'review_request_sha256', 'reviewed_on_utc', 'reviewed_source_tuples',
@@ -71,7 +79,7 @@ def verify_receipt(request: dict, receipt: dict) -> str:
         raise ReleaseError('Review lacked exact candidate/source/text tuples')
     if sorted(map(tuple, tuples)) != _expected_source_tuples(request):
         raise ReleaseError('Publisher edition or synopsis changed after independent review')
-    return _sha(_read(REVIEW_PATH))
+    return receipt_sha
 
 
 def release(request: dict, receipt: dict) -> dict:
@@ -93,6 +101,7 @@ def release(request: dict, receipt: dict) -> dict:
             'observation_path': candidate['observation_path'],
             'observation_sha256': candidate['observation_sha256'],
             'original_paraphrase_sha256': candidate['original_paraphrase_sha256'],
+            'source_correction_path': candidate['display_supersession_source'],
             'editorial_receipt_sha256': reviewer_sha,
             'raw_webpage_sha256': None,
             'identity_status': 'SOURCE_LOCAL_UNRECONCILED',
@@ -110,6 +119,7 @@ def release(request: dict, receipt: dict) -> dict:
         'directory_snapshot_rows_unchanged': request['accepted_directory_snapshot_row_count'],
         'candidate_count': len(rows),
         'review_request_sha256': _sha(_render(request)),
+        'source_local_correction_sha256': request['source_local_correction_sha256'],
         'editorial_receipt_sha256': reviewer_sha,
         'admission_effect': 'NONE',
         'coverage_effect': 'NONE',

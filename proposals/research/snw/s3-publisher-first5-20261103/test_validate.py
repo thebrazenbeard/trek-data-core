@@ -63,6 +63,12 @@ class SourcePacketValidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "publisher episode"):
             validate_records(changed)
 
+    def test_audited_e05_quest_fidelity(self):
+        changed = copy.deepcopy(DATA)
+        changed["evidence"][4]["paraphrase"] = changed["evidence"][4]["paraphrase"].replace("quest", "investigation")
+        with self.assertRaisesRegex(ValueError, "quest semantics"):
+            validate_records(changed)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,309 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_ent_bundle_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486",
+  "admission_effect": "NONE",
+  "combined_multipart_cards_preserved_as_single_source_slot": 0,
+  "coverage_effect": "NONE",
+  "data_status": "B002-ENT-S1-PUBLISHER_SOURCE_CARD_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "independent_corroborations": 0,
+  "invented_separate_s1e2_source_cards": 0,
+  "new_source_local_title_slot_rechecks": 10,
+  "observations_sha256": "e71d0949a2a8bc5563528756c9216b734e58798b21c3b37e7d1fb6afa633cde8",
+  "original_synopsis_drafts_held": 10,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 10,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Trip and Reed hurry to arm Enterprise against an unidentified attacker that may return before the ship is ready.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 12,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "1917c28167155bd86c6ce90c832f2dcb0507920b4abb867b760377d6a951ec44",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Silent Enemy"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492981/CBS_ENTERPRISE_012_1215624_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:010",
+      "source_local_title": "Silent Enemy",
+      "source_relative_entity_mentions": [
+        "Trip",
+        "Reed",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer and Phlox debate whether to intervene in a species' genetic decline when medical assistance could alter its fate.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 13,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "bd6ea1f75ad3d5734f5352494ab79c1ec5119c65a71b95f3854c9cb2ad3e6632",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Dear Doctor"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494761/CBS_ENTERPRISE_013_1215611_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:011",
+      "source_local_title": "Dear Doctor",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Dr. Phlox"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "T'Pol, Reed, and Hoshi are stranded aboard a disabled Klingon ship after a survivor takes their shuttle.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 14,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "aa035b480e42b6e4a76bb64f3a48c44861e43aa12230e65ad042006c74a0744d",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Sleeping Dogs"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41493222/CBS_ENTERPRISE_014_2334941_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:012",
+      "source_local_title": "Sleeping Dogs",
+      "source_relative_entity_mentions": [
+        "Klingon",
+        "T'Pol",
+        "Reed",
+        "Hoshi"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "T'Pol faces removal from Enterprise after being blamed for destruction at the Vulcan sanctuary of P'Jem.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 15,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "19b79e1e94e076903d49e5fcd78290fdb6df33f87604faf4b1f49101aeea3e23",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Shadows of P'Jem"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494166/CBS_ENTERPRISE_015_2334930_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:013",
+      "source_local_title": "Shadows of P'Jem",
+      "source_relative_entity_mentions": [
+        "T'Pol",
+        "Andorian",
+        "P'Jem",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Trip and Reed struggle to survive in a shuttle after concluding Enterprise has been destroyed and oxygen is running out.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 16,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "97adb720c497fda789697a9744bc43f0ea04dfd634f91f4c2479998ee4e85751",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Shuttlepod One"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41493328/CBS_ENTERPRISE_016_2334935_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:014",
+      "source_local_title": "Shuttlepod One",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Trip",
+        "Reed",
+        "Shuttlepod One"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A visit by Vulcans who explore their emotions leads T'Pol toward an encounter with a pilgrim named Tolaris.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 17,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "ac58be8b122d9a202051dd1e81c8bc2be94481d6cf164565fc0b75ff75fcf864",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Fusion"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41493386/CBS_ENTERPRISE_017_1215626_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:015",
+      "source_local_title": "Fusion",
+      "source_relative_entity_mentions": [
+        "Vulcan",
+        "T'Pol",
+        "Mind meld",
+        "Tolaris"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer and his crew encounter alien hunters on a planet wandering without a normal orbital path.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 18,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "51177be62ac29ddaf7bd8f624039103de9d437e11d6d97eb547c58ebc610dbdb",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Rogue Planet"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492791/CBS_ENTERPRISE_018_2334936_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:016",
+      "source_local_title": "Rogue Planet",
+      "source_relative_entity_mentions": [
+        "Archer"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "A Ferengi raiding party incapacitates Enterprise's crew and searches the unguarded ship for valuables.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 19,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "abbb2e8187d38b09da2bc659d5849ebf63dc607b70c4a135a718debf4db1c21b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Acquisition"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494011/CBS_ENTERPRISE_019_2334940_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:017",
+      "source_local_title": "Acquisition",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Ferengi"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Exploring a wrecked spacecraft on an isolated planet, Trip finds survivors despite the hostile conditions.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 20,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "13d7dc8cb038c2992592e8ce85b120f9b75b1ba05668bf2f893a50e03941e30b",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Oasis"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41493516/CBS_ENTERPRISE_020_2334937_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:018",
+      "source_local_title": "Oasis",
+      "source_relative_entity_mentions": [
+        "Trip"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer and Mayweather are confined in a Suliban internment camp after an encounter with the Tandarans.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 21,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "6515cead2fc3c988841f11c23c2955ba2e949295c8f6a35b42db2dbd65f6baa9",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Detained"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41491462/CBS_ENTERPRISE_021_2334938_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:019",
+      "source_local_title": "Detained",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Mayweather",
+        "Tandarans",
+        "Suliban"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 10
+}

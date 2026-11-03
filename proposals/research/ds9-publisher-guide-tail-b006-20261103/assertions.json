@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-publisher-guide-tail-b006-20261103",
+  "proposal_only": true,
+  "accepted_assertions": 0,
+  "projection_effect": "NONE",
+  "assertions": [
+    {
+      "id": "ds9-b006-a01",
+      "predicate": "PUBLISHER_TITLE_CASE_VARIANT_REQUIRES_RECONCILIATION",
+      "subject_source_local_row_id": "lead:0069",
+      "evidence_ids": ["ds9-b006-p03"],
+      "statement": "The discovery seed uses 'Favor the Bold' while the official publisher card displays 'Favor The Bold'. This is a title-case observation, not proof of an accepted Work identity match.",
+      "counter_evidence_ids": [],
+      "status": "PROPOSED_UNRESOLVED",
+      "falsifier": "A governed accepted Source/Work identity decision could establish whether the two source labels refer to the same specific edition and cut."
+    }
+  ]
+}

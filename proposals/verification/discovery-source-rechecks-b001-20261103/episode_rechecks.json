@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "BOUNDED_RENDERED_PRIMARY_EPISODE_METADATA_OBSERVATIONS",
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "observations": [
+    {
+      "row_id": "lead:0000",
+      "official_episode_url": "https://www.paramountplus.com/shows/video/1226106142/",
+      "observed_title": "The Doomsday Machine",
+      "observed_series": "Star Trek: The Original Series (Remastered)",
+      "observed_season": 2,
+      "observed_episode": 6,
+      "observed_air_date": "1967-10-20",
+      "original_synopsis": "A machine capable of destroying entire planets puts the Enterprise in a dangerous confrontation.",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_EPISODE_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Paramount+ page heading: S2 E6: The Doomsday Machine"
+    },
+    {
+      "row_id": "lead:0001",
+      "official_episode_url": "https://www.paramountplus.com/shows/video/1226188697/",
+      "observed_title": "The Trouble with Tribbles",
+      "observed_series": "Star Trek: The Original Series (Remastered)",
+      "observed_season": 2,
+      "observed_episode": 15,
+      "observed_air_date": "1967-12-29",
+      "original_synopsis": "The Enterprise becomes overrun with small creatures while its crew also contends with Klingon and bureaucratic complications.",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_EPISODE_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Paramount+ page heading: S2 E15: The Trouble with Tribbles"
+    },
+    {
+      "row_id": "lead:0002",
+      "official_episode_url": "https://www.paramountplus.com/shows/video/788561887/",
+      "observed_title": "The Corbomite Maneuver",
+      "observed_series": "Star Trek: The Original Series (Remastered)",
+      "observed_season": 1,
+      "observed_episode": 11,
+      "observed_air_date": "1966-11-10",
+      "original_synopsis": "While charting unfamiliar space, the Enterprise is overpowered and pulled along by an enormous alien vessel.",
+      "observed_at_utc_date": "2026-11-03",
+      "representation": "OFFICIAL_RENDERED_EPISODE_DETAILS",
+      "raw_body_sha256": null,
+      "evidence_locator": "Paramount+ page heading: S1 E11: The Corbomite Maneuver"
+    }
+  ]
+}

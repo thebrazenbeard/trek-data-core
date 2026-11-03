@@ -22,6 +22,7 @@ OLDER_PUB = "proposals/librarian/tos-classics-cover-editions-20261103/records.js
 BASE = "explorer/discovery-catalog.json"
 INPUT_SHA = "6da05813bb4159db83ed4022c6560d1554f13a356eca825bd7c00dc6dd755105"
 OPF_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
+HELD_SHA = "ca251b3dfb98293526ad3c76c7169148e1344d106a2365304d0ddbfe36e5f06c"
 OLDER_PUB_SHA = "6688f233a5bb6053c728f4619db297451f2c7929985e115e1ed888996423364d"
 OPF_ZIP_SHA = "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f"
 BASE_SHA = "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc"
@@ -183,7 +184,7 @@ def verify_observations(source: dict, opf: dict, held: dict, older_publisher: di
 def build(root: Path = ROOT) -> dict:
     source = read_pinned(root, INPUT, INPUT_SHA)
     opf = read_pinned(root, OPF, OPF_SHA)
-    held = read_pinned(root, HELD)
+    held = read_pinned(root, HELD, HELD_SHA)
     older_publisher = read_pinned(root, OLDER_PUB, OLDER_PUB_SHA)
     read_pinned(root, BASE, BASE_SHA)
     cards = verify_observations(source, opf, held, older_publisher)

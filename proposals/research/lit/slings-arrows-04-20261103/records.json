@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "lit-slings-arrows-04-20261103",
+  "lane": "LIT",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "source": {
+    "local_source_id": "private-txt-slings-arrows-04-20261103",
+    "custody": "PATRICK_PRIVATE_ONEDRIVE",
+    "container_basename": "ST ebooks.zip",
+    "container_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "member_path": "ST ebooks txt/Next Generation/Slings and Arrows - 004 - That Sleep of Death.txt",
+    "member_size_bytes": 64375,
+    "member_sha256": "bf32d8dce8121a27bb4b013ff32067da3f26b1e7238e0fce5c1f615c85240ad1",
+    "encoding_checked": "UTF-8_NO_REPLACEMENT_CHARACTERS",
+    "structural_markers": {
+      "numbered_chapters": 8,
+      "author_bio_present": true,
+      "whitespace_token_count": 10993,
+      "narrative_paragraph_counts_by_chapter": [47, 38, 46, 48, 55, 28, 66, 11]
+    },
+    "read_method": "ALL_EIGHT_CHAPTERS_READ_IN_ORDER_FROM_PRIVATE_ZIP_MEMBER",
+    "publisher_edition_byte_equivalence": "UNVERIFIED",
+    "complete_publisher_edition": "UNVERIFIED",
+    "rights_to_publicly_redistribute_text": "NOT_ESTABLISHED",
+    "source_bytes_committed": false
+  },
+  "work_candidate": {
+    "local_work_id": "lit-local-slings-arrows-04-that-sleep-of-death",
+    "title": "That Sleep of Death",
+    "creator": "Terri Osborne",
+    "source_relative_type": "NOVELLA_OR_SHORT_EBOOK_UNRESOLVED",
+    "series": "Star Trek: The Next Generation: Slings and Arrows",
+    "series_part": 4,
+    "publisher_metadata_status": "PRIMARY_PUBLISHER_LISTING_OBSERVED",
+    "publisher": "Pocket Books/Star Trek",
+    "publisher_listed_release_date": "2008-01-14",
+    "publisher_listed_pages": 43,
+    "publisher_listed_isbn13": "9781416550242",
+    "publisher_product_url": "https://www.simonandschuster.com/books/That-Sleep-of-Death/Terri-Osborne/Star-Trek-The-Next-Generation/9781416550242",
+    "publisher_independence_group": "publisher:simonandschuster.com",
+    "local_source_to_publisher_edition_mapping": "TITLE_AUTHOR_SERIES_MATCH_CONTENT_EQUIVALENCE_UNVERIFIED",
+    "canonical_identity": "UNRECONCILED"
+  },
+  "local_entities": [
+    {"id": "lit04-crusher", "kind": "CHARACTER_OCCURRENCE", "label": "Beverly Crusher"},
+    {"id": "lit04-troi", "kind": "CHARACTER_OCCURRENCE", "label": "Deanna Troi"},
+    {"id": "lit04-sellassars", "kind": "CHARACTER_OCCURRENCE", "label": "Envoy Sellassars"},
+    {"id": "lit04-barth", "kind": "ORGANISM_GROUP_OCCURRENCE", "label": "Barth as described by Sellassars"},
+    {"id": "lit04-emh", "kind": "HOLOGRAM_OCCURRENCE", "label": "Emergency Medical Hologram"},
+    {"id": "lit04-enterprise", "kind": "VESSEL_OCCURRENCE", "label": "U.S.S. Enterprise"},
+    {"id": "lit04-theater", "kind": "ACTIVITY_OCCURRENCE", "label": "A Christmas Carol rehearsals"},
+    {"id": "lit04-coma-event", "kind": "EVENT_OCCURRENCE", "label": "Crew sleep and coma incidents"}
+  ],
+  "evidence": [
+    {
+      "id": "lit04-ev-01", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-crusher", "lit04-theater"],
+      "chapter": 1, "paragraph": 15,
+      "paragraph_sha256": "a4c9a1a6ca0b7acbe6adfe3e272a7e4f9b0382553187929d00c77b324927d04a",
+      "summary": "Crusher defends casting Barclay despite his stage fright; her stated purpose is to help him confront it.",
+      "scope": "A_CHARACTER_STATES_A_REASON"
+    },
+    {
+      "id": "lit04-ev-02", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-crusher", "lit04-sellassars"],
+      "chapter": 1, "paragraph": 34,
+      "paragraph_sha256": "f8997cbcc507124fed607cc5dc9895f287af35a5e8600b463061794a25e65397",
+      "summary": "Picard describes a diplomatic condition forbidding gloves during greetings; Crusher worries about biological exposure.",
+      "scope": "SECONDHAND_REPORT_AND_MEDICAL_CONCERN"
+    },
+    {
+      "id": "lit04-ev-03", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-sellassars", "lit04-troi"],
+      "chapter": 2, "paragraph": 9,
+      "paragraph_sha256": "8e2edf1531be1037c8290b72f1cc46eca2711833c5761282bd59fd03c083d552",
+      "summary": "At arrival, the envoy asks whether Troi is telepathic; Troi distinguishes her empathic abilities.",
+      "scope": "UTTERANCES_NOT_INDEPENDENT_BIOLOGICAL_PROOF"
+    },
+    {
+      "id": "lit04-ev-04", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-sellassars", "lit04-crusher"],
+      "chapter": 2, "paragraph": 26,
+      "paragraph_sha256": "b461c8dab40e9ab3806a57abeda9184b5ac74185fe836fe72edb4e3dd714f0bf",
+      "summary": "The envoy conditionally agrees to Crusher taking a medical sample after he can speak with Troi.",
+      "scope": "SPOKEN_CONSENT_WITH_CONDITIONS"
+    },
+    {
+      "id": "lit04-ev-05", "kind": "MEDICAL_OBSERVATION", "entities": ["lit04-crusher", "lit04-troi", "lit04-coma-event"],
+      "chapter": 3, "paragraph": 14,
+      "paragraph_sha256": "591719e1ea15bef9b55b411edd9211f2fd140771379e3835d9b3ad7d79fcd269",
+      "summary": "Crusher's scans indicate a coma without an identified cause; observations do not yet establish a pathogen.",
+      "scope": "CHARACTER_READS_CLINICAL_INSTRUMENTS"
+    },
+    {
+      "id": "lit04-ev-06", "kind": "DEPICTION_ACTION", "entities": ["lit04-crusher", "lit04-troi", "lit04-emh"],
+      "chapter": 3, "paragraph": 39,
+      "paragraph_sha256": "770373d106592a16289132b7963a04260df718fec3ed63273437779d46cdd6e2",
+      "summary": "Crusher delegates overnight monitoring to the EMH while investigating Troi's unexplained condition.",
+      "scope": "DEPICTED_CLINICAL_DELEGATION"
+    },
+    {
+      "id": "lit04-ev-07", "kind": "HOLOGRAM_REPORT", "entities": ["lit04-emh", "lit04-troi"],
+      "chapter": 4, "paragraph": 5,
+      "paragraph_sha256": "cf80a678f2ff8ca11243baf1017e94822adc798c54af6b99f02a08606d56943f",
+      "summary": "The EMH reports that Troi awoke despite stasis and says the process is unexplained.",
+      "scope": "HOLOGRAM_REPORT_NOT_INDEPENDENT_MECHANISM_PROOF"
+    },
+    {
+      "id": "lit04-ev-08", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-sellassars", "lit04-barth"],
+      "chapter": 5, "paragraph": 22,
+      "paragraph_sha256": "ae834bc58cb9e2ce80a5d1b79a2f1fb7bc1bd7f1e669bd94b5c25073c84ed7ad",
+      "summary": "Sellassars describes the Kendarayan-Barth relationship as mutually beneficial, not host dominance.",
+      "scope": "ENVOY_TESTIMONY"
+    },
+    {
+      "id": "lit04-ev-09", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-sellassars", "lit04-barth", "lit04-crusher"],
+      "chapter": 5, "paragraph": 34,
+      "paragraph_sha256": "a1dff97b0f69ed54e517ee2ec8088118c6253d51f97f4c8e5454321466d0861a",
+      "summary": "The envoy refuses removal of Barth organisms, asserting that doing so would damage his protection.",
+      "scope": "REFUSAL_AND_REASON_GIVEN_BY_SPEAKER"
+    },
+    {
+      "id": "lit04-ev-10", "kind": "DEPICTION_ACTION", "entities": ["lit04-crusher", "lit04-coma-event", "lit04-enterprise"],
+      "chapter": 7, "paragraph": 4,
+      "paragraph_sha256": "d7cffce47d1c1ce2db8485b755af772476cc6059417ec3396bc76fb3a1ae29fa",
+      "summary": "The scene depicts several crew members unconscious in sickbay, expanding the medical emergency beyond Troi.",
+      "scope": "DEPICTED_SICKBAY_STATE"
+    },
+    {
+      "id": "lit04-ev-11", "kind": "DIALOGUE_TESTIMONY", "entities": ["lit04-sellassars", "lit04-barth"],
+      "chapter": 7, "paragraph": 54,
+      "paragraph_sha256": "f4808e02dbf5a86a44177e04929440691935f2c069a862d8d598b1303f9391db",
+      "summary": "Sellassars explains Dream Riders as a Kendarayan tradition involving near-death-like sleep and claimed contact with the departed.",
+      "scope": "CULTURAL_TESTIMONY_NOT_PROOF_OF_AFTERLIFE_COMMUNICATION"
+    },
+    {
+      "id": "lit04-ev-12", "kind": "MEDICAL_OBSERVATION_AND_INFERENCE", "entities": ["lit04-crusher", "lit04-barth", "lit04-coma-event"],
+      "chapter": 7, "paragraph": 59,
+      "paragraph_sha256": "2d43de821a414844eab31110d9933916c13018250599311f87b47827aad709f9",
+      "summary": "Crusher describes a nucleotide seen in her sample and proposes that shedding Barth could explain spread; the causal explanation remains her inference.",
+      "scope": "MIXED_OBSERVATION_AND_CHARACTER_HYPOTHESIS"
+    },
+    {
+      "id": "lit04-ev-13", "kind": "DIALOGUE_WITHIN_STAGED_PERFORMANCE", "entities": ["lit04-theater"],
+      "chapter": 8, "paragraph": 1,
+      "paragraph_sha256": "6e2e37b4b9ebb9eabca2073f15bf3e433abf0a527f652100aba7c0ed44e14446",
+      "summary": "A rehearsed Dickens scene asks whether altered conduct can alter an anticipated outcome.",
+      "scope": "PERFORMED_FICTION_WITHIN_THE_NARRATIVE"
+    },
+    {
+      "id": "lit04-ev-14", "kind": "NARRATION", "entities": ["lit04-crusher", "lit04-sellassars", "lit04-barth", "lit04-coma-event"],
+      "chapter": 8, "paragraph": 10,
+      "paragraph_sha256": "2b5e54020f7aeb1b8cfe1734f4825af54652efb22148a9faee8c38c6f4ac8391",
+      "summary": "The closing narration says attempts did not find a safe way to suppress the effect without harming Barth protection; the crew recovered and the envoy now covers his hands.",
+      "scope": "NARRATED_OUTCOME_WITHIN_THIS_WORK"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "lit04-as-01", "predicate": "NARRATIVE_EPISTEMIC_CONFLICT", "status": "PROPOSED_INTERPRETATION",
+      "statement": "The investigation contrasts an observed cluster of comas with several premature explanations, keeping the cause unsettled until the late-stage clinical inference.",
+      "supports": ["lit04-ev-05", "lit04-ev-07", "lit04-ev-10", "lit04-ev-12"],
+      "limits": "The supplied story does not present a controlled test establishing every step of transmission."
+    },
+    {
+      "id": "lit04-as-02", "predicate": "CROSS_SPECIES_CONSENT", "status": "PROPOSED_INTERPRETATION",
+      "statement": "A diplomatic rule against protective gloves, medical uncertainty and the envoy's refusal to sacrifice Barth create a conflict between crew safety and another being's bodily autonomy.",
+      "supports": ["lit04-ev-02", "lit04-ev-04", "lit04-ev-09", "lit04-ev-14"],
+      "limits": "This is a narrative ethical tension, not a claim that either side had a legally defined duty."
+    },
+    {
+      "id": "lit04-as-03", "predicate": "SYMBIOSIS_TESTIMONY", "status": "PROPOSED_SOURCE_ATTRIBUTED",
+      "statement": "The envoy claims Barth coexist with Kendarayans and serve protective functions, but that claim must remain distinct from independent biological verification.",
+      "supports": ["lit04-ev-08", "lit04-ev-09"],
+      "limits": "Species-wide ecology, sentience, and mutualism are not separately demonstrated by a complete biological study."
+    },
+    {
+      "id": "lit04-as-04", "predicate": "CULTURAL_TESTIMONY", "status": "PROPOSED_SOURCE_ATTRIBUTED",
+      "statement": "Sellassars describes Dream Riders as able to approach a boundary between life and death, including communication with predecessors.",
+      "supports": ["lit04-ev-11"],
+      "limits": "The text establishes his account; it does not independently verify communication with deceased persons."
+    },
+    {
+      "id": "lit04-as-05", "predicate": "STAGED_MORAL_PARALLEL", "status": "PROPOSED_INTERPRETATION",
+      "statement": "The recurring A Christmas Carol production offers a thematic parallel about change and care while the medical narrative resists a wholly satisfactory cure.",
+      "supports": ["lit04-ev-01", "lit04-ev-13", "lit04-ev-14"],
+      "limits": "A performed quotation is not an event in Trek's external continuity, and the thematic reading is not a source fact."
+    },
+    {
+      "id": "lit04-as-06", "predicate": "HOLOGRAM_CLINICAL_AGENCY", "status": "PROPOSED_INTERPRETATION",
+      "statement": "The EMH participates in observation and clinical work but is portrayed as socially abrasive, showing functional agency without establishing personhood or subjective experience.",
+      "supports": ["lit04-ev-06", "lit04-ev-07"],
+      "limits": "Behavior in the source is evidence of depiction, not a determination about consciousness."
+    }
+  ],
+  "coverage": {
+    "source_representation": "PRIVATE_COMPLETE_LOOKING_EIGHT_CHAPTER_TXT",
+    "source_retrieved": true,
+    "content_actually_read": true,
+    "structurally_indexed": true,
+    "source_relative_semantic_analysis": true,
+    "global_entity_linked": false,
+    "cross_referenced": false,
+    "independently_audited": false,
+    "accepted_work_coverage_level": "NONE",
+    "public_lead_count_effect": "NONE"
+  }
+}

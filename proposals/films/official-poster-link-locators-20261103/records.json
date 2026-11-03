@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "FILMS.OFFICIAL.POSTER.LINKS.20261103.001",
+  "role": "FILMS",
+  "proposal_only": true,
+  "observed_utc_date": "2026-11-03",
+  "source_input": {
+    "path": "explorer/film-catalog.json",
+    "sha256": "6513e5f96aac845727b57bd2f967170d56b95367fa95075e6919a4530bb3d6de"
+  },
+  "source_independence_group": "publisher:startrek.com",
+  "source_relative_observation_count": 8,
+  "image_bytes_retrieved": false,
+  "image_bytes_committed": false,
+  "public_artwork_release_effect": "NONE",
+  "explorer_effect": "NONE",
+  "accepted_work_binding_effect": "NONE",
+  "research_coverage_effect": "NONE",
+  "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+  "observations": [
+    {
+      "local_id": "film-poster-link-motion-picture-20261103",
+      "film_directory_id": "film-motion-picture",
+      "source_url": "https://www.startrek.com/movies/star-trek-i-the-motion-picture",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster Art for Star Trek: The Motion Picture",
+      "image_locator": "https://images.prismic.io/star-trek-untold/cb2d990c-985d-428a-a26e-b1ad8b77f2fe_ST1_ARTalt.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-search-for-spock-20261103",
+      "film_directory_id": "film-search-for-spock",
+      "source_url": "https://www.startrek.com/movies/star-trek-iii-the-search-for-spock",
+      "source_page_evidence": "Official page Poster image link; page's 1982 date is inconsistent with the film's standard release year and is not adopted here.",
+      "publisher_image_alt_label": "Poster art for Star Trek III: The Search for Spock",
+      "image_locator": "https://images.prismic.io/star-trek-untold/9b27e9bd-03dc-4cfe-84ce-6c7857c2fc28_StarTrekIII_TheSearchForSpock_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-voyage-home-20261103",
+      "film_directory_id": "film-voyage-home",
+      "source_url": "https://www.startrek.com/movies/star-trek-iv-the-voyage-home",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster Art for Star Trek IV: The Voyage Home",
+      "image_locator": "https://images.prismic.io/star-trek-untold/8b45139c-36aa-42ae-a12b-43ac1f8e7747_StarTrekIV_TheVoyageHomee_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-final-frontier-20261103",
+      "film_directory_id": "film-final-frontier",
+      "source_url": "https://www.startrek.com/movies/star-trek-v-the-final-frontier",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster art for Star Trek V: The Final Frontier",
+      "image_locator": "https://images.prismic.io/star-trek-untold/7b52acec-d000-4cde-a061-016862adddd6_StarTrekV_TheFinalFrontier_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-undiscovered-country-20261103",
+      "film_directory_id": "film-undiscovered-country",
+      "source_url": "https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster art for Star Trek VI: The Undiscovered Country",
+      "image_locator": "https://images.prismic.io/star-trek-untold/1481f129-37d3-46c8-a465-6ddfac06734f_StarTrekVI_TheUndiscoveredCountry_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-generations-20261103",
+      "film_directory_id": "film-generations",
+      "source_url": "https://www.startrek.com/movies/star-trek-generations",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster art for Star Trek Generations featuring James T. Kirk and Jean-Luc Picard",
+      "image_locator": "https://images.prismic.io/star-trek-untold/3bd1e02e-a547-473f-ade8-27876878d1fb_StarTrek_Generations_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-first-contact-20261103",
+      "film_directory_id": "film-first-contact",
+      "source_url": "https://www.startrek.com/movies/star-trek-viii-first-contact",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster art for Star Trek: First Contact featuring Jean-Luc Picard, Data and the Borg Queen",
+      "image_locator": "https://images.prismic.io/star-trek-untold/fd853cdc-24d2-4812-8896-f234f6d22755_StarTrek_FirstContact_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "film-poster-link-insurrection-20261103",
+      "film_directory_id": "film-insurrection",
+      "source_url": "https://www.startrek.com/movies/star-trek-ix-insurrection",
+      "source_page_evidence": "Official page Poster image link, following the film heading; image alt calls it poster art.",
+      "publisher_image_alt_label": "Poster art for Star Trek: Insurrection",
+      "image_locator": "https://images.prismic.io/star-trek-untold/de5418d2-eb10-49b3-8d91-04f9d33e5180_StarTrek_Insurrection_KeyArt_2023_full.png?auto=compress%2Cformat",
+      "image_role": "PUBLISHER_POSTER_LINK_LABEL_NOT_PIXEL_REVIEW",
+      "source_page_access": "FIRST_PARTY_HTML_TEXT_READ",
+      "image_fetch_status": "CLICK_TARGET_EXTRACTED_IMAGE_BYTES_NOT_FETCHED",
+      "display_eligible": false
+    }
+  ]
+}

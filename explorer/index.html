@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9876; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=6e1921429ed13559d8c9d0141381ae1f79b44d96761484076fb72ebeebbd6334">
-  <script src="./app.js?v=0a82a1406d5e84a05ee22459246278c6d329254308279ba69989dfee5b9357c5" defer></script>
+  <link rel="stylesheet" href="./app.css?v=c6bbdb3f6fadfd8af29b965a42acb1996064afe08fbb0bb65a698b89853006b3">
+  <script src="./app.js?v=c34a6b49af25983a335461eee0d4fb8be88e4ed27e49c7eaaf1c638c63fc74de" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -67,7 +67,26 @@
         </div>
         <button type="button" id="lore-close" class="lore-close">Close console</button>
       </div>
-      <p id="lore-disclosure" class="lore-disclosure">A scripted, Lore-inspired guide to the <strong>locally loaded research index</strong>—not an AI model, a trapped consciousness, or an authority on canon. It searches source-local records only and cannot answer questions beyond those records.</p>
+      <p id="lore-disclosure" class="lore-disclosure">Fictional Lore. The <strong>Converse</strong> station uses your separately started, opt-in local model; its character replies are unverified. <strong>Archive Search</strong> remains a deterministic search of the loaded research index.</p>
+      <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
+        <h3 id="lore-chat-heading">Converse // Optional local model</h3>
+        <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9876/explorer/</code> on the same machine.</p>
+        <form id="lore-chat-form" class="lore-chat-form" autocomplete="off">
+          <label for="lore-chat-token">Local session token (this page does not save it)</label>
+          <input id="lore-chat-token" type="password" minlength="32" maxlength="256" autocomplete="off" spellcheck="false" placeholder="Paste token printed by your local companion" required>
+          <button id="lore-chat-pair" type="button" hidden>Pair this local Explorer automatically</button>
+          <label class="lore-chat-consent"><input id="lore-chat-consent" type="checkbox" required> Connect to my local companion for this conversation</label>
+          <label for="lore-chat-input">Your message to Lore</label>
+          <textarea id="lore-chat-input" rows="3" minlength="1" maxlength="500" placeholder="Well, Lore, what do you think of your new assignment?" required></textarea>
+          <div class="lore-chat-actions">
+            <button id="lore-chat-send" type="submit">Transmit to Lore</button>
+            <button id="lore-chat-clear" type="button">Clear conversation</button>
+          </div>
+          <p id="lore-chat-status" class="lore-chat-status" role="status" aria-live="polite">Disconnected. No requests are sent until you enable the local conversation.</p>
+        </form>
+        <ol id="lore-chat-log" class="lore-chat-log" aria-label="Local fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
+      </section>
+      <h3 class="lore-archive-heading">Archive Search // Scripted index lookup</h3>
       <div class="lore-stations">
         <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Lore to find archive entries" autocomplete="off">
           <label for="lore-query">Search the archive with Lore</label>

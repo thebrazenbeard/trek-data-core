@@ -1,0 +1,91 @@
+{
+  "proposal_id": "FILMS-TMP-2023-POSTER-ART-LINES",
+  "role": "FILMS",
+  "proposal_only": true,
+  "baseline_accepted_main": "8a89b16e96220188d200b6ff9300fb90fa137627",
+  "observed_on_utc": "2026-11-03",
+  "candidate_film_id": "film-motion-picture",
+  "source_group": "producer:vice-press.com",
+  "source_family_independence": "Two Vice Press producer announcements are one marketing-source family, not independent image-rights confirmations. Both describe 2023 physical print editions; neither licenses digital display by this project.",
+  "source_page_sha256": null,
+  "media_bytes_fetched": false,
+  "accepted_coverage_effect": "NONE",
+  "accepted_identity_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "version_exclusion": "2023_PHYSICAL_PRINTS_NOT_2022_DIRECTORS_EDITION_4K_PACKAGING_OR_FILM_STILLS",
+  "sources": {
+    "bob_peak_2023": "https://vice-press.com/blogs/news/star-trek-the-motion-picture-by-bob-peak",
+    "matt_ferguson_2023": "https://vice-press.com/blogs/news/star-trek-the-motion-picture-by-matt-ferguson",
+    "director_edition_context_only": "https://www.startrek.com/news/fully-restored-directors-edition-of-star-trek-the-motion-picture-arrives-on-4k-ultra-hd"
+  },
+  "artwork_families": [
+    {
+      "local_artwork_id": "vice-press-tmp-bob-peak-2023",
+      "source_key": "bob_peak_2023",
+      "artwork_kind": "BOB_PEAK_ORIGINAL_ARTWORK_REMASTERED_FOR_2023_PRINTS",
+      "original_artist_credit": "Bob Peak",
+      "source_provision_credit": "Thomas Peak",
+      "remaster_credit": "Matt Ferguson",
+      "rights_status": "NO_PUBLIC_DIGITAL_REUSE_PERMISSION_VERIFIED"
+    },
+    {
+      "local_artwork_id": "vice-press-tmp-matt-ferguson-2023",
+      "source_key": "matt_ferguson_2023",
+      "artwork_kind": "NEW_ARTWORK_COMMISSIONED_FOR_2023_PRINTS",
+      "original_artist_credit": "Matt Ferguson",
+      "source_provision_credit": null,
+      "remaster_credit": null,
+      "rights_status": "NO_PUBLIC_DIGITAL_REUSE_PERMISSION_VERIFIED"
+    }
+  ],
+  "print_variants": [
+    {
+      "local_entity_id": "vp-tmp-bob-2023-timed",
+      "artwork_family_ref": "vice-press-tmp-bob-peak-2023",
+      "source_key": "bob_peak_2023",
+      "evidence_id": "vp-tmp-bob-timed-2023-announcement",
+      "source_description": "Timed Edition; 24x36 inches",
+      "edition_type": "TIMED_REGULAR",
+      "edition_limit": null,
+      "dimensions_inches": [24, 36],
+      "source_assertion": "VICE_PRESS_LISTS_TIMED_PRINT",
+      "display_eligible": false
+    },
+    {
+      "local_entity_id": "vp-tmp-bob-2023-foil",
+      "artwork_family_ref": "vice-press-tmp-bob-peak-2023",
+      "source_key": "bob_peak_2023",
+      "evidence_id": "vp-tmp-bob-foil-2023-announcement",
+      "source_description": "Foil Variant; edition of 200; 24x36 inches",
+      "edition_type": "FOIL_VARIANT",
+      "edition_limit": 200,
+      "dimensions_inches": [24, 36],
+      "source_assertion": "VICE_PRESS_LISTS_LIMITED_FOIL_PRINT",
+      "display_eligible": false
+    },
+    {
+      "local_entity_id": "vp-tmp-ferguson-2023-regular",
+      "artwork_family_ref": "vice-press-tmp-matt-ferguson-2023",
+      "source_key": "matt_ferguson_2023",
+      "evidence_id": "vp-tmp-ferguson-regular-2023-announcement",
+      "source_description": "Regular edition of 200; 24x36 inches",
+      "edition_type": "NUMBERED_REGULAR",
+      "edition_limit": 200,
+      "dimensions_inches": [24, 36],
+      "source_assertion": "VICE_PRESS_LISTS_LIMITED_REGULAR_PRINT",
+      "display_eligible": false
+    },
+    {
+      "local_entity_id": "vp-tmp-ferguson-2023-foil",
+      "artwork_family_ref": "vice-press-tmp-matt-ferguson-2023",
+      "source_key": "matt_ferguson_2023",
+      "evidence_id": "vp-tmp-ferguson-foil-2023-announcement",
+      "source_description": "Foil variant of 175; 24x36 inches",
+      "edition_type": "FOIL_VARIANT",
+      "edition_limit": 175,
+      "dimensions_inches": [24, 36],
+      "source_assertion": "VICE_PRESS_LISTS_LIMITED_FOIL_PRINT",
+      "display_eligible": false
+    }
+  ]
+}

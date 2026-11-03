@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import copy
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -91,6 +92,16 @@ class BeyondPremiereTests(unittest.TestCase):
     def test_duplicate_json_key_rejected(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             guard.unique_json([("license", "CC0"), ("license", "CC BY")])
+
+    def test_missing_manifest_or_test_source_rejected(self):
+        for missing in ("MANIFEST.md", "test_validate.py"):
+            with self.subTest(missing=missing), tempfile.TemporaryDirectory() as tmp:
+                d = Path(tmp)
+                for name in guard.ALLOWED:
+                    shutil.copyfile(guard.HERE / name, d / name)
+                (d / missing).unlink()
+                with self.assertRaisesRegex(ValueError, "missing reviewed packet source"):
+                    guard.validate(self.contract, directory=d)
 
 
 if __name__ == "__main__":

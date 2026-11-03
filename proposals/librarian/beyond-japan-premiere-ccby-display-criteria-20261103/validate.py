@@ -73,6 +73,7 @@ def validate_text(path: Path) -> None:
 def validate_directory(directory: Path = HERE) -> None:
     if directory.is_symlink():
         raise ValueError("symlinked source packet directory")
+    seen_reviewed_sources = set()
     for path in directory.rglob("*"):
         rel = path.relative_to(directory)
         if path.is_symlink():
@@ -86,10 +87,13 @@ def validate_directory(directory: Path = HERE) -> None:
         if path.is_file():
             if len(rel.parts) == 1 and rel.name in ALLOWED:
                 validate_text(path)
+                seen_reviewed_sources.add(rel.name)
                 continue
             if len(rel.parts) == 2 and rel.parts[0] == "__pycache__" and path.suffix == ".pyc":
                 continue
         raise ValueError("unreviewed file in source packet")
+    if seen_reviewed_sources != ALLOWED:
+        raise ValueError("missing reviewed packet source: " + ", ".join(sorted(ALLOWED - seen_reviewed_sources)))
     if directory == HERE:
         prefix = HERE.relative_to(ROOT).as_posix() + "/"
         tracked = subprocess.run(

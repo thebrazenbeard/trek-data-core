@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "RENDERED_OFFICIAL_TOS_TAS_EPISODE_GUIDE_CARDS_UNPINNED",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "raw_publisher_source_bytes_pinned": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {"row_id":"lead:0019","series":"TOS","season":2,"episode":25,"official_title":"Bread and Circuses","title_check":"EXACT","original_synopsis_draft":"Spock and McCoy are compelled to take part in violent games resembling ancient Roman contests."},
+    {"row_id":"lead:0020","series":"TAS","season":1,"episode":14,"official_title":"The Slaver Weapon","title_check":"EXACT","original_synopsis_draft":"An encounter leaves Spock, Sulu and Uhura at the mercy of captors."},
+    {"row_id":"lead:0021","series":"TAS","season":1,"episode":2,"official_title":"Yesteryear","title_check":"EXACT","original_synopsis_draft":"Spock revisits his own childhood to prevent a fatal event in his younger life."},
+    {"row_id":"lead:0022","series":"TAS","season":2,"episode":4,"official_title":"Albatross","title_check":"EXACT","original_synopsis_draft":"McCoy is accused of having caused a devastating illness on an alien world."},
+    {"row_id":"lead:0023","series":"TAS","season":2,"episode":2,"official_title":"Bem","title_check":"EXACT","original_synopsis_draft":"The Enterprise crew undergoes scrutiny to determine its suitability for contact with advanced civilizations."},
+    {"row_id":"lead:0024","series":"TAS","season":1,"episode":1,"official_title":"Beyond the Farthest Star","title_check":"EXACT","original_synopsis_draft":"The Enterprise investigates an apparently abandoned spacecraft orbiting a lifeless star."},
+    {"row_id":"lead:0025","series":"TAS","season":2,"episode":5,"official_title":"How Sharper Than a Serpent's Tooth","title_check":"EXACT","original_synopsis_draft":"The crew encounters a being with a surprising historical connection to Maya civilization on Earth."},
+    {"row_id":"lead:0026","series":"TAS","season":1,"episode":13,"official_title":"The Ambergris Element","title_check":"EXACT","original_synopsis_draft":"Exploring the planet Argo results in an unexpected transformation of Kirk and Spock."},
+    {"row_id":"lead:0027","series":"TAS","season":1,"episode":10,"official_title":"Mudd's Passion","title_check":"EXACT","original_synopsis_draft":"Harry Mudd resurfaces to sell a supposed love potion that does not work as advertised."},
+    {"row_id":"lead:0028","series":"TAS","season":1,"episode":9,"official_title":"Once Upon a Planet","title_check":"EXACT","original_synopsis_draft":"The crew returns to an amusement-park world after its caretaker dies, finding the computer in control."},
+    {"row_id":"lead:0029","series":"TAS","season":1,"episode":3,"official_title":"One of Our Planets is Missing","title_check":"CASE_VARIANT_UNRESOLVED","original_synopsis_draft":"A mysterious and destructive cloud presents a threat to populated planets."},
+    {"row_id":"lead:0030","series":"TAS","season":1,"episode":15,"official_title":"The Eye of the Beholder","title_check":"EXACT","original_synopsis_draft":"Telepathic aliens confine Kirk, Spock and McCoy inside an unfamiliar zoological collection."},
+    {"row_id":"lead:0031","series":"TAS","season":1,"episode":7,"official_title":"The Infinite Vulcan","title_check":"EXACT","original_synopsis_draft":"A scientist's experiments have produced a species of intelligent plant life."},
+    {"row_id":"lead:0032","series":"TAS","season":1,"episode":16,"official_title":"The Jihad","title_check":"EXACT","original_synopsis_draft":"Kirk leads an expedition seeking to recover an object of religious importance after it is stolen."},
+    {"row_id":"lead:0033","series":"TAS","season":1,"episode":4,"official_title":"The Lorelei Signal","title_check":"EXACT","original_synopsis_draft":"A group of women preserves its longevity by draining vital energy from men."},
+    {"row_id":"lead:0034","series":"TAS","season":1,"episode":8,"official_title":"The Magicks of Megas-tu","title_check":"EXACT","original_synopsis_draft":"Near the center of the galaxy, the Enterprise meets beings with remarkable powers."}
+  ]
+}

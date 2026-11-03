@@ -58,3 +58,42 @@ the original discovery record. Later accepted research batches do **not**
 silently alter this projection until their separately controlled public sidecar
 is explicitly updated and the index rebuilt. The GitHub Pages release remains
 an explicit manual action after complete validation.
+
+## Separate ISBN-bound publisher-edition leads (three-row overlay)
+
+The accepted research packet at
+`proposals/research/lit-three-archive-discovered-publisher-editions-20261103/records.json`
+supports **three** direct Simon & Schuster *edition candidate* metadata records.
+Its separate deterministic projection is
+[`lit-publisher-edition-leads.json`](../explorer/lit-publisher-edition-leads.json).
+It is deliberately **not appended to the hard-pinned 1,214-row Explorer directory**
+or the 37 separately reviewed public publisher paraphrases. Nor should these
+three be counted as three already reconciled Works.
+
+```sh
+python3 tools/build_lit_publisher_leads.py --check
+python3 tools/query_lit_publisher_leads.py --validate-sources --q "McCoy"
+python3 tools/query_lit_publisher_leads.py --isbn 9780743419987
+python3 tools/query_lit_publisher_leads.py --tag publisher-claim:topic:genesis-wave
+```
+
+The overlay is machine-queryable offline by title, creator, ISBN, format,
+series label, and *source-relative publisher-copy candidate* tags. The
+`publisher-claim:` prefix is substantive: a tag records a claim appearing in
+the publisher's promotional description, not an admitted fact about Trek
+continuity. The linked source packet contains original paraphrases, but none
+are emitted in this overlay until a separate editorial publication receipt
+exists. Its fields explicitly keep `synopsis_status` held, the owner-private
+archive edition equivalence `UNVERIFIED`, and all coverage, denominator,
+admission, and artwork release effects `NONE`.
+
+The generator pins the accepted source file's SHA-256 and accepted commit;
+the query program independently pins the **exact canonical overlay SHA-256**
+even when `--validate-sources` is absent. Thus a downloaded index with
+altered tags, dates, search text, or private-looking fields fails closed when
+checked against the trusted program, while `--validate-sources` additionally
+compares the whole overlay to a source reconstruction. The downloaded JSON
+alone cannot authenticate itself without that trusted code pin. A future reviewed
+Explorer-card adapter can expose the overlay alongside the base directory,
+using separate counts and independent synopsis review; this batch does not
+silently add the new records to the displayed directory.

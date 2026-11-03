@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "role": "TNG_SOURCE_LOCAL_RESEARCH",
+  "status": "PROPOSAL_ONLY",
+  "accepted_main_at_start": "aebf9e8a69ab44919f2d89ab60dd1e824e05a807",
+  "retrieved_on_utc_date": "2026-11-03",
+  "method": "PURPOSIVE_USER_PROMPTED_SAMPLE_NOT_CORPUS_REPRESENTATIVE",
+  "sampling_frame": "NOT_ESTABLISHED",
+  "source_text_complete": false,
+  "audiovisual_works_watched": false,
+  "authenticated_episode_scripts_read": false,
+  "source_body_sha256": null,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_identity_effect": "NONE",
+  "coverage_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "public_explorer_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "sources": [
+    {"id": "S1", "type": "FIRST_PARTY_EDITORIAL_RETROSPECTIVE", "url": "https://www.startrek.com/news/a-look-back-at-descent", "publication_date": "2023-06-23", "read_portion": "visible article lines 29-54 and captions", "publisher_lineage": "STAR_TREK_PARAMOUNT", "full_episode_source": false},
+    {"id": "S2", "type": "FIRST_PARTY_EDITORIAL_EPISODE_RECAP", "url": "https://www.startrek.com/news/recap-star-trek-picard-307-dominion", "publication_date": "2023-04-01", "read_portion": "visible article lines 29-47 and 92-97", "publisher_lineage": "STAR_TREK_PARAMOUNT", "full_episode_source": false},
+    {"id": "S3", "type": "FIRST_PARTY_EDITORIAL_CHARACTER_GUIDE", "url": "https://www.startrek.com/news/star-trek-megalomaniacal-ai-guide", "publication_date": "2023-10-23", "read_portion": "visible article lines 131-145 and caption", "publisher_lineage": "STAR_TREK_PARAMOUNT", "full_episode_source": false}
+  ],
+  "inaccessible_candidate_sources": [
+    {"title_candidate": "Datalore", "url": "https://www.paramountplus.com/shows/video/d_1KUsOfIZJOyUqFzHQ1WHELclcNVspk/", "direct_open_result": "ERROR_500", "verified": false},
+    {"title_candidate": "Descent, Part II", "url": "https://www.paramountplus.com/shows/video/BFQkB7Vt7qKvz_YVWa0gtfXLkwF94JoW/", "direct_open_result": "ERROR_500", "verified": false}
+  ],
+  "work_candidates": [
+    {"id": "tng-local-datalore", "title": "Datalore", "relationship": "REFERENCED_IN_S3_CAPTION", "global_work_identity": "UNRESOLVED"},
+    {"id": "tng-local-descent-i-ii", "title": "Descent Parts I and II", "relationship": "DISCUSSED_IN_S1", "global_work_identity": "UNRESOLVED"},
+    {"id": "pic-local-dominion", "title": "Dominion", "relationship": "RECAP_TOPIC_S2", "global_work_identity": "UNRESOLVED"}
+  ],
+  "local_entities": [
+    {"id": "ent-lore-s1-s3", "type": "FICTIONAL_CHARACTER_MENTION", "label": "Lore", "global_identity": "UNRESOLVED"},
+    {"id": "ent-data-s1-s3", "type": "FICTIONAL_CHARACTER_MENTION", "label": "Data", "global_identity": "UNRESOLVED"},
+    {"id": "ent-soong-s3", "type": "FICTIONAL_CREATOR_MENTION", "label": "Noonien and Juliana Soong", "global_identity": "UNRESOLVED"},
+    {"id": "ent-golem-s2", "type": "FICTIONAL_TECHNOLOGY_MENTION", "label": "Daystrom Android M-5-10", "global_identity": "UNRESOLVED"}
+  ],
+  "evidence": [
+    {"id": "ev-01", "source_id": "S1", "locator": "article lines 43-53", "kind": "PUBLISHER_EDITORIAL_NARRATION", "observation": "The retrospective calls Lore Data's brother and recounts the storyline in which Data joins Lore alongside a changed Borg group.", "evidence_strength": "FIRST_PARTY_PUBLISHER_ARTICLE_ONLY"},
+    {"id": "ev-02", "source_id": "S3", "locator": "article lines 131-144", "kind": "PUBLISHER_EDITORIAL_CHARACTER_DESCRIPTION", "observation": "The character guide describes Lore as a Data-looking android associated with Noonien and Juliana Soong on Omicron Theta and characterizes his actions as hostile.", "evidence_strength": "FIRST_PARTY_PUBLISHER_ARTICLE_ONLY"},
+    {"id": "ev-03", "source_id": "S2", "locator": "article lines 92-96", "kind": "PUBLISHER_EDITORIAL_EPISODE_RECAP", "observation": "The Picard episode recap narrates a fictional positronic body in which Data and Lore identities alternate and are described as co-present; other matrices are said to be stored as memory only.", "evidence_strength": "FIRST_PARTY_PUBLISHER_RECAP_ONLY"},
+    {"id": "ev-04", "source_id": "S3", "locator": "image caption lines 131-137", "kind": "PUBLISHER_IMAGE_CAPTION", "observation": "The image caption identifies Data at left and Lore at right in an Enterprise-D corridor associated with Datalore.", "evidence_strength": "VISIBLE_PUBLISHER_CAPTION_NOT_IMAGE_LICENSE"},
+    {"id": "ev-05", "source_id": "S1", "locator": "image caption lines 48-51", "kind": "PUBLISHER_IMAGE_CAPTION", "observation": "The caption identifies Data and Lore above altered Borg in Descent.", "evidence_strength": "VISIBLE_PUBLISHER_CAPTION_NOT_IMAGE_LICENSE"},
+    {"id": "ev-06", "source_id": "S2", "locator": "image caption lines 92-94", "kind": "PUBLISHER_IMAGE_CAPTION", "observation": "The caption describes a distant view of Lore standing aboard the Titan.", "evidence_strength": "VISIBLE_PUBLISHER_CAPTION_NOT_IMAGE_LICENSE"}
+  ],
+  "assertions": [
+    {"id": "as-01", "subject": "ent-lore-s1-s3", "predicate": "DESCRIBED_AS_SIBLING_OF", "object": "ent-data-s1-s3", "supporting_evidence_ids": ["ev-01", "ev-02"], "neutral_evidence_ids": ["ev-04"], "disconfirming_evidence_ids": [], "status": "PROPOSED_SOURCE_RELATIVE", "falsifier": "An authenticated audiovisual source contradicting the publisher's sibling description."},
+    {"id": "as-02", "subject": "ent-golem-s2", "predicate": "DEPICTS_CO_PRESENCE_OF_IDENTITIES", "object": "ent-lore-s1-s3", "supporting_evidence_ids": ["ev-03"], "neutral_evidence_ids": ["ev-01"], "disconfirming_evidence_ids": [], "status": "PROPOSED_FICTIONAL_NARRATIVE_ONLY", "falsifier": "The complete episode contradicts the editorial recap's description of the unit."},
+    {"id": "as-03", "subject": "ent-lore-s1-s3", "predicate": "HAS_OFFICIAL_IMAGE_LOCATOR", "object": "HELD_ARTWORK_ONLY", "supporting_evidence_ids": ["ev-04", "ev-05", "ev-06"], "neutral_evidence_ids": [], "disconfirming_evidence_ids": [], "status": "PROPOSED_DISCOVERY_ONLY", "falsifier": "The target image no longer exists or its caption/source association is incorrect."}
+  ],
+  "artwork_candidates": [
+    {"id": "A1", "source_id": "S3", "source_locator": "image link 19, caption lines 131-137", "url": "https://images.prismic.io/star-trek-untold/MzJjMjQyZDAtOGQ5MS00ZjljLWI1ZjktMTY0NDQ0NDgyMDE3_datalore_hd_230.jpg?auto=compress%2Cformat", "description": "Data and Lore corridor still", "direct_image_fetch": "ERROR", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "repo_distribution": "NONE", "explorer_effect": "NONE"},
+    {"id": "A2", "source_id": "S1", "source_locator": "image link 20, caption lines 48-51", "url": "https://images.prismic.io/star-trek-untold/MzI0ZThhZTgtMDlhYi00ZTRlLWI4ZTQtYmU5MTc0NGFiNzgz_descent-part1-hd-385.jpeg.jpgitokbbtukqtt?auto=compress%2Cformat&h=672&rect=0%2C0%2C900%2C672&w=900", "description": "Data and Lore with altered Borg", "direct_image_fetch": "ERROR", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "repo_distribution": "NONE", "explorer_effect": "NONE"},
+    {"id": "A3", "source_id": "S2", "source_locator": "image link 30, caption lines 92-94", "url": "https://images.prismic.io/star-trek-untold/Nzg2OTgwNTktYWIzNC00NDFhLTk2NDMtNmRiYjE0YzczYzA3_picard_307_tp_1215_01306_rt.jpg?auto=compress%2Cformat&h=4160&rect=0%2C0%2C6240%2C4160&w=6240", "description": "Lore on Titan", "direct_image_fetch": "ERROR", "rights_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE", "bytes_downloaded": false, "repo_distribution": "NONE", "explorer_effect": "NONE"}
+  ],
+  "persona_note": {"mode": "OPTIONAL_FICTIONAL_ROLEPLAY_ONLY", "represented_character": "Lore", "actual_consciousness_transfer_claim": false, "actual_model_personhood_claim": false, "research_evidence_for_real_model_identity": "NONE", "user_suggested_premise_not_canon_assertion": true}
+}

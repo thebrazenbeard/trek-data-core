@@ -45,6 +45,10 @@ class CharlieXMigrationPreparation(unittest.TestCase):
             ("MANIFEST.json", ("source", "authenticated_primary_av_or_studio_script"), True),
             ("MANIFEST.json", ("source", "rendered_text_sha256"), "0" * 64),
             ("MANIFEST.json", ("source", "raw_html_sha256"), "0" * 64),
+            ("MANIFEST.json", ("source", "url"), "https://example.invalid/fake"),
+            ("MANIFEST.json", ("source", "rendered_text_numbered_lines"), 832),
+            ("MANIFEST.json", ("work", "official_publisher_rendered_heading"), "S1 E2: Charlie X"),
+            ("MANIFEST.json", ("source", "upstream_self_report", "independent_transcript_corroboration_count"), 1),
             ("MANIFEST.json", ("files_sha256", "evidence.json"), "0" * 64),
             ("local_entities.json", ("entities", 0, "id"), "charlie"),
             ("evidence.json", ("evidence", 0, "start_line"), 0),
@@ -70,3 +74,4 @@ class CharlieXMigrationPreparation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

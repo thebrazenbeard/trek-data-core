@@ -1,0 +1,70 @@
+{
+  "proposal_id": "FILMS-TREK-IV-VICE-PRESS-VARIANTS-20261103",
+  "role": "FILMS",
+  "proposal_only": true,
+  "accepted_main_at_start": "5ea4a8d562e76931218329b8386e363e3c40845f",
+  "observed_on_utc": "2026-11-03",
+  "coverage_effect": "NONE",
+  "accepted_source_work_binding_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "media_bytes_fetched": false,
+  "raw_source_snapshot_sha256": null,
+  "source_family": "publisher:vice-press.com",
+  "source_lineage_note": "Vice Press editorial announcement and three variants derive from one product producer. StarTrek.com product coverage repeats partner marketing and does not independently license images to this project.",
+  "producer_announcement": "https://vice-press.com/blogs/news/star-trek-iv-the-voyage-home-by-bob-peak",
+  "studio_partner_announcement": "https://www.startrek.com/gallery/star-trek-day-2024-gift-guide",
+  "candidate_film_ref": "film-voyage-home",
+  "source_attributed_creator_chain": {
+    "original_artwork_credit": "Bob Peak",
+    "original_art_supplied_by": "Thomas Peak",
+    "remaster_credit": "Matt Ferguson",
+    "claim_scope": "VICE_PRESS_2024_MARKETING_STATEMENT_NOT_INDEPENDENT_RIGHTS_CHAIN"
+  },
+  "variants": [
+    {
+      "local_entity_id": "vice-press-trek-iv-2024-timed",
+      "evidence_id": "vp-trek-iv-2024-timed-announcement",
+      "source_locator": "https://vice-press.com/blogs/news/star-trek-iv-the-voyage-home-by-bob-peak",
+      "product_locator": null,
+      "variant_kind": "TIMED_REGULAR_EDITION",
+      "evidence_kind": "PRODUCER_PAGE_VARIANT_DESCRIPTION",
+      "evidence_observed": "Timed Edition; 24x36 inches",
+      "edition_limit": null,
+      "dimensions_inches": [24, 36],
+      "artwork_basis": "2024_REMASTER_OF_BOB_PEAK_ARTWORK",
+      "source_assertion": "VICE_PRESS_LISTS_TIMED_POSTER_EDITION",
+      "rights_status": "NO_PUBLIC_DIGITAL_REUSE_GRANT_VERIFIED",
+      "eligible_for_thumbnail": false
+    },
+    {
+      "local_entity_id": "vice-press-trek-iv-2024-foil",
+      "evidence_id": "vp-trek-iv-2024-foil-announcement",
+      "source_locator": "https://vice-press.com/blogs/news/star-trek-iv-the-voyage-home-by-bob-peak",
+      "product_locator": "https://vice-press.com/products/star-trek-iv-the-voyage-home-foil-variant-poster-bob-peak",
+      "variant_kind": "FOIL_VARIANT",
+      "evidence_kind": "PRODUCER_PAGE_VARIANT_DESCRIPTION",
+      "evidence_observed": "Foil Variant; edition of 200; 24x36 inches",
+      "edition_limit": 200,
+      "dimensions_inches": [24, 36],
+      "artwork_basis": "2024_REMASTER_OF_BOB_PEAK_ARTWORK",
+      "source_assertion": "VICE_PRESS_LISTS_LIMITED_FOIL_POSTER_EDITION",
+      "rights_status": "NO_PUBLIC_DIGITAL_REUSE_GRANT_VERIFIED",
+      "eligible_for_thumbnail": false
+    },
+    {
+      "local_entity_id": "vice-press-trek-iv-2024-japanese",
+      "evidence_id": "vp-trek-iv-2024-japanese-announcement",
+      "source_locator": "https://vice-press.com/blogs/news/star-trek-iv-the-voyage-home-by-bob-peak",
+      "product_locator": "https://vice-press.com/products/star-trek-iv-the-voyage-home-japanese-title-variant-poster-bob-peak",
+      "variant_kind": "JAPANESE_TEXT_SUPER_VARIANT",
+      "evidence_kind": "PRODUCER_PAGE_VARIANT_DESCRIPTION",
+      "evidence_observed": "Japanese Super Variant; edition of 150; 24x36 inches",
+      "edition_limit": 150,
+      "dimensions_inches": [24, 36],
+      "artwork_basis": "2024_REMASTER_OF_BOB_PEAK_ARTWORK",
+      "source_assertion": "VICE_PRESS_LISTS_JAPANESE_TEXT_POSTER_VARIANT",
+      "rights_status": "NO_PUBLIC_DIGITAL_REUSE_GRANT_VERIFIED",
+      "eligible_for_thumbnail": false
+    }
+  ]
+}

@@ -117,6 +117,9 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("python3 tools/build_lit_publisher_leads.py --check", text)
         self.assertIn("! -path explorer/synopsis-catalog.json", text)
         self.assertIn("! -path explorer/metadata-rechecks.json", text)
+        self.assertIn("! -path explorer/accepted-source-card-rechecks.json", text)
+        self.assertIn("python3 tools/build_accepted_source_card_rechecks.py --check", text)
+        self.assertIn("python3 tools/query_accepted_source_card_rechecks.py --limit 1", text)
         self.assertIn("! -path explorer/short-synopsis-catalog.json", text)
         self.assertIn("Refusing to publish an unexpected Explorer entry", text)
 
@@ -130,7 +133,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 12)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 13)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -202,6 +205,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/metadata-rechecks.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/accepted-source-card-rechecks.json", final)
         self.assertIn("git rev-parse HEAD:explorer/short-synopsis-catalog.json", final)
         self.assertIn('git rev-parse "HEAD:$path"', final)
         self.assertIn("Refusing to deploy modified original abstract artwork", final)

@@ -230,7 +230,7 @@
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
     const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator', 'rights_status', 'rights_receipt_sha256'];
     const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
-    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.1.0' ||
+    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.2.0' ||
         data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
         data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
         !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
@@ -248,8 +248,17 @@
         throw new Error('Artwork references an unknown or mismatched source record.');
       }
       if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
+        const literaryRow = sourceRows.get(item.row_id);
+        // Bind the preview ISBN to an independently generated edition detail.
+        // Publisher records and distributor memoirs use two documented formats.
+        const matchingEdition = Array.isArray(literaryRow.details) && literaryRow.details.some((detail) => {
+          if (typeof detail !== 'string') return false;
+          const publisher = /^[A-Za-z][A-Za-z -]{0,56} · ISBN (97[89][0-9]{10})$/.exec(detail);
+          const memoir = /^(?:Paperback|Hardcover|Trade Paperback|Ebook) ISBN (97[89][0-9]{10})$/.exec(detail);
+          return (publisher || memoir)?.[1] === item.isbn;
+        });
         if (!exactKeys(item, openLibraryKeys) ||
-            sourceRows.get(item.row_id).medium !== 'LITERATURE' ||
+            literaryRow.medium !== 'LITERATURE' || !matchingEdition ||
             !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
             typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
             item.attribution_url !== `https://openlibrary.org/isbn/${item.isbn}` ||
@@ -395,7 +404,7 @@
     LD: 'Star Trek Lower Decks', SNW: 'Star Trek Strange New Worlds',
     PRO: 'Star Trek Prodigy', SFA: 'Star Trek Starfleet Academy'
   });
-  const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
+  const directoryKinds = ['WIKIDATA_EPISODE', 'PUBLISHER_EPISODE_SLOT', 'PUBLISHER_REFERENCE', 'FEATURE_FILM', 'STREAMING_FILM', 'NOVEL', 'FICTIONAL_MEMOIR', 'SCRIPTED_SHORT', 'PROMOTIONAL_ANIMATION', 'SCRIPTED_AUDIO_SERIES'];
   const directoryFields = ['row_id', 'medium', 'candidate_kind', 'title', 'context', 'source_group',
     'source_input', 'source_locator', 'details', 'verification_status', 'identity_scope', 'coverage_effect', 'admission_effect'];
 
@@ -486,7 +495,7 @@
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
     const seriesCounts = new Map();
-    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be']);
+    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com', 'youtu.be', 'www.penguinrandomhouse.com']);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
           typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||
@@ -505,6 +514,10 @@
         try { url = new URL(item.source_locator); } catch (_) { throw new Error('Invalid discovery source URL.'); }
         if (url.protocol !== 'https:' || !allowedHosts.has(url.hostname) || url.port || url.search || url.hash ||
             url.username || url.password || !url.pathname.startsWith('/') ||
+            (url.hostname === 'www.penguinrandomhouse.com' &&
+              (item.medium !== 'LITERATURE' || item.candidate_kind !== 'FICTIONAL_MEMOIR' ||
+               item.source_group !== 'distributor:penguinrandomhouse.com:titan-books' ||
+               !/^\/books\/[1-9][0-9]*\/[a-z0-9-]+\/$/.test(url.pathname))) ||
             (url.hostname === 'youtu.be' &&
               !/^https:\/\/youtu\.be\/[A-Za-z0-9_-]{11}$/.test(item.source_locator))) {
           throw new Error('Source URL outside the explicit publisher/catalog allowlist.');

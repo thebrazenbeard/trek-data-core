@@ -130,7 +130,7 @@ const filmCatalog = {
 };
 
 const licensedArtwork = {
-  schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+  schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
   rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
   artwork: [{
     row_id: 'film:star-trek-2009', image_path: './licensed-artwork/verified-film-cover.webp',
@@ -187,6 +187,7 @@ test('malicious, unreviewed, duplicated or off-origin artwork records are reject
     (r) => { r.artwork[0].row_id = 'film:unknown'; },
     (r) => { r.artwork.push(structuredClone(r.artwork[0])); r.artwork_count = 2; },
     (r) => { r.coverage_effect = 'AUDITED'; },
+    (r) => { r.schema_version = '1.1.0'; },
   ];
   for (const change of changes) {
     const bad = structuredClone(licensedArtwork);
@@ -209,12 +210,12 @@ test('documented Open Library API cover stays tied to its ISBN and only loads af
   directory.rows.push({ ...original,
     row_id: 'fixture:last-best-hope-not-published', title: 'Fixture novel — not a public Work',
     context: 'TEST FIXTURE ONLY — literature', source_locator: lastBestHopeUrl,
-    source_input: 'proposals/fixtures/artwork-test.json', details: ['No real release from this test']
+    source_input: 'proposals/fixtures/artwork-test.json', details: ['Hardcover · ISBN 9781982142186']
   });
   directory.row_count++;
   directory.counts_by_medium.LITERATURE++;
   const apiArtwork = {
-    schema_version: '1.1.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+    schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
     rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
     artwork: [{ row_id: 'directory:fixture:last-best-hope-not-published', provider: 'OPEN_LIBRARY_COVERS_API',
       cover_id: 10157401, isbn: '9781982142186', alt_text: 'Cover image for a fixture novel, via Open Library',
@@ -241,6 +242,50 @@ test('documented Open Library API cover stays tied to its ISBN and only loads af
   forged.artwork[0].row_id = `directory:${original.row_id}`;
   const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forged, 200);
   assert.equal(rejected.get('artwork-toggle').disabled, true, 'different novel may never inherit this cover');
+  const sameLocatorForgery = structuredClone(apiArtwork);
+  sameLocatorForgery.artwork[0].row_id = `directory:${original.row_id}`;
+  sameLocatorForgery.artwork[0].source_locator = original.source_locator;
+  const rejectedEdition = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, sameLocatorForgery, 200);
+  assert.equal(rejectedEdition.get('artwork-toggle').disabled, true,
+    'matching row and source locator cannot attach a different book edition cover');
+  const oldVersion = structuredClone(apiArtwork);
+  oldVersion.schema_version = '1.1.0';
+  const rejectedVersion = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, oldVersion, 200);
+  assert.equal(rejectedVersion.get('artwork-toggle').disabled, true, 'old sidecar contract must fail closed');
+});
+
+test('fictional memoir edition format and distributor URL are narrowly supported', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const source = 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/';
+  const row = {
+    ...directory.rows.find((r) => r.medium === 'LITERATURE'),
+    row_id: 'literature:fixture-memoir', candidate_kind: 'FICTIONAL_MEMOIR',
+    title: 'Fixture fictional memoir', context: 'TEST FIXTURE ONLY · distributor listing',
+    source_group: 'distributor:penguinrandomhouse.com:titan-books',
+    source_input: 'proposals/fixtures/memoir.json', source_locator: source,
+    details: ['In-universe fictional autobiography; no close read', 'Paperback ISBN 9781783297481']
+  };
+  directory.rows.push(row); directory.row_count++; directory.counts_by_medium.LITERATURE++;
+  const artwork = {
+    schema_version: '1.2.0', data_status: 'PROVENANCE_REVIEWED_ARTWORK', coverage_effect: 'NONE',
+    rights_policy: 'PER_ENTRY_DISPLAY_GATE', artwork_count: 1,
+    artwork: [{ row_id: `directory:${row.row_id}`, provider: 'OPEN_LIBRARY_COVERS_API',
+      cover_id: 10157401, isbn: '9781783297481', alt_text: 'Fixture cover (no public release)',
+      source_locator: source, rights_status: 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED',
+      edition_metadata_sha256: 'a'.repeat(64), attribution_url: 'https://openlibrary.org/isbn/9781783297481' }]
+  };
+  const permitted = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, artwork, 200);
+  assert.equal(permitted.get('artwork-toggle').disabled, false,
+    'synthetic source-local memoir with edition match remains valid');
+  const mismatched = structuredClone(artwork);
+  mismatched.artwork[0].isbn = '9781785659409';
+  mismatched.artwork[0].attribution_url = 'https://openlibrary.org/isbn/9781785659409';
+  const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, mismatched, 200);
+  assert.equal(rejected.get('artwork-toggle').disabled, true, 'other memoir ISBN cannot be substituted');
+  const wrongKind = structuredClone(directory);
+  wrongKind.rows.at(-1).candidate_kind = 'NOVEL';
+  const wrongScope = await runWithIndex(catalog, 200, null, 404, {}, null, 404, wrongKind, 200, artwork, 200);
+  assert.equal(wrongScope.get('artwork-toggle').disabled, true, 'distributor host restricted to memoir candidates');
 });
 
 test('Open Library variant fails closed for forged URL, identifier, medium and rights', async () => {

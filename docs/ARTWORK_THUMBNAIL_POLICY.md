@@ -43,7 +43,7 @@ An authorized release may carry exactly the following keys:
 
 | Field | Requirement |
 | --- | --- |
-| `schema_version` | `1.1.0` |
+| `schema_version` | `1.2.0` (earlier sidecars intentionally rejected) |
 | `data_status` | `PROVENANCE_REVIEWED_ARTWORK` |
 | `coverage_effect` | `NONE` |
 | `rights_policy` | `PER_ENTRY_DISPLAY_GATE` |
@@ -72,6 +72,11 @@ rights gates:
   `https://covers.openlibrary.org/b/id/<id>-S.jpg?default=false` itself.
 - `isbn`: exact 13-digit edition ISBN; `attribution_url` must be
   `https://openlibrary.org/isbn/<isbn>`.
+- The same ISBN must appear as an edition detail on the independently generated
+  source-local `LITERATURE` row. Supported publisher detail format is
+  `Format · ISBN 978…`; fictional-autobiography distributor metadata may use
+  `Paperback ISBN 978…` (also Hardcover, Trade Paperback, or Ebook).
+  Matching `row_id` and `source_locator` without this ISBN link is insufficient.
 - `edition_metadata_sha256`: SHA-256 of the exact Open Library edition
   metadata used for the ISBN-to-cover crosswalk (64 lowercase hex).
 - `rights_status`:
@@ -85,6 +90,12 @@ must be updated and rerun before adding any actual sidecar or image binaries.
 The JavaScript validator is a defense-in-depth contract, **not** a legal
 license examiner; an attacker cannot make unlawful art lawful by supplying
 syntactically valid hash strings.
+
+The separately proposed Penguin Random House/Titan `FICTIONAL_MEMOIR` rows
+are recognized as candidates only on the specifically scoped distributor
+book-page path and source group. This compatibility provision does not admit
+those pending literature rows into the accepted directory or independently
+authenticate an Open Library cover-to-edition relationship.
 
 On approval, images remain **off by default**. A visitor can choose
 `Show sourced artwork` to load the current visible cards' allowed assets and

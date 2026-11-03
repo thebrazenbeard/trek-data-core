@@ -23,6 +23,10 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = "explorer/artwork-catalog.json"
+# This deployment deliberately uses one accepted v1.2 identity sidecar. Any
+# unreviewed additive reader/sidecar would reintroduce partial M/S release and
+# stale-image retry paths; fail closed even if the Pages allowlist also rejects.
+UNAPPROVED_MEDIUM_MANIFEST = "explorer/artwork-catalog-v1.3.json"
 ART_DIRECTORY = "explorer/licensed-artwork"
 OL_SOURCE_PACKET = "proposals/librarian/open-library-nine-literature-20261103/records.json"
 MAX_ART_BYTES = 16_000_000
@@ -378,6 +382,15 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
                       verify_git: bool = False) -> dict:
     """Use code-owned pins in CLI; explicit test-only injections exercise release fixtures."""
     root = Path(root)
+    alternative = root / UNAPPROVED_MEDIUM_MANIFEST
+    _ensure(not alternative.exists() and not alternative.is_symlink(),
+            "unreviewed v1.3 artwork sidecar may not be published or loaded")
+    if verify_git:
+        committed_alternative = subprocess.run(
+            ["git", "cat-file", "-e", f"HEAD:{UNAPPROVED_MEDIUM_MANIFEST}"], cwd=root,
+            capture_output=True, check=False)
+        _ensure(committed_alternative.returncode != 0,
+                "committed unreviewed v1.3 artwork sidecar must not be published")
     local_pins = REVIEWED_LOCAL_ARTWORK_PINS if local_pins is None else local_pins
     library_pins = REVIEWED_OPEN_LIBRARY_COVER_PINS if library_pins is None else library_pins
     manifest = root / MANIFEST

@@ -7,7 +7,7 @@ import { webcrypto, createHash } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -1237,6 +1237,10 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
   assert.equal(nodes.get('discovery-top-count').textContent, '1,214',
     'the primary status board shows source-local directory size, distinct from twelve series Missions');
+  assert.equal(nodes.get('discovery-episode-count').textContent, '1,155',
+    'episode observations surface as source-local leads, not accepted episode Works');
+  assert.equal(nodes.get('discovery-literature-count').textContent, '9',
+    'literary discovery leads surface separately from admitted Works');
   assert.match(nodes.get('discovery-state').textContent, /not a franchise total/);
   assert.match(nodes.get('discovery-metrics').textContent, /Episode refs: 1,155/);
   assert.match(nodes.get('discovery-metrics').textContent, /Film rows: 14/);
@@ -1379,6 +1383,8 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   assert.equal(blocked.get('discovery-nav-count').textContent, '—');
   assert.equal(blocked.get('discovery-top-count').textContent, '—',
     'untrusted discovery content cannot create an authoritative-looking top-line count');
+  assert.equal(blocked.get('discovery-episode-count').textContent, '—');
+  assert.equal(blocked.get('discovery-literature-count').textContent, '—');
   assert.match(blocked.get('discovery-state').textContent, /rejected/);
   const forged = structuredClone(catalogData);
   forged.rows[0].source_locator = 'https://www.startrek.com@evil.invalid/bogus';
@@ -1403,6 +1409,8 @@ test('untrusted directory cannot forge admission or publisher navigation', async
   assert.equal(absent.get('discovery-nav-count').textContent, '1,214', 'discovery does not depend on governed Mission index');
   assert.equal(absent.get('discovery-top-count').textContent, '1,214',
     'source-local directory remains independently visible when Mission index is unavailable');
+  assert.equal(absent.get('discovery-episode-count').textContent, '1,155');
+  assert.equal(absent.get('discovery-literature-count').textContent, '9');
   assert.equal(absent.get('mission-count').textContent, '—');
 });
 
@@ -1703,6 +1711,10 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="discovery-directory"/);
   assert.match(html, /id="discovery-top-count"[^>]*href="#discovery-directory"/,
     'prominent directory count links to the source-local listing rather than implying 12 total episodes');
+  assert.match(html, /id="discovery-episode-count"[^>]*href="#discovery-directory"/);
+  assert.match(html, /id="discovery-literature-count"[^>]*href="#discovery-directory"/);
+  assert.match(html, /Missions are series navigation categories, not an episode count/,
+    'the front status board must make the twelve-Mission denominator explicit');
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);
   assert.match(html, /for="discovery-series">Series \(source-local\)<\/label>/, 'series facet must disclose its source-local scope');
   assert.match(html, /<label for="discovery-kind">Candidate type<\/label><select id="discovery-kind" name="kind">/, 'candidate facet is labeled and connected to the live directory form');

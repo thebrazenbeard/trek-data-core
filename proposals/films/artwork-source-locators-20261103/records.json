@@ -1,0 +1,108 @@
+{
+  "proposal_id": "FILMS-ARTWORK-SOURCE-LOCATORS-20261103",
+  "proposal_only": true,
+  "role": "FILMS",
+  "baseline_accepted_main": "5b0fb86b322811ccea58f88f20d69bd4e62e9b22",
+  "observation_date_utc": "2026-11-03",
+  "coverage_effect": "NONE",
+  "admission_effect": "NONE",
+  "public_artwork_release_effect": "NONE",
+  "source_page_snapshots_available": false,
+  "source_lineage": {
+    "publisher:startrek.com": "Franchise publisher page and gallery; same publishing family; no independent image-title corroboration.",
+    "community:memory-alpha.fandom.com": "Search-indexed wiki category/file-title observations only; direct Fandom page access blocked by robots.txt. Community article license does not grant rights to underlying posters or stills."
+  },
+  "records": [
+    {
+      "local_id": "films-artwork-tmp-official-poster",
+      "candidate_film_id": "film-motion-picture",
+      "source_group": "publisher:startrek.com",
+      "source_locator": "https://www.startrek.com/movies/star-trek-i-the-motion-picture",
+      "access": "PUBLISHER_PAGE_READ",
+      "artwork_kind": "PUBLISHER_POSTER_LABEL",
+      "evidence": "Poster Art for Star Trek: The Motion Picture",
+      "evidence_scope": "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+      "artwork_variant": "UNRESOLVED_POSTER_VERSION",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-search-for-spock-official-poster",
+      "candidate_film_id": "film-search-for-spock",
+      "source_group": "publisher:startrek.com",
+      "source_locator": "https://www.startrek.com/movies/star-trek-iii-the-search-for-spock",
+      "access": "PUBLISHER_PAGE_READ",
+      "artwork_kind": "PUBLISHER_POSTER_LABEL",
+      "evidence": "Poster art for Star Trek III: The Search for Spock",
+      "evidence_scope": "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+      "artwork_variant": "UNRESOLVED_POSTER_VERSION",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-voyage-home-official-poster",
+      "candidate_film_id": "film-voyage-home",
+      "source_group": "publisher:startrek.com",
+      "source_locator": "https://www.startrek.com/movies/star-trek-iv-the-voyage-home",
+      "access": "PUBLISHER_PAGE_READ",
+      "artwork_kind": "PUBLISHER_POSTER_LABEL",
+      "evidence": "Poster Art for Star Trek IV: The Voyage Home",
+      "evidence_scope": "PUBLISHER_PAGE_IMAGE_ALT_TEXT",
+      "artwork_variant": "UNRESOLVED_POSTER_VERSION",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-search-for-spock-official-gallery",
+      "candidate_film_id": "film-search-for-spock",
+      "source_group": "publisher:startrek.com",
+      "source_locator": "https://www.startrek.com/gallery/search-for-spock-enterprise",
+      "access": "PUBLISHER_PAGE_READ",
+      "artwork_kind": "PUBLISHER_STILL_GALLERY_LISTING",
+      "evidence": "11 Indelible Images from 'The Search for Spock'",
+      "evidence_scope": "PUBLISHER_GALLERY_HEADING",
+      "artwork_variant": "ELEVEN_ITEM_GALLERY_NOT_INDIVIDUAL_IMAGE_IDENTITIES",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-tmp-fandom-directors-edition-poster",
+      "candidate_film_id": "film-motion-picture",
+      "source_group": "community:memory-alpha.fandom.com",
+      "source_locator": "https://memory-alpha.fandom.com/wiki/Category%3AMemory_Alpha_images_%28publicity%29",
+      "access": "SEARCH_INDEX_CACHED_NOT_DIRECT",
+      "artwork_kind": "INDEXED_FILE_TITLE_ONLY",
+      "evidence": "File:Poster 4K UHD The Motion Picture Director's Edition theatrical screening.jpg",
+      "evidence_scope": "INDEXED_CATEGORY_FILE_LISTING",
+      "artwork_variant": "DIRECTORS_EDITION_4K_SCREENING_NOT_1979_THEATRICAL_POSTER",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-search-for-spock-fandom-vhs-advert",
+      "candidate_film_id": "film-search-for-spock",
+      "source_group": "community:memory-alpha.fandom.com",
+      "source_locator": "https://memory-alpha.fandom.com/wiki/Category%3AMemory_Alpha_files_by_production_%28Star_Trek_III%3A_The_Search_for_Spock%29",
+      "access": "SEARCH_INDEX_CACHED_NOT_DIRECT",
+      "artwork_kind": "INDEXED_FILE_TITLE_ONLY",
+      "evidence": "File:Search for Spock 1985 VHS advert.jpg",
+      "evidence_scope": "INDEXED_CATEGORY_FILE_LISTING",
+      "artwork_variant": "1985_HOME_VIDEO_ADVERT_NOT_1984_THEATRICAL_POSTER",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    },
+    {
+      "local_id": "films-artwork-voyage-home-fandom-dutch-poster",
+      "candidate_film_id": "film-voyage-home",
+      "source_group": "community:memory-alpha.fandom.com",
+      "source_locator": "https://memory-alpha.fandom.com/nl/wiki/Categorie%3AFilms_-_004_-_The_Voyage_Home",
+      "access": "SEARCH_INDEX_CACHED_NOT_DIRECT",
+      "artwork_kind": "INDEXED_FILE_TITLE_ONLY",
+      "evidence": "Bestand:The Voyage Home Poster.jpg",
+      "evidence_scope": "INDEXED_CATEGORY_FILE_LISTING",
+      "artwork_variant": "POSTER_VERSION_AND_ORIGINAL_RIGHTS_UNKNOWN",
+      "rights_status": "PUBLIC_REUSE_NOT_VERIFIED",
+      "display_eligible": false
+    }
+  ]
+}

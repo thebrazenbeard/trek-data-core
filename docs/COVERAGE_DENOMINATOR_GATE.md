@@ -93,3 +93,59 @@ coverage states. These checks establish consistency with accepted registry
 records; they do **not** independently verify remote source bytes or grant
 permission to reproduce copyrighted episodes or transcripts. Nonempty
 canonical admission and research rights review remain separate requirements.
+
+## CLOSE_READ requires two independently reviewable custody records
+
+An accepted `CLOSE_READ` event cannot advance the public coverage numerator
+just by naming a producer and arbitrary basis strings. For disk-backed
+validation, `basis_refs` must contain exactly one each of:
+
+- `read-receipt:sha256:<64 lowercase hex>` — the SHA-256 of an exact JSON file
+  at `coverage/read-receipts/<digest>.json`;
+- `read-review:sha256:<64 lowercase hex>` — the SHA-256 of a separate JSON
+  record at `coverage/read-reviews/<digest>.json`;
+- `evidence:<id>` for every source-relative Evidence ID cited by the reading
+  receipt.
+
+Both files must be regular, single-link, non-symlinked in-repository files.
+The reading receipt has `receipt_kind: CLOSE_READ_CONTENT_RECEIPT`, version
+`1.0.0`, and **`verification_status: VERIFICATION_PENDING`**. It identifies
+the exact accepted Work, Source, evidence-bearing binding, Source SHA-256,
+research producer, full-declared-representation first/last locators, and
+sorted Evidence IDs. Its `producer_ref` names
+`research/<governed-lane>/batches/<batch-id>/manifest.json`; the receipt pins
+that manifest's exact SHA-256. The manifest must satisfy the batch schema,
+include the same Work, Source digest, and research lane, and carry the
+repository's deterministic `batch_hash` over its own fields (excluding
+`batch_hash`) and all sorted batch-local records. The declared required
+`local_entities`/`evidence`/`assertions` counts must equal the actual batch
+records. Every cited Evidence ID must exist as an exact record in the hashed
+batch and in the loaded research corpus, with matching Work/Source IDs and
+nonempty source-relative locators and observations. Merely listing an
+Evidence ID outside the batch is insufficient.
+
+The separate review record has `receipt_kind: CLOSE_READ_ADMISSION_REVIEW`,
+version `1.0.0`, links the exact reading receipt digest and governed context,
+and records an `AUDITOR`-role reviewer ID unequal to either the research role
+or the exact producer manifest path, with
+`decision: APPROVED_FOR_COVERAGE`. Every review-basis reference must be an
+`evidence:<id>` cited in the verified batch; free-form self-declarations are
+not accepted. Missing,
+mis-scoped, altered, duplicate-key, hardlinked, symlinked, self-approved, or
+unreviewed records fail closed. An Event's predecessor chain and the existing
+Librarian Source/Work/binding gate are still required.
+
+**Evidence ceiling:** SHA-256 and role labels prove only internal file
+consistency and a recorded review decision; they do **not** authenticate an
+external representation, prove a human actually read it, or cryptographically
+establish that the reviewer is independent. A different `reviewer_id` string
+is not a credential, and an actor with write access to both receipt files can
+still impersonate a review. Those claims require genuine
+external custody and human/independent audit before admission. The positive
+unit test is a synthetic mechanical fixture, not accepted Star Trek coverage.
+No existing accepted `CLOSE_READ` records were migrated or upgraded by this
+gate. Coverage-event schema version `0.2.0` remains unchanged because the
+receipt and review IDs reside in existing `basis_refs`; direct unit fixtures
+without origin enforcement retain their original lightweight semantics.
+Disk-backed accepted coverage remains blocked until real batch records and
+independently reviewed receipts satisfy this gate.

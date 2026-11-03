@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import importlib.util, json, tempfile, unittest
+import hashlib, importlib.util, json, os, tempfile, unittest
 from contextlib import contextmanager
 from pathlib import Path
 from unittest import mock
@@ -22,6 +22,23 @@ def make_report(records,**kwargs):
  with tempfile.TemporaryDirectory() as tmp:
   original_root=coverage.ROOT;coverage.ROOT=Path(tmp)
   try:
+   manifests=kwargs.pop('research_manifests',{})
+   batch_record_files=kwargs.pop('research_records',{})
+   receipts=kwargs.pop('read_receipts',[])
+   reviews=kwargs.pop('read_reviews',[])
+   receipt_transform=kwargs.pop('receipt_transform',None)
+   for relative,payload in manifests.items():
+    dest=coverage.ROOT/relative;dest.parent.mkdir(parents=True,exist_ok=True)
+    dest.write_text(encoded(payload),encoding='utf-8')
+   for relative,rows in batch_record_files.items():
+    dest=coverage.ROOT/relative;dest.parent.mkdir(parents=True,exist_ok=True)
+    dest.write_text(''.join(encoded(row)+'\n' for row in rows),encoding='utf-8')
+   for directory,items in (('read-receipts',receipts),('read-reviews',reviews)):
+    for payload in items:
+     dest=coverage.ROOT/'coverage'/directory/(sha256_text(encoded(payload)).removeprefix('sha256:')+'.json')
+     dest.parent.mkdir(parents=True,exist_ok=True)
+     dest.write_text(encoded(payload),encoding='utf-8')
+   if receipt_transform:receipt_transform(coverage.ROOT)
    (coverage.ROOT/'coverage'/'events').mkdir(parents=True)
    authoritative=kwargs.pop('authoritative_works',None)
    if authoritative is None:
@@ -58,6 +75,43 @@ def make_report(records,**kwargs):
 def denominator(**overrides):
  row={'record_type':'coverage_denominator_snapshot','snapshot_id':'registry:fixture@abc','dimension':'DISCOVERED','unit_type':'WORK','scope':{'claim':'ACCEPTED_AUTHORITATIVE_WORK_REGISTRY_ROSTER','work_type':'EPISODE','parent_work_id':None},'registry_head':coverage.accepted_registry_head({'w1':WORK}),'status':'RESOLVED','unit_ids':['w1'],'exclusions':[],'blockers':[],'schema_version':'0.2.0','methodology_version':'0.1.0'}
  row.update(overrides);row['snapshot_hash']=coverage.content_hash({k:v for k,v in row.items() if k!='snapshot_hash'});return row
+def close_read_chain(close_overrides=None):
+ discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+ bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+ full=event('f0','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0'],representation_scope={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'})
+ indexed=event('i0','STRUCTURALLY_INDEXED',role='TNG',source_id='s1',prereqs=['f0'])
+ close=event('c0','CLOSE_READ',role='TNG',source_id='s1',binding_id='b1',prereqs=['i0'],**(close_overrides or {}))
+ return [WORK,SOURCE,BINDING,discovered,bound,full,indexed,close]
+def encoded(payload):return json.dumps(payload,sort_keys=True,separators=(',',':'))
+def sha256_text(raw):return 'sha256:'+hashlib.sha256(raw.encode('utf-8')).hexdigest()
+def close_read_receipts(**receipt_changes):
+ evidence={'record_type':'evidence','evidence_id':'ev1','work_id':'w1','source_id':'s1','evidence_kind':'depiction','fixture_only':False,
+           'locator':{'line_start':1,'line_end':100},'observed':{'note':'Synthetic test only'}}
+ batch={'record_type':'batch_manifest','batch_id':'fixture-batch','schema_version':'0.2.0','worker_id':'TNG','works':['w1'],'source_hashes':[SOURCE['content_hash']],'record_counts':{'local_entities':0,'evidence':1,'assertions':0}}
+ batch['batch_hash']=coverage.content_hash({'manifest':batch,'records':[evidence]})
+ producer='research/tng/batches/fixture-batch/manifest.json'
+ evidence_path='research/tng/batches/fixture-batch/records.jsonl'
+ receipt={'receipt_kind':'CLOSE_READ_CONTENT_RECEIPT','receipt_version':'1.0.0','work_id':'w1','source_id':'s1','binding_id':'b1',
+          'source_content_hash':SOURCE['content_hash'],'producer_role':'TNG','producer_ref':producer,
+          'batch_manifest_sha256':sha256_text(encoded(batch)),
+          'reading_scope':{'extent':'COMPLETE_DECLARED_SOURCE_REPRESENTATION','first_locator':'line:1','last_locator':'line:100'},
+          'evidence_ids':['ev1'],'verification_status':'VERIFICATION_PENDING'}
+ receipt.update(receipt_changes)
+ read_ref='read-receipt:'+sha256_text(encoded(receipt))
+ review={'receipt_kind':'CLOSE_READ_ADMISSION_REVIEW','receipt_version':'1.0.0',
+         'read_receipt_hash':read_ref.removeprefix('read-receipt:'),'work_id':'w1','source_id':'s1','binding_id':'b1',
+         'reviewer_role':'AUDITOR','reviewer_id':'fixture-independent-auditor',
+         'decision':'APPROVED_FOR_COVERAGE','review_basis_refs':['evidence:ev1']}
+ review_ref='read-review:'+sha256_text(encoded(review))
+ close=close_read_chain({'producer_ref':producer,'basis_refs':[read_ref,review_ref,'evidence:ev1']})
+ return close+[evidence],{'research_manifests':{producer:batch},'research_records':{evidence_path:[evidence]},'read_receipts':[receipt],'read_reviews':[review]},receipt,review
+def refresh_close_read_refs(records,files):
+ receipt=files['read_receipts'][0];review=files['read_reviews'][0]
+ read_ref='read-receipt:'+sha256_text(encoded(receipt))
+ review['read_receipt_hash']=read_ref.removeprefix('read-receipt:')
+ review_ref='read-review:'+sha256_text(encoded(review))
+ close=next(row for row in records if row.get('coverage_event_id')=='c0')
+ close['basis_refs']=[read_ref,review_ref]+[f'evidence:{i}' for i in receipt['evidence_ids']]
 class CoverageLedgerTests(unittest.TestCase):
  def test_scanner_rejects_final_symlink_swapped_after_enumeration(self):
   for extension in ('.json','.jsonl'):
@@ -457,4 +511,133 @@ class CoverageLedgerTests(unittest.TestCase):
   discovered=event('d0','DISCOVERED',role='LIBRARIAN'); bound=event('c1','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b-missing',prereqs=['d0']); errors=coverage.validate_coverage([WORK,SOURCE,discovered,bound],works={'w1':WORK},sources={'s1':SOURCE},bindings={}); self.assertTrue(any('requires governed source_work_binding' in e for e in errors))
  def test_close_read_requires_structurally_indexed_prerequisite_same_source(self):
   close=event('c1','CLOSE_READ',role='TNG',source_id='s1'); errors=coverage.validate_coverage([WORK,SOURCE,close],works={'w1':WORK},sources={'s1':SOURCE},bindings={}); self.assertTrue(any('STRUCTURALLY_INDEXED prerequisite' in e for e in errors))
+ def test_accepted_close_read_cannot_count_from_arbitrary_producer_and_basis_strings(self):
+  forged=close_read_chain()
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*read receipt'):
+   make_report(forged,works={'w1':WORK})
+ def test_close_read_requires_content_and_separate_auditor_review_receipts(self):
+  records,files,_,_=close_read_receipts()
+  result=make_report(records,works={'w1':WORK},**files)
+  self.assertEqual(result['states']['CLOSE_READ']['numerator'],1)
+  self.assertEqual(result['states']['CLOSE_READ']['covered_work_ids'],['w1'])
+ def test_close_read_does_not_count_a_self_report_without_separate_review(self):
+  records,files,_,_=close_read_receipts();files['read_reviews']=[]
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*read review|CLOSE_READ.*read-reviews'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_forged_source_hash_even_with_rehashed_receipt(self):
+  records,files,_,_=close_read_receipts(source_content_hash='sha256:'+'f'*64)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*Source'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_orphan_evidence_even_with_rehashed_receipt(self):
+  records,files,_,_=close_read_receipts(evidence_ids=['not-in-batch'])
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*orphan'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_fixture_only_and_wrong_context_evidence(self):
+  for change in ({'fixture_only':True},{'work_id':'other'},{'source_id':'other'},
+                 {'locator':{}},{'observed':{}}):
+   with self.subTest(change=change):
+    records,files,_,_=close_read_receipts()
+    records[-1].update(change)
+    with self.assertRaisesRegex(ValueError,'CLOSE_READ.*orphan'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_wrong_work_source_and_binding_in_read_receipt(self):
+  for key,value in (('work_id','w-other'),('source_id','s-other'),('binding_id','b-other')):
+   with self.subTest(key=key):
+    records,files,_,_=close_read_receipts(**{key:value})
+    with self.assertRaisesRegex(ValueError,'CLOSE_READ.*does not match coverage context'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_wrong_review_context_even_if_rehashed(self):
+  for key in ('work_id','source_id','binding_id'):
+   with self.subTest(key=key):
+    records,files,_,review=close_read_receipts()
+    review[key]='unrelated';refresh_close_read_refs(records,files)
+    with self.assertRaisesRegex(ValueError,'CLOSE_READ.*does not match coverage context'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_premature_self_verified_receipt_status(self):
+  records,files,_,_=close_read_receipts(verification_status='VERIFIED')
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*VERIFICATION_PENDING'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_forged_batch_hash_and_missing_manifest(self):
+  records,files,_,_=close_read_receipts(batch_manifest_sha256='sha256:'+'f'*64)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*manifest SHA-256 mismatch'):
+   make_report(records,works={'w1':WORK},**files)
+  records,files,_,_=close_read_receipts();files['research_manifests']={}
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*unreadable governed path'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_invalid_batch_manifest_shape_despite_matching_hash(self):
+  records,files,receipt,_=close_read_receipts()
+  batch=next(iter(files['research_manifests'].values()))
+  batch['works']='w1'  # JSON Schema requires an array; substring containment would otherwise pass.
+  receipt['batch_manifest_sha256']=sha256_text(encoded(batch))
+  refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*invalid research batch manifest'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_forged_batch_hash_and_false_evidence_count(self):
+  for mutation,expected in (({'batch_hash':'sha256:'+'0'*64},'batch_hash mismatch'),
+                            ({'record_counts':{'local_entities':0,'evidence':0,'assertions':0}},'batch_hash mismatch|record_counts mismatch')):
+   with self.subTest(mutation=mutation):
+    records,files,receipt,_=close_read_receipts()
+    batch=next(iter(files['research_manifests'].values()));batch.update(mutation)
+    receipt['batch_manifest_sha256']=sha256_text(encoded(batch));refresh_close_read_refs(records,files)
+    with self.assertRaisesRegex(ValueError,'CLOSE_READ.*'+expected):
+     make_report(records,works={'w1':WORK},**files)
+  records,files,receipt,_=close_read_receipts()
+  batch=next(iter(files['research_manifests'].values()))
+  batch['record_counts']['evidence']=0
+  batch['batch_hash']=coverage.content_hash({'manifest':{k:v for k,v in batch.items() if k!='batch_hash'},'records':[records[-1]]})
+  receipt['batch_manifest_sha256']=sha256_text(encoded(batch));refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*record_counts mismatch'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_batch_claiming_evidence_not_in_its_records(self):
+  records,files,receipt,_=close_read_receipts()
+  files['research_records']={next(iter(files['research_records'])):[]}
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*batch_hash mismatch'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_loaded_evidence_not_equal_to_hashed_batch_bytes(self):
+  records,files,receipt,_=close_read_receipts()
+  path=next(iter(files['research_records']))
+  batch_record=dict(files['research_records'][path][0]);files['research_records'][path]=[batch_record]
+  batch_record['observed']={'note':'Different evidence than loaded corpus'}
+  batch=next(iter(files['research_manifests'].values()))
+  batch['batch_hash']=coverage.content_hash({'manifest':{k:v for k,v in batch.items() if k!='batch_hash'},'records':[batch_record]})
+  receipt['batch_manifest_sha256']=sha256_text(encoded(batch));refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*absent from exact hashed research batch'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_self_approved_review_even_with_new_review_hash(self):
+  records,files,receipt,review=close_read_receipts()
+  review['reviewer_role']='TNG';review['reviewer_id']='TNG'
+  records[-2]['basis_refs'][1]='read-review:'+sha256_text(encoded(review))
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*Auditor'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_reviewer_equal_to_producer_ref(self):
+  records,files,receipt,review=close_read_receipts()
+  review['reviewer_id']=receipt['producer_ref'];refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*distinct Auditor'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_self_declaration_review_basis(self):
+  records,files,_,review=close_read_receipts()
+  review['review_basis_refs']=['self-declaration:approved'];refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*review basis'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_duplicate_review_basis_refs_even_if_rehashed(self):
+  records,files,_,review=close_read_receipts()
+  review['review_basis_refs']=['same:ref','same:ref']
+  refresh_close_read_refs(records,files)
+  with self.assertRaisesRegex(ValueError,'CLOSE_READ.*review basis'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_close_read_rejects_symlinked_and_hardlinked_receipt_files(self):
+  for kind in ('read-receipts','read-reviews'):
+   for variant in ('symlink','hardlink'):
+    with self.subTest(kind=kind,variant=variant):
+     records,files,receipt,review=close_read_receipts()
+     payload=receipt if kind=='read-receipts' else review
+     filename=sha256_text(encoded(payload)).removeprefix('sha256:')+'.json'
+     def transform(root):
+      target=root/'coverage'/kind/filename
+      outside=root/'receipt-elsewhere.json'
+      if variant=='symlink':
+       target.rename(outside);target.symlink_to(outside)
+      else:os.link(target,outside)
+     with self.assertRaisesRegex(ValueError,'CLOSE_READ.*symlink|CLOSE_READ.*hardlink'):
+      make_report(records,works={'w1':WORK},receipt_transform=transform,**files)
 if __name__=='__main__':unittest.main()

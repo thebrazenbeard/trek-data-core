@@ -1220,11 +1220,15 @@
     const section = byId('artwork-gallery');
     const list = byId('artwork-gallery-list');
     list.replaceChildren();
-    section.hidden = !artworkState.enabled || !artworkState.available;
+    // Source-linked LCARS index tiles are safe to show before opt-in. Actual
+    // remote preview bytes remain gated solely by artworkState.enabled inside
+    // makeArtworkSlot; hiding a preview removes every image element/URL.
+    section.hidden = !artworkState.available;
     if (section.hidden) {
       byId('artwork-gallery-summary').textContent = '';
       return;
     }
+    section.setAttribute('data-preview-state', artworkState.enabled ? 'on' : 'off');
     const sourceRows = new Map();
     for (const row of directoryState.rows) sourceRows.set(artworkKey(row), row);
     for (const row of filmState.films) sourceRows.set(artworkKey(row), row);
@@ -1240,8 +1244,12 @@
       copy.append(el('h4', '', row.title));
       copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
       copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
-        ? 'Low-resolution API thumbnail · underlying copyright unresolved'
-        : 'Rights-reviewed public image · see source attribution'));
+        ? artworkState.enabled
+          ? 'Open Library API jacket preview · underlying copyright unresolved'
+          : 'Jacket preview available on request · no external image loaded'
+        : artworkState.enabled
+          ? 'Rights-reviewed public image · see source attribution'
+          : 'Source-linked image available on request · no external image loaded'));
       if (key.startsWith('directory:')) {
         const locate = el('button', 'artwork-gallery-locate', 'Find this reference in the directory');
         locate.type = 'button';
@@ -1261,8 +1269,10 @@
       card.append(art, copy);
       list.append(card);
     }
-    byId('artwork-gallery-summary').textContent =
-      `${Math.min(entries.length, 24)} of ${entries.length} individually source-bound image options shown; these do not add Works, close reads or episode coverage.`;
+    const count = Math.min(entries.length, 24);
+    byId('artwork-gallery-summary').textContent = artworkState.enabled
+      ? `${count} of ${entries.length} individually source-bound image options shown; these do not add Works, close reads or episode coverage.`
+      : `${count} source-linked LCARS previews ready. Choose Show sourced artwork to load external jacket images; nothing is fetched before that choice. No new Works or coverage.`;
   }
 
   function setArtworkAvailability(available, message) {
@@ -1375,7 +1385,7 @@
     }
     artworkState.entries = entries;
     const apiCount = [...entries.values()].filter((item) => item.provider === 'OPEN_LIBRARY_COVERS_API').length;
-    setArtworkAvailability(true, `${entries.size.toLocaleString()} source-attributed image options (${apiCount} Open Library API previews; underlying copyright may remain unresolved). Off until you choose Show sourced artwork.`);
+    setArtworkAvailability(true, `${entries.size.toLocaleString()} source-attributed image options (${apiCount} Open Library API previews; underlying copyright may remain unresolved). Source-linked LCARS tiles are visible now; external images stay off until you choose Show sourced artwork.`);
   }
 
   async function loadArtworkCatalog() {

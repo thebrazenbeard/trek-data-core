@@ -1234,9 +1234,16 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(nodes.get('artwork-toggle').disabled, false);
   assert.match(nodes.get('artwork-toggle').textContent, /Show sourced artwork \(4 previews\)/);
   assert.match(nodes.get('artwork-state').textContent, /4 Open Library API previews/);
-  assert.equal(nodes.get('artwork-gallery').hidden, true);
-  assert.equal(nodes.get('artwork-gallery-list').children.length, 0,
-    'the four-cover shelf must remain unbuilt before opt-in');
+  assert.equal(nodes.get('artwork-gallery').hidden, false,
+    'the source-linked LCARS gallery itself should be discoverable before opt-in');
+  assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'off');
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
+    'four sourced LCARS key cards must be discoverable without external preview requests');
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0,
+    'the visible gallery shell must not create any remote image element before opt-in');
+  assert.match(nodes.get('artwork-gallery-summary').textContent, /nothing is fetched before that choice/);
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-record-source').length, 4,
+    'each visible placeholder links to its own source record');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'there are no external image URLs in the DOM until a visitor explicitly opts in');
   nodes.get('discovery-query').value = 'autobiography';
@@ -1245,6 +1252,7 @@ test('only four independently visually identified fictional-autobiography jacket
     'the four exact cover-bearing rows themselves cannot initiate off-site image requests before opt-in');
   nodes.get('artwork-toggle').fire('click');
   assert.equal(nodes.get('artwork-gallery').hidden, false);
+  assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'on');
   assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
     'a dedicated art gallery makes all four source-matched images discoverable without hiding in pagination');
   assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually source-bound image options.*do not add Works/);
@@ -1266,8 +1274,12 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(nodes.get('discovery-directory').focused, true,
     'the gallery locator preserves keyboard focus on the filtered results');
   nodes.get('artwork-toggle').fire('click');
-  assert.equal(nodes.get('artwork-gallery').hidden, true);
-  assert.equal(nodes.get('artwork-gallery-list').children.length, 0);
+  assert.equal(nodes.get('artwork-gallery').hidden, false);
+  assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'off');
+  assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
+    'hiding external imagery preserves the source-linked local visual index');
+  assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 0,
+    'hiding must remove remote images from the gallery too');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'hiding imagery must remove all remote image elements, not merely hide gallery visuals');
 

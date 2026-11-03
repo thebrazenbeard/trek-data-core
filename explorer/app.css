@@ -264,6 +264,8 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-gallery-summary { margin: 12px 0; border-left: 5px solid var(--aqua); padding: 7px 11px; color: var(--aqua); background: #081521; font: 750 .68rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .artwork-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); gap: 12px; }
 .artwork-gallery-card { display: grid; grid-template-columns: 112px minmax(0,1fr); align-items: start; gap: 14px; min-width: 0; border: 1px solid var(--line); border-left: 7px solid var(--peach); border-radius: 24px 4px 4px 4px; padding: 13px; background: var(--surface2); }
+.artwork-gallery[data-preview-state="off"] .artwork-gallery-card { border-left-color: var(--violet); }
+.artwork-gallery[data-preview-state="off"] .artwork-gallery-card .artwork-slot { outline: 1px solid var(--aqua); outline-offset: 2px; }
 .artwork-gallery-copy { min-width: 0; overflow-wrap: anywhere; }
 .artwork-gallery-copy h4 { margin: 5px 0 8px; font-size: .95rem; line-height: 1.2; }
 .artwork-gallery-copy p { margin: 0 0 8px; font-size: .73rem; }

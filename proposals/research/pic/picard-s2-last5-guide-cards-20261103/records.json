@@ -21,6 +21,7 @@
     ],
     "raw_html_retained_in_public_repo": false,
     "publisher_html_stability": "DIFFERING_RESPONSE_DIGESTS_SAME_CARD_OBSERVATIONS",
+    "description_digest_method": "HTML_CARD_COPY_TEXT_ENTITY_DECODE_TAG_STRIP_COLLAPSE_WHITESPACE_SHA256_UTF8_V1",
     "full_primary_audiovisual_content_read": false,
     "scope": "SEASON_GUIDE_CARD_METADATA_NOT_EPISODE_CONTENT"
   },
@@ -43,6 +44,8 @@
       "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008775747696/STAR_TREK_PICARD_206_1267460_1920x1080.jpg",
       "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
       "literal_name_mentions": ["Tallinn", "Picard", "Renee Picard", "Kore"],
+      "publisher_description_sha256": "388ed86b460ad19399bbf920eed661573c0f805e4e56f8384614644e61632ab1",
+      "publisher_description_codepoints": 270,
       "synopsis_paraphrase_candidate": "Picard's group enters a gala to protect Renee Picard, while Kore discovers something unexpected about her father.",
       "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
       "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
@@ -57,6 +60,8 @@
       "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008776771870/STAR_TREK_PICARD_207_1279310_1920x1080.jpg",
       "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
       "literal_name_mentions": ["Tallinn", "Picard", "Seven", "Raffi", "Jurati", "Rios", "Teresa"],
+      "publisher_description_sha256": "c8be163ef81d669f6fcb416264e18f2c0f554f37399a0a0a153baa59528e3c26",
+      "publisher_description_codepoints": 289,
       "synopsis_paraphrase_candidate": "Tallinn attempts to wake Picard through his subconscious as Seven and Raffi search for Jurati.",
       "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
       "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
@@ -71,6 +76,8 @@
       "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008776771872/STAR_TREK_PICARD_208_1288407_1920x1080.jpg",
       "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
       "literal_name_mentions": ["Europa Mission", "Picard", "Guinan", "FBI", "Seven", "Raffi", "Jurati"],
+      "publisher_description_sha256": "42fe8ed9fafa491224d4f3e92d923ad3b23347e0998c31894ecdea172fe1abf5",
+      "publisher_description_codepoints": 202,
       "synopsis_paraphrase_candidate": "Picard and Guinan seek freedom from FBI custody as Seven and Raffi confront Jurati before the Europa launch.",
       "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
       "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
@@ -85,6 +92,8 @@
       "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008777795618/STAR_TREK_PICARD_209_1298197_1920x1080.jpg",
       "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
       "literal_name_mentions": ["Picard", "Seven", "Raffi", "Jurati"],
+      "publisher_description_sha256": "763e650173da661155c882183e9f59c46aa72d912a155035c15cf87c49d36a3e",
+      "publisher_description_codepoints": 221,
       "synopsis_paraphrase_candidate": "Picard and his crew confront an old adversary in new form as Seven and Raffi face Jurati.",
       "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
       "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"
@@ -99,6 +108,8 @@
       "thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2022/03/02/2008777795619/STAR_TREK_PICARD_210_1310974_1920x1080.jpg",
       "thumbnail_status": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
       "literal_name_mentions": ["Picard", "Europa Launch"],
+      "publisher_description_sha256": "72e6692eb404ac5b778dc5b6b4818323d7dc29ee350f9f0898fd104d8fa3e892",
+      "publisher_description_codepoints": 145,
       "synopsis_paraphrase_candidate": "Picard's crew races to save the future with the Europa launch only hours away.",
       "synopsis_state": "HELD_SOURCE_RELATIVE_PARAPHRASE_NOT_FULL_EPISODE",
       "evidence_scope": "PUBLISHER_GUIDE_DESCRIPTION_AND_HTML_CARD"

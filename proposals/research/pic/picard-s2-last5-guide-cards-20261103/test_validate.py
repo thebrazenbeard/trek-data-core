@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
 
-from validate import HERE, load, validate
+from validate import HERE, load, source_card_bindings, validate
 
 
 class PicardSeason2LastFiveTests(unittest.TestCase):
@@ -43,6 +44,7 @@ class PicardSeason2LastFiveTests(unittest.TestCase):
             ("fake archived HTML", lambda x: x["source"].update({"raw_html_retained_in_public_repo": True})),
             ("fake sample hash", lambda x: x["source"]["raw_sample_receipts"][0].update({"sha256": "0" * 64})),
             ("fake sample byte length", lambda x: x["source"]["raw_sample_receipts"][1].update({"bytes": 10})),
+            ("changed description fingerprint algorithm", lambda x: x["source"].update({"description_digest_method": "SHA1"})),
             ("Boolean status", lambda x: x["source"].update({"http_status": True})),
             ("fake publisher lineage", lambda x: x["source"].update({"independence_group": "separate sources"})),
             ("fake provider", lambda x: x["source"].update({"provider": "Memory Alpha"})),
@@ -61,6 +63,11 @@ class PicardSeason2LastFiveTests(unittest.TestCase):
             ("same-publisher swapped video", lambda x: x["source_local_episode_cards"][1].update({"video_url": x["source_local_episode_cards"][2]["video_url"]})),
             ("wrong image host", lambda x: x["source_local_episode_cards"][2].update({"thumbnail_url": "https://unknown.example/picard.jpg"})),
             ("same-CDN swapped image", lambda x: x["source_local_episode_cards"][2].update({"thumbnail_url": x["source_local_episode_cards"][3]["thumbnail_url"]})),
+            ("same-source crossrow description digest 6/7", lambda x: x["source_local_episode_cards"][0].update({"publisher_description_sha256": x["source_local_episode_cards"][1]["publisher_description_sha256"]})),
+            ("same-source crossrow digest and length", lambda x: x["source_local_episode_cards"][1].update({"publisher_description_sha256": x["source_local_episode_cards"][2]["publisher_description_sha256"], "publisher_description_codepoints": x["source_local_episode_cards"][2]["publisher_description_codepoints"]})),
+            ("same-source length reassignment", lambda x: x["source_local_episode_cards"][3].update({"publisher_description_codepoints": x["source_local_episode_cards"][4]["publisher_description_codepoints"]})),
+            ("plausible but unsourced digest", lambda x: x["source_local_episode_cards"][2].update({"publisher_description_sha256": "f" * 64})),
+            ("wrong digest length type", lambda x: x["source_local_episode_cards"][4].update({"publisher_description_codepoints": True})),
             ("invented license", lambda x: x["source_local_episode_cards"][2].update({"thumbnail_status": "LICENSED"})),
             ("public synopsis", lambda x: x["source_local_episode_cards"][3].update({"synopsis_state": "PUBLIC"})),
             ("unreviewed paraphrase", lambda x: x["source_local_episode_cards"][3].update({"synopsis_paraphrase_candidate": "Different theory"})),
@@ -78,6 +85,42 @@ class PicardSeason2LastFiveTests(unittest.TestCase):
                 mutate(packet)
                 with self.assertRaises(ValueError):
                     validate(packet)
+
+    def test_optional_actual_html_card_parser_and_rebind_falsifier(self):
+        """Synthetic HTML checks the parser; actual publisher prose is not copied."""
+        cards = []
+        for episode in range(1, 11):
+            if episode > 5:
+                source = self.reference["source_local_episode_cards"][episode - 6]
+                title = source["title"]
+                video = source["video_url"].replace("https://www.paramountplus.com", "")
+                image = source["thumbnail_url"]
+            else:
+                title = f"Synthetic {episode}"
+                video = f"/shows/video/Synthetic{episode:02d}/"
+                image = f"https://thumbnails.cbsig.net/fixtures/{episode}.jpg"
+            description = f"Synthetic episode {episode} test marker only, no publisher copy"
+            cards.append(
+                '<div class="episode"><a href="' + video + '" aa-link="episodes||Star Trek: Picard - ' +
+                title + '|' + str(episode) + '|"><img src="' + image + '"></a><h2>' + title +
+                '</h2><div id="js-episode-copy">' + description + '</div></div>'
+            )
+        fake_page = "".join(cards)
+        observed = source_card_bindings(fake_page)
+        self.assertEqual(len(observed), 10)
+        self.assertEqual(observed[5]["publisher_description_sha256"],
+                         hashlib.sha256(b"Synthetic episode 6 test marker only, no publisher copy").hexdigest())
+        with self.assertRaisesRegex(ValueError, "primary HTML card 6 rebind"):
+            validate(self.reference, source_html=fake_page)
+        # Reassigning a same-host description across two otherwise correct
+        # card anchors must not be accepted as verified first-party binding.
+        swapped_page = fake_page.replace(
+            "Synthetic episode 6 test marker only, no publisher copy",
+            "Synthetic episode 7 test marker only, no publisher copy",
+            1,
+        )
+        with self.assertRaises(ValueError):
+            validate(self.reference, source_html=swapped_page)
 
 
 if __name__ == "__main__":

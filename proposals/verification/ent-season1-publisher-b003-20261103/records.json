@@ -1,0 +1,163 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_ent_bundle_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486",
+  "admission_effect": "NONE",
+  "combined_multipart_cards_preserved_as_single_source_slot": 0,
+  "coverage_effect": "NONE",
+  "data_status": "B003-ENT-S1-PUBLISHER_SOURCE_CARD_PROPOSAL_ONLY",
+  "governed_research_admissions": 0,
+  "independent_corroborations": 0,
+  "new_source_local_title_slot_rechecks": 5,
+  "observations_sha256": "d32139746d207a1fc4da3c57b194176b3f2871197f6fef7b19566f586a242ea8",
+  "original_synopsis_drafts_held": 5,
+  "public_synopses_or_images_published": 0,
+  "publisher_artwork_url_leads_held": 5,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "PUBLISHER_TITLE_VOX_SOLIS_ALTERNATE_TITLE_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY",
+      "original_synopsis_draft": "A web-like creature from a visiting alien ship traps Archer, Trip, and other Enterprise personnel inside a launch bay.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 22,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "2d852de739f4456dd61a97c6ae8b9e4e906befa84e26ce741c78e78663f81bc7",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Vox Solis"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494034/CBS_ENTERPRISE_022_2334946_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:020",
+      "source_local_title": "Vox Solis",
+      "source_relative_entity_mentions": [
+        "Enterprise",
+        "Archer",
+        "Trip"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Archer postpones his crew's leave to transport a Vulcan ambassador from Mazar to another Vulcan vessel.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 23,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "7c6ed446c4bbc43ee64e810f9a3369f8d41c6beddfb9972c6986e96fcc169af8",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Fallen Hero"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490312/CBS_ENTERPRISE_023_2334932_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:021",
+      "source_local_title": "Fallen Hero",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Vulcan Ambassador",
+        "Mazar"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "After assisting a disabled ship, Archer and Trip are invited to dinner by its captain on a desert planet.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 24,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "c93d685449523fd6694fda78c1242911ebf39186b016480784e654496ce92108",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Desert Crossing"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41491718/CBS_ENTERPRISE_024_2334944_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:022",
+      "source_local_title": "Desert Crossing",
+      "source_relative_entity_mentions": [
+        "Archer",
+        "Trip"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "NO_GLOBAL_WORK_IDENTITY_ASSERTED",
+      "original_synopsis_draft": "Enterprise's crew reaches Risa and takes a short break for shore leave in a destination described as a paradise.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 25,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "d163d8bb818f49601aa3731b3d934798dd1c09a241ad62a630c5cb8a65eb35f0",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Two Days and Two Nights"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492009/CBS_ENTERPRISE_025_2334934_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:023",
+      "source_local_title": "Two Days and Two Nights",
+      "source_relative_entity_mentions": [
+        "Risa",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "artwork_asset_status": "URL_DISCOVERY_ONLY_NO_LICENSE_OR_IMAGE_COPY",
+      "assertion_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "coverage_effect": "NONE",
+      "governed_coverage_state": "NOT_ADMITTED",
+      "identity_resolution": "PUBLISHER_PART_I_CROSS_SEASON_CONTINUATION_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY",
+      "original_synopsis_draft": "A conflict involving temporal travel escalates when Sulibans take Captain Archer into the thirty-first century.",
+      "publisher_card": {
+        "brief_description_actually_read": true,
+        "episode": 26,
+        "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+        "publisher_description_sha256": "0ebf1f9165493f5a9509a8d023ae234338fcea393520f24edc931f71eaf28366",
+        "raw_webpage_sha256": null,
+        "season": 1,
+        "title": "Shockwave Part I"
+      },
+      "publisher_lineage": "paramount_corporate_publisher_family",
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41491506/CBS_ENTERPRISE_026_2334943_1920x1080.jpg",
+      "source_body_custody": "NOT_ARCHIVED_HTML_EPHEMERALLY_RETRIEVED_FOR_READ_ONLY_INSPECTION",
+      "source_local_row_id": "legacy:s1:ent:024",
+      "source_local_title": "Shockwave Part I",
+      "source_relative_entity_mentions": [
+        "Captain Archer",
+        "Sulibans"
+      ],
+      "synopsis_publication_status": "HELD_PENDING_HUMAN_EDITORIAL_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 5,
+  "unresolved_part_i_continuation_links": 1,
+  "unresolved_publisher_title_variants": 1
+}

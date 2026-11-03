@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "ENT-S1-B003-PUBLISHER-CARDS-20261103",
+  "baseline_accepted_main": "90aee8750c87afb8f64fa5d687e76db6e3f1c7aa",
+  "observed_utc_date": "2026-11-03",
+  "source_family": "paramount_corporate_publisher_family",
+  "guide_url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+  "read_surface": "PUBLISHER_RENDERED_GUIDE_AND_RAW_HTML_CARD_METADATA",
+  "raw_html_bytes_archived": false,
+  "audiovisual_episodes_watched": false,
+  "public_synopsis_authorized": false,
+  "artwork_copy_or_publication_authorized": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "accepted_ent_bundle_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486",
+  "accepted_b001_observations_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
+  "accepted_b001_records_sha256": "4a48f7136eebff4693fb516bdc3af9bd320af3f2670abfbd492e48816b4e9fc0",
+  "rows": [
+    {
+      "row_id": "legacy:s1:ent:020",
+      "publisher_title": "Vox Solis",
+      "season": 1,
+      "episode": 22,
+      "publisher_description_sha256": "2d852de739f4456dd61a97c6ae8b9e4e906befa84e26ce741c78e78663f81bc7",
+      "original_synopsis_draft": "A web-like creature from a visiting alien ship traps Archer, Trip, and other Enterprise personnel inside a launch bay.",
+      "entity_mentions_source_relative": [
+        "Enterprise",
+        "Archer",
+        "Trip"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41494034/CBS_ENTERPRISE_022_2334946_1920x1080.jpg",
+      "identity_hold": "PUBLISHER_TITLE_VOX_SOLIS_ALTERNATE_TITLE_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY"
+    },
+    {
+      "row_id": "legacy:s1:ent:021",
+      "publisher_title": "Fallen Hero",
+      "season": 1,
+      "episode": 23,
+      "publisher_description_sha256": "7c6ed446c4bbc43ee64e810f9a3369f8d41c6beddfb9972c6986e96fcc169af8",
+      "original_synopsis_draft": "Archer postpones his crew's leave to transport a Vulcan ambassador from Mazar to another Vulcan vessel.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Vulcan Ambassador",
+        "Mazar"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41490312/CBS_ENTERPRISE_023_2334932_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:ent:022",
+      "publisher_title": "Desert Crossing",
+      "season": 1,
+      "episode": 24,
+      "publisher_description_sha256": "c93d685449523fd6694fda78c1242911ebf39186b016480784e654496ce92108",
+      "original_synopsis_draft": "After assisting a disabled ship, Archer and Trip are invited to dinner by its captain on a desert planet.",
+      "entity_mentions_source_relative": [
+        "Archer",
+        "Trip"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41491718/CBS_ENTERPRISE_024_2334944_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:ent:023",
+      "publisher_title": "Two Days and Two Nights",
+      "season": 1,
+      "episode": 25,
+      "publisher_description_sha256": "d163d8bb818f49601aa3731b3d934798dd1c09a241ad62a630c5cb8a65eb35f0",
+      "original_synopsis_draft": "Enterprise's crew reaches Risa and takes a short break for shore leave in a destination described as a paradise.",
+      "entity_mentions_source_relative": [
+        "Risa",
+        "Enterprise"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41492009/CBS_ENTERPRISE_025_2334934_1920x1080.jpg",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s1:ent:024",
+      "publisher_title": "Shockwave Part I",
+      "season": 1,
+      "episode": 26,
+      "publisher_description_sha256": "0ebf1f9165493f5a9509a8d023ae234338fcea393520f24edc931f71eaf28366",
+      "original_synopsis_draft": "A conflict involving temporal travel escalates when Sulibans take Captain Archer into the thirty-first century.",
+      "entity_mentions_source_relative": [
+        "Captain Archer",
+        "Sulibans"
+      ],
+      "mention_frame": "LITERAL_PUBLISHER_DESCRIPTION_TEXT_ONLY_NOT_UTTERANCE_OR_DEPICTION",
+      "publisher_thumbnail_url": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2012/09/12/41491506/CBS_ENTERPRISE_026_2334943_1920x1080.jpg",
+      "identity_hold": "PUBLISHER_PART_I_CROSS_SEASON_CONTINUATION_UNRESOLVED_NO_GLOBAL_WORK_IDENTITY"
+    }
+  ]
+}

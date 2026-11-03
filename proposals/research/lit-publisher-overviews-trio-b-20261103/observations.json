@@ -1,0 +1,95 @@
+{
+  "schema_version": "trek-lit-publisher-overviews-trio-b-v1",
+  "observation_date_utc": "2026-11-03",
+  "role": "LIT",
+  "proposal_only": true,
+  "verification_class": "OFFICIAL_PUBLISHER_EDITION_PAGE_AND_ABOUT_BOOK_DESCRIPTION",
+  "upstream_lineage": "publisher:simonandschuster.com",
+  "distinct_upstream_sources": 1,
+  "candidate_work_count": 3,
+  "edition_pages_inspected": 4,
+  "original_description_paraphrase_count": 3,
+  "raw_page_byte_custody": false,
+  "full_book_text_inspected": false,
+  "source_bound": false,
+  "close_read": false,
+  "artwork_rights_verified": false,
+  "artwork_bytes_stored": false,
+  "accepted_source_work_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "public_site_effect": "NONE",
+  "candidates": [
+    {
+      "source_local_id": "lit-sns-captains-oath-2019-tpb-20261103",
+      "publisher_display_title": "The Captain's Oath",
+      "author": "Christopher L. Bennett",
+      "series": "Star Trek: The Original Series",
+      "edition": {
+        "isbn13": "9781982113292",
+        "publisher_imprint": "Pocket Books/Star Trek",
+        "format": "TRADE_PAPERBACK",
+        "publisher_date": "2019-05-28",
+        "extent_pages": 400,
+        "source_url": "https://www.simonandschuster.com/books/The-Captains-Oath/Christopher-L-Bennett/Star-Trek-The-Original-Series/9781982113292"
+      },
+      "other_publisher_edition": null,
+      "synopsis_basis": "ORIGINAL_PARAPHRASE_OF_PUBLISHER_ABOUT_BOOK_NOT_CLOSE_READ",
+      "publisher_description_paraphrase": "The publisher looks back on Kirk's first starship command, before he takes charge of Enterprise. Encounters with Klingons and endangered civilizations frame his early struggle to balance Starfleet regulations, personal judgment, military action and diplomacy.",
+      "description_anchor_terms": ["Kirk", "Klingons", "regulations"],
+      "cover_resource_observed": true,
+      "cover_public_use_state": "UNVERIFIED_RIGHTS_NO_PUBLIC_DISPLAY",
+      "identity_and_text_equivalence_state": "SOURCE_LOCAL_UNRECONCILED"
+    },
+    {
+      "source_local_id": "lit-sns-never-ending-sacrifice-2009-mmp-20261103",
+      "publisher_display_title": "Star Trek: Deep Space Nine: The Never Ending Sacrifice",
+      "author": "Una McCormack",
+      "series": "Star Trek: Deep Space Nine",
+      "edition": {
+        "isbn13": "9781439109618",
+        "publisher_imprint": "Pocket Books/Star Trek",
+        "format": "MASS_MARKET_PAPERBACK",
+        "publisher_date": "2009-08-25",
+        "extent_pages": 384,
+        "source_url": "https://www.simonandschuster.com/books/Star-Trek-Deep-Space-Nine-The-Never-Ending-Sacrifice/Una-McCormack/Star-Trek-Deep-Space-Nine/9781439109618"
+      },
+      "other_publisher_edition": null,
+      "synopsis_basis": "ORIGINAL_PARAPHRASE_OF_PUBLISHER_ABOUT_BOOK_NOT_CLOSE_READ",
+      "publisher_description_paraphrase": "The publisher follows Rugal, a Cardassian orphan brought up among Bajorans and later sent back to Cardassia. His divided loyalties provide a viewpoint on the empire's political collapse, the Dominion War and the difficult aftermath for its people.",
+      "description_anchor_terms": ["Rugal", "Cardassian", "Dominion"],
+      "cover_resource_observed": true,
+      "cover_public_use_state": "UNVERIFIED_RIGHTS_NO_PUBLIC_DISPLAY",
+      "identity_and_text_equivalence_state": "SOURCE_LOCAL_UNRECONCILED"
+    },
+    {
+      "source_local_id": "lit-sns-architects-infinity-2026-tpb-20261103",
+      "publisher_display_title": "Architects of Infinity",
+      "author": "Kirsten Beyer",
+      "series": "Star Trek: Voyager",
+      "edition": {
+        "isbn13": "9781668282182",
+        "publisher_imprint": "Gallery Books",
+        "format": "TRADE_PAPERBACK",
+        "publisher_date": "2026-09-12",
+        "extent_pages": 400,
+        "source_url": "https://www.simonandschuster.com/books/Architects-of-Infinity/Kirsten-Beyer/Star-Trek-Voyager/9781668282182"
+      },
+      "other_publisher_edition": {
+        "isbn13": "9781501138768",
+        "publisher_imprint": "Pocket Books/Star Trek",
+        "format": "MASS_MARKET_PAPERBACK",
+        "publisher_date": "2018-03-27",
+        "extent_pages": 400,
+        "source_url": "https://www.simonandschuster.com/books/Architects-of-Infinity/Kirsten-Beyer/Star-Trek-Voyager/9781501138768",
+        "text_equivalence": "UNVERIFIED"
+      },
+      "synopsis_basis": "ORIGINAL_PARAPHRASE_OF_PUBLISHER_ABOUT_BOOK_NOT_CLOSE_READ",
+      "publisher_description_paraphrase": "The publisher sends Voyager's Full Circle fleet to investigate an unusual world with isolated biospheres, amid concern over the Krenim and temporal alteration. Janeway's scientific expedition points toward a much larger mystery, while the crew also confronts a medical crisis involving Conlon.",
+      "description_anchor_terms": ["Full Circle", "Krenim", "Conlon"],
+      "cover_resource_observed": true,
+      "cover_public_use_state": "UNVERIFIED_RIGHTS_NO_PUBLIC_DISPLAY",
+      "identity_and_text_equivalence_state": "SOURCE_LOCAL_UNRECONCILED"
+    }
+  ]
+}

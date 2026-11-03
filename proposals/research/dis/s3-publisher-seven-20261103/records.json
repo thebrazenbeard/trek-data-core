@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "DIS.PPLUS.S3.E04-E10.20261103",
+  "lane": "DIS",
+  "proposal_only": true,
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "explorer_effect": "NONE",
+  "audiovisual_content_inspected": false,
+  "full_primary_source_available": false,
+  "source": {
+    "source_local_id": "dis-s3-paramount-guide-20261103",
+    "kind": "PUBLISHER_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "url": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/3/",
+    "retrieved_utc_date": "2026-11-03",
+    "response_status": 200,
+    "response_body_bytes": 282393,
+    "response_sha256": "e57dd125d6952b28534d7c2e4f9a3d80bb8a982783c1724f420bef604abde2fe",
+    "second_response_sha256": "0dee11548fbd9a3703c30d57f52b4c5beccdc1f2e221823d353795b0e05c97a6",
+    "response_digest_stability": "VOLATILE_WITH_SAME_BYTE_COUNT",
+    "snapshot_committed": false,
+    "publisher_revision": null
+  },
+  "works": [
+    {"local_work_id":"dis-s3-e04-pplus","lead_id":"lead:0108","episode_qid":"Q100327253","season":3,"episode_number":4,"title":"Forget Me Not","source_datetime":"2020-11-04T23:00:00-08:00","card_html_lines":[1612,1635],"publisher_video_url":"https://www.paramountplus.com/shows/video/9QFl6ub5zIcHljkBWPZMcSBfDz9eFGNl/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e05-pplus","lead_id":"lead:0109","episode_qid":"Q100327254","season":3,"episode_number":5,"title":"Die Trying","source_datetime":"2020-11-11T23:00:00-08:00","card_html_lines":[1640,1663],"publisher_video_url":"https://www.paramountplus.com/shows/video/H_y5oaUVjtq8NmOnkVhQVUuTBRbSit8y/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e06-pplus","lead_id":"lead:0110","episode_qid":"Q100327258","season":3,"episode_number":6,"title":"Scavengers","source_datetime":"2020-11-18T23:00:00-08:00","card_html_lines":[1668,1691],"publisher_video_url":"https://www.paramountplus.com/shows/video/f3PngaryfJwyvS81U_qB9kqhnhJoHMPj/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e07-pplus","lead_id":"lead:0111","episode_qid":"Q100327260","season":3,"episode_number":7,"title":"Unification III","source_datetime":"2020-11-25T23:00:00-08:00","card_html_lines":[1696,1719],"publisher_video_url":"https://www.paramountplus.com/shows/video/BJtfcsojwp4z7C_zddvNqhjU36_vwoA2/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e08-pplus","lead_id":"lead:0112","episode_qid":"Q100327261","season":3,"episode_number":8,"title":"The Sanctuary","source_datetime":"2020-12-02T23:00:00-08:00","card_html_lines":[1724,1747],"publisher_video_url":"https://www.paramountplus.com/shows/video/mUJjsKkUd01TLh_jsfDB5O3yRMZlDRSP/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e09-pplus","lead_id":"lead:0113","episode_qid":"Q100327263","season":3,"episode_number":9,"title":"Terra Firma, Part 1","source_datetime":"2020-12-09T23:00:00-08:00","card_html_lines":[1752,1775],"publisher_video_url":"https://www.paramountplus.com/shows/video/73BJ1N0qerkG0WPoUKNuDPcvBdvD6fEX/","source_binding_id":null,"canonical_work_id":null},
+    {"local_work_id":"dis-s3-e10-pplus","lead_id":"lead:0114","episode_qid":"Q100327265","season":3,"episode_number":10,"title":"Terra Firma, Part 2","source_datetime":"2020-12-16T23:00:00-08:00","card_html_lines":[1780,1803],"publisher_video_url":"https://www.paramountplus.com/shows/video/vAMnijrEC3s_g9cuwb7ZFnfKupYLQL3j/","source_binding_id":null,"canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"local_entity_id":"dis-e04-burnham","work_id":"dis-s3-e04-pplus","label":"Burnham","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e04-adira","work_id":"dis-s3-e04-pplus","label":"Adira","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e04-saru","work_id":"dis-s3-e04-pplus","label":"Saru","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e05-starfleet","work_id":"dis-s3-e05-pplus","label":"Starfleet","kind":"INSTITUTION_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e05-federation","work_id":"dis-s3-e05-pplus","label":"Federation","kind":"INSTITUTION_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e06-book","work_id":"dis-s3-e06-pplus","label":"Book","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e06-georgiou","work_id":"dis-s3-e06-pplus","label":"Georgiou","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e06-vance","work_id":"dis-s3-e06-pplus","label":"Vance","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e07-burnham","work_id":"dis-s3-e07-pplus","label":"Burnham","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e08-osyraa","work_id":"dis-s3-e08-pplus","label":"Osyraa","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e08-emerald-chain","work_id":"dis-s3-e08-pplus","label":"Emerald Chain","kind":"INSTITUTION_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e09-georgiou","work_id":"dis-s3-e09-pplus","label":"Georgiou","kind":"PERSON_MENTION","global_entity_id":null},
+    {"local_entity_id":"dis-e10-georgiou","work_id":"dis-s3-e10-pplus","label":"Georgiou","kind":"PERSON_MENTION","global_entity_id":null}
+  ],
+  "evidence": [
+    {"evidence_id":"dis-e04-publisher-copy","work_id":"dis-s3-e04-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1620-1632; h2/abbr/time/ep__copy","paraphrase":"The publisher sends Burnham and Adira to Trill to explore Adira's concealed memories, while Saru tries to reconnect the Discovery crew.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e05-publisher-copy","work_id":"dis-s3-e05-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1648-1660; h2/abbr/time/ep__copy","paraphrase":"The publisher says Discovery rejoins the remnants of Starfleet and the Federation and must demonstrate the usefulness of its centuries-old crew and ship.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e06-publisher-copy","work_id":"dis-s3-e06-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1676-1688; h2/abbr/time/ep__copy","paraphrase":"After Book's message, the publisher describes Burnham and Georgiou setting out to find him, Saru dealing with Vance, and Stamets connecting with Adira.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e07-publisher-copy","work_id":"dis-s3-e07-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1704-1716; h2/abbr/time/ep__copy","paraphrase":"The publisher depicts Burnham facing consequences of her recent choices while representing the Federation in a contentious debate about sensitive Burn data.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e08-publisher-copy","work_id":"dis-s3-e08-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1732-1744; h2/abbr/time/ep__copy","paraphrase":"The publisher sends Discovery to Book's homeworld to help rescue it from Osyraa, identified as the Emerald Chain's leader.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e09-publisher-copy","work_id":"dis-s3-e09-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1760-1772; h2/abbr/time/ep__copy","paraphrase":"The publisher says the crew journeys to a mysterious planet to seek a remedy for Georgiou's worsening condition.","observation_scope":"PUBLISHER_TEXT_ONLY"},
+    {"evidence_id":"dis-e10-publisher-copy","work_id":"dis-s3-e10-pplus","source_local_id":"dis-s3-paramount-guide-20261103","kind":"PUBLISHER_DESCRIPTION","locator":"HTML lines 1788-1800; h2/abbr/time/ep__copy","paraphrase":"The publisher describes Georgiou discovering a plot against her and reconsidering how her time aboard Discovery changed her.","observation_scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"assertion_id":"dis-e04-publisher-claim","work_id":"dis-s3-e04-pplus","evidence_id":"dis-e04-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e04-burnham","dis-e04-adira","dis-e04-saru"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e05-publisher-claim","work_id":"dis-s3-e05-pplus","evidence_id":"dis-e05-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e05-starfleet","dis-e05-federation"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e06-publisher-claim","work_id":"dis-s3-e06-pplus","evidence_id":"dis-e06-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e06-book","dis-e06-georgiou","dis-e06-vance"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e07-publisher-claim","work_id":"dis-s3-e07-pplus","evidence_id":"dis-e07-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e07-burnham"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e08-publisher-claim","work_id":"dis-s3-e08-pplus","evidence_id":"dis-e08-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e08-osyraa","dis-e08-emerald-chain"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e09-publisher-claim","work_id":"dis-s3-e09-pplus","evidence_id":"dis-e09-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e09-georgiou"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"},
+    {"assertion_id":"dis-e10-publisher-claim","work_id":"dis-s3-e10-pplus","evidence_id":"dis-e10-publisher-copy","predicate":"PUBLISHER_SUMMARY_MENTIONS","local_entity_ids":["dis-e10-georgiou"],"status":"SOURCE_RELATIVE_UNVERIFIED_EPISODE_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"work_id":"dis-s3-e04-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595531/CBS_STAR_TREK_DISCOVERY_304_NO_LOGO_354124_1920x1080.jpg","html_line":1614,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e05-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595536/CBS_STAR_TREK_DISCOVERY_305_NO_LOGO_362186_1920x1080.jpg","html_line":1642,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e06-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595541/CBS_STAR_TREK_DISCOVERY_306_NO_LOGO_367952_1920x1080.jpg","html_line":1670,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e07-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595543/CBS_STAR_TREK_DISCOVERY_307_NO_LOGO_R_372238_1920x1080.jpg","html_line":1698,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e08-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595550/CBS_STAR_TREK_DISCOVERY_308_NO_LOGO_382913_1920x1080.jpg","html_line":1726,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e09-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767190595558/CBS_STAR_TREK_DISCOVERY_309_NO_LOGO_389309_1920x1080.jpg","html_line":1754,"rights_status":"UNASSESSED","local_copy":false},
+    {"work_id":"dis-s3-e10-pplus","source_url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/07/23/1767192643530/CBS_STAR_TREK_DISCOVERY_310_NO_LOGO_394663_1920x1080.jpg","html_line":1782,"rights_status":"UNASSESSED","local_copy":false}
+  ],
+  "counterevidence_and_limits": [
+    {"kind":"SAME_SOURCE_LINEAGE","statement":"All seven publisher cards come from one Paramount+ Season 3 guide and are not seven independent sources."},
+    {"kind":"EXISTING_DISCOVERY_CANDIDATES","statement":"Accepted discovery already lists these seven slots, with no source-bound Work identity or additional canonical episode count."},
+    {"kind":"DYNAMIC_HTML_DIGEST","statement":"The official guide returned equal 282393-byte bodies with different SHA-256 digests in same-day reads; record these as volatile retrieval receipts, not stable immutable content hashes."},
+    {"kind":"TITLE_MULTIPART_AMBIGUITY","statement":"Publisher labels Terra Firma Part 1/2; Wikidata supplies Part I/II plus an unsplit Terra Firma item. Identity/containment must remain unresolved."},
+    {"kind":"UNINSPECTED_AV","statement":"No stream, captions, full transcript, or screenplay read; paraphrases describe publisher promotional copy only."},
+    {"kind":"ARTWORK_HELD","statement":"Thumbnail URLs are evidence locators only. No images were fetched, licensed, hosted, or published."}
+  ]
+}

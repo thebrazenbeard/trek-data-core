@@ -199,7 +199,7 @@ test('malicious, unreviewed, duplicated or off-origin artwork records are reject
   }
 });
 
-test('documented Open Library API cover stays tied to its ISBN and only loads after explicit opt-in', async () => {
+test('Open Library cover claims need a separately reviewed edition-to-cover receipt before any opt-in', async () => {
   // Synthetic *test fixture* only: this title does NOT yet have a row in the
   // accepted public directory. Never attach its cover to the Ring of Fire row.
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
@@ -224,23 +224,67 @@ test('documented Open Library API cover stays tied to its ISBN and only loads af
     }]
   };
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, apiArtwork, 200);
-  assert.equal(nodes.get('artwork-toggle').disabled, false);
-  assert.match(nodes.get('artwork-state').textContent, /underlying copyright may remain unresolved/);
+  assert.equal(nodes.get('artwork-toggle').disabled, true,
+    'a well-formed ISBN, cover ID and metadata digest in the untrusted sidecar cannot self-certify an edition match');
+  assert.match(nodes.get('artwork-state').textContent, /independently reviewed.*crosswalk receipt/);
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0);
-  nodes.get('discovery-query').value = 'fixture novel';
-  nodes.get('discovery-filters').fire('input');
   nodes.get('artwork-toggle').fire('click');
-  const imgs = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
-  assert.equal(imgs.length, 1);
-  assert.equal(imgs[0].src, 'https://covers.openlibrary.org/b/id/10157401-S.jpg?default=false');
-  assert.equal(imgs[0].referrerPolicy, 'no-referrer');
-  const credits = traverse(nodes.get('discovery-list'), (n) => n.className === 'artwork-credit');
-  assert.equal(credits.length, 1);
-  assert.equal(credits[0].href, 'https://openlibrary.org/isbn/9781982142186');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'clicking a disabled artwork toggle still cannot load an external image');
   const forged = structuredClone(apiArtwork);
   forged.artwork[0].row_id = `directory:${original.row_id}`;
   const rejected = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forged, 200);
   assert.equal(rejected.get('artwork-toggle').disabled, true, 'different novel may never inherit this cover');
+
+  // Matching the target row's source_locator is insufficient: a cover from a
+  // different book or edition can still carry a well-shaped ISBN/hash pair.
+  const crossEdition = structuredClone(apiArtwork);
+  crossEdition.artwork[0].row_id = `directory:${original.row_id}`;
+  crossEdition.artwork[0].source_locator = original.source_locator;
+  const mismatched = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, crossEdition, 200);
+  assert.equal(mismatched.get('artwork-toggle').disabled, true,
+    'cover ISBN must identify the same publisher edition as the directory row, not merely share its locator');
+  assert.match(mismatched.get('artwork-state').textContent, /rejected/);
+
+  const alternateEdition = structuredClone(apiArtwork);
+  alternateEdition.artwork[0].row_id = `directory:${original.row_id}`;
+  alternateEdition.artwork[0].source_locator = original.source_locator;
+  alternateEdition.artwork[0].isbn = '9781668095904'; // paperback; row URL identifies hardcover
+  alternateEdition.artwork[0].attribution_url = 'https://openlibrary.org/isbn/9781668095904';
+  const wrongEdition = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, alternateEdition, 200);
+  assert.equal(wrongEdition.get('artwork-toggle').disabled, true,
+    'a listed alternate edition ISBN is not the specific edition identified by the row URL');
+
+  const sameEdition = structuredClone(apiArtwork);
+  sameEdition.artwork[0].row_id = `directory:${original.row_id}`;
+  sameEdition.artwork[0].source_locator = original.source_locator;
+  sameEdition.artwork[0].isbn = '9781668095898';
+  sameEdition.artwork[0].attribution_url = 'https://openlibrary.org/isbn/9781668095898';
+  const matching = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, sameEdition, 200);
+  assert.equal(matching.get('artwork-toggle').disabled, true,
+    'the exact publisher-edition ISBN still cannot certify an unrelated cover ID and digest');
+  assert.match(matching.get('artwork-state').textContent, /crosswalk receipt/);
+
+  const forgedCoverId = structuredClone(sameEdition);
+  forgedCoverId.artwork[0].cover_id = 123456;
+  const wrongCover = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forgedCoverId, 200);
+  assert.equal(wrongCover.get('artwork-toggle').disabled, true, 'a plausible but unreviewed cover ID cannot self-certify');
+
+  const forgedDigest = structuredClone(sameEdition);
+  forgedDigest.artwork[0].edition_metadata_sha256 = 'a'.repeat(64);
+  const wrongDigest = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, forgedDigest, 200);
+  assert.equal(wrongDigest.get('artwork-toggle').disabled, true, 'a plausible but unreviewed metadata hash cannot self-certify');
+
+  for (const medium of ['SHORT_FORM', 'AUDIO']) {
+    const sourceRow = directory.rows.find((row) => row.medium === medium);
+    assert.ok(sourceRow, `valid ${medium} control exists`);
+    const nonLiterary = structuredClone(apiArtwork);
+    nonLiterary.artwork[0].row_id = `directory:${sourceRow.row_id}`;
+    nonLiterary.artwork[0].source_locator = sourceRow.source_locator;
+    const rejectedMedium = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200, nonLiterary, 200);
+    assert.equal(rejectedMedium.get('artwork-toggle').disabled, true,
+      `Open Library cover previews are not allowed on ${medium} rows`);
+  }
 });
 
 test('Open Library variant fails closed for forged URL, identifier, medium and rights', async () => {

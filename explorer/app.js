@@ -172,6 +172,11 @@
   // and the explicitly documented Open Library Covers API are separate,
   // reviewed display routes; remote API thumbnails are opt-in, never mirrored.
   const artworkState = { entries: new Map(), available: false, enabled: false };
+  // No Open Library ISBN-to-cover crosswalk has yet been independently
+  // admitted for a public directory row. A sidecar cannot self-certify one:
+  // pin reviewed row/locator/ISBN/cover/hash tuples here only after a separate
+  // source-relative custody and release review. Empty means fail closed.
+  const reviewedOpenLibraryEditionReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
 
@@ -256,6 +261,12 @@
             item.rights_status !== 'API_DISPLAY_DOCUMENTED_COPYRIGHT_UNRESOLVED' ||
             !/^[a-f0-9]{64}$/.test(item.edition_metadata_sha256 || '')) {
           throw new Error('External cover has no pinned Open Library edition or documented API display scope.');
+        }
+        const receipt = reviewedOpenLibraryEditionReceipts.get(item.row_id);
+        if (!receipt || receipt.source_locator !== item.source_locator ||
+            receipt.isbn !== item.isbn || receipt.cover_id !== item.cover_id ||
+            receipt.edition_metadata_sha256 !== item.edition_metadata_sha256) {
+          throw new Error('External cover lacks an independently reviewed row/edition/cover crosswalk receipt.');
         }
       } else if (!exactKeys(item, localKeys) ||
                  !/^\.\/licensed-artwork\/[a-z0-9][a-z0-9._-]{1,128}\.(?:png|jpe?g|webp)$/.test(item.image_path) ||

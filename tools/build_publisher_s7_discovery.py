@@ -23,6 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools import build_legacy_s3_discovery as source_tools
+from tools import publisher_output_directory as dirguard
 from tools import validate_publisher_episode_roster as roster
 
 BASE = Path("proposals/discovery/publisher-season7-20261102")
@@ -249,7 +250,7 @@ def source_index(pages: list[dict]) -> dict:
 
 def ingest(raw_dir: Path) -> int:
     output_root = ROOT / BASE
-    output_root.mkdir(parents=True, exist_ok=True)
+    dirguard.ensure_directory(ROOT, BASE)
     source_tools.ensure_no_symlink(output_root)
     source_tools.ensure_no_symlink(output_root / "index.json")
     pages = []
@@ -258,7 +259,7 @@ def ingest(raw_dir: Path) -> int:
         raw = read_raw_response(source)
         rows = parse_cards(raw, mission)
         csv_data = csv_bytes(rows)
-        (output_root / mission).mkdir(parents=True, exist_ok=True)
+        dirguard.ensure_directory(ROOT, BASE / mission)
         for path in (output_root / f"{mission}.csv", output_root / mission / "bundle.json"):
             source_tools.ensure_no_symlink(path)
         safe_atomic_write(BASE / f"{mission}.csv", csv_data)

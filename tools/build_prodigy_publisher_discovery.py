@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.build_legacy_s2_discovery import ensure_no_symlink, safe_atomic_write
 from tools import validate_publisher_episode_roster as roster
+from tools import publisher_output_directory as dirguard
 
 BASE = Path("proposals/discovery/prodigy-startrek-publisher-20261102")
 DATE = "2026-11-02"
@@ -166,7 +167,7 @@ def index(receipts: list[dict]) -> dict:
 
 def ingest(raw_dir: Path) -> int:
     output = ROOT / BASE
-    output.mkdir(parents=True, exist_ok=True)
+    dirguard.ensure_directory(ROOT, BASE)
     ensure_no_symlink(output)
     receipts = []
     for source_id, url, season, first, last in SOURCES:
@@ -175,7 +176,7 @@ def ingest(raw_dir: Path) -> int:
         raw = path.read_bytes()
         rows = extract_source(raw, source_id)
         data = csv_bytes(rows)
-        (output / source_id).mkdir(parents=True, exist_ok=True)
+        dirguard.ensure_directory(ROOT, BASE / source_id)
         safe_atomic_write(BASE / f"{source_id}.csv", data)
         safe_atomic_write(BASE / source_id / "bundle.json", serialize(candidate_bundle(source_id, rows)))
         receipts.append({

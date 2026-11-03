@@ -60,6 +60,39 @@ class OptimizedModeGates(unittest.TestCase):
                     self.assertNotEqual(result.returncode, 0, "invalid proposal passed")
                     self.assertIn("ValueError: invalid LIT proposal", result.stderr)
 
+    def test_source_and_publisher_identity_cannot_drift_silently(self):
+        for location, replacement in (
+            (("batch_id",), "other-batch"),
+            (("source", "verified_primary_source"), True),
+            (("work_candidate", "authenticated_edition"), True),
+            (("coverage", "accepted_full_text"), True),
+            (("evidence", 0, "authenticated_source"), True),
+            (("assertions", 0, "accepted_truth"), True),
+            (("source", "member_path"), "ST ebooks txt/Next Generation/Unrelated Book.txt"),
+            (("source", "member_sha256"), "0" * 64),
+            (("source", "container_sha256"), "0" * 64),
+            (("source", "member_size_bytes"), 1234),
+            (("work_candidate", "title"), "Unrelated Book"),
+            (("work_candidate", "creator"), "Unrelated Author"),
+            (("work_candidate", "publisher_metadata_status"), "TEXT_EQUIVALENCE_VERIFIED"),
+            (("coverage", "source_representation"), "AUTHENTICATED_PUBLISHER_EDITION"),
+            (("work_candidate", "publisher_product_url"),
+             "https://www.simonandschuster.com/books/Unrelated/Other/Star-Trek/9781416550242"),
+            (("source", "structural_markers", "whitespace_token_count"), 99999),
+            (("source", "structural_markers", "narrative_paragraph_counts_by_chapter"),
+             [99] * 8),
+        ):
+            altered = copy.deepcopy(self.original)
+            target = altered
+            for key in location[:-1]:
+                target = target[key]
+            target[location[-1]] = replacement
+            for optimized in (False, True):
+                with self.subTest(path=location, optimized=optimized):
+                    result = self._check_process(altered, optimized)
+                    self.assertNotEqual(result.returncode, 0, "source identity drift passed")
+                    self.assertIn("ValueError: invalid LIT proposal", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "AUDITOR-PRIVATE-OPF-STRUCTURAL-20261103",
+  "accepted_main_baseline": "69f0a5c46e78b9d034ff168d969374892fc997e0",
+  "source_metadata_derivative": "proposals/librarian/private-opf-metadata-20261103/observations.json",
+  "source_metadata_sha256": "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7",
+  "opaque_source_container_id": "OWNER_PRIVATE_ST_OPF_ARCHIVE_A",
+  "source_container_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+  "source_opf_members": 347,
+  "data_rights": "UNKNOWN",
+  "evidence_method": "INDEPENDENT_READ_ONLY_OPF_XML_AND_ZIP_DIRECTORY_AUDIT",
+  "external_xml_entities_resolved": false,
+  "ebook_prose_or_images_read": false,
+  "private_member_paths_exported": false,
+  "full_ebook_text_exported": false,
+  "artwork_exported": false,
+  "source_work_binding": "UNRESOLVED",
+  "edition_binding": "UNRESOLVED",
+  "work_admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "strict_xml_parser": {
+    "parsed_packages": 332,
+    "undeclared_dc_namespace_entry_ids": [
+      "opf-local:0050", "opf-local:0051", "opf-local:0052", "opf-local:0053", "opf-local:0054",
+      "opf-local:0140", "opf-local:0141", "opf-local:0142", "opf-local:0143", "opf-local:0144",
+      "opf-local:0282", "opf-local:0283", "opf-local:0284", "opf-local:0285", "opf-local:0286"
+    ]
+  },
+  "manifest_link_audit": {
+    "scope": "332_STRICTLY_PARSED_OPFS_ONLY",
+    "manifest_item_hrefs_examined": 2626,
+    "literal_missing_member_targets": [
+      {
+        "source_local_id": "opf-local:0303",
+        "count": 3,
+        "anomaly_class": "UNESCAPED_FRAGMENT_MARKER_AND_INCORRECT_HTML_TARGET"
+      }
+    ],
+    "additional_uri_decoding_mismatch_ids": [
+      "opf-local:0148", "opf-local:0203", "opf-local:0231", "opf-local:0317", "opf-local:0318"
+    ],
+    "additional_uri_decoding_mismatch_class": "LITERAL_PERCENT26_MEMBER_NAME_REQUIRES_ESCAPED_PERCENT",
+    "literal_missing_total": 3,
+    "uri_resolved_missing_total": 8
+  },
+  "original_lit_stem_pairing_candidate": {
+    "converted_opf_source_local_id": "opf-local:0156",
+    "anomaly_class": "UTF8_ZIP_FILENAME_MIDDLE_DOT_PUNCTUATION",
+    "original_lit_unicode_codepoint": "U+00B7",
+    "original_lit_zip_entry_flag_bits_hex": "0x0808",
+    "original_lit_zip_filename_utf8_flag": true,
+    "original_lit_replacement_character_count_in_347_lit_names": 0,
+    "original_to_converted_filename_pairing": "UNRESOLVED"
+  }
+}

@@ -197,7 +197,16 @@
   ]);
   const synopsisState = { entries: new Map() };
   const synopsisMedia = new Set(['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO']);
-  const publisherOverviewMedia = new Set(['EPISODE', 'FILM', 'LITERATURE']);
+  const publisherOverviewMedia = new Set(['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM']);
+  // A separate immutable publication artifact reviewed against the exact
+  // accepted Short/Very Short publisher descriptions. This SHA-256 pins all
+  // fourteen tuples and excludes the fifth Very Short Trek's slogan-only row.
+  const reviewedShortSynopsisSHA256 = '47bdfabdab57f7b2f8430b0402d9cc0b9b3a872a8f704095164484159f274996';
+  const reviewedShortSynopsisIds = new Set([
+    ...Array.from({ length: 10 }, (_, i) => `directory:short:short-treks-${String(i + 1).padStart(2, '0')}`),
+    'directory:short:very-short-treks-01', 'directory:short:very-short-treks-02',
+    'directory:short:very-short-treks-03', 'directory:short:very-short-treks-05'
+  ]);
 
   function appendSynopsis(container, medium, key) {
     if (!synopsisMedia.has(medium)) return;
@@ -220,7 +229,7 @@
     container.append(block);
   }
 
-  function acceptSynopsisCatalog(data) {
+  function acceptSynopsisCatalog(data, shortAppendix = false) {
     const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
       Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'admission_effect', 'synopsis_count', 'synopses'];
@@ -242,10 +251,15 @@
     for (const row of filmState.films) sources.set(artworkKey(row), {
       ...row, medium: 'FILM', source_input: 'explorer/film-catalog.json', context: row.work_type
     });
-    const entries = new Map();
+    const entries = shortAppendix ? new Map(synopsisState.entries) : new Map();
     for (const item of data.synopses) {
       const source = sources.get(item?.row_id);
-      const pin = reviewedSynopsisReceipts.get(item?.row_id);
+      // Short appendix bytes are first cryptographically bound to the exact
+      // separately reviewed 14-row sidecar below. They cannot self-assert a
+      // new row or change prose by supplying their own review hash.
+      const pin = shortAppendix
+        ? (reviewedShortSynopsisIds.has(item?.row_id) ? item : null)
+        : reviewedSynopsisReceipts.get(item?.row_id);
       const validDate = /^\d{4}-\d{2}-\d{2}$/.test(item?.source_snapshot_date || '') &&
         !Number.isNaN(Date.parse(`${item.source_snapshot_date}T00:00:00Z`)) &&
         new Date(`${item.source_snapshot_date}T00:00:00Z`).toISOString().slice(0, 10) === item.source_snapshot_date;
@@ -259,10 +273,14 @@
         const sameWorkEdition = rowUrl.hostname === 'www.simonandschuster.com' &&
           rowUrl.pathname.replace(/\/97[89]\d{10}$/, '') === sourceUrl.pathname.replace(/\/97[89]\d{10}$/, '') &&
           /\/97[89]\d{10}$/.test(rowUrl.pathname) && /\/97[89]\d{10}$/.test(sourceUrl.pathname);
+        const reviewedVeryShortVideo = shortAppendix && item.medium === 'SHORT_FORM' &&
+          rowUrl.hostname === 'www.startrek.com' && sourceUrl.hostname === 'www.startrek.com' &&
+          rowUrl.pathname === '/en-un/news/star-trek-very-short-treks-announce' &&
+          /^\/videos\/very-short-treks-[a-z0-9-]+$/.test(sourceUrl.pathname);
         evidenceSamePublisher = rowUrl.hostname === sourceUrl.hostname && rowUrl.protocol === 'https:' &&
           sourceUrl.protocol === 'https:' && !sourceUrl.search && !sourceUrl.hash &&
           !sourceUrl.username && !sourceUrl.password && !sourceUrl.port &&
-          (item.overview_evidence_locator === source.source_locator || sameWorkEdition);
+          (item.overview_evidence_locator === source.source_locator || sameWorkEdition || reviewedVeryShortVideo);
       } catch (_) { /* invalid publisher evidence link fails closed */ }
       const alias = item.directory_alias_row_id === null ? null : sources.get(item.directory_alias_row_id);
       const validAlias = item.medium === 'FILM'
@@ -274,7 +292,9 @@
             alias.context === item.directory_alias_context && !entries.has(item.directory_alias_row_id))
         : item.directory_alias_row_id === null && item.directory_alias_context === null;
       if (!exactKeys(item, entryKeys) || !source || entries.has(item.row_id) ||
-          !publisherOverviewMedia.has(item.medium) || !publisherSource || !evidenceSamePublisher ||
+          !publisherOverviewMedia.has(item.medium) ||
+          (shortAppendix ? item.medium !== 'SHORT_FORM' : item.medium === 'SHORT_FORM') ||
+          !publisherSource || !evidenceSamePublisher ||
           !validAlias || source.medium !== item.medium ||
           item.title !== source.title || item.source_group !== source.source_group ||
           item.source_input !== source.source_input || item.source_context !== source.context ||
@@ -306,6 +326,12 @@
       entries.set(item.row_id, item);
       if (item.directory_alias_row_id !== null) entries.set(item.directory_alias_row_id, item);
     }
+    if (shortAppendix && (data.synopsis_count !== 14 ||
+        reviewedShortSynopsisIds.size !== 14 ||
+        ![...reviewedShortSynopsisIds].every((id) => entries.has(id)) ||
+        entries.has('directory:short:very-short-treks-04'))) {
+      throw new Error('Short Trek synopsis appendix is missing reviewed rows or invents a premise.');
+    }
     synopsisState.entries = entries;
     renderDirectory();
     renderFilms();
@@ -323,6 +349,22 @@
       synopsisState.entries.clear();
       renderDirectory();
       renderFilms();
+    }
+  }
+
+  async function loadShortSynopsisCatalog() {
+    try {
+      const response = await fetch('./short-synopsis-catalog.json', { cache: 'no-store' });
+      if (!response.ok || !globalThis.crypto?.subtle || typeof TextDecoder !== 'function') return;
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength < 1000 || bytes.byteLength > 75000) return;
+      const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(digest), (x) => x.toString(16).padStart(2, '0')).join('');
+      if (hex !== reviewedShortSynopsisSHA256) return;
+      acceptSynopsisCatalog(JSON.parse(new TextDecoder().decode(bytes)), true);
+    } catch (_) {
+      // The separately reviewed 23 film/literary descriptions remain intact
+      // even if an optional Short Trek synopsis appendix is rejected.
     }
   }
 
@@ -1414,7 +1456,7 @@
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
   Promise.all([loadFilmCatalog(), loadDirectory()]).then(() => Promise.all([
-    loadArtworkCatalog(), loadSynopsisCatalog(), loadMetadataRechecks()
+    loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog), loadMetadataRechecks()
   ]));
   loadIndex();
 })();

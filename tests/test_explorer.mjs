@@ -58,7 +58,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   nodes.get('navigation-scroll-hint').hidden = true;
   nodes.get('scope-filter').value = 'all';
@@ -96,6 +96,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: metadataStatus, ok: metadataStatus >= 200 && metadataStatus < 300,
       arrayBuffer: async () => metadataBytes.buffer.slice(metadataBytes.byteOffset, metadataBytes.byteOffset + metadataBytes.byteLength)
     };
+    if (path === './short-synopsis-catalog.json') return {
+      status: shortStatus, ok: shortStatus >= 200 && shortStatus < 300,
+      arrayBuffer: async () => shortBytes.buffer.slice(shortBytes.byteOffset, shortBytes.byteOffset + shortBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   vm.runInNewContext(appScript, {
@@ -127,6 +131,48 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+test('separate internally reviewed Short Trek appendix yields fourteen real publisher premises and one null hold', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const original = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const bytes = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const appendix = JSON.parse(bytes.toString('utf8'));
+  assert.equal(appendix.synopsis_count, 14);
+  assert.equal(original.synopsis_count + appendix.synopsis_count, 37);
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, original, 200, SCRIPT, null, 404, bytes, 200);
+  nodes.get('discovery-medium').value = 'SHORT_FORM';
+  nodes.get('discovery-filters').fire('input');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 14);
+  const cards = nodes.get('discovery-list').children.filter((n) => n.tagName === 'article');
+  assert.equal(cards.length, 35);
+  assert.equal(cards.filter((card) => card.textContent.includes('Publisher-description-based overview')).length, 14);
+  const held = cards.find((card) => card.textContent.includes('Holograms, All the Way Down'));
+  assert.ok(held);
+  assert.match(held.textContent, /Synopsis pending source verification/);
+  assert.equal(traverse(held, (n) => n.className === 'synopsis-evidence-link').length, 0);
+  assert.equal(cards.filter((card) => card.textContent.includes('Synopsis pending source verification')).length, 21);
+  assert.match(nodes.get('discovery-list').textContent, /Not a full-work close read/);
+  assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14,
+    'original film summaries stay intact after short appendix');
+});
+
+test('changed or missing short synopsis appendix is rejected without deleting original film or literature summaries', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const original = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const exact = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const tampered = Buffer.from(exact.toString('utf8').replace('"synopsis_count": 14', '"synopsis_count": 15'));
+  for (const [bytes, status] of [[exact, 404], [tampered, 200]]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+      null, 404, original, 200, SCRIPT, null, 404, bytes, status);
+    nodes.get('discovery-medium').value = 'SHORT_FORM';
+    nodes.get('discovery-filters').fire('input');
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.className === 'synopsis-evidence-link').length, 0);
+    assert.equal(traverse(nodes.get('film-list'), (n) => n.className === 'synopsis-evidence-link').length, 14);
+  }
+});
 
 const filmCatalog = {
   schema_version: '1.0.0', data_status: 'DISCOVERY_ONLY', coverage_effect: 'NONE',

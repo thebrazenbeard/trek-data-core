@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "review_kind": "MODEL_EDITORIAL_REVIEW",
+  "review_result": "PASS_14_ORIGINAL_PUBLISHER_PREMISE_PARAPHRASES_ONLY_WITH_ONE_NULL_HELD",
+  "reviewed_on_utc": "2026-11-03",
+  "reviewer_agent": "/root/repo_workflow_merger_audit",
+  "provider": "OpenAI",
+  "runtime": "ChatGPT native subagent (model identity not externally attested)",
+  "review_independence": "SEPARATE_MODEL_AGENT_FROM_RESEARCH_AND_RELEASE_AUTHOR_NOT_EXTERNAL_OR_HUMAN",
+  "reviewed_candidate_head": "9064848ab408dc4f53d8cf7868a30e4cd0102368",
+  "accepted_source_state_commit": "2b39607c7f7bc5fb473d47f7f81a7939b5817b9c",
+  "review_request_path": "proposals/publication/short-publisher-overviews-20261103/review-request.json",
+  "review_request_sha256": "29a79c1fe518077f290e049c304c3117a50e8400d714e7e12e160ad1cf419aa7",
+  "source_artifacts": [
+    {
+      "path": "proposals/research/short/publisher-synopses-20261103/observations.json",
+      "sha256": "91862225de0740c18b545de84efb4c9c84b0538d00888a55c4af1f78e3f2fd96",
+      "reviewed_paraphrases": 10,
+      "publisher_source_locator": "https://www.paramountplus.com/shows/star-trek-short-treks/episodes/"
+    },
+    {
+      "path": "proposals/research/short/very-short-treks-descriptions-20261103/observations.json",
+      "sha256": "612485b687116757a8f0dcc5f9d971e27f53522bc3e2e73365000e87811d7d5a",
+      "reviewed_paraphrases": 4,
+      "held_unreviewable_premise": "directory:short:very-short-treks-04",
+      "publisher_source_locator": "https://www.startrek.com/videos/very-short-treks-"
+    }
+  ],
+  "reviewed_paraphrase_count": 14,
+  "passed_paraphrase_count": 14,
+  "failed_paraphrase_count": 0,
+  "held_null_plot_summary_count": 1,
+  "held_null_row_id": "directory:short:very-short-treks-04",
+  "source_review_method": "Separately opened the current rendered official Paramount+ Short Treks episode-guide page and read each of its ten episode-description paragraphs in S1E1 through S1E10 order. Separately opened all five current official StarTrek.com very Short Treks video landing pages and read their brief promotional premises and displayed dates, including the fourth page whose only premise was 'Holodecktastic!'. Compared each of the fourteen exact proposed original summaries and their source-local IDs, titles, source locators and edition/source distinctions against those primary pages; did not play or view the short films or obtain raw HTML custody.",
+  "reviewed_paraphrases": [
+    ["directory:short:short-treks-01", "a9eab2f79ccbd73d01719efccbaa76d985f6e73cf55f88d63ac12e7912556665"],
+    ["directory:short:short-treks-02", "c39cbf8ca0b02546aa1e316ae670c4275405550b1316f164138f423a6cdaf92c"],
+    ["directory:short:short-treks-03", "2ab4652ecff4f4e4d4f21d2a23e04d5a61b169a50efba958956a1edbb003e351"],
+    ["directory:short:short-treks-04", "3e3fe50f98a0f3992d8ce97e708eb7632761fbccc777bac5196263c25bb4ebca"],
+    ["directory:short:short-treks-05", "fe18e0e80a2e302367edeac1bc8ba7676735bb4624a2fbf91519b1061549a239"],
+    ["directory:short:short-treks-06", "3c2a5bb15bc40f408175cd75f8580495e1c140f7e3e30ae5b31614b7cc416781"],
+    ["directory:short:short-treks-07", "42eb49b9da2de4f737abe635415aed2dc8343f56581ec85ea924faf5b4020276"],
+    ["directory:short:short-treks-08", "db204330b3848a9fdd46285093871248aaf54ea03168b6599971f7f2d3a1a759"],
+    ["directory:short:short-treks-09", "6c87303a397d7d074b34359c5bb72f41919133f078f4eb1cd33d3a1ae3c57418"],
+    ["directory:short:short-treks-10", "157814f54f17e99a1c91426db5265c6b1c8aff3e4831849ca36106722b72e204"],
+    ["directory:short:very-short-treks-01", "e2ca3b1fede806445e34c30cf5762ccbea722850eafdd418e16ba9385046d75b"],
+    ["directory:short:very-short-treks-02", "d6e26045fd6566a8007315a46c457e30c265a9686e86f8ad010c9d06141004d5"],
+    ["directory:short:very-short-treks-03", "8ab9895a9c0134d184a25f36a4a95de135af79d9177974d2a59dc2f5f0e9e86d"],
+    ["directory:short:very-short-treks-05", "16203be9a99ee08071d030d59e94930e5e8fdccc3d2896918ede10e5b53703b0"]
+  ],
+  "material_qualifications": [
+    "This is internal independent model-agent editorial evaluation, not human, external-provider, official licensor, or legal review; model agreement cannot establish source truth beyond the displayed publisher prose actually read.",
+    "All fourteen summaries are original short paraphrases of publisher promotional description premises, not transcripts, episode content analyses, actual plot verification, semantic close-reading, or evidence of FULL_TEXT_AVAILABLE, SOURCE_BOUND or a globally reconciled Work.",
+    "The Paramount+ page labels all ten Short Treks as Season 1 S1E1 to S1E10. This is publisher interface metadata, not a global resolution of real-world air order or fictional canon.",
+    "The original Short Treks 2018–2020 dates are separately linked publisher announcement metadata. Episode-guide paragraphs alone cannot establish historical release dates, and two dates are explicitly inferred from announcement context in the accepted packet.",
+    "The fourth very Short Treks page, Holograms All the Way Down, only says 'Holodecktastic!'; the release must retain a null plot synopsis and MUST NOT synthesize details from cast credits or video guesses.",
+    "The Skin a Cat capitalization and Holograms All the Way Down punctuation differences are exact publisher-versus-directory display variants, not proof of multiple Works or permission for silent semantic reconciliation.",
+    "All five Very Short Treks page dates and four promotional premises were checked on the official StarTrek.com rendered landing pages. No video player was operated and no audiovisual evidence was inspected.",
+    "The current web retrieval may change; no raw publisher webpage HTML/page bytes or cryptographic source snapshot was obtained. The source raw_webpage_sha256 fields must remain null.",
+    "This editorial review does not grant copyright, trademark, artwork or footage display rights and does not itself authorize public deployment, GitHub merge, or research coverage promotion. Separate exact-head technical CI and user-authorized publication gates remain mandatory."
+  ],
+  "source_admission_effect": "NONE",
+  "work_admission_effect": "NONE",
+  "evidence_admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "site_release_effect": "NONE"
+}

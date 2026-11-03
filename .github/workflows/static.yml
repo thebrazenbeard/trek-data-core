@@ -123,6 +123,22 @@ jobs:
             python3 tools/build_metadata_recheck_projection.py --check
           fi
 
+      - name: Verify optional original short-form synopsis appendix
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          if git cat-file -e HEAD:explorer/short-synopsis-catalog.json 2>/dev/null || \
+             test -e explorer/short-synopsis-catalog.json || test -L explorer/short-synopsis-catalog.json; then
+            test -f explorer/short-synopsis-catalog.json
+            test ! -L explorer/short-synopsis-catalog.json
+            test -f tools/build_short_publisher_overview_request.py
+            test ! -L tools/build_short_publisher_overview_request.py
+            test -f tools/build_short_publisher_overview_release.py
+            test ! -L tools/build_short_publisher_overview_release.py
+            python3 tools/build_short_publisher_overview_request.py --check
+            python3 tools/build_short_publisher_overview_release.py --check
+          fi
+
       - name: Verify final public artifact boundary
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -157,6 +173,7 @@ jobs:
             ! -path explorer/discovery-catalog.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
+            ! -path explorer/short-synopsis-catalog.json \
             ! -path explorer/synopsis-catalog.json -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
@@ -232,6 +249,19 @@ jobs:
             fi
           elif test -e explorer/metadata-rechecks.json || test -L explorer/metadata-rechecks.json; then
             echo "Refusing to deploy uncommitted metadata recheck projection" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/short-synopsis-catalog.json 2>/dev/null; then
+            test -f explorer/short-synopsis-catalog.json
+            test ! -L explorer/short-synopsis-catalog.json
+            expected="$(git rev-parse HEAD:explorer/short-synopsis-catalog.json)"
+            actual="$(git hash-object explorer/short-synopsis-catalog.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified short-form publisher synopsis release" >&2
+              exit 1
+            fi
+          elif test -e explorer/short-synopsis-catalog.json || test -L explorer/short-synopsis-catalog.json; then
+            echo "Refusing to deploy uncommitted short-form synopsis release" >&2
             exit 1
           fi
 

@@ -1,0 +1,542 @@
+{
+  "accepted_source_input_receipts": [
+    {
+      "path": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e"
+    },
+    {
+      "path": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41"
+    },
+    {
+      "path": "proposals/films/beyond-paramount-metadata-20261103/records.json",
+      "sha256": "cde05393657f16d7c846c77c6c87227948bd38a2d2a06a2946bcd727e44cf122"
+    }
+  ],
+  "admission_effect": "NONE",
+  "artwork_released": 0,
+  "coverage_effect": "NONE",
+  "data_status": "SOURCE_LOCAL_PARAMOUNT_FILM_PAGE_METADATA_ONLY",
+  "distinct_works_admitted": 0,
+  "full_films_viewed": 0,
+  "publisher_independence_group_count": 1,
+  "row_count": 13,
+  "rows": [
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure / Drama",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG-13",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-2009",
+      "runtime_as_listed_minutes": 127,
+      "selected_cast_performers_as_listed": [
+        "Chris Pine",
+        "Zachary Quinto",
+        "Eric Bana"
+      ],
+      "selected_directors_as_listed": [
+        "J. J. Abrams"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-2009",
+      "source_locator": "https://www.paramount.com/movies/star-trek-2009",
+      "source_page_slug": "star-trek-2009",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg-13",
+        "year:2009"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 2009
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Action / Adventure / Science Fiction",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG-13",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-beyond",
+      "runtime_as_listed_minutes": 122,
+      "selected_cast_performers_as_listed": [
+        "John Cho",
+        "Simon Pegg",
+        "Chris Pine",
+        "Zachary Quinto",
+        "Zoe Saldana",
+        "Karl Urban",
+        "Anton Yelchin",
+        "Idris Elba"
+      ],
+      "selected_directors_as_listed": [
+        "Justin Lin"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-BEYOND",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/beyond-paramount-metadata-20261103/records.json",
+      "source_input_sha256": "cde05393657f16d7c846c77c6c87227948bd38a2d2a06a2946bcd727e44cf122",
+      "source_local_candidate_id": "film-beyond",
+      "source_locator": "https://www.paramount.com/movies/star-trek-beyond",
+      "source_page_slug": "star-trek-beyond",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-beyond",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg-13",
+        "year:2016"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 2016
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-final-frontier",
+      "runtime_as_listed_minutes": 106,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "Laurence Luckinbill",
+        "David Warner"
+      ],
+      "selected_directors_as_listed": [
+        "William Shatner"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-final-frontier",
+      "source_locator": "https://www.paramount.com/movies/star-trek-v-the-final-frontier",
+      "source_page_slug": "star-trek-v-the-final-frontier",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1989"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1989
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Action / Adventure / Science Fiction",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG-13",
+      "recheck_status": "HELD_UNRESOLVED_SOURCE_ANOMALY",
+      "row_id": "paramount-source-local:film-first-contact",
+      "runtime_as_listed_minutes": 112,
+      "selected_cast_performers_as_listed": [
+        "Patrick Stewart",
+        "James Cromwell",
+        "Alice Krige"
+      ],
+      "selected_directors_as_listed": [
+        "Peter Lauritson",
+        "Jonathan Frakes"
+      ],
+      "source_anomaly": "PARAMOUNT_PAGE_LISTS_BOTH_PETER_LAURITSON_AND_JONATHAN_FRAKES_UNDER_DIRECTOR; NOT_RECONCILED",
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-first-contact",
+      "source_locator": "https://www.paramount.com/movies/star-trek-viii-first-contact",
+      "source_page_slug": "star-trek-viii-first-contact",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:held",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg-13",
+        "year:1996"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1996
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-generations",
+      "runtime_as_listed_minutes": 118,
+      "selected_cast_performers_as_listed": [
+        "Patrick Stewart",
+        "Malcolm McDowell",
+        "William Shatner"
+      ],
+      "selected_directors_as_listed": [
+        "David Carson"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-generations",
+      "source_locator": "https://www.paramount.com/movies/star-trek-vii-generations",
+      "source_page_slug": "star-trek-vii-generations",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1994"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1994
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "HELD_UNRESOLVED_SOURCE_ANOMALY",
+      "row_id": "paramount-source-local:film-insurrection",
+      "runtime_as_listed_minutes": 104,
+      "selected_cast_performers_as_listed": [
+        "Patrick Stewart",
+        "F. Murray Abraham",
+        "Donna Murphy"
+      ],
+      "selected_directors_as_listed": [
+        "Jonathan Frakes"
+      ],
+      "source_anomaly": "PARAMOUNT_CREDIT_LABELS_RUAFRO_ANJI_AND_MICHAEL_PILLAR_AS_WRITTEN; SPELLINGS_UNVERIFIED_NOT_RECONCILED",
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-insurrection",
+      "source_locator": "https://www.paramount.com/movies/star-trek-ix-insurrection",
+      "source_page_slug": "star-trek-ix-insurrection",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:held",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1998"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1998
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Drama / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG-13",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-into-darkness",
+      "runtime_as_listed_minutes": 132,
+      "selected_cast_performers_as_listed": [
+        "Benedict Cumberbatch",
+        "Chris Pine",
+        "Zachary Quinto"
+      ],
+      "selected_directors_as_listed": [
+        "J. J. Abrams"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-into-darkness",
+      "source_locator": "https://www.paramount.com/movies/star-trek-into-darkness",
+      "source_page_slug": "star-trek-into-darkness",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg-13",
+        "year:2013"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 2013
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "G",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-motion-picture",
+      "runtime_as_listed_minutes": 132,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "Leonard Nimoy",
+        "Persis Khambatta"
+      ],
+      "selected_directors_as_listed": [
+        "Robert Wise"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-motion-picture",
+      "source_locator": "https://www.paramount.com/movies/star-trek-the-motion-picture",
+      "source_page_slug": "star-trek-the-motion-picture",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:g",
+        "year:1979"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1979
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG-13",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-nemesis",
+      "runtime_as_listed_minutes": 117,
+      "selected_cast_performers_as_listed": [
+        "Patrick Stewart",
+        "Jonathan Frakes",
+        "Brent Spiner"
+      ],
+      "selected_directors_as_listed": [
+        "Stuart Baird"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-nemesis",
+      "source_locator": "https://www.paramount.com/movies/star-trek-x-nemesis",
+      "source_page_slug": "star-trek-x-nemesis",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg-13",
+        "year:2002"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 2002
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "HELD_UNRESOLVED_SOURCE_ANOMALY",
+      "row_id": "paramount-source-local:film-search-for-spock",
+      "runtime_as_listed_minutes": 105,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "Leonard Nimoy",
+        "Mark Lenard"
+      ],
+      "selected_directors_as_listed": [
+        "Leonard Nimoy"
+      ],
+      "source_anomaly": "PARAMOUNT_YEAR_1984_DIFFERS_FROM_STARTREK_COM_YEAR_1982; AFI_CATALOG_LISTS_1984; NOT_RECONCILED",
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-search-for-spock",
+      "source_locator": "https://www.paramount.com/movies/star-trek-iii-the-search-for-spock",
+      "source_page_slug": "star-trek-iii-the-search-for-spock",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:held",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1984"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1984
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-undiscovered-country",
+      "runtime_as_listed_minutes": 109,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "David Warner",
+        "Christopher Plummer"
+      ],
+      "selected_directors_as_listed": [
+        "Nicholas Meyer"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-undiscovered-country",
+      "source_locator": "https://www.paramount.com/movies/star-trek-vi-the-undiscovered-country",
+      "source_page_slug": "star-trek-vi-the-undiscovered-country",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1991"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1991
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-voyage-home",
+      "runtime_as_listed_minutes": 119,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "Catherine Hicks",
+        "Mark Lenard"
+      ],
+      "selected_directors_as_listed": [
+        "Leonard Nimoy"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-SECOND-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-second-six-pages-20261103/records.json",
+      "source_input_sha256": "aa590b5f77f0d148595814cd8d74fa7186c49c45fb32f854c7568d720f3e0b41",
+      "source_local_candidate_id": "film-voyage-home",
+      "source_locator": "https://www.paramount.com/movies/star-trek-iv-the-voyage-home",
+      "source_page_slug": "star-trek-iv-the-voyage-home",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-second-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1986"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1986
+    },
+    {
+      "artwork_release_effect": "NONE",
+      "coverage_effect": "NONE",
+      "film_viewed": false,
+      "genre_as_listed": "Science Fiction / Action / Adventure",
+      "publisher_family": "publisher:paramount.com",
+      "rating_as_listed": "PG",
+      "recheck_status": "SOURCE_LOCAL_PAGE_METADATA_OBSERVED",
+      "row_id": "paramount-source-local:film-wrath-of-khan",
+      "runtime_as_listed_minutes": 113,
+      "selected_cast_performers_as_listed": [
+        "William Shatner",
+        "Ricardo Montalban",
+        "Bibi Besch"
+      ],
+      "selected_directors_as_listed": [
+        "Nicholas Meyer"
+      ],
+      "source_anomaly": null,
+      "source_batch": "PARAMOUNT-FIRST-SIX",
+      "source_identity_scope": "SOURCE_LOCAL_CANDIDATE",
+      "source_input": "proposals/films/paramount-six-source-pages-20261103/records.json",
+      "source_input_sha256": "c41eeeab288dd01eff8c89e0f9749d749b16487f6b1630d84deca09badfd869e",
+      "source_local_candidate_id": "film-wrath-of-khan",
+      "source_locator": "https://www.paramount.com/movies/star-trek-ii-the-wrath-of-khan",
+      "source_page_slug": "star-trek-ii-the-wrath-of-khan",
+      "source_snapshot_class": "RENDERED_PUBLISHER_PAGE_NO_RAW_HTML_OR_FILM_COPY",
+      "synopsis_release_effect": "NONE",
+      "tags": [
+        "anomaly:none_documented",
+        "batch:paramount-first-six",
+        "medium:film",
+        "publisher:paramount.com",
+        "rating:pg",
+        "year:1982"
+      ],
+      "work_admission_effect": "NONE",
+      "year_as_listed": 1982
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_anomaly_held_count": 3,
+  "synopses_released": 0
+}

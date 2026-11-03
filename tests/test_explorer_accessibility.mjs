@@ -17,7 +17,10 @@ const ids = [
   'publisher-edition-list', 'publisher-edition-empty',
   'publisher-isbn-nav-count', 'publisher-isbn-state', 'publisher-isbn-download',
   'publisher-isbn-query', 'publisher-isbn-status', 'publisher-isbn-tag',
-  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty'
+  'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
+  'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
+  'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
+  'paramount-list', 'paramount-empty'
 ];
 
 class Node {
@@ -139,4 +142,16 @@ test('public publisher ISBN shelf distinguishes unverified private edition state
   assert.match(html, /id="publisher-isbn-state"[^>]*role="status" aria-live="polite"/);
   assert.match(html, /id="publisher-isbn-download"[^>]*hidden>/);
   assert.match(html, /Not an owner-private ebook authentication/);
+});
+
+test('Paramount film-page shelf exposes accessible filters and explicit non-admission provenance', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<section id="paramount-rechecks"[^>]*aria-labelledby="paramount-heading"/);
+  assert.match(html, /<form id="paramount-filters"[^>]*role="search" aria-label="Search Paramount source-local film-page metadata"/);
+  assert.match(html, /<label for="paramount-query">Publisher URL label, cast, director, year or rating<\/label>/);
+  assert.match(html, /<label for="paramount-status">Source review state<\/label>/);
+  assert.match(html, /<label for="paramount-tag">Source-local facet<\/label>/);
+  assert.match(html, /id="paramount-state"[^>]*role="status" aria-live="polite"/);
+  assert.match(html, /id="paramount-download"[^>]*hidden>/);
+  assert.match(html, /not film viewing, canonical Work identity, independent witnesses or released poster\/synopsis text/);
 });

@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=49fb9845756e426a4a1312ddc4c7ad17ca4191a876cea3935102ca1063e129fd">
-  <script src="./app.js?v=f6a761fd8cb56dc1f52bfc68cb0ba5aa81ae22b249b4eaeeae18bbc969c0e0fe" defer></script>
+  <link rel="stylesheet" href="./app.css?v=38c9ea9bffefb5c3d3f853d3050d7aca847fc8f69acbb4f90555653776aa6d31">
+  <script src="./app.js?v=5506b463e41e7bfbc0c0cffebac9da9b66df7e1ffefdf33c30d7c34956f8b37e" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -27,6 +27,7 @@
     <a href="#films">Films <span id="film-nav-count">—</span></a>
     <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
     <a href="#publisher-isbn-crosschecks">ISBN crosschecks <span id="publisher-isbn-nav-count">—</span></a>
+    <a href="#paramount-rechecks">Studio page checks <span id="paramount-nav-count">—</span></a>
     <a href="#missions">Missions</a>
     <a href="#briefings">Briefings</a>
     <a href="#records">Continuity</a>
@@ -135,6 +136,24 @@
       <p id="publisher-isbn-summary" class="result-summary" aria-live="polite" aria-atomic="true">Publisher ISBN metadata not yet loaded.</p>
       <div id="publisher-isbn-list" class="card-grid publisher-isbn-grid"></div>
       <p id="publisher-isbn-empty" class="empty-state" hidden>No accepted public publisher ISBN crosscheck matches these filters.</p>
+    </section>
+
+    <section id="paramount-rechecks" class="collection paramount-rechecks" aria-labelledby="paramount-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Film researcher / Official studio metadata</p><h2 id="paramount-heading">Paramount film-page source checks</h2></div>
+        <p>First-party Paramount listing years, ratings, runtimes and selected credits; <strong>not film viewing, canonical Work identity, independent witnesses or released poster/synopsis text.</strong> Separate from the 14-film discovery catalog. Disputed source details remain held.</p>
+      </div>
+      <p id="paramount-state" class="directory-state" role="status" aria-live="polite">Checking accepted Paramount page metadata…</p>
+      <form id="paramount-filters" class="publisher-edition-filters" role="search" aria-label="Search Paramount source-local film-page metadata" autocomplete="off">
+        <div class="field"><label for="paramount-query">Publisher URL label, cast, director, year or rating</label><input id="paramount-query" type="search" maxlength="150" placeholder="e.g. Wrath of Khan or 1984…" spellcheck="false"></div>
+        <div class="field"><label for="paramount-status">Source review state</label><select id="paramount-status"><option value="all">All source-only page checks</option><option value="SOURCE_LOCAL_PAGE_METADATA_OBSERVED">Metadata observed, no documented anomaly</option><option value="HELD_UNRESOLVED_SOURCE_ANOMALY">HELD: unresolved source anomaly</option></select></div>
+        <div class="field"><label for="paramount-tag">Source-local facet</label><select id="paramount-tag"><option value="all">All source-local tags</option></select></div>
+        <div class="filter-action"><button type="reset">Clear studio checks</button></div>
+      </form>
+      <p class="directory-state"><a id="paramount-download" href="./paramount-film-rechecks.json" download="trek-paramount-source-local-film-rechecks.json" hidden>Download source-local film-page metadata JSON</a>. Rendered publisher page metadata only; no film copy, image bytes, poster URLs, descriptions or approved synopsis is included.</p>
+      <p id="paramount-summary" class="result-summary" aria-live="polite" aria-atomic="true">Paramount source-only metadata not yet loaded.</p>
+      <div id="paramount-list" class="card-grid paramount-grid"></div>
+      <p id="paramount-empty" class="empty-state" hidden>No Paramount publisher metadata checks match these filters.</p>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">

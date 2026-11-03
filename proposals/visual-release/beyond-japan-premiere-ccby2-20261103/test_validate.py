@@ -1,0 +1,178 @@
+"""Hostile path/rights/authorization falsifiers for held photo decision proposal."""
+
+import json
+import importlib.util
+import shutil
+import subprocess
+import tempfile
+import types
+import unittest
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+# Execute the plain-text validator without writing an untracked Python cache
+# inside the strictly flat, four-file release packet under inspection.
+MODULE = types.ModuleType("beyond_release_proposal_validate")
+MODULE.__file__ = str(HERE / "validate.py")
+exec(compile((HERE / "validate.py").read_text(encoding="utf-8"), MODULE.__file__, "exec"), MODULE.__dict__)
+
+
+class PhotoReleaseProposalTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        for relative in [*MODULE.HELD_CONTRACTS, *[str(MODULE.FOLDER / leaf) for leaf in
+                          ("decision.json", "MANIFEST.md", "validate.py", "test_validate.py")]]:
+            source = MODULE.ROOT / relative
+            destination = self.root / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, destination)
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def _decision(self):
+        return self.root / MODULE.FOLDER / "decision.json"
+
+    def _mutate(self, mutation):
+        path = self._decision()
+        record = json.loads(path.read_text(encoding="utf-8"))
+        mutation(record)
+        path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+
+    def test_valid_candidate_is_explicitly_not_approved(self):
+        self.assertEqual(MODULE.validate(self.root),
+                         "TEXT_ONLY_AFFIRMATIVE_PROPOSAL_PENDING_REVIEW_NO_IMAGE_RELEASE")
+
+    def test_prior_false_contract_missing_or_tampered(self):
+        path = self.root / next(iter(MODULE.HELD_CONTRACTS))
+        original = path.read_text(encoding="utf-8")
+        path.unlink()
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+        path.write_text(original.replace('"public_image_display_authorized": false',
+                                         '"public_image_display_authorized": true'), encoding="utf-8")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_prior_decision_laundered_approved(self):
+        self._mutate(lambda r: r.update(public_image_display_authorized=True))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_new_positive_approval_forged(self):
+        self._mutate(lambda r: r["required_new_dispositions"].update(owner_release_acceptance="RELEASE_AUTHORIZED"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_wrong_photo_or_modified_image_receipt(self):
+        self._mutate(lambda r: r["release_rendition"].update(sha256="0" * 64))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_rights_or_false_credit_changed(self):
+        self._mutate(lambda r: r["copyright_and_other_rights"].update(license_url="https://creativecommons.org/publicdomain/zero/1.0/"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forged_commons_url_with_matching_suffix_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(
+            commons_file="https://evil.example/irrelevant%2831784488840%29.jpg"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forged_thumbnail_path_with_matching_suffix_fails(self):
+        self._mutate(lambda r: r["release_rendition"].update(
+            upstream_thumbnail="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/forged-image-unrelated/%2831784488840%29.jpg"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_false_public_domain_license_label_fails(self):
+        self._mutate(lambda r: r["copyright_and_other_rights"].update(
+            photographer_license="Public Domain / CC0"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_unrelated_asset_publication_request_fails(self):
+        self._mutate(lambda r: r.update(requested_effect="PUBLISH_ALL_NONRELATED_PIXELS"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forced_future_event_date_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(event_date="2099-01-01"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_unrelated_image_title_fails(self):
+        self._mutate(lambda r: r["photo_identity"].update(title="Unrelated private portrait"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_false_film_scene_caption_fails(self):
+        self._mutate(lambda r: r["required_adjacent_visible_ui"].update(
+            caption="Star Trek cast official film scene, not a film frame"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_bad_photo_source_link_fails(self):
+        self._mutate(lambda r: r["required_adjacent_visible_ui"].update(source_click="https://evil.example/tracker"))
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_unreviewed_public_image_file_fails(self):
+        destination = self.root / MODULE.ASSET_PATH
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(b"not even a real JPEG")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_hidden_unreviewed_jpeg_magic_bin_fails(self):
+        (self.root / MODULE.FOLDER / "unreviewed-photo.bin").write_bytes(b"\xff\xd8\xff\xe0JFIF")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_nested_false_approval_document_fails(self):
+        nested = self.root / MODULE.FOLDER / "nested"
+        nested.mkdir()
+        (nested / "approval.md").write_text("Public image authorized and approved", encoding="utf-8")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_forged_python_cache_binary_fails(self):
+        cache = self.root / MODULE.FOLDER / "__pycache__"
+        cache.mkdir()
+        (cache / "validate.cpython-312.pyc").write_bytes(b"\xff\xd8\xff\xe0JFIF")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_git_tracked_magic_prefix_cache_jpeg_rejected(self):
+        cache = self.root / MODULE.FOLDER / "__pycache__"
+        cache.mkdir()
+        forged = cache / "validate.cpython-312.pyc"
+        forged.write_bytes(importlib.util.MAGIC_NUMBER + b"\xff\xd8\xff\xe0JFIFimagebytes")
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "-f", "--", str(forged.relative_to(self.root))],
+                       cwd=self.root, check=True)
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_inline_data_image_in_manifest_fails(self):
+        manifest = self.root / MODULE.FOLDER / "MANIFEST.md"
+        manifest.write_text(manifest.read_text(encoding="utf-8") +
+                            "\n![not reviewed](data:image/png;base64,AAAABBBB)\n", encoding="utf-8")
+        with self.assertRaises(MODULE.ReleaseProposalRejected):
+            MODULE.validate(self.root)
+
+    def test_missing_manifest_or_tests_fails(self):
+        for leaf in ("MANIFEST.md", "test_validate.py"):
+            target = self.root / MODULE.FOLDER / leaf
+            original = target.read_bytes()
+            target.unlink()
+            with self.assertRaises(MODULE.ReleaseProposalRejected):
+                MODULE.validate(self.root)
+            target.write_bytes(original)
+
+
+if __name__ == "__main__":
+    unittest.main()

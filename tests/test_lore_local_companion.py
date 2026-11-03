@@ -1,16 +1,19 @@
 """Adversarial no-network tests of opt-in localhost Lore companion boundaries."""
 
 import contextlib
+import hashlib
 import http.client
 import io
 import json
 import socket
+import subprocess
 import threading
 import unittest
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from unittest import mock
 
 from tools import lore_local_companion as lore
+from tools.build_episode_source_cards import INPUTS as SHELF_INPUTS, OUTPUT as SHELF_OUTPUT, ROOT as REPO_ROOT
 
 
 TOKEN = "A" * 40
@@ -79,6 +82,22 @@ def request(port, *, method="POST", path="/api/query", query="Spock", headers=No
 
 
 class LoreCompanionTests(unittest.TestCase):
+    def test_checksum_pinned_source_files_force_lf_even_with_windows_autocrlf(self):
+        paths = [(path, pinned) for _, _, path, pinned in SHELF_INPUTS]
+        paths.append((
+            "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+            "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c",
+        ))
+        paths.append((SHELF_OUTPUT, None))
+        for path, digest in paths:
+            with self.subTest(path=path):
+                result = subprocess.run(
+                    ["git", "-c", "core.autocrlf=true", "check-attr", "eol", "--", str(path)],
+                    cwd=REPO_ROOT, capture_output=True, text=True, check=True)
+                self.assertEqual(result.stdout.strip(), f"{path}: eol: lf")
+                if digest is not None:
+                    self.assertEqual(hashlib.sha256((REPO_ROOT / path).read_bytes()).hexdigest(), digest)
+
     def test_disabled_by_default_never_creates_listener(self):
         with mock.patch.object(lore, "create_server", side_effect=AssertionError("listen")):
             self.assertEqual(lore.main([]), 2)

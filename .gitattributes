@@ -1,0 +1,8 @@
+# Keep raw bytes of checksum-pinned Lore source inputs identical on Windows.
+# These six files must not be rewritten by core.autocrlf=true on checkout.
+proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv text eol=lf
+proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json text eol=lf
+proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json text eol=lf
+proposals/research/snw/s3-publisher-first5-20261103/records.json text eol=lf
+proposals/research/snw/s3-publisher-last5-20261103/records.json text eol=lf
+explorer/episode-source-cards.json text eol=lf

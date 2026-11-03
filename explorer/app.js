@@ -170,6 +170,66 @@
   const publisherIsbnSha256 = '1170e8cb56b4ff3c5beab8d412fa5613b6e3b9d0ab7b5a18f80fe403c5bde3e8';
   const paramountState = { rows: [], available: false };
   const paramountSha256 = '40d968f1faa11bd888f2af838c6cc4075c1c89ba4b269cf08a2e33878e87e26b';
+  const episodeSourceState = { rows: [], available: false };
+  const episodeSourceSha256 = '38dfde3c3a1cfe38e41bf6740327b070f7846e2dc7c6149b74f88db7b85186f6';
+  const episodeSourceBatches = new Map([
+    ['PIC-FIRST5', ['proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json',
+      '070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f', 'PIC', [1, 2, 3, 4, 5]]],
+    ['PIC-LAST5', ['proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json',
+      'fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc', 'PIC', [6, 7, 8, 9, 10]]],
+    ['SNW-FIRST5', ['proposals/research/snw/s3-publisher-first5-20261103/records.json',
+      '89e816d651996405dce608fa3509b437178b0dcd635f2d8635962d0bd7acfe1c', 'SNW', [1, 2, 3, 4, 5]]],
+    ['SNW-LAST5', ['proposals/research/snw/s3-publisher-last5-20261103/records.json',
+      'b1daa95e849c61beb1011aabaebc06343589f29d0ec786e6359c07cb81137b2e', 'SNW', [6, 7, 8, 9, 10]]]
+  ]);
+  const episodeSourceTitles = new Map([
+    ['pic-s1-e01-pplus-guide', 'Remembrance'],
+    ['pic-s1-e02-pplus-guide', 'Maps and Legends'],
+    ['pic-s1-e03-pplus-guide', 'The End is the Beginning'],
+    ['pic-s1-e04-pplus-guide', 'Absolute Candor'],
+    ['pic-s1-e05-pplus-guide', 'Stardust City Rag'],
+    ['pic-s1-e06-pplus-guide', 'The Impossible Box'],
+    ['pic-s1-e07-pplus-guide', 'Nepenthe'],
+    ['pic-s1-e08-pplus-guide', 'Broken Pieces'],
+    ['pic-s1-e09-pplus-guide', 'Et in Arcadia Ego, Part 1'],
+    ['pic-s1-e10-pplus-guide', 'Et in Arcadia Ego, Part 2'],
+    ['snw-s3-e01-pplus', 'Hegemony, Part II'],
+    ['snw-s3-e02-pplus', 'Wedding Bell Blues'],
+    ['snw-s3-e03-pplus', 'Shuttle to Kenfori'],
+    ['snw-s3-e04-pplus', 'A Space Adventure Hour'],
+    ['snw-s3-e05-pplus', 'Through the Lens of Time'],
+    ['snw-s3-e06-pplus', 'The Sehlat Who Ate Its Tail'],
+    ['snw-s3-e07-pplus', 'What is Starfleet?'],
+    ['snw-s3-e08-pplus', 'Four-and-a-Half Vulcans'],
+    ['snw-s3-e09-pplus', 'Terrarium'],
+    ['snw-s3-e10-pplus', 'New Life and New Civilizations']
+  ]);
+  // Separate from source_row_sha256 (which binds private source fragments),
+  // these *code-owned* SHA-256 values bind the complete PUBLIC row, including
+  // utterance labels and tags. A forged JSON + updated whole-artifact digest
+  // cannot silently rewrite a label into a fabricated publisher statement.
+  const episodePublicRowPins = new Map([
+    ['episode-publisher-card:pic-s1-e01-pplus-guide', '4b99c107d44ee2f3200a369043b126f16c6fe5918cd4f190dd9481cdf39fdbab'],
+    ['episode-publisher-card:pic-s1-e02-pplus-guide', 'd802a1fa8521ecf95ab5f9a173b0365e32b001c96aabc63d74e2cf9ac224093e'],
+    ['episode-publisher-card:pic-s1-e03-pplus-guide', '208935c3d66d135e46399eab0c6195df283d76266e0eb508944c7753a874d19d'],
+    ['episode-publisher-card:pic-s1-e04-pplus-guide', '4a31d3c04bccb597a49118ab05a5d18e42241a4d2245ed65800a0d97883bc406'],
+    ['episode-publisher-card:pic-s1-e05-pplus-guide', 'b283254a83dd7d4b8235644b067cdbf09599474dfd89d19e9f544ac1bf166a7e'],
+    ['episode-publisher-card:pic-s1-e06-pplus-guide', 'f9e4cea60d2c89f14e5bdc7b4d33fbc2ed854127e1d76dce788f293f44a9b50b'],
+    ['episode-publisher-card:pic-s1-e07-pplus-guide', '122b8e67b1c8f0142f8df5d6537c715479491a600c41de489f6758cd78d9e125'],
+    ['episode-publisher-card:pic-s1-e08-pplus-guide', '4a1d5be16a99e6c5269be35c0bb1e61c2f2de52f4a0c613693e12f99d94eab07'],
+    ['episode-publisher-card:pic-s1-e09-pplus-guide', 'dba360c488a15acd70e7ef70d841d9d4a095727c4676fcc901e7dddf6c01b7be'],
+    ['episode-publisher-card:pic-s1-e10-pplus-guide', '3b2afe59ffc068f89a941e32909e7d4444f8e80e2de09ffb7bf359d2186b07bc'],
+    ['episode-publisher-card:snw-s3-e01-pplus', 'df7ad399aac6456fefbbeb471ca9c5ab96d62741b7b0e85b312930f73917ea79'],
+    ['episode-publisher-card:snw-s3-e02-pplus', 'ea475fbce4070ef97ddf350a0736647e11204b06c18490d814045250a3bfc6e5'],
+    ['episode-publisher-card:snw-s3-e03-pplus', '265d5fe7f0dfa31987997dda84f32a87032e40e9c5b5da0c4ca5d405e381df6a'],
+    ['episode-publisher-card:snw-s3-e04-pplus', 'c21fca17e8eff220f45fa5e2649743055f802e88adc575563358bd8f1d21dc50'],
+    ['episode-publisher-card:snw-s3-e05-pplus', '3dc463d1d9194f414d289e9b30f0fc7fb8d2901725297b3cc7512a31758049ef'],
+    ['episode-publisher-card:snw-s3-e06-pplus', 'f605ad0422a1106491bd88a56a55bddf962ef66bed95cf816113c6d26a73a450'],
+    ['episode-publisher-card:snw-s3-e07-pplus', 'c2709ed5194476cdd3bef68fe2e0914af451c1e42d0e8a7f98da0d23edd5416a'],
+    ['episode-publisher-card:snw-s3-e08-pplus', 'c59b77cdd4f56113d2208aebded6926ffb9eef695b476e45e5ae993a12e1069e'],
+    ['episode-publisher-card:snw-s3-e09-pplus', 'c8fd93614a034f62db440074d6f6199c09049e8bbe05e1aaa165ade627405e7e'],
+    ['episode-publisher-card:snw-s3-e10-pplus', '9ceb38c8d5a62fa2b6959c8105ba1d4bc8cb7b9d999c6dd45ec9868a0fa0de0b']
+  ]);
   // Independent from the 1,214 multimedia directory and governed Work index.
   // The code-owned digest binds EVERY publisher-edition field and tag, not a
   // self-declared source hash in an untrusted JSON response.
@@ -915,6 +975,177 @@
     } catch (error) {
       setParamountAvailability(false,
         `Paramount source metadata withheld: ${error.message || 'Source validation failed.'} Unavailable is not verified zero.`);
+    }
+  }
+
+  // A distinct *episode-guide source* shelf. Source-local utterance labels
+  // are publisher-description terms, not character identity or plot truth.
+  function setEpisodeSourceAvailability(available, message) {
+    episodeSourceState.available = available;
+    if (!available) episodeSourceState.rows = [];
+    byId('episode-source-nav-count').textContent = available ? String(episodeSourceState.rows.length) : '—';
+    byId('episode-source-state').textContent = message;
+    byId('episode-source-download').hidden = !available;
+    renderEpisodeSourceCards();
+    window.requestAnimationFrame(updateNavigationHint);
+  }
+
+  function renderEpisodeSourceCards() {
+    const holder = byId('episode-source-list');
+    const empty = byId('episode-source-empty');
+    holder.replaceChildren(); empty.hidden = true;
+    if (!episodeSourceState.available) {
+      byId('episode-source-summary').textContent = 'Episode guide observations unavailable; not a verified zero.';
+      return;
+    }
+    const typed = byId('episode-source-query').value.trim();
+    const terms = typed.length <= 160 ? normalize(typed).split(/\s+/).filter(Boolean) : ['QUERY_TOO_LONG'];
+    const series = byId('episode-source-series').value;
+    const status = byId('episode-source-status').value;
+    const tag = byId('episode-source-tag').value;
+    const found = episodeSourceState.rows.filter((row) => {
+      if (series !== 'all' && series !== row.series_code) return false;
+      if (status !== 'all' && status !== row.source_status) return false;
+      if (tag !== 'all' && !row.tags.includes(tag)) return false;
+      const termsIn = normalize([row.title, row.series_title, row.source_local_id,
+        `S${row.season}E${String(row.episode).padStart(2, '0')}`, row.source_status,
+        ...row.publisher_utterance_labels, ...row.tags].join(' '));
+      return terms.every((term) => termsIn.includes(term));
+    });
+    byId('episode-source-summary').textContent = `${found.length} of 20 validated, held publisher-guide cards match. Not episode viewing, Work identities or new catalog coverage.`;
+    if (!found.length) { empty.hidden = false; return; }
+    for (const row of found) {
+      const card = el('article', 'card episode-source-card');
+      card.append(el('span', 'kicker', `${row.series_title} · S${row.season} E${row.episode}`));
+      card.append(el('h3', '', row.title));
+      const chips = el('div', 'episode-source-chips');
+      chips.append(el('span', 'badge proposed', 'Publisher source card'));
+      chips.append(el('span', 'badge', 'HELD · 0 coverage'));
+      chips.append(el('span', 'badge', 'Artwork not released'));
+      card.append(chips);
+      card.append(el('p', 'episode-source-status', 'HELD · First-party publisher guide card; episode content not independently read'));
+      if (row.publisher_utterance_labels.length) {
+        card.append(el('p', 'episode-source-labels', `Publisher description terms (source-local, not identity): ${row.publisher_utterance_labels.join(' · ')}`));
+      }
+      card.append(el('small', 'paramount-custody', `${row.source_local_id} · ${row.source_batch}; no synopsis or artwork released`));
+      const link = el('a', 'paramount-link', 'Inspect source publisher episode guide');
+      link.href = row.publisher_guide_url;
+      link.target = '_blank'; link.rel = 'noopener noreferrer';
+      card.append(link); holder.append(card);
+    }
+  }
+
+  async function acceptEpisodeSourceCards(data) {
+    const exact = (obj, keys) => obj && typeof obj === 'object' && !Array.isArray(obj) &&
+      Object.keys(obj).length === keys.length && keys.every((key) => Object.hasOwn(obj, key));
+    const rootKeys = ['schema_version', 'data_status', 'row_count', 'series_count',
+      'publisher_independence_group_count', 'full_episodes_viewed', 'works_admitted',
+      'synopses_released', 'artwork_released', 'admission_effect', 'coverage_effect',
+      'source_input_receipts', 'rows'];
+    const rowKeys = ['row_id', 'source_local_id', 'series_code', 'series_title', 'season', 'episode',
+      'title', 'publisher_utterance_labels', 'tags', 'publisher_guide_url', 'source_batch',
+      'source_input', 'source_input_sha256', 'publisher_family', 'source_status',
+      'source_identity_scope', 'full_episode_read', 'work_admission_effect', 'coverage_effect',
+      'synopsis_release_effect', 'artwork_release_effect', 'source_row_sha256'];
+    const canonical = (value) => {
+      if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+      if (value !== null && typeof value === 'object') {
+        return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonical(value[key])}`).join(',')}}`;
+      }
+      return JSON.stringify(value);
+    };
+    if (!exact(data, rootKeys) || data.schema_version !== '1.0.0' ||
+        data.data_status !== 'HELD_SOURCE_LOCAL_PUBLISHER_EPISODE_CARDS' || data.row_count !== 20 ||
+        data.series_count !== 2 || data.publisher_independence_group_count !== 1 ||
+        data.full_episodes_viewed !== 0 || data.works_admitted !== 0 ||
+        data.synopses_released !== 0 || data.artwork_released !== 0 ||
+        data.admission_effect !== 'NONE' || data.coverage_effect !== 'NONE' ||
+        !Array.isArray(data.source_input_receipts) || data.source_input_receipts.length !== 4 ||
+        !Array.isArray(data.rows) || data.rows.length !== 20) {
+      throw new Error('Publisher episode source-card envelope elevated or changed.');
+    }
+    const batches = [...episodeSourceBatches];
+    for (let i = 0; i < batches.length; i++) {
+      const [name, [path, sha]] = batches[i];
+      const receipt = data.source_input_receipts[i];
+      if (!exact(receipt, ['batch', 'path', 'sha256']) || receipt.batch !== name ||
+          receipt.path !== path || receipt.sha256 !== sha) {
+        throw new Error('Original episode-guide packet receipt drifted.');
+      }
+    }
+    const seen = new Set(); const slots = new Map([['PIC', new Set()], ['SNW', new Set()]]);
+    for (const row of data.rows) {
+      const batch = episodeSourceBatches.get(row?.source_batch);
+      if (!exact(row, rowKeys) || !batch || seen.has(row.row_id)) {
+        throw new Error('Duplicate or unrecognized publisher card.');
+      }
+      const codePin = episodePublicRowPins.get(row.row_id);
+      if (!codePin || typeof TextEncoder !== 'function') {
+        throw new Error('Unpinned episode card or WebCrypto encoding unavailable.');
+      }
+      const bytes = new TextEncoder().encode(canonical(row));
+      const digestBytes = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const actualRowHash = Array.from(new Uint8Array(digestBytes), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (actualRowHash !== codePin) {
+        throw new Error('Episode card full public-row evidence pin differs from reviewed source.');
+      }
+      const [path, sha, series, expectedEpisodes] = batch;
+      const season = series === 'PIC' ? 1 : 3;
+      const expectedId = `${series.toLowerCase()}-s${season}-e${String(row.episode).padStart(2, '0')}-pplus${series === 'PIC' ? '-guide' : ''}`;
+      const expectedUrl = `https://www.paramountplus.com/shows/star-trek-${series === 'PIC' ? 'picard/episodes/1/' : 'strange-new-worlds/episodes/3/'}`;
+      const expectedTags = [
+        `series:${series.toLowerCase()}`, `season:${season}`, `slot:s${season}e${String(row.episode).padStart(2, '0')}`,
+        'publisher:paramountplus.com', 'source-status:held',
+        ...row.publisher_utterance_labels.map((label) =>
+          `publisher-utterance:${label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`)
+      ].sort();
+      if (!Number.isInteger(row.episode) || !expectedEpisodes.includes(row.episode) ||
+          row.season !== season || row.series_code !== series ||
+          row.series_title !== (series === 'PIC' ? 'Star Trek: Picard' : 'Star Trek: Strange New Worlds') ||
+          row.source_local_id !== expectedId || row.row_id !== `episode-publisher-card:${expectedId}` ||
+          row.source_input !== path || row.source_input_sha256 !== sha ||
+          row.publisher_guide_url !== expectedUrl || row.publisher_family !== 'publisher:paramountplus.com' ||
+          row.title !== episodeSourceTitles.get(expectedId) ||
+          !Array.isArray(row.publisher_utterance_labels) || row.publisher_utterance_labels.length > 12 ||
+          row.publisher_utterance_labels.some((v) => typeof v !== 'string' || !v.trim() || v.length > 80 || /[<>]/.test(v)) ||
+          !Array.isArray(row.tags) || JSON.stringify(row.tags) !== JSON.stringify(expectedTags) ||
+          !/^[a-f0-9]{64}$/.test(row.source_row_sha256) ||
+          row.source_status !== 'HELD_PUBLISHER_GUIDE_ONLY' ||
+          row.source_identity_scope !== 'SOURCE_LOCAL_CARD_NOT_ADMITTED_WORK' ||
+          row.full_episode_read !== false || row.work_admission_effect !== 'NONE' ||
+          row.coverage_effect !== 'NONE' || row.synopsis_release_effect !== 'NONE' ||
+          row.artwork_release_effect !== 'NONE') {
+        throw new Error('Publisher episode card source, rights, slot or held status changed.');
+      }
+      seen.add(row.row_id); slots.get(series).add(row.episode);
+    }
+    if (seen.size !== 20 || [...slots.values()].some((set) => set.size !== 10)) {
+      throw new Error('Publisher episode-card source-local denominator changed.');
+    }
+    episodeSourceState.rows = data.rows;
+    const select = byId('episode-source-tag');
+    select.replaceChildren(new Option('All source-local tags', 'all'));
+    for (const tag of [...new Set(data.rows.flatMap((row) => row.tags))].sort()) {
+      select.add(new Option(tag.replaceAll('_', ' '), tag));
+    }
+    select.value = 'all';
+    setEpisodeSourceAvailability(true, '20 first-party publisher guide cards passed accepted source validators; all HELD, no full episodes viewed or artwork/synopses released.');
+  }
+
+  async function loadEpisodeSourceCards() {
+    try {
+      const response = await fetch('./episode-source-cards.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Episode guide source card shelf unavailable.');
+      if (!globalThis.crypto?.subtle || typeof TextDecoder !== 'function') throw new Error('SHA-256 unavailable.');
+      const bytes = await response.arrayBuffer();
+      if (bytes.byteLength < 8000 || bytes.byteLength > 100000) throw new Error('Episode shelf byte size unexpected.');
+      const hash = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+      const hex = Array.from(new Uint8Array(hash), (n) => n.toString(16).padStart(2, '0')).join('');
+      if (hex !== episodeSourceSha256) throw new Error('Episode guide shelf differs from code-pinned accepted source snapshot.');
+      await acceptEpisodeSourceCards(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+    } catch (error) {
+      setEpisodeSourceAvailability(false,
+        `Episode publisher card shelf withheld: ${error.message || 'Source validation failed.'} Unavailable is not verified zero.`);
     }
   }
 
@@ -2168,15 +2399,21 @@
   paramountFilters.addEventListener('change', () => { playTone(); renderParamountRechecks(); });
   paramountFilters.addEventListener('submit', (event) => { event.preventDefault(); renderParamountRechecks(); });
   paramountFilters.addEventListener('reset', () => window.requestAnimationFrame(renderParamountRechecks));
+  const episodeSourceFilters = byId('episode-source-filters');
+  episodeSourceFilters.addEventListener('input', renderEpisodeSourceCards);
+  episodeSourceFilters.addEventListener('change', () => { playTone(); renderEpisodeSourceCards(); });
+  episodeSourceFilters.addEventListener('submit', (event) => { event.preventDefault(); renderEpisodeSourceCards(); });
+  episodeSourceFilters.addEventListener('reset', () => window.requestAnimationFrame(renderEpisodeSourceCards));
   setResearchAvailability(false, 'Checking for a separate research-leads index…');
   setFilmAvailability(false, 'Checking the separate film catalog…');
   setDirectoryAvailability(false, 'Checking the optional multimedia discovery catalog…');
   setPublisherEditionAvailability(false, 'Checking the independently indexed publisher-edition sidecar…');
   setPublisherIsbnAvailability(false, 'Checking accepted public publisher ISBN source-local metadata…');
   setParamountAvailability(false, 'Checking accepted public Paramount film-page metadata…');
+  setEpisodeSourceAvailability(false, 'Checking accepted HELD publisher episode-guide cards…');
   // Separate publisher discovery is not an admission lane and must not depend
   // on an unrelated governed Mission index being available.
-  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks()]).then(() => Promise.all([
+  Promise.all([loadFilmCatalog(), loadDirectory(), loadPublisherEditionIndex(), loadPublisherIsbnCrosschecks(), loadParamountRechecks(), loadEpisodeSourceCards()]).then(() => Promise.all([
     loadArtworkCatalog(), loadSynopsisCatalog().then(loadShortSynopsisCatalog),
     loadMetadataRechecks(), loadPublisherCardChecks()
   ]));

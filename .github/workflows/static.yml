@@ -161,6 +161,24 @@ jobs:
           python3 tools/build_paramount_film_rechecks.py --check
           python3 tools/query_paramount_film_rechecks.py --limit 1 > /dev/null
 
+      - name: Verify first-party HELD episode-guide cards
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          # All four accepted source validators, strict duplicate-key parsing,
+          # whole input digests and code-owned card-level evidence pins run in
+          # the deterministic compiler. A cardinality-only check is insufficient.
+          test -f explorer/episode-source-cards.json
+          test ! -L explorer/episode-source-cards.json
+          test ! -L tools/build_episode_source_cards.py
+          test ! -L tools/query_episode_source_cards.py
+          python3 proposals/research/pic/picard-s1-first5-guide-cards-20261103/validate.py
+          python3 proposals/research/pic/picard-s1-last5-guide-cards-20261103/validate.py
+          python3 proposals/research/snw/s3-publisher-first5-20261103/validate.py
+          python3 proposals/research/snw/s3-publisher-last5-20261103/validate.py
+          python3 tools/build_episode_source_cards.py --check
+          python3 tools/query_episode_source_cards.py --validate-sources --limit 1 > /dev/null
+
       - name: Verify optional publisher-description synopsis release
         if: steps.readiness.outputs.ready == 'true'
         shell: bash
@@ -257,6 +275,7 @@ jobs:
             ! -path explorer/lit-publisher-edition-leads.json \
             ! -path explorer/publisher-isbn-crosschecks.json \
             ! -path explorer/paramount-film-rechecks.json \
+            ! -path explorer/episode-source-cards.json \
             ! -path explorer/film-catalog.json \
             ! -path explorer/metadata-rechecks.json \
             ! -path explorer/accepted-source-card-rechecks.json \
@@ -367,6 +386,19 @@ jobs:
             fi
           elif test -e explorer/paramount-film-rechecks.json || test -L explorer/paramount-film-rechecks.json; then
             echo "Refusing to deploy uncommitted Paramount metadata shelf" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/episode-source-cards.json 2>/dev/null; then
+            test -f explorer/episode-source-cards.json
+            test ! -L explorer/episode-source-cards.json
+            expected="$(git rev-parse HEAD:explorer/episode-source-cards.json)"
+            actual="$(git hash-object explorer/episode-source-cards.json)"
+            if test "$actual" != "$expected"; then
+              echo "Refusing to deploy modified source-local episode guide shelf" >&2
+              exit 1
+            fi
+          elif test -e explorer/episode-source-cards.json || test -L explorer/episode-source-cards.json; then
+            echo "Refusing to deploy uncommitted episode guide shelf" >&2
             exit 1
           fi
           if git cat-file -e HEAD:explorer/synopsis-catalog.json 2>/dev/null; then

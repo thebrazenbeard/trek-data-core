@@ -28,6 +28,24 @@ LEGACY_MANIFEST = "explorer/artwork-catalog.json"
 # Explorer clients. Upgrading its payload in place can blank existing cards.
 LEGACY_MANIFEST_SHA256 = "5a7b28ea71f75d717f835b47e308dadfa059c589198452da03c66127b0cc835f"
 ART_DIRECTORY = "explorer/licensed-artwork"
+STAGED_HELD_PREMIERE_ASSET = "explorer/licensed-artwork/beyond-premiere-japan-2016-960.jpg"
+STAGED_HELD_PREMIERE_SHA256 = "e8c2933469a00fb2c8b142f41472153ed7982c05f98f9c7c154b6bea689cc06f"
+STAGED_HELD_PREMIERE_RECORD = "explorer/beyond-premiere-asset-candidate-v2.json"
+STAGED_HELD_PREMIERE_RECORD_SHA256 = "e6a5fbc4429f1dca67d1451ecf877a5afa3aa4f8269827a014eb7535a99466ce"
+
+
+def _check_one_held_premiere_binary(root: Path, extra: set[str]) -> bool:
+    """Prove source-bound *staging*, never public display permission."""
+    if extra != {STAGED_HELD_PREMIERE_ASSET}:
+        return False
+    photo = _file_bytes(root, STAGED_HELD_PREMIERE_ASSET, MAX_ART_BYTES)
+    record = _file_bytes(root, STAGED_HELD_PREMIERE_RECORD, 8192)
+    held = _file_bytes(root, "explorer/beyond-premiere-release-decision.json", 8192)
+    _ensure(len(photo) == 116536 and hashlib.sha256(photo).hexdigest() == STAGED_HELD_PREMIERE_SHA256 and
+            hashlib.sha256(record).hexdigest() == STAGED_HELD_PREMIERE_RECORD_SHA256 and
+            hashlib.sha256(held).hexdigest() == "b3041c0fe9ed739c1187b5d9da97e9817dfca753683ca100bd8c93263b68cd89",
+            "held documentary photo staging differs from independently pinned bytes")
+    return True
 OL_SOURCE_PACKET = "proposals/librarian/open-library-nine-literature-20261103/records.json"
 MAX_ART_BYTES = 16_000_000
 MAX_MANIFEST_BYTES = 2_000_000
@@ -505,6 +523,15 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
         for file in art_dir.iterdir():
             _ensure(not file.is_symlink() and file.is_file(), "unexpected licensed-artwork directory or special file")
             actual.add(file.relative_to(root).as_posix())
+        extra = actual - used_files
+        if extra == {STAGED_HELD_PREMIERE_ASSET}:
+            # One separately reviewed CC BY 2.0 documentary image may be
+            # staged for later release QA. It is NOT an accepted artwork
+            # entry or permission to activate Explorer's held consent toggle.
+            # The independent photo gate verifies false decision + original
+            # source contract, exact bytes and no pre-opt-in loading.
+            _ensure(_check_one_held_premiere_binary(root, extra), "invalid staged documentary image")
+            used_files.add(STAGED_HELD_PREMIERE_ASSET)
         _ensure(actual == used_files, "unlisted or missing licensed image in public artifact")
     else:
         _ensure(not used_files, "licensed artwork files missing")

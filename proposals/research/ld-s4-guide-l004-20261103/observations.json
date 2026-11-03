@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ld-s4-guide-l004-20261103",
+  "role": "LD",
+  "proposal_only": true,
+  "baseline_accepted_main": "c1668772cab7004da1bfe0759f521d22c3679280",
+  "observed_utc_date": "2026-11-03",
+  "source": {
+    "publisher_family": "publisher:paramountplus.com",
+    "guide_url": "https://www.paramountplus.com/shows/star-trek-lower-decks/episodes/4/",
+    "method": "DIRECT_HTTP_GET_AND_RENDERED_PUBLISHER_GUIDE",
+    "http_status_observed": 200,
+    "html_bytes_observed": 271583,
+    "html_sha256_observed": "e78ce95aca066d8bc126fc203bf1c28b1bf16a8675847e28d3821f566d73dc32",
+    "raw_html_retained": false,
+    "source_edition_stability": "DYNAMIC_HTML_SINGLE_TRANSIENT_RETRIEVAL_NOT_IMMUTABLE_EDITION",
+    "full_episode_or_script_read": false,
+    "scope": "TEN_GUIDE_CARDS_NOT_AUDIOVISUAL_CONTENT"
+  },
+  "accepted_predecessor": {
+    "path": "proposals/research/ld-s3-guide-l003-20261103/observations.json",
+    "sha256": "e8153b87644354a60ff900f0cc612b4efe37aae9dccbd13fc95960879f575e65",
+    "relation": "PREVIOUS_SEASON_SAME_PUBLISHER_FAMILY_NOT_CORROBORATION"
+  },
+  "accepted_source_work_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "public_artwork_effect": "NONE",
+  "records": [
+    {
+      "observation_id": "ld-l004-o01", "local_card_entity_id": "ld-l004-card-01", "season": 4, "episode": 1,
+      "publisher_card_title": "Twovix", "publisher_description_sha256": "1d5e9d98f841cb2335fe8e3b68b47424da9041ab50cc7ac61ca05f889e2aa182",
+      "card_locator": "Season 4 Episode Guide > S4 E1 > Twovix > description", "literal_mentions": ["Cerritos"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243941955837/STAR_TREK_LOWER_DECKS_401_NO_LOGO_2335698_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o02", "local_card_entity_id": "ld-l004-card-02", "season": 4, "episode": 2,
+      "publisher_card_title": "I Have No Bones Yet I Must Flee", "publisher_description_sha256": "d4e82bd11f480cdf665c64355459cee8e8c43317518088d55a39a80fc757d69c",
+      "card_locator": "Season 4 Episode Guide > S4 E2 > I Have No Bones Yet I Must Flee > description", "literal_mentions": ["Mariner", "Rutherford", "Boimler"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243941955838/STAR_TREK_LOWER_DECKS_402_NO_LOGO_2335697_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o03", "local_card_entity_id": "ld-l004-card-03", "season": 4, "episode": 3,
+      "publisher_card_title": "In the Cradle of Vexilon", "publisher_description_sha256": "3f20af15624c0f6389fa33507d85e98532fe95314341f2be6e4bfb5c1ec2e91b",
+      "card_locator": "Season 4 Episode Guide > S4 E3 > In the Cradle of Vexilon > description", "literal_mentions": ["Boimler"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243941955839/STAR_TREK_LOWER_DECKS_403_NO_LOGO_2347249_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o04", "local_card_entity_id": "ld-l004-card-04", "season": 4, "episode": 4,
+      "publisher_card_title": "Something Borrowed, Something Green", "publisher_description_sha256": "9ad0d1593c2ca5cd7d56fb6e7815035d3842b212ae9718a61f26a466f1a49c87",
+      "card_locator": "Season 4 Episode Guide > S4 E4 > Something Borrowed, Something Green > description", "literal_mentions": ["Tendi", "Orion"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243942467755/STAR_TREK_LOWER_DECKS_404_NO_LOGO_2354391_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o05", "local_card_entity_id": "ld-l004-card-05", "season": 4, "episode": 5,
+      "publisher_card_title": "Empathalogical Fallacies", "publisher_description_sha256": "e0fe46f91beeccf0fb616009778e63d115e776fd061942e9955e7b2f011adfac",
+      "card_locator": "Season 4 Episode Guide > S4 E5 > Empathalogical Fallacies > description", "literal_mentions": ["Betazoids", "Cerritos"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243942979777/STAR_TREK_LOWER_DECKS_405_NO_LOGO.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o06", "local_card_entity_id": "ld-l004-card-06", "season": 4, "episode": 6,
+      "publisher_card_title": "Parth Ferengi's Heart Place", "publisher_description_sha256": "2c66ee5a6a04f2a16d12a8034616b1c925546d789a32eb530a6975dfaba57df8",
+      "card_locator": "Season 4 Episode Guide > S4 E6 > Parth Ferengi's Heart Place > description", "literal_mentions": ["Cerritos", "Ferengi"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243943491688/STAR_TREK_LOWER_DECKS_406_NO_LOGO_2372723_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o07", "local_card_entity_id": "ld-l004-card-07", "season": 4, "episode": 7,
+      "publisher_card_title": "A Few Badgeys More", "publisher_description_sha256": "5c318d5c28645aae5b768f4f463012d34832c0571f35a45ebb80e7483d8b5cab",
+      "card_locator": "Season 4 Episode Guide > S4 E7 > A Few Badgeys More > description", "literal_mentions": ["Cerritos"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243944003577/STAR_TREK_LOWER_DECKS_407_NO_LOGO_2382768_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o08", "local_card_entity_id": "ld-l004-card-08", "season": 4, "episode": 8,
+      "publisher_card_title": "Caves", "publisher_description_sha256": "e5a8108d6ac05816339e11f018a927c6933d046d72de80c457051ad20bf508c2",
+      "card_locator": "Season 4 Episode Guide > S4 E8 > Caves > description", "literal_mentions": ["Lower Deckers"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243944003578/STAR_TREK_LOWER_DECKS_408_NO_LOGO_2388375_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o09", "local_card_entity_id": "ld-l004-card-09", "season": 4, "episode": 9,
+      "publisher_card_title": "The Inner Fight", "publisher_description_sha256": "66ff911cc16fb9861055a4af040fdcc18f526906a2b8990a66cda89379d4f1ca",
+      "card_locator": "Season 4 Episode Guide > S4 E9 > The Inner Fight > description", "literal_mentions": ["Captain Freeman", "Lower Deckers", "Mariner"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243944515609/STAR_TREK_LOWER_DECKS_409_NO_LOGO_2398071_1920x1080.jpg"
+    },
+    {
+      "observation_id": "ld-l004-o10", "local_card_entity_id": "ld-l004-card-10", "season": 4, "episode": 10,
+      "publisher_card_title": "Old Friends, New Planets", "publisher_description_sha256": "02edc3769d1bb9e82bba09e6ee6973d652e940be84028f1e199f928c229dd688",
+      "card_locator": "Season 4 Episode Guide > S4 E10 > Old Friends, New Planets > description", "literal_mentions": ["Mariner"],
+      "publisher_thumbnail_url_held": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2023/07/12/2243945539535/STAR_TREK_LOWER_DECKS_410_NO_LOGO_2408283_1920x1080.jpg"
+    }
+  ]
+}

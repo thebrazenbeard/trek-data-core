@@ -1,0 +1,70 @@
+{
+  "proposal_id": "LIBRARIAN-SIMON-SCHUSTER-THREE-SERIES-EBOOKS-20261103",
+  "baseline_accepted_main": "5b0fb86b322811ccea58f88f20d69bd4e62e9b22",
+  "role": "LIBRARIAN",
+  "observed_date_utc": "2026-11-03",
+  "proposal_only": true,
+  "accepted_corpus_effect": "NONE",
+  "rights_to_republish_text_or_art": "NOT_ESTABLISHED",
+  "publisher_evidence": {
+    "independence_group": "publisher:simonandschuster.com",
+    "method": "PUBLIC_RENDERED_PUBLISHER_PRODUCT_PAGES; NOT_RAW_HTTP_BYTES",
+    "response_sha256": null,
+    "source_version": null,
+    "page_field_locus": "Product Details",
+    "independently_verified_publisher_families": 1,
+    "narrative_evidence_weight": 0
+  },
+  "catalog_gap_snapshot": {
+    "path": "explorer/discovery-catalog.json",
+    "sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+    "row_count": 1214,
+    "exact_title_rows_for_these_three_candidates": 0
+  },
+  "edition_candidates": [
+    {
+      "candidate_id": "SSEBOOK-DS9-STITCH-TIME-9780743420587",
+      "work_label": "A Stitch in Time",
+      "creator": "Andrew J. Robinson",
+      "publisher_series": "Star Trek: Deep Space Nine",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "format": "eBook",
+      "publisher_listed_date": "2000-05-01",
+      "publisher_listed_pages": 432,
+      "isbn13": "9780743420587",
+      "source_locator": "https://www.simonandschuster.com/books/A-Stitch-in-Time/Andrew-J-Robinson/Star-Trek-Deep-Space-Nine/9780743420587",
+      "status": "PUBLISHER_EDITION_METADATA_CANDIDATE_ONLY"
+    },
+    {
+      "candidate_id": "SSEBOOK-TNG-Q-IN-LAW-9780671040994",
+      "work_label": "Q-in-Law",
+      "creator": "Peter David",
+      "publisher_series": "Star Trek: The Next Generation",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "format": "eBook",
+      "publisher_listed_date": "1991-10-01",
+      "publisher_listed_pages": 252,
+      "isbn13": "9780671040994",
+      "source_locator": "https://www.simonandschuster.com/books/Q-in-Law/Peter-David/Star-Trek-The-Next-Generation/9780671040994",
+      "status": "PUBLISHER_EDITION_METADATA_CANDIDATE_ONLY"
+    },
+    {
+      "candidate_id": "SSEBOOK-VOY-HOMECOMING-9780743475631",
+      "work_label": "Homecoming",
+      "creator": "Christie Golden",
+      "publisher_series": "Star Trek: Voyager",
+      "publisher_imprint": "Pocket Books/Star Trek",
+      "format": "eBook",
+      "publisher_listed_date": "2003-05-12",
+      "publisher_listed_pages": 288,
+      "isbn13": "9780743475631",
+      "source_locator": "https://www.simonandschuster.com/books/Homecoming/Christie-Golden/Star-Trek-Voyager/9780743475631",
+      "status": "PUBLISHER_EDITION_METADATA_CANDIDATE_ONLY"
+    }
+  ],
+  "accepted_sources_added": 0,
+  "accepted_works_added": 0,
+  "accepted_source_work_bindings_added": 0,
+  "coverage_events_added": 0,
+  "global_identity_reconciliations": 0
+}

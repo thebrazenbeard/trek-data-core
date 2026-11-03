@@ -18,6 +18,13 @@ import runpy
 ROOT = Path(__file__).resolve().parents[3]
 LEGACY = ROOT / "proposals/research/tos-charlie-x-derivative-close-read-20261103"
 PREVIEW_TYPE = "CHARLIE_X_SCHEMA_SHAPE_PREVIEW_V1_NOT_ADMITTED"
+EXPECTED_LEGACY_PACKET_SHA256 = {
+    "MANIFEST.json": "697a74a1ab8e391846bc802309dd6568217b10a06a0bc34c2da76a48d1c3a855",
+    "local_entities.json": "1fb8185a928b87cacb42387789f9fc967aea2cd196e308f3c71f2349c162f70f",
+    "evidence.json": "bfe28fe51b32bb83bba5a9d47c596d99e04a69b788495faeb8e4f898b3c08b57",
+    "assertions.json": "12676349b2edff2c6e5c7ef2e03f45bbf5e1b337824d1abbce565daa32a4d4ad",
+    "validate.py": "aebd1036368059134cccd5f4081547c969fec21fa8d39565c8ebebfa55823e62",
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -30,7 +37,21 @@ def load(name: str) -> dict:
 
 
 def prepare() -> dict:
+    # Read and hash-pin the exact accepted legacy packet before consulting any
+    # mutable loader. A manifest's self-declared hashes are not a trust anchor.
+    require(LEGACY.is_dir() and not LEGACY.is_symlink(), "legacy packet directory is not stable")
+    trusted_payloads = {}
+    for name, expected_sha in EXPECTED_LEGACY_PACKET_SHA256.items():
+        path = LEGACY / name
+        require(path.is_file() and not path.is_symlink(), f"legacy file path not stable: {name}")
+        raw = path.read_bytes()
+        require(hashlib.sha256(raw).hexdigest() == expected_sha, f"legacy packet bytes changed: {name}")
+        if name.endswith(".json"):
+            trusted_payloads[name] = json.loads(raw)
+
     manifest = load("MANIFEST.json")
+    require(manifest == trusted_payloads["MANIFEST.json"],
+            "in-memory manifest differs from pinned legacy packet")
     # The original proposal validator pins the source identity and guards the
     # complete legacy packet, including flags this adapter does not interpret.
     # Invoke it on the immutable on-disk packet before making any preview.
@@ -46,6 +67,20 @@ def prepare() -> dict:
     for field, expected in original["MANIFEST_IDENTITY"].items():
         require(manifest.get(field) == expected,
                 f"legacy manifest identity drift: {field}")
+    # The derivative transcript's lineage and the candidate Work description
+    # are part of the source-relative identity envelope, too. Validating only
+    # the on-disk copy would miss a caller's in-memory substitution.
+    for field, expected in original["WORK_IDENTITY"].items():
+        require(manifest["work"].get(field) == expected,
+                f"legacy work identity drift: {field}")
+    require(manifest["source"].get("upstream_self_report") ==
+            original["UPSTREAM_SELF_REPORT"], "legacy upstream provenance drift")
+    require(set(manifest) == original["MANIFEST_FIELDS"],
+            "unexpected manifest fields")
+    require(set(manifest["source"]) == original["SOURCE_FIELDS"],
+            "unexpected source fields")
+    require(set(manifest["work"]) == original["WORK_FIELDS"],
+            "unexpected work fields")
     for name, digest in manifest["files_sha256"].items():
         actual = hashlib.sha256((LEGACY / name).read_bytes()).hexdigest()
         require(actual == digest, f"legacy source file changed: {name}")
@@ -62,6 +97,13 @@ def prepare() -> dict:
     local = load("local_entities.json")
     evidence = load("evidence.json")
     assertions = load("assertions.json")
+    for name, loaded in (
+        ("local_entities.json", local),
+        ("evidence.json", evidence),
+        ("assertions.json", assertions),
+    ):
+        require(loaded == trusted_payloads[name],
+                f"in-memory {name} differs from pinned legacy packet")
     candidate_work = manifest["work"]["candidate_id"]
     candidate_source = source["source_local_id"]
     for section in (local, evidence, assertions):
@@ -172,3 +214,4 @@ if __name__ == "__main__":
         "canonical_source_id": preview["canonical_source_id"],
         "canonical_work_id": preview["canonical_work_id"],
     }, indent=2, sort_keys=True))
+

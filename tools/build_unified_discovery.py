@@ -29,6 +29,8 @@ if __package__:
     from . import build_publisher_s5_discovery as season5
     from . import build_publisher_s6_discovery as season6
     from . import build_publisher_s7_discovery as season7
+    from . import build_tas_publisher_roster as tas
+    from . import build_prodigy_mikros_s1a_discovery as mikros
     from . import build_publisher_catalog as publisher
     from . import build_research_leads as research
     from . import build_shorts_audio_candidates as shorts
@@ -44,6 +46,8 @@ else:
     import build_publisher_s5_discovery as season5
     import build_publisher_s6_discovery as season6
     import build_publisher_s7_discovery as season7
+    import build_tas_publisher_roster as tas
+    import build_prodigy_mikros_s1a_discovery as mikros
     import build_publisher_catalog as publisher
     import build_research_leads as research
     import build_shorts_audio_candidates as shorts
@@ -72,7 +76,7 @@ MEDIUMS = ("EPISODE", "FILM", "LITERATURE", "SHORT_FORM", "AUDIO")
 KINDS = ("WIKIDATA_EPISODE", "PUBLISHER_EPISODE_SLOT", "PUBLISHER_REFERENCE",
          "FEATURE_FILM", "STREAMING_FILM", "NOVEL", "SCRIPTED_SHORT",
          "PROMOTIONAL_ANIMATION", "SCRIPTED_AUDIO_SERIES")
-ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com", "www.simonandschuster.com"}
+ALLOWED_HOSTS = {"www.wikidata.org", "www.startrek.com", "www.paramountplus.com", "www.simonandschuster.com", "www.mikrosanimation.com"}
 
 
 def _checked_title(value: object) -> str:
@@ -497,6 +501,100 @@ def build_bytes(root: Path) -> bytes:
         sources[str(bundle_path)] = bundle_digest
     if season7_count != 74:
         raise ValueError(f"Season 7 publisher observation count changed from reviewed 74: {season7_count}")
+
+    # TAS publisher Seasons 1 and 2 are independent *source-local snapshots*
+    # of season guides. Five S1 titles/slots overlap an older TAS roster;
+    # compiling 22 rows does not reconcile them or admit 22 new Works.
+    tas_index_path = tas.BASE / "index.json"
+    tas_index, tas_digest = _document(root, tas_index_path)
+    sources[str(tas_index_path)] = tas_digest
+    if (set(tas_index) != tas.safe.INDEX_KEYS or
+            {key: tas_index[key] for key in tas.safe.INDEX_KEYS - {"source_pages"}}
+            != {key: tas.source_index([])[key] for key in tas.safe.INDEX_KEYS - {"source_pages"}} or
+            not isinstance(tas_index.get("source_pages"), list) or
+            len(tas_index["source_pages"]) != len(tas.SEASONS)):
+        raise ValueError("TAS season source index is not bounded candidate metadata")
+    tas_count = 0
+    for season, page in zip(tas.SEASONS, tas_index["source_pages"]):
+        if (not isinstance(page, dict) or set(page) != tas.safe.PAGE_KEYS or
+                page["mission_id"] != "tas" or
+                page["official_page"] != tas.official_url(season) or
+                not re.fullmatch(r"[a-f0-9]{64}", str(page["source_body_sha256"])) or
+                type(page["source_body_bytes"]) is not int or
+                not 10_000 <= page["source_body_bytes"] <= 3_000_000):
+            raise ValueError("TAS source receipt invalid or misbound")
+        csv_path = tas.BASE / f"s{season}.csv"
+        bundle_path = tas.BASE / f"s{season}" / "bundle.json"
+        csv_raw = research.safe_read(root, csv_path, max_bytes=16_384)
+        if hashlib.sha256(csv_raw).hexdigest() != page["observation_csv_sha256"]:
+            raise ValueError("TAS CSV source receipt mismatch")
+        rows = tas.parse_csv(csv_raw, season)
+        bundle, bundle_digest = _document(root, bundle_path, tas.source.serialized(tas.bundle(season, rows)))
+        roster.validate(bundle, catalog)
+        if (len(rows) != (16 if season == 1 else 6) or
+                page["listed_slot_count"] != len(rows) or
+                bundle["listed_slot_count"] != len(rows) or
+                bundle["observation"]["primary_locator"] != page["official_page"]):
+            raise ValueError("TAS source observations changed from reviewed season listing")
+        for idx, (_, episode, title) in enumerate(rows):
+            entries.append(_row(f"publisher:tas:s{season}:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                                title, f"TAS S{season}E{episode}", tas_index["independence_group"],
+                                str(bundle_path), page["official_page"],
+                                ("Publisher source-local roster; overlapping earlier observations possible",)))
+            tas_count += 1
+        sources[str(csv_path)] = hashlib.sha256(csv_raw).hexdigest()
+        sources[str(bundle_path)] = bundle_digest
+    if tas_count != 22:
+        raise ValueError("TAS publisher source-local roster changed from reviewed 22")
+
+    # A Mikros Animation first-volume article gives ten titles in prose, not
+    # a numbered title guide. Sequence positions are explicitly *inferred*.
+    # Its isolated Starstruck 'Ep#103' image-caption label is retained without
+    # extending that observation into a numbered roster or corroboration.
+    mikros_index_path = mikros.BASE / "index.json"
+    mikros_index, mikros_digest = _document(root, mikros_index_path)
+    sources[str(mikros_index_path)] = mikros_digest
+    if (set(mikros_index) != mikros.SOURCE_KEYS or
+            any(mikros_index.get(k) != v for k, v in {
+                "schema_version": "1.0.0", "batch_id": "prodigy-mikros-volume1-20261102",
+                "proposal_status": "CANDIDATE_METADATA_ONLY", "source_id": mikros.SOURCE_ID,
+                "publisher": "Mikros Animation", "independence_group": "publisher:paramount",
+                "source_page": mikros.URL, "listed_title_count": 10,
+                "ordinal_basis": "INFERRED_FROM_STUDIO_VOLUME_1_FIRST_TEN_LISTED_ORDER_NOT_NUMBERED",
+                "crosscheck_locator": mikros.CROSSCHECK,
+                "crosscheck_limit": "FIRST_TEN_VOLUME_EXISTENCE_ONLY_NO_TITLE_OR_ORDINAL_ROSTER",
+                "admission_effect": "NONE", "coverage_effect": "NONE",
+            }.items()) or
+            mikros_index.get("title_expansions") != ["slot_2_contextual_part_ii", "slot_10_contextual_part_2"] or
+            mikros_index.get("caption_exception") != {
+                "title": "Starstruck", "literal_label": "Ep#103",
+                "origin": "SAME_MIKROS_ARTICLE_FIGCAPTION",
+                "season_ordinal_or_independence_effect": "NONE",
+            } or
+            not re.fullmatch(r"[0-9a-f]{64}", str(mikros_index.get("raw_sha256"))) or
+            type(mikros_index.get("raw_bytes")) is not int or
+            not 10_000 <= mikros_index["raw_bytes"] <= 500_000):
+        raise ValueError("Mikros source receipt, caption exception or inference boundary invalid")
+    mikros_csv_path = mikros.BASE / f"{mikros.SOURCE_ID}.csv"
+    mikros_bundle_path = mikros.BASE / mikros.SOURCE_ID / "bundle.json"
+    mikros_raw = research.safe_read(root, mikros_csv_path, max_bytes=10_000)
+    if hashlib.sha256(mikros_raw).hexdigest() != mikros_index.get("csv_sha256"):
+        raise ValueError("Mikros CSV source receipt mismatch")
+    mikros_rows = mikros.read_csv(mikros_raw)
+    mikros_bundle, mikros_bundle_digest = _document(
+        root, mikros_bundle_path, mikros.serialize(mikros.bundle(mikros_rows)))
+    roster.validate(mikros_bundle, catalog)
+    if mikros_bundle["listed_slot_count"] != 10 or mikros_bundle["observation"]["primary_locator"] != mikros.URL:
+        raise ValueError("Mikros source-local title-list bundle changed")
+    for idx, (_, positional_index, title) in enumerate(mikros_rows):
+        entries.append(_row(f"studio:mikros-s1a:{idx:03d}", "EPISODE", "PUBLISHER_EPISODE_SLOT",
+                            title, f"PRO S1 title-list position {positional_index} (inferred)",
+                            mikros_index["independence_group"], str(mikros_bundle_path), mikros.URL,
+                            ("Volume 1 first-ten title-list order; ordinal not publisher-numbered",
+                             "Starstruck photo caption: Ep#103 (same source)" if title == "Starstruck"
+                             else "No separately observed per-title ordinal label")))
+    sources[str(mikros_csv_path)] = hashlib.sha256(mikros_raw).hexdigest()
+    sources[str(mikros_bundle_path)] = mikros_bundle_digest
 
     if (shorts_catalog.get("data_status") != "DISCOVERY_ONLY" or
             shorts_catalog.get("admission_effect") != "NONE" or

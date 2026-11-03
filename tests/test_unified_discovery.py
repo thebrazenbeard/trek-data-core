@@ -39,15 +39,15 @@ class UnifiedDiscoveryTests(unittest.TestCase):
         self.assertEqual(catalog["admission_effect"], "NONE")
         self.assertEqual(catalog["row_count"], len(catalog["rows"]))
         self.assertEqual(catalog["counts_by_medium"], {
-            "EPISODE": 1123, "FILM": 14, "LITERATURE": 1,
+            "EPISODE": 1155, "FILM": 14, "LITERATURE": 1,
             "SHORT_FORM": 15, "AUDIO": 1,
         })
-        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1154)
+        self.assertEqual(len({r["row_id"] for r in catalog["rows"]}), 1186)
         self.assertTrue(all(r["identity_scope"] == "SOURCE_LOCAL" and
                             r["verification_status"] == "UNVERIFIED_METADATA" and
                             r["admission_effect"] == r["coverage_effect"] == "NONE"
                             for r in catalog["rows"]))
-        self.assertEqual(len(catalog["source_digests"]), 126)
+        self.assertEqual(len(catalog["source_digests"]), 134)
         for record in catalog["source_digests"]:
             source = ROOT / record["path"]
             self.assertEqual(record["sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
@@ -59,7 +59,7 @@ class UnifiedDiscoveryTests(unittest.TestCase):
                  for kind in discovery.KINDS}
         self.assertEqual(kinds, {
             "WIKIDATA_EPISODE": 208,
-            "PUBLISHER_EPISODE_SLOT": 900,
+            "PUBLISHER_EPISODE_SLOT": 932,
             "PUBLISHER_REFERENCE": 15,
             "FEATURE_FILM": 13,
             "STREAMING_FILM": 1,
@@ -141,6 +141,23 @@ class UnifiedDiscoveryTests(unittest.TestCase):
             self.assertTrue(all(r["source_group"] == "publisher:paramount" for r in observed))
         self.assertFalse(any(r["context"] == "VOY S7E10" for r in season7))
         self.assertFalse(any(r["row_id"].startswith("publisher:s7:ent:") for r in season7))
+        tas = [r for r in rows if r["row_id"].startswith("publisher:tas:")]
+        self.assertEqual(len(tas), 22)
+        self.assertEqual(len([r for r in tas if r["context"].startswith("TAS S1E")]), 16)
+        self.assertEqual(len([r for r in tas if r["context"].startswith("TAS S2E")]), 6)
+        self.assertEqual({r["context"] for r in tas if r["context"].startswith("TAS S1E")}.intersection(
+            {r["context"] for r in rows if r["row_id"].startswith("roster:tas:")}),
+            {f"TAS S1E{i}" for i in range(1, 6)})
+        studio = [r for r in rows if r["row_id"].startswith("studio:mikros-s1a:")]
+        self.assertEqual(len(studio), 10)
+        self.assertTrue(all("(inferred)" in r["context"] and r["admission_effect"] == "NONE"
+                            for r in studio))
+        self.assertFalse(any(" S1E" in r["context"] for r in studio),
+                         "inferred positions must not masquerade as publisher-numbered slots")
+        self.assertEqual([r["title"] for r in studio][:3],
+                         ["Lost and Found, Part I", "Lost and Found, Part II", "Starstruck"])
+        starstruck = next(r for r in studio if r["title"] == "Starstruck")
+        self.assertTrue(any("Ep#103 (same source)" in detail for detail in starstruck["details"]))
         self.assertEqual(len([r for r in rows if r["medium"] == "AUDIO"]), 1,
                          "one container, no invented audio episodes")
 

@@ -312,7 +312,7 @@
     }
     const seen = new Set();
     const counts = Object.fromEntries(directoryMediums.map((item) => [item, 0]));
-    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com']);
+    const allowedHosts = new Set(['www.startrek.com', 'www.paramountplus.com', 'www.wikidata.org', 'www.simonandschuster.com', 'www.mikrosanimation.com']);
     for (const item of data.rows) {
       if (!item || typeof item !== 'object' || Object.keys(item).sort().join('|') !== directoryFields.slice().sort().join('|') ||
           typeof item.row_id !== 'string' || !/^[a-z0-9:_.-]{3,210}$/.test(item.row_id) || seen.has(item.row_id) ||

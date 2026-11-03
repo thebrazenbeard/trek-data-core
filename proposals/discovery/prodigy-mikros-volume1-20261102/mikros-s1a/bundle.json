@@ -1,0 +1,107 @@
+{
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "batch_id": "STUDIO-MIKROS-PRODIGY-S1A-20261102",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "episode_slots": [
+    {
+      "canonical_work_id": null,
+      "episode_number": 1,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Lost and Found, Part I"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 2,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Lost and Found, Part II"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 3,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Starstruck"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 4,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Dreamcatcher"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 5,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Terror Firma"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 6,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Kobayashi"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 7,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "First Con-tact"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 8,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "Time Amok"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 9,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Moral Star, Part 1"
+    },
+    {
+      "canonical_work_id": null,
+      "episode_number": 10,
+      "season": 1,
+      "source_binding_id": null,
+      "status": "CANDIDATE",
+      "title": "A Moral Star, Part 2"
+    }
+  ],
+  "listed_slot_count": 10,
+  "mission_id": "pro",
+  "observation": {
+    "audiovisual_content_inspected": false,
+    "crosscheck_locator": "https://www.startrek.com/news/star-trek-prodigy-season-1-volume-1-release",
+    "independence_group": "publisher:paramount",
+    "observed_on": "2026-11-02",
+    "primary_locator": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+    "publisher": "Mikros Animation",
+    "publisher_revision": null,
+    "response_sha256": null,
+    "scope": "PUBLISHER_PAGE_TITLE_AND_SEASON_EPISODE_SLOT_ONLY"
+  },
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "record_type": "publisher_episode_roster_proposal",
+  "roster_completeness": "UNRESOLVED",
+  "schema_version": "1.0.0",
+  "series_qid_redirect": null
+}

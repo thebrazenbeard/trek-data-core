@@ -17,11 +17,13 @@ from tools import (
     build_publisher_s5_discovery as season5,
     build_publisher_s6_discovery as season6,
     build_publisher_s7_discovery as season7,
+    build_tas_publisher_roster as tas,
+    build_prodigy_mikros_s1a_discovery as mikros,
     publisher_output_directory as guard,
 )
 
 
-INGESTERS = (legacy_s1, legacy_s2, legacy_s3, prodigy, season4, season5, season6, season7)
+INGESTERS = (legacy_s1, legacy_s2, legacy_s3, prodigy, season4, season5, season6, season7, tas)
 REPO = Path(__file__).resolve().parents[1]
 
 
@@ -69,6 +71,19 @@ class PublisherOutputDirectoryTests(unittest.TestCase):
                     with self.assertRaises((OSError, ValueError)):
                         module.ingest(Path(temporary))
                 self.assertEqual(list(outside.iterdir()), [], "symlinked parent gained a directory")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "checkout"
+            outside = Path(temporary) / "outside"
+            input_file = Path(temporary) / "source.html"
+            (root / "proposals").mkdir(parents=True)
+            outside.mkdir()
+            input_file.write_bytes(b"private")
+            (root / "proposals/discovery").symlink_to(outside, target_is_directory=True)
+            with patch.object(mikros, "ROOT", root), patch.object(mikros, "extract", return_value=[]):
+                with self.assertRaises((OSError, ValueError)):
+                    mikros.ingest(input_file)
+            self.assertEqual(list(outside.iterdir()), [], "Mikros followed a symlinked parent")
 
     def test_existing_output_leaf_symlink_refused_without_outside_changes(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

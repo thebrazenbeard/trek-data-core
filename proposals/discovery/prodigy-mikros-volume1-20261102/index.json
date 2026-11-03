@@ -1,0 +1,29 @@
+{
+  "admission_effect": "NONE",
+  "batch_id": "prodigy-mikros-volume1-20261102",
+  "caption_exception": {
+    "literal_label": "Ep#103",
+    "origin": "SAME_MIKROS_ARTICLE_FIGCAPTION",
+    "season_ordinal_or_independence_effect": "NONE",
+    "title": "Starstruck"
+  },
+  "coverage_effect": "NONE",
+  "crosscheck_limit": "FIRST_TEN_VOLUME_EXISTENCE_ONLY_NO_TITLE_OR_ORDINAL_ROSTER",
+  "crosscheck_locator": "https://www.startrek.com/news/star-trek-prodigy-season-1-volume-1-release",
+  "csv_sha256": "17b17170abb753447439bf652c31dd512eabae98215e3ace6b20e10fb403e8f6",
+  "independence_group": "publisher:paramount",
+  "listed_title_count": 10,
+  "observed_on": "2026-11-02",
+  "ordinal_basis": "INFERRED_FROM_STUDIO_VOLUME_1_FIRST_TEN_LISTED_ORDER_NOT_NUMBERED",
+  "proposal_status": "CANDIDATE_METADATA_ONLY",
+  "publisher": "Mikros Animation",
+  "raw_bytes": 39863,
+  "raw_sha256": "eb60ef3f60e5a466bda79b2c58ac97d3cd63c0c9fd730a82ab6e467169079716",
+  "schema_version": "1.0.0",
+  "source_id": "mikros-s1a",
+  "source_page": "https://www.mikrosanimation.com/en/news/star-trek-prodigy-begins-its-blu-ray-journey/",
+  "title_expansions": [
+    "slot_2_contextual_part_ii",
+    "slot_10_contextual_part_2"
+  ]
+}

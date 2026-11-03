@@ -28,6 +28,21 @@ EXPECTED_LIT = {
     "lit-sns-genesis-wave-three-adapted-audio-9780743546591-20261103": ("9780743546591", "ADAPTED_AUDIO_DOWNLOAD"),
 }
 EXPECTED_EPISODES = {"snw-s3-e01-pplus", "snw-s3-e05-pplus", "snw-s3-e06-pplus", "snw-s3-e10-pplus"}
+# These ten exact page-observed image URL bindings are a separately maintained
+# validator pin. Host allowlisting and ISBN substrings alone are insufficient:
+# unrelated images can share a publisher-controlled host and ISBN substring.
+EXPECTED_IMAGE_LOCATORS = {
+    "art-film-wrath-khan-og-20261103": "https://images.prismic.io/star-trek-untold/c963252d-40f1-445e-9616-553653bc94c6_STARTREK_II_HEADER.png?auto=compress,format",
+    "art-film-nemesis-og-20261103": "https://images.prismic.io/star-trek-untold/0104f2c8-8512-4f8c-a3a3-22f99899330d_STARTREK_NEMESIS_HEADER.png?auto=compress,format",
+    "art-film-2009-og-20261103": "https://images.prismic.io/star-trek-untold/a6b3d54c-4937-4430-99f9-f1fe6eb0bf59_STARTREK_IX_HEADER.png?auto=compress,format",
+    "art-lit-kobayashi-ebook-20261103": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780743419987/the-kobayashi-maru-9780743419987_hr.jpg",
+    "art-lit-shadows-audio-20261103": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780743546744/star-trek-shadows-on-the-sun-9780743546744_hr.jpg",
+    "art-lit-genesis-audio-20261103": "https://d28hgpri8am2if.cloudfront.net/book_images/cvr9780743546591_9780743546591_hr.jpg",
+    "art-snw-s3-e01-20261103": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432598595937/PPUSA_STARTREKSTRANGENEWWORLDS_301_V1_3291934_1920x1080.jpg",
+    "art-snw-s3-e05-20261103": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432597059776/PPUSA_STARTREKSTRANGENEWWORLDS_305_3319865_1920x1080.jpg",
+    "art-snw-s3-e06-20261103": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432601155596/PPUSA_STARTREKSTRANGENEWWORLDS_306_3319911_1920x1080.jpg",
+    "art-snw-s3-e10-20261103": "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2025/06/09/2432602179880/PPUSA_STARTREKSTRANGENEWWORLDS_310_3321226_1920x1080.jpg",
+}
 
 
 def _read_json(path: Path) -> dict:
@@ -85,6 +100,7 @@ def errors(data: dict, root: Path = ROOT) -> list[str]:
     check(len(rows) == 10, "exactly ten observations")
     check(Counter(row.get("medium") for row in rows) == EXPECTED_COUNTS, "medium counts")
     check(len({row.get("local_id") for row in rows}) == len(rows), "duplicate local IDs")
+    check({row.get("local_id") for row in rows} == set(EXPECTED_IMAGE_LOCATORS), "exact image observation ID set")
     check(len({row.get("image_locator") for row in rows}) == len(rows), "duplicate image locators")
     seen_film, seen_lit, seen_episode = set(), set(), set()
 
@@ -96,6 +112,7 @@ def errors(data: dict, root: Path = ROOT) -> list[str]:
         page_host, asset_host, independence = EXPECTED_HOSTS[kind]
         check(_valid_https(row.get("publisher_source_url"), page_host), f"{local}: source host")
         check(_valid_https(row.get("image_locator"), asset_host), f"{local}: image host")
+        check(row.get("image_locator") == EXPECTED_IMAGE_LOCATORS.get(row.get("local_id")), f"{local}: exact publisher-page image binding")
         check(row.get("independence_group") == independence, f"{local}: independence group")
         check(row.get("rights_status") == "HELD_NO_PUBLIC_DISPLAY_LICENSE", f"{local}: rights hold")
         check(row.get("display_eligible") is False, f"{local}: display disabled")

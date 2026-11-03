@@ -46,6 +46,18 @@ class ArtworkPacketTest(unittest.TestCase):
     def test_untrusted_image_host_fails(self):
         self.mutated(lambda d: d["observations"][0].update(image_locator="https://evil.example/pixel.jpg"))
 
+    def test_same_allowed_host_other_film_image_fails(self):
+        self.mutated(lambda d: d["observations"][0].update(image_locator="https://images.prismic.io/star-trek-untold/not-wrath-of-khan.png?auto=compress,format"))
+
+    def test_same_allowed_host_other_film_row_swap_fails(self):
+        self.mutated(lambda d: d["observations"][1].update(image_locator=d["observations"][0]["image_locator"]))
+
+    def test_same_isbn_fake_publisher_cover_fails(self):
+        self.mutated(lambda d: d["observations"][3].update(image_locator="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780743419987/not-the-linked-book-9780743419987_hr.jpg"))
+
+    def test_same_edition_other_cdn_path_fails(self):
+        self.mutated(lambda d: d["observations"][5].update(image_locator="https://d28hgpri8am2if.cloudfront.net/book_images/cvr9780743546591_fake_9780743546591_hr.jpg"))
+
     def test_embedded_userinfo_fails(self):
         self.mutated(lambda d: d["observations"][0].update(image_locator="https://user@images.prismic.io/pixel.jpg"))
 

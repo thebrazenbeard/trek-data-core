@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "role": "PRO",
+  "proposal_only": true,
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "source": {
+    "id": "pro-derivative-tvmeg-episode-guide-20261103",
+    "url": "https://tvmeg.com/index.php/2023/06/29/stpepguide/",
+    "type": "THIRD_PARTY_DERIVATIVE_PROMOTIONAL_EPISODE_GUIDE",
+    "retrieved_date_utc": "2026-11-03",
+    "http_status": 200,
+    "raw_html_bytes": 121944,
+    "raw_html_sha256": "e01541968cce29eccba2792b52299e718a36cc4880e1535d0b319737aa4a06bc",
+    "body_physical_lines_read_inclusive": [499, 519],
+    "original_press_page_verified": false,
+    "upstream_attribution_status": "DERIVATIVE_SELF_REPORT_LINE_532",
+    "independence_group": "publisher:paramount-derivative-reproduction",
+    "primary_audiovisual_source_read": false,
+    "copyrighted_source_text_committed": false
+  },
+  "first_party_boundary_check": {
+    "url": "https://www.startrek.com/news/star-trek-prodigy-season-1-volume-1-release",
+    "raw_html_bytes": 1226890,
+    "raw_html_sha256": "cdfa762fd65814d83c864072e1807c5ba5493e8d049845dc321661354225bea9",
+    "scope": "FIRST_TEN_EPISODES_VOLUME_EXISTENCE_ONLY",
+    "provides_numbered_episode_roster": false,
+    "independent_of_claimed_press_upstream": false
+  },
+  "work_candidates": [
+    {"id": "pro-local-work-101102", "display_title": "Lost & Found", "printed_slot_labels": [101, 102], "part_statement": "PART_1_AND_PART_2_IN_ONE_SOURCE_ENTRY", "admission": "UNRESOLVED"},
+    {"id": "pro-local-work-103", "display_title": "Starstruck", "printed_slot_labels": [103], "part_statement": "NO_SEPARATE_PART_STATEMENT", "admission": "UNRESOLVED"},
+    {"id": "pro-local-work-104", "display_title": "Dreamcatcher", "printed_slot_labels": [104], "part_statement": "NO_SEPARATE_PART_STATEMENT", "admission": "UNRESOLVED"},
+    {"id": "pro-local-work-105", "display_title": "Terror Firma", "printed_slot_labels": [105], "part_statement": "NO_SEPARATE_PART_STATEMENT", "admission": "UNRESOLVED"}
+  ],
+  "local_entities": [
+    {"id": "pro-entry-101102", "type": "SOURCE_LIST_ENTRY", "candidate_work_id": "pro-local-work-101102", "source_date_as_written": "Thursday, October 28th", "year_in_listing": null, "writer_credit": ["Kevin Hageman", "Dan Hageman"], "director_credit": ["Ben Hibon"]},
+    {"id": "pro-entry-103", "type": "SOURCE_LIST_ENTRY", "candidate_work_id": "pro-local-work-103", "source_date_as_written": "Thursday, November 4th", "year_in_listing": null, "writer_credit": ["Chad Quandt"], "director_credit": ["Alan Wan"]},
+    {"id": "pro-entry-104", "type": "SOURCE_LIST_ENTRY", "candidate_work_id": "pro-local-work-104", "source_date_as_written": "Thursday, November 11th", "year_in_listing": null, "writer_credit": ["Lisa Schultz Boyd"], "director_credit": ["Steve Ahn", "Sung Shin"]},
+    {"id": "pro-entry-105", "type": "SOURCE_LIST_ENTRY", "candidate_work_id": "pro-local-work-105", "source_date_as_written": "Thursday, November 18th", "year_in_listing": null, "writer_credit": ["Julie Benson", "Shawna Benson"], "director_credit": ["Olga Ulanova"]}
+  ],
+  "evidence": [
+    {"id": "pro-ev-101102", "source_id": "pro-derivative-tvmeg-episode-guide-20261103", "local_entity_id": "pro-entry-101102", "kind": "DERIVATIVE_LIST_ENTRY_TEXT", "raw_html_physical_line": 500, "raw_html_line_sha256": "d661fc7770d609d5fee631f7104b3c1f9c27543ec174c23598aa8299cc7b59c2", "establishes": "The TVMEG guide prints one combined 101/102 entry with displayed title, part labeling, date and credits; not independent episode contents"},
+    {"id": "pro-ev-103", "source_id": "pro-derivative-tvmeg-episode-guide-20261103", "local_entity_id": "pro-entry-103", "kind": "DERIVATIVE_LIST_ENTRY_TEXT", "raw_html_physical_line": 501, "raw_html_line_sha256": "a755823c1b4cb3c537376475d66b81e6cdded332fc11a7e8f4106908420ebcd4", "establishes": "The TVMEG guide prints a 103 entry titled Starstruck with date and credits"},
+    {"id": "pro-ev-104", "source_id": "pro-derivative-tvmeg-episode-guide-20261103", "local_entity_id": "pro-entry-104", "kind": "DERIVATIVE_LIST_ENTRY_TEXT", "raw_html_physical_line": 502, "raw_html_line_sha256": "2c1443c8dfdffab938ea8c4148c5de6938a5e1c6080f485e984845215a9dcf13", "establishes": "The TVMEG guide prints a 104 entry titled Dreamcatcher with date and credits"},
+    {"id": "pro-ev-105", "source_id": "pro-derivative-tvmeg-episode-guide-20261103", "local_entity_id": "pro-entry-105", "kind": "DERIVATIVE_LIST_ENTRY_TEXT", "raw_html_physical_line": 503, "raw_html_line_sha256": "8f81ac358757b941003f55180a11e6a4de980cb3e559fc6720165c280581ffc8", "establishes": "The TVMEG guide prints a 105 entry titled Terror Firma with date and credits"}
+  ],
+  "assertions": [
+    {"id": "pro-as-101102", "subject_local_entity_id": "pro-entry-101102", "predicate": "SOURCE_PRINTS_COMBINED_SLOT_LABELS", "object": "101/102; parts 1 and 2", "supporting_evidence_ids": ["pro-ev-101102"], "status": "SOURCE_ATTRIBUTED_UNRESOLVED"},
+    {"id": "pro-as-103", "subject_local_entity_id": "pro-entry-103", "predicate": "SOURCE_PRINTS_EPISODE_SLOT", "object": "103", "supporting_evidence_ids": ["pro-ev-103"], "status": "SOURCE_ATTRIBUTED_UNRESOLVED"},
+    {"id": "pro-as-104", "subject_local_entity_id": "pro-entry-104", "predicate": "SOURCE_PRINTS_EPISODE_SLOT", "object": "104", "supporting_evidence_ids": ["pro-ev-104"], "status": "SOURCE_ATTRIBUTED_UNRESOLVED"},
+    {"id": "pro-as-105", "subject_local_entity_id": "pro-entry-105", "predicate": "SOURCE_PRINTS_EPISODE_SLOT", "object": "105", "supporting_evidence_ids": ["pro-ev-105"], "status": "SOURCE_ATTRIBUTED_UNRESOLVED"}
+  ],
+  "review_challenges": [
+    "The original Paramount Press Express page was geographically blocked; this derivative does not authenticate it",
+    "The 101/102 combined press entry must not silently generate two independently observed Works",
+    "The existing Mikros inferred source positions and its isolated Ep#103 caption share a broad Paramount origin, not independent corroboration",
+    "Dates are printed without a year and cannot certify original release dates or worldwide ordering",
+    "Promotional episode descriptions are not complete audiovisual narratives or primary scripts"
+  ]
+}

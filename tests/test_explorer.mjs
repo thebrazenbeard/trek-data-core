@@ -288,6 +288,51 @@ test('overview availability is fail-closed when its separate short appendix is m
   }
 });
 
+test('directory free-text finds only loaded reviewed overview words and source receipt paths', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const base = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const short = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+    null, 404, base, 200, SCRIPT, null, 404, short, 200);
+  for (const [term, count, title] of [
+    ['vice admiral', 1, 'The Autobiography of Kathryn Janeway'],
+    ['artificial-intelligence interface', 1, 'Calypso'],
+    ['prh-star-trek-autobiographies-20261103/records.json', 5, 'The Autobiography of Kathryn Janeway']
+  ]) {
+    nodes.get('discovery-query').value = term;
+    nodes.get('discovery-filters').fire('input');
+    assert.equal(nodes.get('discovery-list').children.filter((n) => n.tagName === 'article').length,
+      count, `query ${term} agrees with deterministic source-local CLI`);
+    assert.match(nodes.get('discovery-list').textContent, new RegExp(title));
+  }
+  assert.equal(nodes.get('discovery-nav-count').textContent, '1,214');
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+});
+
+test('query excludes unpublished and altered promotional text even if typed into the search field', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const original = JSON.parse(readFileSync(new URL('../explorer/synopsis-catalog.json', import.meta.url), 'utf8'));
+  const short = readFileSync(new URL('../explorer/short-synopsis-catalog.json', import.meta.url));
+  const tampered = structuredClone(original);
+  tampered.synopses[0].overview_text += ' invented_explorer_only_claim';
+  for (const [base, baseStatus, shortBytes, shortStatus, term] of [
+    [null, 404, short, 200, 'vice admiral'],
+    [tampered, 200, short, 200, 'invented_explorer_only_claim'],
+    [tampered, 200, short, 200, 'vice admiral'],
+    [original, 200, short, 404, 'artificial-intelligence interface']
+  ]) {
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200,
+      null, 404, base, baseStatus, SCRIPT, null, 404, shortBytes, shortStatus);
+    nodes.get('discovery-query').value = term;
+    nodes.get('discovery-filters').fire('input');
+    assert.equal(nodes.get('discovery-list').children.filter((n) => n.tagName === 'article').length, 0,
+      `unreleased overview words must never be searchable: ${term}`);
+    assert.equal(nodes.get('briefing-count').textContent, '0');
+  }
+});
+
 test('changed or missing short synopsis appendix is rejected without deleting original film or literature summaries', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
@@ -1290,6 +1335,8 @@ test('LCARS overflow cue updates after a badge widens through ResizeObserver', a
 
 test('HTML exposes the separate research search and status elements', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /placeholder="Title, source receipt, series, reviewed overview…"/,
+    'free-text discoverability includes only released publisher overviews and existing receipt metadata');
   assert.match(html, /<nav id="explorer-navigation" class="lcars-navigation" aria-label="Explorer sections">/);
   assert.match(html, /<p id="navigation-scroll-hint" class="navigation-scroll-hint" hidden>/, 'overflow cue is hidden before layout is measured');
   assert.match(html, /href="#research-leads">Episode research leads/);

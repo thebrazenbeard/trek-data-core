@@ -67,6 +67,16 @@ class TNGPublisherCardsB010Tests(unittest.TestCase):
         self.reject(lambda x: x["rows"][1].update(publisher_thumbnail_url="http://thumbnails.cbsig.net/a.jpg"))
         self.reject(lambda x: x["rows"][1].update(original_synopsis_draft="TODO"))
 
+    def test_wrong_episode_legitimate_cbs_thumbnail_swaps_rejected(self):
+        # A publisher-owned URL with the right host and image type still cannot
+        # be substituted for a different episode's observed first-party card.
+        self.reject(lambda x: x["rows"][0].update(
+            publisher_thumbnail_url=x["rows"][1]["publisher_thumbnail_url"]))
+        self.reject(lambda x: x["rows"][9].update(
+            publisher_thumbnail_url=x["rows"][8]["publisher_thumbnail_url"]))
+        self.reject(lambda x: x["rows"][4].update(
+            publisher_thumbnail_url=x["rows"][6]["publisher_thumbnail_url"]))
+
     def test_cross_series_catalog_contamination_is_rejected(self):
         catalog = copy.deepcopy(self.catalog)
         for row in catalog["rows"]:

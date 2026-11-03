@@ -36,6 +36,21 @@ EXPECTED = (
     ("009", "Haven", 11, "10e9d9e1223b7e27c2bd66d04b8a41c7e7312bb7729ac17b9253a3d35c4c0c1b"),
     ("010", "The Big Goodbye", 12, "1502728b12bcc254844b63360761c07146eff441a2873ea73d67ac9d04cc6d0d"),
 )
+# Exact, publisher-page-observed card-to-image binding. Hostname validation by
+# itself is insufficient: a different episode's legitimate CBS URL must fail.
+# These literals are historical source-observation pins, NOT reusable licenses.
+EXPECTED_ARTWORK = (
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2020/10/30/1813765187999/CBS_STAR_TREK_TNG_101_102_0721_HD_1920x1080_1122557_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843630/CBS_TNG_103_HD_IMAGE_CIAN_1122579_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26440771931/CBS_TNG_104_HD_IMAGE_CIAN_1122566_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26444355671/CBS_TNG_107_HD_IMAGE_CIAN_1122564_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443331944/CBS_TNG_106_HD_IMAGE_CIAN_1122576_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843933/CBS_TNG_108_HD_IMAGE_CIAN_1122580_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26443843966/CBS_TNG_109_HD_IMAGE_CIAN_R_3164061_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26445891797/CBS_TNG_110_HD_IMAGE_CIAN_1122578_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26442819828/CBS_TNG_105_HD_IMAGE_CIAN_1122572_1920x1080.jpg",
+    "https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2013/04/17/26452035698/CBS_TNG_113_HD_IMAGE_CIAN_R_3164056_1920x1080.jpg",
+)
 TOP_KEYS = {
     "schema_version", "proposal_id", "baseline_accepted_main", "observed_utc_date",
     "source_family", "guide_url", "read_surface", "raw_html_bytes_archived",
@@ -121,8 +136,8 @@ def compile_records(catalog, catalog_bytes, observations):
         parts = urlsplit(artwork) if isinstance(artwork, str) else None
         if (not parts or parts.scheme != "https" or parts.hostname != "thumbnails.cbsig.net"
                 or not re.fullmatch(r"/_x/w400/CBS_Production_Entertainment_VMS/[\w/.-]+\.jpg", parts.path)
-                or parts.query or parts.fragment):
-            raise ValueError("publisher-owned image locator shape mismatch")
+                or parts.query or parts.fragment or artwork != EXPECTED_ARTWORK[i]):
+            raise ValueError("publisher episode card-to-image binding mismatch")
         source = lookup.get(row_id)
         if (not source or source["title"] != title or source["context"] != f"TNG S1E{episode}"
                 or source["medium"] != "EPISODE" or source["candidate_kind"] != "PUBLISHER_EPISODE_SLOT"

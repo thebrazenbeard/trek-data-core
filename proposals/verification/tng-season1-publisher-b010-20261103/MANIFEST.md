@@ -30,6 +30,6 @@ python3 tools/build_tng_publisher_cards_b010.py --check
 python3 -m unittest tests.test_tng_publisher_cards_b010
 ```
 
-The deterministic compiler binds every row to the accepted 1,214-row discovery snapshot, rejects source-title/ordinal/fingerprint changes, source-family contamination, false AV viewing/custody claims, false part splitting, and accidental synopsis/art admission. Source retrieval correctness and paraphrase originality remain independently reviewable **human/model judgments**; the tests do not manufacture that assurance.
+The deterministic compiler binds every row to the accepted 1,214-row discovery snapshot, rejects source-title/ordinal/fingerprint changes, **exact wrong-episode same-host thumbnail substitutions**, source-family contamination, false AV viewing/custody claims, false part splitting, and accidental synopsis/art admission. Each thumbnail URL is pinned to its exact independently observed publisher card; a valid CBS URL for another episode does not pass. Source retrieval correctness and paraphrase originality remain independently reviewable **human/model judgments**; the tests do not manufacture that assurance.
 
 **Next frontier:** adjacent `legacy:s1:tng:011` onward, plus independent editorial verification of this tranche, followed by versioned reconciliation if warranted. Do not claim new global Works, accepted semantic coverage, or publicly released media from these records.

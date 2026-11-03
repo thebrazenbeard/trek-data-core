@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "DIS.PPLUS.S1.FIRST5.20261103",
+  "lane": "DISCOVERY",
+  "status": "PROPOSAL_ONLY",
+  "accepted_base_sha": "6271a861f6dbf5337a6a6792bb4b5ee355311157",
+  "selection_method": "PURPOSIVE_NONREPRESENTATIVE_MISSING_SYNOPSIS_TRANCHE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "artwork_publication_effect": "NONE",
+  "audiovisual_episodes_watched": false,
+  "full_episode_text_read": false,
+  "source": {
+    "id": "dis-s1-paramount-guide-html-20261103",
+    "kind": "FIRST_PARTY_PUBLISHER_EPISODE_GUIDE",
+    "url": "https://www.paramountplus.com/shows/star-trek-discovery/episodes/1/",
+    "retrieved_date_utc": "2026-11-03",
+    "response_status": 200,
+    "raw_html_bytes": 289705,
+    "raw_html_sha256": "5589af123ae4636424d4e364beea3289a1c34656420c5d2c42d658e5717951ec",
+    "publisher_signed_snapshot": false,
+    "original_html_committed": false,
+    "independence_group": "publisher:paramountplus.com"
+  },
+  "candidate_inventory_crosswalk": {
+    "path": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+    "sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418",
+    "scope": "DISCOVERY_ONLY_FIRST_FIVE_TITLE_AND_SLOT_MATCH",
+    "independent_content_witness": false
+  },
+  "works": [
+    {"id":"dis-s1-e01-local","season":1,"episode":1,"title":"The Vulcan Hello","raw_html_card_lines":[1529,1548],"source_datetime":"2017-09-24T17:30:00-07:00","video_path":"/shows/video/l5ANMH9wM7kxwV1qr4u1xn88XOhYMlZX/","publisher_description_length":256,"publisher_description_sha256":"518cc847b8bc2c93b18b7a23e5330fc32fb71ab4b8b24c2c8a15584e944644d0","original_synopsis":"While the Shenzhou patrols Federation space, an unidentified object presents First Officer Michael Burnham with an unfamiliar challenge.","canonical_work_id":null},
+    {"id":"dis-s1-e02-local","season":1,"episode":2,"title":"Battle at the Binary Stars","raw_html_card_lines":[1557,1576],"source_datetime":"2017-09-24T17:32:00-07:00","video_path":"/shows/video/Jy6PKDv_muHj_u6RIG72Gwj5soTkNtkW/","publisher_description_length":247,"publisher_description_sha256":"b5f7aa4ae349a2dd0dd9c2200a1cb303e1d74b705ed3b80ea4724f89c2855f68","original_synopsis":"Klingon ships confront the Shenzhou as negotiations risk failing; Burnham looks to her Vulcan upbringing for perspective.","canonical_work_id":null},
+    {"id":"dis-s1-e03-local","season":1,"episode":3,"title":"Context Is For Kings","raw_html_card_lines":[1585,1604],"source_datetime":"2017-10-01T17:00:00-07:00","video_path":"/shows/video/evBlu7PGiDESNi2iJiIfMyW9kGmFqwY2/","publisher_description_length":212,"publisher_description_sha256":"1f267b9bd473b5516279f5b017c93722b327f5e4641afa7fc642027fafc76f87","original_synopsis":"Burnham arrives aboard the Discovery and senses that appearances may mislead her, particularly where Captain Gabriel Lorca is concerned.","canonical_work_id":null},
+    {"id":"dis-s1-e04-local","season":1,"episode":4,"title":"The Butcher's Knife Cares Not for the Lamb's Cry","raw_html_card_lines":[1613,1632],"source_datetime":"2017-10-08T17:00:00-07:00","video_path":"/shows/video/MtzkoIrzFX7wPRW8EKZAdDlYkTHrTJym/","publisher_description_length":176,"publisher_description_sha256":"89ed5f0c3e9579d586d0cda8f5017248c53b7c3969cc18f4e64e1f8c9e888d93","original_synopsis":"As Starfleet continues its war effort against the Klingons, Burnham adjusts to a new position aboard the Discovery.","canonical_work_id":null},
+    {"id":"dis-s1-e05-local","season":1,"episode":5,"title":"Choose Your Pain","raw_html_card_lines":[1641,1660],"source_datetime":"2017-10-15T17:00:00-07:00","video_path":"/shows/video/SKU_MlD7wrq_KyjdtT4E9THD9G2aA0UQ/","publisher_description_length":326,"publisher_description_sha256":"785f0c9553c36282ba2b0fcab897811ed97ddc29276770eb2807376a4674c481","original_synopsis":"During a mission, Lorca unexpectedly comes into the company of Starfleet prisoner of war Ash Tyler and criminal Harry Mudd.","canonical_work_id":null}
+  ],
+  "local_entities": [
+    {"id":"dis-e01-burnham","work_id":"dis-s1-e01-local","kind":"PERSON_MENTION","label":"Michael Burnham","global_entity_id":null},
+    {"id":"dis-e02-burnham","work_id":"dis-s1-e02-local","kind":"PERSON_MENTION","label":"Burnham","global_entity_id":null},
+    {"id":"dis-e03-lorca","work_id":"dis-s1-e03-local","kind":"PERSON_MENTION","label":"Gabriel Lorca","global_entity_id":null},
+    {"id":"dis-e04-burnham","work_id":"dis-s1-e04-local","kind":"PERSON_MENTION","label":"Burnham","global_entity_id":null},
+    {"id":"dis-e05-tyler-mudd","work_id":"dis-s1-e05-local","kind":"PERSON_GROUP_MENTION","label":"Ash Tyler and Harry Mudd","global_entity_id":null}
+  ],
+  "evidence": [
+    {"id":"dis-e01-publisher","work_id":"dis-s1-e01-local","source_id":"dis-s1-paramount-guide-html-20261103","entity_ids":["dis-e01-burnham"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1529-1548: title, episode slot, datetime, ep__copy","observation":"The publisher describes the Shenzhou encountering an unknown object while on patrol, placing Burnham under strain.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e02-publisher","work_id":"dis-s1-e02-local","source_id":"dis-s1-paramount-guide-html-20261103","entity_ids":["dis-e02-burnham"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1557-1576: title, episode slot, datetime, ep__copy","observation":"The publisher describes Klingon ships, threatened negotiations and Burnham reflecting on her Vulcan upbringing.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e03-publisher","work_id":"dis-s1-e03-local","source_id":"dis-s1-paramount-guide-html-20261103","entity_ids":["dis-e03-lorca"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1585-1604: title, episode slot, datetime, ep__copy","observation":"The publisher describes Burnham joining Discovery and being suspicious about circumstances involving Captain Lorca.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e04-publisher","work_id":"dis-s1-e04-local","source_id":"dis-s1-paramount-guide-html-20261103","entity_ids":["dis-e04-burnham"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1613-1632: title, episode slot, datetime, ep__copy","observation":"The publisher describes Starfleet's effort to end the Klingon war and Burnham adjusting to her new role.","scope":"PUBLISHER_TEXT_ONLY"},
+    {"id":"dis-e05-publisher","work_id":"dis-s1-e05-local","source_id":"dis-s1-paramount-guide-html-20261103","entity_ids":["dis-e05-tyler-mudd"],"kind":"PUBLISHER_DESCRIPTION","locator":"raw HTML lines 1641-1660: title, episode slot, datetime, ep__copy","observation":"The publisher describes Lorca sharing unexpected circumstances with Starfleet POW Tyler and criminal Mudd.","scope":"PUBLISHER_TEXT_ONLY"}
+  ],
+  "assertions": [
+    {"id":"dis-e01-publisher-claim","work_id":"dis-s1-e01-local","evidence_id":"dis-e01-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e02-publisher-claim","work_id":"dis-s1-e02-local","evidence_id":"dis-e02-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e03-publisher-claim","work_id":"dis-s1-e03-local","evidence_id":"dis-e03-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e04-publisher-claim","work_id":"dis-s1-e04-local","evidence_id":"dis-e04-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"},
+    {"id":"dis-e05-publisher-claim","work_id":"dis-s1-e05-local","evidence_id":"dis-e05-publisher","predicate":"PUBLISHER_DESCRIBES","status":"UNVERIFIED_FICTIONAL_CONTENT"}
+  ],
+  "artwork_candidates": [
+    {"id":"dis-s1-e01-held-art","work_id":"dis-s1-e01-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/09/15/1047444547534/CBS_STD_101_HD_IMAGE_FINAL_568072_1920x1080.jpg","source_locator":"raw HTML line 1530","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e02-held-art","work_id":"dis-s1-e02-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/09/15/1047440451962/CBS_STD_102_HD_IMAGE_FINAL_1162350_1920x1080.jpg","source_locator":"raw HTML line 1558","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e03-held-art","work_id":"dis-s1-e03-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/10/01/1059226691590/CBS_STD_103_HD_IMAGE_FINAL_1162346_1920x1080.jpg","source_locator":"raw HTML line 1586","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e04-held-art","work_id":"dis-s1-e04-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/10/08/1065577027972/CBS_STD_104_HD_IMAGE_FINAL_1162347_1920x1080.jpg","source_locator":"raw HTML line 1614","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"},
+    {"id":"dis-s1-e05-held-art","work_id":"dis-s1-e05-local","url":"https://thumbnails.cbsig.net/_x/w400/CBS_Production_Entertainment_VMS/2017/10/11/1069455939753/CBS_STAR_TREK_DISCOVERY_105_654363_1920x1080.jpg","source_locator":"raw HTML line 1642","rights_status":"HELD_NO_PUBLIC_DISPLAY_LICENSE","bytes_downloaded":false,"explorer_effect":"NONE"}
+  ],
+  "limits": [
+    {"kind":"SINGLE_PUBLISHER_SOURCE","note":"Five cards on one Paramount+ page share publisher lineage; no independent corroboration of story content."},
+    {"kind":"NO_FULL_EPISODE","note":"No episode, subtitle or authenticated script was read, so synopsis statements remain publisher descriptions."},
+    {"kind":"UNVERIFIED_RELEASE_DATE_SEMANTICS","note":"Raw HTML datetime strings preserve published zone/instant; they do not independently settle local broadcast or streaming chronology."}
+  ]
+}

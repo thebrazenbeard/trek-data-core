@@ -20,7 +20,10 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
   'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
   'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
-  'paramount-list', 'paramount-empty'];
+  'paramount-list', 'paramount-empty', 'episode-source-nav-count', 'episode-source-state',
+  'episode-source-download', 'episode-source-query', 'episode-source-series',
+  'episode-source-status', 'episode-source-tag', 'episode-source-filters',
+  'episode-source-summary', 'episode-source-list', 'episode-source-empty'];
 
 class FakeNode {
   constructor(tag = 'div') {
@@ -66,7 +69,7 @@ function traverse(node, predicate) {
   return found;
 }
 
-async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404) {
+async function runWithIndex(index, status = 200, research = null, researchStatus = 404, browserAudio = {}, films = null, filmStatus = 404, directory = null, directoryStatus = 404, artwork = null, artworkStatus = 404, synopsis = null, synopsisStatus = 404, appScript = SCRIPT, metadataBytes = null, metadataStatus = 404, shortBytes = null, shortStatus = 404, rejectDigest = false, publisherBytes = null, publisherStatus = 404, sourceCardBytes = null, sourceCardStatus = 404, isbnBytes = null, isbnStatus = 404, paramountBytes = null, paramountStatus = 404, episodeBytes = null, episodeStatus = 404) {
   const nodes = new Map(IDS.map((id) => [id, new FakeNode()]));
   const requested = new Set();
   const inFlightDigests = new Set();
@@ -90,6 +93,9 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('publisher-isbn-tag').value = 'all';
   nodes.get('paramount-status').value = 'all';
   nodes.get('paramount-tag').value = 'all';
+  nodes.get('episode-source-series').value = 'all';
+  nodes.get('episode-source-status').value = 'all';
+  nodes.get('episode-source-tag').value = 'all';
   class OptionNode extends FakeNode {
     constructor(text, value) { super('option'); this.textContent = text; this.value = value; }
   }
@@ -137,6 +143,10 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
       status: paramountStatus, ok: paramountStatus >= 200 && paramountStatus < 300,
       arrayBuffer: async () => paramountBytes.buffer.slice(paramountBytes.byteOffset, paramountBytes.byteOffset + paramountBytes.byteLength)
     };
+    if (path === './episode-source-cards.json') return {
+      status: episodeStatus, ok: episodeStatus >= 200 && episodeStatus < 300,
+      arrayBuffer: async () => episodeBytes.buffer.slice(episodeBytes.byteOffset, episodeBytes.byteOffset + episodeBytes.byteLength)
+    };
     assert.fail('Unexpected data request: ' + path);
   };
   const deterministicCrypto = {
@@ -165,7 +175,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   const optionalPaths = ['./film-catalog.json', './discovery-catalog.json', './lit-publisher-edition-leads.json',
     './artwork-catalog.json', './synopsis-catalog.json',
     './metadata-rechecks.json', './short-synopsis-catalog.json', './accepted-source-card-rechecks.json',
-    './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json'];
+    './publisher-isbn-crosschecks.json', './paramount-film-rechecks.json', './episode-source-cards.json'];
   const deadline = Date.now() + 5000;
   let quietTurns = 0;
   while (quietTurns < 2 && Date.now() < deadline) {
@@ -197,6 +207,71 @@ const catalog = {
   missions: [{ id: 'tng', title: 'Star Trek: The Next Generation' }, { id: 'voy', title: 'Star Trek: Voyager' }],
   briefings: [], records: []
 };
+
+const episodeNodes = (bytes, status = 200, script = SCRIPT) => runWithIndex(catalog, 200,
+  null, 404, {}, null, 404, null, 404, null, 404, null, 404, script,
+  null, 404, null, 404, false, null, 404, null, 404, null, 404, null, 404, bytes, status);
+
+test('20 separately validated publisher episode guide cards search by title, series, slot and utterance tag', async () => {
+  const bytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
+  const nodes = await episodeNodes(bytes);
+  assert.equal(nodes.get('episode-source-nav-count').textContent, '20');
+  assert.equal(nodes.get('episode-source-download').hidden, false);
+  assert.match(nodes.get('episode-source-summary').textContent, /^20 of 20/);
+  assert.equal(traverse(nodes.get('episode-source-list'), (n) => n.tagName === 'article').length, 20);
+  assert.match(nodes.get('episode-source-list').textContent, /The Impossible Box/);
+  assert.match(nodes.get('episode-source-list').textContent, /Hegemony, Part II/);
+  for (const forbidden of ['CLOSE_READ', 'AUDITED_WORK_ADMITTED', 'thumbnail_url', 'synopsis_paraphrase_candidate']) {
+    assert.equal(nodes.get('episode-source-list').textContent.includes(forbidden), false);
+  }
+  nodes.get('episode-source-query').value = 'S3E06';
+  nodes.get('episode-source-filters').fire('input');
+  assert.match(nodes.get('episode-source-summary').textContent, /^1 of 20/);
+  assert.match(nodes.get('episode-source-list').textContent, /The Sehlat Who Ate Its Tail/);
+  nodes.get('episode-source-query').value = '';
+  nodes.get('episode-source-series').value = 'PIC';
+  nodes.get('episode-source-filters').fire('change');
+  assert.match(nodes.get('episode-source-summary').textContent, /^10 of 20/);
+  nodes.get('episode-source-series').value = 'all';
+  nodes.get('episode-source-tag').value = 'publisher-utterance:pike';
+  nodes.get('episode-source-filters').fire('change');
+  assert.match(nodes.get('episode-source-summary').textContent, /^4 of 20/);
+  nodes.get('episode-source-tag').value = 'all';
+  nodes.get('episode-source-status').value = 'HELD_PUBLISHER_GUIDE_ONLY';
+  nodes.get('episode-source-filters').fire('change');
+  assert.match(nodes.get('episode-source-summary').textContent, /^20 of 20/);
+});
+
+test('episode card shelf fails closed on absent, altered and rehashed source/rights/slot forgeries', async () => {
+  const original = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
+  const missing = await episodeNodes(original, 404);
+  assert.equal(missing.get('episode-source-nav-count').textContent, '—');
+  assert.match(missing.get('episode-source-summary').textContent, /unavailable; not a verified zero/);
+  const mangled = Buffer.from(original.toString('utf8').replace('Remembrance', 'MALICIOUS TITLE'));
+  const rejected = await episodeNodes(mangled);
+  assert.equal(rejected.get('episode-source-nav-count').textContent, '—');
+  const source = JSON.parse(original);
+  const currentHash = '38dfde3c3a1cfe38e41bf6740327b070f7846e2dc7c6149b74f88db7b85186f6';
+  for (const mutate of [
+    (d) => { d.rows[0].source_status = 'AUDITED_WORK_ADMITTED'; },
+    (d) => { d.rows[0].work_admission_effect = 'ADMITTED'; },
+    (d) => { d.rows[0].artwork_release_effect = 'CLEARED'; },
+    (d) => { d.rows[0].publisher_guide_url = 'https://www.paramountplus.com/shows/star-trek-strange-new-worlds/episodes/3/'; },
+    (d) => { d.rows[0].title = d.rows[1].title; },
+    (d) => { d.rows[0].tags.push('publisher-utterance:forged'); },
+    (d) => { d.rows[0].source_input_sha256 = '0'.repeat(64); },
+    (d) => { d.rows[1] = d.rows[0]; },
+  ]) {
+    const d = structuredClone(source);
+    mutate(d);
+    const bytes = Buffer.from(JSON.stringify(d));
+    const patchedScript = SCRIPT.replace(currentHash, createHash('sha256').update(bytes).digest('hex'));
+    const nodes = await episodeNodes(bytes, 200, patchedScript);
+    assert.equal(nodes.get('episode-source-nav-count').textContent, '—');
+    assert.equal(nodes.get('episode-source-list').children.length, 0);
+    assert.match(nodes.get('episode-source-state').textContent, /withheld/i);
+  }
+});
 
 test('13 first-party Paramount source-only film page rechecks search by cast, year and held anomaly', async () => {
   const bytes = readFileSync(new URL('../explorer/paramount-film-rechecks.json', import.meta.url));

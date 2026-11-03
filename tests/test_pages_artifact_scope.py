@@ -121,6 +121,12 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("! -path explorer/paramount-film-rechecks.json", text)
         self.assertIn("python3 tools/build_paramount_film_rechecks.py --check", text)
         self.assertIn("python3 tools/query_paramount_film_rechecks.py --limit 1", text)
+        self.assertIn("! -path explorer/episode-source-cards.json", text)
+        self.assertIn("python3 tools/build_episode_source_cards.py --check", text)
+        self.assertIn("python3 tools/query_episode_source_cards.py --validate-sources --limit 1", text)
+        for packet in ("pic/picard-s1-first5-guide-cards-20261103", "pic/picard-s1-last5-guide-cards-20261103",
+                       "snw/s3-publisher-first5-20261103", "snw/s3-publisher-last5-20261103"):
+            self.assertIn(f"python3 proposals/research/{packet}/validate.py", text)
         for packet in ("paramount-six-source-pages-20261103", "paramount-second-six-pages-20261103",
                        "beyond-paramount-metadata-20261103"):
             self.assertIn(f"python3 proposals/films/{packet}/validate.py", text)
@@ -146,7 +152,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("id: readiness", text)
         self.assertIn("ready=false", text)
         self.assertIn("skipping Pages publication", text)
-        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 15)
+        self.assertEqual(text.count("if: steps.readiness.outputs.ready == 'true'"), 16)
         self.assertIn("ready: ${{ steps.readiness.outputs.ready }}", job_body("build"))
         self.assertIn("needs: build", job_body("deploy"))
 
@@ -216,6 +222,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
         self.assertIn("git rev-parse HEAD:explorer/lit-publisher-edition-leads.json", final)
         self.assertIn("git rev-parse HEAD:explorer/publisher-isbn-crosschecks.json", final)
         self.assertIn("git rev-parse HEAD:explorer/paramount-film-rechecks.json", final)
+        self.assertIn("git rev-parse HEAD:explorer/episode-source-cards.json", final)
         self.assertIn("git rev-parse HEAD:explorer/film-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/discovery-catalog.json", final)
         self.assertIn("git rev-parse HEAD:explorer/synopsis-catalog.json", final)

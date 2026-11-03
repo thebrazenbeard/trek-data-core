@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=38c9ea9bffefb5c3d3f853d3050d7aca847fc8f69acbb4f90555653776aa6d31">
-  <script src="./app.js?v=5506b463e41e7bfbc0c0cffebac9da9b66df7e1ffefdf33c30d7c34956f8b37e" defer></script>
+  <link rel="stylesheet" href="./app.css?v=21a51447b3b9cb7693a76d332f38fb03ff012eb3a2941373b0f9300028734c76">
+  <script src="./app.js?v=1e6809bf92892818db95d540356af63c46e04b193871b74571565efad2ae55cc" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -28,6 +28,7 @@
     <a href="#publisher-editions">Literary editions <span id="publisher-edition-nav-count">—</span></a>
     <a href="#publisher-isbn-crosschecks">ISBN crosschecks <span id="publisher-isbn-nav-count">—</span></a>
     <a href="#paramount-rechecks">Studio page checks <span id="paramount-nav-count">—</span></a>
+    <a href="#episode-source-cards">Publisher episode cards <span id="episode-source-nav-count">—</span></a>
     <a href="#missions">Missions</a>
     <a href="#briefings">Briefings</a>
     <a href="#records">Continuity</a>
@@ -154,6 +155,25 @@
       <p id="paramount-summary" class="result-summary" aria-live="polite" aria-atomic="true">Paramount source-only metadata not yet loaded.</p>
       <div id="paramount-list" class="card-grid paramount-grid"></div>
       <p id="paramount-empty" class="empty-state" hidden>No Paramount publisher metadata checks match these filters.</p>
+    </section>
+
+    <section id="episode-source-cards" class="collection episode-source-cards" aria-labelledby="episode-source-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Series researchers / Accepted source-local cards</p><h2 id="episode-source-heading">Publisher episode-guide cards</h2></div>
+        <p>Twenty validated <em>Paramount+ episode-guide observations</em> from <em>Picard</em> S1 and <em>Strange New Worlds</em> S3. Each title, slot and tagged publisher-description mention is <strong>source-local and HELD</strong>—not an admitted Work, watched episode, canon fact, approved synopsis or licensed image. This shelf is separate from the 1,214 discovery entries and legacy episode leads.</p>
+      </div>
+      <p id="episode-source-state" class="directory-state" role="status" aria-live="polite">Checking validated episode-guide source cards…</p>
+      <form id="episode-source-filters" class="publisher-edition-filters" role="search" aria-label="Search accepted held publisher episode-guide cards" autocomplete="off">
+        <div class="field"><label for="episode-source-query">Episode, slot or publisher-description term</label><input id="episode-source-query" type="search" maxlength="160" placeholder="e.g. Nepenthe, S3E06, Pike…" spellcheck="false"></div>
+        <div class="field"><label for="episode-source-series">Series</label><select id="episode-source-series"><option value="all">Both publisher series</option><option value="PIC">Star Trek: Picard</option><option value="SNW">Star Trek: Strange New Worlds</option></select></div>
+        <div class="field"><label for="episode-source-status">Review state</label><select id="episode-source-status"><option value="all">All held source-only observations</option><option value="HELD_PUBLISHER_GUIDE_ONLY">HELD publisher guide cards</option></select></div>
+        <div class="field"><label for="episode-source-tag">Publisher/source tag</label><select id="episode-source-tag"><option value="all">All source-local terms and facets</option></select></div>
+        <div class="filter-action"><button type="reset">Clear episode card filters</button></div>
+      </form>
+      <p class="directory-state"><a id="episode-source-download" href="./episode-source-cards.json" download="trek-episode-publisher-source-cards.json" hidden>Download the separate validated source-only episode-card JSON</a>. An offline query utility recompiles all four original accepted research validators before returning matches. No episode body, synopsis text, thumbnail bytes or artwork URLs are included here.</p>
+      <p id="episode-source-summary" class="result-summary" aria-live="polite" aria-atomic="true">Episode source cards not yet loaded.</p>
+      <div id="episode-source-list" class="card-grid paramount-grid"></div>
+      <p id="episode-source-empty" class="empty-state" hidden>No held publisher-guide cards match those filters.</p>
     </section>
 
     <section class="search-panel" aria-labelledby="search-heading">

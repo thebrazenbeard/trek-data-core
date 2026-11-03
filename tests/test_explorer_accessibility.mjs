@@ -20,7 +20,11 @@ const ids = [
   'publisher-isbn-filters', 'publisher-isbn-summary', 'publisher-isbn-list', 'publisher-isbn-empty',
   'paramount-nav-count', 'paramount-state', 'paramount-download', 'paramount-query',
   'paramount-status', 'paramount-tag', 'paramount-filters', 'paramount-summary',
-  'paramount-list', 'paramount-empty'
+  'paramount-list', 'paramount-empty',
+  'episode-source-nav-count', 'episode-source-state', 'episode-source-download',
+  'episode-source-query', 'episode-source-series', 'episode-source-status',
+  'episode-source-tag', 'episode-source-filters', 'episode-source-summary',
+  'episode-source-list', 'episode-source-empty'
 ];
 
 class Node {
@@ -154,4 +158,16 @@ test('Paramount film-page shelf exposes accessible filters and explicit non-admi
   assert.match(html, /id="paramount-state"[^>]*role="status" aria-live="polite"/);
   assert.match(html, /id="paramount-download"[^>]*hidden>/);
   assert.match(html, /not film viewing, canonical Work identity, independent witnesses or released poster\/synopsis text/);
+});
+
+test('HELD publisher episode-guide shelf has accessible tags, filters, and no Work or synopsis promotion', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<section id="episode-source-cards"[^>]*aria-labelledby="episode-source-heading"/);
+  assert.match(html, /<form id="episode-source-filters"[^>]*role="search" aria-label="Search accepted held publisher episode-guide cards"/);
+  for (const id of ['episode-source-query', 'episode-source-series', 'episode-source-status', 'episode-source-tag']) {
+    assert.ok(html.includes(`<label for="${id}">`));
+  }
+  assert.match(html, /id="episode-source-state"[^>]*role="status" aria-live="polite"/);
+  assert.match(html, /id="episode-source-download"[^>]*hidden>/);
+  assert.match(html, /not an admitted Work, watched episode, canon fact, approved synopsis or licensed image/);
 });

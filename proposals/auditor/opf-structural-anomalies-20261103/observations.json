@@ -43,9 +43,13 @@
     "literal_missing_total": 3,
     "uri_resolved_missing_total": 8
   },
-  "original_lit_stem_encoding_candidate": {
+  "original_lit_stem_pairing_candidate": {
     "converted_opf_source_local_id": "opf-local:0156",
-    "anomaly_class": "REPLACEMENT_CHARACTER_IN_ORIGINAL_LIT_FILENAME_STEM",
+    "anomaly_class": "UTF8_ZIP_FILENAME_MIDDLE_DOT_PUNCTUATION",
+    "original_lit_unicode_codepoint": "U+00B7",
+    "original_lit_zip_entry_flag_bits_hex": "0x0808",
+    "original_lit_zip_filename_utf8_flag": true,
+    "original_lit_replacement_character_count_in_347_lit_names": 0,
     "original_to_converted_filename_pairing": "UNRESOLVED"
   }
 }

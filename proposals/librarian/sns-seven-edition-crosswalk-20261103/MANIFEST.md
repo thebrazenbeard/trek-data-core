@@ -3,7 +3,7 @@
 **Batch:** `SNS.PUBLIC.SEVEN.EDITION.LOCATORS.20261103`  
 **Role:** Librarian source/edition inventory; proposal-only, no published source/Work, no rights or coverage effect.  
 **Accepted main at final branch preparation:** `6271a861f6dbf5337a6a6792bb4b5ee355311157` (2026-11-03 UTC; refreshed from earlier selection `f2a98d5a958ce6263ca37ac0bf44e3d074751211`).  
-**Records SHA-256:** `87b2567138265ff76a709233c47f5d0490d5f6cb52f74fc4866342ffa1cd881e`
+**Records SHA-256:** `f172a982104bac1bb6a6b4dd6494ecf76aca54da490c459cf1726823d7667f94`
 
 ## First-party pages actually read
 
@@ -19,7 +19,7 @@ The publisher's own HTML was not available through the Lappy direct HTTP route, 
 | *Star Trek: Strange New Worlds: Toward the Night* `9781668074565` | Hardcover; Pocket Books/Star Trek | 2025-04-29; 336 pp. | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Toward-the-Night/James-Swallow/Star-Trek-Strange-New-Worlds/9781668074565) |
 | *Star Trek: Strange New Worlds: Toward the Night* `9781668116968` | Unabridged audio; Simon & Schuster Audio; Robert Petkoff | 2025-04-29; 9h 56m | [First-party edition](https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Toward-the-Night/James-Swallow/Star-Trek-Strange-New-Worlds/9781668116968) |
 
-The same-title editions remain separate ISBN and SKU identities. Especially important, **No Man's Land's 2022 original audio drama is not silently identified as the same expression/Work as its 2024 printed or eBook script**, despite shared title and publisher overview. The audio page credits a large performer cast, and this batch retains only a provenance pointer instead of copying the entire credit list. Exact textual equivalence is *unresolved*; no reconciliation was attempted.
+The `format` field preserves the publisher's selected media label exactly (`TRADE_PAPERBACK`, `EBOOK`, or `UNABRIDGED_AUDIO_DOWNLOAD`); the published-script versus original-audio-drama distinction belongs in the separately held `identity_state`, not an invented hybrid media label. The same-title editions remain separate ISBN and SKU identities. Especially important, **No Man's Land's 2022 original audio drama is not silently identified as the same expression/Work as its 2024 printed or eBook script**, despite shared title and publisher overview. The audio page credits a large performer cast, and this batch retains only a provenance pointer instead of copying the entire credit list. Exact textual equivalence is *unresolved*; no reconciliation was attempted.
 
 ## Fingerprints and artwork (held)
 

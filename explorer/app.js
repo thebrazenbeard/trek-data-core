@@ -456,22 +456,30 @@
     ['directory:literature:prh-autobiography-kirk', {
       source_locator: 'https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/',
       isbn: '9781783297481', cover_id: 13083310,
-      edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa'
+      edition_metadata_sha256: 'dd84f9c51b9ee75de748b3ac542e74c9099d4eac0882ffcf97877fc182fb13aa',
+      medium_preview_sha256: 'aac6802ca2738fb8df5c119eb05824936b52653233a01a755441d8f57458304a',
+      medium_preview_width: 180, medium_preview_height: 275
     }],
     ['directory:literature:prh-autobiography-picard', {
       source_locator: 'https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/',
       isbn: '9781785659409', cover_id: 10694457,
-      edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f'
+      edition_metadata_sha256: '733e32b6e06efcca3392046968e4b34d6fa92747c223e012665aebf39df4644f',
+      medium_preview_sha256: '9e1b7f2c9b84d63bc00f2d32cb8fd3c605788ddcde8d174a964d7edc33def887',
+      medium_preview_width: 180, medium_preview_height: 274
     }],
     ['directory:literature:prh-autobiography-janeway', {
       source_locator: 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/',
       isbn: '9781789095333', cover_id: 12097815,
-      edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09'
+      edition_metadata_sha256: 'b70790160ac39ca865e9447684df05b45f601c3004c7a7e0d2384c23701cdf09',
+      medium_preview_sha256: '8ee45c479222f6b021bca4094673d7232e75c2b15aec43b57021ecab3b874051',
+      medium_preview_width: 180, medium_preview_height: 273
     }],
     ['directory:literature:prh-autobiography-spock', {
       source_locator: 'https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/',
       isbn: '9781785659416', cover_id: 11945787,
-      edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d'
+      edition_metadata_sha256: 'b5b382d37755a124b0298ae86deebec1fadf1979c526ce5e47304c331892bc2d',
+      medium_preview_sha256: '6f6a749fcbccc95fbf3700b0d1a78eee04924996d6f4a756abe49b586d8bf4d0',
+      medium_preview_width: 180, medium_preview_height: 271
     }]
   ]);
   // Likewise, a self-attested file digest/permission string in an optional
@@ -490,7 +498,7 @@
   // from validated source-local metadata. It is never presented as a frame
   // grab, poster or jacket. Actual imagery requires a separately admitted,
   // rights-reviewed artwork sidecar and explicit visitor opt-in.
-  function makeArtworkSlot(medium, key, row) {
+  function makeArtworkSlot(medium, key, row, gallery = false) {
     const label = artworkKinds[medium] || 'Media';
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
@@ -523,9 +531,15 @@
     if (source) {
       const img = el('img');
       const remoteLibrary = source.provider === 'OPEN_LIBRARY_COVERS_API';
+      const mediumPreview = remoteLibrary && source.image_size === 'M';
+      const mediumReceipt = mediumPreview ? reviewedOpenLibraryEditionReceipts.get(key) : null;
+      if (gallery && mediumReceipt) {
+        panel.className += ' artwork-panel-medium';
+        frame.className += ' artwork-slot-medium';
+      }
       img.alt = source.alt_text;
-      img.width = 112;
-      img.height = 142;
+      img.width = gallery && mediumReceipt ? mediumReceipt.medium_preview_width : 112;
+      img.height = gallery && mediumReceipt ? mediumReceipt.medium_preview_height : 142;
       img.loading = 'lazy';
       img.decoding = 'async';
       img.referrerPolicy = 'no-referrer';
@@ -536,7 +550,17 @@
         ({ PUBLICITY_STILL: 'Rights-reviewed publicity still', POSTER: 'Rights-reviewed poster',
           COVER: 'Rights-reviewed cover', OTHER: 'Rights-reviewed source image' }[source.artwork_kind]);
       status.textContent = kind;
+      let attemptedSmallFallback = false;
       img.addEventListener('error', () => {
+        // The separately reviewed S jacket remains a safe once-only fallback
+        // after a failed M request. No retry is allowed after opt-out, and the
+        // second failure returns to original LCARS index art.
+        if (mediumPreview && !attemptedSmallFallback && artworkState.enabled) {
+          attemptedSmallFallback = true;
+          status.textContent = 'Medium jacket unavailable · reviewed small Open Library preview';
+          img.src = `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`;
+          return;
+        }
         frame.className = frame.className.replace(' artwork-has-source', '');
         frame.setAttribute('role', 'img');
         frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
@@ -546,7 +570,7 @@
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.
       img.src = remoteLibrary
-        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-S.jpg?default=false`
+        ? `https://covers.openlibrary.org/b/id/${source.cover_id}-${mediumPreview ? 'M' : 'S'}.jpg?default=false`
         : source.image_path;
       frame.append(img);
       const credit = el('a', 'artwork-credit', remoteLibrary ? 'Open Library · edition record' : source.attribution_text);
@@ -1234,13 +1258,16 @@
       .sort((a, b) => a.row.title.localeCompare(b.row.title) || a.key.localeCompare(b.key));
     for (const { key, source, row } of entries.slice(0, 24)) {
       const card = el('article', 'artwork-gallery-card');
-      const art = makeArtworkSlot(row.medium || 'FILM', key, row);
+      const art = makeArtworkSlot(row.medium || 'FILM', key, row, true);
+      if (source.image_size === 'M') card.className += ' artwork-gallery-card-medium';
       const copy = el('div', 'artwork-gallery-copy');
       copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
       copy.append(el('h4', '', row.title));
       copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
       copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
-        ? 'Low-resolution API thumbnail · underlying copyright unresolved'
+        ? (source.image_size === 'M'
+          ? 'Medium Open Library API jacket preview · 180 pixels wide (small reviewed fallback if unavailable) · copyright unresolved'
+          : 'Small Open Library API thumbnail · underlying copyright unresolved')
         : 'Rights-reviewed public image · see source attribution'));
       if (key.startsWith('directory:')) {
         const locate = el('button', 'artwork-gallery-locate', 'Find this reference in the directory');
@@ -1290,14 +1317,21 @@
     } catch (_) { return false; }
   }
 
-  function acceptArtworkCatalog(data) {
+  function acceptArtworkCatalog(data, expectedVersion) {
     const exactKeys = (item, keys) => item && typeof item === 'object' && !Array.isArray(item) &&
       Object.keys(item).length === keys.length && keys.every((key) => Object.hasOwn(item, key));
     const rootKeys = ['schema_version', 'data_status', 'coverage_effect', 'rights_policy', 'artwork_count', 'artwork'];
     const localKeys = ['row_id', 'image_path', 'image_sha256', 'alt_text', 'source_locator',
       'rights_status', 'rights_receipt_sha256', 'artwork_kind', 'attribution_text', 'attribution_url'];
     const openLibraryKeys = ['row_id', 'provider', 'cover_id', 'isbn', 'alt_text', 'source_locator', 'rights_status', 'edition_metadata_sha256', 'attribution_url'];
-    if (!exactKeys(data, rootKeys) || data.schema_version !== '1.2.0' ||
+    const mediumLibraryKeys = [...openLibraryKeys, 'image_size'];
+    const smallCatalog = data?.schema_version === '1.2.0';
+    const mediumCatalog = data?.schema_version === '1.3.0';
+    // This dual reader is a no-blank rollout bridge. v1.2 may show only the
+    // independently approved S covers; v1.3 requires M and the same exact
+    // code-owned four row/edition/cover pins. Never infer arbitrary sizes.
+    if (!exactKeys(data, rootKeys) || (!smallCatalog && !mediumCatalog) ||
+        data.schema_version !== expectedVersion ||
         data.data_status !== 'PROVENANCE_REVIEWED_ARTWORK' || data.coverage_effect !== 'NONE' ||
         data.rights_policy !== 'PER_ENTRY_DISPLAY_GATE' ||
         !Array.isArray(data.artwork) || data.artwork.length < 1 || data.artwork.length > 5000 ||
@@ -1318,7 +1352,8 @@
       }
       if (item.provider === 'OPEN_LIBRARY_COVERS_API') {
         const literaryRow = sourceRows.get(item.row_id);
-        if (!exactKeys(item, openLibraryKeys) ||
+        if (!exactKeys(item, mediumCatalog ? mediumLibraryKeys : openLibraryKeys) ||
+            (mediumCatalog && item.image_size !== 'M') ||
             literaryRow.medium !== 'LITERATURE' ||
             !Number.isSafeInteger(item.cover_id) || item.cover_id < 1 || item.cover_id > 999999999 ||
             typeof item.isbn !== 'string' || !/^97[89][0-9]{10}$/.test(item.isbn) ||
@@ -1346,7 +1381,10 @@
         const receipt = reviewedOpenLibraryEditionReceipts.get(item.row_id);
         if (!receipt || receipt.source_locator !== item.source_locator ||
             receipt.isbn !== item.isbn || receipt.cover_id !== item.cover_id ||
-            receipt.edition_metadata_sha256 !== item.edition_metadata_sha256) {
+            receipt.edition_metadata_sha256 !== item.edition_metadata_sha256 ||
+            (mediumCatalog && (!/^[a-f0-9]{64}$/.test(receipt.medium_preview_sha256) ||
+              receipt.medium_preview_width !== 180 ||
+              !Number.isSafeInteger(receipt.medium_preview_height)))) {
           throw new Error('External cover lacks an independently reviewed row/edition/cover crosswalk receipt.');
         }
       } else if (!exactKeys(item, localKeys) ||
@@ -1379,6 +1417,26 @@
   }
 
   async function loadArtworkCatalog() {
+    // Keep the accepted v1.2 S manifest intact for old HTML/JS retained in
+    // browser or Pages caches. The new v1.3 M manifest is an *additive* URL,
+    // not an in-place schema overwrite. Invalid or absent M can only fall
+    // back to the separately reviewed v1.2 S thumbnails.
+    let mediumProblem = null;
+    try {
+      const medium = await fetch('./artwork-catalog-v1.3.json', { cache: 'no-store' });
+      if (medium.ok) {
+        try {
+          acceptArtworkCatalog(await medium.json(), '1.3.0');
+          return;
+        } catch (error) {
+          mediumProblem = error.message || 'v1.3 medium release rejected';
+        }
+      } else if (medium.status !== 404) {
+        mediumProblem = `HTTP ${medium.status}`;
+      }
+    } catch (error) {
+      mediumProblem = error.message || 'medium manifest unavailable';
+    }
     try {
       const response = await fetch('./artwork-catalog.json', { cache: 'no-store' });
       if (response.status === 404) {
@@ -1386,7 +1444,10 @@
         return;
       }
       if (!response.ok) throw new Error(`Artwork manifest returned HTTP ${response.status}.`);
-      acceptArtworkCatalog(await response.json());
+      acceptArtworkCatalog(await response.json(), '1.2.0');
+      if (mediumProblem) {
+        byId('artwork-state').textContent += ` Medium rendition held (${mediumProblem}); four reviewed small previews remain available.`;
+      }
     } catch (error) {
       setArtworkAvailability(false, `Artwork release was rejected: ${error.message || 'Check artwork rights receipts.'}`);
     }

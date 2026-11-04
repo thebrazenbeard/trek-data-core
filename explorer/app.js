@@ -546,15 +546,26 @@
   const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
-  // Reproducible, locally authored source-card graphics. The exact 14 assets
-  // are governed by build_interpretive_film_art.py and the Pages allowlist;
-  // this is NOT an allowlist of third-party image licenses or accepted Works.
-  const originalFilmArtIds = new Set([
-    'film-2009', 'film-beyond', 'film-final-frontier', 'film-first-contact',
-    'film-generations', 'film-insurrection', 'film-into-darkness',
-    'film-motion-picture', 'film-nemesis', 'film-search-for-spock',
-    'film-section-31', 'film-undiscovered-country', 'film-voyage-home',
-    'film-wrath-of-khan'
+  // Original geometric art belongs to exact held publisher metadata tuples,
+  // never merely to a reusable-looking row ID. These literal pins are checked
+  // against the generated film-art manifest by the Explorer regression test;
+  // the Pages gate independently hashes the committed static SVG bytes.
+  // Neither tuple matching nor an SVG hash admits a Work or image rights.
+  const originalFilmArtBindings = new Map([
+    ['film-2009', ['Star Trek (2009)', 'https://www.startrek.com/movies/star-trek-2009']],
+    ['film-beyond', ['Star Trek Beyond', 'https://www.startrek.com/movies/star-trek-beyond']],
+    ['film-final-frontier', ['Star Trek V: The Final Frontier', 'https://www.startrek.com/movies/star-trek-v-the-final-frontier']],
+    ['film-first-contact', ['Star Trek: First Contact', 'https://www.startrek.com/movies/star-trek-viii-first-contact']],
+    ['film-generations', ['Star Trek Generations', 'https://www.startrek.com/movies/star-trek-generations']],
+    ['film-insurrection', ['Star Trek: Insurrection', 'https://www.startrek.com/movies/star-trek-ix-insurrection']],
+    ['film-into-darkness', ['Star Trek Into Darkness', 'https://www.startrek.com/movies/star-trek-into-darkness']],
+    ['film-motion-picture', ['Star Trek: The Motion Picture', 'https://www.startrek.com/movies/star-trek-i-the-motion-picture']],
+    ['film-nemesis', ['Star Trek Nemesis', 'https://www.startrek.com/movies/star-trek-nemesis']],
+    ['film-search-for-spock', ['Star Trek III: The Search for Spock', 'https://www.startrek.com/movies/star-trek-iii-the-search-for-spock']],
+    ['film-section-31', ['Star Trek: Section 31', 'https://www.startrek.com/news/star-trek-section-31-premieres-january-24']],
+    ['film-undiscovered-country', ['Star Trek VI: The Undiscovered Country', 'https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country']],
+    ['film-voyage-home', ['Star Trek IV: The Voyage Home', 'https://www.startrek.com/movies/star-trek-iv-the-voyage-home']],
+    ['film-wrath-of-khan', ['Star Trek II: The Wrath of Khan', 'https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan']]
   ]);
 
   function artworkKey(row) {
@@ -602,11 +613,18 @@
     const caption = el('figcaption', 'artwork-caption');
     const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
     caption.append(status);
-    // Only the validated publisher film shelf has these source IDs. No
-    // user-supplied locator or title becomes a CSS URL; 14 fixed file names
-    // are rebuilt and byte-checked from the held film catalog by CI.
-    const originalFilmId = medium === 'FILM' && typeof row?.id === 'string' &&
-      originalFilmArtIds.has(row.id) ? row.id : null;
+    // The exact ID/title/publisher/source-group join must hold at render time.
+    // An altered, but otherwise syntactically valid, film discovery catalog
+    // must never display another film's source-keyed art. Static CSS supplies
+    // the only URLs; no unchecked locator/title can become an image request.
+    const filmArtPin = medium === 'FILM' && typeof row?.id === 'string'
+      ? originalFilmArtBindings.get(row.id) : null;
+    const originalFilmId = filmArtPin && row.title === filmArtPin[0] &&
+      row.source_locator === filmArtPin[1] &&
+      row.source_group === 'publisher:startrek.com' ? row.id : null;
+    if (filmArtPin && !originalFilmId) {
+      status.textContent = 'Source binding unverified · original LCARS index graphic';
+    }
     if (originalFilmId) {
       frame.className += ' artwork-interpretive-film';
       frame.setAttribute('data-original-film-art', originalFilmId);

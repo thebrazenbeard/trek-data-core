@@ -484,7 +484,7 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
       previous_bindings=binding_claims(prereq);current_bindings=binding_claims(row)
       # A later stage cannot substitute an unaccepted metadata route for its
       # eligible SOURCE_BOUND lineage while keeping the same Source and Work.
-      if current_bindings and (len(set(previous_bindings))!=1 or any(claim!=previous_bindings[0] for claim in current_bindings)):
+      if not current_bindings or len(set(previous_bindings))!=1 or any(claim!=previous_bindings[0] for claim in current_bindings):
        binding_context_mismatch=True;continue
      candidates.append(prereq_id)
    if not candidates:

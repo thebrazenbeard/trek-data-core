@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
   <link rel="stylesheet" href="./app.css?v=412db6b5fca482eee73d836cf50bcff440e3702e88627c053edceee54a83ed1c">
-  <script src="./app.js?v=f3e0bb9a8635f5383c75bfd90b222887d031ed2f48a62e441cb88ec6e7195b38" defer></script>
+  <script src="./app.js?v=a6dfabff387ba6b5c78d32c142ce615e5a6a7ca92775d2ee7d7793b9600daa25" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -133,7 +133,7 @@
       </div>
       <section id="artwork-gallery" class="artwork-gallery" aria-labelledby="artwork-gallery-heading" tabindex="-1" hidden>
         <div class="artwork-gallery-heading">
-          <div><p class="eyebrow">LCARS / Source-bound imagery</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
+          <div><p class="eyebrow">LCARS / Pinned image previews</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
           <p>These are individually reviewed <strong>image-to-source references</strong>, not admitted Works or visual proof of a fictional event. Source-linked LCARS cards are visible now. Select <strong>Show sourced artwork</strong> to load the matching Open Library jackets; copyright is unresolved, so no external image loads without your permission.</p>
         </div>
         <p id="artwork-gallery-summary" class="artwork-gallery-summary" role="status" aria-live="polite"></p>
@@ -146,6 +146,7 @@
         <div class="field"><label for="discovery-kind">Candidate type</label><select id="discovery-kind" name="kind"><option value="all">All candidate types</option></select></div>
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
         <div class="field"><label for="discovery-overview">Publisher overview (loaded)</label><select id="discovery-overview" name="overview"><option value="all">All overview states</option><option value="reviewed">Reviewed description loaded</option><option value="not-loaded">No reviewed description loaded</option></select></div>
+        <div class="field"><label for="discovery-artwork">Image preview receipt (loaded)</label><select id="discovery-artwork" name="artwork"><option value="all">All receipt states</option><option value="receipt_pinned">Pinned preview receipt loaded</option><option value="not_loaded">No pinned preview receipt loaded</option></select></div>
         <div class="field"><label for="discovery-verification">Official metadata check</label><select id="discovery-verification" name="verification"><option value="all">All check statuses</option><option value="rechecked_exact">Exact title recheck</option><option value="rechecked_unresolved">Unresolved recheck</option><option value="not_rechecked">Not rechecked</option></select></div>
         <div class="field"><label for="discovery-publisher-check">Additional publisher-card read (source-local)</label><select id="discovery-publisher-check" name="publisher-check"><option value="all">All publisher-card states</option><option value="title_exact">Publisher card title string match</option><option value="held_unresolved">Held title / split unresolved</option><option value="not_in_batch">No accepted card in this batch</option></select></div>
         <div class="field"><label for="discovery-synopsis">Synopsis status</label><select id="discovery-synopsis" name="synopsis"><option value="all">All synopses</option><option value="reviewed_publisher_paraphrase">Reviewed publisher paraphrase</option><option value="pending">Pending</option></select></div>

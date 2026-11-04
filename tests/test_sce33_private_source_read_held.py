@@ -81,6 +81,18 @@ class SCE33PrivateReadTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate(d)
 
+    def test_synopsis_cannot_promote_saleks_protective_motive_inference(self):
+        synopsis = self.packet["work_candidate"]["original_synopsis"]
+        self.assertIn("Salek inferred", synopsis)
+        self.assertIn("might have protected", synopsis)
+        self.assertNotIn("Salek learned", synopsis)
+        d = copy.deepcopy(self.packet)
+        d["work_candidate"]["original_synopsis"] = synopsis.replace(
+            "Salek inferred", "Salek learned"
+        ).replace("might have protected", "protected")
+        with self.assertRaises(ValueError):
+            validate(d)
+
     def test_source_hash_and_boundaries_falsifiers(self):
         for loc, field, value in (("source", "archive_sha256", "0" * 64),
                                   ("source", "html_sha256", "0" * 64),

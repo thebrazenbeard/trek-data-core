@@ -31,6 +31,8 @@ All start positions are zero-based UTF-8-independent **raw HTML byte offsets**, 
 
 Eight source-relative observations distinguish narrator framing, character briefing, computer-log report, character inference, and in-story sensor report. Four proposals remain typed. Most notably, crew reports establish an **utterance** about the prior captain's choice; Salek's explanation of *why* that crew acted remains a character inference. Neither becomes objective evidence about an actual universe. The final return mechanism is explicitly **UNRESOLVED** in this book.
 
+**Hostile semantic correction:** An earlier original synopsis inadvertently said Salek *learned* the prior crew's protective purpose. That overclaimed `sce33:e05`/`sce33:a03`, whose status is `INFERENCE_BY_CHARACTER`/`CHARACTER_INFERENCE`. The amended synopsis now explicitly distinguishes the reported computer-log action from Salek's suggested motive, which **might** explain it. A dedicated regression falsifier rejects the unqualified wording. No underlying source bytes, observations or status were changed.
+
 ## Reproducibility, effect boundaries, next frontier
 
 - `python -m proposals.research.sce33_private_complete_read_20261104.verify_owner_archive --archive <owner-local-zip>` is a **read-only opt-in** verifier. It hashes the full ZIP and the three named members and recomputes all five chapter byte spans; it emits no book text, creates no archive extraction, and refuses altered members and symlink paths. The actual Lappy byte checks above were executed as an equivalent direct in-memory host probe; the packaged CLI itself is not claimed as executed on Lappy.

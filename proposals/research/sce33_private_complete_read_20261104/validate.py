@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DATA = Path(__file__).with_name("records.json")
 OWNER_OPF = ROOT / "proposals/librarian/private-opf-metadata-20261103/observations.json"
 OWNER_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
-FROZEN_CANONICAL_SHA = "4afa3577c739913e6bec7a8f097e98d0c02d8f0c082377311c7570f845cb76e1"
+FROZEN_CANONICAL_SHA = "f3e482990cee663bf92eb4ee3ee4ec28d2e8bf127187b5b3b69a7265f08ae331"
 EXPECTED_SPANS = (
     (6260, 27617, "c4cc3aa185613b2dd4f92ba8c68ef62410946a810e1a640da9a479a04f7db825"),
     (27617, 49287, "78573b26256ecbe83184d0be8cda8c8bf5aca9f208c6a454fbac0ff3d6542fd2"),
@@ -133,7 +133,10 @@ def validate(doc: object) -> tuple[int, int, int, int, int]:
        work["source_read_scope"] != "ALL_FIVE_NARRATIVE_CHAPTERS_AND_END_MARKER_OF_BOOK_ONE" or \
        work["full_private_source_read_done"] is not True or \
        work["global_work_identity_resolved"] is not False or \
-       work["accepted_work_coverage"] != "NONE" or not bounded_text(work["original_synopsis"], 900):
+       work["accepted_work_coverage"] != "NONE" or not bounded_text(work["original_synopsis"], 900) or \
+       "Salek inferred" not in work["original_synopsis"] or \
+       "might have protected" not in work["original_synopsis"] or \
+       "Salek learned" in work["original_synopsis"]:
         fail("Local source-to-Work candidate invalid")
     spans = doc["chapter_spans"]
     if not isinstance(spans, list) or len(spans) != 5:

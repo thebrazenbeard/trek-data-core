@@ -53,8 +53,10 @@ used to evaluate the candidate, not merely a rendered status string. Re-run
 the preflight at review/admission time and compare this digest; a different
 digest means the earlier readiness result was evaluated against different
 local governed state and needs fresh review. The scan uses the repository's
-safe, no-symlink, inode-checked file reader, and the command checks the digest
-both before and after validation to reject visible concurrent drift.
+anchored no-symlink open and inode checks but reads **raw bytes** (never
+text-mode newline normalization); LF and CRLF inputs must produce different
+pins. It rejects enumerated-file replacement and checks the digest both
+before and after validation to reject visible concurrent drift.
 
 `governed_inputs_scope` says
 `LOCAL_AUTHORITATIVE_REGISTRY_AND_COVERAGE_BYTES_NOT_REMOTE_ACCEPTANCE` for a

@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S3.FIRST5.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:17:58 GMT",
+    "observed_at_utc": "2026-11-04T21:17:58.093971+00:00",
+    "raw_response_bytes": 308190,
+    "raw_response_sha256": "227c1cbcbafd29cabb62ff83e73cccd2466604ab0e3c4462920badf774453391",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py",
+    "method": "Read-only complete HTML GET; 24 cards and descriptions fingerprinted in memory; E01–E05 source descriptions read for five original paraphrases; no linked media."
+  },
+  "upstream_discovery": {
+    "path": "proposals/discovery/legacy-paramount-season3-20261102/ent/bundle.json",
+    "sha256": "ae106b332e3e2c4d966b544ad6c31d9deb04c7f6843533519d79f93c2ebc9358",
+    "identity_join_method": "SOURCE_LOCAL_SEASON_EPISODE_TITLE_NOT_CANONICAL_WORK"
+  },
+  "observed_full_guide_card_count": 24,
+  "first_five_source_descriptions_inspected": 5,
+  "first_five_description_total_chars": 951,
+  "first_five_analytical_synopses_proposed": 5,
+  "selected_tranche_episode_ordinals": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "all_24_guide_cards": [
+    {
+      "display_order": 1,
+      "season": 3,
+      "episode": 1,
+      "analytics_ordinal": 1,
+      "title": "The Xindi",
+      "video_route_path": "/shows/video/1478467601/",
+      "publisher_datetime": "2003-09-10T20:00:00-07:00",
+      "html_anchor_line": 1482,
+      "html_description_line": 1500,
+      "description_chars": 224,
+      "description_sha256": "09f7401e2e1b1c9c9ea481974abdeed46792c04451d52a430f08d28e8663bf32"
+    },
+    {
+      "display_order": 2,
+      "season": 3,
+      "episode": 2,
+      "analytics_ordinal": 2,
+      "title": "Anomaly",
+      "video_route_path": "/shows/video/1478469433/",
+      "publisher_datetime": "2003-09-17T20:00:00-07:00",
+      "html_anchor_line": 1510,
+      "html_description_line": 1528,
+      "description_chars": 178,
+      "description_sha256": "cfe67589d19c28dd42e2eaf988ca7427e970d8d6331350b1be8261bcbacc3faa"
+    },
+    {
+      "display_order": 3,
+      "season": 3,
+      "episode": 3,
+      "analytics_ordinal": 3,
+      "title": "Extinction",
+      "video_route_path": "/shows/video/1478469984/",
+      "publisher_datetime": "2003-09-24T20:00:00-07:00",
+      "html_anchor_line": 1538,
+      "html_description_line": 1556,
+      "description_chars": 151,
+      "description_sha256": "95c0b5b6c23ac338f52cef3c8f6006b3cacbf554683d2dbe0a1f161435b9fedd"
+    },
+    {
+      "display_order": 4,
+      "season": 3,
+      "episode": 4,
+      "analytics_ordinal": 4,
+      "title": "Rajiin",
+      "video_route_path": "/shows/video/1478472684/",
+      "publisher_datetime": "2003-10-01T20:00:00-07:00",
+      "html_anchor_line": 1566,
+      "html_description_line": 1584,
+      "description_chars": 171,
+      "description_sha256": "fe5c2f6e438c215a0934a1141450089cac2238f33e3081ad7ce3514118362f3f"
+    },
+    {
+      "display_order": 5,
+      "season": 3,
+      "episode": 5,
+      "analytics_ordinal": 5,
+      "title": "Impulse",
+      "video_route_path": "/shows/video/1478475038/",
+      "publisher_datetime": "2003-10-08T20:00:00-07:00",
+      "html_anchor_line": 1594,
+      "html_description_line": 1612,
+      "description_chars": 227,
+      "description_sha256": "0b0fd0666adfbe98c16657fb2a94f55f2c7ceec15e255917d0baabf55a4d3c10"
+    },
+    {
+      "display_order": 6,
+      "season": 3,
+      "episode": 6,
+      "analytics_ordinal": 6,
+      "title": "Exile",
+      "video_route_path": "/shows/video/1478477187/",
+      "publisher_datetime": "2003-10-15T20:00:00-07:00",
+      "html_anchor_line": 1622,
+      "html_description_line": 1640,
+      "description_chars": 192,
+      "description_sha256": "9fbfe25466b7f8d670d35c66d480f498884f0ece7b9cbc4050cc8c3fc1c98c53"
+    },
+    {
+      "display_order": 7,
+      "season": 3,
+      "episode": 7,
+      "analytics_ordinal": 7,
+      "title": "The Shipment",
+      "video_route_path": "/shows/video/1478503461/",
+      "publisher_datetime": "2003-10-29T20:00:00-08:00",
+      "html_anchor_line": 1650,
+      "html_description_line": 1668,
+      "description_chars": 153,
+      "description_sha256": "e797d41bea3abc7f33f89dbfe4702f91168ff002a7c6fd048fa06444e2c1c590"
+    },
+    {
+      "display_order": 8,
+      "season": 3,
+      "episode": 8,
+      "analytics_ordinal": 8,
+      "title": "Twilight",
+      "video_route_path": "/shows/video/1478507809/",
+      "publisher_datetime": "2003-11-05T20:00:00-08:00",
+      "html_anchor_line": 1678,
+      "html_description_line": 1696,
+      "description_chars": 116,
+      "description_sha256": "25046c252c40e19250ca307777cee39edffffbb1f8b18f5a9092c4b2ce021915"
+    },
+    {
+      "display_order": 9,
+      "season": 3,
+      "episode": 9,
+      "analytics_ordinal": 9,
+      "title": "North Star",
+      "video_route_path": "/shows/video/1479231371/",
+      "publisher_datetime": "2003-11-12T20:00:00-08:00",
+      "html_anchor_line": 1706,
+      "html_description_line": 1724,
+      "description_chars": 168,
+      "description_sha256": "5065c3891b188cce824b3ba881f682a341d87cb9f973f6bccee5782623f36743"
+    },
+    {
+      "display_order": 10,
+      "season": 3,
+      "episode": 10,
+      "analytics_ordinal": 10,
+      "title": "Similitude",
+      "video_route_path": "/shows/video/1479232274/",
+      "publisher_datetime": "2003-11-19T20:00:00-08:00",
+      "html_anchor_line": 1734,
+      "html_description_line": 1752,
+      "description_chars": 207,
+      "description_sha256": "037c1fad4eed589d8633110f841d48adc862349a93ff81a2facf085b264267e3"
+    },
+    {
+      "display_order": 11,
+      "season": 3,
+      "episode": 11,
+      "analytics_ordinal": 11,
+      "title": "Carpenter Street",
+      "video_route_path": "/shows/video/1479237112/",
+      "publisher_datetime": "2003-11-26T20:00:00-08:00",
+      "html_anchor_line": 1762,
+      "html_description_line": 1780,
+      "description_chars": 117,
+      "description_sha256": "d4ae4a81b47e18f99f6f11f49770ae36cdd9eeceb31fdef1bdadf2582f24eaec"
+    },
+    {
+      "display_order": 12,
+      "season": 3,
+      "episode": 12,
+      "analytics_ordinal": 12,
+      "title": "Chosen Realm",
+      "video_route_path": "/shows/video/1479264034/",
+      "publisher_datetime": "2004-01-14T20:00:00-08:00",
+      "html_anchor_line": 1790,
+      "html_description_line": 1808,
+      "description_chars": 240,
+      "description_sha256": "7102998269532aee2e019d5118093a6933c5b0e58633c5307ae9b99c126e2c59"
+    },
+    {
+      "display_order": 13,
+      "season": 3,
+      "episode": 13,
+      "analytics_ordinal": 13,
+      "title": "Proving Ground",
+      "video_route_path": "/shows/video/1479267580/",
+      "publisher_datetime": "2004-01-21T20:00:00-08:00",
+      "html_anchor_line": 1818,
+      "html_description_line": 1836,
+      "description_chars": 168,
+      "description_sha256": "2e5062a9c9591dbd0ffd3fbea9f2fc70e9f37df8bc2447da3fe9d2ace0894340"
+    },
+    {
+      "display_order": 14,
+      "season": 3,
+      "episode": 14,
+      "analytics_ordinal": 14,
+      "title": "Strategem",
+      "video_route_path": "/shows/video/1479269511/",
+      "publisher_datetime": "2004-02-04T20:00:00-08:00",
+      "html_anchor_line": 1846,
+      "html_description_line": 1864,
+      "description_chars": 192,
+      "description_sha256": "1f8253ca8affbe9098730f499b4b34188dc28520acfd769b1a012ab7df977ef7"
+    },
+    {
+      "display_order": 15,
+      "season": 3,
+      "episode": 15,
+      "analytics_ordinal": 15,
+      "title": "Harbinger",
+      "video_route_path": "/shows/video/1479270313/",
+      "publisher_datetime": "2004-02-11T20:00:00-08:00",
+      "html_anchor_line": 1874,
+      "html_description_line": 1892,
+      "description_chars": 240,
+      "description_sha256": "cb5fdbad86dbb29369ec7340bfafebf12168f8a0c2c10230722fa105d4d40029"
+    },
+    {
+      "display_order": 16,
+      "season": 3,
+      "episode": 16,
+      "analytics_ordinal": 16,
+      "title": "Doctor's Orders",
+      "video_route_path": "/shows/video/1479394951/",
+      "publisher_datetime": "2004-02-18T20:00:00-08:00",
+      "html_anchor_line": 1902,
+      "html_description_line": 1920,
+      "description_chars": 208,
+      "description_sha256": "2b060a05e7e317e320e793f83696a8d529f8f4742dfe93572057369fd6537c7d"
+    },
+    {
+      "display_order": 17,
+      "season": 3,
+      "episode": 17,
+      "analytics_ordinal": 17,
+      "title": "Hatchery",
+      "video_route_path": "/shows/video/1479395507/",
+      "publisher_datetime": "2004-02-25T20:00:00-08:00",
+      "html_anchor_line": 1930,
+      "html_description_line": 1948,
+      "description_chars": 186,
+      "description_sha256": "9f307bd33144f6f21dc221607b3a5993de5dec3dd3cec9da2a249cf2e5f98125"
+    },
+    {
+      "display_order": 18,
+      "season": 3,
+      "episode": 18,
+      "analytics_ordinal": 18,
+      "title": "Azati Prime",
+      "video_route_path": "/shows/video/1479395808/",
+      "publisher_datetime": "2004-03-03T20:00:00-08:00",
+      "html_anchor_line": 1958,
+      "html_description_line": 1976,
+      "description_chars": 103,
+      "description_sha256": "465eb244c950bcb79cd685ee3f25449ab5d692fc79c3a119c851fff1528fded5"
+    },
+    {
+      "display_order": 19,
+      "season": 3,
+      "episode": 19,
+      "analytics_ordinal": 19,
+      "title": "Damage",
+      "video_route_path": "/shows/video/1479396610/",
+      "publisher_datetime": "2004-04-21T20:00:00-07:00",
+      "html_anchor_line": 1986,
+      "html_description_line": 2004,
+      "description_chars": 110,
+      "description_sha256": "0647b740b5dff34294f1cc59508f06966b2c4d5e2b450a62f93c6a137709385b"
+    },
+    {
+      "display_order": 20,
+      "season": 3,
+      "episode": 20,
+      "analytics_ordinal": 20,
+      "title": "The Forgotten",
+      "video_route_path": "/shows/video/1479407804/",
+      "publisher_datetime": "2004-04-28T20:00:00-07:00",
+      "html_anchor_line": 2014,
+      "html_description_line": 2032,
+      "description_chars": 212,
+      "description_sha256": "78d4de662bfffd6c2f070c3b3c8eb5771f8b52e8dc3051b84d30cd13d05a08c2"
+    },
+    {
+      "display_order": 21,
+      "season": 3,
+      "episode": 21,
+      "analytics_ordinal": 21,
+      "title": "E (squared)",
+      "video_route_path": "/shows/video/oJeuPw0_lI36D1DJ_RAQMA0a0qchtYve/",
+      "publisher_datetime": "2004-05-05T22:00:00-07:00",
+      "html_anchor_line": 2042,
+      "html_description_line": 2060,
+      "description_chars": 185,
+      "description_sha256": "5570b50cb63f0043941cbf9a2469b9414152432f4628384deeb99989055b483a"
+    },
+    {
+      "display_order": 22,
+      "season": 3,
+      "episode": 22,
+      "analytics_ordinal": 22,
+      "title": "The Council",
+      "video_route_path": "/shows/video/1479408410/",
+      "publisher_datetime": "2004-05-12T20:00:00-07:00",
+      "html_anchor_line": 2070,
+      "html_description_line": 2088,
+      "description_chars": 172,
+      "description_sha256": "51e321ada9f03d4b72e64fa5f98e63b4d99b8d8092765c5eef3d4354fbb30956"
+    },
+    {
+      "display_order": 23,
+      "season": 3,
+      "episode": 23,
+      "analytics_ordinal": 23,
+      "title": "Countdown",
+      "video_route_path": "/shows/video/1479412103/",
+      "publisher_datetime": "2004-05-19T20:00:00-07:00",
+      "html_anchor_line": 2098,
+      "html_description_line": 2116,
+      "description_chars": 163,
+      "description_sha256": "ab20b5e99082d383d162e6fc721d9d945f0e7f871d89fd5f2b02d45b4485812d"
+    },
+    {
+      "display_order": 24,
+      "season": 3,
+      "episode": 24,
+      "analytics_ordinal": 24,
+      "title": "Zero Hour",
+      "video_route_path": "/shows/video/1479413796/",
+      "publisher_datetime": "2004-05-26T20:00:00-07:00",
+      "html_anchor_line": 2126,
+      "html_description_line": 2144,
+      "description_chars": 179,
+      "description_sha256": "f29bf2d5a9eec9512619456ed68a93dcc0df61527ad11f5eba76bee9025c4343"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ent-s3-e01-publisher-card",
+      "source_local_episode_hint": 1,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e02-publisher-card",
+      "source_local_episode_hint": 2,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e03-publisher-card",
+      "source_local_episode_hint": 3,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e04-publisher-card",
+      "source_local_episode_hint": 4,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e05-publisher-card",
+      "source_local_episode_hint": 5,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s3-e01-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+      "local_entity_id": "ent-s3-e01-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 1,
+      "locator": "HTML 1500, exact response digest in source receipt",
+      "publisher_description_sha256": "09f7401e2e1b1c9c9ea481974abdeed46792c04451d52a430f08d28e8663bf32",
+      "original_paraphrase": "After weeks of inconclusive searching, Enterprise heads for a mining colony rumored to employ a Xindi worker, hoping the lead will advance its mission."
+    },
+    {
+      "id": "ent-s3-e02-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+      "local_entity_id": "ent-s3-e02-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 2,
+      "locator": "HTML 1528, exact response digest in source receipt",
+      "publisher_description_sha256": "cfe67589d19c28dd42e2eaf988ca7427e970d8d6331350b1be8261bcbacc3faa",
+      "original_paraphrase": "Enterprise experiences widespread failures just as Osaarian raiders board the disabled vessel and steal supplies."
+    },
+    {
+      "id": "ent-s3-e03-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+      "local_entity_id": "ent-s3-e03-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 3,
+      "locator": "HTML 1556, exact response digest in source receipt",
+      "publisher_description_sha256": "95c0b5b6c23ac338f52cef3c8f6006b3cacbf554683d2dbe0a1f161435b9fedd",
+      "original_paraphrase": "Following a Xindi trail to a planet, Archer, Reed and Hoshi are afflicted by an infection that alters their bodies."
+    },
+    {
+      "id": "ent-s3-e04-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+      "local_entity_id": "ent-s3-e04-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 4,
+      "locator": "HTML 1584, exact response digest in source receipt",
+      "publisher_description_sha256": "fe5c2f6e438c215a0934a1141450089cac2238f33e3081ad7ce3514118362f3f",
+      "original_paraphrase": "Archer frees an enslaved woman whose unusual abilities conceal an effort to gather human intelligence for Xindi agents."
+    },
+    {
+      "id": "ent-s3-e05-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-first5-20261104",
+      "local_entity_id": "ent-s3-e05-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 5,
+      "locator": "HTML 1612, exact response digest in source receipt",
+      "publisher_description_sha256": "0b0fd0666adfbe98c16657fb2a94f55f2c7ceec15e255917d0baabf55a4d3c10",
+      "original_paraphrase": "A Vulcan ship's distress signal draws an Enterprise rescue party into danger when they find its crew violently changed and cannot escape."
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "ent-s3-e01-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e01-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e02-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e02-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e03-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e03-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e04-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e04-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e05-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e05-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "holds": [
+    "The 24-card full guide inventory is context; this tranche proposes exactly five synopsis analyses, not 24 episodes read.",
+    "The publisher description and candidate title roster share Paramount lineage; agreement is not independent corroboration.",
+    "An editorial publisher synopsis is a claim, not independently established depiction in the audiovisual episode.",
+    "No publisher full prose, video, audio, images or artwork bytes were committed or published.",
+    "No accepted Source/Work identity, CLOSE_READ, denominator, reconciliation, Explorer synopsis release or coverage effect."
+  ]
+}

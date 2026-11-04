@@ -1,0 +1,117 @@
+{
+  "record_type": "librarian_nonfixture_source_work_candidate",
+  "schema_version": "1.0.0",
+  "accepted_main_at_start": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_on": "2026-11-04",
+  "source_local_reference": "opf-local:0140",
+  "evidence_classes": {
+    "owner_extracted_file": "REAL_SYSTEM_BYTE_HASH",
+    "owner_archive_members": "PRIVATE_INDEPENDENT_BYTE_REPLAY",
+    "converter_relationship": "CONVERTER_DECLARED_CANDIDATE_NOT_EDITION_PROOF",
+    "opf_metadata": "MAIN_TRACKED_SOURCE_LOCAL_PROPOSAL_METADATA",
+    "publisher_page": "DIRECT_OFFICIAL_PRODUCT_PAGE_READ_NOT_RAW_HTML_CUSTODY",
+    "work_identity": "PROPOSED_UNVERIFIED"
+  },
+  "custody_observation": {
+    "original_archive_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+    "original_extracted_member_sha256": "910b2da59954827c2bd6311088e2de3d3934437cc20331e684ee7952ca870462",
+    "original_extracted_member_bytes": 314662,
+    "original_extracted_member_rehashed_and_matched_archive": true,
+    "converted_archive_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+    "converted_opf_member_sha256": "b815b98f15098b44c4e75aef3bc006feabd9f3e671bb4586566c48140ee8b248",
+    "private_archive_member_rehash_anchor_sha256": "f755a66592372056bb180798e3fd507dfdb39d58d7e07f01d9cb2cbdcf0f5e60",
+    "private_converter_crosswalk_receipt_sha256": "357bb3a5a1db47e9849600112dd8de01e7c9928f66c5365b964ae2b50a0b479e",
+    "converted_link_disposition": "CANDIDATE_EXPLICIT_CONVERTER_LINK",
+    "converted_link_count_for_this_opf": 1,
+    "content_completeness": "UNVERIFIED",
+    "narrative_content_read": false,
+    "source_edition_identity_verified": false,
+    "rights_verification": "NOT_PERFORMED",
+    "independent_private_source_witness": false
+  },
+  "publisher_observation": {
+    "url": "https://www.simonandschuster.com/books/Star-Trek/Gene-Roddenberry/Star-Trek/9780743412087",
+    "source_family": "publisher:simonandschuster.com",
+    "title": "Star Trek",
+    "subtitle": "The Motion Picture",
+    "author": "Gene Roddenberry",
+    "format": "eBook",
+    "isbn13": "9780743412087",
+    "imprint": "Pocket Books/Star Trek",
+    "publication_date": "2000-05-23",
+    "page_count": 252,
+    "publisher_html_bytes_custodied": false,
+    "work_content_verified_from_publisher_blurb": false
+  },
+  "proposal": {
+    "source": {
+      "record_type": "source",
+      "source_id": "owner-lit-opf0140-candidate",
+      "status": "PROPOSED",
+      "source_kind": "LITERARY_EDITION",
+      "provider": "OWNER_PRIVATE_CUSTODY_DECLARATION",
+      "locator": "private:lit-opf0140-candidate",
+      "provider_metadata": {
+        "byte_observation_kind": "EXTRACTED_MEMBER_HASH_MATCHED_OWNER_ARCHIVE",
+        "standalone_source_custody_receipt": "NOT_CAPTURED",
+        "publisher_edition_equality": "NOT_VERIFIED",
+        "rights_basis": "UNKNOWN"
+      },
+      "source_version": "OWNER_EXTRACTED_LIT_BINARY_UNVERIFIED_EDITION",
+      "retrieved_at": "2026-11-04",
+      "content_hash": "sha256:910b2da59954827c2bd6311088e2de3d3934437cc20331e684ee7952ca870462",
+      "content_fingerprint": null,
+      "source_variant": "LIT_SOURCE_REPRESENTATION_UNVERIFIED",
+      "provenance_family": "owner-private-lit-to-opf-conversion-chain",
+      "independence_group": "owner-private-lit-to-opf-conversion-chain",
+      "derived_from": [],
+      "fixture_only": false,
+      "notes": "Exact extracted bytes matched the owner archive; no narrative or edition identity verification."
+    },
+    "work": {
+      "record_type": "work",
+      "work_id": "literary-opf0140-work-candidate",
+      "status": "PROPOSED",
+      "title": "Star Trek: The Motion Picture",
+      "work_type": "LITERARY_NOVELIZATION",
+      "parent_work_id": null,
+      "component_label": null,
+      "fixture_only": false,
+      "notes": "Source-local Work candidate from OPF title and publisher ISBN metadata; no asserted source-to-text identity."
+    },
+    "source_work_binding": {
+      "record_type": "source_work_binding",
+      "binding_id": "lit-opf0140-metadata-binding-candidate",
+      "source_id": "owner-lit-opf0140-candidate",
+      "work_id": "literary-opf0140-work-candidate",
+      "lifecycle": "PROPOSED",
+      "mapping_role": "METADATA_ONLY",
+      "source_scope": {"scope_type": "WHOLE", "locator": null},
+      "work_scope": {"scope_type": "WHOLE", "component_label": null},
+      "method": "private byte hash and converter link plus OPF ISBN10 to official eBook ISBN13; none proves book text equivalence",
+      "basis": [
+        {"kind": "BYTE_HASH", "value": "sha256:910b2da59954827c2bd6311088e2de3d3934437cc20331e684ee7952ca870462"},
+        {"kind": "CONTAINER_MANIFEST", "value": "sha256:357bb3a5a1db47e9849600112dd8de01e7c9928f66c5365b964ae2b50a0b479e"}
+      ],
+      "exclusive_scope_key": null,
+      "supersedes_binding_id": null,
+      "notes": "Metadata-only candidacy. Local conversion is not an independent witness and no semantic content was read.",
+      "fixture_only": false
+    }
+  },
+  "opf_source_isbn10": "0743412087",
+  "isbn_relation": "ISBN10_CHECKDIGIT_CONVERTS_TO_PUBLISHER_ISBN13_NOT_EDITION_IDENTITY",
+  "source_work_identity_state": "UNVERIFIED",
+  "accepted_registry_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_release_effect": "NONE",
+  "private_member_names_or_paths_exported": false,
+  "copyrighted_prose_or_cover_bytes_exported": false,
+  "admission_blockers": [
+    "Standalone source-custody request and byte-replayed receipt not yet captured",
+    "Independent content-to-Work identity and complete-edition verification not performed",
+    "Rights basis for private research and any publication not independently reviewed",
+    "Separate Librarian and Auditor governance decisions required",
+    "No accepted Source, Work, evidence-bearing binding, discovery predecessor or governed coverage event"
+  ]
+}

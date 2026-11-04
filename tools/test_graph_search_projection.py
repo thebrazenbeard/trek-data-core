@@ -2,6 +2,7 @@
 from __future__ import annotations
 import importlib.util, json, tempfile, unittest
 from pathlib import Path
+from unittest import mock
 
 def load(name,alias):
  p=Path(__file__).with_name(name); s=importlib.util.spec_from_file_location(alias,p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
@@ -37,4 +38,78 @@ class GraphSearchProjectionTests(unittest.TestCase):
      self.assertFalse((root/'graph_nodes.jsonl').exists())
    alias=parent/'projection-link'; alias.symlink_to(root,target_is_directory=True)
    with self.assertRaisesRegex(ValueError,'overlap'):graph.build_bundle(root,alias)
+ def test_output_directory_replaced_during_verification_cannot_redirect_writes(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   output=parent/'out'; output.mkdir(); moved=parent/'moved-out'
+   original=(root/'manifest.json').read_bytes()
+   verify=graph.bundle.verify_projection
+   def adversarial_verify(path):
+    result=verify(path)
+    output.rename(moved)
+    output.symlink_to(root,target_is_directory=True)
+    return result
+   with mock.patch.object(graph.bundle,'verify_projection',side_effect=adversarial_verify):
+    with self.assertRaisesRegex(ValueError,'output.*changed|overlap'):
+     graph.build_bundle(root,output)
+   self.assertEqual((root/'manifest.json').read_bytes(),original)
+   self.assertFalse((root/'graph_nodes.jsonl').exists())
+   self.assertFalse((root/'graph_edges.jsonl').exists())
+ def test_output_directory_replaced_during_output_write_stays_pinned(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   output=parent/'out'; output.mkdir(); moved=parent/'moved-out'
+   original=(root/'manifest.json').read_bytes()
+   write=graph.write_output_bytes
+   swapped=False
+   def adversarial_write(output_fd,name,payload):
+    nonlocal swapped
+    if not swapped:
+     swapped=True
+     output.rename(moved)
+     output.symlink_to(root,target_is_directory=True)
+    return write(output_fd,name,payload)
+   with mock.patch.object(graph,'write_output_bytes',side_effect=adversarial_write):
+    with self.assertRaisesRegex(ValueError,'output directory changed'):
+     graph.build_bundle(root,output)
+   self.assertTrue(swapped)
+   self.assertEqual((root/'manifest.json').read_bytes(),original)
+   self.assertFalse((root/'graph_nodes.jsonl').exists())
+   self.assertTrue((moved/'graph_nodes.jsonl').exists())
+ def test_existing_output_hardlink_does_not_truncate_projection_manifest(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   original=(root/'manifest.json').read_bytes(); output=parent/'out'; output.mkdir()
+   try:(output/'manifest.json').hardlink_to(root/'manifest.json')
+   except OSError as exc:self.skipTest(f'hardlinks unavailable: {exc}')
+   with graph.pinned_output_directory(output,root) as fd:
+    graph.write_output_bytes(fd,'manifest.json',b'{"derived":true}\n')
+   self.assertEqual((root/'manifest.json').read_bytes(),original)
+   self.assertNotEqual((output/'manifest.json').read_bytes(),original)
+ def test_unrelated_symlink_output_directory_is_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   actual=parent/'actual-out'; actual.mkdir(); alias=parent/'output-alias'; alias.symlink_to(actual,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'symlinks'):
+    graph.build_bundle(root,alias)
+   self.assertFalse((actual/'graph_nodes.jsonl').exists())
+ def test_unsupported_secure_writer_fails_closed_without_explicit_trusted_opt_in(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   out=parent/'out'
+   with mock.patch.object(graph,'require_safe_directory_writes',side_effect=OSError('unsupported')):
+    with self.assertRaisesRegex(OSError,'unsupported'):
+     graph.build_bundle(root,out)
+   self.assertFalse(out.exists())
+   with mock.patch.object(graph,'require_safe_directory_writes',side_effect=OSError('unsupported')):
+    manifest=graph.build_bundle(root,out,trusted_output_path=True)
+   self.assertEqual(json.loads((out/'manifest.json').read_text()),manifest)
+ def test_trusted_output_fallback_rejects_symlink_path(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   actual=parent/'actual'; actual.mkdir(); link=parent/'link'; link.symlink_to(actual,target_is_directory=True)
+   with mock.patch.object(graph,'require_safe_directory_writes',side_effect=OSError('unsupported')):
+    with self.assertRaisesRegex(ValueError,'symlink'):
+     graph.build_bundle(root,link,trusted_output_path=True)
+   self.assertFalse((actual/'graph_nodes.jsonl').exists())
 if __name__=='__main__':unittest.main()

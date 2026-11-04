@@ -6,7 +6,7 @@ import { webcrypto, createHash } from 'node:crypto';
 
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'explorer-navigation', 'navigation-scroll-hint',
+  'explorer-navigation', 'navigation-scroll-hint', 'navigation-scroll-controls', 'navigation-scroll-previous', 'navigation-scroll-next',
   'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
@@ -87,6 +87,10 @@ class FakeNode {
     const list = this.handlers.get(type) || [];
     list.push(listener);
     this.handlers.set(type, list);
+  }
+  scrollTo({ left }) {
+    this.scrollLeft = left;
+    this.fire('scroll');
   }
   fire(type, event) { return Promise.all((this.handlers.get(type) || []).map((listener) => listener(event))); }
   scrollIntoView() {}
@@ -1243,6 +1247,38 @@ test('honest LCARS artwork placeholders render without remote image requests or 
   assert.equal(nodes.get('briefing-count').textContent, '0', 'image presentation never changes admission');
 });
 
+test('each original LCARS record signal is deterministically tied to its exact source-local row, not a licensed image', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, directory, 200);
+  const sample = () => traverse(nodes.get('discovery-list'), (node) =>
+    node.tagName === 'div' && /^artwork-slot artwork-/.test(node.className))
+    .slice(0, 8).map((frame) => {
+      const beacon = traverse(frame.parentNode, (node) => node.className === 'artwork-record-beacon');
+      assert.equal(beacon.length, 1, 'each record has one visible abstract signal strip');
+      assert.equal(beacon[0].children.length, 8, 'signal is bounded original local geometry');
+      assert.ok(beacon[0].children.every((node) => node.tagName === 'span' &&
+        ['artwork-beacon-on', 'artwork-beacon-off'].includes(node.className)));
+      const key = frame.getAttribute('data-source-local-key');
+      assert.ok(key?.startsWith('directory:'), 'source-local key remains exact, never canonical Work identity');
+      const label = traverse(frame.parentNode, (node) => node.className === 'artwork-record-label');
+      assert.equal(label.length, 1);
+      assert.match(label[0].textContent, /^Original signal · [0-9a-f]{8}$/);
+      assert.match(frame.getAttribute('aria-label'), /not an official still, poster or cover/);
+      assert.match(frame.getAttribute('data-record-phase'), /^[0-7]$/);
+      return [key, frame.getAttribute('data-record-phase'), label[0].textContent,
+        beacon[0].children.map((node) => node.className).join('|')];
+    });
+  const first = sample();
+  assert.equal(first.length, 8);
+  assert.deepEqual(first.map((row) => row[0]), directory.rows.slice(0, 8)
+    .map((row) => `directory:${row.row_id}`), 'visual keys map to exact displayed source-local rows');
+  assert.ok(new Set(first.map((row) => row[2])).size > 1, 'two different records need not share one generic mark');
+  nodes.get('discovery-filters').fire('input');
+  assert.deepEqual(sample(), first, 'identical source rows regenerate byte-for-byte identical local signals');
+  assert.equal(traverse(nodes.get('discovery-list'), (node) => node.tagName === 'img').length, 0,
+    'an original per-record visual must never fetch an external image');
+});
+
 test('explicit artwork opt-in displays only same-origin rights-receipted assets with graceful error fallback', async () => {
   assert.ok(SCRIPT.indexOf("img.referrerPolicy = 'no-referrer'") < SCRIPT.indexOf('img.src = remoteLibrary'),
     'privacy policy must be assigned before src could initiate a request');
@@ -2364,9 +2400,18 @@ test('LCARS navigation cue is directional, responsive, accessible and absent whe
   });
   const nav = nodes.get('explorer-navigation');
   const hint = nodes.get('navigation-scroll-hint');
+  const controls = nodes.get('navigation-scroll-controls');
+  const previous = nodes.get('navigation-scroll-previous');
+  const next = nodes.get('navigation-scroll-next');
   assert.equal(hint.hidden, true, 'no cue when section links fit the rail');
+  assert.equal(controls.hidden, true, 'no extra control rail when links fit');
+  assert.equal(previous.hidden, true);
+  assert.equal(next.hidden, true);
   assert.equal(nav.attributes.has('aria-describedby'), false, 'no hidden stale description');
   assert.equal(typeof resize, 'function', 'viewport resize listener installed');
+  assert.equal(nav.handlers.get('scroll')?.length, 1, 'combined Explorer registers exactly one rail scroll listener');
+  assert.equal(previous.handlers.get('click')?.length, 1, 'earlier control has one action handler');
+  assert.equal(next.handlers.get('click')?.length, 1, 'later control has one action handler');
 
   nav.clientWidth = 375;
   nav.scrollWidth = 1030;
@@ -2376,6 +2421,19 @@ test('LCARS navigation cue is directional, responsive, accessible and absent whe
   assert.match(hint.textContent, /More sections →/);
   assert.match(hint.textContent, /Swipe, scroll or Tab/);
   assert.equal(nav.attributes.get('aria-describedby'), 'navigation-scroll-hint');
+  assert.equal(previous.hidden, false, 'overflow exposes a genuine earlier-sections control');
+  assert.equal(next.hidden, false, 'overflow exposes a genuine later-sections control');
+  assert.equal(controls.hidden, false);
+  assert.equal(previous.getAttribute('aria-disabled'), 'true');
+  assert.equal(next.getAttribute('aria-disabled'), 'false');
+
+  next.fire('click');
+  assert.equal(nav.scrollLeft, 300, 'a real action scrolls the rail, not the whole page');
+  assert.match(hint.textContent, /Sections both ways ↔/);
+  previous.fire('click');
+  assert.equal(nav.scrollLeft, 0);
+  previous.fire('click');
+  assert.equal(nav.scrollLeft, 0, 'edge controls do not overscroll');
 
   nav.scrollLeft = 300;
   nav.fire('scroll');
@@ -2383,11 +2441,40 @@ test('LCARS navigation cue is directional, responsive, accessible and absent whe
   nav.scrollLeft = 655;
   nav.fire('scroll');
   assert.match(hint.textContent, /Earlier sections ←/);
+  assert.equal(next.getAttribute('aria-disabled'), 'true');
+  next.fire('click');
+  assert.equal(nav.scrollLeft, 655, 'last edge is an honest no-op');
 
   nav.clientWidth = 1030;
   resize();
   assert.equal(hint.hidden, true, 'cue disappears when every link fits');
+  assert.equal(controls.hidden, true);
+  assert.equal(previous.hidden, true);
+  assert.equal(next.hidden, true);
   assert.equal(nav.attributes.has('aria-describedby'), false);
+});
+
+test('LCARS navigation controls scroll proportionally at 320 and 390 without replacing native tab order', async () => {
+  const nodes = await runWithIndex(catalog);
+  const nav = nodes.get('explorer-navigation');
+  const earlier = nodes.get('navigation-scroll-previous');
+  const later = nodes.get('navigation-scroll-next');
+  for (const width of [320, 390]) {
+    nav.clientWidth = width;
+    nav.scrollWidth = 2200;
+    nav.scrollLeft = 0;
+    nav.fire('scroll');
+    later.fire('click');
+    assert.equal(nav.scrollLeft, Math.floor(width * 0.8), `${width}px viewport scrolls proportionally`);
+    earlier.fire('click');
+    assert.equal(nav.scrollLeft, 0);
+    assert.equal(later.hidden, false);
+  }
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.ok(html.indexOf('</nav>') < html.indexOf('id="navigation-scroll-previous"'),
+    'existing archive links retain their keyboard order before the optional rail controls');
+  assert.match(html, /id="navigation-scroll-previous"[^>]*aria-controls="explorer-navigation"[^>]*hidden>/);
+  assert.match(html, /id="navigation-scroll-next"[^>]*aria-controls="explorer-navigation"[^>]*hidden>/);
 });
 
 test('LCARS overflow cue updates after a badge widens through ResizeObserver', async () => {

@@ -24,21 +24,33 @@
   const RESEARCH_PAGE_SIZE = 30;
   let visibleResearchLimit = RESEARCH_PAGE_SIZE;
 
-  // Keep the section rail native-scrollable. Its cue is informational, not a
-  // fake navigation control, and only appears when real links are offscreen.
+  // Keep section links native-scrollable and in original keyboard tab order.
+  // Separate optional rail buttons scroll *only* the rail when links overflow.
   const navigation = document.querySelector?.('.lcars-navigation');
   const navigationHint = document.querySelector?.('.navigation-scroll-hint');
+  const navigationControls = byId('navigation-scroll-controls');
+  const navigationPrevious = byId('navigation-scroll-previous');
+  const navigationNext = byId('navigation-scroll-next');
   const updateNavigationHint = () => {
     if (!navigation || !navigationHint) return;
     const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
     const overflowing = maxScroll > 2;
     navigationHint.hidden = !overflowing;
+    if (navigationControls) navigationControls.hidden = !overflowing;
+    if (navigationPrevious) navigationPrevious.hidden = !overflowing;
+    if (navigationNext) navigationNext.hidden = !overflowing;
     if (!overflowing) {
+      navigationPrevious?.setAttribute('aria-disabled', 'true');
+      navigationNext?.setAttribute('aria-disabled', 'true');
       navigation.removeAttribute('aria-describedby');
       return;
     }
     const atStart = navigation.scrollLeft <= 2;
     const atEnd = navigation.scrollLeft >= maxScroll - 2;
+    // aria-disabled keeps the edge button focusable for keyboard users, while
+    // the click handler still enforces the boundary as an actual no-op.
+    navigationPrevious?.setAttribute('aria-disabled', String(atStart));
+    navigationNext?.setAttribute('aria-disabled', String(atEnd));
     const message = atStart ? 'More sections → Swipe, scroll or Tab'
       : atEnd ? 'Earlier sections ← Swipe, scroll or Tab'
         : 'Sections both ways ↔ Swipe, scroll or Tab';
@@ -48,6 +60,18 @@
     }
   };
   if (navigation && navigationHint) {
+    const scrollRail = (direction) => {
+      const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
+      const step = Math.floor(navigation.clientWidth * 0.8);
+      if (maxScroll <= 2 || step <= 0) return;
+      const target = Math.max(0, Math.min(maxScroll, navigation.scrollLeft + direction * step));
+      if (Math.abs(target - navigation.scrollLeft) < 2) return;
+      if (typeof navigation.scrollTo === 'function') navigation.scrollTo({ left: target, behavior: 'smooth' });
+      else navigation.scrollLeft = target;
+      updateNavigationHint();
+    };
+    navigationPrevious?.addEventListener('click', () => scrollRail(-1));
+    navigationNext?.addEventListener('click', () => scrollRail(1));
     navigation.addEventListener('scroll', updateNavigationHint, { passive: true });
     window.addEventListener?.('resize', updateNavigationHint);
     // The nav links' count badges grow after asynchronous catalog loads.
@@ -527,6 +551,16 @@
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
   }
 
+  // A non-cryptographic *display seed*, never a provenance digest or Work ID.
+  // Its only input is the already-validated source-local record key. It lets
+  // neighboring cards have different original LCARS marks without fetching,
+  // copying, or implying an episode still, poster or cover exists.
+  function recordVisualSeed(key) {
+    let seed = 2166136261;
+    for (const char of key) seed = Math.imul(seed ^ char.charCodeAt(0), 16777619) >>> 0;
+    return seed;
+  }
+
   // The abstract graphic is a navigable *record identifier*, generated only
   // from validated source-local metadata. It is never presented as a frame
   // grab, poster or jacket. Actual imagery requires a separately admitted,
@@ -535,6 +569,12 @@
     const label = artworkKinds[medium] || 'Media';
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
+    // Edition-only candidate cards intentionally have no artwork lookup key.
+    // They still possess a validated source-local row ID for visual marking.
+    const sourceLocalKey = key || (typeof row?.row_id === 'string' ? row.row_id : null);
+    const visualSeed = sourceLocalKey ? recordVisualSeed(sourceLocalKey) : 0;
+    frame.setAttribute('data-record-phase', String(visualSeed & 7));
+    if (sourceLocalKey) frame.setAttribute('data-source-local-key', sourceLocalKey);
     const series = String(row?.context || row?.publisher_series || row?.work_type || '').split('·', 1)[0].trim();
     const titleText = String(row?.title || label);
     const sourceName = String(row?.source_group || '').replace(/^(?:publisher:|distributor:|wikidata:)/, '').slice(0, 28);
@@ -552,6 +592,14 @@
     const caption = el('figcaption', 'artwork-caption');
     const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
     caption.append(status);
+    const beacon = el('span', 'artwork-record-beacon');
+    beacon.setAttribute('aria-hidden', 'true');
+    for (let bit = 0; bit < 8; bit++) {
+      beacon.append(el('span', (visualSeed >>> bit) & 1 ? 'artwork-beacon-on' : 'artwork-beacon-off'));
+    }
+    caption.append(beacon, el('span', 'artwork-record-label', sourceLocalKey
+      ? `Original signal · ${visualSeed.toString(16).padStart(8, '0')}`
+      : 'Original signal · source-local key unresolved'));
     if (row?.source_locator) {
       const sourceLink = el('a', 'artwork-record-source', 'Metadata source');
       sourceLink.href = row.source_locator;

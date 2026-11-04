@@ -6,6 +6,7 @@ import vm from 'node:vm';
 const script = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const ids = [
   'search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
+  'navigation-scroll-controls', 'navigation-scroll-previous', 'navigation-scroll-next',
   'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
@@ -146,6 +147,23 @@ test('publisher-card filter and availability use explicit accessible source-only
   assert.match(html, /id="publisher-card-download"[^>]*hidden>/);
   assert.match(html, /Publisher card title string match/);
   assert.match(html, /Held title \/ split unresolved/);
+});
+
+test('LCARS masthead offers a direct keyboard-accessible jump to the real directory search', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  const masthead = html.split('<header class="masthead">')[1].split('</header>')[0];
+  assert.match(masthead, /<a class="hero-search-link" href="#discovery-query">Search the Universe Directory/,
+    'the prominent entry point uses a real link that works without JS, pairing or credentials');
+  assert.equal((html.match(/id="discovery-query"/g) || []).length, 1,
+    'the jump target is a unique real search input, not a decorative or dead anchor');
+  assert.match(html, /<label for="discovery-query">Search discoveries<\/label><input id="discovery-query" type="search"/);
+  assert.match(css, /\.hero-search-link\s*\{[^}]*min-height:\s*48px;[^}]*\}/,
+    'the direct navigation control has at least a 48px tap target');
+  assert.match(css, /\.hero-search-link:focus-visible\s*\{/,
+    'keyboard focus must remain plainly visible');
+  assert.match(css, /@media \(max-width: 460px\)[\s\S]*?\.hero-search-link\s*\{[^}]*width:\s*100%;[^}]*\}/,
+    'the hero search link spans the narrow 320–390px layout without horizontal clipping');
 });
 
 test('public publisher ISBN shelf distinguishes unverified private edition state from first-party metadata', () => {

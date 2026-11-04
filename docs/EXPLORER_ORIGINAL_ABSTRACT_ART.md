@@ -9,3 +9,19 @@ Rebuild with `python3 tools/build_explorer_abstract_art.py`; validate committed 
 Independent, source-attributed publisher images and Open Library covers remain behind the existing separate artwork-catalog rights/crosswalk gate and opt-in switch. Display of an abstract background is automatic; display of any claimed external art is **not** automatically authorized, fetched, mirrored, or released by this change.
 
 Research status, callable search index, author/title/source identity and synopsis review receipts are unaffected.
+
+Each visible record placeholder additionally carries an **original, source-local
+signal**: eight small CSS bars and a bounded geometric rotation drawn solely
+from the displayed record's `directory:<row_id>` or first-party film key.
+Edition-only publisher candidates, which intentionally have no artwork lookup
+key, use their own source-local `row_id`. The `data-source-local-key` attribute
+keeps that mapping inspectable; `data-record-phase` controls only CSS geometry.
+The displayed eight-digit value is a reproducible, non-cryptographic **visual
+seed**, not a provenance hash, source authentication, cross-work identity, or
+thumbnail-coverage result. Hash collisions are possible; the underlying row
+identifier remains the authority. If no key exists, the caption says so.
+
+These signals render without network requests or local binary images beyond
+the five already released category backgrounds. Visitors may still separately
+opt in to the exact-edition jacket preview route under its existing rights
+and source receipts; none of the signal marks changes that approval boundary.

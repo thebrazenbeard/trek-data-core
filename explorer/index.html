@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=224cc4b5b398a2949fe1b2a208b7b0544ae51680d13b6582f6924df8804f36c5">
-  <script src="./app.js?v=0fecfdaec2324dec512ec08c6c5c46fad0fa239aaba6289739da08c5aa71feab" defer></script>
+  <link rel="stylesheet" href="./app.css?v=8ad4912b7245ecd367b5c926189084aa3001cb5d513db3340a41531cbeb8ad03">
+  <script src="./app.js?v=3e3c519ff4ea4d298929e46a6af73cab3783a72a7eba2392b1bf8e984d1e7335" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -37,6 +37,10 @@
     <a href="#records">Continuity</a>
   </nav>
   <p id="navigation-scroll-hint" class="navigation-scroll-hint" hidden>More sections → Swipe, scroll or Tab</p>
+  <div id="navigation-scroll-controls" class="navigation-scroll-controls" role="group" aria-label="Scroll archive sections" hidden>
+    <button id="navigation-scroll-previous" type="button" aria-controls="explorer-navigation" aria-label="Scroll to earlier archive sections" aria-disabled="true" hidden>← Earlier stations</button>
+    <button id="navigation-scroll-next" type="button" aria-controls="explorer-navigation" aria-label="Scroll to later archive sections" aria-disabled="true" hidden>Later stations →</button>
+  </div>
 
   <header class="masthead">
     <img class="masthead-art" src="./trek-data-core-hero.jpg?v=689794354abd322e438d4e02202dfcb99ee5e21f2e2c4f6a6916ada0d0262ed3" width="1536" height="512" alt="Panoramic starship bridge facing a luminous celestial navigation chart" decoding="async" fetchpriority="high">
@@ -55,6 +59,7 @@
         <span class="flag">Provenance first</span>
         <span class="flag">No invented canon</span>
       </div>
+      <a class="hero-search-link" href="#discovery-query">Search the Universe Directory <span aria-hidden="true">↘</span></a>
     </div>
   </header>
 

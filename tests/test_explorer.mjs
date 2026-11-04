@@ -1905,15 +1905,18 @@ test('twenty-two TNG S2 source-local episode cards show their original title-ins
     assert.equal(frame.getAttribute('style'), null, 'strict CSP disallows inline art');
     assert.ok(css.includes(`.artwork-slot[data-original-episode-art="${id}"] { background-image: url('./interpretive-episode/${id}.svg'); }`));
     assert.match(frame.getAttribute('aria-label'), /Original title-inspired geometric art.*not an official episode still/);
-    assert.match(frame.parentNode.textContent, /Original interpretive episode art.*not a still/);
+    assert.match(frame.parentNode.textContent, /Original episode art.*not a still/);
+    assert.match(frame.parentNode.className, /artwork-panel-interpretive-episode/);
     assert.equal(traverse(frame.parentNode, (node) => node.className === 'artwork-record-source').length, 1);
   }
+  assert.match(css, /\.artwork-panel-interpretive-episode \.artwork-caption-status \{ color: var\(--text\); font-size: \.68rem;/,
+    'the 390px source-art disclaimer must have legible contrast and size');
   assert.equal(traverse(nodes.get('discovery-list'), (node) => node.tagName === 'img').length, 0,
     'original CSS artwork does not load third-party or opt-in production images');
   assert.equal(nodes.get('briefing-count').textContent, '0', 'artwork never promotes source leads to Briefings');
 });
 
-test('episode-art source binding rejects title, locator, context or publisher swaps without displaying wrong art', async () => {
+test('episode-art source binding rejects title, locator, publisher, context and source-input swaps', async () => {
   const original = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const index = original.rows.findIndex((row) => row.row_id === 'legacy:s2:tng:000');
   assert.ok(index >= 0);
@@ -1922,6 +1925,7 @@ test('episode-art source binding rejects title, locator, context or publisher sw
     ['source_locator', 'https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/'],
     ['source_group', 'publisher:startrek.com'],
     ['context', 'TNG S2E2'],
+    ['source_input', 'proposals/alternate-source.json'],
   ]) {
     const altered = structuredClone(original);
     altered.rows[index][field] = replacement;
@@ -1931,6 +1935,14 @@ test('episode-art source binding rejects title, locator, context or publisher sw
     const frames = traverse(nodes.get('discovery-list'), (node) => Boolean(node.getAttribute('data-original-episode-art')));
     assert.ok(!frames.some((node) => node.getAttribute('data-original-episode-art') === 'tng-s2-001'),
       `unverified ${field} must not receive an authoritative-looking source-specific image`);
+    if (field === 'source_input') {
+      const generic = traverse(nodes.get('discovery-list'), (node) =>
+        node.getAttribute('data-source-local-key') === 'directory:legacy:s2:tng:000');
+      assert.equal(generic.length, 1, 'schema-valid changed source_input must retain the source-local card');
+      assert.equal(generic[0].getAttribute('data-original-episode-art'), null);
+      assert.match(generic[0].parentNode.textContent, /Source binding unverified/,
+        'source provenance mismatch visibly falls back without silently reusing the source-specific illustration');
+    }
   }
 });
 

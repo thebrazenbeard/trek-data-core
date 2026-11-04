@@ -571,6 +571,7 @@
   // Episode images are original title interpretations, never production stills.
   // Exact local ID/title/locator/group/context pins prevent source swap spoofing.
   const tngSeason2Locator = 'https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/';
+  const tngSeason2SourceInput = 'proposals/discovery/legacy-paramount-season2-20261102/tng/bundle.json';
   const originalEpisodeArtBindings = new Map([
     ['legacy:s2:tng:000', ['The Child', 'tng-s2-001']],
     ['legacy:s2:tng:001', ['Where Silence Has Lease', 'tng-s2-002']],
@@ -667,16 +668,22 @@
     const originalEpisodeId = episodeArtPin && row.title === episodeArtPin[0] &&
       row.source_locator === tngSeason2Locator &&
       row.source_group === 'publisher:paramount' &&
+      row.source_input === tngSeason2SourceInput &&
       row.context === `TNG S2E${Number(episodeArtPin[1].slice(-3))}` &&
-      row.verification_status === 'UNVERIFIED_METADATA' ? episodeArtPin[1] : null;
+      row.verification_status === 'UNVERIFIED_METADATA' &&
+      row.candidate_kind === 'PUBLISHER_EPISODE_SLOT' &&
+      row.identity_scope === 'SOURCE_LOCAL' &&
+      row.coverage_effect === 'NONE' && row.admission_effect === 'NONE'
+      ? episodeArtPin[1] : null;
     if (episodeArtPin && !originalEpisodeId) {
       status.textContent = 'Source binding unverified · original LCARS index graphic';
     }
     if (originalEpisodeId) {
+      panel.className += ' artwork-panel-interpretive-episode';
       frame.className += ' artwork-interpretive-episode';
       frame.setAttribute('data-original-episode-art', originalEpisodeId);
       frame.setAttribute('aria-label', `Original title-inspired geometric art for ${titleText}; source-local publisher metadata only, not an official episode still`);
-      status.textContent = 'Original interpretive episode art · not a still';
+      status.textContent = 'Original episode art · not a still';
     }
     const beacon = el('span', 'artwork-record-beacon');
     beacon.setAttribute('aria-hidden', 'true');

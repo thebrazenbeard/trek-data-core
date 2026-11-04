@@ -349,6 +349,7 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot.artwork-interpretive-episode .artwork-record-title,
 .artwork-slot.artwork-interpretive-episode .artwork-missing { display: none; }
 .artwork-slot.artwork-interpretive-episode .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
+.artwork-panel-interpretive-episode .artwork-caption-status { color: var(--text); font-size: .68rem; line-height: 1.3; font-weight: 760; }
 .artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
 .artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
 .artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }

@@ -33,6 +33,14 @@ EXPECTED_IDS = frozenset({
 ANOMALIES = {
     "film-first-contact", "film-search-for-spock", "film-insurrection",
 }
+HELD_PUBLISHER_YEAR_DISPUTES = {
+    # Preserve the publisher-page observation and the disagreement verbatim;
+    # neither a corrected release year nor an identity decision is inferred here.
+    "film-search-for-spock": (
+        1984,
+        "PARAMOUNT_YEAR_1984_DIFFERS_FROM_STARTREK_COM_YEAR_1982; AFI_CATALOG_LISTS_1984; NOT_RECONCILED",
+    ),
+}
 
 
 def sha(raw: bytes) -> str:
@@ -135,6 +143,9 @@ def build() -> dict:
                 raise ValueError(f"Invalid official film listing fields: {ident}")
             if (anomaly is not None) != (ident in ANOMALIES):
                 raise ValueError(f"Official source anomaly was silently invented or suppressed: {ident}")
+            disputed_year = HELD_PUBLISHER_YEAR_DISPUTES.get(ident)
+            if disputed_year is not None and (year, anomaly) != disputed_year:
+                raise ValueError(f"Disputed publisher-local film-year observation drift: {ident}")
             tags = sorted([
                 "medium:film", "publisher:paramount.com", "batch:" + batch.lower(),
                 "year:" + str(year), "rating:" + rating.lower(),

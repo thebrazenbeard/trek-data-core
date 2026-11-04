@@ -568,6 +568,17 @@ class CoverageLedgerTests(unittest.TestCase):
      else:path.unlink();os.link(alias,path)
     with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*symlink|SOURCE_BOUND.*hardlinked'):
      make_report(records,works={'w1':WORK},receipt_transform=swap,**files)
+ def test_content_addressed_receipts_hash_exact_crlf_bytes_not_normalized_text(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   old_root=coverage.ROOT;coverage.ROOT=Path(tmp)/'repo'
+   try:
+    directory=coverage.ROOT/'coverage'/'bound-claims';directory.mkdir(parents=True)
+    with_lf='{\n"receipt_kind":"SYNTHETIC"\n}'
+    digest=sha256_text(with_lf)
+    (directory/(digest.removeprefix('sha256:')+'.json')).write_bytes(with_lf.replace('\n','\r\n').encode('utf-8'))
+    with self.assertRaisesRegex(ValueError,'bytes do not match'):
+     coverage._governed_receipt('bound-claim:'+digest,'bound-claim:','bound-claims')
+   finally:coverage.ROOT=old_root
  def test_source_bound_does_not_imply_later_ledgers(self):
   discovered=event('d0','DISCOVERED',role='LIBRARIAN'); bound=event('c1','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0']); bound_files,_,_=source_bound_receipts(bound);records=[WORK,SOURCE,BINDING,discovered,bound];errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING});self.assertEqual(errors,[]);result=make_report(records,works={'w1':WORK},denominator_snapshot=denominator(),**bound_files);self.assertEqual(result['states']['SOURCE_BOUND']['numerator'],1);self.assertEqual(result['states']['FULL_TEXT_AVAILABLE']['numerator'],0);self.assertEqual(result['states']['CLOSE_READ']['numerator'],0)
  def test_completed_staging_read_does_not_advance_accepted_coverage(self):

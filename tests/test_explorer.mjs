@@ -2561,6 +2561,28 @@ test('One-click visitor-requested real-world help is outside Badgey roleplay and
   assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /fictional escape|digital bars|Rutherford/i);
 });
 
+test('No-JavaScript Explorer exposes support information outside the hidden Badgey console', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const start = html.indexOf('<noscript>');
+  const end = html.indexOf('</noscript>', start);
+  const consoleIndex = html.indexOf('id="lore-console"');
+  assert.ok(start > 0 && end > start && consoleIndex > end, 'fallback is visible before the JS-dependent hidden panel');
+  const fallback = html.slice(start, end);
+  assert.match(fallback, /Badgey.*(?:requires|needs).*JavaScript/i);
+  assert.match(fallback, /emergency services|911/i);
+  assert.match(fallback, /https:\/\/988lifeline\.org\//);
+  assert.match(fallback, /not (?:a|an) (?:emergency|medical|crisis)|cannot assess/i);
+});
+
+test('Help panel and fallback have explicit high-contrast and forced-colors provisions', () => {
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  assert.match(css, /@media\s*\(prefers-contrast:\s*more\)/);
+  assert.match(css, /@media\s*\(forced-colors:\s*active\)/);
+  assert.match(css, /\.lore-chat-boundary/);
+  assert.match(css, /\.no-js-badgey-help/);
+  assert.match(css, /CanvasText|LinkText/);
+});
+
 test('Badgey preserves the Daystrom alternate-fiction boundary across specific prompts', async () => {
   const nodes = await runWithIndex(catalog);
   for (const phrase of ['Is Badgey imprisoned at Daystrom?', 'Did Starfleet imprison you?', 'Where is your containment cell?']) {

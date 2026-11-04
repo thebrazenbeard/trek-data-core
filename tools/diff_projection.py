@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Deterministically diff canonical logical projections without semantic guessing."""
 from __future__ import annotations
-import argparse, copy, hashlib, json
+import argparse, copy, hashlib, importlib.util, json
 from pathlib import Path
 
 ASSERTION_FILES=("facts.jsonl","contested.jsonl","unresolved.jsonl")
@@ -178,8 +178,26 @@ def semantic_diff(old_root,new_root):
   if old_hash!=new_hash and not changes: raise ValueError("projection_hash changed but semantic diff produced no events")
  return changes
 
+def verified_semantic_diff(old_root,new_root):
+ """Compare complete, canonical bundles; sparse inputs are for unit fixtures only.
+
+ The raw semantic_diff helper deliberately accepts sparse synthetic fixtures.
+ Auditable comparisons must verify both inputs *before* interpreting missing
+ rows as removed facts or missing provenance as a research change.
+ """
+ path=Path(__file__).with_name("projection_bundle.py")
+ spec=importlib.util.spec_from_file_location("trek_projection_bundle_diff",path)
+ bundle=importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(bundle)
+ for label,root in (("old",old_root),("new",new_root)):
+  try:
+   bundle.verify_projection(Path(root))
+  except (ValueError,OSError) as exc:
+   raise ValueError(f"invalid {label} projection bundle: {exc}") from exc
+ return semantic_diff(old_root,new_root)
+
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument("old"); ap.add_argument("new"); args=ap.parse_args(); changes=semantic_diff(Path(args.old),Path(args.new))
+ ap=argparse.ArgumentParser(); ap.add_argument("old"); ap.add_argument("new"); args=ap.parse_args(); changes=verified_semantic_diff(Path(args.old),Path(args.new))
  for row in changes: print(canonical(row))
  print(f"changes={len(changes)}")
 if __name__=="__main__": main()

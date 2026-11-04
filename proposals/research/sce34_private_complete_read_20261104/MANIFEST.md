@@ -27,7 +27,7 @@ All offsets are zero-based raw HTML member bytes, end exclusive. They are not pr
 | `#ch_3` | `[36826,57912)` | `6af0b83d7b316e9115e8bc194860459092b58c675e91846982477b0be26031db` | Hull absorption and a hidden automatic return program emerge from engineering analysis, with past deactivated safeguards explaining renewed danger. |
 | `#ch_4` | `[57912,69108)` | `1098e026c07bbdc05ba20d330842935c2c5b2cf7330571247ef438d6886f3452` | The Androssi vessel separates into three modules; the crew proposes entering a sun inside the larger alien craft. |
 | `#ch_5` | `[69108,80802)` | `4a2a6136168fc95f8492e53ce0e621b25c2c1831d4d7c11bc86a0e7f52e75fb6` | An improvised tractor-assisted asteroid pivot changes course before the da Vinci shelters inside the cargo hold. |
-| `#ch_6` | `[80802,103622)` | `61ee3a3663e501bbd5a4ac1a0d385f6dde273b4fdb3845dedf5f494eca129b74` | The team survives a solar dive and uses the alien engine to destroy the remaining Androssi guard before leaving the star. |
+| `#ch_6` | `[80802,103622)` | `61ee3a3663e501bbd5a4ac1a0d385f6dde273b4fdb3845dedf5f494eca129b74` | The team survives a solar dive and uses the alien engine's flare-like discharge against the remaining Androssi guard; the guard is engulfed, while its ultimate condition is not established. |
 | `#ch_7` | `[103622,113016)` | `c5eac07db5931ac85b4715dfff831cbc43664d20a89d580c2ef05959bcbf6014` | The ship's drive/computer pathways are disabled; its **hull survival remains unknown**, and the surviving crew reassesses past grief and shared competence. |
 
 ## Evidence discipline and protected effects

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DATA = Path(__file__).with_name("records.json")
 OWNER_OPF = ROOT / "proposals/librarian/private-opf-metadata-20261103/observations.json"
 OWNER_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
-FROZEN_CANONICAL_SHA = "560f6420ed7daaf4baa8593d888622b2bc6ed8054f9c489721bdbca5e8e7f538"
+FROZEN_CANONICAL_SHA = "997263dc75fecc5ccacc5c6e518f1114d7dbfccb30200bc9c0c321c71c39ddfb"
 EXPECTED_SPANS = (
     (6413, 17685, "c000e263fa41bea8a439d69794e81960787de2a1932f8165e697334e958f5df4"),
     (17685, 36826, "3855bbaf7c9fd0b9cf1cf429e16fa5061cc33d471b5d483a10a8dd1e9c18a63c"),

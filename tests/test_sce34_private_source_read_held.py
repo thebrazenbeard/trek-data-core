@@ -88,6 +88,15 @@ class SCE34ReadTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate(document)
 
+    def test_guard_engulfed_not_invented_killed(self):
+        """Independent P2: e09 supports a flare striking the guard, not a verified fatality."""
+        self.assertIn("engulfs the remaining guard", self.packet["work_candidate"]["original_synopsis"])
+        self.assertNotIn("destroys the remaining guard", self.packet["work_candidate"]["original_synopsis"])
+        ch6 = self.packet["chapter_spans"][5]["original_summary"]
+        self.assertIn("engulfs the guard", ch6)
+        self.assertNotIn("destroy", ch6.lower())
+        self.assertIn("engulfed in a flare-like discharge", self.packet["evidence"][8]["observation"])
+
     def test_no_private_prose_or_coverage_smuggling(self):
         for field, forged in (("copyrighted_book_text_exported", True),
                               ("public_explorer_effect", "ADDED"),

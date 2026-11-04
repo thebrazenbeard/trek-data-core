@@ -22,6 +22,43 @@ EXPECTED_LANES = {
     "UNACCEPTED_LOCAL_MEDIA_SOURCE_PROPOSAL_HELD": 3,
 }
 ACCEPTED_BASE = "3028765359001b90bc3e6b5c1835ee283b326e91"
+PACKET_FIELDS = frozenset({
+    "packet_id", "accepted_main_baseline", "status", "accepted_input_digests",
+    "state_count_lanes", "new_public_artwork", "new_image_downloads",
+    "new_source_work_admissions", "new_coverage_increment", "site_effect", "entries",
+})
+ROW_FIELDS = {
+    "ACCEPTED_ORIGINAL_CATEGORY_ASSET": frozenset({
+        "id", "lane", "asset_origin", "medium", "asset_path", "asset_sha256",
+        "source_local_row_id", "reference_scope", "rights_class", "byte_evidence",
+        "display_state", "new_public_release_eligible",
+    }),
+    "ACCEPTED_LICENSED_DOCUMENTARY_HELD": frozenset({
+        "id", "lane", "asset_origin", "medium", "source_local_row_id",
+        "source_url", "creator", "license", "byte_evidence", "original_sha256",
+        "display_state", "reference_scope", "new_public_release_eligible",
+    }),
+    "ACCEPTED_EXTERNAL_JACKET_API_RIGHTS_UNRESOLVED": frozenset({
+        "id", "lane", "asset_origin", "medium", "source_local_row_id",
+        "artwork_catalog_row_id", "source_url", "isbn13", "cover_id",
+        "rights_class", "byte_evidence", "display_state", "new_public_release_eligible",
+    }),
+    "ACCEPTED_OPF_PUBLISHER_METADATA_NO_IMAGE": frozenset({
+        "id", "lane", "asset_origin", "medium", "source_local_row_id",
+        "private_source_local_ref", "publisher_title", "publisher_isbn13",
+        "publisher_url", "source_crosscheck_state", "work_identity",
+        "private_edition_equivalence", "byte_evidence", "display_state",
+        "new_public_release_eligible",
+    }),
+    "UNACCEPTED_LOCAL_MEDIA_SOURCE_PROPOSAL_HELD": frozenset({
+        "id", "lane", "asset_origin", "medium", "source_local_row_id",
+        "work_association", "proposed_source_commit", "proposed_candidate_id",
+        "source_url", "creator", "license", "original_sha256_local_proposal",
+        "byte_evidence", "display_state", "new_public_release_eligible",
+    }),
+}
+# TIFF HEAD-only case carries an extra, independently observed response-length field.
+LOCAL_TIFF_ID = "picard-costume-local-unaccepted-tiff"
 
 
 def digest(raw: bytes) -> str:
@@ -34,7 +71,9 @@ def fail(message: str) -> None:
 
 def matches(row: dict, expected: dict, context: str) -> None:
     for key, value in expected.items():
-        if row.get(key) != value:
+        # Python considers False == 0 and True == 1. Neither equivalence is
+        # permitted for custody, rights, release, or coverage declarations.
+        if type(row.get(key)) is not type(value) or row.get(key) != value:
             fail(f"{context}: mismatched {key}: {row.get(key)!r} != {value!r}")
 
 
@@ -44,6 +83,8 @@ def load(path: Path) -> dict:
 
 def audit(packet: dict | None = None, root: Path = ROOT) -> dict:
     packet = load(root / PACKET.relative_to(ROOT)) if packet is None else packet
+    if not isinstance(packet, dict) or set(packet) != PACKET_FIELDS:
+        fail("packet: unexpected fields or missing fields; rights declarations are closed")
     matches(packet, {"packet_id": "librarian-art-rights-source-crosswalk-20261104",
                      "accepted_main_baseline": ACCEPTED_BASE,
                      "status": "HELD_RIGHTS_PROVENANCE_CROSSWALK_NO_PUBLIC_EFFECT",
@@ -51,6 +92,9 @@ def audit(packet: dict | None = None, root: Path = ROOT) -> dict:
                      "new_public_artwork": False, "new_image_downloads": False,
                      "new_source_work_admissions": 0, "new_coverage_increment": 0,
                      "site_effect": "NONE"}, "packet")
+    if any(type(packet["state_count_lanes"].get(lane)) is not int
+           for lane in EXPECTED_LANES):
+        fail("state_count_lanes requires exact integer counts")
     inputs = packet.get("accepted_input_digests")
     if not isinstance(inputs, dict) or set(inputs) != {
             "explorer/artwork-catalog.json", "explorer/artwork-catalog-v1.3.json",
@@ -65,6 +109,15 @@ def audit(packet: dict | None = None, root: Path = ROOT) -> dict:
     entries = packet.get("entries")
     if not isinstance(entries, list) or len(entries) != 12:
         fail("bounded twelve-row packet required")
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            fail(f"row:{index}: record must be an object")
+        lane = entry.get("lane")
+        fields = ROW_FIELDS.get(lane)
+        if lane == "UNACCEPTED_LOCAL_MEDIA_SOURCE_PROPOSAL_HELD" and entry.get("id") == LOCAL_TIFF_ID:
+            fields = fields | {"source_reported_bytes"}
+        if fields is None or set(entry) != fields:
+            fail(f"row:{index}: unexpected fields or missing fields in lane {lane}")
     if len({entry.get("id") for entry in entries}) != len(entries):
         fail("duplicate/missing entry id")
     if Counter(entry.get("lane") for entry in entries) != EXPECTED_LANES:
@@ -172,24 +225,53 @@ def audit(packet: dict | None = None, root: Path = ROOT) -> dict:
         if "artwork_catalog_row_id" in row or "cover_id" in row:
             fail(f"OPF crosscheck falsely bound to cover: {id_}")
 
-    local_cases = {"discovery-lucca-local-unaccepted-photo": ("EPISODE", None, "36b8661", "CC BY-SA 4.0", "2a414b122e7f6a1a9d5ffec93c79dba4b72209e8bf1a17839565b2c3c1b41347", "UNACCEPTED_LOCAL_PRIVATE_ORIGINAL_SHA256"),
-                   "nemesis-local-unaccepted-photo": ("FILM", "film:film-nemesis", "736024a", "GFDL 1.2 or later", "47984c7682846bfba2b6515f6137877b6b3c194f2d7420909bbf4113b8cfc54f", "UNACCEPTED_LOCAL_PRIVATE_ORIGINAL_SHA256"),
-                   "picard-costume-local-unaccepted-tiff": ("EPISODE", None, "f5541e5", "CC BY-SA 4.0", None, "UNACCEPTED_LOCAL_COMMONS_API_AND_HTTP_HEAD_ONLY")}
-    for id_, (medium, source_id, commit, license_, sha, byte_kind) in local_cases.items():
+    # Unaccepted observations have no accepted upstream receipt. Pin their
+    # *entire* source-relative attribution tuple pending separate verification;
+    # source-commit labels and private original hashes are not authenticity proof.
+    local_cases = {
+        "discovery-lucca-local-unaccepted-photo": {
+            "medium": "EPISODE", "source_local_row_id": None,
+            "work_association": "Star Trek: Discovery series 2017 event, no episode ID",
+            "proposed_source_commit": "36b8661",
+            "proposed_candidate_id": "media-discovery-2017-lucca-caranti-panel-held",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Teatro_del_Giglio_-_Lucca_2017.jpg",
+            "creator": "Niccolò Caranti", "license": "CC BY-SA 4.0",
+            "original_sha256_local_proposal": "2a414b122e7f6a1a9d5ffec93c79dba4b72209e8bf1a17839565b2c3c1b41347",
+            "byte_evidence": "UNACCEPTED_LOCAL_PRIVATE_ORIGINAL_SHA256",
+            "display_state": "HELD_THIRD_PARTY_PERSONALITY_RIGHTS",
+        },
+        "nemesis-local-unaccepted-photo": {
+            "medium": "FILM", "source_local_row_id": "film:film-nemesis",
+            "work_association": "Star Trek: Nemesis behind-the-scenes set, not frame",
+            "proposed_source_commit": "736024a",
+            "proposed_candidate_id": "media-nemesis-2001-grcote-set-photo-held",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Glenn_Cote_Brent_Spiner.jpg",
+            "creator": "Grcote", "license": "GFDL 1.2 or later",
+            "original_sha256_local_proposal": "47984c7682846bfba2b6515f6137877b6b3c194f2d7420909bbf4113b8cfc54f",
+            "byte_evidence": "UNACCEPTED_LOCAL_PRIVATE_ORIGINAL_SHA256",
+            "display_state": "HELD_GFDL_UNSUPPORTED_AND_PERSONALITY_RIGHTS",
+        },
+        LOCAL_TIFF_ID: {
+            "medium": "EPISODE", "source_local_row_id": None,
+            "work_association": "Star Trek: Picard season three displayed costume, no episode ID",
+            "proposed_source_commit": "f5541e5",
+            "proposed_candidate_id": "media-picard-2023-fourthords-costume-held",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Star_Trek-_Picard_season-three_Starfleet_flag_officer's_casual_uniform_(1_March_2023,_aboard_Star_Trek-_The_Cruise_VI,_1_of_3).tif",
+            "creator": "Fourthords", "license": "CC BY-SA 4.0",
+            "original_sha256_local_proposal": None,
+            "byte_evidence": "UNACCEPTED_LOCAL_COMMONS_API_AND_HTTP_HEAD_ONLY",
+            "display_state": "HELD_UNDERLYING_COSTUME_AND_MARK_RIGHTS",
+            "source_reported_bytes": 122012134,
+        },
+    }
+    for id_, source_fields in local_cases.items():
         row = by_id[id_]
         matches(row, {"lane": "UNACCEPTED_LOCAL_MEDIA_SOURCE_PROPOSAL_HELD",
-                      "asset_origin": "THIRD_PARTY_DOCUMENTARY_PHOTO", "medium": medium,
-                      "source_local_row_id": source_id, "proposed_source_commit": commit,
-                      "license": license_, "original_sha256_local_proposal": sha,
-                      "byte_evidence": byte_kind}, f"local-unaccepted:{id_}")
-        if not row.get("display_state", "").startswith("HELD_"):
-            fail(f"unaccepted media proposal release status changed: {id_}")
-        if "asset_path" in row or "artwork_catalog_row_id" in row:
-            fail(f"local unaccepted media attempted publication binding: {id_}")
+                      "asset_origin": "THIRD_PARTY_DOCUMENTARY_PHOTO", **source_fields},
+                f"local-unaccepted:{id_}")
+        source_id = source_fields["source_local_row_id"]
         if source_id and source_id not in search_rows:
             fail(f"local media source-local row missing: {id_}")
-    if by_id["picard-costume-local-unaccepted-tiff"].get("source_reported_bytes") != 122012134:
-        fail("Picard TIFF source HEAD bytes changed")
     return {"rows_validated": len(entries), "accepted_source_files_pinned": len(inputs),
             "rights_promotion": "NONE", "public_bytes_added": False}
 

@@ -47,7 +47,7 @@ class ArtRightsSourceCrosswalkTests(unittest.TestCase):
 
     def test_no_row_reclassified_as_source_bound(self):
         self.reject(lambda p: self.row(p, "opf-publisher-0010-isbn-agree-no-cover").__setitem__(
-            "lane", "ACCEPTED_SOURCE_BOUND_BOOK"), "source/artwork rights lanes changed")
+            "lane", "ACCEPTED_SOURCE_BOUND_BOOK"), "unexpected fields|source/artwork rights lanes changed")
 
     def test_no_new_public_release_approval(self):
         self.reject(lambda p: self.row(p, "beyond-premiere-accepted-held").__setitem__(
@@ -84,7 +84,7 @@ class ArtRightsSourceCrosswalkTests(unittest.TestCase):
 
     def test_cover_id_is_not_private_opf_edition_equivalence(self):
         self.reject(lambda p: self.row(p, "kirk-autobiography-jacket-api").__setitem__(
-            "private_source_local_ref", "opf-local:0010"), "disguised as owned bytes/private OPF")
+            "private_source_local_ref", "opf-local:0010"), "unexpected fields|disguised as owned bytes/private OPF")
 
     def test_opf_isbn_agreement_is_not_global_work(self):
         self.reject(lambda p: self.row(p, "opf-publisher-0010-isbn-agree-no-cover").__setitem__(
@@ -97,7 +97,7 @@ class ArtRightsSourceCrosswalkTests(unittest.TestCase):
 
     def test_opf_title_discrepancy_cannot_grow_cover_association(self):
         self.reject(lambda p: self.row(p, "opf-publisher-0067-title-discrepancy-no-cover").__setitem__(
-            "artwork_catalog_row_id", "directory:literature:unknown"), "falsely bound to cover")
+            "artwork_catalog_row_id", "directory:literature:unknown"), "unexpected fields|falsely bound to cover")
 
     def test_local_proposal_is_not_an_accepted_source_receipt(self):
         self.reject(lambda p: self.row(p, "nemesis-local-unaccepted-photo").__setitem__(
@@ -109,7 +109,60 @@ class ArtRightsSourceCrosswalkTests(unittest.TestCase):
 
     def test_third_party_personality_rights_are_not_silent_release(self):
         self.reject(lambda p: self.row(p, "discovery-lucca-local-unaccepted-photo").__setitem__(
-            "display_state", "APPROVED_FOR_DISPLAY"), "unaccepted media proposal release status changed")
+            "display_state", "APPROVED_FOR_DISPLAY"), "mismatched display_state")
+
+    def test_unaccepted_documentary_origin_tuple_is_not_self_attested(self):
+        cases = {
+            "discovery-lucca-local-unaccepted-photo": {
+                "source_url": "https://example.invalid/other-image.jpg",
+                "creator": "Invented Author",
+                "proposed_candidate_id": "media-different-photo",
+                "work_association": "Verified Season One Episode",
+            },
+            "nemesis-local-unaccepted-photo": {
+                "source_url": "https://example.invalid/nemesis-still.jpg",
+                "creator": "Unauthorized Photographer",
+                "proposed_candidate_id": "media-other-nemesis-frame",
+            },
+            "picard-costume-local-unaccepted-tiff": {
+                "source_url": "https://example.invalid/costume.png",
+                "creator": "Invented Creator",
+                "proposed_candidate_id": "media-other-uniform",
+            },
+        }
+        for id_, changes in cases.items():
+            for field, replacement in changes.items():
+                with self.subTest(id=id_, field=field):
+                    self.reject(lambda p, id_=id_, field=field, replacement=replacement:
+                                self.row(p, id_).__setitem__(field, replacement),
+                                "local-unaccepted:.*mismatched")
+
+    def test_rights_claims_cannot_be_smuggled_as_extra_fields(self):
+        for id_, field, value in (
+            ("beyond-premiere-accepted-held", "public_image_display_authorized", True),
+            ("opf-publisher-0010-isbn-agree-no-cover", "private_edition_equivalence_verified", True),
+            ("nemesis-local-unaccepted-photo", "public_image_display_authorized", True),
+            ("discovery-lucca-local-unaccepted-photo", "source_work_binding", "ACCEPTED"),
+        ):
+            with self.subTest(id=id_, field=field):
+                self.reject(lambda p, id_=id_, field=field, value=value:
+                            self.row(p, id_).__setitem__(field, value), "unexpected fields")
+        self.reject(lambda p: p.__setitem__("public_release_approved", True), "packet: unexpected fields")
+
+    def test_held_display_states_are_closed_not_prefix_matched(self):
+        self.reject(lambda p: self.row(p, "nemesis-local-unaccepted-photo").__setitem__(
+            "display_state", "HELD_BUT_APPROVED_TO_PUBLISH"), "local-unaccepted:.*mismatched")
+
+    def test_exact_bool_int_types_prevent_false_zero_equivalence(self):
+        for field, replacement in (("new_coverage_increment", False),
+                                   ("new_source_work_admissions", False),
+                                   ("new_public_artwork", 0),
+                                   ("new_image_downloads", 0)):
+            with self.subTest(field=field):
+                self.reject(lambda p, field=field, replacement=replacement:
+                            p.__setitem__(field, replacement), "packet: mismatched")
+        self.reject(lambda p: p["state_count_lanes"].__setitem__(
+            "ACCEPTED_LICENSED_DOCUMENTARY_HELD", True), "state_count_lanes.*exact integer")
 
     def test_no_machine_private_path_or_prose_in_public_manifest(self):
         manifest = (CHECK.PACKET.parent / "MANIFEST.md").read_text(encoding="utf-8")

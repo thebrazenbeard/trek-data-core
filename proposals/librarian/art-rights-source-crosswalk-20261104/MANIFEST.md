@@ -25,6 +25,28 @@ The complete accepted `explorer/search-catalog.json` has 1,214 **source-local, n
 
 > Hostile falsifier: an OPF ISBN matching a publisher ISBN may be a source-local identifier agreement but still have edition/format variants and no corresponding cover. Never silently map `opf-local:*` to `directory:literature:*` or global Work IDs.
 
+## Independent review correction — fail-closed attribution and rights fields
+
+The initial draft validator checked selected provenance fields but accepted extra
+rights/identity declarations and did not pin the three unaccepted-photo source
+URLs, creators, candidate IDs, or association notes. A hostile reviewer
+reproduced those failures at the original PR head. The corrected validator now:
+
+- uses closed per-lane record schemas and rejects unknown or missing keys,
+  including undeclared approval, binding, and edition-equivalence flags;
+- requires exact boolean versus integer types for release, admission and
+  coverage controls (Python's `False == 0` is not acceptable evidence);
+- pins the **complete observed source-relative attribution tuple** of each
+  unaccepted documentary proposal, and only permits its exact held state;
+- treats every source change as a new proposal needing explicit review, not a
+  dynamic URL/title lookup that might silently rebind an image.
+
+Those three unaccepted tuples are pinned to this proposal's observed metadata,
+**not authenticated against independent source files or live Commons bytes**.
+The changes prevent silent mutation of the proposal; they do not establish
+license ownership, public-display rights, private photo-byte authenticity,
+or global image/Work identity. Third-party artwork remains HELD.
+
 ## Next review boundaries
 
 - **Librarian:** maintain source/edition/artwork rights classes, exact file receipts and held discrepancies; no canvas/editor UI edits.

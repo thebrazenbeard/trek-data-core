@@ -84,7 +84,7 @@ def audit_rows(rows):
 
         # Exact URL deliberately retained: we cannot conclude two distinct
         # links identify the same source without independently reviewing them.
-        signature = (row["medium"], _norm(row["context"]),
+        signature = (_norm(row["medium"]), _norm(row["context"]),
                      _norm(row["title"]), locator)
         by_signature[signature].append(row)
         by_locator[locator].append(row)

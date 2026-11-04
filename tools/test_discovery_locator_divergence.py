@@ -38,6 +38,35 @@ class DivergentLocatorTest(unittest.TestCase):
         result = audit_rows([row("a", "STAR TREK"), row("b", "  star   trek  ")])
         self.assertEqual(result["same_url_divergent_observation_count"], 0)
 
+    def test_medium_case_variant_is_one_normalized_duplicate(self):
+        result = audit_rows([
+            row("a", "Pilot", medium="episode"),
+            row("b", "Pilot", medium="Episode"),
+        ])
+        self.assertEqual(result["duplicate_signature_count"], 1)
+        self.assertEqual(result["duplicate_extra_row_count"], 1)
+        self.assertEqual(result["same_url_divergent_observation_count"], 0)
+        self.assertEqual(result["duplicate_signatures"][0]["medium"], "episode")
+        self.assertEqual(result["duplicate_signatures"][0]["row_ids"], ["a", "b"])
+
+    def test_unicode_nfkc_medium_title_context_variants_are_duplicates(self):
+        result = audit_rows([
+            row("a", "Café", context="Season 1", medium="episode"),
+            row("b", "Cafe\u0301", context="Ｓｅａｓｏｎ １", medium="ＥＰＩＳＯＤＥ"),
+        ])
+        self.assertEqual(result["duplicate_signature_count"], 1)
+        self.assertEqual(result["same_url_divergent_observation_count"], 0)
+        self.assertEqual(result["duplicate_signatures"][0]["title_normalized"], "café")
+        self.assertEqual(result["duplicate_signatures"][0]["context_normalized"], "season 1")
+
+    def test_distinct_normalized_medium_remains_divergent(self):
+        result = audit_rows([
+            row("a", "Pilot", medium="episode"),
+            row("b", "Pilot", medium="film"),
+        ])
+        self.assertEqual(result["duplicate_signature_count"], 0)
+        self.assertEqual(result["same_url_divergent_observation_count"], 1)
+
     def test_context_matters(self):
         result = audit_rows([
             row("a", "Pilot", context="Season 1"),

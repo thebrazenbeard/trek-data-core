@@ -62,12 +62,14 @@ def receipt_name(row: dict, extension: str) -> str:
 
 
 def validate_custody(receipt: dict, *, expected_type: str, archive_sha: str,
+                     expected_members_sha: str,
                      extension: str, expected_count: int) -> list[dict]:
     if (receipt.get("record_type") != expected_type
             or receipt.get("archive_sha256") != archive_sha
             or receipt.get("source_work_binding") != "UNRESOLVED"
             or receipt.get("coverage_effect") != "NONE"
             or receipt.get("work_admission_effect") != "NONE"
+            or receipt.get("members_sha256") != expected_members_sha
             or not isinstance(receipt.get("members"), list)
             or receipt.get("members_sha256") != hashlib.sha256(
                 canonical(receipt["members"])).hexdigest()):
@@ -154,15 +156,20 @@ def load_manifests(zip_path: Path, converted_receipt: dict):
 
 def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
                     expected_original_sha: str, expected_converted_sha: str,
+                    expected_original_members_sha: str,
+                    expected_converted_members_sha: str,
+                    pin_provenance: str,
                     expected_lit: int, expected_opf: int,
                     expected_manifest_rows: int) -> dict:
     lit = validate_custody(original,
                            expected_type="PRIVATE_ORIGINAL_EBOOK_MEMBER_CUSTODY",
                            archive_sha=expected_original_sha,
+                           expected_members_sha=expected_original_members_sha,
                            extension=".lit", expected_count=expected_lit)
     opf = validate_custody(converted,
                            expected_type="PRIVATE_CONVERTED_DERIVATIVE_MEMBER_CUSTODY",
                            archive_sha=expected_converted_sha,
+                           expected_members_sha=expected_converted_members_sha,
                            extension=".opf", expected_count=expected_opf)
     json_books, csv_rows = load_manifests(converted_zip, converted)
     if len(json_books) != expected_manifest_rows or len(csv_rows) != expected_manifest_rows:
@@ -189,8 +196,40 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
         target = optional_key_name(row.get("opf_files"), ".opf")
         by_csv[source].append((index, target, row["status"]))
 
+    # Global candidate ownership is source-relative. One output may be named
+    # by several original LIT members; none becomes an unambiguous candidate.
+    target_claimant_sources = defaultdict(set)
+    all_target_names = set()
+    for source_key, records in by_json.items():
+        for _, names, _ in records:
+            for name in names:
+                if name is not None:
+                    target_claimant_sources[name].add(source_key)
+                    all_target_names.add(name)
+    for source_key, records in by_csv.items():
+        for _, name, _ in records:
+            if name is not None:
+                target_claimant_sources[name].add(source_key)
+                all_target_names.add(name)
+
+    referenced_opf_ids = {item["member_id"] for name in all_target_names
+                          for item in by_opf[name]}
+    unbound_converter_sources = []
+    for source_key in sorted((set(by_json) | set(by_csv)) - set(by_lit)):
+        j_entries, c_entries = by_json[source_key], by_csv[source_key]
+        opf_names = {name for _, names, _ in j_entries for name in names if name is not None}
+        opf_names.update(name for _, name, _ in c_entries if name is not None)
+        unbound_converter_sources.append({
+            "source_basename_sha256_private": hashlib.sha256(source_key.encode("utf-8")).hexdigest(),
+            "json_book_record_locators": [f"json-book:{index:04d}" for index, _, _ in j_entries],
+            "csv_record_locators": [f"csv-record:{index:04d}" for index, _, _ in c_entries],
+            "declared_converted_opf_member_ids": sorted({item["member_id"]
+                                                         for name in opf_names for item in by_opf[name]}),
+            "status": "UNBOUND_CONVERTER_SOURCE",
+            "source_work_identity": "NOT_ASSERTED",
+        })
+
     links = []
-    referenced_opf_ids = set()
     consistent_exports = 0
     stem_support = 0
     for source in sorted(lit, key=lambda row: row["member_id"]):
@@ -206,7 +245,6 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
                 declared_keys.add(name)
         targets = sorted({item["member_id"] for key in declared_keys
                           for item in by_opf[key]})
-        referenced_opf_ids.update(targets)
         converter_status = "UNKNOWN"
         evidence = []
         if len(by_lit[source_key]) != 1 or len(json_records) > 1 or len(csv_records) > 1:
@@ -220,7 +258,8 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
             if len(declared) > 1:
                 status = "AMBIGUOUS_MULTIPLE_TARGET_CLAIMS"
             elif not declared or declared[0] is None:
-                status = "UNRESOLVED_EMPTY_MANIFEST_TARGET"
+                status = ("UNRESOLVED_EMPTY_MANIFEST_TARGET" if csv_declared is None
+                          else "CONTESTED_MANIFEST_EXPORTS")
             elif csv_declared is None or declared[0] != csv_declared or j_status != c_status:
                 status = "CONTESTED_MANIFEST_EXPORTS"
             else:
@@ -230,6 +269,8 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
                     status = "UNRESOLVED_DECLARED_OPF_ABSENT"
                 elif len(targets) > 1:
                     status = "AMBIGUOUS_MULTIPLE_CONVERTED_OPF"
+                elif len(target_claimant_sources[declared[0]]) > 1:
+                    status = "AMBIGUOUS_SHARED_CONVERTED_OPF"
                 else:
                     status = "CANDIDATE_EXPLICIT_CONVERTER_LINK"
                     evidence.append("EXACT_CONVERTER_OPF_BASENAME_TO_HASHED_MEMBER")
@@ -265,6 +306,10 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
         "converted_archive_sha256": converted["archive_sha256"],
         "original_member_list_sha256": original["members_sha256"],
         "converted_member_list_sha256": converted["members_sha256"],
+        "expected_original_member_list_sha256": expected_original_members_sha,
+        "expected_converted_member_list_sha256": expected_converted_members_sha,
+        "member_list_pin_provenance": pin_provenance,
+        "pin_provenance_assurance": "OPERATOR_ATTESTED_NOT_INDEPENDENTLY_VERIFIED_BY_THIS_TOOL",
         "original_lit_member_count": len(lit),
         "converted_opf_member_count": len(opf),
         "converter_json_book_records": len(json_books),
@@ -278,10 +323,13 @@ def build_crosswalk(original: dict, converted: dict, converted_zip: Path,
         "partial_candidate_count": partial,
         "orphan_converted_opf_count": len(orphan_ids),
         "orphan_converted_opf_member_ids": orphan_ids,
+        "unbound_converter_source_count": len(unbound_converter_sources),
+        "unbound_converter_sources": unbound_converter_sources,
         "links_sha256": hashlib.sha256(canonical(links)).hexdigest(),
         "links": links,
         "converter_provenance_family": "SAME_CONVERSION_RUN_JSON_AND_CSV_NOT_INDEPENDENT",
         "matching_policy": "EXPLICIT_MANIFEST_SOURCE_AND_OUTPUT_BASENAME_NOT_ORDINAL",
+        "member_list_authentication_policy": "INDEPENDENTLY_CUSTODIED_EXPECTED_DIGESTS_REQUIRED",
         "source_work_binding": "UNRESOLVED",
         "edition_identity": "UNRESOLVED",
         "copyright_rights": "UNKNOWN",
@@ -300,6 +348,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--converted-zip", type=Path, required=True)
     parser.add_argument("--expect-original-sha256", required=True)
     parser.add_argument("--expect-converted-sha256", required=True)
+    parser.add_argument("--expect-original-members-sha256", required=True)
+    parser.add_argument("--expect-converted-members-sha256", required=True)
+    parser.add_argument("--pin-provenance", choices=(
+        "INDEPENDENT_OWNER_CUSTODY_CHECKPOINT",
+        "SEPARATELY_VERIFIED_READONLY_LEDGER",
+    ), required=True)
     parser.add_argument("--expect-lit", type=int, required=True)
     parser.add_argument("--expect-opf", type=int, required=True)
     parser.add_argument("--expect-manifest-rows", type=int, required=True)
@@ -311,7 +365,8 @@ def main(argv: list[str] | None = None) -> int:
                 or (args.mode == "verify" and (args.receipt is None or args.out is not None))):
             raise CustodyError("capture requires --out, verify requires --receipt")
         if (not all(re.fullmatch("[0-9a-f]{64}", x) for x in (
-            args.expect_original_sha256, args.expect_converted_sha256
+            args.expect_original_sha256, args.expect_converted_sha256,
+            args.expect_original_members_sha256, args.expect_converted_members_sha256,
         )) or any(x < 0 for x in (
             args.expect_lit, args.expect_opf, args.expect_manifest_rows
         ))):
@@ -320,6 +375,9 @@ def main(argv: list[str] | None = None) -> int:
         converted = read_private_json(args.converted_receipt)
         result = build_crosswalk(original, converted, args.converted_zip,
                                  args.expect_original_sha256, args.expect_converted_sha256,
+                                 args.expect_original_members_sha256,
+                                 args.expect_converted_members_sha256,
+                                 args.pin_provenance,
                                  args.expect_lit, args.expect_opf, args.expect_manifest_rows)
         if args.mode == "capture":
             payload = json.dumps(result, indent=2, ensure_ascii=False,
@@ -339,7 +397,9 @@ def main(argv: list[str] | None = None) -> int:
               f"{result['ambiguous_original_count']} ambiguous; "
               f"{result['contested_original_count']} contested; "
               f"{result['unresolved_original_count']} unresolved; "
-              f"{result['orphan_converted_opf_count']} orphan OPF; no corpus effect")
+              f"{result['orphan_converted_opf_count']} orphan OPF; "
+              f"{result['unbound_converter_source_count']} unbound converter sources; "
+              "no corpus effect")
         return 0
     except (CustodyError, OSError, KeyError, TypeError) as exc:
         message = str(exc) if isinstance(exc, CustodyError) else "private metadata invalid"

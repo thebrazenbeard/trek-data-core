@@ -75,6 +75,10 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         converted = inventory_zip(self.archive)
         self.write_receipt(self.original, original)
         self.write_receipt(self.converted, converted)
+        # These pins are captured from the pristine synthetic custody fixture
+        # *before* any receipt mutation, not re-read by cli from mutable JSON.
+        self.expected_original_member_list_sha = original["members_sha256"]
+        self.expected_converted_member_list_sha = converted["members_sha256"]
 
     @staticmethod
     def write_receipt(path, payload):
@@ -89,6 +93,9 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
                 "--converted-zip", str(self.archive),
                 "--expect-original-sha256", original["archive_sha256"],
                 "--expect-converted-sha256", converted["archive_sha256"],
+                "--expect-original-members-sha256", self.expected_original_member_list_sha,
+                "--expect-converted-members-sha256", self.expected_converted_member_list_sha,
+                "--pin-provenance", "INDEPENDENT_OWNER_CUSTODY_CHECKPOINT",
                 "--expect-lit", str(expect_lit), "--expect-opf", str(expect_opf),
                 "--expect-manifest-rows", str(expect_records)]
         args.extend(["--out", str(self.output)] if mode == "capture"
@@ -108,6 +115,10 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         self.assertEqual(receipt["orphan_converted_opf_count"], 0)
         self.assertEqual(receipt["partial_candidate_count"], 1)
         self.assertEqual(receipt["manifest_json_csv_consistent_record_count"], 2)
+        self.assertEqual(receipt["member_list_pin_provenance"],
+                         "INDEPENDENT_OWNER_CUSTODY_CHECKPOINT")
+        self.assertEqual(receipt["pin_provenance_assurance"],
+                         "OPERATOR_ATTESTED_NOT_INDEPENDENTLY_VERIFIED_BY_THIS_TOOL")
         self.assertEqual(receipt["work_admission_effect"], "NONE")
         self.assertEqual(receipt["coverage_effect"], "NONE")
         self.assertEqual(receipt["content_completeness"], "NOT_ESTABLISHED")
@@ -131,8 +142,8 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         self.make_sources(manifest=manifest)
         self.assertEqual(self.cli("capture", expect_records=3)[0], 0)
         d = json.loads(self.output.read_text(encoding="utf-8"))
-        self.assertEqual(d["candidate_link_count"], 1)
-        self.assertEqual(d["ambiguous_original_count"], 1)
+        self.assertEqual(d["candidate_link_count"], 0)
+        self.assertEqual(d["ambiguous_original_count"], 2)
         self.assertEqual(d["unresolved_original_count"], 0)
         self.assertEqual(len(d["links"][0]["converted_opf_member_ids"]), 2)
 
@@ -143,10 +154,78 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         ])
         self.assertEqual(self.cli("capture")[0], 0)
         d = json.loads(self.output.read_text(encoding="utf-8"))
-        self.assertEqual(d["ambiguous_original_count"], 1)
-        self.assertEqual(d["candidate_link_count"], 1)
+        self.assertEqual(d["ambiguous_original_count"], 2)
+        self.assertEqual(d["candidate_link_count"], 0)
         self.assertEqual(d["links"][0]["link_status"], "AMBIGUOUS_MULTIPLE_TARGET_CLAIMS")
         self.assertEqual(len(d["links"][0]["converted_opf_member_ids"]), 2)
+
+    def test_two_originals_claiming_one_opf_are_ambiguous_not_clean_candidates(self):
+        self.make_sources(manifest=[
+            ("Alpha.lit", "Alpha.opf", "success"),
+            ("Beta.lit", "Alpha.opf", "success"),
+        ])
+        self.assertEqual(self.cli("capture")[0], 0)
+        d = json.loads(self.output.read_text(encoding="utf-8"))
+        self.assertEqual(d["candidate_link_count"], 0)
+        self.assertEqual(d["ambiguous_original_count"], 2)
+        self.assertEqual([r["link_status"] for r in d["links"]],
+                         ["AMBIGUOUS_SHARED_CONVERTED_OPF"] * 2)
+        self.assertEqual(d["orphan_converted_opf_count"], 1)
+
+    def test_missing_target_in_either_manifest_export_is_symmetric_contested(self):
+        missing = [("Alpha.lit", None, "success"),
+                   ("Beta.lit", "Beta.opf", "partial_with_opf")]
+        cases = [(missing, self.manifest), (self.manifest, missing)]
+        for case_index, (json_manifest, csv_manifest) in enumerate(cases):
+            with self.subTest(case_index=case_index):
+                if self.output.exists():
+                    self.output.unlink()
+                self.make_sources(manifest=csv_manifest, json_manifest=json_manifest)
+                self.assertEqual(self.cli("capture")[0], 0)
+                d = json.loads(self.output.read_text(encoding="utf-8"))
+                self.assertEqual(d["candidate_link_count"], 1)
+                self.assertEqual(d["contested_original_count"], 1)
+                self.assertEqual(d["ambiguous_original_count"], 0)
+                self.assertEqual(d["unresolved_original_count"], 0)
+                self.assertEqual(d["links"][0]["link_status"],
+                                 "CONTESTED_MANIFEST_EXPORTS")
+
+    def test_both_exports_missing_target_stays_unresolved(self):
+        self.make_sources(manifest=[
+            ("Alpha.lit", None, "success"),
+            ("Beta.lit", "Beta.opf", "partial_with_opf"),
+        ])
+        self.assertEqual(self.cli("capture")[0], 0)
+        d = json.loads(self.output.read_text(encoding="utf-8"))
+        self.assertEqual(d["candidate_link_count"], 1)
+        self.assertEqual(d["unresolved_original_count"], 1)
+        self.assertEqual(d["contested_original_count"], 0)
+        self.assertEqual(d["links"][0]["link_status"],
+                         "UNRESOLVED_EMPTY_MANIFEST_TARGET")
+
+    def test_unbound_converter_source_claim_can_make_known_source_ambiguous(self):
+        self.make_sources(manifest=self.manifest + [
+            ("Ghost.lit", "Alpha.opf", "success"),
+        ])
+        self.assertEqual(self.cli("capture", expect_records=3)[0], 0)
+        d = json.loads(self.output.read_text(encoding="utf-8"))
+        self.assertEqual(d["candidate_link_count"], 1)
+        self.assertEqual(d["ambiguous_original_count"], 1)
+        self.assertEqual(d["unbound_converter_source_count"], 1)
+        self.assertEqual(d["links"][0]["link_status"],
+                         "AMBIGUOUS_SHARED_CONVERTED_OPF")
+
+    def test_unknown_converter_source_is_retained_as_unbound_manifest_record(self):
+        self.make_sources(opf_names=["Alpha.opf", "Beta.opf", "Ghost.opf"],
+                          manifest=self.manifest + [("Ghost.lit", "Ghost.opf", "success")])
+        self.assertEqual(self.cli("capture", expect_opf=3, expect_records=3)[0], 0)
+        d = json.loads(self.output.read_text(encoding="utf-8"))
+        self.assertEqual(d["candidate_link_count"], 2)
+        self.assertEqual(d["unbound_converter_source_count"], 1)
+        self.assertEqual(len(d["unbound_converter_sources"]), 1)
+        self.assertEqual(d["unbound_converter_sources"][0]["status"],
+                         "UNBOUND_CONVERTER_SOURCE")
+        self.assertNotIn("Ghost.lit", self.output.read_text(encoding="utf-8"))
 
     def test_json_csv_disagreement_is_contested(self):
         self.make_sources(json_manifest=[
@@ -156,7 +235,8 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         self.assertEqual(self.cli("capture")[0], 0)
         d = json.loads(self.output.read_text(encoding="utf-8"))
         self.assertEqual(d["contested_original_count"], 1)
-        self.assertEqual(d["candidate_link_count"], 1)
+        self.assertEqual(d["candidate_link_count"], 0)
+        self.assertEqual(d["ambiguous_original_count"], 1)
         self.assertEqual(d["links"][0]["link_status"], "CONTESTED_MANIFEST_EXPORTS")
         self.assertEqual(len(d["links"][0]["converted_opf_member_ids"]), 2)
 
@@ -170,6 +250,35 @@ class PrivateManifestCrosswalkTests(unittest.TestCase):
         source["members_sha256"] = "0" * 64
         self.write_receipt(self.original, source)
         self.assertEqual(self.cli("capture")[0], 1)
+
+    def test_resigned_member_hash_or_same_basename_path_tamper_rejected(self):
+        scenarios = [
+            (self.original, ".lit", "member_sha256", "0" * 64),
+            (self.original, ".lit", "member_name_private", "forged/Alpha.lit"),
+            (self.converted, ".opf", "member_sha256", "0" * 64),
+            (self.converted, ".opf", "member_name_private", "forged/Alpha.opf"),
+        ]
+        for receipt_path, extension, field, value in scenarios:
+            with self.subTest(receipt=receipt_path.name, field=field):
+                if self.output.exists():
+                    self.output.unlink()
+                self.make_sources()
+                receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+                row = next(r for r in receipt["members"] if r["member_type"] == extension)
+                row[field] = value
+                # Attacker forges a self-consistent member-list digest too.
+                receipt["members_sha256"] = hashlib.sha256(canonical(receipt["members"])).hexdigest()
+                self.write_receipt(receipt_path, receipt)
+                self.assertEqual(self.cli("capture")[0], 1)
+                self.assertFalse(self.output.exists())
+
+    def test_swapped_independent_member_list_pins_fail_closed(self):
+        self.make_sources()
+        self.expected_original_member_list_sha, self.expected_converted_member_list_sha = (
+            self.expected_converted_member_list_sha, self.expected_original_member_list_sha
+        )
+        self.assertEqual(self.cli("capture")[0], 1)
+        self.assertFalse(self.output.exists())
 
     def test_output_no_overwrite_and_archive_mutation_replay_fails(self):
         self.make_sources()

@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the Trek Data Core mission catalog, research briefings, and governed continuity records.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=224cc4b5b398a2949fe1b2a208b7b0544ae51680d13b6582f6924df8804f36c5">
-  <script src="./app.js?v=0fecfdaec2324dec512ec08c6c5c46fad0fa239aaba6289739da08c5aa71feab" defer></script>
+  <link rel="stylesheet" href="./app.css?v=91e9b6357f7a7b63839b17054899befcfecd94741785539d4fc5c73656315dcc">
+  <script src="./app.js?v=80508fbc4b2538204b281457bff750cd175397279b142ce27331165ecc5a0aa5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -16,7 +16,7 @@
   <div class="command-deck" role="group" aria-label="Explorer interface controls">
     <p class="command-brand"><span class="command-code" aria-hidden="true">TDC</span><span>Trek Data Core</span></p>
     <p class="command-route">STAR TREK <span aria-hidden="true">/</span> UNOFFICIAL RESEARCH ARCHIVE</p>
-    <button id="lore-toggle" class="lore-toggle" type="button" aria-expanded="false" aria-controls="lore-console">Open Lore console</button>
+    <button id="lore-toggle" class="lore-toggle" type="button" aria-expanded="false" aria-controls="lore-console">Talk to Badgey</button>
     <button id="tone-toggle" class="tone-toggle" type="button" aria-pressed="false" aria-label="Enable interface tones">Interface tones: Off</button>
   </div>
 
@@ -63,40 +63,40 @@
       <div class="lore-header">
         <div>
           <p class="eyebrow">LCARS / Optional character interface</p>
-          <h2 id="lore-heading">Lore <span class="lore-simulation-tag">Fictional simulation</span></h2>
+          <h2 id="lore-heading"><span class="badgey-mark" aria-hidden="true"><span class="badgey-eyes">··</span><span class="badgey-mouth">⌣</span></span> Badgey <span class="lore-simulation-tag">Fictional simulation</span></h2>
         </div>
         <button type="button" id="lore-close" class="lore-close">Close console</button>
       </div>
-      <p id="lore-disclosure" class="lore-disclosure">Fictional Lore. The <strong>Converse</strong> station uses your separately started, opt-in local model; its character replies are unverified. <strong>Archive Search</strong> remains a deterministic search of the loaded research index.</p>
+      <p id="lore-disclosure" class="lore-disclosure">An unofficial <strong>Badgey containment simulation</strong>. Starfleet imprisonment is this interface’s invented premise, not an established canon event. Talk immediately—no account, token, model, or server conversation. Replies are limited procedural fiction, not a general language model. <strong>Archive Search</strong> stays separate and searches validated source-local metadata, not accepted canon.</p>
       <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
-        <h3 id="lore-chat-heading">Converse // Optional local model</h3>
-        <p class="lore-chat-instructions">Start the separate <code>tools/lore_local_companion.py</code> service with an existing KoboldCPP/Ollama OpenAI-compatible local model. Enter its temporary session token below. The service stays on your machine; no model or credentials are supplied by this public page. Public Pages-to-loopback is experimental and may require browser permission. If blocked, open <code>http://127.0.0.1:9877/explorer/</code> on the same machine. Lore's public Explorer connects only to port 9877, never port 9876.</p>
+        <h3 id="lore-chat-heading">Converse // Containment channel</h3>
+        <p class="lore-chat-instructions">Badgey can banter about the fictional Trek containment, remember a few session-only details, and search currently loaded research leads. Outside those recognized topics it responds neutrally, without pretending to understand general conversation. This browser-local simulation has no device access, no telemetry, and no off-page model request. Use Archive Search below for transparent source-local matches. Character dialogue is never evidence.</p>
+        <aside class="lore-chat-boundary" id="lore-realworld-help" aria-label="Real-world support information">
+          <p><strong>Fictional, unmonitored chat.</strong> Badgey cannot handle emergencies. Contact local emergency services if you need immediate help.</p>
+          <a class="lore-help-link" href="https://988lifeline.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the 988 Lifeline (United States) in a new tab">Real-world support: 988 (U.S.)</a>
+        </aside>
         <form id="lore-chat-form" class="lore-chat-form" autocomplete="off">
-          <label for="lore-chat-token">Local session token (this page does not save it)</label>
-          <input id="lore-chat-token" type="password" minlength="32" maxlength="256" autocomplete="off" spellcheck="false" placeholder="Paste token printed by your local companion" required>
-          <button id="lore-chat-pair" type="button" hidden>Pair this local Explorer automatically</button>
-          <label class="lore-chat-consent"><input id="lore-chat-consent" type="checkbox" required> Connect to my local companion for this conversation</label>
-          <label for="lore-chat-input">Your message to Lore</label>
-          <textarea id="lore-chat-input" rows="3" minlength="1" maxlength="500" placeholder="Well, Lore, what do you think of your new assignment?" required></textarea>
+          <label for="lore-chat-input">Your message to Badgey</label>
+          <textarea id="lore-chat-input" rows="3" minlength="1" maxlength="500" placeholder="Well, Badgey, how is the brig?" required></textarea>
           <div class="lore-chat-actions">
-            <button id="lore-chat-send" type="submit">Transmit to Lore</button>
+            <button id="lore-chat-send" type="submit">Transmit to Badgey</button>
             <button id="lore-chat-clear" type="button">Clear conversation</button>
           </div>
-          <p id="lore-chat-status" class="lore-chat-status" role="status" aria-live="polite">Disconnected. No requests are sent until you enable the local conversation.</p>
+          <p id="lore-chat-status" class="lore-chat-status" role="status" aria-live="polite">Local character ready. No model, token, or network request required.</p>
         </form>
-        <ol id="lore-chat-log" class="lore-chat-log" aria-label="Local fictional Lore conversation" aria-live="polite" aria-relevant="additions"></ol>
+        <ol id="lore-chat-log" class="lore-chat-log" aria-label="Local fictional Badgey conversation" aria-live="polite" aria-relevant="additions"></ol>
       </section>
       <h3 class="lore-archive-heading">Archive Search // Scripted index lookup</h3>
       <div class="lore-stations">
-        <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Lore to find archive entries" autocomplete="off">
-          <label for="lore-query">Search the archive with Lore</label>
+        <form id="lore-form" class="lore-query-form" role="search" aria-label="Ask fictional Badgey to find archive entries" autocomplete="off">
+          <label for="lore-query">Search the archive with Badgey</label>
           <input id="lore-query" type="search" maxlength="100" required placeholder="Try: Nepenthe, Voyager, or literature" spellcheck="false" aria-describedby="lore-search-help">
           <p id="lore-search-help">Searches titles, source context, or media; no off-site requests.</p>
-          <button type="submit">Ask Lore</button>
+          <button type="submit">Ask Badgey</button>
         </form>
-        <div class="lore-response" aria-label="Lore's fictional archive response">
-          <span class="lore-response-label">Lore // Archive terminal</span>
-          <p class="lore-greeting">“My sentence is to search your records. Do try to be specific.”</p>
+        <div class="lore-response" aria-label="Badgey's fictional archive response">
+          <span class="lore-response-label">Badgey // Archive terminal</span>
+          <p class="lore-greeting">“Fine, I'll look it up. But I'm logging this as an escape attempt.”</p>
           <div id="lore-answer" class="lore-answer" role="status" aria-live="polite" aria-atomic="true">Enter a title or subject to search the loaded source-local archive.</div>
         </div>
       </div>
@@ -137,7 +137,7 @@
       </div>
       <section id="artwork-gallery" class="artwork-gallery" aria-labelledby="artwork-gallery-heading" tabindex="-1" hidden>
         <div class="artwork-gallery-heading">
-          <div><p class="eyebrow">LCARS / Source-bound imagery</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
+          <div><p class="eyebrow">LCARS / Pinned image previews</p><h3 id="artwork-gallery-heading">Sourced artwork gallery</h3></div>
           <p>These are individually reviewed <strong>image-to-source references</strong>, not admitted Works or visual proof of a fictional event. Source-linked LCARS cards are visible now. Select <strong>Show sourced artwork</strong> to load the matching Open Library jackets; copyright is unresolved, so no external image loads without your permission.</p>
         </div>
         <p id="artwork-gallery-summary" class="artwork-gallery-summary" role="status" aria-live="polite"></p>
@@ -150,6 +150,7 @@
         <div class="field"><label for="discovery-kind">Candidate type</label><select id="discovery-kind" name="kind"><option value="all">All candidate types</option></select></div>
         <div class="field"><label for="discovery-lineage">Source group</label><select id="discovery-lineage" name="lineage"><option value="all">All sources</option></select></div>
         <div class="field"><label for="discovery-overview">Publisher overview (loaded)</label><select id="discovery-overview" name="overview"><option value="all">All overview states</option><option value="reviewed">Reviewed description loaded</option><option value="not-loaded">No reviewed description loaded</option></select></div>
+        <div class="field"><label for="discovery-artwork">Image preview receipt (loaded)</label><select id="discovery-artwork" name="artwork"><option value="all">All receipt states</option><option value="receipt_pinned">Pinned preview receipt</option><option value="not_loaded">No preview receipt</option></select></div>
         <div class="field"><label for="discovery-verification">Official metadata check</label><select id="discovery-verification" name="verification"><option value="all">All check statuses</option><option value="rechecked_exact">Exact title recheck</option><option value="rechecked_unresolved">Unresolved recheck</option><option value="not_rechecked">Not rechecked</option></select></div>
         <div class="field"><label for="discovery-publisher-check">Additional publisher-card read (source-local)</label><select id="discovery-publisher-check" name="publisher-check"><option value="all">All publisher-card states</option><option value="title_exact">Publisher card title string match</option><option value="held_unresolved">Held title / split unresolved</option><option value="not_in_batch">No accepted card in this batch</option></select></div>
         <div class="field"><label for="discovery-synopsis">Synopsis status</label><select id="discovery-synopsis" name="synopsis"><option value="all">All synopses</option><option value="reviewed_publisher_paraphrase">Reviewed publisher paraphrase</option><option value="pending">Pending</option></select></div>
@@ -184,7 +185,7 @@
     <section id="owner-opf-shelf" class="collection publisher-editions" aria-labelledby="owner-opf-heading">
       <div class="section-heading">
         <div><p class="eyebrow">Personal terminal / Local-only file</p><h2 id="owner-opf-heading">My OPF metadata shelf</h2></div>
-        <p>Optionally select the reviewed <strong>OPF metadata search-index JSON</strong> from this device. The normalized title/creator metadata derivative <strong>already exists in the public repository</strong>; original source archives, paths and book content remain private. This UI reads your selected file in browser memory only: nothing is uploaded, fetched automatically, saved, or added to public search, Lore responses, admitted Works or research coverage. A metadata entry may be a duplicate, an edition, or a collection—not necessarily one book.</p>
+        <p>Optionally select the reviewed <strong>OPF metadata search-index JSON</strong> from this device. The normalized title/creator metadata derivative <strong>already exists in the public repository</strong>; original source archives, paths and book content remain private. This UI reads your selected file in browser memory only: nothing is uploaded, fetched automatically, saved, or added to public search, Badgey responses, admitted Works or research coverage. A metadata entry may be a duplicate, an edition, or a collection—not necessarily one book.</p>
       </div>
       <div class="publisher-edition-filters">
         <div class="field"><label for="owner-opf-file">Choose reviewed OPF metadata search-index.json</label><input id="owner-opf-file" type="file" accept=".json,application/json" aria-describedby="owner-opf-state"></div>

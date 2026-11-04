@@ -1,0 +1,94 @@
+{
+  "schema_version": "trek-film-publisher-interview-testimony-v1",
+  "proposal_only": true,
+  "accepted_main_at_start": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_utc": "2026-11-04",
+  "source_access": "FULL_RENDERED_ARTICLE_TEXT_READ_NO_RAW_RESPONSE_CUSTODY",
+  "source_families": ["publisher:startrek.com"],
+  "independent_publisher_family_count": 1,
+  "source_bound_effect": "NONE",
+  "coverage_effect": "NONE",
+  "full_film_viewed": false,
+  "screenplay_read": false,
+  "close_read": false,
+  "source_page_raw_sha256": null,
+  "public_plot_synopsis_effect": "NONE",
+  "film_candidates": [
+    {"id":"film-beyond","title":"Star Trek Beyond","catalog_row_id":"film:film-beyond"},
+    {"id":"film-first-contact","title":"Star Trek: First Contact","catalog_row_id":"film:film-first-contact"},
+    {"id":"film-insurrection","title":"Star Trek: Insurrection","catalog_row_id":"film:film-insurrection"}
+  ],
+  "sources": [
+    {
+      "id":"src-jung-2016","film_candidate_id":"film-beyond",
+      "title":"Co-Writer Doug Jung Takes You Inside Beyond",
+      "url":"https://www.startrek.com/news/co-writer-doug-jung-takes-you-inside-beyond",
+      "publisher":"StarTrek.com Staff","published":"2016-07-28",
+      "primary_witness":"Doug Jung","witness_role":"film co-writer and performer",
+      "access_status":"COMPLETE_ARTICLE_RENDERED_TEXT_READ",
+      "raw_page_sha256":null,"readable_article_line_span":"41-87",
+      "source_family":"publisher:startrek.com"
+    },
+    {
+      "id":"src-frakes-2016","film_candidate_id":"film-first-contact",
+      "title":"Frakes Answers Fans' Questions, Part 2",
+      "url":"https://www.startrek.com/news/frakes-answers-fans-questions-part-2",
+      "publisher":"StarTrek.com Staff","published":"2016-11-22",
+      "primary_witness":"Jonathan Frakes","witness_role":"film director",
+      "access_status":"COMPLETE_ARTICLE_RENDERED_TEXT_READ",
+      "raw_page_sha256":null,"readable_article_line_span":"40-107",
+      "source_family":"publisher:startrek.com"
+    },
+    {
+      "id":"src-berman-2011","film_candidate_id":"film-insurrection",
+      "title":"Rick Berman Looks Back at 18 Years of Trek - Part 3",
+      "url":"https://www.startrek.com/news/rick-berman-looks-back-at-18-years-of-trek-part-3",
+      "publisher":"StarTrek.com Staff","published":"2011-02-10",
+      "primary_witness":"Rick Berman","witness_role":"film producer",
+      "access_status":"COMPLETE_ARTICLE_RENDERED_TEXT_READ",
+      "raw_page_sha256":null,"readable_article_line_span":"41-78",
+      "source_family":"publisher:startrek.com"
+    },
+    {
+      "id":"src-stillwell-2011","film_candidate_id":"film-insurrection",
+      "title":"Recalling Yesterday's Enterprise with Eric Stillwell - Part 2",
+      "url":"https://www.startrek.com/news/recalling-yesterdays-enterprise-with-eric-stillwell-part-2",
+      "publisher":"StarTrek.com Staff","published":"2011-02-17",
+      "primary_witness":"Eric Stillwell","witness_role":"film script coordinator and executive assistant",
+      "access_status":"COMPLETE_ARTICLE_RENDERED_TEXT_READ",
+      "raw_page_sha256":null,"readable_article_line_span":"40-78",
+      "source_family":"publisher:startrek.com"
+    }
+  ],
+  "local_entities": [
+    {"id":"entity-jung-account","source_id":"src-jung-2016","kind":"CREATOR_INTERVIEW_ACCOUNT"},
+    {"id":"entity-frakes-account","source_id":"src-frakes-2016","kind":"CREATOR_INTERVIEW_ACCOUNT"},
+    {"id":"entity-berman-account","source_id":"src-berman-2011","kind":"CREATOR_INTERVIEW_ACCOUNT"},
+    {"id":"entity-stillwell-account","source_id":"src-stillwell-2011","kind":"CREATOR_INTERVIEW_ACCOUNT"}
+  ],
+  "evidence": [
+    {"id":"ev-jung-vision","source_id":"src-jung-2016","local_entity_id":"entity-jung-account","line_span":"49-53","locator":"interview question: heart of Beyond's story","paraphrase":"Jung describes questioning the Federation's aspirational ideals while developing friendships among the ensemble.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-jung-ben","source_id":"src-jung-2016","local_entity_id":"entity-jung-account","line_span":"85-87","locator":"closing question about character naming","paraphrase":"Jung says the role's name Ben was used in the script, but not spoken in the film.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-jung-screening","source_id":"src-jung-2016","local_entity_id":"entity-jung-account","line_span":"79-80","locator":"question about watching finished film","paraphrase":"Jung says that at interview time he had not seen the final fully rendered version, although he had viewed temporary versions.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-frakes-edit","source_id":"src-frakes-2016","local_entity_id":"entity-frakes-account","line_span":"53-59","locator":"fan questions about Lily and Picard scenes and editing","paraphrase":"Frakes recalls that the script's variety of tones aided the Lily-Picard relationship and that editors did not consider removing their scenes.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-frakes-q","source_id":"src-frakes-2016","local_entity_id":"entity-frakes-account","line_span":"70-72","locator":"fan question about Q's absence","paraphrase":"Frakes recalls pitching Q for the films and explicitly qualifies his recollection of the studio's alleged objection.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-frakes-audio","source_id":"src-frakes-2016","local_entity_id":"entity-frakes-account","line_span":"77-78","locator":"fan question about music selection","paraphrase":"Frakes recalls a budget-driven change in music licensing and credits Peter Lauritson with locating a more affordable selection.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-berman-draft","source_id":"src-berman-2011","local_entity_id":"entity-berman-account","line_span":"51-56","locator":"producer response to Insurrection question","paraphrase":"Berman recalls a darker initial premise from Piller and describes later revisions and interventions that changed its tone.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"},
+    {"id":"ev-stillwell-drafts","source_id":"src-stillwell-2011","local_entity_id":"entity-stillwell-account","line_span":"60-62","locator":"question about Insurrection revision workload","paraphrase":"Stillwell says he coordinated multiple script drafts, attributes overall authorship to Piller, and assisted with a completed but unpublished behind-the-scenes book.","evidence_kind":"ATTRIBUTED_INTERVIEW_TESTIMONY"}
+  ],
+  "assertions": [
+    {"id":"as-jung-vision","evidence_id":"ev-jung-vision","subject":"entity-jung-account","predicate":"CREATOR_STATES_THEMATIC_INTENT","object":"Federation utopianism and ensemble relationships","epistemic_status":"SOURCE_ATTRIBUTED_NOT_FILM_VERIFIED"},
+    {"id":"as-jung-ben","evidence_id":"ev-jung-ben","subject":"entity-jung-account","predicate":"CREATOR_STATES_SCRIPT_CHARACTER_LABEL","object":"Ben; allegedly not uttered in completed film","epistemic_status":"SOURCE_ATTRIBUTED_NOT_FILM_VERIFIED"},
+    {"id":"as-jung-screening","evidence_id":"ev-jung-screening","subject":"entity-jung-account","predicate":"CREATOR_REPORTS_SCREENING_STATE","object":"Unrendered cut seen; final render not yet seen at interview time","epistemic_status":"SOURCE_ATTRIBUTED_WITH_INTERVIEW_DATE_UNCERTAINTY"},
+    {"id":"as-frakes-edit","evidence_id":"ev-frakes-edit","subject":"entity-frakes-account","predicate":"DIRECTOR_RECALLS_EDITING_DECISION","object":"Lily-Picard scenes retained","epistemic_status":"SOURCE_ATTRIBUTED_NOT_PRODUCTION_RECORD_VERIFIED"},
+    {"id":"as-frakes-q","evidence_id":"ev-frakes-q","subject":"entity-frakes-account","predicate":"DIRECTOR_RECALLS_UNREALIZED_PITCH","object":"Q proposed; studio rationale uncertain","epistemic_status":"SOURCE_ATTRIBUTED_CONTESTABLE"},
+    {"id":"as-frakes-audio","evidence_id":"ev-frakes-audio","subject":"entity-frakes-account","predicate":"DIRECTOR_RECALLS_MUSIC_CLEARANCE","object":"Preferred choices reportedly exceeded budget","epistemic_status":"SOURCE_ATTRIBUTED_NOT_BUDGET_VERIFIED"},
+    {"id":"as-berman-draft","evidence_id":"ev-berman-draft","subject":"entity-berman-account","predicate":"PRODUCER_RECALLS_SCRIPT_DEVELOPMENT","object":"Dark initial treatment revised with several contributors","epistemic_status":"SOURCE_ATTRIBUTED_NOT_DRAFT_COMPARED"},
+    {"id":"as-stillwell-drafts","evidence_id":"ev-stillwell-drafts","subject":"entity-stillwell-account","predicate":"SCRIPT_COORDINATOR_RECALLS_DRAFT_PROCESS","object":"Piller authored story; revisions tracked; book completed but unpublished","epistemic_status":"SOURCE_ATTRIBUTED_NOT_DRAFT_COMPARED"}
+  ],
+  "source_account_summaries": [
+    {"film_candidate_id":"film-beyond","source_ids":["src-jung-2016"],"synopsis_kind":"ORIGINAL_CREATOR_TESTIMONY_SUMMARY","text":"In a studio-hosted interview, co-writer Doug Jung explains how his work on Beyond aimed to examine the Federation's vision while bringing crew relationships into focus. He also describes a script-only character name and notes that he had yet to see a final rendered cut when interviewed. These are claims about development and his viewing status, not a reading of the finished film."},
+    {"film_candidate_id":"film-first-contact","source_ids":["src-frakes-2016"],"synopsis_kind":"ORIGINAL_CREATOR_TESTIMONY_SUMMARY","text":"Director Jonathan Frakes revisits choices made for First Contact: maintaining an interpersonal arc amid different genres, preserving those scenes in the edit, seeking a different recurring antagonist, and adjusting music choices to financial constraints. His recollections invite comparison with production records but do not substitute for them."},
+    {"film_candidate_id":"film-insurrection","source_ids":["src-berman-2011","src-stillwell-2011"],"synopsis_kind":"ORIGINAL_CREATOR_TESTIMONY_SUMMARY","text":"Two studio-published interviews offer different vantage points on Insurrection's writing process. Producer Rick Berman describes an early, considerably bleaker story that evolved through substantial input. Script coordinator Eric Stillwell recalls managing multiple revisions and helping Michael Piller with a completed but unpublished book about its creation. Their accounts document remembered process, not independently inspected drafts or the book manuscript."}
+  ]
+}

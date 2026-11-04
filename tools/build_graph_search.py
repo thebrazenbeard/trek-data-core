@@ -4,9 +4,10 @@
 POSIX output writes are anchored to a no-symlink directory descriptor. The
 output directory and its parents must be under trusted local filesystem
 administration: another actor able to rename directories or mount filesystems
-can still invalidate a path while the build runs. On platforms without the
-required directory-descriptor primitives, fail closed rather than risk writing
-to the verified canonical projection.
+can still invalidate a path while the build runs. Platforms without the
+required directory-descriptor primitives fail closed by default; an explicit
+trusted-output-path opt-in permits a weaker compatibility fallback on trusted,
+non-mutating filesystems only.
 """
 from __future__ import annotations
 import argparse, contextlib, hashlib, importlib.util, json, os, secrets, stat

@@ -65,6 +65,18 @@ class ProjectionBundleTests(unittest.TestCase):
    manifest_path.write_text(raw.replace('"record_type": "projection_manifest"','"nonfinite": Infinity, "record_type": "projection_manifest"'),encoding='utf-8')
    with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
     bundle.verify_projection(root)
+ def test_exponent_overflow_in_manifest_extension_cannot_get_verified_receipt(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; raw=manifest_path.read_text(encoding='utf-8')
+   manifest_path.write_text(raw.replace('"compiler_commit": "fixture"','"audit_extra": 1e999, "compiler_commit": "fixture"'),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON number'):
+    bundle.verify_projection(root)
+ def test_exponent_overflow_is_rejected_by_strict_parser(self):
+  for literal in ('1e999','-1e999','2.1e999'):
+   with self.subTest(literal=literal):
+    with self.assertRaisesRegex(ValueError,'non-finite JSON number'):
+     bundle.strict_json_loads('{"value":'+literal+'}')
  def test_external_identity_expectations_bind_only_the_supplied_fields(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); manifest=fixture.make_projection(root)

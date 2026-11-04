@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Shared deterministic verifier for canonical projection bundles consumed by derived adapters."""
 from __future__ import annotations
-import hashlib, json, re
+import hashlib, json, math, re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -20,8 +20,12 @@ def unique_json_object(pairs):
 
 def reject_json_constant(value):
  raise ValueError(f'non-finite JSON constant is forbidden: {value}')
+def finite_json_float(literal):
+ value=float(literal)
+ if not math.isfinite(value):raise ValueError(f'non-finite JSON number is forbidden: {literal}')
+ return value
 def strict_json_loads(text):
- return json.loads(text,object_pairs_hook=unique_json_object,parse_constant=reject_json_constant)
+ return json.loads(text,object_pairs_hook=unique_json_object,parse_constant=reject_json_constant,parse_float=finite_json_float)
 def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"),allow_nan=False)
 def sha256_bytes(data): return 'sha256:'+hashlib.sha256(data).hexdigest()
 def compute_projection_hash(outputs): return sha256_bytes(canonical({name:outputs[name]['hash'] for name in REQUIRED_OUTPUTS}).encode())

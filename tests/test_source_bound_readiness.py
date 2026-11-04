@@ -3,12 +3,15 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import io
 import json
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
@@ -174,6 +177,65 @@ class SourceBoundReadinessTests(unittest.TestCase):
         self.assertIn('NO_ACCEPTED_NONFIXTURE_SOURCE', report['blockers'])
         self.assertIn('NO_ACCEPTED_NONFIXTURE_BINDING', report['blockers'])
         self.assertEqual(report['coverage_effect'], 'NONE')
+
+    def test_cli_report_pins_exact_governed_inputs_even_when_blocked(self):
+        run = subprocess.run([sys.executable, str(ROOT / 'tools' / 'check_source_bound_readiness.py'),
+                              '--work-id', 'none', '--source-id', 'none', '--binding-id', 'none'],
+                             cwd=ROOT, capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        report = json.loads(run.stdout)
+        self.assertRegex(report['governed_inputs_sha256'], r'^sha256:[0-9a-f]{64}$')
+        self.assertEqual(report['governed_inputs_scope'],
+                         'LOCAL_AUTHORITATIVE_REGISTRY_AND_COVERAGE_BYTES_NOT_REMOTE_ACCEPTANCE')
+
+    def test_governed_byte_pin_detects_each_roster_and_coverage_file_change(self):
+        root = self.base / 'mock-repo'
+        registry = root / 'registry' / 'authoritative'
+        coverage = root / 'coverage'
+        registry.mkdir(parents=True)
+        coverage.mkdir()
+        files = [registry / 'work.json', registry / 'source.jsonl',
+                 registry / 'binding.json', coverage / 'event.jsonl']
+        for path in files:
+            path.write_text('{"a":1}\n', encoding='utf-8')
+        with patch.object(preflight.ledger, 'ROOT', root):
+            original = preflight.governed_input_sha256()
+            self.assertRegex(original, r'^sha256:[0-9a-f]{64}$')
+            for path in files:
+                initial = path.read_bytes()
+                path.write_bytes(initial + b' ')
+                self.assertNotEqual(original, preflight.governed_input_sha256(), path.name)
+                path.write_bytes(initial)
+                self.assertEqual(original, preflight.governed_input_sha256(), path.name)
+            # Path identity matters too, not just record content.
+            moved = registry / 'renamed-work.json'
+            files[0].rename(moved)
+            self.assertNotEqual(original, preflight.governed_input_sha256())
+
+    def test_governed_pin_rejects_linked_inputs_and_excludes_unrelated_files(self):
+        root = self.base / 'mock-repo'
+        registry = root / 'registry' / 'authoritative'
+        registry.mkdir(parents=True)
+        file = registry / 'work.json'
+        file.write_text('{"record_type":"work"}\n', encoding='utf-8')
+        with patch.object(preflight.ledger, 'ROOT', root):
+            original = preflight.governed_input_sha256()
+            (root / 'private-staging-not-governed.json').write_text('sensitive', encoding='utf-8')
+            self.assertEqual(original, preflight.governed_input_sha256())
+            (registry / 'linked.json').symlink_to(file)
+            with self.assertRaises(ValueError):
+                preflight.governed_input_sha256()
+
+    def test_governed_drift_during_main_preflight_fails_closed(self):
+        output = io.StringIO()
+        with patch.object(preflight, 'governed_input_sha256', side_effect=[
+                'sha256:' + 'a' * 64, 'sha256:' + 'b' * 64]):
+            with redirect_stdout(output):
+                code = preflight.main(['--work-id', 'none', '--source-id', 'none',
+                                       '--binding-id', 'none'])
+        self.assertEqual(code, 3)
+        self.assertEqual(json.loads(output.getvalue()),
+                         {'status': 'INVALID_GOVERNED_INPUT', 'coverage_effect': 'NONE'})
 
 
 if __name__ == '__main__':

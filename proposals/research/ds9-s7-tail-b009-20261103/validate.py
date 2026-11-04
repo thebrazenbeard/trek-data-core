@@ -73,7 +73,8 @@ def sha(path):
 def validate(data=None):
     if data is None:
         data = read_json(HERE / "observations.json")
-    require(set(data) == TOP_FIELDS, "top-level closed schema")
+    require(type(data) is dict and set(data) == TOP_FIELDS,
+            "top-level closed schema")
     for key, value in {
         "schema_version": "1.0.0",
         "batch_id": "ds9-s7-tail-b009-20261103",
@@ -93,7 +94,8 @@ def validate(data=None):
         "coverage_effect": "NONE",
         "public_synopsis_effect": "NONE",
     }.items():
-        require(data[key] == value, "source/admission scope: " + key)
+        require(type(data[key]) is type(value) and data[key] == value,
+                "source/admission scope: " + key)
 
     paths = {
         "source_directory_sha256": ("explorer/discovery-catalog.json", DIRECTORY_SHA),
@@ -132,7 +134,8 @@ def validate(data=None):
         require(set(record) == RECORD_FIELDS, "source-card closed schema")
         require(record["observation_id"] == f"ds9-b009-p{index:02d}" and
                 record["source_local_row_id"] == row_id, "local observation identity")
-        require(record["season"] == 7 and record["episode"] == episode and
+        require(type(record["season"]) is int and type(record["episode"]) is int and
+                record["season"] == 7 and record["episode"] == episode and
                 record["publisher_card_title"] == title, "literal guide card title/slot")
         require(record["card_locator"] == f"Season 7 Episode Guide > S7 E{episode} > {title}",
                 "rendered text locator")
@@ -153,7 +156,7 @@ def validate(data=None):
 
     finale = data["finale_presentation_hold"]
     require(set(finale) == FINALE_FIELDS, "finale scope schema")
-    require(finale == {
+    require(type(finale["additional_s7e26_inferred"]) is bool and finale == {
         "source_local_row_id": "publisher:s7:ds9:024",
         "paramount_guide_single_card_slot": "S7E25",
         "franchise_history_description": "TWO_HOUR_SERIES_FINALE_BROADCAST_CLAIM",

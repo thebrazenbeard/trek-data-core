@@ -1,0 +1,45 @@
+{
+  "packet_id": "librarian-reference-card-provenance-contract-20261104",
+  "status": "HELD_METADATA_CONTRACT_NO_ARTWORK_PUBLICATION",
+  "accepted_main_baseline": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_source_catalog": "explorer/search-catalog.json",
+  "accepted_source_catalog_sha256": "a197138a9069fb67ac5307055588659dd74a9fb4e1caa9d5295d24bc0687d4e5",
+  "accepted_source_catalog_rows": 1214,
+  "source_identity_class": "SOURCE_LOCAL_NOT_DEDUPLICATED",
+  "source_data_status": "SOURCE_LOCAL_SEARCH_PROJECTION_ONLY",
+  "source_admission_effect": "NONE",
+  "source_coverage_effect": "NONE",
+  "rights_class": "ORIGINAL_PROCEDURAL_REFERENCE_INDEX_GRAPHIC_NOT_SOURCE_IMAGE",
+  "existing_renderers_audited": [
+    "proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py",
+    "tools/build_explorer_abstract_art.py",
+    "explorer/app.js:makeArtworkSlot",
+    "tests/test_explorer_abstract_art.py"
+  ],
+  "integration_owner": "CONSOLIDATOR_OR_EXPLORER_DESIGNER_NOT_LIBRARIAN",
+  "sample_source_local_row_ids": [
+    "lead:0000",
+    "lead:0050",
+    "film:film-2009",
+    "film:film-nemesis",
+    "literature:prh-autobiography-janeway",
+    "literature:proposed-lit-snw-ring-of-fire"
+  ],
+  "medium_coverage": {"EPISODE": 2, "FILM": 2, "LITERATURE": 2},
+  "card_input_fields": [
+    "source_local_row_id", "medium", "title", "context_label", "source_reference_url",
+    "source_group", "source_input", "identity_scope", "verification_status", "metadata_recheck_status",
+    "admission_effect", "coverage_effect", "edition_identifier", "visual_seed_sha256", "source_row_sha256"
+  ],
+  "edition_policy": "No edition identifier may be parsed from ISBN-like URL suffixes or display titles. Include an explicit edition identifier only from a separately accepted, exact source-local edition record; all six bounded samples therefore use null.",
+  "reference_policy": "Only accepted source-local catalog row_id and its exact HTTPS source_locator may be used as references. Do not invent canonical work IDs or turn unverified discovery metadata into verified canon.",
+  "visual_policy": "Existing deterministic abstract renderer keys motifs to medium + NUL + source-local row ID, escaping title text. SVG is explicitly labeled NOT OFFICIAL ART; no film/episode footage, cover, insignia, logo, artist style imitation, remote image, audio or third-party media.",
+  "non_endorsement_policy": "Index cards are repository-created navigation graphics with factual titles only; not officially endorsed franchise assets or licensed studio images. Existing source-available repository license governs original repo-owned code/art, not any third-party image.",
+  "generated_svgs_committed": false,
+  "image_or_media_bytes_downloaded": false,
+  "replaced_existing_artwork": false,
+  "public_release_eligible": false,
+  "accepted_source_work_admissions": 0,
+  "accepted_coverage_increment": 0,
+  "site_effect": "NONE"
+}

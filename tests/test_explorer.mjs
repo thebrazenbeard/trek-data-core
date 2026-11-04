@@ -2665,6 +2665,10 @@ test('Badgey source search accepts validated local leads and honestly fails clos
   assert.match(nodes.get('lore-chat-log').textContent, /not accepted canon or conclusions/i);
   assert.match(nodes.get('lore-chat-log').textContent, /source-local lead/i);
   assert.equal(nodes.chatRequests.length, 0);
+  nodes.get('lore-chat-input').value = 'Find Star Trek: The Next Generation';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-chat-log').children.at(-1).textContent,
+    /source-local lead/i, 'normalized Trek series alias reaches the validated directory');
   nodes.get('lore-chat-input').value = 'Find sources about Voyager';
   await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
   assert.match(nodes.get('lore-chat-log').children.at(-1).textContent,

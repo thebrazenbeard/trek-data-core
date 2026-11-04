@@ -60,6 +60,24 @@ class TASProposalValidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "forbidden release"):
             module.validate(data)
 
+    def test_rejects_same_host_wrong_episode(self):
+        data = copy.deepcopy(BASE)
+        data["source"]["url"] = data["source"]["url"].replace("episode=s01e01", "episode=s01e02")
+        with self.assertRaisesRegex(ValueError, "source URL identity mismatch"):
+            module.validate(data)
+
+    def test_rejects_raw_receipt_substitution(self):
+        data = copy.deepcopy(BASE)
+        data["source"]["raw_html_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "invalid raw-source receipt"):
+            module.validate(data)
+
+    def test_rejects_fragment_receipt_substitution(self):
+        data = copy.deepcopy(BASE)
+        data["source"]["normalized_fragment_stream_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "invalid fragment receipt"):
+            module.validate(data)
+
 
 if __name__ == "__main__":
     unittest.main()

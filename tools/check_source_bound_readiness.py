@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -19,6 +20,28 @@ import coverage_ledger as ledger
 import source_custody_receipt as custody
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _read_governed_bytes(path, enumerated_identity):
+    """Read *raw* bytes using the existing anchored, no-follow governed reader.
+
+    Text-mode read-governed-text normalizes CRLF on some platforms, so it is
+    unsuitable when the attestation promises byte-for-byte input identity.
+    Keep the inode identity from enumeration through both reads and a fresh
+    pathname reopen; do not follow mutable symlink ancestors or replacements.
+    """
+    with ledger._open_governed(path) as fd:
+        before = ledger._file_identity(os.fstat(fd))
+        if before != enumerated_identity:
+            raise ValueError('governed byte input changed after enumeration')
+        with os.fdopen(os.dup(fd), 'rb') as stream:
+            raw = stream.read()
+        if ledger._file_identity(os.fstat(fd)) != before:
+            raise ValueError('governed byte input changed during read')
+    with ledger._open_governed(path) as fd:
+        if ledger._file_identity(os.fstat(fd)) != before:
+            raise ValueError('governed byte input replaced during read')
+    return raw
 
 
 def governed_input_sha256():
@@ -33,7 +56,7 @@ def governed_input_sha256():
         json_files, jsonl_files = ledger.safe_record_files(root, with_identities=True)
         for path, identity in sorted(json_files + jsonl_files, key=lambda item: item[0].as_posix()):
             relative = path.relative_to(ledger.ROOT).as_posix().encode('utf-8')
-            content = ledger.read_governed_text(path, identity).encode('utf-8')
+            content = _read_governed_bytes(path, identity)
             digest.update(len(relative).to_bytes(4, byteorder='big'))
             digest.update(relative)
             digest.update(len(content).to_bytes(8, byteorder='big'))

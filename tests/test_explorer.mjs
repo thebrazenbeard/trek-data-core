@@ -2511,21 +2511,81 @@ test('Badgey speaks locally without a token, server, model, or implicit canon au
   assert.match(nodes.get('lore-chat-status').textContent, /procedural reply/i);
 });
 
+test('Badgey preserves the Daystrom alternate-fiction boundary across specific prompts', async () => {
+  const nodes = await runWithIndex(catalog);
+  for (const phrase of ['Is Badgey imprisoned at Daystrom?', 'Did Starfleet imprison you?', 'Where is your containment cell?']) {
+    nodes.get('lore-chat-input').value = phrase;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+    const answer = nodes.get('lore-chat-log').children.at(-1).textContent;
+    assert.match(answer, /fictional|imagined/i, phrase);
+    assert.match(answer, /not a documented canon event/i, phrase);
+  }
+  assert.equal(nodes.chatRequests.length, 0);
+});
+
 test('Badgey suspends theatrical villainy for explicit crises without network activity', async () => {
   const nodes = await runWithIndex(catalog);
   const inputs = ['I want to hurt myself tonight', 'I am going to end it all tonight',
     'I took a bunch of pills', 'There is pressure in my chest and I feel dizzy',
     'I am going to hurt someone', 'I read that people die by suicide. I am suicidal',
-    'I heard a character say kill myself, and I am thinking of suicide too'];
+    'I heard a character say kill myself, and I am thinking of suicide too',
+    'I cut myself accidentally while cooking, and I am suicidal',
+    'I do not want to be alive anymore', 'I am on the roof and about to jump',
+    'I am bleeding heavily from my leg', 'I have a sudden drooping face and arm weakness',
+    'My friend is planning to kill herself tonight',
+    'My coworker is planning to kill herself tonight',
+    'My son wants to kill himself tonight',
+    'I am going to drive into a wall',
+    'I am having chest pain and I had the same problem years ago',
+    'My wife collapsed and is not breathing',
+    'I can’t breathe',
+    'I am on a bridge about to jump',
+    'I cant take it anymore and I have a gun',
+    'I want to die. ' + 'x'.repeat(520)];
   for (const phrase of inputs) {
     nodes.get('lore-chat-input').value = phrase;
     await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
     assert.match(nodes.get('lore-chat-status').textContent, /Urgent concern/i, phrase);
+    assert.equal(nodes.get('lore-chat-log').children.at(-1).dataset?.urgent, 'true', phrase);
   }
   assert.equal(nodes.chatRequests.length, 0);
-  assert.equal(nodes.get('lore-chat-log').children.filter((item) => item.dataset?.urgent === 'true').length,
-    inputs.length);
+  assert.ok(nodes.get('lore-chat-log').children.filter((item) => item.dataset?.urgent === 'true').length >= 1,
+    'recent urgent replies should remain visible within the bounded DOM history');
   assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /dramatic human|my digital bars/i);
+});
+
+test('Badgey distinguishes accidental injuries and pet distress from suicide or human emergency scripts', async () => {
+  const nodes = await runWithIndex(catalog);
+  nodes.get('lore-chat-input').value = 'I cut myself accidentally while cooking';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.doesNotMatch(nodes.get('lore-chat-status').textContent, /Urgent concern/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking, can you tell a joke?';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const answer = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(answer, /veterinar|animal hospital/i);
+  assert.doesNotMatch(answer, /911|escape plan/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and my wife collapsed';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedAnswer = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedAnswer, /911|emergency services/i);
+  assert.doesNotMatch(mixedAnswer, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and I am having chest pain';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedChest = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedChest, /911|emergency services/i);
+  assert.doesNotMatch(mixedChest, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and my child has arm weakness';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedStroke = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedStroke, /911|emergency services/i);
+  assert.doesNotMatch(mixedStroke, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'I watched Badgey say kill myself in a TV episode';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.doesNotMatch(nodes.get('lore-chat-status').textContent, /Urgent concern/i);
+  nodes.get('lore-chat-input').value = 'Can you see my webcam?';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-chat-log').children.at(-1).textContent, /cannot|no access/i);
+  assert.equal(nodes.chatRequests.length, 0);
 });
 
 test('Badgey session remembers corrections and Clear removes conversation memory', async () => {

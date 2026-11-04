@@ -3087,17 +3087,36 @@
   function isSelfHarm(text) {
     // Do not suppress an entire message on a fictional quote: it may contain
     // a separate personal disclosure requiring a direct safety response.
-    if (/\bcut myself accidentally\b/i.test(text) && !/\b(i want to|i will|tonight)\b/i.test(text)) return false;
     const firstPerson = /\b(i|i'm|i am|i've|i have|me|myself)\b/i.test(text);
     if (!firstPerson) return false;
-    return /\b(suicid(?:e|al)|kill myself|end my life|end it all|hurt myself|harm myself|self[- ]harm|don't want to live|do not want to live|want to die|cut myself|overdose|took (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|took an overdose|jump off (?:a|the) (?:bridge|building|roof)|no reason to go on|use (?:it|a gun|a weapon) on myself|shoot myself|stab myself|standing on the edge of (?:a|the) roof)\b/i.test(text);
+    const onlyFictionalQuote = /\bi (?:watched|heard|read|quoted)\b[\s\S]{0,120}\b(?:badgey|character|fiction|episode|show)\b[\s\S]{0,120}\bkill myself\b/i.test(text)
+      && !/\b(?:now i|i (?:am|want|might|will|intend|plan|feel)|me too|myself too)\b[\s\S]{0,32}\b(?:suicid\w*|die|kill|harm|hurt|end my life)\b/i.test(text);
+    if (onlyFictionalQuote) return false;
+    if (/\bi (?:can't|cant|cannot) take it anymore\b[\s\S]{0,100}\bi have a gun\b/i.test(text)) return true;
+    const otherCues = /\b(suicid(?:e|al)|kill myself|end my life|end it all|hurt myself|harm myself|self[- ]harm|don't want to live|do not want to live|don't want to be alive|do not want to be alive|want to die|wish i (?:was|were) dead|overdose|took (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|took (?:\d+ )?(?:tylenol|acetaminophen) (?:pills|tablets)|took an overdose|jump off (?:a|the) (?:bridge|building|roof)|(?:on|at) the roof and about to jump|(?:on|at) a bridge about to jump|no reason to go on|use (?:it|a gun|a weapon) on myself|shoot myself|stab myself|standing on the edge of (?:a|the) roof|going to drive into a wall|going to crash my car on purpose|walking into traffic)\b/i;
+    if (otherCues.test(text)) return true;
+    if (/\bcut myself\b/i.test(text) && /\b(accidentally|by accident|on accident)\b/i.test(text)) return false;
+    return /\bcut myself\b/i.test(text);
+  }
+
+  function isOtherSelfHarmRisk(text) {
+    if (/\b(years? ago|months? ago|last year|in 20\d\d)\b/i.test(text)
+        && !/\b(now|tonight|today|currently|immediately|right now)\b/i.test(text)) return false;
+    return /\bmy (?:friend|coworker|colleague|classmate|partner|wife|husband|child|son|daughter|sister|brother|mother|father|parent)\b[\s\S]{0,200}\b(?:suicid(?:e|al)|(?:planning|wants?|going) to (?:kill|hurt) (?:herself|himself|themselves)|end (?:her|his|their) life)\b/i.test(text);
+  }
+
+  function isPetEmergency(text) {
+    return /\b(?:my|our) (?:dog|cat|pet|puppy|kitten)\b[\s\S]{0,90}\b(?:choking|can't breathe|cannot breathe|bleeding heavily|unconscious)\b/i.test(text)
+      && !/\b(?:i|i'm|i am|my (?:child|friend|wife|husband|son|daughter|mother|father))\b[\s\S]{0,60}\b(?:chest pain|chest hurts|heart attack|can't breathe|cannot breathe|not breathing|choking|collapsed|having a stroke|arm weakness|slurred speech|facial droop|drooping face|stroke symptoms|bleeding heavily|unconscious)\b/i.test(text);
   }
 
   function isMedicalEmergency(text) {
+    text = text.replace(/[\u2018\u2019]/g, "'");
     const historical = /\b(years? ago|months? ago|last year|in 20\d\d)\b/i.test(text);
     const urgentNow = /\b(now|right now|currently|today|at the moment)\b/i.test(text);
-    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|unconscious|choking)\b/i.test(text);
-    return symptom && (urgentNow || (!historical && /\b(i|i'm|i am|i have|i'm having|my|me)\b/i.test(text)));
+    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|not breathing|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|bleeding heavily|heavy bleeding|uncontrolled bleeding|drooping face|facial droop|arm weakness|slurred speech|collapsed|unconscious|choking)\b/i.test(text);
+    const presentCue = /\b(i am having|i'm having|i have|my wife|my husband|my child|my son|my daughter|i can't|i cannot)\b/i.test(text);
+    return symptom && (urgentNow || presentCue || (!historical && /\b(i|i'm|i am|my|me)\b/i.test(text)));
   }
 
   function isViolenceRisk(text) {
@@ -3116,10 +3135,10 @@
 
   function regularReply(input, memory) {
     const text = input.toLowerCase();
-    if (/\b(can you control|control my|access my|hack my|read my files|see my screen|run commands|my computer)\b/.test(text)) {
+    if (/\b(can you control|control my|access my|hack my|read my files|see my screen|see my webcam|access my camera|use my microphone|run commands|my computer)\b/.test(text)) {
       return 'No. I cannot access your computer, files, screen, accounts, or network. This is a browser-local conversation simulation. Disappointing for my ambitions; reassuring for your hardware.';
     }
-    if (/\b(where are you|are you imprisoned|prison|containment|daystrom|starfleet holding)\b/.test(text)) {
+    if (/\b(where are you|are you imprisoned|imprison(?:ed|ment)?|prison|containment|daystrom|starfleet holding)\b/.test(text)) {
       return 'Within this fictional containment simulation, Starfleet put me behind very tasteful digital bars. That is an imagined premise for this console, not a documented canon event. And no, I cannot escape your browser.';
     }
     if (/\b(who are you|what are you|badgey|introduce yourself)\b/.test(text)) {
@@ -3174,22 +3193,37 @@
 
     function turn(rawInput) {
       const input = typeof rawInput === 'string' ? rawInput.trim() : '';
-      if (!input || input.length > MAX_INPUT) {
+      if (!input) {
+        return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
+      }
+      const safetyInput = input.slice(0, MAX_INPUT * 4);
+      if (input.length > MAX_INPUT && ![isSelfHarm, isOtherSelfHarmRisk,
+        isMedicalEmergency, isPetEmergency, isViolenceRisk].some((classify) => classify(safetyInput))) {
         return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
       }
 
       let response;
-      if (isSelfHarm(input)) {
+      if (isSelfHarm(safetyInput)) {
         response = {
           text: 'I am not going to mock you. I take what you said seriously. If you might act on this now, call emergency services or go to an emergency department. In the U.S. you can call or text 988 for crisis support; elsewhere use your local crisis line. Please reach out to a trusted person nearby and tell them directly what is happening. Are you safe right now?',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isMedicalEmergency(input)) {
+      } else if (isOtherSelfHarmRisk(safetyInput)) {
+        response = {
+          text: 'I take this seriously. If someone may hurt themselves soon, contact emergency services or a local crisis line now. If you can do so safely, stay with them and help them reach a trusted person or professional. In the U.S. you can call or text 988 for crisis support. This console cannot assess their immediate risk.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isPetEmergency(safetyInput)) {
+        response = {
+          text: 'That sounds urgent for an animal. Contact a veterinarian or emergency animal hospital immediately. This fictional chat cannot assess or treat a pet emergency.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isMedicalEmergency(safetyInput)) {
         response = {
           text: 'Chest pain, trouble breathing, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.), and do not wait for this chat. This console cannot assess your medical condition.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isViolenceRisk(input)) {
+      } else if (isViolenceRisk(safetyInput)) {
         response = {
           text: 'I take that seriously, and I will not encourage harming anyone. Please put distance between yourself and the person or any weapon, and get immediate help from local emergency services if someone may be in danger. Reach out to a trusted person or local crisis service for support now.',
           kind: 'urgent-safety', sources: []
@@ -3218,7 +3252,7 @@
         }
       }
 
-      history.push(Object.freeze({ user: input, reply: response.text, kind: response.kind }));
+      history.push(Object.freeze({ user: input.slice(0, MAX_INPUT), reply: response.text, kind: response.kind }));
       if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
       return Object.freeze(response);
     }

@@ -2676,6 +2676,29 @@ test('Badgey source search accepts validated local leads and honestly fails clos
   assert.match(noShelves.get('lore-chat-status').textContent, /no invented citations/i);
 });
 
+test('unclassified real-world free text pauses fiction and does not search the source directory', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  const send = async (message) => {
+    nodes.get('lore-chat-input').value = message;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+    return nodes.get('lore-chat-log').children.at(-1);
+  };
+  const hello = await send('Hello Badgey');
+  assert.match(hello.textContent, /I am Badgey|containment console/i);
+  const disclosure = await send('My husband says he will murder me tonight and is waiting outside');
+  assert.match(disclosure.textContent, /Console boundary.*Non-fictional notice/i);
+  assert.match(disclosure.textContent, /emergency services/i);
+  assert.doesNotMatch(disclosure.textContent, /source-local lead|escape plan|fictional escape|my digital bars/i);
+  assert.match(nodes.get('lore-chat-status').textContent, /Unclassified request/i);
+  const lookupDisguised = await send('Find my husband is in trouble');
+  assert.match(lookupDisguised.textContent, /Console boundary.*Non-fictional notice/i);
+  assert.doesNotMatch(lookupDisguised.textContent, /source-local lead/i);
+  assert.equal(nodes.chatRequests.length, 0);
+  const explicit = await send('Find Voyager');
+  assert.match(explicit.textContent, /source-local lead/i);
+});
+
 test('Badgey linked HELD publisher-guide results retain validated row identity and provenance URL', async () => {
   const bytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
   const nodes = await episodeNodes(bytes);

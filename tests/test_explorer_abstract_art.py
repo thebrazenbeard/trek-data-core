@@ -25,16 +25,18 @@ class ExplorerAbstractArtTests(unittest.TestCase):
                 self.assertLess(len(expected), 10000)
 
     def test_safe_official_art_distinction_and_xml_vocabulary(self):
-        allowed = {"svg", "rect", "circle", "path", "text"}
+        allowed = {"svg", "rect", "circle", "path"}
         for path, data in BUILD.expected_art().items():
             with self.subTest(path=path.name):
                 source = data.decode("utf-8")
-                self.assertIn("ABSTRACT PLACEHOLDER", source)
-                self.assertIn("NOT OFFICIAL ART", source)
+                self.assertIn('aria-label="Original abstract category placeholder', source)
+                self.assertNotIn("<text", source,
+                                 "SVG background labels must not overlap the source-keyed HTML glyph")
                 self.assertNotRegex(source, r"(?i)(?:<script|<foreignobject|<image|<use|xlink:|href=|url\()")
                 root = ET.fromstring(source)
                 self.assertEqual(root.tag, "{http://www.w3.org/2000/svg}svg")
                 self.assertTrue(all(node.tag.split("}")[-1] in allowed for node in root.iter()))
+                self.assertGreater(len(list(root)), 10, "keep procedural visual geometry")
 
     def test_css_uses_exact_local_categories_no_dynamic_external_urls(self):
         css = (ROOT / "explorer/app.css").read_text(encoding="utf-8")

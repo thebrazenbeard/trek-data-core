@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "PIC.PPLUS.S3.FIRST5.GUIDE.20261104",
+  "role": "PIC",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "pic-s3-paramountplus-guide-html-20261104",
+    "url": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:00:09 GMT",
+    "observed_at_utc": "2026-11-04T21:00:09.575538+00:00",
+    "raw_response_bytes": 272699,
+    "raw_response_sha256": "54f51850043a1073f8ac4f4e68a22b6acf2bd5b70ad416adce695c36d9e659b3",
+    "raw_html_committed": false,
+    "method": "Read-only HTTP GET and full page in-memory parse of all ten episode-guide cards; no linked video, audio, thumbnail or transcript requested",
+    "reproducible_extractor": "source_probe.py",
+    "snapshot_mutable": true,
+    "description_fingerprints_are_sha256_of_nfc_untouched_html_unescaped_whitespace_normalized_text": true
+  },
+  "upstream_discovery": {
+    "path": "proposals/discovery/modern-paramount-season3-20261102/pic/bundle.json",
+    "sha256": "d8cd6e1edbb3c592acd5561904af323c53692d09f8945af399a2b4a3cf9d677a",
+    "status": "HELD_TITLE_AND_SLOT_HINTS_ONLY",
+    "identity_join_method": "SOURCE_LOCAL_SEASON_EPISODE_TITLE_NOT_CANONICAL_WORK"
+  },
+  "guide_inventory_observed": 10,
+  "first_five_source_descriptions_inspected": 5,
+  "first_five_description_total_chars": 1250,
+  "first_five_analytical_synopses_proposed": 5,
+  "guide_cards": [
+    {"display_order":1,"season":3,"episode":1,"analytics_ordinal":1,"title":"The Next Generation","video_route_path":"/shows/video/dQo2jCxwxKSXtDyIPKb44W6hCEiqd_Ec/","publisher_datetime":"2023-02-16T02:00:00-08:00","html_anchor_line":1470,"html_description_line":1488,"description_chars":244,"description_sha256":"4c81f2fabf65dd16a687854effef44fdd51c1a82b94090f6e92b1afa6ef3a9b0"},
+    {"display_order":2,"season":3,"episode":2,"analytics_ordinal":2,"title":"Disengage","video_route_path":"/shows/video/_hn3xX7z2ADLb5xnjtHAP_JQw9geuB_l/","publisher_datetime":"2023-02-23T02:00:00-08:00","html_anchor_line":1498,"html_description_line":1516,"description_chars":302,"description_sha256":"19d24fa5ae3654b12bcb7fd84d7de1766b45f38b38a20974b260a3f80d4a2757"},
+    {"display_order":3,"season":3,"episode":3,"analytics_ordinal":3,"title":"Seventeen Seconds","video_route_path":"/shows/video/NjhnDbV7slibv9pl7MZ9LBC5fAyrvJTN/","publisher_datetime":"2023-03-02T02:00:00-08:00","html_anchor_line":1526,"html_description_line":1544,"description_chars":280,"description_sha256":"e12c551a469f3bc5409fd0ae1ad0e0995c24c8b6c51191dec3dd3ffa036eca78"},
+    {"display_order":4,"season":3,"episode":4,"analytics_ordinal":4,"title":"No Win Scenario","video_route_path":"/shows/video/__96sEpIXP3iBbpyS_7nhEPaV_CVYiBv/","publisher_datetime":"2023-03-09T02:00:00-08:00","html_anchor_line":1554,"html_description_line":1572,"description_chars":221,"description_sha256":"ff828d78204aeb13fe5e8a6932ee88a305ef4b9866462b66f02074ffb0643709"},
+    {"display_order":5,"season":3,"episode":5,"analytics_ordinal":5,"title":"Imposters","video_route_path":"/shows/video/d_z5_o1wYC8jHl3NOgHSqe_QY_eMYkY_/","publisher_datetime":"2023-03-16T02:00:00-07:00","html_anchor_line":1582,"html_description_line":1600,"description_chars":203,"description_sha256":"3f9cc910315ebdf1c23f430f1c9bd0491534f6e536380d5dd7a2c02cd4775f15"},
+    {"display_order":6,"season":3,"episode":6,"analytics_ordinal":6,"title":"The Bounty","video_route_path":"/shows/video/yeJ_ynW6Qu1C7H4H2_QoTHCZmQakA18V/","publisher_datetime":"2023-03-23T02:00:00-07:00","html_anchor_line":1610,"html_description_line":1628,"description_chars":247,"description_sha256":"947a9d13f43590ed96eeda4079f82642db2c9fd61e036a737673ff2488e54a1d"},
+    {"display_order":7,"season":3,"episode":7,"analytics_ordinal":7,"title":"Dominion","video_route_path":"/shows/video/91_ySBOXOfS_qMu4C95G3yTPJ8YZ9kBR/","publisher_datetime":"2023-03-30T02:00:00-07:00","html_anchor_line":1638,"html_description_line":1656,"description_chars":230,"description_sha256":"fee4ac7d2bd80d0a056254310226ac9b78a3b00a92f5b598dc7f1248da3c6f1c"},
+    {"display_order":8,"season":3,"episode":8,"analytics_ordinal":8,"title":"Surrender","video_route_path":"/shows/video/C2f7pUJxydwrcvPshqRWdFZ7D4G4xGAn/","publisher_datetime":"2023-04-06T02:00:00-07:00","html_anchor_line":1666,"html_description_line":1684,"description_chars":175,"description_sha256":"7b302beb35512f2e53b81b1cd54a49f0bbece229ef0bc1c4fbd91cd29b0c9801"},
+    {"display_order":9,"season":3,"episode":9,"analytics_ordinal":9,"title":"Võx","video_route_path":"/shows/video/3IJy0NLkyr4r0VGOPx06qPX7PtjrE9rh/","publisher_datetime":"2023-04-13T02:00:00-07:00","html_anchor_line":1694,"html_description_line":1712,"description_chars":275,"description_sha256":"42511bacc17ff8c051d2a0d81b2f9ba5a3f24b26332e10095c07928ae1449a80"},
+    {"display_order":10,"season":3,"episode":10,"analytics_ordinal":10,"title":"The Last Generation","video_route_path":"/shows/video/abCBCq46mnpopGlfoDFGpdZoGT807ldy/","publisher_datetime":"2023-04-20T02:00:00-07:00","html_anchor_line":1722,"html_description_line":1740,"description_chars":247,"description_sha256":"a2c429168eb01b95e1999e2b8aea942e6f3126bc3825e3672e67dc37c0ff332f"}
+  ],
+  "local_entities": [
+    {"id":"pic-s3-e01-publisher-card","source_local_episode_hint":1,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e02-publisher-card","source_local_episode_hint":2,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e03-publisher-card","source_local_episode_hint":3,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e04-publisher-card","source_local_episode_hint":4,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e05-publisher-card","source_local_episode_hint":5,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null}
+  ],
+  "source_relative_evidence": [
+    {"id":"pic-s3-e01-guide-description","source_id":"pic-s3-paramountplus-guide-html-20261104","local_entity_id":"pic-s3-e01-publisher-card","card_ordinal":1,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1488, exact response digest in source receipt","publisher_description_sha256":"4c81f2fabf65dd16a687854effef44fdd51c1a82b94090f6e92b1afa6ef3a9b0","original_paraphrase":"A plea for help from Beverly Crusher brings Picard together with former colleagues and new Starfleet allies for a dangerous mission."},
+    {"id":"pic-s3-e02-guide-description","source_id":"pic-s3-paramountplus-guide-html-20261104","local_entity_id":"pic-s3-e02-publisher-card","card_ordinal":2,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1516, exact response digest in source receipt","publisher_description_sha256":"19d24fa5ae3654b12bcb7fd84d7de1766b45f38b38a20974b260a3f80d4a2757","original_paraphrase":"Picard receives unsettling news while working with Seven of Nine aboard the Titan; Raffi pursues information about a destructive weapon."},
+    {"id":"pic-s3-e03-guide-description","source_id":"pic-s3-paramountplus-guide-html-20261104","local_entity_id":"pic-s3-e03-publisher-card","card_ordinal":3,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1544, exact response digest in source receipt","publisher_description_sha256":"e12c551a469f3bc5409fd0ae1ad0e0995c24c8b6c51191dec3dd3ffa036eca78","original_paraphrase":"Picard confronts personal news as Vadic pursues the Titan, while Raffi and Worf investigate a conspiracy involving Starfleet's past."},
+    {"id":"pic-s3-e04-guide-description","source_id":"pic-s3-paramountplus-guide-html-20261104","local_entity_id":"pic-s3-e04-publisher-card","card_ordinal":4,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1572, exact response digest in source receipt","publisher_description_sha256":"ff828d78204aeb13fe5e8a6932ee88a305ef4b9866462b66f02074ffb0643709","original_paraphrase":"The Titan is immobilized near a dangerous anomaly, forcing Picard, Riker and their crew to confront old wounds under severe time pressure."},
+    {"id":"pic-s3-e05-guide-description","source_id":"pic-s3-paramountplus-guide-html-20261104","local_entity_id":"pic-s3-e05-publisher-card","card_ordinal":5,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1600, exact response digest in source receipt","publisher_description_sha256":"3f9cc910315ebdf1c23f430f1c9bd0491534f6e536380d5dd7a2c02cd4775f15","original_paraphrase":"Facing Starfleet custody and a possible court-martial, Picard questions whether someone from his past has returned as an ally or a threat."}
+  ],
+  "typed_assertions": [
+    {"id":"pic-s3-e01-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e01-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e02-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e02-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e03-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e03-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e04-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e04-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e05-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e05-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"}
+  ],
+  "holds": [
+    "One official publisher HTML page is one source family; its visible card number and analytics ordinal are not independent corroboration.",
+    "The page displays source-relative claims about fictional events; no audiovisual or authenticated transcript content was viewed to verify story assertions.",
+    "No source rights were established to redistribute the publisher's original synopses, video stills or thumbnails; original paraphrases and hashes only.",
+    "The ten-card guide inventory cannot advance a canonical episode denominator; only the first five description fingerprints and original analyses belong to this bounded tranche.",
+    "Publisher datetime strings are preserved exactly without inferring broadcast, time-zone or first-availability semantics."
+  ]
+}

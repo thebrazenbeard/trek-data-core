@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "PIC.PPLUS.S3.LAST5.GUIDE.20261104",
+  "role": "PIC",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "pic-s3-paramountplus-guide-html-last5-20261104",
+    "url": "https://www.paramountplus.com/shows/star-trek-picard/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:06:01 GMT",
+    "observed_at_utc": "2026-11-04T21:06:01.532629+00:00",
+    "raw_response_bytes": 272699,
+    "raw_response_sha256": "c938f6fe567d1782f7c2130acf051ee09867adcf8abf3bc6cae8ef305c8035d4",
+    "raw_html_committed": false,
+    "method": "Fresh read-only full HTML GET; in-memory reparse of all ten publisher cards and description texts; reviewed E06-E10 only for original paraphrases; no linked media requested",
+    "reproducible_extractor": "../picard-s3-first5-official-guide-20261104/source_probe.py",
+    "snapshot_mutable": true
+  },
+  "prior_first_five": {
+    "path": "proposals/research/pic/picard-s3-first5-official-guide-20261104/records.json",
+    "sha256": "fdbb21d3b168b6375ef304fd70a4a55dc964213ac8102cf5929d4d689df5a948",
+    "commit": "da3b01eeca623bde26642d9177dbf7aad4b24b25",
+    "source_response_sha256": "54f51850043a1073f8ac4f4e68a22b6acf2bd5b70ad416adce695c36d9e659b3",
+    "scope": "E01-E05 source-relative publisher description analyses plus ten-card inventory; separate immutable predecessor packet"
+  },
+  "observed_full_guide_card_count": 10,
+  "all_ten_metadata_and_description_fingerprints_match_predecessor_snapshot": true,
+  "raw_html_digest_differs_from_predecessor": true,
+  "selected_tranche_episode_ordinals": [6, 7, 8, 9, 10],
+  "last_five_descriptions_inspected": 5,
+  "last_five_description_total_chars": 1174,
+  "last_five_analytical_synopses_proposed": 5,
+  "last_five_guide_cards": [
+    {"display_order":6,"season":3,"episode":6,"analytics_ordinal":6,"title":"The Bounty","video_route_path":"/shows/video/yeJ_ynW6Qu1C7H4H2_QoTHCZmQakA18V/","publisher_datetime":"2023-03-23T02:00:00-07:00","html_anchor_line":1610,"html_description_line":1628,"description_chars":247,"description_sha256":"947a9d13f43590ed96eeda4079f82642db2c9fd61e036a737673ff2488e54a1d"},
+    {"display_order":7,"season":3,"episode":7,"analytics_ordinal":7,"title":"Dominion","video_route_path":"/shows/video/91_ySBOXOfS_qMu4C95G3yTPJ8YZ9kBR/","publisher_datetime":"2023-03-30T02:00:00-07:00","html_anchor_line":1638,"html_description_line":1656,"description_chars":230,"description_sha256":"fee4ac7d2bd80d0a056254310226ac9b78a3b00a92f5b598dc7f1248da3c6f1c"},
+    {"display_order":8,"season":3,"episode":8,"analytics_ordinal":8,"title":"Surrender","video_route_path":"/shows/video/C2f7pUJxydwrcvPshqRWdFZ7D4G4xGAn/","publisher_datetime":"2023-04-06T02:00:00-07:00","html_anchor_line":1666,"html_description_line":1684,"description_chars":175,"description_sha256":"7b302beb35512f2e53b81b1cd54a49f0bbece229ef0bc1c4fbd91cd29b0c9801"},
+    {"display_order":9,"season":3,"episode":9,"analytics_ordinal":9,"title":"Võx","video_route_path":"/shows/video/3IJy0NLkyr4r0VGOPx06qPX7PtjrE9rh/","publisher_datetime":"2023-04-13T02:00:00-07:00","html_anchor_line":1694,"html_description_line":1712,"description_chars":275,"description_sha256":"42511bacc17ff8c051d2a0d81b2f9ba5a3f24b26332e10095c07928ae1449a80"},
+    {"display_order":10,"season":3,"episode":10,"analytics_ordinal":10,"title":"The Last Generation","video_route_path":"/shows/video/abCBCq46mnpopGlfoDFGpdZoGT807ldy/","publisher_datetime":"2023-04-20T02:00:00-07:00","html_anchor_line":1722,"html_description_line":1740,"description_chars":247,"description_sha256":"a2c429168eb01b95e1999e2b8aea942e6f3126bc3825e3672e67dc37c0ff332f"}
+  ],
+  "local_entities": [
+    {"id":"pic-s3-e06-publisher-card","source_local_episode_hint":6,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e07-publisher-card","source_local_episode_hint":7,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e08-publisher-card","source_local_episode_hint":8,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e09-publisher-card","source_local_episode_hint":9,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null},
+    {"id":"pic-s3-e10-publisher-card","source_local_episode_hint":10,"source_kind":"PUBLISHER_EPISODE_CARD","canonical_work_id":null}
+  ],
+  "source_relative_evidence": [
+    {"id":"pic-s3-e06-guide-description","source_id":"pic-s3-paramountplus-guide-html-last5-20261104","local_entity_id":"pic-s3-e06-publisher-card","card_ordinal":6,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1628, exact response digest in source receipt","publisher_description_sha256":"947a9d13f43590ed96eeda4079f82642db2c9fd61e036a737673ff2488e54a1d","original_paraphrase":"Fleeing pursuit, Picard and a small Titan crew seek access to a secret Starfleet facility, turning to an old ally to uncover a Federation-threatening scheme."},
+    {"id":"pic-s3-e07-guide-description","source_id":"pic-s3-paramountplus-guide-html-last5-20261104","local_entity_id":"pic-s3-e07-publisher-card","card_ordinal":7,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1656, exact response digest in source receipt","publisher_description_sha256":"fee4ac7d2bd80d0a056254310226ac9b78a3b00a92f5b598dc7f1248da3c6f1c","original_paraphrase":"With the Titan cornered, Picard attempts to draw out Vadic's motives through a risky trap that challenges his and Beverly's convictions."},
+    {"id":"pic-s3-e08-guide-description","source_id":"pic-s3-paramountplus-guide-html-last5-20261104","local_entity_id":"pic-s3-e08-publisher-card","card_ordinal":8,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1684, exact response digest in source receipt","publisher_description_sha256":"7b302beb35512f2e53b81b1cd54a49f0bbece229ef0bc1c4fbd91cd29b0c9801","original_paraphrase":"Vadic threatens the Titan's crew to force an impossible decision from Picard; an unexpected connection to his past may provide a way out."},
+    {"id":"pic-s3-e09-guide-description","source_id":"pic-s3-paramountplus-guide-html-last5-20261104","local_entity_id":"pic-s3-e09-publisher-card","card_ordinal":9,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1712, exact response digest in source receipt","publisher_description_sha256":"42511bacc17ff8c051d2a0d81b2f9ba5a3f24b26332e10095c07928ae1449a80","original_paraphrase":"A revelation involving Jack exposes a danger to the Federation, driving Picard and his companions toward a desperate and costly confrontation."},
+    {"id":"pic-s3-e10-guide-description","source_id":"pic-s3-paramountplus-guide-html-last5-20261104","local_entity_id":"pic-s3-e10-publisher-card","card_ordinal":10,"kind":"PUBLISHER_GUIDE_DESCRIPTION","locator":"HTML 1740, exact response digest in source receipt","publisher_description_sha256":"a2c429168eb01b95e1999e2b8aea942e6f3126bc3825e3672e67dc37c0ff332f","original_paraphrase":"Picard joins multiple generations of crews for a final effort to defend the galaxy, bringing the Next Generation story arc toward its conclusion."}
+  ],
+  "typed_assertions": [
+    {"id":"pic-s3-e06-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e06-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e07-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e07-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e08-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e08-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e09-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e09-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id":"pic-s3-e10-publisher-describes","predicate":"PUBLISHER_DESCRIBES","evidence_id":"pic-s3-e10-guide-description","status":"SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"}
+  ],
+  "holds": [
+    "Five new source-relative description analyses (E06-E10) are separate from immutable E01-E05 predecessor; ten-card context is not ten new analyses.",
+    "The two HTTPS reads are observations from the same Paramount+ source, not independent content witnesses; raw HTML bytes are mutable but card fingerprints matched.",
+    "Publisher synopses are claims about fictional events and not episode content truth; no program or authenticated transcript was accessed.",
+    "No original publisher description prose, video, audio, images or thumbnails were redistributed; analysis paraphrases were written originally.",
+    "No global identity reconciliation, canonical Work binding, source admission, CLOSE_READ or denominator/coverage effect."
+  ]
+}

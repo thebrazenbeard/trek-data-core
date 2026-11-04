@@ -1,0 +1,858 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-paramount-s3-guide-20261104",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_main_at_selection": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_utc_date": "2026-11-04",
+  "source": {
+    "source_id": "paramount-ds9-s3-guide-render-20261104",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/3/",
+    "retrieval_date_utc": "2026-11-04",
+    "retrieval_method": "TINYFISH_FETCH_CONTENT_RENDERED_MARKDOWN",
+    "page_title": "Star Trek: Deep Space Nine Season 3 Episodes - Watch on Paramount+",
+    "page_heading": "Season 3 > Episode Guide",
+    "raw_source_body_sha256": null,
+    "raw_html_bytes_pinned": false,
+    "http_status_verified": false,
+    "full_episode_audiovisual_or_script_read": false,
+    "source_description_fingerprint_method": "SHA256_UTF8_EXTRACTED_DESCRIPTION_SINGLE_LINE_NO_TRAILING_NEWLINE"
+  },
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "episode_research_coverage_effect": "NONE",
+  "synopsis_publication_effect": "NONE",
+  "admitted_briefings": 0,
+  "observed_card_count": 24,
+  "missing_publisher_ordinals_in_extraction": [
+    4,
+    26
+  ],
+  "episode_census_claim": "NONE",
+  "source_local_episode_slots": [
+    {
+      "id": "ds9-s3-slot-01",
+      "season": 3,
+      "source_episode_ordinal": 1,
+      "publisher_title": "The Search, Part 1",
+      "source_card_locator": "Season 3 > Episode Guide > The Search, Part 1 > S3 E1 > short description",
+      "source_description_sha256": "2239e6194c990403bcc26dae82340b37d7e6bdbcc49a982de59281210f0a30f4",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-02",
+      "season": 3,
+      "source_episode_ordinal": 2,
+      "publisher_title": "The Search, Part 2",
+      "source_card_locator": "Season 3 > Episode Guide > The Search, Part 2 > S3 E2 > short description",
+      "source_description_sha256": "64986972d295297acfc242db9b1788f6f12461067311622157a9f68e69901ee5",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-03",
+      "season": 3,
+      "source_episode_ordinal": 3,
+      "publisher_title": "The House Of Quark",
+      "source_card_locator": "Season 3 > Episode Guide > The House Of Quark > S3 E3 > short description",
+      "source_description_sha256": "f5126cab998bffe85024e38a104e9bdf74d7c61db35bf71cd3eb2f8d19bcdaeb",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-05",
+      "season": 3,
+      "source_episode_ordinal": 5,
+      "publisher_title": "Second Skin",
+      "source_card_locator": "Season 3 > Episode Guide > Second Skin > S3 E5 > short description",
+      "source_description_sha256": "52c2c343bbf01d3efb983ee977f6d2154cf583dbb9c6ce1e0130e866ac94813d",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-06",
+      "season": 3,
+      "source_episode_ordinal": 6,
+      "publisher_title": "The Abandoned",
+      "source_card_locator": "Season 3 > Episode Guide > The Abandoned > S3 E6 > short description",
+      "source_description_sha256": "0f274239fc5ae206cffd5b728856788970999b2d207b609684b27ddf98f65ecd",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-07",
+      "season": 3,
+      "source_episode_ordinal": 7,
+      "publisher_title": "Civil Defense",
+      "source_card_locator": "Season 3 > Episode Guide > Civil Defense > S3 E7 > short description",
+      "source_description_sha256": "c28e2cac0a1b9656042ae2f7ac3e7fd1b85856ca386eaf8cf99f9a8decc50768",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-08",
+      "season": 3,
+      "source_episode_ordinal": 8,
+      "publisher_title": "Meridian",
+      "source_card_locator": "Season 3 > Episode Guide > Meridian > S3 E8 > short description",
+      "source_description_sha256": "b6d25c6b9fc0a6919af5a9ec9c0c4b0c521d8b937de289401decaade683cfbf0",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-09",
+      "season": 3,
+      "source_episode_ordinal": 9,
+      "publisher_title": "Defiant",
+      "source_card_locator": "Season 3 > Episode Guide > Defiant > S3 E9 > short description",
+      "source_description_sha256": "fef28b2ba6ebce3cbd78e39cbc80b0d29a952e2a7abaeb1c971a041282885a78",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-10",
+      "season": 3,
+      "source_episode_ordinal": 10,
+      "publisher_title": "Fascination",
+      "source_card_locator": "Season 3 > Episode Guide > Fascination > S3 E10 > short description",
+      "source_description_sha256": "07680d2e7871b08ec387f0ef3e0ba74b94e9fb35d2304c7d321310a285938ada",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-11",
+      "season": 3,
+      "source_episode_ordinal": 11,
+      "publisher_title": "Past Tense, Part 1",
+      "source_card_locator": "Season 3 > Episode Guide > Past Tense, Part 1 > S3 E11 > short description",
+      "source_description_sha256": "9dc5aa84998968a9e0413f3de681eaaa49842a0da10593fba53882ad87c7a6ee",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-12",
+      "season": 3,
+      "source_episode_ordinal": 12,
+      "publisher_title": "Past Tense, Part 2",
+      "source_card_locator": "Season 3 > Episode Guide > Past Tense, Part 2 > S3 E12 > short description",
+      "source_description_sha256": "bd39b5f170bd3c4521907083aa637560a5ee0fa38cfc3e7ff9a0d73fda0992cd",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-13",
+      "season": 3,
+      "source_episode_ordinal": 13,
+      "publisher_title": "Life Support",
+      "source_card_locator": "Season 3 > Episode Guide > Life Support > S3 E13 > short description",
+      "source_description_sha256": "6c7fa26b5ce415fd5d736279c4f50cbc590ec196dff2f35bc2de4d359d42ef18",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-14",
+      "season": 3,
+      "source_episode_ordinal": 14,
+      "publisher_title": "Heart Of Stone",
+      "source_card_locator": "Season 3 > Episode Guide > Heart Of Stone > S3 E14 > short description",
+      "source_description_sha256": "7a5031465bc1518cd0cacf477a0823d08dbb3f5d14d317aa5869a2cb922f8ebe",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-15",
+      "season": 3,
+      "source_episode_ordinal": 15,
+      "publisher_title": "Destiny",
+      "source_card_locator": "Season 3 > Episode Guide > Destiny > S3 E15 > short description",
+      "source_description_sha256": "fd215d31f084dd1e01bb45474af5e564c9e0d2021d22c708a41429fcb5c35a6d",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-16",
+      "season": 3,
+      "source_episode_ordinal": 16,
+      "publisher_title": "Prophet Motive",
+      "source_card_locator": "Season 3 > Episode Guide > Prophet Motive > S3 E16 > short description",
+      "source_description_sha256": "cbc2e82e0b46851364540e9645931e9124ad7b0a84da566d534e047870778d58",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-17",
+      "season": 3,
+      "source_episode_ordinal": 17,
+      "publisher_title": "Visionary",
+      "source_card_locator": "Season 3 > Episode Guide > Visionary > S3 E17 > short description",
+      "source_description_sha256": "230ffc5b3a2bf6bd0c3b1f2ed728827dad6936ed06fdeca0ddf99bcea3766f6e",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-18",
+      "season": 3,
+      "source_episode_ordinal": 18,
+      "publisher_title": "Distant Voices",
+      "source_card_locator": "Season 3 > Episode Guide > Distant Voices > S3 E18 > short description",
+      "source_description_sha256": "2edc7bf21eca3ab02cdd7469e89ec179d3d7e12bbbbf568bc19fb1db12edcead",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-19",
+      "season": 3,
+      "source_episode_ordinal": 19,
+      "publisher_title": "Through The Looking Glass",
+      "source_card_locator": "Season 3 > Episode Guide > Through The Looking Glass > S3 E19 > short description",
+      "source_description_sha256": "a5363d91ba2e35c76e9c8b3f271ebef8aa56de2aae0694c05824528f0e2f92d4",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-20",
+      "season": 3,
+      "source_episode_ordinal": 20,
+      "publisher_title": "Improbable Cause",
+      "source_card_locator": "Season 3 > Episode Guide > Improbable Cause > S3 E20 > short description",
+      "source_description_sha256": "b282e9131314c546b7f08c0275b083462611bfdaf9c4e66f398c591d5dc303b6",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-21",
+      "season": 3,
+      "source_episode_ordinal": 21,
+      "publisher_title": "The Die Is Cast",
+      "source_card_locator": "Season 3 > Episode Guide > The Die Is Cast > S3 E21 > short description",
+      "source_description_sha256": "f8669d4afdfc463f62f538aef4f14042068eba299246732b590d138aac80cc0b",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-22",
+      "season": 3,
+      "source_episode_ordinal": 22,
+      "publisher_title": "Explorers",
+      "source_card_locator": "Season 3 > Episode Guide > Explorers > S3 E22 > short description",
+      "source_description_sha256": "0a558c4b4cf4f5ec11226deaea0c9880b2c1532e46cd859445c1ee71a6b39928",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-23",
+      "season": 3,
+      "source_episode_ordinal": 23,
+      "publisher_title": "Family Business",
+      "source_card_locator": "Season 3 > Episode Guide > Family Business > S3 E23 > short description",
+      "source_description_sha256": "89ab4ae73af7fef52f6db6495b5e9c04a102bf9fb0a678ca1df2f37ffad99786",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-24",
+      "season": 3,
+      "source_episode_ordinal": 24,
+      "publisher_title": "Shakaar",
+      "source_card_locator": "Season 3 > Episode Guide > Shakaar > S3 E24 > short description",
+      "source_description_sha256": "09514755f0aaa0d606af2d67a270f345ae06c78357a6c9ecee36d24b92f06256",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s3-slot-25",
+      "season": 3,
+      "source_episode_ordinal": 25,
+      "publisher_title": "Facets",
+      "source_card_locator": "Season 3 > Episode Guide > Facets > S3 E25 > short description",
+      "source_description_sha256": "8ce37a2340dec870443121620c86c51720ef028810b136f4989bc3e140d37406",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ds9-s3-local-card-01",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-01",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-02",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-02",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-03",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-03",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-05",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-05",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-06",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-06",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-07",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-07",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-08",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-08",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-09",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-09",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-10",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-10",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-11",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-11",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-12",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-12",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-13",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-13",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-14",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-14",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-15",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-15",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-16",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-16",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-17",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-17",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-18",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-18",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-19",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-19",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-20",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-20",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-21",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-21",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-22",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-22",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-23",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-23",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-24",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-24",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s3-local-card-25",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s3-slot-25",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ds9-s3-ev-01",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-01",
+      "locator": "Season 3 > Episode Guide > The Search, Part 1 > S3 E1 > short description",
+      "description_sha256": "2239e6194c990403bcc26dae82340b37d7e6bdbcc49a982de59281210f0a30f4",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-02",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-02",
+      "locator": "Season 3 > Episode Guide > The Search, Part 2 > S3 E2 > short description",
+      "description_sha256": "64986972d295297acfc242db9b1788f6f12461067311622157a9f68e69901ee5",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-03",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-03",
+      "locator": "Season 3 > Episode Guide > The House Of Quark > S3 E3 > short description",
+      "description_sha256": "f5126cab998bffe85024e38a104e9bdf74d7c61db35bf71cd3eb2f8d19bcdaeb",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-05",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-05",
+      "locator": "Season 3 > Episode Guide > Second Skin > S3 E5 > short description",
+      "description_sha256": "52c2c343bbf01d3efb983ee977f6d2154cf583dbb9c6ce1e0130e866ac94813d",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-06",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-06",
+      "locator": "Season 3 > Episode Guide > The Abandoned > S3 E6 > short description",
+      "description_sha256": "0f274239fc5ae206cffd5b728856788970999b2d207b609684b27ddf98f65ecd",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-07",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-07",
+      "locator": "Season 3 > Episode Guide > Civil Defense > S3 E7 > short description",
+      "description_sha256": "c28e2cac0a1b9656042ae2f7ac3e7fd1b85856ca386eaf8cf99f9a8decc50768",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-08",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-08",
+      "locator": "Season 3 > Episode Guide > Meridian > S3 E8 > short description",
+      "description_sha256": "b6d25c6b9fc0a6919af5a9ec9c0c4b0c521d8b937de289401decaade683cfbf0",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-09",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-09",
+      "locator": "Season 3 > Episode Guide > Defiant > S3 E9 > short description",
+      "description_sha256": "fef28b2ba6ebce3cbd78e39cbc80b0d29a952e2a7abaeb1c971a041282885a78",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-10",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-10",
+      "locator": "Season 3 > Episode Guide > Fascination > S3 E10 > short description",
+      "description_sha256": "07680d2e7871b08ec387f0ef3e0ba74b94e9fb35d2304c7d321310a285938ada",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-11",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-11",
+      "locator": "Season 3 > Episode Guide > Past Tense, Part 1 > S3 E11 > short description",
+      "description_sha256": "9dc5aa84998968a9e0413f3de681eaaa49842a0da10593fba53882ad87c7a6ee",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-12",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-12",
+      "locator": "Season 3 > Episode Guide > Past Tense, Part 2 > S3 E12 > short description",
+      "description_sha256": "bd39b5f170bd3c4521907083aa637560a5ee0fa38cfc3e7ff9a0d73fda0992cd",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-13",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-13",
+      "locator": "Season 3 > Episode Guide > Life Support > S3 E13 > short description",
+      "description_sha256": "6c7fa26b5ce415fd5d736279c4f50cbc590ec196dff2f35bc2de4d359d42ef18",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-14",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-14",
+      "locator": "Season 3 > Episode Guide > Heart Of Stone > S3 E14 > short description",
+      "description_sha256": "7a5031465bc1518cd0cacf477a0823d08dbb3f5d14d317aa5869a2cb922f8ebe",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-15",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-15",
+      "locator": "Season 3 > Episode Guide > Destiny > S3 E15 > short description",
+      "description_sha256": "fd215d31f084dd1e01bb45474af5e564c9e0d2021d22c708a41429fcb5c35a6d",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-16",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-16",
+      "locator": "Season 3 > Episode Guide > Prophet Motive > S3 E16 > short description",
+      "description_sha256": "cbc2e82e0b46851364540e9645931e9124ad7b0a84da566d534e047870778d58",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-17",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-17",
+      "locator": "Season 3 > Episode Guide > Visionary > S3 E17 > short description",
+      "description_sha256": "230ffc5b3a2bf6bd0c3b1f2ed728827dad6936ed06fdeca0ddf99bcea3766f6e",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-18",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-18",
+      "locator": "Season 3 > Episode Guide > Distant Voices > S3 E18 > short description",
+      "description_sha256": "2edc7bf21eca3ab02cdd7469e89ec179d3d7e12bbbbf568bc19fb1db12edcead",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-19",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-19",
+      "locator": "Season 3 > Episode Guide > Through The Looking Glass > S3 E19 > short description",
+      "description_sha256": "a5363d91ba2e35c76e9c8b3f271ebef8aa56de2aae0694c05824528f0e2f92d4",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-20",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-20",
+      "locator": "Season 3 > Episode Guide > Improbable Cause > S3 E20 > short description",
+      "description_sha256": "b282e9131314c546b7f08c0275b083462611bfdaf9c4e66f398c591d5dc303b6",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-21",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-21",
+      "locator": "Season 3 > Episode Guide > The Die Is Cast > S3 E21 > short description",
+      "description_sha256": "f8669d4afdfc463f62f538aef4f14042068eba299246732b590d138aac80cc0b",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-22",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-22",
+      "locator": "Season 3 > Episode Guide > Explorers > S3 E22 > short description",
+      "description_sha256": "0a558c4b4cf4f5ec11226deaea0c9880b2c1532e46cd859445c1ee71a6b39928",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-23",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-23",
+      "locator": "Season 3 > Episode Guide > Family Business > S3 E23 > short description",
+      "description_sha256": "89ab4ae73af7fef52f6db6495b5e9c04a102bf9fb0a678ca1df2f37ffad99786",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-24",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-24",
+      "locator": "Season 3 > Episode Guide > Shakaar > S3 E24 > short description",
+      "description_sha256": "09514755f0aaa0d606af2d67a270f345ae06c78357a6c9ecee36d24b92f06256",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s3-ev-25",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s3-guide-render-20261104",
+      "local_entity_id": "ds9-s3-local-card-25",
+      "locator": "Season 3 > Episode Guide > Facets > S3 E25 > short description",
+      "description_sha256": "8ce37a2340dec870443121620c86c51720ef028810b136f4989bc3e140d37406",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    }
+  ],
+  "assertions": [
+    {
+      "id": "ds9-s3-assert-01",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-01",
+      "supporting_evidence_id": "ds9-s3-ev-01",
+      "original_held_paraphrase": "The publisher guide describes Sisko traveling into the Gamma Quadrant to seek Dominion leadership and avoid invasion.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-02",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-02",
+      "supporting_evidence_id": "ds9-s3-ev-02",
+      "original_held_paraphrase": "The guide describes Odo encountering his people while Sisko confronts an apparently costly path to peace.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-03",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-03",
+      "supporting_evidence_id": "ds9-s3-ev-03",
+      "original_held_paraphrase": "The guide describes Quark falsely taking credit for a Klingon's death and becoming entangled in a marriage demand.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-05",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-05",
+      "supporting_evidence_id": "ds9-s3-ev-05",
+      "original_held_paraphrase": "The guide says Cardassian captors try to persuade Kira she belongs to their people; their identity claim is not independently established.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-06",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-06",
+      "supporting_evidence_id": "ds9-s3-ev-06",
+      "original_held_paraphrase": "The guide describes Odo trying to teach a young Jem'Hadar that violence need not define his life.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-07",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-07",
+      "supporting_evidence_id": "ds9-s3-ev-07",
+      "original_held_paraphrase": "The guide describes an accidentally triggered Cardassian station-defense system threatening the trapped crew.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-08",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-08",
+      "supporting_evidence_id": "ds9-s3-ev-08",
+      "original_held_paraphrase": "The guide describes Dax loving someone whose planet is expected to disappear into another dimension for decades.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-09",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-09",
+      "supporting_evidence_id": "ds9-s3-ev-09",
+      "original_held_paraphrase": "The guide describes a renegade Riker duplicate taking the Defiant into Cardassian territory; no cross-work identity decision is made.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-10",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-10",
+      "supporting_evidence_id": "ds9-s3-ev-10",
+      "original_held_paraphrase": "The guide associates a Bajoran festival with inexplicable romantic attraction affecting station personnel.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-11",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-11",
+      "supporting_evidence_id": "ds9-s3-ev-11",
+      "original_held_paraphrase": "The guide describes a transporter mishap taking Sisko, Bashir, and Dax into Earth's distant past.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-12",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-12",
+      "supporting_evidence_id": "ds9-s3-ev-12",
+      "original_held_paraphrase": "The guide describes Sisko attempting to repair a disrupted future while stranded in Earth's past.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-13",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-13",
+      "supporting_evidence_id": "ds9-s3-ev-13",
+      "original_held_paraphrase": "The guide describes Bashir confronting ethically difficult medical choices while Bareil participates in peace negotiations.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-14",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-14",
+      "supporting_evidence_id": "ds9-s3-ev-14",
+      "original_held_paraphrase": "The guide describes danger to Kira prompting Odo to confront his unspoken feelings for her.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-15",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-15",
+      "supporting_evidence_id": "ds9-s3-ev-15",
+      "original_held_paraphrase": "The guide describes Sisko pursuing a Cardassian scientific collaboration despite a Bajoran warning prophecy.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-16",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-16",
+      "supporting_evidence_id": "ds9-s3-ev-16",
+      "original_held_paraphrase": "The guide describes Quark questioning a Ferengi leader's surprising renunciation of profit-seeking.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-17",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-17",
+      "supporting_evidence_id": "ds9-s3-ev-17",
+      "original_held_paraphrase": "The guide describes O'Brien experiencing apparent jumps into the near future, including a vision of his own death.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-18",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-18",
+      "supporting_evidence_id": "ds9-s3-ev-18",
+      "original_held_paraphrase": "The guide frames Bashir's comatose experience as an encounter with facets of himself represented by colleagues.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-19",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-19",
+      "supporting_evidence_id": "ds9-s3-ev-19",
+      "original_held_paraphrase": "The guide describes a parallel-universe Sisko taking his deceased counterpart's place to aid a counterpart of his late wife.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-20",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-20",
+      "supporting_evidence_id": "ds9-s3-ev-20",
+      "original_held_paraphrase": "The guide describes Odo investigating an explosion at Garak's shop and a possible threat to Garak.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-21",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-21",
+      "supporting_evidence_id": "ds9-s3-ev-21",
+      "original_held_paraphrase": "The guide describes competing loyalties for Garak and danger to Odo amid an impending attack on the Dominion.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-22",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-22",
+      "supporting_evidence_id": "ds9-s3-ev-22",
+      "original_held_paraphrase": "The guide describes Sisko rebuilding an old Bajoran spacecraft to investigate a centuries-old travel legend.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-23",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-23",
+      "supporting_evidence_id": "ds9-s3-ev-23",
+      "original_held_paraphrase": "The guide describes Quark challenging his mother's violation of a Ferengi restriction on women earning profit.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-24",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-24",
+      "supporting_evidence_id": "ds9-s3-ev-24",
+      "original_held_paraphrase": "The guide describes Kira refusing to act against a former resistance leader and joining him as a fugitive.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s3-assert-25",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s3-local-card-25",
+      "supporting_evidence_id": "ds9-s3-ev-25",
+      "original_held_paraphrase": "The guide describes a Trill ceremony in which Dax encounters manifestations of earlier hosts and questions her self-worth.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    }
+  ]
+}

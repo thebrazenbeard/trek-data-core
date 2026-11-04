@@ -44,6 +44,17 @@ class TOSPublisherHeldSecondWaveTests(unittest.TestCase):
         self.reject(lambda r, _: r["rows"][0].update(publisher_url="https://evil.invalid/books/Demons/9780743419819"), "first-party")
         self.reject(lambda r, _: r["rows"][0].update(publisher_url="https://www.simonandschuster.com/books/Demons/9780743419826"), "first-party")
 
+    def test_boolean_page_count_cannot_masquerade_as_integer(self):
+        self.reject(lambda r, _: r["rows"][0].update(publisher_pages=True), "invalid official product page count")
+        self.reject(lambda r, _: r["rows"][0].update(publisher_pages=False), "invalid official product page count")
+
+    def test_integer_envelope_counters_and_boolean_flags_are_type_strict(self):
+        self.reject(lambda r, _: r.update(independent_source_families=True), "type drift: independent_source_families")
+        self.reject(lambda r, _: r.update(source_work_bindings=False), "type drift: source_work_bindings")
+        self.reject(lambda r, _: r.update(close_reads=False), "type drift: close_reads")
+        self.reject(lambda r, _: r.update(batch_manifest_generated=1), "type drift: batch_manifest_generated")
+        self.reject(lambda r, _: r.update(publisher_page_raw_bytes_snapshotted=0), "type drift: publisher_page_raw_bytes_snapshotted")
+
     def test_author_name_order_inversion_not_normalized(self):
         self.reject(lambda r, _: r["rows"][4].update(publisher_byline=["Carmen Carter"]), "Carter Carmen")
         self.reject(lambda r, _: r["rows"][4].update(hold="PRIVATE_EDITION_UNVERIFIED"), "Carter Carmen")

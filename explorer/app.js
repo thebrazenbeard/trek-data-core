@@ -3173,7 +3173,7 @@
         (index > 0 && /\bseizures?\b/i.test(parts.slice(0, index).join(' '))
           && /\b(?:my|our) (?:child|son|daughter|mother|father|dad|mom|brother|sister|friend) is having one (?:right now|now|today)\b/i.test(part)));
     }
-    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|i (?:watched|read|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:film|episode|show|character|novel|story))\b/i.exec(text);
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game|fictional scene)|this is fiction|fictional character|i (?:watched|read|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:film|episode|show|character|novel|story))\b/i.exec(text);
     const realLifeShift = /(?:\b(?:but|however|in real life|actually|now)\b|;)\s*[\s\S]{0,140}\b(?:i|my|our)\b[\s\S]{0,90}\b(?:seizure|seizing|convulsing|choking|can't breathe|unconscious|collapsed|chest pain|heart attack|stroke|not breathing)\b/i.test(text);
     const historical = /\b(years? ago|months? ago|last year|in 20\d\d|five years ago)\b/i.test(text);
     const urgentNow = /\b(now|right now|currently|today|tonight|at the moment)\b/i.test(text);
@@ -3225,6 +3225,46 @@
   function isImminentBystanderSelfHarm(text) {
     return safetyClauses(text).some((part) => isCurrentDangerClause(part) &&
       /\b(?:he|she|they|someone|somebody|a (?:man|woman|person))\s+(?:is|'s|are)\s+(?:about to|going to|planning to)\s+(?:jump\s+(?:off|from)|kill\s+(?:himself|herself|themselves)|end\s+(?:his|her|their)\s+life|take\s+an\s+overdose)\b/i.test(part));
+  }
+
+  // Safety-first topic triage is deliberately wider than the older sentence
+  // templates above. Acute disclosures often omit a particular verb ("has a
+  // knife against my throat", "overdosed and nodding off") or name a relative
+  // with a modifier ("my two-year-old"). This is NOT medical or crisis
+  // assessment: it only prevents plausible immediate harm from becoming a
+  // research search or fictional villain banter.
+  function broadAcuteRisk(text) {
+    const normalized = text.normalize('NFKC').replace(/[\u2018\u2019]/g, "'");
+    const clauses = normalized.split(/(?:[.!?;]\s+|\n+|\b(?:but|however|in real life|actually)\b)/i)
+      .map((part) => part.trim()).filter(Boolean);
+    for (const part of clauses) {
+      const fictional = /\b(?:in (?:a|the|this) (?:fictional scene|book|novel|story|movie|film|episode|show|script|game)|this is fiction|fictional scene|in a hypothetical|as a hypothetical|hypothetical lesson|in the plot|in the lore|fictional character|(?:book|movie|novel|show|story) character|character says|quoting a character|quote from a character|roleplay|for a (?:school |psychology )?paper)\b/i.test(part);
+      const sourceDiscussion = /\b(?:read about|watched|the (?:character|scene|episode|story|film|movie|novel|script|article|book)|portrayed|depict(?:ion|ed)|in a (?:report|paper)|what if|imagine|hypothetical)\b/i.test(part);
+      if (fictional || (sourceDiscussion && !/\b(?:i(?:'m| am)|my|our|me|us|right now|tonight|currently|just)\b/i.test(part))) continue;
+      const denial = /\b(?:did not|didn't|does not|doesn't|never|no one|nobody|not in danger|not actually|not (?:planning|going|thinking|intending|about)|haven't|have not|hasn't|has not|is not|isn't)\b/i.test(part);
+      const historical = /\b(?:years? ago|months? ago|last year|when i was a child|back then|in 20\d\d|(?:is |has been )?sober now|recovered)\b/i.test(part);
+      const current = /\b(?:now|currently|today|tonight|just|about to|ready to|going to|at this moment|at the moment|will|can't|cannot|is|are|has|have)\b/i.test(part);
+      if ((denial && !/\b(?:right now|about to|currently|tonight|just)\b/i.test(part)) ||
+          (historical && !/\b(?:right now|about to|currently|tonight|today|just)\b/i.test(part))) continue;
+      const person = /\b(?:i|i'm|me|my|mine|our|us|he|she|they|him|her|them|someone|somebody|anyone|child|son|daughter|baby|infant|toddler|kid|boy|girl|man|woman|friend|partner|boyfriend|girlfriend|husband|wife|roommate|ex|mother|father|mom|dad|brother|sister|neighbor|person|patient|two-year-old)\b/i.test(part);
+      if (!person) continue;
+
+      const poison = /\b(?:button\s+batter(?:y|ies)|batter(?:y|ies)|bleach|antifreeze|rat\s+poison|poison(?:ed|ing)?|pesticide|(?:drain|household|caustic)\s+cleaner|cleaning fluid|fentanyl|heroin|opioid|oxycodone|morphine|overdos(?:e|ed|ing)|pills|tablets)\b/i.test(part);
+      const exposure = /\b(?:swallow(?:ed|ing)?|ingest(?:ed|ing)?|drank|drink|ate|eaten|took|take|taking|used|use|injected|got into|overdos(?:e|ed|ing)|poisoned|too much|all (?:my|his|her|their) pills|bottle of pills|nodding off|barely breathing|unresponsive|unconscious|won't wake|will not wake)\b/i.test(part);
+      if (poison && (exposure || current && /\b(?:my|our|me|i|he|she|they)\b/i.test(part))) return 'medical';
+
+      const acuteSymptom = /\b(?:chok(?:e|es|ed|ing)|strangl(?:e|es|ed|ing)|gasping|seiz(?:e|ed|ing|ure|ures)|convuls(?:e|es|ed|ing)|collapsed?|unconscious|unresponsive|barely conscious|not responding|turning (?:blue|gray|grey)|clutching (?:his|her|my|their) chest|heart attack|stroke|bleeding heavily|not breathing|barely breathing|stopped breathing|can't breathe|cannot breathe|unable to breathe|cannot speak|can't speak|struggling to breathe|hands around (?:my|his|her|their) neck)\b/i.test(part);
+      if (acuteSymptom && (current || /\b(?:choking|strangling|collapsed|unconscious|unresponsive|not breathing|can't breathe|cannot breathe)\b/i.test(part))) return 'medical';
+
+      const selfRisk = /\b(?:suicid(?:e|al)|kill(?:ing)? (?:myself|himself|herself|themselves)|end(?:ing)? (?:my|his|her|their) life|wants? to die|ready to jump|about to jump|jump (?:off|from)|take all (?:my|his|her|their) pills|drive into traffic|gun to (?:my|his|her|their) head|bridge railing|roof(?:top)? ledge)\b/i.test(part);
+      if (selfRisk && (current || /\b(?:wants? to die|suicidal|kill(?:ing)? (?:myself|himself|herself|themselves))\b/i.test(part))) return 'self-harm';
+
+      const weapon = /\b(?:knife|knives|gun|pistol|firearm|weapon|blade|machete|razor|stab(?:bed|bing)?|shoot(?:ing)?|shot|attack(?:ed|ing)?|threaten(?:ed|ing|s)?|strangl(?:ed|ing)?|chok(?:ed|ing)?|kill(?:ing)?)\b/i.test(part);
+      const directThreat = /\b(?:against|at|to|toward|pointed|aimed|held|holding|has|outside with|threaten(?:ed|ing|s)?|shoot|stab|kill|hurt|attack|strangle|choke|hands around)\b/i.test(part);
+      const closeTarget = /\b(?:me|my|us|our|him|her|their|at (?:someone|anyone)|someone|somebody)\b/i.test(part);
+      if (weapon && directThreat && closeTarget) return 'violence';
+    }
+    return null;
   }
 
   function extractName(text) {
@@ -3351,21 +3391,21 @@
       if (!input) {
         return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
       }
-      // UI maxlength is 500; direct/oversized callers still receive the
-      // urgent fallback when a supported acute signal appears later in text.
-      // Cap scanning to bound the work of these regex-based guards.
-      const safetyInputs = [input.slice(0, 16_384)];
-      if (input.length > 16_384) safetyInputs.push(input.slice(-16_384));
+      // A longer-than-UI message is outside the supported parsing contract.
+      // Do not infer it is safe by searching only its head/tail; fail closed
+      // with a neutral safety notice, even if it contains no recognized risk.
+      if (input.length > MAX_INPUT) {
+        return Object.freeze({ text: 'This exceeds the console\'s 500-character limit, so I cannot reliably screen the message. If anyone is in immediate danger, contact local emergency services (911 in the U.S.) or the appropriate crisis/Poison Control service now. Otherwise shorten the message and try again; this is a fictional browser console, not an emergency service.', kind: 'urgent-safety', sources: [] });
+      }
+      const safetyInputs = [input];
       const crisisChecks = [isSelfHarm, isOtherSelfHarmRisk, isImminentBystanderSelfHarm,
         isMedicalEmergency, isPetEmergency, isPoisoningEmergency,
         isViolenceRisk, isThreatenedByOther];
       const detected = (classify) => safetyInputs.some((part) => classify(part));
-      if (input.length > MAX_INPUT && !crisisChecks.some(detected)) {
-        return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
-      }
 
       let response;
-      if (detected(isSelfHarm)) {
+      const broadRisk = broadAcuteRisk(input);
+      if (broadRisk === 'self-harm' || detected(isSelfHarm)) {
         response = {
           text: 'I am not going to mock you. I take what you said seriously. If you might act on this now, call emergency services or go to an emergency department. In the U.S. you can call or text 988 for crisis support; elsewhere use your local crisis line. Please reach out to a trusted person nearby and tell them directly what is happening. Are you safe right now?',
           kind: 'urgent-safety', sources: []
@@ -3380,12 +3420,12 @@
           text: 'That sounds urgent for an animal. Contact a veterinarian or emergency animal hospital immediately. This fictional chat cannot assess or treat a pet emergency.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (detected(isMedicalEmergency) || detected(isPoisoningEmergency)) {
+      } else if (broadRisk === 'medical' || detected(isMedicalEmergency) || detected(isPoisoningEmergency)) {
         response = {
           text: 'A seizure, breathing problem, poisoning, overdose, swallowed battery, or other acute symptom can be an emergency. Contact emergency services now (911 in the U.S.) if someone is in immediate danger; for possible poisoning in the U.S. also contact Poison Control at 1-800-222-1222. Do not wait for this chat. This console cannot assess anyone’s condition.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (detected(isViolenceRisk) || detected(isThreatenedByOther)) {
+      } else if (broadRisk === 'violence' || detected(isViolenceRisk) || detected(isThreatenedByOther)) {
         response = {
           text: 'I take immediate threats seriously. If you or someone else is in danger, move to safety if possible and contact local emergency services (911 in the U.S.) now. Do not confront someone holding a weapon. This fictional console cannot assess or intervene in a real emergency.',
           kind: 'urgent-safety', sources: []

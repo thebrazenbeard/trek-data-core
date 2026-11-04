@@ -154,7 +154,12 @@ def verify_second_self(root: Path) -> None:
             picard.get("accepted_source_binding_effect") == "NONE" and
             picard.get("accepted_work_effect") == "NONE" and
             picard.get("coverage_effect") == "NONE" and
-            set(novels.get("accepted_effects", {}).values()) == {"NONE"},
+            novels.get("accepted_effects") == {
+                "sources": "NONE",
+                "works": "NONE",
+                "bindings": "NONE",
+                "coverage": "NONE",
+            },
             "literary metadata proposal promoted")
     require(picard.get("source_group") == SOURCE_FAMILY and
             novels.get("independence_group") == SOURCE_FAMILY,

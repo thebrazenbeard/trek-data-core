@@ -24,21 +24,33 @@
   const RESEARCH_PAGE_SIZE = 30;
   let visibleResearchLimit = RESEARCH_PAGE_SIZE;
 
-  // Keep the section rail native-scrollable. Its cue is informational, not a
-  // fake navigation control, and only appears when real links are offscreen.
+  // Keep section links native-scrollable and in original keyboard tab order.
+  // Separate optional rail buttons scroll *only* the rail when links overflow.
   const navigation = document.querySelector?.('.lcars-navigation');
   const navigationHint = document.querySelector?.('.navigation-scroll-hint');
+  const navigationControls = byId('navigation-scroll-controls');
+  const navigationPrevious = byId('navigation-scroll-previous');
+  const navigationNext = byId('navigation-scroll-next');
   const updateNavigationHint = () => {
     if (!navigation || !navigationHint) return;
     const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
     const overflowing = maxScroll > 2;
     navigationHint.hidden = !overflowing;
+    if (navigationControls) navigationControls.hidden = !overflowing;
+    if (navigationPrevious) navigationPrevious.hidden = !overflowing;
+    if (navigationNext) navigationNext.hidden = !overflowing;
     if (!overflowing) {
+      navigationPrevious?.setAttribute('aria-disabled', 'true');
+      navigationNext?.setAttribute('aria-disabled', 'true');
       navigation.removeAttribute('aria-describedby');
       return;
     }
     const atStart = navigation.scrollLeft <= 2;
     const atEnd = navigation.scrollLeft >= maxScroll - 2;
+    // aria-disabled keeps the edge button focusable for keyboard users, while
+    // the click handler still enforces the boundary as an actual no-op.
+    navigationPrevious?.setAttribute('aria-disabled', String(atStart));
+    navigationNext?.setAttribute('aria-disabled', String(atEnd));
     const message = atStart ? 'More sections → Swipe, scroll or Tab'
       : atEnd ? 'Earlier sections ← Swipe, scroll or Tab'
         : 'Sections both ways ↔ Swipe, scroll or Tab';
@@ -48,6 +60,18 @@
     }
   };
   if (navigation && navigationHint) {
+    const scrollRail = (direction) => {
+      const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
+      const step = Math.floor(navigation.clientWidth * 0.8);
+      if (maxScroll <= 2 || step <= 0) return;
+      const target = Math.max(0, Math.min(maxScroll, navigation.scrollLeft + direction * step));
+      if (Math.abs(target - navigation.scrollLeft) < 2) return;
+      if (typeof navigation.scrollTo === 'function') navigation.scrollTo({ left: target, behavior: 'smooth' });
+      else navigation.scrollLeft = target;
+      updateNavigationHint();
+    };
+    navigationPrevious?.addEventListener('click', () => scrollRail(-1));
+    navigationNext?.addEventListener('click', () => scrollRail(1));
     navigation.addEventListener('scroll', updateNavigationHint, { passive: true });
     window.addEventListener?.('resize', updateNavigationHint);
     // The nav links' count badges grow after asynchronous catalog loads.
@@ -522,9 +546,69 @@
   const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
+  // Original geometric art belongs to exact held publisher metadata tuples,
+  // never merely to a reusable-looking row ID. These literal pins are checked
+  // against the generated film-art manifest by the Explorer regression test;
+  // the Pages gate independently hashes the committed static SVG bytes.
+  // Neither tuple matching nor an SVG hash admits a Work or image rights.
+  const originalFilmArtBindings = new Map([
+    ['film-2009', ['Star Trek (2009)', 'https://www.startrek.com/movies/star-trek-2009']],
+    ['film-beyond', ['Star Trek Beyond', 'https://www.startrek.com/movies/star-trek-beyond']],
+    ['film-final-frontier', ['Star Trek V: The Final Frontier', 'https://www.startrek.com/movies/star-trek-v-the-final-frontier']],
+    ['film-first-contact', ['Star Trek: First Contact', 'https://www.startrek.com/movies/star-trek-viii-first-contact']],
+    ['film-generations', ['Star Trek Generations', 'https://www.startrek.com/movies/star-trek-generations']],
+    ['film-insurrection', ['Star Trek: Insurrection', 'https://www.startrek.com/movies/star-trek-ix-insurrection']],
+    ['film-into-darkness', ['Star Trek Into Darkness', 'https://www.startrek.com/movies/star-trek-into-darkness']],
+    ['film-motion-picture', ['Star Trek: The Motion Picture', 'https://www.startrek.com/movies/star-trek-i-the-motion-picture']],
+    ['film-nemesis', ['Star Trek Nemesis', 'https://www.startrek.com/movies/star-trek-nemesis']],
+    ['film-search-for-spock', ['Star Trek III: The Search for Spock', 'https://www.startrek.com/movies/star-trek-iii-the-search-for-spock']],
+    ['film-section-31', ['Star Trek: Section 31', 'https://www.startrek.com/news/star-trek-section-31-premieres-january-24']],
+    ['film-undiscovered-country', ['Star Trek VI: The Undiscovered Country', 'https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country']],
+    ['film-voyage-home', ['Star Trek IV: The Voyage Home', 'https://www.startrek.com/movies/star-trek-iv-the-voyage-home']],
+    ['film-wrath-of-khan', ['Star Trek II: The Wrath of Khan', 'https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan']]
+  ]);
+  // Accepted discovery's TNG S2 publisher listing is still UNVERIFIED_METADATA.
+  // Episode images are original title interpretations, never production stills.
+  // Exact local ID/title/locator/group/context pins prevent source swap spoofing.
+  const tngSeason2Locator = 'https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/';
+  const tngSeason2SourceInput = 'proposals/discovery/legacy-paramount-season2-20261102/tng/bundle.json';
+  const originalEpisodeArtBindings = new Map([
+    ['legacy:s2:tng:000', ['The Child', 'tng-s2-001']],
+    ['legacy:s2:tng:001', ['Where Silence Has Lease', 'tng-s2-002']],
+    ['legacy:s2:tng:002', ['Elementary, Dear Data', 'tng-s2-003']],
+    ['legacy:s2:tng:003', ['The Outrageous Okona', 'tng-s2-004']],
+    ['legacy:s2:tng:004', ['Loud as a Whisper', 'tng-s2-005']],
+    ['legacy:s2:tng:005', ['The Schizoid Man', 'tng-s2-006']],
+    ['legacy:s2:tng:006', ['Unnatural Selection', 'tng-s2-007']],
+    ['legacy:s2:tng:007', ['A Matter of Honor', 'tng-s2-008']],
+    ['legacy:s2:tng:008', ['The Measure of a Man', 'tng-s2-009']],
+    ['legacy:s2:tng:009', ['The Dauphin', 'tng-s2-010']],
+    ['legacy:s2:tng:010', ['Contagion', 'tng-s2-011']],
+    ['legacy:s2:tng:011', ['The Royale', 'tng-s2-012']],
+    ['legacy:s2:tng:012', ['Time Squared', 'tng-s2-013']],
+    ['legacy:s2:tng:013', ['The Icarus Factor', 'tng-s2-014']],
+    ['legacy:s2:tng:014', ['Pen Pals', 'tng-s2-015']],
+    ['legacy:s2:tng:015', ['Q-Who?', 'tng-s2-016']],
+    ['legacy:s2:tng:016', ['Samaritan Snare', 'tng-s2-017']],
+    ['legacy:s2:tng:017', ['Up the Long Ladder', 'tng-s2-018']],
+    ['legacy:s2:tng:018', ['Manhunt', 'tng-s2-019']],
+    ['legacy:s2:tng:019', ['The Emissary', 'tng-s2-020']],
+    ['legacy:s2:tng:020', ['Peak Performance', 'tng-s2-021']],
+    ['legacy:s2:tng:021', ['Shades of Gray', 'tng-s2-022']]
+  ]);
 
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
+  }
+
+  // A non-cryptographic *display seed*, never a provenance digest or Work ID.
+  // Its only input is the already-validated source-local record key. It lets
+  // neighboring cards have different original LCARS marks without fetching,
+  // copying, or implying an episode still, poster or cover exists.
+  function recordVisualSeed(key) {
+    let seed = 2166136261;
+    for (const char of key) seed = Math.imul(seed ^ char.charCodeAt(0), 16777619) >>> 0;
+    return seed;
   }
 
   // The abstract graphic is a navigable *record identifier*, generated only
@@ -535,6 +619,12 @@
     const label = artworkKinds[medium] || 'Media';
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
+    // Edition-only candidate cards intentionally have no artwork lookup key.
+    // They still possess a validated source-local row ID for visual marking.
+    const sourceLocalKey = key || (typeof row?.row_id === 'string' ? row.row_id : null);
+    const visualSeed = sourceLocalKey ? recordVisualSeed(sourceLocalKey) : 0;
+    frame.setAttribute('data-record-phase', String(visualSeed & 7));
+    if (sourceLocalKey) frame.setAttribute('data-source-local-key', sourceLocalKey);
     const series = String(row?.context || row?.publisher_series || row?.work_type || '').split('·', 1)[0].trim();
     const titleText = String(row?.title || label);
     const sourceName = String(row?.source_group || '').replace(/^(?:publisher:|distributor:|wikidata:)/, '').slice(0, 28);
@@ -552,6 +642,57 @@
     const caption = el('figcaption', 'artwork-caption');
     const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
     caption.append(status);
+    // The exact ID/title/publisher/source-group join must hold at render time.
+    // An altered, but otherwise syntactically valid, film discovery catalog
+    // must never display another film's source-keyed art. Static CSS supplies
+    // the only URLs; no unchecked locator/title can become an image request.
+    const filmArtPin = medium === 'FILM' && typeof row?.id === 'string'
+      ? originalFilmArtBindings.get(row.id) : null;
+    const originalFilmId = filmArtPin && row.title === filmArtPin[0] &&
+      row.source_locator === filmArtPin[1] &&
+      row.source_group === 'publisher:startrek.com' ? row.id : null;
+    if (filmArtPin && !originalFilmId) {
+      status.textContent = 'Source binding unverified · original LCARS index graphic';
+    }
+    if (originalFilmId) {
+      frame.className += ' artwork-interpretive-film';
+      frame.setAttribute('data-original-film-art', originalFilmId);
+      // Static CSS rules supply the exact source-keyed URLs. The Explorer's
+      // strict style-src CSP intentionally disallows inline style attributes.
+      frame.setAttribute('aria-label', `Original geometric interpretation for ${titleText}; sourced from a publisher metadata listing, not an official film poster or still`);
+      missing.textContent = 'Artwork not sourced · original film interpretation';
+      status.textContent = 'Original interpretive film art · metadata only';
+    }
+    const episodeArtPin = medium === 'EPISODE' && typeof row?.row_id === 'string'
+      ? originalEpisodeArtBindings.get(row.row_id) : null;
+    const originalEpisodeId = episodeArtPin && row.title === episodeArtPin[0] &&
+      row.source_locator === tngSeason2Locator &&
+      row.source_group === 'publisher:paramount' &&
+      row.source_input === tngSeason2SourceInput &&
+      row.context === `TNG S2E${Number(episodeArtPin[1].slice(-3))}` &&
+      row.verification_status === 'UNVERIFIED_METADATA' &&
+      row.candidate_kind === 'PUBLISHER_EPISODE_SLOT' &&
+      row.identity_scope === 'SOURCE_LOCAL' &&
+      row.coverage_effect === 'NONE' && row.admission_effect === 'NONE'
+      ? episodeArtPin[1] : null;
+    if (episodeArtPin && !originalEpisodeId) {
+      status.textContent = 'Source binding unverified · original LCARS index graphic';
+    }
+    if (originalEpisodeId) {
+      panel.className += ' artwork-panel-interpretive-episode';
+      frame.className += ' artwork-interpretive-episode';
+      frame.setAttribute('data-original-episode-art', originalEpisodeId);
+      frame.setAttribute('aria-label', `Original title-inspired geometric art for ${titleText}; source-local publisher metadata only, not an official episode still`);
+      status.textContent = 'Original episode art · not a still';
+    }
+    const beacon = el('span', 'artwork-record-beacon');
+    beacon.setAttribute('aria-hidden', 'true');
+    for (let bit = 0; bit < 8; bit++) {
+      beacon.append(el('span', (visualSeed >>> bit) & 1 ? 'artwork-beacon-on' : 'artwork-beacon-off'));
+    }
+    caption.append(beacon, el('span', 'artwork-record-label', sourceLocalKey
+      ? `Original signal · ${visualSeed.toString(16).padStart(8, '0')}`
+      : 'Original signal · source-local key unresolved'));
     if (row?.source_locator) {
       const sourceLink = el('a', 'artwork-record-source', 'Metadata source');
       sourceLink.href = row.source_locator;
@@ -604,7 +745,9 @@
         frame.setAttribute('role', 'img');
         frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
         frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
-        status.textContent = 'Sourced image unavailable · LCARS record graphic';
+        status.textContent = originalFilmId
+          ? 'Sourced image unavailable · original interpretive film art'
+          : 'Sourced image unavailable · LCARS record graphic';
       });
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.

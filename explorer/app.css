@@ -45,6 +45,11 @@ a:hover { color: #c9fff6; }
 .lcars-navigation a:last-child { border-radius: 3px 22px 3px 3px; }
 .lcars-navigation span[id] { font-variant-numeric: tabular-nums; font-weight: 900; }
 .navigation-scroll-hint { margin: 0; padding: 6px max(28px, calc((100vw - 1180px) / 2)); border-left: 12px solid var(--violet); border-bottom: 5px solid var(--space); background: #29263d; color: var(--aqua); font: 760 .66rem/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .065em; text-transform: uppercase; }
+.navigation-scroll-controls { display: flex; justify-content: flex-end; gap: 8px; padding: 0 max(28px, calc((100vw - 1180px) / 2)) 8px; background: var(--space); }
+.navigation-scroll-controls button { min-height: 44px; border: 2px solid var(--aqua); border-radius: 20px 3px 3px 20px; padding: 7px 13px; background: #29263d; color: var(--aqua); font: 800 .68rem/1.25 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .035em; text-transform: uppercase; }
+.navigation-scroll-controls button:hover:not([aria-disabled="true"]) { background: var(--aqua); color: var(--space); }
+.navigation-scroll-controls button[aria-disabled="true"] { opacity: .55; cursor: default; }
+.navigation-scroll-controls button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
 
 .masthead { position: relative; isolation: isolate; overflow: hidden; padding: clamp(44px, 5vw, 74px) max(28px, calc((100vw - 1180px) / 2)); min-height: 410px; background: #05111f; border-top: 17px solid var(--violet); border-left: 44px solid var(--peach); border-top-left-radius: 88px; border-bottom: 15px solid var(--surface2); }
 .masthead-art { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -60,6 +65,10 @@ h1 span { color: var(--peach); }
 .lead { margin: 27px 0 0; max-width: 615px; font-size: 1.08rem; color: var(--text); }
 .mission-flags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 29px; }
 .flag { border: 1px solid var(--violet); padding: 6px 12px; border-radius: 20px 3px 3px 20px; color: var(--text); background: #171a2ddd; font: 700 .72rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; text-transform: uppercase; }
+.hero-search-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; margin-top: 21px; padding: 11px 18px; border: 2px solid var(--amber); border-radius: 24px 4px 4px 24px; background: var(--amber); color: var(--space); font: 850 .79rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .045em; text-decoration: none; text-transform: uppercase; }
+.hero-search-link:hover { background: var(--aqua); border-color: var(--aqua); color: var(--space); }
+.hero-search-link:focus-visible { outline: 4px solid var(--aqua); outline-offset: 4px; }
+.hero-search-link span { font-size: 1.2em; }
 .page-content { max-width: 1240px; margin: 0 auto; padding: 42px 28px 90px; border-left: 12px solid var(--surface2); }
 /* Lore is an optional, in-flow archive-search panel, never a hero overlay. */
 .lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--peach); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
@@ -287,11 +296,73 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 112px; height: 142px; border: 1px solid var(--line); border-radius: 18px 3px 3px 3px; overflow: hidden; background: #090b19 center / cover no-repeat; color: var(--muted); }
 .artwork-slot.artwork-episode { background-image: url('./art-original-episode.svg'); }
 .artwork-slot.artwork-film { background-image: url('./art-original-film.svg'); }
+.artwork-slot.artwork-interpretive-film { background-size: cover; background-position: center; }
+.artwork-slot[data-original-film-art="film-2009"] { background-image: url('./interpretive-film/film-2009.svg'); }
+.artwork-slot[data-original-film-art="film-beyond"] { background-image: url('./interpretive-film/film-beyond.svg'); }
+.artwork-slot[data-original-film-art="film-final-frontier"] { background-image: url('./interpretive-film/film-final-frontier.svg'); }
+.artwork-slot[data-original-film-art="film-first-contact"] { background-image: url('./interpretive-film/film-first-contact.svg'); }
+.artwork-slot[data-original-film-art="film-generations"] { background-image: url('./interpretive-film/film-generations.svg'); }
+.artwork-slot[data-original-film-art="film-insurrection"] { background-image: url('./interpretive-film/film-insurrection.svg'); }
+.artwork-slot[data-original-film-art="film-into-darkness"] { background-image: url('./interpretive-film/film-into-darkness.svg'); }
+.artwork-slot[data-original-film-art="film-motion-picture"] { background-image: url('./interpretive-film/film-motion-picture.svg'); }
+.artwork-slot[data-original-film-art="film-nemesis"] { background-image: url('./interpretive-film/film-nemesis.svg'); }
+.artwork-slot[data-original-film-art="film-search-for-spock"] { background-image: url('./interpretive-film/film-search-for-spock.svg'); }
+.artwork-slot[data-original-film-art="film-section-31"] { background-image: url('./interpretive-film/film-section-31.svg'); }
+.artwork-slot[data-original-film-art="film-undiscovered-country"] { background-image: url('./interpretive-film/film-undiscovered-country.svg'); }
+.artwork-slot[data-original-film-art="film-voyage-home"] { background-image: url('./interpretive-film/film-voyage-home.svg'); }
+.artwork-slot[data-original-film-art="film-wrath-of-khan"] { background-image: url('./interpretive-film/film-wrath-of-khan.svg'); }
+.artwork-slot.artwork-interpretive-film::before, .artwork-slot.artwork-interpretive-film::after { display: none; }
+.artwork-slot.artwork-interpretive-film .artwork-record-context,
+.artwork-slot.artwork-interpretive-film .artwork-record-mark { display: none; }
+.artwork-slot.artwork-interpretive-film .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
+/* The adjacent metadata card already prints the title and source status;
+   do not bury the distinct image beneath duplicate text at 82px mobile. */
+.artwork-slot.artwork-interpretive-film .artwork-record-title,
+.artwork-slot.artwork-interpretive-film .artwork-missing { display: none; }
+.artwork-slot.artwork-interpretive-episode { background-size: cover; background-position: center; }
+.artwork-slot[data-original-episode-art="tng-s2-001"] { background-image: url('./interpretive-episode/tng-s2-001.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-002"] { background-image: url('./interpretive-episode/tng-s2-002.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-003"] { background-image: url('./interpretive-episode/tng-s2-003.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-004"] { background-image: url('./interpretive-episode/tng-s2-004.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-005"] { background-image: url('./interpretive-episode/tng-s2-005.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-006"] { background-image: url('./interpretive-episode/tng-s2-006.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-007"] { background-image: url('./interpretive-episode/tng-s2-007.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-008"] { background-image: url('./interpretive-episode/tng-s2-008.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-009"] { background-image: url('./interpretive-episode/tng-s2-009.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-010"] { background-image: url('./interpretive-episode/tng-s2-010.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-011"] { background-image: url('./interpretive-episode/tng-s2-011.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-012"] { background-image: url('./interpretive-episode/tng-s2-012.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-013"] { background-image: url('./interpretive-episode/tng-s2-013.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-014"] { background-image: url('./interpretive-episode/tng-s2-014.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-015"] { background-image: url('./interpretive-episode/tng-s2-015.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-016"] { background-image: url('./interpretive-episode/tng-s2-016.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-017"] { background-image: url('./interpretive-episode/tng-s2-017.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-018"] { background-image: url('./interpretive-episode/tng-s2-018.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-019"] { background-image: url('./interpretive-episode/tng-s2-019.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-020"] { background-image: url('./interpretive-episode/tng-s2-020.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-021"] { background-image: url('./interpretive-episode/tng-s2-021.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-022"] { background-image: url('./interpretive-episode/tng-s2-022.svg'); }
+.artwork-slot.artwork-interpretive-episode::before,
+.artwork-slot.artwork-interpretive-episode::after,
+.artwork-slot.artwork-interpretive-episode .artwork-record-context,
+.artwork-slot.artwork-interpretive-episode .artwork-record-mark,
+.artwork-slot.artwork-interpretive-episode .artwork-record-title,
+.artwork-slot.artwork-interpretive-episode .artwork-missing { display: none; }
+.artwork-slot.artwork-interpretive-episode .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
+.artwork-panel-interpretive-episode .artwork-caption-status { color: var(--text); font-size: .68rem; line-height: 1.3; font-weight: 760; }
 .artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
 .artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
 .artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }
 .artwork-slot::before { content: ""; position: absolute; top: 16px; left: 15px; width: 74px; height: 80px; border: 2px solid var(--aqua); border-radius: 35px 35px 4px 4px; transform: rotate(-12deg); opacity: .25; pointer-events: none; }
 .artwork-slot::after { content: ""; position: absolute; top: 88px; left: 8px; width: 91px; border-top: 2px solid var(--peach); transform: rotate(15deg); opacity: .3; pointer-events: none; }
+/* Eight deterministic abstract path arrangements; record-specific eight-bit
+   beacon appears in the caption. Both are original decoration, not source art. */
+.artwork-slot[data-record-phase="0"]::before, .artwork-slot[data-record-phase="4"]::before { transform: rotate(-33deg); }
+.artwork-slot[data-record-phase="1"]::before, .artwork-slot[data-record-phase="5"]::before { transform: rotate(12deg); }
+.artwork-slot[data-record-phase="2"]::before, .artwork-slot[data-record-phase="6"]::before { transform: rotate(33deg); }
+.artwork-slot[data-record-phase="3"]::before, .artwork-slot[data-record-phase="7"]::before { transform: rotate(-7deg); }
+.artwork-slot[data-record-phase="0"]::after, .artwork-slot[data-record-phase="2"]::after, .artwork-slot[data-record-phase="5"]::after, .artwork-slot[data-record-phase="7"]::after { transform: rotate(-19deg); }
+.artwork-slot[data-record-phase="1"]::after, .artwork-slot[data-record-phase="3"]::after, .artwork-slot[data-record-phase="4"]::after, .artwork-slot[data-record-phase="6"]::after { transform: rotate(24deg); }
 .artwork-slot.artwork-film { border-top: 6px solid var(--coral); }
 .artwork-slot.artwork-literature { border-top: 6px solid var(--violet); }
 .artwork-slot.artwork-episode { border-top: 6px solid var(--aqua); }
@@ -307,6 +378,11 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot .artwork-image-link:focus-visible { outline: 4px solid var(--aqua); }
 .artwork-slot .artwork-image-link:hover img { outline: 2px solid var(--aqua); outline-offset: -2px; }
 .artwork-caption { display: flex; flex-direction: column; gap: 3px; padding: 5px 2px 1px; color: var(--muted); text-align: center; font: 650 .57rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+.artwork-record-beacon { display: flex; align-items: end; justify-content: center; gap: 3px; min-height: 10px; margin-top: 2px; }
+.artwork-record-beacon span { display: block; width: 6px; flex: 0 0 6px; border-radius: 2px 2px 0 0; }
+.artwork-record-beacon .artwork-beacon-on { height: 9px; background: var(--aqua); }
+.artwork-record-beacon .artwork-beacon-off { height: 3px; background: var(--violet); opacity: .55; }
+.artwork-record-label { color: var(--amber); font-size: .51rem; letter-spacing: .02em; overflow-wrap: anywhere; }
 .artwork-caption a { color: var(--aqua); text-decoration: underline; text-underline-offset: 2px; }
 .artwork-caption .artwork-credit { color: var(--peach); }
 .artwork-caption a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
@@ -378,6 +454,8 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .lore-header { flex-wrap: wrap; }
   .lcars-navigation { padding: 0 16px 7px; }
   .navigation-scroll-hint { padding: 6px 16px; }
+  .navigation-scroll-controls { padding: 0 16px 8px; }
+  .navigation-scroll-controls button { flex: 1 1 0; min-width: 0; }
   .navigation-label { display: none; }
   .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .command-deck { gap: 10px; }
@@ -418,6 +496,7 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .lore-query-form, .lore-response { padding: 15px; }
   .masthead { padding: 56px 18px 62px; border-left-width: 15px; border-top-width: 13px; border-top-left-radius: 41px; }
   .masthead-art { object-position: 60% center; }
+  .hero-search-link { width: 100%; justify-content: center; padding: 11px 12px; text-align: center; }
   .archive-navigation-mark { width: 32px; height: 32px; }
   .masthead-identity { gap: 9px; }
   .masthead-identity .eyebrow { font-size: .67rem; }

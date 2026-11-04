@@ -1,0 +1,164 @@
+{
+  "admission_effect": "NONE",
+  "art": [
+    {
+      "art_path": "interpretive-film/film-2009.svg",
+      "art_sha256": "21e9b468ab900a2a97b3374c5cbd8209421abb29c1fcf37fee72aaeb525e199a",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-2009",
+      "motif": "branching",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-2009",
+      "title": "Star Trek (2009)"
+    },
+    {
+      "art_path": "interpretive-film/film-beyond.svg",
+      "art_sha256": "36e00ed129a47f7d4924419123fd96654fff625a71be050351f9e25117689397",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-beyond",
+      "motif": "fragments",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-beyond",
+      "title": "Star Trek Beyond"
+    },
+    {
+      "art_path": "interpretive-film/film-final-frontier.svg",
+      "art_sha256": "a585812a52ef492719661904df3194e2459cd103d3845b874c838e03a85192bb",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-v-the-final-frontier",
+      "motif": "pilgrimage",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-final-frontier",
+      "title": "Star Trek V: The Final Frontier"
+    },
+    {
+      "art_path": "interpretive-film/film-first-contact.svg",
+      "art_sha256": "175054a04f42cb2faf8757a84baf8f0d3030c882f901ebc3de3fdd3f8ff17e1b",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-viii-first-contact",
+      "motif": "portal",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-first-contact",
+      "title": "Star Trek: First Contact"
+    },
+    {
+      "art_path": "interpretive-film/film-generations.svg",
+      "art_sha256": "08352c04ced14fa5c30b14ed0bb27d7c220b0a17ba2a19d2b7973b263fd30904",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-generations",
+      "motif": "ribbons",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-generations",
+      "title": "Star Trek Generations"
+    },
+    {
+      "art_path": "interpretive-film/film-insurrection.svg",
+      "art_sha256": "7fd2c7d5153d144ce286450f65fb1675449f645c02088ef6fd1aa077801b0c41",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-ix-insurrection",
+      "motif": "landscape",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-insurrection",
+      "title": "Star Trek: Insurrection"
+    },
+    {
+      "art_path": "interpretive-film/film-into-darkness.svg",
+      "art_sha256": "c29ba13373b5ae37154bf34436c54b4273867e37f5863b39cc89acc923b73f51",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-into-darkness",
+      "motif": "shadow",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-into-darkness",
+      "title": "Star Trek Into Darkness"
+    },
+    {
+      "art_path": "interpretive-film/film-motion-picture.svg",
+      "art_sha256": "53f9d4dfbf9c0499eff81972589c0c33ffd23ba462ed6dd4c2298ad6a8d279b0",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-i-the-motion-picture",
+      "motif": "signal",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-motion-picture",
+      "title": "Star Trek: The Motion Picture"
+    },
+    {
+      "art_path": "interpretive-film/film-nemesis.svg",
+      "art_sha256": "b252f06a831455d8b5dc916eaa8a4cedca143cb9fea9d979be3c10b28741905d",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-nemesis",
+      "motif": "mirror",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-nemesis",
+      "title": "Star Trek Nemesis"
+    },
+    {
+      "art_path": "interpretive-film/film-search-for-spock.svg",
+      "art_sha256": "b5d872ad50dfa408e148baf84ff1af06e462470fbb2e60cfe58b9410a5221cb5",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-iii-the-search-for-spock",
+      "motif": "return",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-search-for-spock",
+      "title": "Star Trek III: The Search for Spock"
+    },
+    {
+      "art_path": "interpretive-film/film-section-31.svg",
+      "art_sha256": "8fc82ad857a50bcca46db87dfdabaf5b7e9de8fde36ce46ff006699b613db4a7",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/news/star-trek-section-31-premieres-january-24",
+      "motif": "cipher",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-section-31",
+      "title": "Star Trek: Section 31"
+    },
+    {
+      "art_path": "interpretive-film/film-undiscovered-country.svg",
+      "art_sha256": "d9e52ed3d025734ec603a0307b02fbdb465b1834c4c259a21f4dfebe8b196946",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-vi-the-undiscovered-country",
+      "motif": "accord",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-undiscovered-country",
+      "title": "Star Trek VI: The Undiscovered Country"
+    },
+    {
+      "art_path": "interpretive-film/film-voyage-home.svg",
+      "art_sha256": "157f22c973425ef5e24923df1b5a2e99bdf4acf405e05db6a84147da5ec97273",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-iv-the-voyage-home",
+      "motif": "tide",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-voyage-home",
+      "title": "Star Trek IV: The Voyage Home"
+    },
+    {
+      "art_path": "interpretive-film/film-wrath-of-khan.svg",
+      "art_sha256": "cb2d70f85d3a0817a9fb39f3e63ee7df3c3aa36a8a126216fc6cd234b8640d22",
+      "artwork_status": "ORIGINAL_INTERPRETATION_NOT_SOURCE_IMAGE",
+      "coverage_effect": "NONE",
+      "metadata_source": "https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan",
+      "motif": "opposition",
+      "rights_class": "ORIGINAL_AUTHOR_CREATED_GEOMETRIC_ART",
+      "source_local_film_id": "film-wrath-of-khan",
+      "title": "Star Trek II: The Wrath of Khan"
+    }
+  ],
+  "coverage_effect": "NONE",
+  "data_status": "DISPLAY_ONLY",
+  "original_art_count": 14,
+  "schema_version": "1.0.0",
+  "source_scope": "EXACT_HELD_PUBLISHER_FILM_CANDIDATES"
+}

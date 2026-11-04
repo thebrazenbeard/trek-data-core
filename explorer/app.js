@@ -1862,6 +1862,13 @@
   const publisherCardChecks = { byId: new Map(), available: false };
   const publisherCardSha256 = '4ff4246f772117d847ed939a40218679fe6d1621c2c422f539d9c177971804a6';
   const directoryMediums = ['EPISODE', 'FILM', 'LITERATURE', 'SHORT_FORM', 'AUDIO'];
+  const quickMediumStations = [
+    ['quick-episode', 'quick-episode-count', 'EPISODE'],
+    ['quick-film', 'quick-film-count', 'FILM'],
+    ['quick-literature', 'quick-literature-count', 'LITERATURE'],
+    ['quick-short', 'quick-short-count', 'SHORT_FORM'],
+    ['quick-audio', 'quick-audio-count', 'AUDIO']
+  ];
   // Source-local episode rows use compact catalog codes (for example VOY),
   // while visitors search for the series name they actually recognize.
   // This is a display/search alias only, never a Work-identity reconciliation.
@@ -1884,6 +1891,10 @@
   function updateDirectoryCounts() {
     const rows = searchableDirectoryRows();
     const available = directoryState.available;
+    for (const [, countId, medium] of quickMediumStations) {
+      byId(countId).textContent = available
+        ? rows.filter((row) => row.medium === medium).length.toLocaleString() : '—';
+    }
     byId('discovery-nav-count').textContent = available ? rows.length.toLocaleString() : '—';
     byId('discovery-top-count').textContent = available ? rows.length.toLocaleString() : '—';
     byId('discovery-episode-count').textContent = available
@@ -1931,6 +1942,13 @@
     const publisherCheck = byId('discovery-publisher-check').value;
     const synopsis = byId('discovery-synopsis').value;
     const tag = byId('discovery-tag').value;
+    for (const [linkId, , targetMedium] of quickMediumStations) {
+      const link = byId(linkId);
+      const selected = medium === targetMedium;
+      link.setAttribute('data-active', String(selected));
+      if (selected) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
     const terms = query.split(/\s+/).filter(Boolean);
     const rows = searchableDirectoryRows().filter((item) => {
       if (medium !== 'all' && item.medium !== medium) return false;
@@ -1970,6 +1988,14 @@
       return terms.every((part) => body.includes(part));
     });
     const visible = rows.slice(0, directoryState.limit);
+    // Duplicate title strings are not an identity reconciliation. Surface
+    // the ambiguity when the visitor is actively searching, so a publisher
+    // and an external metadata row cannot look like one confirmed Work.
+    const sharedTitleCounts = new Map();
+    if (query) for (const row of rows) {
+      const key = normalize(row.title);
+      sharedTitleCounts.set(key, (sharedTitleCounts.get(key) || 0) + 1);
+    }
     byId('discovery-summary').textContent = `${rows.length.toLocaleString()} source-local metadata rows match` +
       (visible.length < rows.length ? ` · Displaying ${visible.length.toLocaleString()}` : '') +
       (picardLiteratureSupplement.available ? ' · 1,214 historical directory + 2 separately pinned Picard metadata proposals' :
@@ -1981,6 +2007,9 @@
       card.append(makeArtworkSlot(item.medium, artworkKey(item), item), copy);
       copy.append(el('span', 'kicker', `${item.medium.replaceAll('_', ' ')} · ${item.candidate_kind.replaceAll('_', ' ')}`));
       copy.append(el('h3', null, item.title));
+      const sameTitleRows = sharedTitleCounts.get(normalize(item.title)) || 0;
+      if (sameTitleRows > 1) copy.append(el('p', 'directory-shared-title',
+        `${sameTitleRows} source-local rows share this title · identity not reconciled`));
       copy.append(el('p', 'directory-context', item.context));
       copy.append(el('p', 'directory-source', `${item.source_group} · unadmitted discovery · source-local`));
       const check = metadataRechecks.byId.get(item.row_id);
@@ -3281,7 +3310,8 @@
   // category without implying any of these rows are admitted Works.
   for (const [linkId, medium] of [
     ['discovery-episode-count', 'EPISODE'],
-    ['discovery-literature-count', 'LITERATURE']
+    ['discovery-literature-count', 'LITERATURE'],
+    ...quickMediumStations.map(([id, , targetMedium]) => [id, targetMedium])
   ]) {
     byId(linkId).addEventListener('click', () => {
       if (!directoryState.available) return;

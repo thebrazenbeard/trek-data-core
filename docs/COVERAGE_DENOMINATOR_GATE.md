@@ -89,10 +89,16 @@ requires all of the following:
   Work-origin and lifecycle checks described above.
 
 The same Source lifecycle/origin rule applies to later source-dependent
-coverage states. These checks establish consistency with accepted registry
-records; they do **not** independently verify remote source bytes or grant
-permission to reproduce copyrighted episodes or transcripts. Nonempty
-canonical admission and research rights review remain separate requirements.
+coverage states. The **proposed extra mechanical gate** for disk-backed
+`SOURCE_BOUND` is described in
+[Source-bound custody review](SOURCE_BOUND_CUSTODY_REVIEW_GATE.md): an exact
+content-addressed custody claim and separate Auditor-role review must also
+match the accepted Work, Source, binding and producer. The claim pins a
+privately retained byte-capture receipt checksum; it does not contain source
+bytes. These checks establish consistency and a recorded review assertion,
+not independently authenticated remote source bytes or permission to
+reproduce copyrighted episodes or transcripts. Nonempty canonical admission
+and external source/rights verification remain separate requirements.
 
 ## CLOSE_READ requires two independently reviewable custody records
 

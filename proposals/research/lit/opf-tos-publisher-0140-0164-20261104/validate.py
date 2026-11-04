@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[4]
 SOURCE = ROOT / "proposals/librarian/private-opf-metadata-20261103/observations.json"
 PACKET = Path(__file__).with_name("records.json")
 SOURCE_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
-PACKET_SHA = "494446c3785a86eb646454bfeae35fe41559bb435c6a9503421760edad452631"
+PACKET_SHA = "5e20783761b1651713d69e08eaa8395115bc0ec4561f44b3203ce1654a622410"
 IDS = tuple(f"opf-local:{n:04d}" for n in range(140, 165) if n not in {150, 155})
 EXPECTED_FIELDS = {
     "schema_version": "1.0.0",
@@ -139,8 +139,9 @@ def validate_packet(report: dict, accepted: dict) -> tuple[int, int]:
         or row_map["opf-local:0163"]["hold"] != "CRITICAL_CREATOR_CONFLICT_OPF_KEVIN_UNDERWOOD_VS_PUBLISHER_JM_DILLARD"):
         raise ValueError("Mindshadow source-versus-publisher creator contradiction obscured")
     if (not accepted["rows"][156]["title"][0].startswith("Rihannsu #1")
-        or row_map["opf-local:0157"]["hold"] != "OPF_RIHANNSU_1_VS_PUBLISHER_TOS_18_TAXONOMY_UNRESOLVED"):
-        raise ValueError("Rihannsu/TOS series classification conflict obscured")
+        or row_map["opf-local:0157"]["publisher_isbn13"] != "9780743419697"
+        or row_map["opf-local:0157"]["hold"] != "COMPATIBLE_PUBLISHER_RIHANNSU_1_AND_TOS_18_LABELS_PRIVATE_EDITION_UNVERIFIED"):
+        raise ValueError("compatible Rihannsu #1 and TOS #18 labels incorrectly reported as conflicting")
     if (row_map["opf-local:0140"]["publisher_title"], row_map["opf-local:0140"]["publisher_subtitle"]) != (
         "Star Trek", "The Motion Picture"):
         raise ValueError("Motion Picture official title and subtitle flattened")

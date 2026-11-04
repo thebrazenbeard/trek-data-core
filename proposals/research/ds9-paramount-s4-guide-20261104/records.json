@@ -1,0 +1,893 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-paramount-s4-guide-20261104",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_main_at_selection": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_utc_date": "2026-11-04",
+  "source": {
+    "source_id": "paramount-ds9-s4-guide-render-20261104",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/4/",
+    "retrieval_date_utc": "2026-11-04",
+    "retrieval_method": "TINYFISH_FETCH_CONTENT_RENDERED_MARKDOWN",
+    "page_title": "Star Trek: Deep Space Nine Season 4 Episodes - Watch on Paramount+",
+    "page_heading": "Season 4 > Episode Guide",
+    "raw_source_body_sha256": null,
+    "raw_html_bytes_pinned": false,
+    "http_status_verified": false,
+    "full_episode_audiovisual_or_script_read": false,
+    "source_description_fingerprint_method": "SHA256_UTF8_EXTRACTED_DESCRIPTION_SINGLE_LINE_NO_TRAILING_NEWLINE"
+  },
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "episode_research_coverage_effect": "NONE",
+  "synopsis_publication_effect": "NONE",
+  "admitted_briefings": 0,
+  "observed_card_count": 24,
+  "missing_publisher_ordinals_in_extraction": [
+    2,
+    26
+  ],
+  "episode_census_claim": "NONE",
+  "anomaly_hypotheses": [
+    {
+      "affected_source_ordinals": [
+        3,
+        4
+      ],
+      "hypothesis": "POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT",
+      "basis": "PUBLISHER_CARD_TITLE_TOPIC_VS_DESCRIPTION_ONLY",
+      "resolution": "UNRESOLVED_NO_EXTERNAL_VERIFICATION"
+    }
+  ],
+  "source_local_episode_slots": [
+    {
+      "id": "ds9-s4-slot-01",
+      "season": 4,
+      "source_episode_ordinal": 1,
+      "publisher_title": "The Way Of The Warrior",
+      "source_card_locator": "Season 4 > Episode Guide > The Way Of The Warrior > S4 E1 > short description",
+      "source_description_sha256": "a2402655e1f69ae6fcd73e4ff17384782feb3a9e3db653abf079839df84eb387",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-03",
+      "season": 4,
+      "source_episode_ordinal": 3,
+      "publisher_title": "The Visitor",
+      "source_card_locator": "Season 4 > Episode Guide > The Visitor > S4 E3 > short description",
+      "source_description_sha256": "e04cc987ff1db38c5370688b8bbe68b8411a6a9e1457f33575d10484dc04f955",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "SUSPECTED_MISMATCH_UNRESOLVED"
+    },
+    {
+      "id": "ds9-s4-slot-04",
+      "season": 4,
+      "source_episode_ordinal": 4,
+      "publisher_title": "Hippocratic Oath",
+      "source_card_locator": "Season 4 > Episode Guide > Hippocratic Oath > S4 E4 > short description",
+      "source_description_sha256": "c2546eeceb20b6db3667e2e0411e205563c56d46a49910f6dc311f206cce4191",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "SUSPECTED_MISMATCH_UNRESOLVED"
+    },
+    {
+      "id": "ds9-s4-slot-05",
+      "season": 4,
+      "source_episode_ordinal": 5,
+      "publisher_title": "Indiscretion",
+      "source_card_locator": "Season 4 > Episode Guide > Indiscretion > S4 E5 > short description",
+      "source_description_sha256": "322f09e9efa25b0ccb3733a008782c99c7fdd5c66fa7f473985152a1e0be7a97",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-06",
+      "season": 4,
+      "source_episode_ordinal": 6,
+      "publisher_title": "Rejoined",
+      "source_card_locator": "Season 4 > Episode Guide > Rejoined > S4 E6 > short description",
+      "source_description_sha256": "2dc49311c025e0eb23a60a8a4927a75a3b78924f03fdf5243ea16a4e6549a7e2",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-07",
+      "season": 4,
+      "source_episode_ordinal": 7,
+      "publisher_title": "Starship Down",
+      "source_card_locator": "Season 4 > Episode Guide > Starship Down > S4 E7 > short description",
+      "source_description_sha256": "70aa1e1bfd7efba100b652bb713bbd635456751bab604243a9de348b932e409f",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-08",
+      "season": 4,
+      "source_episode_ordinal": 8,
+      "publisher_title": "Little Green Men",
+      "source_card_locator": "Season 4 > Episode Guide > Little Green Men > S4 E8 > short description",
+      "source_description_sha256": "471d8b7fc8333d525baa3f5466ad3a9b78be03e717306fcada763510fddd5ff5",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-09",
+      "season": 4,
+      "source_episode_ordinal": 9,
+      "publisher_title": "The Sword Of Kahless",
+      "source_card_locator": "Season 4 > Episode Guide > The Sword Of Kahless > S4 E9 > short description",
+      "source_description_sha256": "75bea2d8f572f4d41494095b76cb6d1098d2795102530abad72e1241a215f28a",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-10",
+      "season": 4,
+      "source_episode_ordinal": 10,
+      "publisher_title": "Our Man Bashir",
+      "source_card_locator": "Season 4 > Episode Guide > Our Man Bashir > S4 E10 > short description",
+      "source_description_sha256": "7d7138a4970a6f4bc203307929c212ff60c155fb1f9f5804bfbe0bf713991e55",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-11",
+      "season": 4,
+      "source_episode_ordinal": 11,
+      "publisher_title": "Home Front",
+      "source_card_locator": "Season 4 > Episode Guide > Home Front > S4 E11 > short description",
+      "source_description_sha256": "7e545e95dac7ff2190b37b5bc3054fcbce72e3df08fc9cfd8fc097c5a76240d2",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-12",
+      "season": 4,
+      "source_episode_ordinal": 12,
+      "publisher_title": "Paradise Lost",
+      "source_card_locator": "Season 4 > Episode Guide > Paradise Lost > S4 E12 > short description",
+      "source_description_sha256": "3f873c40c6dffeafaec391804f839cdbed572ff8693d39439597a45f50f8abde",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-13",
+      "season": 4,
+      "source_episode_ordinal": 13,
+      "publisher_title": "Crossfire",
+      "source_card_locator": "Season 4 > Episode Guide > Crossfire > S4 E13 > short description",
+      "source_description_sha256": "91b81eb419947ddab8a3225d0d32ae93a9f3be77cbc0902dc00ce065cd2b1a10",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-14",
+      "season": 4,
+      "source_episode_ordinal": 14,
+      "publisher_title": "Return To Grace",
+      "source_card_locator": "Season 4 > Episode Guide > Return To Grace > S4 E14 > short description",
+      "source_description_sha256": "c53c73930fac9106c05163182a7e437f50f53eb576b47fb9a6d6d49a1e9f1167",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-15",
+      "season": 4,
+      "source_episode_ordinal": 15,
+      "publisher_title": "Sons Of Mogh",
+      "source_card_locator": "Season 4 > Episode Guide > Sons Of Mogh > S4 E15 > short description",
+      "source_description_sha256": "984955e0d8b0f9f33cd9fd2f52d167505a250bc7836608d8ec034dbf37451796",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-16",
+      "season": 4,
+      "source_episode_ordinal": 16,
+      "publisher_title": "Bar Association",
+      "source_card_locator": "Season 4 > Episode Guide > Bar Association > S4 E16 > short description",
+      "source_description_sha256": "8abe562ebd30925e2033296779b280402a8f1a6895f4782d3bbe46fe9636c3e0",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-17",
+      "season": 4,
+      "source_episode_ordinal": 17,
+      "publisher_title": "Accession",
+      "source_card_locator": "Season 4 > Episode Guide > Accession > S4 E17 > short description",
+      "source_description_sha256": "0d7d9d3c416a036278d13c73dd299e1cd7e25052771fe9bd9ee26c49747f1190",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-18",
+      "season": 4,
+      "source_episode_ordinal": 18,
+      "publisher_title": "Rules Of Engagement",
+      "source_card_locator": "Season 4 > Episode Guide > Rules Of Engagement > S4 E18 > short description",
+      "source_description_sha256": "bbcc8f7919631be92eeff9433741f70a0acf3e9780170ac4aa0f50e77347e147",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-19",
+      "season": 4,
+      "source_episode_ordinal": 19,
+      "publisher_title": "Hard Time",
+      "source_card_locator": "Season 4 > Episode Guide > Hard Time > S4 E19 > short description",
+      "source_description_sha256": "cff44b6c8df9ff553337cb7b91d37b3ccb37f5e5944c723643710c877e367100",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-20",
+      "season": 4,
+      "source_episode_ordinal": 20,
+      "publisher_title": "Shattered Mirror",
+      "source_card_locator": "Season 4 > Episode Guide > Shattered Mirror > S4 E20 > short description",
+      "source_description_sha256": "e7a3d5e06cd5ae53ce996e204a9fabd6b45f33afbc188cbd504c2707cc1b6630",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-21",
+      "season": 4,
+      "source_episode_ordinal": 21,
+      "publisher_title": "The Muse",
+      "source_card_locator": "Season 4 > Episode Guide > The Muse > S4 E21 > short description",
+      "source_description_sha256": "b5cc559fa154e8abb44285f926acbc4ba8139c7307b570f7c4e4cf824e067b4a",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-22",
+      "season": 4,
+      "source_episode_ordinal": 22,
+      "publisher_title": "For The Cause",
+      "source_card_locator": "Season 4 > Episode Guide > For The Cause > S4 E22 > short description",
+      "source_description_sha256": "a0bf9cbea9a2581e7f6a835ee9cf2d47dadf6d25ed4f83a2895411b8321d52af",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-23",
+      "season": 4,
+      "source_episode_ordinal": 23,
+      "publisher_title": "To The Death",
+      "source_card_locator": "Season 4 > Episode Guide > To The Death > S4 E23 > short description",
+      "source_description_sha256": "6ee2f68c3ac700bef16dfc2dad1826dae9d6882114c46724af9442ef12351367",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-24",
+      "season": 4,
+      "source_episode_ordinal": 24,
+      "publisher_title": "The Quickening",
+      "source_card_locator": "Season 4 > Episode Guide > The Quickening > S4 E24 > short description",
+      "source_description_sha256": "f50a58843aba76b361575f1decc55c11a5fa064dcd4560fccb4d6e29d99fb4ce",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    },
+    {
+      "id": "ds9-s4-slot-25",
+      "season": 4,
+      "source_episode_ordinal": 25,
+      "publisher_title": "Body Parts",
+      "source_card_locator": "Season 4 > Episode Guide > Body Parts > S4 E25 > short description",
+      "source_description_sha256": "f5020d819ca55deb4d0cd9ab36c3bbb15bc18cac65855ce37289a953464c4425",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED",
+      "title_description_alignment": "NOT_INDEPENDENTLY_CHECKED"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ds9-s4-local-card-01",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-01",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-03",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-03",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-04",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-04",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-05",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-05",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-06",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-06",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-07",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-07",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-08",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-08",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-09",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-09",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-10",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-10",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-11",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-11",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-12",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-12",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-13",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-13",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-14",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-14",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-15",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-15",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-16",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-16",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-17",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-17",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-18",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-18",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-19",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-19",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-20",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-20",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-21",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-21",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-22",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-22",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-23",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-23",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-24",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-24",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s4-local-card-25",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s4-slot-25",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ds9-s4-ev-01",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-01",
+      "locator": "Season 4 > Episode Guide > The Way Of The Warrior > S4 E1 > short description",
+      "description_sha256": "a2402655e1f69ae6fcd73e4ff17384782feb3a9e3db653abf079839df84eb387",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-03",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-03",
+      "locator": "Season 4 > Episode Guide > The Visitor > S4 E3 > short description",
+      "description_sha256": "e04cc987ff1db38c5370688b8bbe68b8411a6a9e1457f33575d10484dc04f955",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-04",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-04",
+      "locator": "Season 4 > Episode Guide > Hippocratic Oath > S4 E4 > short description",
+      "description_sha256": "c2546eeceb20b6db3667e2e0411e205563c56d46a49910f6dc311f206cce4191",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-05",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-05",
+      "locator": "Season 4 > Episode Guide > Indiscretion > S4 E5 > short description",
+      "description_sha256": "322f09e9efa25b0ccb3733a008782c99c7fdd5c66fa7f473985152a1e0be7a97",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-06",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-06",
+      "locator": "Season 4 > Episode Guide > Rejoined > S4 E6 > short description",
+      "description_sha256": "2dc49311c025e0eb23a60a8a4927a75a3b78924f03fdf5243ea16a4e6549a7e2",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-07",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-07",
+      "locator": "Season 4 > Episode Guide > Starship Down > S4 E7 > short description",
+      "description_sha256": "70aa1e1bfd7efba100b652bb713bbd635456751bab604243a9de348b932e409f",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-08",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-08",
+      "locator": "Season 4 > Episode Guide > Little Green Men > S4 E8 > short description",
+      "description_sha256": "471d8b7fc8333d525baa3f5466ad3a9b78be03e717306fcada763510fddd5ff5",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-09",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-09",
+      "locator": "Season 4 > Episode Guide > The Sword Of Kahless > S4 E9 > short description",
+      "description_sha256": "75bea2d8f572f4d41494095b76cb6d1098d2795102530abad72e1241a215f28a",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-10",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-10",
+      "locator": "Season 4 > Episode Guide > Our Man Bashir > S4 E10 > short description",
+      "description_sha256": "7d7138a4970a6f4bc203307929c212ff60c155fb1f9f5804bfbe0bf713991e55",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-11",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-11",
+      "locator": "Season 4 > Episode Guide > Home Front > S4 E11 > short description",
+      "description_sha256": "7e545e95dac7ff2190b37b5bc3054fcbce72e3df08fc9cfd8fc097c5a76240d2",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-12",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-12",
+      "locator": "Season 4 > Episode Guide > Paradise Lost > S4 E12 > short description",
+      "description_sha256": "3f873c40c6dffeafaec391804f839cdbed572ff8693d39439597a45f50f8abde",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-13",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-13",
+      "locator": "Season 4 > Episode Guide > Crossfire > S4 E13 > short description",
+      "description_sha256": "91b81eb419947ddab8a3225d0d32ae93a9f3be77cbc0902dc00ce065cd2b1a10",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-14",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-14",
+      "locator": "Season 4 > Episode Guide > Return To Grace > S4 E14 > short description",
+      "description_sha256": "c53c73930fac9106c05163182a7e437f50f53eb576b47fb9a6d6d49a1e9f1167",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-15",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-15",
+      "locator": "Season 4 > Episode Guide > Sons Of Mogh > S4 E15 > short description",
+      "description_sha256": "984955e0d8b0f9f33cd9fd2f52d167505a250bc7836608d8ec034dbf37451796",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-16",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-16",
+      "locator": "Season 4 > Episode Guide > Bar Association > S4 E16 > short description",
+      "description_sha256": "8abe562ebd30925e2033296779b280402a8f1a6895f4782d3bbe46fe9636c3e0",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-17",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-17",
+      "locator": "Season 4 > Episode Guide > Accession > S4 E17 > short description",
+      "description_sha256": "0d7d9d3c416a036278d13c73dd299e1cd7e25052771fe9bd9ee26c49747f1190",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-18",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-18",
+      "locator": "Season 4 > Episode Guide > Rules Of Engagement > S4 E18 > short description",
+      "description_sha256": "bbcc8f7919631be92eeff9433741f70a0acf3e9780170ac4aa0f50e77347e147",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-19",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-19",
+      "locator": "Season 4 > Episode Guide > Hard Time > S4 E19 > short description",
+      "description_sha256": "cff44b6c8df9ff553337cb7b91d37b3ccb37f5e5944c723643710c877e367100",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-20",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-20",
+      "locator": "Season 4 > Episode Guide > Shattered Mirror > S4 E20 > short description",
+      "description_sha256": "e7a3d5e06cd5ae53ce996e204a9fabd6b45f33afbc188cbd504c2707cc1b6630",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-21",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-21",
+      "locator": "Season 4 > Episode Guide > The Muse > S4 E21 > short description",
+      "description_sha256": "b5cc559fa154e8abb44285f926acbc4ba8139c7307b570f7c4e4cf824e067b4a",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-22",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-22",
+      "locator": "Season 4 > Episode Guide > For The Cause > S4 E22 > short description",
+      "description_sha256": "a0bf9cbea9a2581e7f6a835ee9cf2d47dadf6d25ed4f83a2895411b8321d52af",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-23",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-23",
+      "locator": "Season 4 > Episode Guide > To The Death > S4 E23 > short description",
+      "description_sha256": "6ee2f68c3ac700bef16dfc2dad1826dae9d6882114c46724af9442ef12351367",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-24",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-24",
+      "locator": "Season 4 > Episode Guide > The Quickening > S4 E24 > short description",
+      "description_sha256": "f50a58843aba76b361575f1decc55c11a5fa064dcd4560fccb4d6e29d99fb4ce",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s4-ev-25",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s4-guide-render-20261104",
+      "local_entity_id": "ds9-s4-local-card-25",
+      "locator": "Season 4 > Episode Guide > Body Parts > S4 E25 > short description",
+      "description_sha256": "f5020d819ca55deb4d0cd9ab36c3bbb15bc18cac65855ce37289a953464c4425",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    }
+  ],
+  "assertions": [
+    {
+      "id": "ds9-s4-assert-01",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-01",
+      "supporting_evidence_id": "ds9-s4-ev-01",
+      "original_held_paraphrase": "The publisher guide describes Klingon-Federation relations deteriorating and Sisko helping Worf confront a loyalty dilemma.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-03",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-03",
+      "supporting_evidence_id": "ds9-s4-ev-03",
+      "original_held_paraphrase": "Under the title The Visitor, the guide describes Bashir and O'Brien held by rebellious Jem'Hadar and disagreeing over aiding them; title-description alignment is unverified.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-04",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-04",
+      "supporting_evidence_id": "ds9-s4-ev-04",
+      "original_held_paraphrase": "Under the title Hippocratic Oath, the guide describes Sisko vanishing in front of Jake and Jake's long effort to recover him; alignment is unverified.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-05",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-05",
+      "supporting_evidence_id": "ds9-s4-ev-05",
+      "original_held_paraphrase": "The guide describes Kira traveling with Dukat and discovering an unexpected motive for his presence.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-06",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-06",
+      "supporting_evidence_id": "ds9-s4-ev-06",
+      "original_held_paraphrase": "The guide describes Dax facing a Trill social prohibition when reunited with a former host's spouse.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-07",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-07",
+      "supporting_evidence_id": "ds9-s4-ev-07",
+      "original_held_paraphrase": "The guide describes the Defiant trapped in dangerous planetary weather following combat with Jem'Hadar forces.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-08",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-08",
+      "supporting_evidence_id": "ds9-s4-ev-08",
+      "original_held_paraphrase": "The guide describes Quark, Rom, and Nog arriving in Roswell in 1947 and being mistaken for alien intruders.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-09",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-09",
+      "supporting_evidence_id": "ds9-s4-ev-09",
+      "original_held_paraphrase": "The guide describes Kor, Worf, and Dax searching for an ancient Klingon artifact believed capable of fostering unity.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-10",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-10",
+      "supporting_evidence_id": "ds9-s4-ev-10",
+      "original_held_paraphrase": "The guide describes Bashir caught in a failing spy-fiction holosuite simulation while colleagues face danger.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-11",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-11",
+      "supporting_evidence_id": "ds9-s4-ev-11",
+      "original_held_paraphrase": "The guide describes suspected Changeling threats drawing Sisko and Odo to Earth ahead of possible Dominion war.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-12",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-12",
+      "supporting_evidence_id": "ds9-s4-ev-12",
+      "original_held_paraphrase": "The guide describes Sisko and Odo discovering evidence of a suspected Starfleet power seizure as Earth prepares for war.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-13",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-13",
+      "supporting_evidence_id": "ds9-s4-ev-13",
+      "original_held_paraphrase": "The guide describes Odo's feelings for Kira complicating a protection assignment involving a Bajoran leader.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-14",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-14",
+      "supporting_evidence_id": "ds9-s4-ev-14",
+      "original_held_paraphrase": "The guide describes Dukat seeking Kira's help to restore his diminished position in Cardassian society.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-15",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-15",
+      "supporting_evidence_id": "ds9-s4-ev-15",
+      "original_held_paraphrase": "The guide describes Worf facing a desperate request from his socially disgraced brother.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-16",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-16",
+      "supporting_evidence_id": "ds9-s4-ev-16",
+      "original_held_paraphrase": "The guide describes Rom organizing Quark's employees into a labor union and a strike over workplace conditions.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-17",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-17",
+      "supporting_evidence_id": "ds9-s4-ev-17",
+      "original_held_paraphrase": "The guide describes a legendary Bajoran returning after centuries and contesting Sisko's religious designation.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-18",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-18",
+      "supporting_evidence_id": "ds9-s4-ev-18",
+      "original_held_paraphrase": "The guide describes a Klingon charge accusing Worf of destroying a civilian vessel during combat; guilt is not established here.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-19",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-19",
+      "supporting_evidence_id": "ds9-s4-ev-19",
+      "original_held_paraphrase": "The guide describes O'Brien struggling with memories of decades of imprisonment implanted by an alien society.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-20",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-20",
+      "supporting_evidence_id": "ds9-s4-ev-20",
+      "original_held_paraphrase": "The guide describes Sisko entering a conflict-torn alternate universe after Jake follows a counterpart of his deceased mother.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-21",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-21",
+      "supporting_evidence_id": "ds9-s4-ev-21",
+      "original_held_paraphrase": "The guide describes Odo sheltering a pregnant visitor while Jake encounters a mysterious, potentially influential woman.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-22",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-22",
+      "supporting_evidence_id": "ds9-s4-ev-22",
+      "original_held_paraphrase": "The guide describes Sisko learning of allegations that Kasidy Yates is involved with Maquis smuggling; they are not established as fact.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-23",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-23",
+      "supporting_evidence_id": "ds9-s4-ev-23",
+      "original_held_paraphrase": "The guide describes Sisko cooperating with some Jem'Hadar to stop a renegade faction from acquiring greater power.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-24",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-24",
+      "supporting_evidence_id": "ds9-s4-ev-24",
+      "original_held_paraphrase": "The guide describes Bashir seeking to treat a population afflicted by a lethal disease blamed on Jem'Hadar.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s4-assert-25",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s4-local-card-25",
+      "supporting_evidence_id": "ds9-s4-ev-25",
+      "original_held_paraphrase": "The guide describes Quark selling future bodily remains after a mistaken terminal diagnosis, then confronting the sale contract.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    }
+  ]
+}

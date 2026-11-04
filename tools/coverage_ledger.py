@@ -247,6 +247,11 @@ READ_RECEIPT_FIELDS={'receipt_kind','receipt_version','work_id','source_id','bin
                      'producer_role','producer_ref','batch_manifest_sha256','reading_scope','evidence_ids','verification_status'}
 READ_REVIEW_FIELDS={'receipt_kind','receipt_version','read_receipt_hash','work_id','source_id','binding_id',
                     'reviewer_role','reviewer_id','decision','review_basis_refs'}
+BOUND_CLAIM_FIELDS={'receipt_kind','receipt_version','work_id','source_id','binding_id','source_content_hash',
+                    'work_record_hash','source_record_hash','binding_record_hash','scope_key',
+                    'private_custody_receipt_sha256','producer_role','producer_ref','verification_status'}
+BOUND_REVIEW_FIELDS={'receipt_kind','receipt_version','claim_receipt_hash','work_id','source_id','binding_id',
+                     'reviewer_role','reviewer_id','decision','review_basis_refs','rights_scope','identity_scope'}
 
 def _governed_receipt(ref,prefix,subdirectory):
  """Resolve a content-addressed in-repo receipt, not an arbitrary event path."""
@@ -260,6 +265,55 @@ def _governed_receipt(ref,prefix,subdirectory):
  receipt=strict_json(raw)
  if not isinstance(receipt,dict):raise ValueError(f'{prefix} must be an object')
  return receipt,digest
+
+def _source_bound_receipt_errors(eid,row,works,sources,bindings):
+ """Require explicit source-byte custody *claims* and a distinct recorded review.
+
+ These public digest-pinned records are mechanical attestations. They cannot
+ prove that a private file exists today, authenticate a reviewer, or grant
+ copyright permission; those remain independent acceptance decisions.
+ """
+ errors=[];refs=row.get('basis_refs')
+ if not isinstance(refs,list):return [f'{eid}: SOURCE_BOUND requires custody claim and Auditor review references']
+ claim_refs=[ref for ref in refs if isinstance(ref,str) and ref.startswith('bound-claim:')]
+ review_refs=[ref for ref in refs if isinstance(ref,str) and ref.startswith('bound-review:')]
+ if len(claim_refs)!=1 or len(review_refs)!=1:
+  return [f'{eid}: SOURCE_BOUND requires exactly one content-addressed custody claim and Auditor review reference']
+ try:
+  claim,claim_hash=_governed_receipt(claim_refs[0],'bound-claim:','bound-claims')
+  review,_=_governed_receipt(review_refs[0],'bound-review:','bound-reviews')
+  if set(claim)!=BOUND_CLAIM_FIELDS or claim['receipt_kind']!='SOURCE_BOUND_CUSTODY_CLAIM' or claim['receipt_version']!='1.0.0':
+   raise ValueError('custody claim has unreviewed shape/version')
+  if set(review)!=BOUND_REVIEW_FIELDS or review['receipt_kind']!='SOURCE_BOUND_CUSTODY_REVIEW' or review['receipt_version']!='1.0.0':
+   raise ValueError('custody review has unreviewed shape/version')
+  for key in ('work_id','source_id','binding_id'):
+   if claim[key]!=row.get(key) or review[key]!=row.get(key):
+    raise ValueError(f'custody claim/review {key} does not match SOURCE_BOUND event')
+  if claim['scope_key']!=row.get('scope_key'):
+   raise ValueError('custody claim scope_key differs from SOURCE_BOUND governed scope')
+  if claim['producer_role']!=row.get('producer_role') or claim['producer_ref']!=row.get('producer_ref') or row.get('producer_role')!='LIBRARIAN':
+   raise ValueError('custody claim producer is not the event Librarian')
+  work=works.get(row.get('work_id'));source=sources.get(row.get('source_id'));binding=bindings.get(row.get('binding_id'))
+  if not work or not source or not binding or not accepted_source_binding_basis(source,binding):
+   raise ValueError('custody claim requires exact accepted Work/Source/BYTE_HASH binding')
+  for key,value in (('work_record_hash',content_hash(work)),('source_record_hash',content_hash(source)),
+                    ('binding_record_hash',content_hash(binding)),('source_content_hash',source.get('content_hash'))):
+   if claim[key]!=value:raise ValueError(f'custody claim {key} differs from accepted authoritative record')
+  private_hash=claim['private_custody_receipt_sha256']
+  if not isinstance(private_hash,str) or re.fullmatch(r'sha256:[0-9a-f]{64}',private_hash) is None:
+   raise ValueError('custody claim requires SHA-256 of privately retained byte-capture receipt')
+  if claim['verification_status']!='CLAIM_PENDING_SEPARATE_REVIEW':
+   raise ValueError('custody claim cannot self-approve its verification status')
+  reviewer=review['reviewer_id']
+  if review['claim_receipt_hash']!=claim_hash or review['reviewer_role']!='AUDITOR' or not isinstance(reviewer,str) or re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.:@-]{2,127}',reviewer) is None or reviewer.casefold() in {'librarian',str(row.get('producer_ref')).casefold()}:
+   raise ValueError('custody review lacks distinct Auditor attestation to exact claim')
+  if review['decision']!='APPROVED_FOR_SOURCE_BOUND' or review['rights_scope']!='PRIVATE_RESEARCH_ONLY_NO_PUBLICATION_GRANT' or review['identity_scope']!='SOURCE_LOCAL_ONLY':
+   raise ValueError('custody review lacks bounded decision/rights/identity scope')
+  if review['review_basis_refs']!=['private-custody-receipt:'+private_hash]:
+   raise ValueError('custody review must pin exact privately retained byte-capture receipt')
+ except (ValueError,OSError,KeyError,TypeError) as exc:
+  errors.append(f'{eid}: SOURCE_BOUND custody claim/review gate: {exc}')
+ return errors
 
 def _close_read_receipt_errors(eid,row,records,sources,bindings):
  """Mechanical custody/review gate; never claims a human actually read bytes."""
@@ -460,6 +514,8 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
     source=sources.get(source_id)
     if source is None or not accepted_source_binding_basis(source,binding):
      errors.append(f'{eid}: SOURCE_BOUND requires exact accepted Source SHA-256 BYTE_HASH binding basis')
+   if enforce_origins:
+    errors.extend(_source_bound_receipt_errors(eid,row,works,sources,bindings))
   if state=='FULL_TEXT_AVAILABLE':
    scope=row.get('representation_scope')
    if not isinstance(scope,dict) or not scope.get('representation_type') or not scope.get('completeness_scope'):errors.append(f'{eid}: FULL_TEXT_AVAILABLE requires representation_scope with representation_type and completeness_scope')

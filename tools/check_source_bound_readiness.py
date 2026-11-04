@@ -9,6 +9,7 @@ The result cannot attest to provenance, rights, Work identity or human review.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -18,6 +19,26 @@ import coverage_ledger as ledger
 import source_custody_receipt as custody
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def governed_input_sha256():
+    """Pin exact local authoritative registry and coverage file *bytes*.
+
+    The named paths are repository-relative, not private host source paths.
+    This is an auditable local-input identity, NOT a GitHub main endorsement,
+    a source authenticity signature, or a human admission decision.
+    """
+    digest = hashlib.sha256(b'trek-source-bound-local-governed-state-v1\0')
+    for root in (ledger.ROOT / 'registry' / 'authoritative', ledger.ROOT / 'coverage'):
+        json_files, jsonl_files = ledger.safe_record_files(root, with_identities=True)
+        for path, identity in sorted(json_files + jsonl_files, key=lambda item: item[0].as_posix()):
+            relative = path.relative_to(ledger.ROOT).as_posix().encode('utf-8')
+            content = ledger.read_governed_text(path, identity).encode('utf-8')
+            digest.update(len(relative).to_bytes(4, byteorder='big'))
+            digest.update(relative)
+            digest.update(len(content).to_bytes(8, byteorder='big'))
+            digest.update(content)
+    return 'sha256:' + digest.hexdigest()
 
 
 def assess(work_id, source_id, binding_id, works, sources, bindings, records,
@@ -126,6 +147,11 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     # No prerequisite can be green when globally governed inputs are invalid.
+    try:
+        state_before = governed_input_sha256()
+    except (OSError, ValueError, TypeError):
+        print(json.dumps({'status': 'INVALID_GOVERNED_INPUT', 'coverage_effect': 'NONE'}, sort_keys=True))
+        return 3
     for script, command in (('validate.py', []), ('coverage_ledger.py', ['validate'])):
         run = subprocess.run([sys.executable, str(ROOT / 'tools' / script), *command],
                              cwd=ROOT, capture_output=True, text=True, check=False)
@@ -141,9 +167,14 @@ def main(argv=None):
                         ledger.authoritative_work_roster(),
                         *ledger.authoritative_source_binding_rosters(), records,
                         args.request, args.receipt, args.source_file)
+        state_after = governed_input_sha256()
+        if state_before != state_after:
+            raise ValueError('governed registry or coverage input changed during assessment')
     except (OSError, ValueError, KeyError, TypeError):
         print(json.dumps({'status': 'INVALID_GOVERNED_INPUT', 'coverage_effect': 'NONE'}, sort_keys=True))
         return 3
+    result['governed_inputs_sha256'] = state_after
+    result['governed_inputs_scope'] = 'LOCAL_AUTHORITATIVE_REGISTRY_AND_COVERAGE_BYTES_NOT_REMOTE_ACCEPTANCE'
     print(json.dumps(result, indent=2, sort_keys=True))
     return 2 if args.require_ready and result['status'] == 'BLOCKED' else 0
 

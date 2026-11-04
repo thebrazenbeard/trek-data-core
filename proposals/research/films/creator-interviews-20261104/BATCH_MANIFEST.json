@@ -1,0 +1,19 @@
+{
+  "batch_id": "films-firstparty-creator-interviews-20261104",
+  "proposal_only": true,
+  "accepted_main_at_start": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "source_page_count": 4,
+  "film_candidate_count": 3,
+  "evidence_count": 8,
+  "assertion_count": 8,
+  "source_account_synopsis_count": 3,
+  "packet_path": "proposals/research/films/creator-interviews-20261104/records.json",
+  "packet_sha256": "796447700602043877bf8380635bd44968938220ec7f6a0635d80f6e85486c05",
+  "upstream_raw_page_sha256": null,
+  "full_film_viewed": false,
+  "film_close_read": false,
+  "screenplay_close_read": false,
+  "coverage_effect": "NONE",
+  "published_effect": "NONE",
+  "review_status": "LOCAL_VALIDATION_ONLY_PENDING_INDEPENDENT_AUDIT"
+}

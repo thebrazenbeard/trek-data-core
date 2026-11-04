@@ -1,0 +1,427 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "TNG-S3-B016-PUBLISHER-CARDS-20261104",
+  "baseline_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "status": "HELD_SOURCE_LOCAL_PUBLISHER_METADATA",
+  "source": {
+    "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+    "publisher_lineage": "paramount_corporate_publisher_family",
+    "retrieved_utc_date": "2026-11-04",
+    "read_surface": "FULL_RENDERED_PUBLISHER_SEASON_GUIDE_WEB_READER",
+    "entire_guide_card_count_read": 26,
+    "fresh_raw_html_sha256": null,
+    "fresh_raw_html_custody": "UNAVAILABLE",
+    "prior_2026_11_02_discovery_receipt_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+    "prior_receipt_status": "HISTORICAL_UNREVALIDATED_RAW_DISCOVERY_RECEIPT",
+    "description_fingerprint_method": "RENDERED_WEB_READER_DESCRIPTION_TRIMMED_UTF8_NFC",
+    "independent_source_families": 1
+  },
+  "audiovisual_episodes_watched": false,
+  "scripts_or_transcripts_read_in_this_batch": false,
+  "publisher_description_prose_republished": false,
+  "global_work_identity_resolved": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "row_id": "legacy:s3:tng:000",
+      "publisher_title": "Evolution",
+      "season": 3,
+      "episode": 1,
+      "publisher_card_locator": "Season 3 / Evolution / S3 E1",
+      "rendered_description_sha256": "2287d2dd067b833f25f51ad0f462a32f919d86f46092cf23d88626f4a318bc2b",
+      "literal_description_mentions": [],
+      "original_short_paraphrase": "A hazardous disruption to shipboard life support threatens the crew, according to Paramount's blurb.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:001",
+      "publisher_title": "The Ensigns of Command",
+      "season": 3,
+      "episode": 2,
+      "publisher_card_locator": "Season 3 / The Ensigns of Command / S3 E2",
+      "rendered_description_sha256": "d8f7e5ee5c17c98ad21bc6e4ac2b237194650e107c2fa413c3a0160fa598e242",
+      "literal_description_mentions": [
+        "Data"
+      ],
+      "original_short_paraphrase": "The publisher presents Data trying to protect a human settlement from an alien threat.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:002",
+      "publisher_title": "The Survivors",
+      "season": 3,
+      "episode": 3,
+      "publisher_card_locator": "Season 3 / The Survivors / S3 E3",
+      "rendered_description_sha256": "0fdd3c7f72fe6ddfc3d17d8a6c3031075f8be34f95b87b1fb5f78d7521c9d055",
+      "literal_description_mentions": [
+        "Rana IV"
+      ],
+      "original_short_paraphrase": "At Rana IV, the crew finds two apparent survivors among a devastated settlement, according to the listing.",
+      "publisher_framing_anomaly": "PUBLISHER_SURVIVOR_COUNT_UNVERIFIED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:003",
+      "publisher_title": "Who Watches the Watchers",
+      "season": 3,
+      "episode": 4,
+      "publisher_card_locator": "Season 3 / Who Watches the Watchers / S3 E4",
+      "rendered_description_sha256": "3ee95e9eae3d1ca37de12767edf4267948b5a0f73249b1e813e49dc18dcc9be5",
+      "literal_description_mentions": [
+        "Picard",
+        "Troi"
+      ],
+      "original_short_paraphrase": "The listing says inhabitants who regard Picard as divine take Troi captive to offer her in sacrifice.",
+      "publisher_framing_anomaly": "ATTRIBUTED_BELIEF_NOT_DIVINITY",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:004",
+      "publisher_title": "The Bonding",
+      "season": 3,
+      "episode": 5,
+      "publisher_card_locator": "Season 3 / The Bonding / S3 E5",
+      "rendered_description_sha256": "613bc171838c4bcdc399fef02d263fbe43145c94edd1da484617b31354643e03",
+      "literal_description_mentions": [
+        "Worf",
+        "Klingon"
+      ],
+      "original_short_paraphrase": "A mission death leaves Worf feeling responsible for an archaeologist's son, per the publisher.",
+      "publisher_framing_anomaly": "UNNAMED_DECEASED_PERSON_AND_CHILD",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:005",
+      "publisher_title": "Booby Trap",
+      "season": 3,
+      "episode": 6,
+      "publisher_card_locator": "Season 3 / Booby Trap / S3 E6",
+      "rendered_description_sha256": "4628198dc3b62a4fb2850a261dd9f27494a881b87d124b51f30e62bddfd95e15",
+      "literal_description_mentions": [
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "The publisher describes an Enterprise trap that turns its own power into dangerous radiation.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:006",
+      "publisher_title": "The Enemy",
+      "season": 3,
+      "episode": 7,
+      "publisher_card_locator": "Season 3 / The Enemy / S3 E7",
+      "rendered_description_sha256": "7a98a0e6d4c4431059b588e46f06977571f05c4d0b6a4781c8f6150d0c12e8c9",
+      "literal_description_mentions": [
+        "Geordi",
+        "Romulan"
+      ],
+      "original_short_paraphrase": "Geordi is stranded as a Romulan vessel complicates rescue attempts, according to the blurb.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:007",
+      "publisher_title": "The Price",
+      "season": 3,
+      "episode": 8,
+      "publisher_card_locator": "Season 3 / The Price / S3 E8",
+      "rendered_description_sha256": "b311ee62f802ed9daa10dce0ce897325bb4b9baedb9fe96420533ef3dc980391",
+      "literal_description_mentions": [
+        "Troi",
+        "U.S.S. Enterprise"
+      ],
+      "original_short_paraphrase": "The publisher describes Troi becoming involved with a delegate whose business practices it calls unethical.",
+      "publisher_framing_anomaly": "UNNAMED_DELEGATE_AND_VALUE_JUDGMENT",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:008",
+      "publisher_title": "The Vengeance Factor",
+      "season": 3,
+      "episode": 9,
+      "publisher_card_locator": "Season 3 / The Vengeance Factor / S3 E9",
+      "rendered_description_sha256": "d85bac80edf6cd982903d7795f8c6408573e027edbf86027e37c6a511a9fc300",
+      "literal_description_mentions": [],
+      "original_short_paraphrase": "A bid to settle a clan conflict is disrupted by an unidentified killer in the publisher account.",
+      "publisher_framing_anomaly": "UNNAMED_FACTIONS_AND_ASSASSIN",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:009",
+      "publisher_title": "The Defector",
+      "season": 3,
+      "episode": 10,
+      "publisher_card_locator": "Season 3 / The Defector / S3 E10",
+      "rendered_description_sha256": "f93daf6754514781f15dbfa98f4f50a9e60521c03ff7cd8052b6d07b20774154",
+      "literal_description_mentions": [
+        "Romulan"
+      ],
+      "original_short_paraphrase": "A Romulan seeking refuge sets up a confrontation with possible wider war, per the listing.",
+      "publisher_framing_anomaly": "UNNAMED_DEFECTOR_AND_WAR_PROSPECT",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:010",
+      "publisher_title": "The Hunted",
+      "season": 3,
+      "episode": 11,
+      "publisher_card_locator": "Season 3 / The Hunted / S3 E11",
+      "rendered_description_sha256": "d697e6cecf9f93c3374d728274d706bfdafd88cfcb5a3b8d4ef6a8c58c57974c",
+      "literal_description_mentions": [
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "The publisher describes an attacker affected by state-imposed mind control.",
+      "publisher_framing_anomaly": "CAUSAL_MIND_CONTROL_CLAIM",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:011",
+      "publisher_title": "The High Ground",
+      "season": 3,
+      "episode": 12,
+      "publisher_card_locator": "Season 3 / The High Ground / S3 E12",
+      "rendered_description_sha256": "61e91391071df71c4ed97a5bb9f64c1a168ffaf77392ca7a9190d6259ad2ce14",
+      "literal_description_mentions": [
+        "Crusher",
+        "Rutia Four"
+      ],
+      "original_short_paraphrase": "Crusher's capture by a group labeled terrorists draws the crew into conflict on Rutia Four.",
+      "publisher_framing_anomaly": "POLITICAL_GROUP_LABEL",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:012",
+      "publisher_title": "Deja Q",
+      "season": 3,
+      "episode": 13,
+      "publisher_card_locator": "Season 3 / Deja Q / S3 E13",
+      "rendered_description_sha256": "0f444866583b93ebcbda375864c32b3dbaaae2ecd9588f948087819431116934",
+      "literal_description_mentions": [
+        "Q"
+      ],
+      "original_short_paraphrase": "The publisher highlights Q's unexpected reappearance before the crew.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:013",
+      "publisher_title": "A Matter of Perspective",
+      "season": 3,
+      "episode": 14,
+      "publisher_card_locator": "Season 3 / A Matter of Perspective / S3 E14",
+      "rendered_description_sha256": "a88be5aa8fa2c86da1d6d0b521c7cdc91dbfe794948d0648197d372e31cfaf08",
+      "literal_description_mentions": [
+        "Riker",
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "The blurb presents a murder suspicion against Riker alongside the deceased scientist's accusation.",
+      "publisher_framing_anomaly": "ACCUSATION_NOT_GUILT",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:014",
+      "publisher_title": "Yesterday's Enterprise",
+      "season": 3,
+      "episode": 15,
+      "publisher_card_locator": "Season 3 / Yesterday's Enterprise / S3 E15",
+      "rendered_description_sha256": "78c6a66e0c02ff95a645c88fadabf06e8d4f3389cc2d0cd7e09e0fc5fcc2c107",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Tasha Yar"
+      ],
+      "original_short_paraphrase": "The publisher frames a rift-borne ship and Tasha Yar as changing the known course of history.",
+      "publisher_framing_anomaly": "ALTERNATE_HISTORY_IDENTITY_UNRESOLVED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:015",
+      "publisher_title": "The Offspring",
+      "season": 3,
+      "episode": 16,
+      "publisher_card_locator": "Season 3 / The Offspring / S3 E16",
+      "rendered_description_sha256": "62b16bb257731320e00ea5df08cd57baf6f5e74b836119c382197557d36c59a3",
+      "literal_description_mentions": [
+        "Data"
+      ],
+      "original_short_paraphrase": "The listing describes Data creating an android from his own neural programming and taking a father role.",
+      "publisher_framing_anomaly": "PARENTAL_RELATION_NOT_LEGAL_STATUS",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:016",
+      "publisher_title": "Sins of the Father",
+      "season": 3,
+      "episode": 17,
+      "publisher_card_locator": "Season 3 / Sins of the Father / S3 E17",
+      "rendered_description_sha256": "490f667de293177990b30d96c96fde5698b8d239341219c5922eede2139ae6a4",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Worf"
+      ],
+      "original_short_paraphrase": "Worf's brother appears during a family-honor crisis, according to the publisher.",
+      "publisher_framing_anomaly": "UNNAMED_BROTHER",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:017",
+      "publisher_title": "Allegiance",
+      "season": 3,
+      "episode": 18,
+      "publisher_card_locator": "Season 3 / Allegiance / S3 E18",
+      "rendered_description_sha256": "ac5a03711a56fb319bf1604dd61fb28bc357dc8bde14eb1d5e462377ce913beb",
+      "literal_description_mentions": [
+        "Picard"
+      ],
+      "original_short_paraphrase": "The publisher says Picard is secretly abducted while an impersonator takes his place.",
+      "publisher_framing_anomaly": "REPLACEMENT_IDENTITY_UNRESOLVED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:018",
+      "publisher_title": "Captain's Holiday",
+      "season": 3,
+      "episode": 19,
+      "publisher_card_locator": "Season 3 / Captain's Holiday / S3 E19",
+      "rendered_description_sha256": "a87d280993add589d165483a8555edf56c9649d7cf0ce8262e7e98b440ee05f2",
+      "literal_description_mentions": [
+        "Picard"
+      ],
+      "original_short_paraphrase": "Picard's holiday becomes a search for an object described as a future weapon in the listing.",
+      "publisher_framing_anomaly": "FUTURE_ORIGIN_CLAIM_UNVERIFIED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:019",
+      "publisher_title": "Tin Man",
+      "season": 3,
+      "episode": 20,
+      "publisher_card_locator": "Season 3 / Tin Man / S3 E20",
+      "rendered_description_sha256": "f1fef29c4d6b810f190f11af8dc2ecc59c090aa8e0d33a56ca52f66ceaa3469c",
+      "literal_description_mentions": [
+        "Romulans"
+      ],
+      "original_short_paraphrase": "The crew and Romulans contest an unfamiliar life form in a distant system, according to Paramount.",
+      "publisher_framing_anomaly": "UNNAMED_LIFE_FORM",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:020",
+      "publisher_title": "Hollow Pursuits",
+      "season": 3,
+      "episode": 21,
+      "publisher_card_locator": "Season 3 / Hollow Pursuits / S3 E21",
+      "rendered_description_sha256": "fde5a51de8266506044fbdb3364c2f2200294e3ca5176c8561a5d1706cee33b5",
+      "literal_description_mentions": [
+        "Holodeck"
+      ],
+      "original_short_paraphrase": "A young engineer's holodeck fixation becomes a shipboard concern in the publisher's account.",
+      "publisher_framing_anomaly": "UNNAMED_ENGINEER_HOLODECK_WORLD",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:021",
+      "publisher_title": "The Most Toys",
+      "season": 3,
+      "episode": 22,
+      "publisher_card_locator": "Season 3 / The Most Toys / S3 E22",
+      "rendered_description_sha256": "85389accdd650dd2e924a33c87321eae89161257aca2d470ff9236b04b83d04c",
+      "literal_description_mentions": [
+        "Data"
+      ],
+      "original_short_paraphrase": "The publisher says the crew leaves Data presumed dead following a shuttle explosion.",
+      "publisher_framing_anomaly": "PRESUMED_DEATH_NOT_VERIFIED_DEATH",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:022",
+      "publisher_title": "Sarek",
+      "season": 3,
+      "episode": 23,
+      "publisher_card_locator": "Season 3 / Sarek / S3 E23",
+      "rendered_description_sha256": "9853ac0a730be0fb90ccb4ffd1b4056ae5df9c6664570d16f3b8690363ddbdad",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Vulcan"
+      ],
+      "original_short_paraphrase": "The Enterprise experiences unexplained violence during a Vulcan ambassador's visit, per the publisher.",
+      "publisher_framing_anomaly": "TITLE_NAME_NOT_PUBLISHER_DESCRIPTION_ASSERTION",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:023",
+      "publisher_title": "Ménage à Troi",
+      "season": 3,
+      "episode": 24,
+      "publisher_card_locator": "Season 3 / Ménage à Troi / S3 E24",
+      "rendered_description_sha256": "3d306cae1b9a2ffbb118156a783f7fd75cddb4b6ebc37c704b7971caa47286a8",
+      "literal_description_mentions": [
+        "Riker",
+        "Troi",
+        "Betazed",
+        "Deanna",
+        "Lwaxana"
+      ],
+      "original_short_paraphrase": "The blurb says Lwaxana interrupts a Betazed shore leave involving Riker and Troi.",
+      "publisher_framing_anomaly": "TROI_DEANNA_RELATION_NOT_GLOBALLY_LINKED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:024",
+      "publisher_title": "Transfigurations",
+      "season": 3,
+      "episode": 25,
+      "publisher_card_locator": "Season 3 / Transfigurations / S3 E25",
+      "rendered_description_sha256": "258213c858d2aea811ae33e95055333b0c1cbe7a110ce31d43bc6641312cdaa6",
+      "literal_description_mentions": [
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "An unfamiliar rescued humanoid is described as possessing abilities affecting the crew.",
+      "publisher_framing_anomaly": "UNNAMED_RESCUED_HUMANOID",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s3:tng:025",
+      "publisher_title": "The Best Of Both Worlds, Part 1",
+      "season": 3,
+      "episode": 26,
+      "publisher_card_locator": "Season 3 / The Best Of Both Worlds, Part 1 / S3 E26",
+      "rendered_description_sha256": "c1d29ed7558373478aa8f5d1605705242abff8e51c9753ab76b4548f757955bf",
+      "literal_description_mentions": [
+        "Borg",
+        "Picard"
+      ],
+      "original_short_paraphrase": "Paramount describes Borg captors taking Picard as part of a plan directed at humanity.",
+      "publisher_framing_anomaly": "EVALUATIVE_EVIL_LABEL",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

@@ -1,0 +1,680 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_prior_index_sha256": "452574d2f012c16ccf33583435ba1059b13f674dbba4ff53ea8056ac95f3afbf",
+  "accepted_s3_bundle_sha256": "cd38dbdd2095585736a25b4a3821d80ad7f3150e31914330e936b0c5e224ebf4",
+  "accepted_s3_csv_sha256": "b7d9718f20c9c74d0552483b99accb66c48d1d62fd22864febf14ae0f5a6b514",
+  "baseline_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "coverage_effect": "NONE",
+  "data_status": "HELD_TNG_S3_ALL_26_PUBLISHER_METADATA",
+  "fresh_source_body_custody": "NOT_ESTABLISHED",
+  "governed_research_admissions": 0,
+  "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+  "independent_source_families": 1,
+  "new_works": 0,
+  "previous_source_receipt_status": "HISTORICAL_UNREVALIDATED_RAW_DISCOVERY_RECEIPT",
+  "publisher_family": "paramount_corporate_publisher_family",
+  "records": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "A hazardous disruption to shipboard life support threatens the crew, according to Paramount's blurb.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 1,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "2287d2dd067b833f25f51ad0f462a32f919d86f46092cf23d88626f4a318bc2b",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "NONE",
+      "publisher_title": "Evolution",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:000",
+      "source_relative_mentions": [],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher presents Data trying to protect a human settlement from an alien threat.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 2,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "d8f7e5ee5c17c98ad21bc6e4ac2b237194650e107c2fa413c3a0160fa598e242",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "NONE",
+      "publisher_title": "The Ensigns of Command",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:001",
+      "source_relative_mentions": [
+        "Data"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "At Rana IV, the crew finds two apparent survivors among a devastated settlement, according to the listing.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 3,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "0fdd3c7f72fe6ddfc3d17d8a6c3031075f8be34f95b87b1fb5f78d7521c9d055",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "PUBLISHER_SURVIVOR_COUNT_UNVERIFIED",
+      "publisher_title": "The Survivors",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:002",
+      "source_relative_mentions": [
+        "Rana IV"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The listing says inhabitants who regard Picard as divine take Troi captive to offer her in sacrifice.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 4,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "3ee95e9eae3d1ca37de12767edf4267948b5a0f73249b1e813e49dc18dcc9be5",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "ATTRIBUTED_BELIEF_NOT_DIVINITY",
+      "publisher_title": "Who Watches the Watchers",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:003",
+      "source_relative_mentions": [
+        "Picard",
+        "Troi"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "A mission death leaves Worf feeling responsible for an archaeologist's son, per the publisher.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 5,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "613bc171838c4bcdc399fef02d263fbe43145c94edd1da484617b31354643e03",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_DECEASED_PERSON_AND_CHILD",
+      "publisher_title": "The Bonding",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:004",
+      "source_relative_mentions": [
+        "Worf",
+        "Klingon"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher describes an Enterprise trap that turns its own power into dangerous radiation.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 6,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "4628198dc3b62a4fb2850a261dd9f27494a881b87d124b51f30e62bddfd95e15",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "NONE",
+      "publisher_title": "Booby Trap",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:005",
+      "source_relative_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "Geordi is stranded as a Romulan vessel complicates rescue attempts, according to the blurb.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 7,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "7a98a0e6d4c4431059b588e46f06977571f05c4d0b6a4781c8f6150d0c12e8c9",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "NONE",
+      "publisher_title": "The Enemy",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:006",
+      "source_relative_mentions": [
+        "Geordi",
+        "Romulan"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher describes Troi becoming involved with a delegate whose business practices it calls unethical.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 8,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "b311ee62f802ed9daa10dce0ce897325bb4b9baedb9fe96420533ef3dc980391",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_DELEGATE_AND_VALUE_JUDGMENT",
+      "publisher_title": "The Price",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:007",
+      "source_relative_mentions": [
+        "Troi",
+        "U.S.S. Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "A bid to settle a clan conflict is disrupted by an unidentified killer in the publisher account.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 9,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "d85bac80edf6cd982903d7795f8c6408573e027edbf86027e37c6a511a9fc300",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_FACTIONS_AND_ASSASSIN",
+      "publisher_title": "The Vengeance Factor",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:008",
+      "source_relative_mentions": [],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "A Romulan seeking refuge sets up a confrontation with possible wider war, per the listing.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 10,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "f93daf6754514781f15dbfa98f4f50a9e60521c03ff7cd8052b6d07b20774154",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_DEFECTOR_AND_WAR_PROSPECT",
+      "publisher_title": "The Defector",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:009",
+      "source_relative_mentions": [
+        "Romulan"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher describes an attacker affected by state-imposed mind control.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 11,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "d697e6cecf9f93c3374d728274d706bfdafd88cfcb5a3b8d4ef6a8c58c57974c",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "CAUSAL_MIND_CONTROL_CLAIM",
+      "publisher_title": "The Hunted",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:010",
+      "source_relative_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "Crusher's capture by a group labeled terrorists draws the crew into conflict on Rutia Four.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 12,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "61e91391071df71c4ed97a5bb9f64c1a168ffaf77392ca7a9190d6259ad2ce14",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "POLITICAL_GROUP_LABEL",
+      "publisher_title": "The High Ground",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:011",
+      "source_relative_mentions": [
+        "Crusher",
+        "Rutia Four"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher highlights Q's unexpected reappearance before the crew.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 13,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "0f444866583b93ebcbda375864c32b3dbaaae2ecd9588f948087819431116934",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "NONE",
+      "publisher_title": "Deja Q",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:012",
+      "source_relative_mentions": [
+        "Q"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The blurb presents a murder suspicion against Riker alongside the deceased scientist's accusation.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 14,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "a88be5aa8fa2c86da1d6d0b521c7cdc91dbfe794948d0648197d372e31cfaf08",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "ACCUSATION_NOT_GUILT",
+      "publisher_title": "A Matter of Perspective",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:013",
+      "source_relative_mentions": [
+        "Riker",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher frames a rift-borne ship and Tasha Yar as changing the known course of history.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 15,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "78c6a66e0c02ff95a645c88fadabf06e8d4f3389cc2d0cd7e09e0fc5fcc2c107",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "ALTERNATE_HISTORY_IDENTITY_UNRESOLVED",
+      "publisher_title": "Yesterday's Enterprise",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:014",
+      "source_relative_mentions": [
+        "Enterprise",
+        "Tasha Yar"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The listing describes Data creating an android from his own neural programming and taking a father role.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 16,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "62b16bb257731320e00ea5df08cd57baf6f5e74b836119c382197557d36c59a3",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "PARENTAL_RELATION_NOT_LEGAL_STATUS",
+      "publisher_title": "The Offspring",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:015",
+      "source_relative_mentions": [
+        "Data"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "Worf's brother appears during a family-honor crisis, according to the publisher.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 17,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "490f667de293177990b30d96c96fde5698b8d239341219c5922eede2139ae6a4",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_BROTHER",
+      "publisher_title": "Sins of the Father",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:016",
+      "source_relative_mentions": [
+        "Enterprise",
+        "Worf"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher says Picard is secretly abducted while an impersonator takes his place.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 18,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "ac5a03711a56fb319bf1604dd61fb28bc357dc8bde14eb1d5e462377ce913beb",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "REPLACEMENT_IDENTITY_UNRESOLVED",
+      "publisher_title": "Allegiance",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:017",
+      "source_relative_mentions": [
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "Picard's holiday becomes a search for an object described as a future weapon in the listing.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 19,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "a87d280993add589d165483a8555edf56c9649d7cf0ce8262e7e98b440ee05f2",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "FUTURE_ORIGIN_CLAIM_UNVERIFIED",
+      "publisher_title": "Captain's Holiday",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:018",
+      "source_relative_mentions": [
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The crew and Romulans contest an unfamiliar life form in a distant system, according to Paramount.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 20,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "f1fef29c4d6b810f190f11af8dc2ecc59c090aa8e0d33a56ca52f66ceaa3469c",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_LIFE_FORM",
+      "publisher_title": "Tin Man",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:019",
+      "source_relative_mentions": [
+        "Romulans"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "A young engineer's holodeck fixation becomes a shipboard concern in the publisher's account.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 21,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "fde5a51de8266506044fbdb3364c2f2200294e3ca5176c8561a5d1706cee33b5",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_ENGINEER_HOLODECK_WORLD",
+      "publisher_title": "Hollow Pursuits",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:020",
+      "source_relative_mentions": [
+        "Holodeck"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The publisher says the crew leaves Data presumed dead following a shuttle explosion.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 22,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "85389accdd650dd2e924a33c87321eae89161257aca2d470ff9236b04b83d04c",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "PRESUMED_DEATH_NOT_VERIFIED_DEATH",
+      "publisher_title": "The Most Toys",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:021",
+      "source_relative_mentions": [
+        "Data"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The Enterprise experiences unexplained violence during a Vulcan ambassador's visit, per the publisher.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 23,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "9853ac0a730be0fb90ccb4ffd1b4056ae5df9c6664570d16f3b8690363ddbdad",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "TITLE_NAME_NOT_PUBLISHER_DESCRIPTION_ASSERTION",
+      "publisher_title": "Sarek",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:022",
+      "source_relative_mentions": [
+        "Enterprise",
+        "Vulcan"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "The blurb says Lwaxana interrupts a Betazed shore leave involving Riker and Troi.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 24,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "3d306cae1b9a2ffbb118156a783f7fd75cddb4b6ebc37c704b7971caa47286a8",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "TROI_DEANNA_RELATION_NOT_GLOBALLY_LINKED",
+      "publisher_title": "Ménage à Troi",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:023",
+      "source_relative_mentions": [
+        "Riker",
+        "Troi",
+        "Betazed",
+        "Deanna",
+        "Lwaxana"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "An unfamiliar rescued humanoid is described as possessing abilities affecting the crew.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 25,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "258213c858d2aea811ae33e95055333b0c1cbe7a110ce31d43bc6641312cdaa6",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "UNNAMED_RESCUED_HUMANOID",
+      "publisher_title": "Transfigurations",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:024",
+      "source_relative_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "new_work": false,
+      "original_editorial_paraphrase_held": "Paramount describes Borg captors taking Picard as part of a plan directed at humanity.",
+      "publisher_card": {
+        "current_raw_html_sha256": null,
+        "episode": 26,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/3/",
+        "prior_unrevalidated_source_body_sha256": "3b0492e8dac432bf82334a9bc27baf0a7718c1fc34d8ee4ac73a9b49ac714244",
+        "rendered_description_sha256": "c1d29ed7558373478aa8f5d1605705242abff8e51c9753ab76b4548f757955bf",
+        "season": 3
+      },
+      "publisher_framing_anomaly": "EVALUATIVE_EVIL_LABEL",
+      "publisher_title": "The Best Of Both Worlds, Part 1",
+      "source_custody": "NO_FRESH_RAW_HTML_BYTES",
+      "source_families": 1,
+      "source_local_row_id": "legacy:s3:tng:025",
+      "source_relative_mentions": [
+        "Borg",
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_local_cards_enriched": 26
+}

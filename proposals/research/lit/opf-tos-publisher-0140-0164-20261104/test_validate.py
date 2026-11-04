@@ -54,9 +54,11 @@ class TOSPublisherHeldTests(unittest.TestCase):
         self.reject(lambda r, _: r["rows"][21].update(hold="PRIVATE_EDITION_UNVERIFIED"),
                     "Mindshadow.*contradiction")
 
-    def test_rihannsu_vs_tos_classification_disagreement_retained(self):
+    def test_rihannsu_and_tos_compatible_nested_labels_retained(self):
+        self.reject(lambda r, _: r["rows"][15].update(hold="OPF_RIHANNSU_1_VS_PUBLISHER_TOS_18_TAXONOMY_UNRESOLVED"),
+                    "compatible Rihannsu")
         self.reject(lambda r, _: r["rows"][15].update(hold="PRIVATE_EDITION_UNVERIFIED"),
-                    "Rihannsu/TOS")
+                    "compatible Rihannsu")
 
     def test_source_absent_creator_does_not_become_publisher_creator(self):
         self.reject(lambda r, _: r["rows"][5].update(hold="PRIVATE_EDITION_UNVERIFIED"),

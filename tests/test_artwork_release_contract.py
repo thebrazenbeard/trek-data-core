@@ -471,6 +471,14 @@ class ArtworkReleaseContractTests(unittest.TestCase):
             art.check_css_no_pre_opt_in_network(
                 ".x{background:url('./interpretive-film/film-fake.svg')}"
             )
+        for index in range(1, 23):
+            art.check_css_no_pre_opt_in_network(
+                f".x{{background:url('./interpretive-episode/tng-s2-{index:03d}.svg')}}"
+            )
+        with self.assertRaises(art.ArtworkRejected):
+            art.check_css_no_pre_opt_in_network(
+                ".x{background:url('./interpretive-episode/unknown.svg')}"
+            )
         for css in (
             ".x{background:url('https://covers.openlibrary.org/b/id/123-S.jpg')}",
             ".x{background:url(//covers.openlibrary.org/b/id/123-S.jpg)}",

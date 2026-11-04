@@ -113,6 +113,7 @@ class PagesArtifactScopeTests(unittest.TestCase):
             self.assertIn(f"! -path explorer/art-original-{slug}.svg", text)
         self.assertIn("python3 tools/build_explorer_abstract_art.py --check", text)
         self.assertIn("python3 tools/build_interpretive_film_art.py --check", text)
+        self.assertIn("python3 tools/build_interpretive_episode_art.py --check", text)
         self.assertIn("! -path explorer/interpretive-film ", text)
         self.assertIn("! -path explorer/interpretive-film/manifest.json", text)
         for ident in (
@@ -123,8 +124,13 @@ class PagesArtifactScopeTests(unittest.TestCase):
             "film-wrath-of-khan",
         ):
             self.assertIn(f"! -path explorer/interpretive-film/{ident}.svg", text)
+        self.assertIn("! -path explorer/interpretive-episode ", text)
+        self.assertIn("! -path explorer/interpretive-episode/manifest.json", text)
+        for index in range(1, 23):
+            self.assertIn(f"! -path explorer/interpretive-episode/tng-s2-{index:03d}.svg", text)
         self.assertIn('git rev-parse "HEAD:$path"', text)
         self.assertIn("Refusing to deploy modified original film artwork", text)
+        self.assertIn("Refusing to deploy modified original episode artwork", text)
         self.assertIn("python3 tools/build_source_local_search.py --check", text)
         self.assertIn("! -path explorer/lit-publisher-edition-leads.json", text)
         self.assertIn("python3 tools/build_lit_publisher_leads.py --check", text)

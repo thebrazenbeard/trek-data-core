@@ -567,6 +567,34 @@
     ['film-voyage-home', ['Star Trek IV: The Voyage Home', 'https://www.startrek.com/movies/star-trek-iv-the-voyage-home']],
     ['film-wrath-of-khan', ['Star Trek II: The Wrath of Khan', 'https://www.startrek.com/movies/star-trek-ii-the-wrath-of-khan']]
   ]);
+  // Accepted discovery's TNG S2 publisher listing is still UNVERIFIED_METADATA.
+  // Episode images are original title interpretations, never production stills.
+  // Exact local ID/title/locator/group/context pins prevent source swap spoofing.
+  const tngSeason2Locator = 'https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/';
+  const originalEpisodeArtBindings = new Map([
+    ['legacy:s2:tng:000', ['The Child', 'tng-s2-001']],
+    ['legacy:s2:tng:001', ['Where Silence Has Lease', 'tng-s2-002']],
+    ['legacy:s2:tng:002', ['Elementary, Dear Data', 'tng-s2-003']],
+    ['legacy:s2:tng:003', ['The Outrageous Okona', 'tng-s2-004']],
+    ['legacy:s2:tng:004', ['Loud as a Whisper', 'tng-s2-005']],
+    ['legacy:s2:tng:005', ['The Schizoid Man', 'tng-s2-006']],
+    ['legacy:s2:tng:006', ['Unnatural Selection', 'tng-s2-007']],
+    ['legacy:s2:tng:007', ['A Matter of Honor', 'tng-s2-008']],
+    ['legacy:s2:tng:008', ['The Measure of a Man', 'tng-s2-009']],
+    ['legacy:s2:tng:009', ['The Dauphin', 'tng-s2-010']],
+    ['legacy:s2:tng:010', ['Contagion', 'tng-s2-011']],
+    ['legacy:s2:tng:011', ['The Royale', 'tng-s2-012']],
+    ['legacy:s2:tng:012', ['Time Squared', 'tng-s2-013']],
+    ['legacy:s2:tng:013', ['The Icarus Factor', 'tng-s2-014']],
+    ['legacy:s2:tng:014', ['Pen Pals', 'tng-s2-015']],
+    ['legacy:s2:tng:015', ['Q-Who?', 'tng-s2-016']],
+    ['legacy:s2:tng:016', ['Samaritan Snare', 'tng-s2-017']],
+    ['legacy:s2:tng:017', ['Up the Long Ladder', 'tng-s2-018']],
+    ['legacy:s2:tng:018', ['Manhunt', 'tng-s2-019']],
+    ['legacy:s2:tng:019', ['The Emissary', 'tng-s2-020']],
+    ['legacy:s2:tng:020', ['Peak Performance', 'tng-s2-021']],
+    ['legacy:s2:tng:021', ['Shades of Gray', 'tng-s2-022']]
+  ]);
 
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
@@ -633,6 +661,22 @@
       frame.setAttribute('aria-label', `Original geometric interpretation for ${titleText}; sourced from a publisher metadata listing, not an official film poster or still`);
       missing.textContent = 'Artwork not sourced · original film interpretation';
       status.textContent = 'Original interpretive film art · metadata only';
+    }
+    const episodeArtPin = medium === 'EPISODE' && typeof row?.row_id === 'string'
+      ? originalEpisodeArtBindings.get(row.row_id) : null;
+    const originalEpisodeId = episodeArtPin && row.title === episodeArtPin[0] &&
+      row.source_locator === tngSeason2Locator &&
+      row.source_group === 'publisher:paramount' &&
+      row.context === `TNG S2E${Number(episodeArtPin[1].slice(-3))}` &&
+      row.verification_status === 'UNVERIFIED_METADATA' ? episodeArtPin[1] : null;
+    if (episodeArtPin && !originalEpisodeId) {
+      status.textContent = 'Source binding unverified · original LCARS index graphic';
+    }
+    if (originalEpisodeId) {
+      frame.className += ' artwork-interpretive-episode';
+      frame.setAttribute('data-original-episode-art', originalEpisodeId);
+      frame.setAttribute('aria-label', `Original title-inspired geometric art for ${titleText}; source-local publisher metadata only, not an official episode still`);
+      status.textContent = 'Original interpretive episode art · not a still';
     }
     const beacon = el('span', 'artwork-record-beacon');
     beacon.setAttribute('aria-hidden', 'true');

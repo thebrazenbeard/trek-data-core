@@ -1886,6 +1886,54 @@ test('original film art fails closed when legitimate publisher metadata is swapp
   assert.equal(locatorArt.length, 12, 'publisher-locator mismatch alone must also hide both source-keyed illustrations');
 });
 
+test('twenty-two TNG S2 source-local episode cards show their original title-inspired SVGs with strict source pins', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  nodes.get('discovery-query').value = 'TNG S2E';
+  nodes.get('discovery-filters').fire('input');
+  const frames = traverse(nodes.get('discovery-list'), (node) => Boolean(node.getAttribute('data-original-episode-art')));
+  assert.equal(frames.length, 22, 'all 22 source-local season-two observations are present after search');
+  assert.equal(new Set(frames.map((node) => node.getAttribute('data-original-episode-art'))).size, 22);
+  const manifest = JSON.parse(readFileSync(new URL('../explorer/interpretive-episode/manifest.json', import.meta.url), 'utf8'));
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  for (const entry of manifest.art) {
+    const frame = frames.find((node) => node.getAttribute('data-source-local-key') ===
+      `directory:${entry.source_local_row_id}`);
+    assert.ok(frame, `episode ${entry.source_local_row_id} must bind its exact local row`);
+    const id = frame.getAttribute('data-original-episode-art');
+    assert.equal(entry.art_path, `interpretive-episode/${id}.svg`);
+    assert.equal(frame.getAttribute('style'), null, 'strict CSP disallows inline art');
+    assert.ok(css.includes(`.artwork-slot[data-original-episode-art="${id}"] { background-image: url('./interpretive-episode/${id}.svg'); }`));
+    assert.match(frame.getAttribute('aria-label'), /Original title-inspired geometric art.*not an official episode still/);
+    assert.match(frame.parentNode.textContent, /Original interpretive episode art.*not a still/);
+    assert.equal(traverse(frame.parentNode, (node) => node.className === 'artwork-record-source').length, 1);
+  }
+  assert.equal(traverse(nodes.get('discovery-list'), (node) => node.tagName === 'img').length, 0,
+    'original CSS artwork does not load third-party or opt-in production images');
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'artwork never promotes source leads to Briefings');
+});
+
+test('episode-art source binding rejects title, locator, context or publisher swaps without displaying wrong art', async () => {
+  const original = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const index = original.rows.findIndex((row) => row.row_id === 'legacy:s2:tng:000');
+  assert.ok(index >= 0);
+  for (const [field, replacement] of [
+    ['title', 'Where Silence Has Lease'],
+    ['source_locator', 'https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/1/'],
+    ['source_group', 'publisher:startrek.com'],
+    ['context', 'TNG S2E2'],
+  ]) {
+    const altered = structuredClone(original);
+    altered.rows[index][field] = replacement;
+    const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, altered, 200);
+    nodes.get('discovery-query').value = 'TNG S2E';
+    nodes.get('discovery-filters').fire('input');
+    const frames = traverse(nodes.get('discovery-list'), (node) => Boolean(node.getAttribute('data-original-episode-art')));
+    assert.ok(!frames.some((node) => node.getAttribute('data-original-episode-art') === 'tng-s2-001'),
+      `unverified ${field} must not receive an authoritative-looking source-specific image`);
+  }
+});
+
 test('separate official film discovery remains unadmitted and strictly source-scoped', async () => {
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200);
   assert.equal(nodes.get('film-top-count').textContent, '2');

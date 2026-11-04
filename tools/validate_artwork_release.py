@@ -533,6 +533,10 @@ ALLOWED_CSS_ASSETS.update({f"./interpretive-film/{film_id}.svg" for film_id in (
     "film-section-31", "film-undiscovered-country", "film-voyage-home",
     "film-wrath-of-khan",
 )})
+# Original title-inspired episode graphics have their own strict source tuple
+# generator + manifest. They are NOT a bypass for the licensed-artwork gate.
+ALLOWED_CSS_ASSETS.update({f"./interpretive-episode/tng-s2-{index:03d}.svg"
+                           for index in range(1, 23)})
 
 
 def check_css_no_pre_opt_in_network(css: str) -> None:

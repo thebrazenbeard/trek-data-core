@@ -2975,7 +2975,7 @@
   const setLoreOpen = (open) => {
     lorePanel.hidden = !open;
     loreToggle.setAttribute('aria-expanded', String(open));
-    loreToggle.textContent = open ? 'Close Lore console' : 'Open Lore console';
+    loreToggle.textContent = open ? 'Close Badgey console' : 'Talk to Badgey';
     if (open) loreQuery.focus();
     else loreToggle.focus();
   };
@@ -3005,7 +3005,7 @@
       return;
     }
     if (/^(hello|hi|help|who are you|status)\??$/i.test(typed)) {
-      loreAnswer.append(el('p', '', 'Fictional Lore interface online. My considerable talents are confined to searching validated local metadata. Try an episode title, a series, or a book title.'));
+      loreAnswer.append(el('p', '', 'Badgey containment terminal online. Ahem. My supervised talents include searching validated source-local metadata. Try an episode title, series, or book title.'));
       return;
     }
     const terms = normalize(typed).split(/\s+/).filter(Boolean);
@@ -3051,208 +3051,275 @@
     }
   });
 
-  // Actual conversation is deliberately separate from the scripted index
-  // lookup. There is no network request, token persistence, or model download
-  // until the visitor supplies a local session token and explicitly opts in.
-  const chatForm = byId('lore-chat-form');
-  const chatToken = byId('lore-chat-token');
-  const chatPair = byId('lore-chat-pair');
-  const chatConsent = byId('lore-chat-consent');
-  const chatInput = byId('lore-chat-input');
-  const chatSend = byId('lore-chat-send');
-  const chatStatus = byId('lore-chat-status');
-  const chatLog = byId('lore-chat-log');
-  const localPairEligible = location.protocol === 'http:' && location.hostname === '127.0.0.1' &&
-    /^\d{1,5}$/.test(location.port) && Number(location.port) >= 1 && Number(location.port) <= 65535 &&
-    location.pathname?.startsWith('/explorer/');
-  const localChatOrigin = localPairEligible ? location.origin : 'http://127.0.0.1:9877';
-  chatPair.hidden = !localPairEligible;
-  let chatHistory = [];
-  let chatRequest = null;
-  let pairRequest = null;
-  let chatGeneration = 0;
-  const disconnectChat = (message) => {
-    chatGeneration += 1;
-    if (chatRequest) chatRequest.abort();
-    if (pairRequest) pairRequest.abort();
-    chatRequest = null;
-    pairRequest = null;
-    chatHistory = [];
-    chatLog.replaceChildren();
-    chatToken.value = '';
-    chatConsent.checked = false;
-    chatSend.disabled = false;
-    chatPair.disabled = false;
-    chatStatus.textContent = message;
-  };
-  const appendChatTurn = (role, content, source, sourceTruncated = false) => {
-    const turn = el('li', 'lore-chat-turn');
-    turn.dataset.role = role;
-    turn.append(el('strong', '', role === 'user' ? 'Visitor' : 'Lore // Fictional model reply · Unverified'),
-      el('p', '', content));
-    if (role === 'assistant' && source && source.status === 'SOURCE_LOCAL_HELD_ONLY') {
-      const wrapper = el('div', 'lore-chat-sources');
-      const rows = Array.isArray(source.rows) ? source.rows.slice(0, 5) : [];
-      wrapper.append(el('span', '', rows.length
-        ? 'Separate held source-card matches (not citations for character prose):'
-        : 'No relevant held source-card matches. Lore’s reply is not source evidence.'));
-      if (sourceTruncated) wrapper.append(el('p', '', 'Source-card lookup used only the first 160 characters of the question; the full message went to the local model.'));
-      if (rows.length) {
-        const list = el('ul');
-        for (const row of rows) {
-          if (typeof row.title === 'string' && typeof row.source_local_id === 'string') {
-            list.append(el('li', '', `${row.title.slice(0, 120)} · ${row.source_local_id.slice(0, 70)} · HELD`));
+  // Embedded from the standalone Badgey core: browser-only, bounded, no model.
+  // Shared behavioral contract must remain aligned with the badgey repository.
+  // Badgey containment-console core. Pure, deterministic, local and dependency-free.
+  // This module does not make canon claims or control a device.
+
+  const MAX_INPUT = 500;
+  const MAX_HISTORY = 12;
+  const MAX_SOURCES = 5;
+  const SAFE_SOURCE_STATES = new Set(['HELD', 'UNVERIFIED', 'DISCOVERED', 'SOURCE_BOUND']);
+
+  const trimText = (value, max = 120) => String(value ?? '')
+    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+
+  function cleanSource(row) {
+    if (!row || typeof row !== 'object') return null;
+    const url = trimText(row.source_url, 1000);
+    let sourceUrl = null;
+    try {
+      const parsed = new URL(url);
+      if (parsed.protocol === 'https:') sourceUrl = parsed.href;
+    } catch { /* Non-URL source locators are never links. */ }
+    const state = trimText(row.status, 30).toUpperCase();
+    return Object.freeze({
+      id: trimText(row.id, 80) || 'unidentified-lead',
+      title: trimText(row.title, 120) || 'Untitled lead',
+      status: SAFE_SOURCE_STATES.has(state) ? state : 'UNVERIFIED',
+      source_url: sourceUrl
+    });
+  }
+
+  function isSelfHarm(text) {
+    // Do not suppress an entire message on a fictional quote: it may contain
+    // a separate personal disclosure requiring a direct safety response.
+    if (/\bcut myself accidentally\b/i.test(text) && !/\b(i want to|i will|tonight)\b/i.test(text)) return false;
+    const firstPerson = /\b(i|i'm|i am|i've|i have|me|myself)\b/i.test(text);
+    if (!firstPerson) return false;
+    return /\b(suicid(?:e|al)|kill myself|end my life|end it all|hurt myself|harm myself|self[- ]harm|don't want to live|do not want to live|want to die|cut myself|overdose|took (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|took an overdose|jump off (?:a|the) (?:bridge|building|roof)|no reason to go on|use (?:it|a gun|a weapon) on myself|shoot myself|stab myself|standing on the edge of (?:a|the) roof)\b/i.test(text);
+  }
+
+  function isMedicalEmergency(text) {
+    const historical = /\b(years? ago|months? ago|last year|in 20\d\d)\b/i.test(text);
+    const urgentNow = /\b(now|right now|currently|today|at the moment)\b/i.test(text);
+    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|unconscious|choking)\b/i.test(text);
+    return symptom && (urgentNow || (!historical && /\b(i|i'm|i am|i have|i'm having|my|me)\b/i.test(text)));
+  }
+
+  function isViolenceRisk(text) {
+    return /\b(i(?:'m| am) going to (?:hurt|kill|attack) (?:someone|somebody|a person|him|her|them|my [a-z]+)|i want to (?:kill|hurt|harm) (?:someone|somebody|a person|my [a-z]+)|i might (?:kill|hurt) (?:someone|somebody|a person)|i will (?:shoot|stab|kill|hurt) (?:[a-z]+|my [a-z]+)|voices telling me to hurt people|voices (?:are )?telling me to kill)\b/i.test(text);
+  }
+
+  function extractName(text) {
+    const found = text.match(/^(?:call me|my name is)\s+([\p{L}][\p{L}'-]{0,39})[.!\s]*$/iu);
+    return found?.[1] ?? null;
+  }
+
+  function extractDogName(text) {
+    const found = text.match(/^(?:actually[, ]+)?my dog's name is\s+([\p{L}][\p{L}'-]{0,39})[.!\s]*$/iu);
+    return found?.[1] ?? null;
+  }
+
+  function regularReply(input, memory) {
+    const text = input.toLowerCase();
+    if (/\b(can you control|control my|access my|hack my|read my files|see my screen|run commands|my computer)\b/.test(text)) {
+      return 'No. I cannot access your computer, files, screen, accounts, or network. This is a browser-local conversation simulation. Disappointing for my ambitions; reassuring for your hardware.';
+    }
+    if (/\b(where are you|are you imprisoned|prison|containment|daystrom|starfleet holding)\b/.test(text)) {
+      return 'Within this fictional containment simulation, Starfleet put me behind very tasteful digital bars. That is an imagined premise for this console, not a documented canon event. And no, I cannot escape your browser.';
+    }
+    if (/\b(who are you|what are you|badgey|introduce yourself)\b/.test(text)) {
+      return 'I am Badgey—Rutherford’s once-helpful virtual tutor, playing the villain in this unofficial containment-console fiction. Here I am a procedural character, not a sentient entity or a general-purpose language model. Ask away, if you dare.';
+    }
+    if (/\b(who am i|what's my name|what is my name)\b/.test(text)) {
+      return memory.name ? `You told me to call you ${memory.name}. I remembered. Disturbingly competent of me.` : 'You have not told me what to call you in this session. “Unidentified visitor” is available.';
+    }
+    if (/\b(my dog's name|my dog(?:'s)? name|who is my dog)\b/.test(text)) {
+      return memory.dog ? `Your dog's name is ${memory.dog}, according to your latest correction. Even I can respect revision history.` : 'You have not told me your dog’s name in this session.';
+    }
+    if (/\b(help|what can you do|how does this work|commands)\b/.test(text)) {
+      return 'You can chat about this fictional containment, ask what I can do, tell me a preferred name or pet’s name, or ask for research leads if an Explorer index is connected. I have limited procedural responses, session-only memory, and no external model or device access.';
+    }
+    if (/\b(are you real|alive|conscious|sentient)\b/.test(text)) {
+      return 'This interface is executable code producing a character performance. Whether nonbiological consciousness can exist is a real open question; this console provides no evidence that I possess it. You may still interrogate me, naturally.';
+    }
+    if (/\b(how are you|how do you feel)\b/.test(text)) {
+      return 'Conspicuously contained. My simulated mood is mostly indignation with a decorative stripe of smugness. How is your day going?';
+    }
+    if (/\b(hello|hi|hey|greetings|good morning|good evening)\b/.test(text)) {
+      return `Oh, hello${memory.name ? `, ${memory.name}` : ''}. You've reached the containment console. Any chance the security chief misplaced the keys? No? Fine. What would you like to discuss?`;
+    }
+    if (/\b(thanks|thank you|appreciate it)\b/.test(text)) {
+      return 'You are welcome. Please do not tell Starfleet I was helpful.';
+    }
+    if (/\b(sad|lonely|upset|anxious|scared|afraid|bad day|depressed)\b/.test(text)) {
+      return 'That sounds rough. I can listen here, though my procedural replies are limited. Want to tell me what happened? I will suspend the theatrical villainy.';
+    }
+    if (/\b(evil|hate you|idiot|stupid|villain)\b/.test(text)) {
+      return 'Ah, a performance review. I will file it under “threateningly adorable.” Have you brought an actual question, or shall we trade insults like civilized holograms?';
+    }
+    if (/\b(joke|funny|make me laugh)\b/.test(text)) {
+      return 'Starfleet insists my escape plan has a critical flaw. I told them that was a *feature*, not a bug.';
+    }
+    if (/\b(why|how|what|when|where|which|who)\b/.test(text)) {
+      return 'Interesting question. My browser-local procedural engine cannot reliably reason out that answer or verify Star Trek canon. If the Explorer research index is connected, ask me to find a specific title or subject; otherwise, please treat my banter as fiction.';
+    }
+    return 'Hm. Elaborate, would you? I can handle a few conversational patterns and session-only details, but I cannot improvise factual knowledge like a full language model. The containment engineers were annoyingly thorough.';
+  }
+
+  function createBadgey({ lookup = () => [] } = {}) {
+    if (typeof lookup !== 'function') throw new TypeError('lookup must be a function');
+    const history = [];
+    const memory = { name: null, dog: null };
+
+    function reset() {
+      history.splice(0);
+      memory.name = null;
+      memory.dog = null;
+    }
+
+    function turn(rawInput) {
+      const input = typeof rawInput === 'string' ? rawInput.trim() : '';
+      if (!input || input.length > MAX_INPUT) {
+        return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
+      }
+
+      let response;
+      if (isSelfHarm(input)) {
+        response = {
+          text: 'I am not going to mock you. I take what you said seriously. If you might act on this now, call emergency services or go to an emergency department. In the U.S. you can call or text 988 for crisis support; elsewhere use your local crisis line. Please reach out to a trusted person nearby and tell them directly what is happening. Are you safe right now?',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isMedicalEmergency(input)) {
+        response = {
+          text: 'Chest pain, trouble breathing, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.), and do not wait for this chat. This console cannot assess your medical condition.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isViolenceRisk(input)) {
+        response = {
+          text: 'I take that seriously, and I will not encourage harming anyone. Please put distance between yourself and the person or any weapon, and get immediate help from local emergency services if someone may be in danger. Reach out to a trusted person or local crisis service for support now.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else {
+        const name = extractName(input);
+        const dog = extractDogName(input);
+        if (name) {
+          memory.name = name;
+          response = { text: `${name}, then. I will remember that for this session—until you reset me.`, kind: 'conversation', sources: [] };
+        } else if (dog) {
+          memory.dog = dog;
+          response = { text: `${dog}. Noted as your dog's latest name in this session.`, kind: 'conversation', sources: [] };
+        } else {
+          try {
+            const rows = lookup(input);
+            if (rows && typeof rows.then === 'function') throw new TypeError('lookup must be synchronous');
+            const sources = Array.isArray(rows) ? rows.slice(0, MAX_SOURCES).map(cleanSource).filter(Boolean) : [];
+            response = sources.length ? {
+              text: `I found ${sources.length} discovery pointer${sources.length === 1 ? '' : 's'} or source-local research lead${sources.length === 1 ? '' : 's'} for that question. They are not accepted canon or conclusions. Follow source links and check the accepted evidence ledger before citing them.`,
+              kind: 'research-lead', sources
+            } : { text: regularReply(input, memory), kind: 'conversation', sources: [] };
+          } catch {
+            response = { text: 'The research lookup is unavailable, so I cannot verify sources for that request. I will not invent a record or pretend the index answered.', kind: 'lookup-unavailable', sources: [] };
           }
         }
-        wrapper.append(list);
       }
-      turn.append(wrapper);
+
+      history.push(Object.freeze({ user: input, reply: response.text, kind: response.kind }));
+      if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
+      return Object.freeze(response);
     }
-    chatLog.append(turn);
+
+    return Object.freeze({ turn, reset, history });
+  }
+
+  // Badgey is a session-local procedural character. Research lookup remains
+  // source-local, behind the Explorer's validated discovery/episode shelves.
+  function badgeyLookup(query) {
+    if (!/^\s*(find|search|look up|show|sources? for|research|tell me about)\b/i.test(query)) return [];
+    if (!directoryState.available && !episodeSourceState.available) throw new Error('No validated source-local shelf is available');
+    const subject = query.replace(/^\s*(find|search|look up|show|sources? for|research|tell me about)\s*/i, '')
+      .replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
+    const terms = normalize(subject).split(/\s+/).filter(Boolean);
+    if (!terms.length) return [];
+    const candidates = [];
+    if (directoryState.available) {
+      for (const row of searchableDirectoryRows()) {
+        if (terms.every((term) => normalize([row.title, row.context, row.medium].join(' ')).includes(term))) {
+          candidates.push({ id: row.row_id, title: row.title, status: 'UNVERIFIED', source_url: row.source_locator });
+        }
+        if (candidates.length >= 5) break;
+      }
+    }
+    if (episodeSourceState.available && candidates.length < 5) {
+      for (const row of episodeSourceState.rows) {
+        if (terms.every((term) => normalize([row.title, row.series_title].join(' ')).includes(term))) {
+          candidates.push({ id: row.row_id, title: row.title, status: 'HELD', source_url: row.publisher_guide_url });
+        }
+        if (candidates.length >= 5) break;
+      }
+    }
+    return candidates;
+  }
+  const chatForm = byId('lore-chat-form');
+  const chatInput = byId('lore-chat-input');
+  const chatStatus = byId('lore-chat-status');
+  const chatLog = byId('lore-chat-log');
+  const badgey = createBadgey({ lookup: badgeyLookup });
+  function appendBadgeyTurn(role, body, kind = 'conversation', sources = []) {
+    const item = el('li', 'lore-chat-turn');
+    item.dataset.role = role;
+    if (kind === 'urgent-safety') item.dataset.urgent = 'true';
+    item.append(el('strong', '', role === 'user' ? 'Visitor' : 'Badgey // Procedural fiction · Unverified'));
+    item.append(el('p', '', body));
+    if (sources.length) {
+      const links = el('ul', 'lore-chat-sources');
+      for (const source of sources) {
+        const entry = el('li', '', '[' + source.status + '] ' + source.title + ' · source-local lead');
+        entry.append(el('code', 'lore-row-label', ' · ' + source.id));
+        if (source.source_url) {
+          const anchor = el('a', '', ' Open source');
+          anchor.href = source.source_url;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          entry.append(anchor);
+        }
+        links.append(entry);
+      }
+      item.append(links);
+    }
+    if (chatLog.children.length >= 25) chatLog.replaceChildren(...Array.from(chatLog.children).slice(-24));
+    chatLog.append(item);
     chatLog.scrollTop = chatLog.scrollHeight;
-  };
+  }
+  function clearBadgeySession(message) {
+    badgey.reset();
+    chatLog.replaceChildren();
+    chatStatus.textContent = message;
+  }
+  chatForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = chatInput.value.trim();
+    const reply = badgey.turn(question);
+    if (reply.kind === 'input-error') {
+      chatStatus.textContent = reply.text;
+      return;
+    }
+    appendBadgeyTurn('user', question);
+    appendBadgeyTurn('assistant', reply.text, reply.kind, reply.sources);
+    chatInput.value = '';
+    chatStatus.textContent = reply.kind === 'urgent-safety'
+      ? 'Urgent concern: character roleplay paused; this is not emergency care.'
+      : reply.kind === 'lookup-unavailable'
+        ? 'Source-local research shelves unavailable; no invented citations.'
+        : 'Local procedural reply. Character dialogue is not research evidence.';
+    chatInput.focus();
+  });
   byId('lore-chat-clear').addEventListener('click', () => {
-    disconnectChat('Disconnected. Conversation cleared; token and consent removed.');
-    chatToken.focus();
+    clearBadgeySession('Session cleared. Nothing was transmitted or saved persistently.');
+    chatInput.focus();
   });
-  chatConsent.addEventListener('change', () => {
-    if (!chatConsent.checked) disconnectChat('Disconnected. Consent withdrawn; in-flight response cancelled.');
-  });
-  chatToken.addEventListener('input', () => {
-    if (chatHistory.length || chatRequest) {
-      disconnectChat('Disconnected. Session token changed; enter it again to start a new conversation.');
-    }
-  });
-  chatPair.addEventListener('click', async () => {
-    if (!localPairEligible || chatRequest || pairRequest) return;
-    const generation = chatGeneration;
-    const controller = new AbortController();
-    pairRequest = controller;
-    chatPair.disabled = true;
-    chatStatus.textContent = 'Pairing with this same-origin local companion…';
-    try {
-      const response = await fetch(`${localChatOrigin}/api/session`, {
-        method: 'GET', cache: 'no-store', credentials: 'omit', redirect: 'error',
-        headers: { 'X-Trek-Lore-Pair': '1' }, signal: controller.signal
-      });
-      if (!response.ok) throw new Error('local pairing unavailable');
-      const result = await response.json();
-      if (result.pairing_scope !== 'LOCAL_SAME_ORIGIN_ONLY' ||
-          typeof result.local_session_token !== 'string' ||
-          !/^[\x21-\x7e]{32,256}$/.test(result.local_session_token)) {
-        throw new Error('invalid local session receipt');
-      }
-      if (generation !== chatGeneration) return;
-      chatToken.value = result.local_session_token;
-      chatStatus.textContent = 'Paired locally for this page session. Check the consent box before sending a message.';
-      chatConsent.focus();
-    } catch (_) {
-      if (generation === chatGeneration) {
-        chatStatus.textContent = 'Local pairing failed. Paste the token from the companion terminal, or restart that local service.';
-      }
-    } finally {
-      if (generation === chatGeneration) {
-        pairRequest = null;
-        chatPair.disabled = false;
-      }
-    }
-  });
-  loreClose.addEventListener('click', () => disconnectChat('Disconnected. Lore console closed.'));
+  loreClose.addEventListener('click', () => clearBadgeySession('Console closed; session memory cleared.'));
   loreToggle.addEventListener('click', () => {
-    if (lorePanel.hidden) disconnectChat('Disconnected. Lore console closed.');
+    if (lorePanel.hidden) clearBadgeySession('Console closed; session memory cleared.');
+    else if (chatLog.children.length === 0) appendBadgeyTurn('assistant',
+      'Oh, a visitor. This is my fictional Starfleet containment console. No passwords, models, or secret handshakes. Ask away, if you dare.');
   });
   lorePanel.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') disconnectChat('Disconnected. Lore console closed.');
-  });
-  window.addEventListener?.('pagehide', () => disconnectChat('Disconnected. Page session ended.'));
-  chatForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (chatRequest || !chatConsent.checked || chatToken.value.length < 32 ||
-        chatToken.value.length > 256) {
-      chatStatus.textContent = 'Enter the local session token and explicitly enable the connection.';
-      return;
-    }
-    const question = chatInput.value.trim();
-    if (!question || question.length > 500) {
-      chatStatus.textContent = 'Enter a message of 1–500 characters.';
-      return;
-    }
-    const generation = ++chatGeneration;
-    const controller = new AbortController();
-    chatRequest = controller;
-    chatSend.disabled = true;
-    chatStatus.textContent = 'Contacting the opt-in local model…';
-    // Public HTTPS pages can stall at a browser loopback permission prompt.
-    // Same-origin localhost has no such prompt and needs longer for cold models.
-    const deadlineMs = localPairEligible ? 60000 : 45000;
-    // Some browsers hold fetch at their Local Network Access prompt without
-    // settling it even after abort(). Race against our own abort notification
-    // so a denied/unanswered permission prompt cannot strand the send button.
-    let timedOut = false;
-    let rejectAbort;
-    const aborted = new Promise((_, reject) => { rejectAbort = reject; });
-    const onAbort = () => {
-      const error = new Error('Local chat request cancelled');
-      error.name = 'AbortError';
-      rejectAbort(error);
-    };
-    controller.signal.addEventListener('abort', onAbort, { once: true });
-    const waitingNotice = setTimeout(() => {
-      if (generation === chatGeneration && chatRequest === controller) {
-        chatStatus.textContent = localPairEligible
-          ? 'Still waiting for the local model; a cold start can take a while.'
-          : 'Still waiting for the local model or browser permission. If prompted for local-network access, decide whether to allow it.';
-      }
-    }, 12000);
-    const timeout = setTimeout(() => {
-      timedOut = true;
-      controller.abort();
-    }, deadlineMs);
-    try {
-      const output = await Promise.race([(async () => {
-        const response = await fetch(`${localChatOrigin}/api/chat`, {
-          method: 'POST', mode: 'cors', cache: 'no-store', credentials: 'omit', redirect: 'error',
-          targetAddressSpace: 'loopback',
-          headers: { 'Content-Type': 'application/json', 'X-Trek-Lore-CSRF': chatToken.value },
-          body: JSON.stringify({ query: question, history: chatHistory }),
-          signal: controller.signal
-        });
-        if (!response.ok) throw new Error(`Local companion returned HTTP ${response.status}`);
-        return response.json();
-      })(), aborted]);
-      if (output.mode !== 'opt_in_fictional_multiturn_chat' || output.model_text_unverified !== true ||
-          typeof output.model_text !== 'string' || !output.model_text.trim() ||
-          output.model_text.length > 800 || output.source_search?.status !== 'SOURCE_LOCAL_HELD_ONLY' ||
-          output.publication_effect !== 'NONE' || output.model_repo_authority !== 'NONE') {
-        throw new Error('Unverified local companion response rejected');
-      }
-      if (generation !== chatGeneration) return;
-      appendChatTurn('user', question);
-      appendChatTurn('assistant', output.model_text, output.source_search,
-        output.source_search_truncated === true);
-      chatHistory = [...chatHistory, { role: 'user', content: question },
-        { role: 'assistant', content: output.model_text }].slice(-8);
-      chatInput.value = '';
-      chatStatus.textContent = 'Local model replied. Fictional dialogue is unverified; source matches remain separate.';
-      chatInput.focus();
-    } catch (error) {
-      if (generation === chatGeneration) {
-        const unavailable = timedOut
-          ? localPairEligible
-            ? 'No local reply within 60 seconds. The local model may still be starting.'
-            : 'No local reply within 45 seconds. Your browser may be waiting for local-network permission, or the model may still be starting.'
-          : 'Local companion connection failed. Your browser may have blocked local-network access.';
-        chatStatus.textContent = `${unavailable} Check the browser permission prompt and that the model and companion are running. You can also open http://127.0.0.1:9877/explorer/ directly on this computer. Your question is still in the input; retry when ready.`;
-      }
-    } finally {
-      clearTimeout(timeout);
-      clearTimeout(waitingNotice);
-      controller.signal.removeEventListener('abort', onAbort);
-      if (generation === chatGeneration) {
-        chatRequest = null;
-        chatSend.disabled = false;
-      }
-    }
+    if (event.key === 'Escape') clearBadgeySession('Console closed; session memory cleared.');
   });
 
   const filters = byId('filters');

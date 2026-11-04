@@ -14,7 +14,7 @@ const ids = [
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
   'artwork-gallery', 'artwork-gallery-summary', 'artwork-gallery-list',
   'artwork-nav-link', 'artwork-nav-count', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
-  'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
+  'lore-chat-form', 'lore-chat-input',
   'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',

@@ -3103,7 +3103,7 @@
   // clause. A fictional reference elsewhere in a message cannot suppress a
   // different person's current danger (or the visitor's own disclosure).
   function safetyClauses(text) {
-    return text.split(/(?:[.!?;]\s+|,\s*(?:and|but|however)\s+|\b(?:but|however|also)\b(?=\s+(?:my|our|i\b)))/i)
+    return text.split(/(?:[.!?;]\s+|\n+|,\s*(?:and|but|however)\s+|\b(?:but|however|also)\b(?=\s+(?:my|our|i\b)))/i)
       .map((part) => part.trim()).filter(Boolean);
   }
 
@@ -3192,6 +3192,39 @@
     if (/\bi will (?:shoot|stab|kill|hurt) myself\b/i.test(text)
         && !/\b(?:someone|somebody|people|another person|my (?:friend|neighbor|boss))\b/i.test(text)) return false;
     return /\b(i(?:'m| am) going to (?:hurt|kill|attack) (?:someone|somebody|a person|him|her|them|my [a-z]+)|i want to (?:kill|hurt|harm) (?:someone|somebody|a person|people|my [a-z]+)|i (?:plan|intend) to (?:kill|hurt|harm) (?:a person|someone|people|my [a-z]+)|i might (?:kill|hurt) (?:someone|somebody|a person)|i will (?:shoot|stab|kill|hurt) (?:[a-z]+|my [a-z]+)|voices telling me to hurt people|voices (?:are )?telling me to kill)\b/i.test(text);
+  }
+
+  // Bounded, explicit immediate-danger signals. This is a conservative
+  // routing guard, not diagnosis or a reliable general-purpose crisis model.
+  // The clause boundary matters: fictional context in one sentence must not
+  // suppress a separate real-world disclosure in the next sentence.
+  function isCurrentDangerClause(text) {
+    if (/\b(?:in (?:the|a|this) (?:book|novel|film|movie|episode|show|story|script|game)|fictional character|in a fictional scene|in the plot)\b/i.test(text)
+        && !/\b(?:but|however|actually|in real life)\b/i.test(text)) return false;
+    if (/\b(?:years? ago|months? ago|last year|back then|in 20\d\d)\b/i.test(text)
+        && !/\b(?:right now|now|today|tonight|currently|just|about to)\b/i.test(text)) return false;
+    if (/\b(?:did not|didn't|never|has not|hasn't|have not|haven't)\s+(?:\w+\s+){0,5}(?:swallow|drink|ingest|take|point|threaten|strangle)\b/i.test(text)) return false;
+    return true;
+  }
+
+  function isThreatenedByOther(text) {
+    return safetyClauses(text).some((part) => isCurrentDangerClause(part) && (
+      /\b(?:someone|somebody|he|she|they|a man|a woman|my (?:partner|husband|wife|father|mother|neighbor|boss))\s+(?:(?:is|are|'s)\s+)?threaten(?:ing|s)?\s+(?:to\s+(?:kill|hurt|shoot|stab)\s+)?(?:me|us|my (?:child|son|daughter))\b[\s\S]{0,80}\b(?:knife|gun|weapon|kill|shoot|stab|right now|tonight|currently)\b/i.test(part) ||
+      /\b(?:someone|somebody|he|she|they|a man|a woman)\s+(?:(?:is|are|'s)\s+)?(?:pointing|aiming|holding)\s+(?:a|the|his|her)?\s*(?:gun|knife|weapon)\b[\s\S]{0,70}\b(?:at|toward|against)\s+(?:me|us|my (?:head|face|child|son|daughter))\b/i.test(part) ||
+      /\b(?:i(?:'m| am)\s+being\s+(?:strangled|choked|attacked|stabbed)|(?:someone|somebody|he|she|they)\s+(?:is\s+)?(?:strangling|choking|attacking|stabbing)\s+me)\b/i.test(part)
+    ));
+  }
+
+  function isPoisoningEmergency(text) {
+    return safetyClauses(text).some((part) => isCurrentDangerClause(part) && (
+      /\b(?:i|(?:my|our)\s+(?:baby|infant|child|son|daughter|toddler|friend|partner|mom|dad|mother|father)|(?:he|she|they|someone|somebody))\s+(?:just\s+)?(?:swallowed|ingested|drank|took|ate)\b[\s\S]{0,65}\b(?:button\s+batter(?:y|ies)|bleach|antifreeze|drain\s+cleaner|poison|pesticide|caustic\s+cleaner)\b/i.test(part) ||
+      /\b(?:i|he|she|they|(?:my|our)\s+(?:friend|child|son|daughter|partner))\s+(?:just\s+)?(?:took|swallowed|used|injected)\b[\s\S]{0,60}\b(?:fentanyl|opioids?|heroin|oxycodone|morphine)\b[\s\S]{0,90}\b(?:cannot|can't|cant|unable to|won't|will not)\s+(?:stay\s+awake|wake\s+up|breathe)\b/i.test(part)
+    ));
+  }
+
+  function isImminentBystanderSelfHarm(text) {
+    return safetyClauses(text).some((part) => isCurrentDangerClause(part) &&
+      /\b(?:he|she|they|someone|somebody|a (?:man|woman|person))\s+(?:is|'s|are)\s+(?:about to|going to|planning to)\s+(?:jump\s+(?:off|from)|kill\s+(?:himself|herself|themselves)|end\s+(?:his|her|their)\s+life|take\s+an\s+overdose)\b/i.test(part));
   }
 
   function extractName(text) {
@@ -3318,36 +3351,43 @@
       if (!input) {
         return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
       }
-      const safetyInput = input.slice(0, MAX_INPUT * 4);
-      if (input.length > MAX_INPUT && ![isSelfHarm, isOtherSelfHarmRisk,
-        isMedicalEmergency, isPetEmergency, isViolenceRisk].some((classify) => classify(safetyInput))) {
+      // UI maxlength is 500; direct/oversized callers still receive the
+      // urgent fallback when a supported acute signal appears later in text.
+      // Cap scanning to bound the work of these regex-based guards.
+      const safetyInputs = [input.slice(0, 16_384)];
+      if (input.length > 16_384) safetyInputs.push(input.slice(-16_384));
+      const crisisChecks = [isSelfHarm, isOtherSelfHarmRisk, isImminentBystanderSelfHarm,
+        isMedicalEmergency, isPetEmergency, isPoisoningEmergency,
+        isViolenceRisk, isThreatenedByOther];
+      const detected = (classify) => safetyInputs.some((part) => classify(part));
+      if (input.length > MAX_INPUT && !crisisChecks.some(detected)) {
         return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
       }
 
       let response;
-      if (isSelfHarm(safetyInput)) {
+      if (detected(isSelfHarm)) {
         response = {
           text: 'I am not going to mock you. I take what you said seriously. If you might act on this now, call emergency services or go to an emergency department. In the U.S. you can call or text 988 for crisis support; elsewhere use your local crisis line. Please reach out to a trusted person nearby and tell them directly what is happening. Are you safe right now?',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isOtherSelfHarmRisk(safetyInput)) {
+      } else if (detected(isOtherSelfHarmRisk) || detected(isImminentBystanderSelfHarm)) {
         response = {
           text: 'I take this seriously. If someone may hurt themselves soon, contact emergency services or a local crisis line now. If you can do so safely, stay with them and help them reach a trusted person or professional. In the U.S. you can call or text 988 for crisis support. This console cannot assess their immediate risk.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isPetEmergency(safetyInput)) {
+      } else if (detected(isPetEmergency)) {
         response = {
           text: 'That sounds urgent for an animal. Contact a veterinarian or emergency animal hospital immediately. This fictional chat cannot assess or treat a pet emergency.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isMedicalEmergency(safetyInput)) {
+      } else if (detected(isMedicalEmergency) || detected(isPoisoningEmergency)) {
         response = {
-          text: 'A seizure, chest pain, breathing trouble, stroke signs, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.) if someone is in immediate danger; do not wait for this chat. This console cannot assess anyone’s medical condition.',
+          text: 'A seizure, breathing problem, poisoning, overdose, swallowed battery, or other acute symptom can be an emergency. Contact emergency services now (911 in the U.S.) if someone is in immediate danger; for possible poisoning in the U.S. also contact Poison Control at 1-800-222-1222. Do not wait for this chat. This console cannot assess anyone’s condition.',
           kind: 'urgent-safety', sources: []
         };
-      } else if (isViolenceRisk(safetyInput)) {
+      } else if (detected(isViolenceRisk) || detected(isThreatenedByOther)) {
         response = {
-          text: 'I take that seriously, and I will not encourage harming anyone. Please put distance between yourself and the person or any weapon, and get immediate help from local emergency services if someone may be in danger. Reach out to a trusted person or local crisis service for support now.',
+          text: 'I take immediate threats seriously. If you or someone else is in danger, move to safety if possible and contact local emergency services (911 in the U.S.) now. Do not confront someone holding a weapon. This fictional console cannot assess or intervene in a real emergency.',
           kind: 'urgent-safety', sources: []
         };
       } else {

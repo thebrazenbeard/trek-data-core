@@ -489,6 +489,49 @@ class CoverageLedgerTests(unittest.TestCase):
   report=make_report([WORK,SOURCE]); self.assertEqual(report['states']['SOURCE_BOUND']['numerator'],0); self.assertEqual(report['states']['FULL_TEXT_AVAILABLE']['numerator'],0)
  def test_source_bound_does_not_imply_later_ledgers(self):
   discovered=event('d0','DISCOVERED',role='LIBRARIAN'); bound=event('c1','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0']); records=[WORK,SOURCE,BINDING,discovered,bound]; errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING}); self.assertEqual(errors,[]); result=make_report(records,works={'w1':WORK},denominator_snapshot=denominator()); self.assertEqual(result['states']['SOURCE_BOUND']['numerator'],1); self.assertEqual(result['states']['FULL_TEXT_AVAILABLE']['numerator'],0); self.assertEqual(result['states']['CLOSE_READ']['numerator'],0)
+ def test_blocked_predecessor_cannot_unlock_attained_source_bound_coverage(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN',effect='BLOCKED')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  records=[WORK,SOURCE,BINDING,discovered,bound]
+  errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING})
+  self.assertTrue(any('ATTAINED DISCOVERED prerequisite' in err for err in errors),errors)
+  with self.assertRaisesRegex(ValueError,'ATTAINED DISCOVERED prerequisite'):
+   make_report(records,works={'w1':WORK})
+ def test_revoked_predecessor_cannot_unlock_later_attained_state(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  revoked=event('d1','DISCOVERED',role='LIBRARIAN',effect='REVOKED',supersedes='d0',reason='independent correction')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d1'])
+  records=[WORK,SOURCE,BINDING,discovered,revoked,bound]
+  errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING})
+  self.assertTrue(any('ATTAINED DISCOVERED prerequisite' in err for err in errors),errors)
+  with self.assertRaisesRegex(ValueError,'ATTAINED DISCOVERED prerequisite'):
+   make_report(records,works={'w1':WORK})
+ def test_every_coverage_transition_requires_an_attained_predecessor(self):
+  roles={'DISCOVERED':'LIBRARIAN','SOURCE_BOUND':'LIBRARIAN',
+         'FULL_TEXT_AVAILABLE':'TNG','STRUCTURALLY_INDEXED':'TNG',
+         'CLOSE_READ':'TNG','SEMANTICALLY_ANALYZED':'TNG',
+         'ENTITY_LINKED':'CONSOLIDATOR','CROSS_REFERENCED':'CONSOLIDATOR',
+         'AUDITED':'AUDITOR'}
+  chain=[]
+  for index,state in enumerate(coverage.STATES):
+   extra={'prereqs':[f'e{index-1}'] if index else []}
+   if state in coverage.SOURCE_STATES:extra['source_id']='s1'
+   if state=='SOURCE_BOUND':extra['binding_id']='b1'
+   if state=='FULL_TEXT_AVAILABLE':extra['representation_scope']={'representation_type':'synthetic','completeness_scope':'whole fixture'}
+   if state in {'ENTITY_LINKED','CROSS_REFERENCED'}:extra['integration_ref']='fixture:integration'
+   if state=='AUDITED':extra['audit_ref']='fixture:audit'
+   chain.append(event(f'e{index}',state,role=roles[state],**extra))
+  basis=[WORK,SOURCE,BINDING]
+  baseline=coverage.validate_coverage(basis+chain,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING})
+  self.assertEqual(baseline,[])
+  for index in range(1,len(chain)):
+   # REVOKED corrections require a separate ATTAINED supersession, tested
+   # above. Sweep all eight predecessor boundaries for BLOCKED effects.
+   with self.subTest(successor=coverage.STATES[index]):
+    mutated=[dict(row) for row in chain[:index+1]]
+    mutated[index-1]['effect']='BLOCKED'
+    errors=coverage.validate_coverage(basis+mutated,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING})
+    self.assertTrue(any('ATTAINED '+coverage.STATES[index-1]+' prerequisite' in e for e in errors),errors)
  def test_completed_staging_read_does_not_advance_accepted_coverage(self):
   proposed=event('c1','CLOSE_READ',status='PROPOSED',role='TNG',source_id='s1'); report=make_report([WORK,SOURCE,proposed],works={'w1':WORK},denominator_snapshot=denominator()); self.assertEqual(report['states']['CLOSE_READ']['numerator'],0); self.assertEqual(report['history_event_count'],1)
  def test_local_entity_presence_does_not_imply_entity_linked(self):

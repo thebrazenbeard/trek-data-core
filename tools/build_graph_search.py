@@ -46,7 +46,11 @@ def add_catalog(catalog,key,row,label):
  catalog[rid]=row
 
 def build_bundle(projection_root,output_root):
- projection_root=Path(projection_root); output_root=Path(output_root); verified=bundle.verify_projection(projection_root); rows=verified['rows']; manifest=verified['manifest']; nodes={}; edges={}; search={}; active_ids=set()
+ projection_root=Path(projection_root); output_root=Path(output_root)
+ source_path=projection_root.resolve(); target_path=output_root.resolve()
+ if source_path==target_path or source_path in target_path.parents or target_path in source_path.parents:
+  raise ValueError('graph-search output overlaps verified projection tree')
+ verified=bundle.verify_projection(projection_root); rows=verified['rows']; manifest=verified['manifest']; nodes={}; edges={}; search={}; active_ids=set()
  for entity in rows['entities.jsonl']:
   eid=entity['local_entity_id']; node=f'entity:{eid}'; merge_node(nodes,node,{'node_kind':'local_entity','local_entity_id':eid,'work_id':entity.get('work_id'),'label':entity.get('label'),'record':entity})
   if entity.get('work_id'):

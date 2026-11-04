@@ -101,6 +101,17 @@ h1 span { color: var(--peach); }
 .lore-chat-boundary a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid var(--aqua); border-radius: 12px 3px 3px 12px; color: var(--aqua); text-align: center; font-weight: 750; text-underline-offset: 2px; }
 .lore-chat-boundary a:hover { background: #17354a; color: var(--text); }
 .lore-chat-boundary a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.no-js-badgey-help { max-width: 1180px; margin: 12px auto; padding: 14px 18px; border: 2px solid var(--aqua); border-radius: 12px; background: #101d2b; color: var(--text); line-height: 1.55; }
+.no-js-badgey-help a { color: var(--aqua); font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-contrast: more) {
+  .lore-chat-boundary, .no-js-badgey-help { border: 2px solid var(--aqua); color: var(--text); font-size: 1rem; }
+  .lore-chat-boundary a, .no-js-badgey-help a, #lore-chat-help { font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+}
+@media (forced-colors: active) {
+  .lore-chat-boundary, .no-js-badgey-help { border: 2px solid CanvasText; background: Canvas; color: CanvasText; }
+  .lore-chat-boundary a, .no-js-badgey-help a { border: 2px solid LinkText; color: LinkText; }
+  #lore-chat-help { border: 2px solid ButtonText; color: ButtonText; }
+}
 .lore-chat-form { display: grid; gap: 9px; max-width: 840px; }
 .lore-chat-form > label:not(.lore-chat-consent) { font-size: .86rem; font-weight: 800; }
 .lore-chat-form input[type="password"], .lore-chat-form textarea { width: 100%; max-width: 100%; min-width: 0; padding: 10px; background: var(--deep); border: 1px solid var(--line); color: var(--text); border-radius: 4px; }

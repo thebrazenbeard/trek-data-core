@@ -30,7 +30,7 @@ a:hover { color: #c9fff6; }
 .command-route span { padding: 0 8px; }
 .tone-toggle { min-height: 40px; border: 2px solid var(--space); padding: 7px 14px; border-radius: 23px 3px 3px 23px; background: var(--space); color: var(--amber); font: 760 .76rem/1.25 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; white-space: nowrap; }
 .tone-toggle:hover, .tone-toggle[aria-pressed="true"] { background: var(--surface2); color: var(--aqua); }
-.lore-toggle { min-height: 40px; padding: 7px 13px; border-color: var(--space); background: var(--space); color: var(--violet); border-radius: 3px 20px 3px 3px; font: 800 .74rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+.lore-toggle { min-height: 44px; padding: 7px 13px; border-color: var(--space); background: var(--space); color: var(--violet); border-radius: 3px 20px 3px 3px; font: 800 .74rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
 .lore-toggle:hover, .lore-toggle[aria-expanded="true"] { background: var(--surface2); color: var(--amber); border-color: var(--space); }
 
 .lcars-navigation { display: flex; align-items: stretch; gap: 7px; padding: 0 max(28px, calc((100vw - 1180px) / 2)) 9px; overflow-x: auto; background: var(--space); }
@@ -61,13 +61,19 @@ h1 span { color: var(--peach); }
 .mission-flags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 29px; }
 .flag { border: 1px solid var(--violet); padding: 6px 12px; border-radius: 20px 3px 3px 20px; color: var(--text); background: #171a2ddd; font: 700 .72rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; text-transform: uppercase; }
 .page-content { max-width: 1240px; margin: 0 auto; padding: 42px 28px 90px; border-left: 12px solid var(--surface2); }
-/* Lore is an optional, in-flow archive-search panel, never a hero overlay. */
-.lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--peach); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
+/* Badgey containment is an optional, in-flow panel, never a hero overlay. */
+.lore-realworld-help { margin: .75rem 0 1rem; padding: .8rem 1rem; border: 1px solid #d8a85b; border-left: .45rem solid #ffbf55; border-radius: .35rem; background: #251e34; color: #fff3df; line-height: 1.5; }
+.lore-realworld-help a { color: #ffd888; text-decoration: underline; text-underline-offset: .15em; }
+.lore-realworld-help a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--amber); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
+.badgey-mark { width: 52px; height: 52px; position: relative; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; background: #ffbf55; color: #172138; border: 3px solid #182238; border-radius: 46% 46% 48% 48%; transform: rotate(-9deg); box-shadow: 0 0 0 4px #f3ae46, 0 0 0 8px #312f55; font: 900 1.15rem/1 ui-monospace, monospace; }
+.badgey-eyes { font-size: 1.8rem; letter-spacing: .24rem; margin-left: .2rem; line-height: .55; }
+.badgey-mouth { font-size: 1.4rem; line-height: 1; transform: rotate(180deg); }
 .lore-header { display: flex; justify-content: space-between; gap: 15px; align-items: start; }
 .lore-header .eyebrow { margin-bottom: 5px; }
 .lore-header h2 { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .lore-simulation-tag { padding: 4px 9px; border: 1px solid var(--amber); border-radius: 16px 3px 3px 16px; color: var(--amber); font: 800 .63rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .08em; }
-.lore-close { flex: 0 0 auto; min-height: 37px; padding: 7px 12px; font-size: .75rem; }
+.lore-close { flex: 0 0 auto; min-height: 44px; padding: 7px 12px; font-size: .75rem; }
 .lore-disclosure { max-width: 88ch; margin: 17px 0 20px; color: var(--muted); font-size: .92rem; }
 .lore-disclosure strong { color: var(--text); }
 .lore-stations { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 16px; align-items: stretch; }
@@ -89,6 +95,12 @@ h1 span { color: var(--peach); }
 .lore-chat-station h3, .lore-archive-heading { margin: 0 0 9px; color: var(--peach); font-size: 1.08rem; }
 .lore-chat-instructions { margin: 0 0 16px; max-width: 110ch; color: var(--muted); font-size: .84rem; line-height: 1.6; overflow-wrap: anywhere; }
 .lore-chat-instructions code { color: var(--aqua); }
+.lore-chat-boundary { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; min-width: 0; margin: 0 0 16px; padding: 9px 12px; border-left: 5px solid var(--aqua); border-radius: 12px 3px 3px 3px; background: #0a1924; color: var(--muted); font-size: .78rem; line-height: 1.45; overflow-wrap: anywhere; }
+.lore-chat-boundary p { flex: 1 1 340px; min-width: 0; margin: 0; }
+.lore-chat-boundary strong { color: var(--text); }
+.lore-chat-boundary a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid var(--aqua); border-radius: 12px 3px 3px 12px; color: var(--aqua); text-align: center; font-weight: 750; text-underline-offset: 2px; }
+.lore-chat-boundary a:hover { background: #17354a; color: var(--text); }
+.lore-chat-boundary a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 .lore-chat-form { display: grid; gap: 9px; max-width: 840px; }
 .lore-chat-form > label:not(.lore-chat-consent) { font-size: .86rem; font-weight: 800; }
 .lore-chat-form input[type="password"], .lore-chat-form textarea { width: 100%; max-width: 100%; min-width: 0; padding: 10px; background: var(--deep); border: 1px solid var(--line); color: var(--text); border-radius: 4px; }
@@ -96,11 +108,12 @@ h1 span { color: var(--peach); }
 .lore-chat-consent { display: flex; gap: 9px; align-items: start; margin: 5px 0; max-width: 70ch; font-size: .86rem; }
 .lore-chat-consent input { width: auto; flex: 0 0 auto; margin-top: 3px; }
 .lore-chat-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
-.lore-chat-actions button { min-height: 39px; }
+.lore-chat-actions button { min-height: 44px; }
 .lore-chat-status { margin: 2px 0 4px; color: var(--aqua); font-size: .82rem; }
 .lore-chat-log { margin: 18px 0 0; padding: 0; display: grid; gap: 10px; list-style: none; max-height: 430px; overflow-y: auto; }
 .lore-chat-turn { margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-left: 6px solid var(--aqua); background: #061520; border-radius: 13px 3px 3px 3px; overflow-wrap: anywhere; white-space: pre-wrap; }
 .lore-chat-turn[data-role="user"] { border-left-color: var(--peach); }
+.lore-chat-turn[data-urgent="true"] { border-left-color: #ff8c79; background: #2a151d; }
 .lore-chat-turn strong { color: var(--amber); display: block; margin-bottom: 4px; font: 800 .75rem/1.3 ui-monospace, Consolas, monospace; text-transform: uppercase; }
 .lore-chat-turn p { margin: 0; }
 .lore-chat-sources { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 7px; color: var(--muted); font-size: .78rem; }
@@ -415,6 +428,12 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .paramount-chronology-source { min-height: 160px; }
   .page-content { padding: 25px 16px 55px; }
   .lore-console { padding: 18px; border-left-width: 10px; border-top-width: 9px; border-top-left-radius: 30px; }
+  .lore-header { display: block; }
+  .lore-close { margin-top: 12px; }
+  .lore-chat-boundary { display: block; }
+  .lore-chat-boundary a { display: flex; width: 100%; margin-top: 9px; }
+  .lore-chat-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .lore-chat-actions button { min-width: 0; width: 100%; overflow-wrap: anywhere; }
   .lore-query-form, .lore-response { padding: 15px; }
   .masthead { padding: 56px 18px 62px; border-left-width: 15px; border-top-width: 13px; border-top-left-radius: 41px; }
   .masthead-art { object-position: 60% center; }

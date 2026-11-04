@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "proposal_id": "artwork-source-rights-audit-20261104",
+  "accepted_main_baseline": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "source_catalog_sha256": {
+    "explorer/artwork-catalog-v1.3.json": "f4f51a71e9db95368d03d1db88d07137425c09f7918e4a491c98e0eb6e8cfa2f",
+    "explorer/picard-jackets-v1.0.json": "85bdc8ebbb348d713d604fb9486c2af091e36d40138587a761ddd93716cd9615"
+  },
+  "source_policy_locator": "https://openlibrary.org/dev/docs/api/covers",
+  "source_license_caveat_locator": "https://openlibrary.org/developers/licensing",
+  "api_documentation_scope": "THIRD_PARTY_SRC_DISPLAY_METHOD_NOT_UNDERLYING_COPYRIGHT_GRANT",
+  "publisher_first_party_recheck_date": "2026-11-04",
+  "public_local_artwork_bytes_mirrored": 0,
+  "rights_verified_self_hosted_assets": 0,
+  "actual_episode_thumbnail_mappings": 0,
+  "actual_film_thumbnail_mappings": 0,
+  "research_coverage_effect": "NONE",
+  "source_work_binding_effect": "NONE",
+  "images": [
+    {
+      "row_id": "directory:literature:prh-autobiography-kirk",
+      "group": "FOUR_CORE_AUTOBIOGRAPHIES",
+      "isbn": "9781783297481",
+      "cover_id": 13083310,
+      "publisher_locator": "https://www.penguinrandomhouse.com/books/250795/the-autobiography-of-james-t-kirk-by-david-a-goodman/",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-picard",
+      "group": "FOUR_CORE_AUTOBIOGRAPHIES",
+      "isbn": "9781785659409",
+      "cover_id": 10694457,
+      "publisher_locator": "https://www.penguinrandomhouse.com/books/555327/the-autobiography-of-jean-luc-picard-by-david-a-goodman/",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-janeway",
+      "group": "FOUR_CORE_AUTOBIOGRAPHIES",
+      "isbn": "9781789095333",
+      "cover_id": 12097815,
+      "publisher_locator": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    },
+    {
+      "row_id": "directory:literature:prh-autobiography-spock",
+      "group": "FOUR_CORE_AUTOBIOGRAPHIES",
+      "isbn": "9781785659416",
+      "cover_id": 11945787,
+      "publisher_locator": "https://www.penguinrandomhouse.com/books/577045/the-autobiography-of-mr-spock-by-una-mccormack/",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    },
+    {
+      "row_id": "directory:literature:proposed-lit-picard-the-dark-veil",
+      "group": "TWO_PICARD_SUPPLEMENT_EDITION_ROWS",
+      "isbn": "9781982154073",
+      "cover_id": 10691195,
+      "publisher_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-The-Dark-Veil/James-Swallow/Star-Trek-Picard/9781982154073",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    },
+    {
+      "row_id": "directory:literature:proposed-lit-picard-rogue-elements",
+      "group": "TWO_PICARD_SUPPLEMENT_EDITION_ROWS",
+      "isbn": "9781982175207",
+      "cover_id": 13231543,
+      "publisher_locator": "https://www.simonandschuster.com/books/Star-Trek-Picard-Rogue-Elements/John-Jackson-Miller/Star-Trek-Picard/9781982175207",
+      "display_route": "OPEN_LIBRARY_COVERS_API_VISITOR_OPT_IN_ONLY",
+      "copyright_status": "UNDERLYING_COPYRIGHT_UNRESOLVED",
+      "self_hosting_rights_status": "NO_PERMISSION_RECEIPT"
+    }
+  ]
+}

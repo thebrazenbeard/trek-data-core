@@ -1343,7 +1343,7 @@
       const copy = el('div', 'artwork-gallery-copy');
       copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
       copy.append(el('h4', '', row.title));
-      copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
+      copy.append(el('p', '', row.context || row.work_type || 'Source-local record'));
       copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
         ? artworkState.enabled
           ? source.image_size === 'M'

@@ -329,7 +329,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-record-beacon .artwork-beacon-on { height: 9px; background: var(--aqua); }
 .artwork-record-beacon .artwork-beacon-off { height: 3px; background: var(--violet); opacity: .55; }
 .artwork-record-label { color: var(--amber); font-size: .51rem; letter-spacing: .02em; overflow-wrap: anywhere; }
+.artwork-provenance-note { color: var(--muted); font-size: .57rem; line-height: 1.35; overflow-wrap: anywhere; }
 .artwork-caption a { color: var(--aqua); text-decoration: underline; text-underline-offset: 2px; }
+.artwork-caption .artwork-record-source { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 5px 2px; line-height: 1.35; }
 .artwork-caption .artwork-credit { color: var(--peach); }
 .artwork-caption a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 .artwork-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-bottom: 19px; padding: 13px 15px; border-left: 8px solid var(--aqua); border-radius: 18px 3px 3px 3px; background: var(--surface2); }

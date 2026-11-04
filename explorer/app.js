@@ -546,6 +546,15 @@
   const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
+  // A record graphic is not a thumbnail from the work. "Not displayed" also
+  // covers the default no-consent state for a separately reviewed API jacket.
+  const artworkFallbackLabels = Object.freeze({
+    EPISODE: ['No still', 'No episode still displayed'],
+    FILM: ['No poster', 'No film poster displayed'],
+    LITERATURE: ['No cover', 'No book cover displayed'],
+    SHORT_FORM: ['No still', 'No short-form still displayed'],
+    AUDIO: ['No cover', 'No audio cover displayed']
+  });
 
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
@@ -567,6 +576,7 @@
   // rights-reviewed artwork sidecar and explicit visitor opt-in.
   function makeArtworkSlot(medium, key, row, gallery = false) {
     const label = artworkKinds[medium] || 'Media';
+    const [shortFallback, fullFallback] = artworkFallbackLabels[medium] || ['No image', 'No sourced image displayed'];
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
     // Edition-only candidate cards intentionally have no artwork lookup key.
@@ -582,15 +592,15 @@
       .filter((word) => !['THE', 'A', 'AN', 'OF', 'AND', 'STAR', 'TREK'].includes(word.toUpperCase()))
       .slice(0, 2).map((word) => word[0].toUpperCase()).join('') || label.slice(0, 2).toUpperCase();
     frame.setAttribute('role', 'img');
-    frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; not an official still, poster or cover`);
+    frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; ${fullFallback.toLowerCase()}, not an official still, poster or cover`);
     const title = el('span', 'artwork-kind', label);
     const locator = el('span', 'artwork-record-context', series.slice(0, 22) || 'SOURCE-LOCAL');
     const sigil = el('span', 'artwork-record-mark', initials);
     const shortTitle = el('span', 'artwork-record-title', titleText);
-    const missing = el('span', 'artwork-missing', 'Artwork not sourced · original index art');
+    const missing = el('span', 'artwork-missing', `${shortFallback} · index art`);
     frame.append(title, locator, sigil, shortTitle, missing);
     const caption = el('figcaption', 'artwork-caption');
-    const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
+    const status = el('span', 'artwork-caption-status', `Artwork not sourced · original index art · ${fullFallback}`);
     caption.append(status);
     const beacon = el('span', 'artwork-record-beacon');
     beacon.setAttribute('aria-hidden', 'true');
@@ -601,13 +611,15 @@
       ? `Original signal · ${visualSeed.toString(16).padStart(8, '0')}`
       : 'Original signal · source-local key unresolved'));
     if (row?.source_locator) {
-      const sourceLink = el('a', 'artwork-record-source', 'Metadata source');
+      const sourceLink = el('a', 'artwork-record-source', 'Record metadata · not image rights');
       sourceLink.href = row.source_locator;
       sourceLink.target = '_blank';
       sourceLink.rel = 'noopener noreferrer';
-      sourceLink.setAttribute('aria-label', `Open source metadata for ${titleText}`);
+      sourceLink.setAttribute('aria-label', `Open record metadata for ${titleText}; this source does not grant image rights`);
       caption.append(sourceLink);
     }
+    const provenance = el('span', 'artwork-provenance-note', `Metadata: ${sourceName || 'source family unspecified'} · no image-rights grant`);
+    if (sourceLocalKey) provenance.setAttribute('title', `Source-local record key: ${sourceLocalKey}`);
     const source = artworkState.enabled ? artworkState.entries.get(key) : null;
     if (source) {
       const img = el('img');
@@ -650,9 +662,10 @@
         }
         frame.className = frame.className.replace(' artwork-has-source', '');
         frame.setAttribute('role', 'img');
-        frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
-        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
-        status.textContent = 'Sourced image unavailable · LCARS record graphic';
+        frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable; ${fullFallback.toLowerCase()}`);
+        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', `Image unavailable · ${shortFallback} · index art`));
+        status.textContent = `Sourced image unavailable · LCARS record graphic · ${fullFallback}`;
+        if (!caption.contains(provenance)) caption.append(provenance);
       });
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.
@@ -678,6 +691,7 @@
       credit.rel = 'noopener noreferrer';
       caption.append(credit);
     }
+    if (!source) caption.append(provenance);
     if (sourceName) caption.setAttribute('data-source-family', sourceName);
     panel.append(frame, caption);
     return panel;

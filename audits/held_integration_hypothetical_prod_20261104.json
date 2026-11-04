@@ -1,0 +1,16 @@
+{
+  "base_head": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "candidate_head": "89c36295cb142a56addcdd867d81a5585ef4a9d8",
+  "mode": "production",
+  "drafts": [
+    {"id": "508", "head": "13e728c90da609542e5a49ba7128d31d07187c52", "depends_on": []},
+    {"id": "510", "head": "87a996126d620605178982f77ee45718a4643141", "depends_on": []},
+    {"id": "511", "head": "3811ddc8bf14262607d71473ce62abf9479db0ba", "depends_on": []},
+    {"id": "512", "head": "cbfaf76172ebfffeeadf7efd9e9059f711157176", "depends_on": []},
+    {"id": "513", "head": "96c02d1433156c47a7ce6037f758dc4449a51473", "depends_on": []},
+    {"id": "514", "head": "9a239038a804f1bc001996e7e7fee6a31e14072f", "depends_on": []},
+    {"id": "516", "head": "98db004b9d1a16f47a2706de50d116ee83e3cf66", "depends_on": []},
+    {"id": "517", "head": "89c36295cb142a56addcdd867d81a5585ef4a9d8", "depends_on": []}
+  ],
+  "selected": ["508", "510", "511", "512", "513", "514", "516", "517"]
+}

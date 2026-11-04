@@ -70,6 +70,11 @@ class TOSPublisherHeldTests(unittest.TestCase):
         self.reject(lambda r, _: r["rows"][15].update(hold="PRIVATE_EDITION_UNVERIFIED"),
                     "compatible Rihannsu")
 
+    def test_manifest_does_not_resurrect_false_rihannsu_taxonomy_conflict(self):
+        manifest = subject.PACKET.with_name("MANIFEST.md").read_text(encoding="utf-8")
+        self.assertIn("compatible subseries/parent-series labels", manifest)
+        self.assertNotIn("0157` series-label conflict", manifest)
+
     def test_source_absent_creator_does_not_become_publisher_creator(self):
         self.reject(lambda r, _: r["rows"][5].update(hold="PRIVATE_EDITION_UNVERIFIED"),
                     "absent source OPF creator")

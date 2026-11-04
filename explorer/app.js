@@ -1359,7 +1359,7 @@
         locate.addEventListener('click', () => {
           byId('discovery-query').value = row.title;
           for (const id of ['discovery-series', 'discovery-kind', 'discovery-lineage',
-            'discovery-overview', 'discovery-verification', 'discovery-publisher-check',
+            'discovery-overview', 'discovery-artwork', 'discovery-verification', 'discovery-publisher-check',
             'discovery-synopsis', 'discovery-tag']) byId(id).value = 'all';
           byId('discovery-medium').value = row.medium;
           directoryState.limit = 40;
@@ -1374,7 +1374,7 @@
     }
     const count = Math.min(entries.length, 24);
     byId('artwork-gallery-summary').textContent = artworkState.enabled
-      ? `${count} of ${entries.length} individually source-bound image options shown; these do not add Works, close reads or episode coverage.`
+      ? `${count} of ${entries.length} individually pinned image preview receipts shown; these do not add Works, close reads or episode coverage.`
       : `${count} source-linked LCARS previews ready. Choose Show sourced artwork to load external jacket images; nothing is fetched before that choice. No new Works or coverage.`;
   }
 
@@ -1927,6 +1927,7 @@
     const kind = byId('discovery-kind').value;
     const lineage = byId('discovery-lineage').value;
     const overview = byId('discovery-overview').value;
+    const artwork = byId('discovery-artwork').value;
     const verification = byId('discovery-verification').value;
     const publisherCheck = byId('discovery-publisher-check').value;
     const synopsis = byId('discovery-synopsis').value;
@@ -1942,6 +1943,12 @@
       const hasReviewedOverview = Boolean(reviewedOverview);
       if (overview === 'reviewed' && !hasReviewedOverview) return false;
       if (overview === 'not-loaded' && hasReviewedOverview) return false;
+      // This refers only to a separately validated display-sidecar receipt.
+      // It does not imply that the work, source content, or image copyright
+      // has been admitted or independently verified.
+      const hasImageReceipt = artworkState.entries.has(artworkKey(item));
+      if (artwork === 'receipt_pinned' && !hasImageReceipt) return false;
+      if (artwork === 'not_loaded' && hasImageReceipt) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const check = metadataRechecks.byId.get(item.row_id);
@@ -1970,11 +1977,19 @@
       return terms.every((part) => body.includes(part));
     });
     const visible = rows.slice(0, directoryState.limit);
+    const imageOptions = rows.filter((item) => artworkState.entries.has(artworkKey(item))).length;
     byId('discovery-summary').textContent = `${rows.length.toLocaleString()} source-local metadata rows match` +
       (visible.length < rows.length ? ` · Displaying ${visible.length.toLocaleString()}` : '') +
+      ` · ${imageOptions.toLocaleString()} loaded, individually pinned image preview receipts (external pixels require opt-in)` +
       (picardLiteratureSupplement.available ? ' · 1,214 historical directory + 2 separately pinned Picard metadata proposals' :
         ' · historical directory only') + '. These are not distinct or admitted Works.';
-    if (!rows.length) { empty.hidden = false; return; }
+    if (!rows.length) {
+      empty.textContent = artwork === 'receipt_pinned'
+        ? 'No pinned image preview receipts match these filters. This does not establish that artwork is absent.'
+        : 'No source-local observations match these filters.';
+      empty.hidden = false;
+      return;
+    }
     for (const item of visible) {
       const card = el('article', 'directory-card media-card');
       const copy = el('div', 'media-card-copy');

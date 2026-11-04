@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "SFA-PUBLISHER-WDQS-DIFF-20261104-001",
+  "role": "SFA",
+  "status": "HELD_COMPARISON_PROPOSAL",
+  "basis_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "basis_unaccepted_local_route_commit": "bef9925",
+  "effects": {
+    "accepted_work": "NONE",
+    "source_work_binding": "NONE",
+    "coverage": "NONE",
+    "episode_denominator": "NONE",
+    "reconciliation": "NONE",
+    "public_projection": "NONE"
+  },
+  "evidence_classes": {
+    "publisher": "DIRECT_HTML_METADATA_RETRIEVAL_NOT_AV_CONTENT",
+    "wikidata": "SECONDARY_ACCEPTED_RESEARCH_RECORDS_OF_ZERO_RESULT_NOT_RAW_RESPONSE_REPLAY",
+    "redirect": "ACCEPTED_REVIEW_HOLD_NOT_NEW_QID_QUERY"
+  },
+  "lineage": [
+    {"source":"Paramount+ episode guide HTML","independence_group":"publisher:paramount","contributes":"exact displayed S1 title, ordinal, video path, datetime"},
+    {"source":"Paramount Press Express episode listing","independence_group":"publisher:paramount","contributes":"source-local press codes and non-episode promotional bucket counterexamples"},
+    {"source":"Wikidata WDQS queries","independence_group":"thirdparty:wikidata","contributes":"two reported zero-result historical queries against redirected Q134592591; no comparable episode rows"}
+  ],
+  "comparison_rows": [
+    {"publisher_route_id":"sfa-pplus-route-01","season":1,"episode":1,"publisher_title":"Kids These Days","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-02","season":1,"episode":2,"publisher_title":"Beta Test","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-03","season":1,"episode":3,"publisher_title":"Vitus Reflux","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-04","season":1,"episode":4,"publisher_title":"Vox in Excelso","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-05","season":1,"episode":5,"publisher_title":"Series Acclimation Mil","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-06","season":1,"episode":6,"publisher_title":"Come, Let's Away","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-07","season":1,"episode":7,"publisher_title":"Ko'Zeine","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-08","season":1,"episode":8,"publisher_title":"The Life of the Stars","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-09","season":1,"episode":9,"publisher_title":"300th Night","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"},
+    {"publisher_route_id":"sfa-pplus-route-10","season":1,"episode":10,"publisher_title":"Rubincon","publisher_roster_alignment":"EXACT","wikidata_episode_qid":null,"wikidata_title":null,"wikidata_alignment":"UNTESTABLE_NO_COMPARABLE_ROWS"}
+  ],
+  "negative_or_ambiguous_evidence": [
+    {"id":"wdqs-typed-zero-obsolete-qid","class":"HISTORICAL_ZERO_QUERY","receipt":"WDQS-SFA-Q134592591-20261102-LIMIT20-001","queried_series_qid":"Q134592591","reported_binding_count":0,"interpretation":"NO_COMPARABLE_ROWS_FOR_EXACT_QUERY_NOT_ABSENCE_OF_EPISODES"},
+    {"id":"wdqs-simple-zero-obsolete-qid","class":"HISTORICAL_ZERO_QUERY","receipt":"WDQS-SFA-Q134592591-SIMPLE-P179-20261102-LIMIT20-001","queried_series_qid":"Q134592591","reported_binding_count":0,"interpretation":"NO_COMPARABLE_ROWS_FOR_EXACT_QUERY_NOT_ABSENCE_OF_EPISODES"},
+    {"id":"wdqs-redirect","class":"SOURCE_IDENTITY_HOLD","queried_series_qid":"Q134592591","observed_redirect_target":"Q117350388","corrected_qid_query_executed_in_this_audit":false,"interpretation":"NO_CURRENT_QID_RESULT_AVAILABLE_FOR_ALIGNMENT"},
+    {"id":"press-s2-early-release","class":"COUNTEREXAMPLE_TO_EPISODE_CARD_ASSUMPTION","source_local_id":"sfa-press-20261103-s2-promotional","publisher_code":"200","interpretation":"MEDIA_BUCKET_NOT_ADMITTED_S2_EPISODE"},
+    {"id":"press-s1-early-images","class":"COUNTEREXAMPLE_TO_EPISODE_CARD_ASSUMPTION","source_local_id":"sfa-press-20261103-s1-promotional","publisher_code":"Multiple","interpretation":"MEDIA_BUCKET_NOT_ADMITTED_S1_EPISODE"},
+    {"id":"publisher-label-05","class":"TITLE_FORM_UNRESOLVED","publisher_route_id":"sfa-pplus-route-05","observed_label":"Series Acclimation Mil","interpretation":"DO_NOT_EXPAND_OR_CORRECT_PUBLISHER_LABEL_WITHOUT_EVIDENCE"},
+    {"id":"publisher-label-10","class":"TITLE_ORTHOGRAPHY_HOLD","publisher_route_id":"sfa-pplus-route-10","observed_label":"Rubincon","interpretation":"DO_NOT_SUBSTITUTE_ALTERNATE_UNVERIFIED_SPELLING"}
+  ]
+}

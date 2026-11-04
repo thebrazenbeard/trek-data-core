@@ -1,0 +1,144 @@
+{
+  "packet_id": "ld-badgey-editorial-l007-20261104",
+  "role": "LD",
+  "accepted_main_at_selection": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_date_utc": "2026-11-04",
+  "scope": "HELD_FIRST_PARTY_PUBLISHER_EDITORIAL_ANALYSIS",
+  "source_receipts": [
+    {
+      "local_source_id": "l007-s01",
+      "url": "https://www.startrek.com/news/star-trek-megalomaniacal-ai-guide",
+      "title": "A Who's Who Guide to Star Trek's Megalomaniacal AI",
+      "byline": "Christine Dinh",
+      "publisher": "StarTrek.com",
+      "publication_date_display": "2023-10-23",
+      "kind": "FIRST_PARTY_PUBLISHER_EDITORIAL",
+      "sections_inspected": ["Badgey", "AGIMUS", "Peanut Hamper"],
+      "source_read_extent": "TARGETED_SECTIONS_READ_NOT_FULL_EPISODE",
+      "raw_html_digest": null,
+      "episode_audio_visual_access": "NONE",
+      "copyright_republication_rights": "NOT_ESTABLISHED"
+    },
+    {
+      "local_source_id": "l007-s02",
+      "url": "https://www.startrek.com/news/below-deck-lower-decks-407-good-badge-and-ugly",
+      "title": "Below Deck with Lower Decks: The Good, the Badge, and the Ugly",
+      "byline": "Dayton Ward",
+      "publisher": "StarTrek.com",
+      "publication_date_display": "2023-10-13",
+      "kind": "FIRST_PARTY_PUBLISHER_EDITORIAL",
+      "sections_inspected": ["S4E7 episode discussion", "Daystrom subplot", "Badgey subplot"],
+      "source_read_extent": "TARGETED_SECTIONS_READ_NOT_FULL_EPISODE",
+      "raw_html_digest": null,
+      "episode_audio_visual_access": "NONE",
+      "copyright_republication_rights": "NOT_ESTABLISHED"
+    }
+  ],
+  "source_lineage": {
+    "publisher_family": "StarTrek.com official franchise editorial",
+    "independent_episode_witnesses": 0,
+    "same_publisher_editorials_are_independent_primary_episode_witnesses": false
+  },
+  "source_local_work_locators": [
+    {"title": "Terminal Provocations", "series": "Star Trek: Lower Decks", "season_episode": "S1E6", "admitted_work_id": null},
+    {"title": "A Few Badgeys More", "series": "Star Trek: Lower Decks", "season_episode": "S4E7", "admitted_work_id": null}
+  ],
+  "local_entities": [
+    {"local_id": "l007-badgey", "source_label": "Badgey", "global_identity": null},
+    {"local_id": "l007-goodgey", "source_label": "Goodgey", "global_identity": null},
+    {"local_id": "l007-logicy", "source_label": "Logic-y", "global_identity": null},
+    {"local_id": "l007-rutherford", "source_label": "Sam Rutherford", "global_identity": null},
+    {"local_id": "l007-agimus", "source_label": "AGIMUS", "global_identity": null},
+    {"local_id": "l007-peanut-hamper", "source_label": "Peanut Hamper", "global_identity": null}
+  ],
+  "source_relative_evidence": [
+    {
+      "evidence_id": "l007-e01",
+      "source_id": "l007-s01",
+      "section_locator": "Badgey / origin paragraph",
+      "local_entity_ids": ["l007-badgey", "l007-rutherford"],
+      "observation": "The official publisher editorial identifies Rutherford's holodeck training tutor as Badgey's origin.",
+      "establishes": "PUBLISHER_EDITORIAL_CHARACTER_DESCRIPTION_NOT_DIRECT_EPISODE_OBSERVATION"
+    },
+    {
+      "evidence_id": "l007-e02",
+      "source_id": "l007-s01",
+      "section_locator": "Badgey / reconciliation and segmentation paragraph",
+      "local_entity_ids": ["l007-badgey", "l007-goodgey", "l007-logicy", "l007-rutherford"],
+      "observation": "The editorial describes an S4E7 separation into original Badgey, a benevolent Goodgey, and Logic-y.",
+      "establishes": "PUBLISHER_EDITORIAL_PLOT_DESCRIPTION_NOT_DIRECT_EPISODE_OBSERVATION"
+    },
+    {
+      "evidence_id": "l007-e03",
+      "source_id": "l007-s01",
+      "section_locator": "Badgey / final two paragraphs",
+      "local_entity_ids": ["l007-badgey"],
+      "observation": "The editorial describes Badgey's massive network expansion followed by a choice to depart for an empty dimension to create a universe.",
+      "establishes": "PUBLISHER_EDITORIAL_PLOT_DESCRIPTION_NOT_DIRECT_EPISODE_OBSERVATION"
+    },
+    {
+      "evidence_id": "l007-e04",
+      "source_id": "l007-s01",
+      "section_locator": "AGIMUS / imprisonment and later Daystrom paragraphs",
+      "local_entity_ids": ["l007-agimus", "l007-peanut-hamper"],
+      "observation": "The editorial names AGIMUS as sentenced to the Daystrom computer-storage facility and describes meeting Peanut Hamper there.",
+      "establishes": "PUBLISHER_EDITORIAL_DETAINEE_DESCRIPTION_NOT_BADGEY_IDENTITY"
+    },
+    {
+      "evidence_id": "l007-e05",
+      "source_id": "l007-s01",
+      "section_locator": "Peanut Hamper / incarceration paragraph",
+      "local_entity_ids": ["l007-peanut-hamper", "l007-agimus"],
+      "observation": "The editorial separately describes Peanut Hamper being taken to Daystrom and held next to AGIMUS.",
+      "establishes": "PUBLISHER_EDITORIAL_DETAINEE_DESCRIPTION_NOT_BADGEY_IDENTITY"
+    },
+    {
+      "evidence_id": "l007-e06",
+      "source_id": "l007-s02",
+      "section_locator": "S4E7 opening Daystrom subplot and Badgey subplot",
+      "local_entity_ids": ["l007-badgey", "l007-agimus", "l007-peanut-hamper"],
+      "observation": "A second official franchise editorial places the AGIMUS/Peanut Hamper story in a Daystrom setting and separately describes Badgey's return through a recovered implant.",
+      "establishes": "SAME_PUBLISHER_EDITORIAL_STORYLINE_DISTINCTION"
+    },
+    {
+      "evidence_id": "l007-e07",
+      "source_id": "l007-s02",
+      "section_locator": "S4E7 Badgey metamorphosis paragraph",
+      "local_entity_ids": ["l007-badgey"],
+      "observation": "The second editorial also describes Badgey's transformed state and subsequent departure to another dimension.",
+      "establishes": "SAME_PUBLISHER_EDITORIAL_STORYLINE_DESCRIPTION"
+    }
+  ],
+  "typed_assertions": [
+    {"assertion_id": "l007-a01", "candidate_predicate": "PUBLISHER_EDITORIAL_DESCRIBES_CHARACTER_ORIGIN", "support": ["l007-e01"], "status": "HELD_SOURCE_RELATIVE_ONLY"},
+    {"assertion_id": "l007-a02", "candidate_predicate": "PUBLISHER_EDITORIAL_DESCRIBES_CHARACTER_SEGMENTATION", "support": ["l007-e02"], "status": "HELD_SOURCE_RELATIVE_ONLY"},
+    {"assertion_id": "l007-a03", "candidate_predicate": "PUBLISHER_EDITORIAL_DESCRIBES_CHARACTER_DEPARTURE", "support": ["l007-e03", "l007-e07"], "status": "HELD_SOURCE_RELATIVE_ONLY"},
+    {"assertion_id": "l007-a04", "candidate_predicate": "PUBLISHER_EDITORIAL_IDENTIFIES_DAYSTROM_DETAINEES", "support": ["l007-e04", "l007-e05", "l007-e06"], "status": "HELD_SOURCE_RELATIVE_ONLY"}
+  ],
+  "alternate_fiction_premise": {
+    "description": "Explorer/Badgey interface imagines a hostile Badgey held in Starfleet digital containment.",
+    "provenance": "USER_DIRECTED_UNOFFICIAL_FICTION",
+    "does_not_follow_from_source_evidence": true,
+    "not_a_global_canon_assertion": true,
+    "draft_pr_inspection": {
+      "pull_request_url": "https://github.com/thebrazenbeard/trek-data-core/pull/486",
+      "head_sha_at_inspection": "dd858712a31319aecc3bde67e0f7dcaf1900f776",
+      "inspected_file": "explorer/index.html",
+      "observed_disclosure_scope": "UNOFFICIAL_INVENTED_CONTAINMENT_NOT_CANON"
+    }
+  },
+  "non_inferences": [
+    "Absence of a Badgey Daystrom detention report in these editorials is not exhaustive proof that no other source ever depicts one.",
+    "Publisher editorial plot description is not full episode audiovisual close-reading.",
+    "Same-publisher articles cannot be counted as two independent primary episode witnesses.",
+    "AGIMUS, Peanut Hamper and Badgey must remain distinct source-local entity references until reconciled by accepted evidence."
+  ],
+  "full_episode_read": false,
+  "source_work_admission": "NONE",
+  "semantic_canon_assertions": [],
+  "new_coverage_events": [],
+  "global_reconciliation_effect": "NONE",
+  "public_media_effect": "NONE",
+  "projection_effect": "NONE",
+  "status": "HELD_EDITORIAL_BOUNDARY_FIXTURE"
+}

@@ -1,0 +1,122 @@
+{
+  "packet_id": "FILMS-MEYER-ARCHIVAL-SCRIPT-ACCESS-20261104",
+  "schema_version": "film-archival-script-access-v1",
+  "role": "FILMS",
+  "proposal_only": true,
+  "accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_on_utc": "2026-11-04",
+  "status": "HELD_FINDING_AID_READ_ONLY_NO_SCRIPT_CONTENT",
+  "independence_group": "university-of-iowa-meyer-papers-msc0425",
+  "sources": [
+    {
+      "record_type": "source",
+      "source_id": "film-meyer-old-finding-aid-20261104",
+      "status": "PROPOSED",
+      "source_kind": "INSTITUTIONAL_ARCHIVAL_FINDING_AID",
+      "provider": "University of Iowa Libraries Special Collections",
+      "locator": "https://www.lib.uiowa.edu/scua/msc/tomsc450/msc425/msc425.html",
+      "source_version": "legacy manuscript register posted 1998 with addenda through 2012; web reader retrieved 2026-11-04",
+      "content_hash": null,
+      "retrieved_at": "2026-11-04",
+      "provenance_family": "University of Iowa MsC0425",
+      "independence_group": "university-of-iowa-meyer-papers-msc0425",
+      "notes": "Read institutional catalog descriptions, not archived manuscript pages. Original HTML response bytes not held."
+    },
+    {
+      "record_type": "source",
+      "source_id": "film-meyer-archivespace-item-20261104",
+      "status": "PROPOSED",
+      "source_kind": "INSTITUTIONAL_ARCHIVAL_ITEM_CATALOG",
+      "provider": "University of Iowa Libraries Special Collections / ArchivesSpace",
+      "locator": "https://aspace.lib.uiowa.edu/repositories/2/archival_objects/496613",
+      "source_version": "ArchivesSpace displayed item catalog; web reader retrieved 2026-11-04",
+      "content_hash": null,
+      "retrieved_at": "2026-11-04",
+      "provenance_family": "University of Iowa MsC0425",
+      "independence_group": "university-of-iowa-meyer-papers-msc0425",
+      "notes": "Box 56 title combines Star Trek II and The Undiscovered Country; title and container are preserved literally pending archive confirmation."
+    },
+    {
+      "record_type": "source",
+      "source_id": "film-meyer-archivespace-collection-20261104",
+      "status": "PROPOSED",
+      "source_kind": "INSTITUTIONAL_ARCHIVAL_COLLECTION_CATALOG",
+      "provider": "University of Iowa Libraries Special Collections / ArchivesSpace",
+      "locator": "https://s-lib019.lib.uiowa.edu/repositories/2/resources/2996",
+      "source_version": "ArchivesSpace collection description; web reader retrieved 2026-11-04",
+      "content_hash": null,
+      "retrieved_at": "2026-11-04",
+      "provenance_family": "University of Iowa MsC0425",
+      "independence_group": "university-of-iowa-meyer-papers-msc0425",
+      "notes": "Institutional collection-level access and publication terms; not an item-specific delivery or rights grant."
+    }
+  ],
+  "local_entities": [
+    {"record_type": "local_entity", "local_entity_id": "meyer-legacy-ii-revised-draft", "work_id": "candidate:film-wrath-of-khan", "label": "1982 January 18 revised final draft, legacy aid", "entity_kind": "ARCHIVAL_CATALOG_ITEM"},
+    {"record_type": "local_entity", "local_entity_id": "meyer-legacy-ii-release-dialogue", "work_id": "candidate:film-wrath-of-khan", "label": "1982 May 24 release dialogue script, legacy aid", "entity_kind": "ARCHIVAL_CATALOG_ITEM"},
+    {"record_type": "local_entity", "local_entity_id": "meyer-legacy-iv-script-material", "work_id": "candidate:film-voyage-home", "label": "1985–1986 first-act draft/revisions/scripts, legacy aid", "entity_kind": "ARCHIVAL_CATALOG_GROUP"},
+    {"record_type": "local_entity", "local_entity_id": "meyer-legacy-vi-revision-group", "work_id": "candidate:film-undiscovered-country", "label": "1991 color-coded screenplay revisions, legacy aid", "entity_kind": "ARCHIVAL_CATALOG_GROUP"},
+    {"record_type": "local_entity", "local_entity_id": "meyer-current-mixed-title-1982-draft", "work_id": "candidate:film-wrath-of-khan", "label": "1982 Jan 18 mixed-title revised final draft, ArchivesSpace item", "entity_kind": "ARCHIVAL_CATALOG_ITEM_UNRECONCILED"}
+  ],
+  "evidence": [
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-ii-1982-draft", "source_id": "film-meyer-old-finding-aid-20261104", "work_id": "candidate:film-wrath-of-khan", "evidence_kind": "document",
+      "locator": {"collection": "MsC 425", "addendum": "2000", "listed_box": "48", "section": "Star Trek II: The Wrath of Khan", "finding_aid_lines": [1437, 1439]},
+      "observed": {"catalog_item_kind": "Revised Final Draft", "date_as_listed": "1982-01-18"},
+      "frame": "ARCHIVAL_FINDING_AID_METADATA_ONLY", "epistemic_status": "DIRECT"
+    },
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-ii-release-dialogue", "source_id": "film-meyer-old-finding-aid-20261104", "work_id": "candidate:film-wrath-of-khan", "evidence_kind": "document",
+      "locator": {"collection": "MsC 425", "addendum": "2000", "listed_box": "48", "section": "Star Trek II: The Wrath of Khan", "finding_aid_lines": [1466, 1469]},
+      "observed": {"catalog_item_kind": "Release Dialogue Script", "date_as_listed": "1982-05-24"},
+      "frame": "ARCHIVAL_FINDING_AID_METADATA_ONLY", "epistemic_status": "DIRECT"
+    },
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-iv-script-material", "source_id": "film-meyer-old-finding-aid-20261104", "work_id": "candidate:film-voyage-home", "evidence_kind": "document",
+      "locator": {"collection": "MsC 425", "addendum": "2000", "listed_box": "49", "section": "Star Trek IV: The Voyage Home", "finding_aid_lines": [1491, 1504]},
+      "observed": {"catalog_item_kinds": ["Revised First Act", "Script Revisions", "Scripts/Correspondence"], "date_labels": ["1985-10-18", "1985-11-07/1985-11-12", "1986-02/1986-03"], "first_act_explicitly_incomplete": true},
+      "frame": "ARCHIVAL_FINDING_AID_METADATA_ONLY", "epistemic_status": "DIRECT"
+    },
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-vi-script-revisions", "source_id": "film-meyer-old-finding-aid-20261104", "work_id": "candidate:film-undiscovered-country", "evidence_kind": "document",
+      "locator": {"collection": "MsC 425", "addendum": "2000", "listed_boxes": ["49", "50"], "section": "Star Trek VI: The Undiscovered Country", "finding_aid_lines": [1513, 1555]},
+      "observed": {"catalog_item_kinds": ["1991 script revisions", "Complete Script"], "complete_script_date_as_listed": "1991-01-21", "revision_colors_as_listed": ["Pink", "Yellow", "Blue", "Green"], "not_distributed_revision_as_listed": "1991-02-22"},
+      "frame": "ARCHIVAL_FINDING_AID_METADATA_ONLY", "epistemic_status": "DIRECT"
+    },
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-current-mixed-title", "source_id": "film-meyer-archivespace-item-20261104", "work_id": "candidate:film-wrath-of-khan", "evidence_kind": "document",
+      "locator": {"collection": "MsC0425", "archivespace_object_id": "496613", "listed_box": "56", "catalog_page_lines": [2, 5]},
+      "observed": {"catalog_title_as_listed": "Revised final draft by Harve Bennett with Jack B. Sowards and Samuel A. Peepies, Titled: Star Trek II: The Undiscovered Country", "date_as_listed": "1982-01-18"},
+      "frame": "ARCHIVAL_FINDING_AID_METADATA_ONLY", "epistemic_status": "DIRECT"
+    },
+    {
+      "record_type": "evidence", "evidence_id": "meyer-e-collection-access", "source_id": "film-meyer-archivespace-collection-20261104", "work_id": "candidate:film-wrath-of-khan", "evidence_kind": "document",
+      "locator": {"collection": "MsC0425", "section": "Conditions Governing Access / Conditions Governing Use", "catalog_page_lines": [47, 52]},
+      "observed": {"research_access_as_stated": "open for research", "publication_requires_rightsholder_consent": true, "unpublished_text_read": false},
+      "frame": "ARCHIVAL_COLLECTION_TERMS_ONLY", "epistemic_status": "DIRECT"
+    }
+  ],
+  "assertions": [
+    {"record_type": "assertion", "assertion_id": "meyer-a-ii-1982-draft", "subject_type": "LOCAL_ENTITY", "subject": "meyer-legacy-ii-revised-draft", "predicate": "FINDING_AID_LISTS_ARCHIVAL_SCRIPT", "object": {"item_kind": "Revised Final Draft", "date": "1982-01-18", "listed_box": "48"}, "evidence": ["meyer-e-ii-1982-draft"], "status": "PROPOSED", "scope": {"source_metadata_only": true}},
+    {"record_type": "assertion", "assertion_id": "meyer-a-ii-release-dialogue", "subject_type": "LOCAL_ENTITY", "subject": "meyer-legacy-ii-release-dialogue", "predicate": "FINDING_AID_LISTS_ARCHIVAL_SCRIPT", "object": {"item_kind": "Release Dialogue Script", "date": "1982-05-24", "listed_box": "48"}, "evidence": ["meyer-e-ii-release-dialogue"], "status": "PROPOSED", "scope": {"source_metadata_only": true}},
+    {"record_type": "assertion", "assertion_id": "meyer-a-iv-script-material", "subject_type": "LOCAL_ENTITY", "subject": "meyer-legacy-iv-script-material", "predicate": "FINDING_AID_LISTS_ARCHIVAL_SCRIPT_GROUP", "object": {"kinds": ["first-act draft", "script revisions", "script correspondence"], "listed_box": "49"}, "evidence": ["meyer-e-iv-script-material"], "status": "PROPOSED", "scope": {"source_metadata_only": true}},
+    {"record_type": "assertion", "assertion_id": "meyer-a-vi-script-revisions", "subject_type": "LOCAL_ENTITY", "subject": "meyer-legacy-vi-revision-group", "predicate": "FINDING_AID_LISTS_ARCHIVAL_SCRIPT_GROUP", "object": {"kinds": ["complete script", "color-coded revisions"], "listed_boxes": ["49", "50"]}, "evidence": ["meyer-e-vi-script-revisions"], "status": "PROPOSED", "scope": {"source_metadata_only": true}},
+    {"record_type": "assertion", "assertion_id": "meyer-a-current-mixed-title", "subject_type": "LOCAL_ENTITY", "subject": "meyer-current-mixed-title-1982-draft", "predicate": "ARCHIVESSPACE_LISTS_POTENTIALLY_AMBIGUOUS_SCRIPT", "object": {"literal_title_contains": "Star Trek II: The Undiscovered Country", "date": "1982-01-18", "listed_box": "56", "identity_with_legacy_draft": "UNRESOLVED"}, "evidence": ["meyer-e-current-mixed-title"], "status": "PROPOSED", "scope": {"source_metadata_only": true}},
+    {"record_type": "assertion", "assertion_id": "meyer-a-collection-access", "subject_type": "SOURCE", "subject": "film-meyer-archivespace-collection-20261104", "predicate": "COLLECTION_CATALOG_STATES_ACCESS_RESTRICTIONS", "object": {"research": "open", "publication_of_papers": "requires consent", "exact_item_access": "UNVERIFIED"}, "evidence": ["meyer-e-collection-access"], "status": "PROPOSED", "scope": {"access_terms_only": true}}
+  ],
+  "synopsis_handling": {
+    "status": "HELD_NO_NEW_FILM_CONTENT_SYNOPSIS",
+    "existing_source_relative_paraphrase_packet": "proposals/research/films/publisher-synopses-20261103/observations.json",
+    "reason": "All three films already have original publisher-description paraphrases; archive finding aids contain no film plot or spoken-dialogue text. New narrative summaries would recycle that existing publisher lineage and falsely imply film reading."
+  },
+  "coverage_effect": "NONE",
+  "source_work_binding_effect": "NONE",
+  "full_film_viewed": false,
+  "screenplay_content_read": false,
+  "release_dialogue_content_read": false,
+  "source_hashes": [],
+  "source_page_bytes_held": false,
+  "archival_page_or_media_bytes_held": false,
+  "public_release_effect": "NONE",
+  "unresolved_identity": "LEGACY_BOX_48_1982_JAN_DRAFT_VS_ARCHIVESSPACE_BOX_56_MIXED_TITLE_NOT_RECONCILED"
+}

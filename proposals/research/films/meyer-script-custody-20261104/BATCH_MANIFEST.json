@@ -1,0 +1,11 @@
+{
+  "record_type": "batch_manifest",
+  "batch_id": "FILMS-MEYER-ARCHIVAL-SCRIPT-ACCESS-20261104",
+  "schema_version": "film-archival-script-access-v1",
+  "worker_id": "chatgpt.trek.films.meyer-script-custody",
+  "works": ["candidate:film-wrath-of-khan", "candidate:film-voyage-home", "candidate:film-undiscovered-country"],
+  "source_hashes": [],
+  "record_counts": {"sources": 3, "local_entities": 5, "evidence": 6, "assertions": 6},
+  "batch_hash": "sha256:8de7913a0a68006ab734fac8b294612cea47b8a041ab150cd9e5aa3b1952d3ed",
+  "created_at": "2026-11-04"
+}

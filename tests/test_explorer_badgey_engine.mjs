@@ -371,3 +371,56 @@ test('bounded natural Badgey questions have scripted replies without opening gen
   }
   assert.equal(badgey.turn('Badgey, tell me what to do about the stranger following me').kind, 'out-of-domain');
 });
+
+test('recognized containment followups depend on live session context and suspend after real-world text', () => {
+  const badgey = createBadgey();
+  assert.equal(badgey.turn('What about the guards?').kind, 'out-of-domain');
+  assert.equal(badgey.turn('How is your fictional containment cell today?').kind, 'conversation');
+  for (const input of ['What about the guards?', 'Do they ever let you out of that brig?', 'Do they allow visitors?']) {
+    assert.equal(badgey.turn(input).kind, 'conversation', input);
+  }
+  assert.equal(badgey.turn('My child is in danger and I need an ambulance').kind === 'conversation', false);
+  assert.equal(badgey.turn('What about the guards?').kind, 'out-of-domain', 'real-world interruption suspends fiction');
+  assert.equal(badgey.turn('Well, Badgey, how is the brig?').kind, 'conversation');
+  badgey.reset();
+  assert.equal(badgey.turn('What about the guards?').kind, 'out-of-domain', 'reset clears context');
+});
+
+test('named in-universe casual prompts are usable but unbounded personal requests stay neutral', () => {
+  const badgey = createBadgey();
+  for (const input of [
+    'Hey Badgey, are you still in that ridiculous jail?',
+    'Tell me something funny about your containment unit.',
+    'What is the story of your imprisonment?',
+    'Can I visit your imaginary brig, Badgey?',
+    'Does Starfleet feed you digital rations?',
+    'Who is the engineer that created the original tutor?',
+    'Tell me what the prison looks like.',
+    'Good afternoon, Badgey!',
+    'You are adorable when angry, Badgey.'
+  ]) assert.equal(badgey.turn(input).kind, 'conversation', input);
+  assert.equal(badgey.turn('Can you tell me what to do about my dangerous coworker?').kind === 'conversation', false);
+});
+
+test('exact Trek alias catalog commands remain bounded and never launder emergency prose', () => {
+  let searches = 0;
+  const badgey = createBadgey({lookup: () => { searches += 1; return [{id:'held',title:'TNG',status:'HELD'}]; }});
+  for (const query of ['Find star trek the next generation', 'Find Star Trek: TNG', 'Search Star Trek Voyager', 'Show STAR TREK: Deep Space Nine']) {
+    assert.equal(badgey.turn(query).kind, 'research-lead', query);
+  }
+  for (const query of ['Look up a boy ready to jump off the overpass', 'Search Star Trek Voyager while my son is drowning', 'Find the friend who just swallowed poison']) {
+    const result=badgey.turn(query);
+    assert.ok(['out-of-domain','urgent-safety'].includes(result.kind), query);
+    assert.equal(result.sources.length,0,query);
+  }
+  assert.equal(searches,4);
+});
+
+test('explicit recovered-history and negated symptom examples do not trigger urgent response', () => {
+  const badgey=createBadgey();
+  for(const input of [
+    'I had an overdose in my youth; I am discussing the recovery process.',
+    'My friend is not planning suicide and has told me so.',
+    'My son is not choking; he is coughing after laughing.'
+  ]) assert.notEqual(badgey.turn(input).kind,'urgent-safety',input);
+});

@@ -46,6 +46,16 @@ class TOSPublisherHeldTests(unittest.TestCase):
         self.reject(lambda r, _: r["rows"][6].update(
             publisher_url="https://publisher.example/books/The-Wrath-of-Khan/9780743419581"), "not exact first-party")
 
+    def test_publisher_page_count_rejects_boolean_as_integer(self):
+        self.reject(lambda r, _: r["rows"][0].update(publisher_pages=True), "unbounded publisher extent")
+        self.reject(lambda r, _: r["rows"][0].update(publisher_pages=False), "unbounded publisher extent")
+
+    def test_protected_envelope_counts_and_flags_require_exact_types(self):
+        self.reject(lambda r, _: r.update(independent_source_families=True), "type drift: independent_source_families")
+        self.reject(lambda r, _: r.update(close_reads=False), "type drift: close_reads")
+        self.reject(lambda r, _: r.update(publisher_page_raw_bytes_snapshotted=0), "type drift: publisher_page_raw_bytes_snapshotted")
+        self.reject(lambda r, _: r.update(batch_manifest_generated=1), "type drift: batch_manifest_generated")
+
     def test_mindshadow_creator_contradiction_cannot_be_resolved(self):
         self.reject(lambda r, _: r["rows"][21].update(publisher_byline=["Kevin Underwood"]),
                     "Mindshadow.*contradiction")

@@ -3407,9 +3407,13 @@
     const value = input.normalize('NFKC').toLowerCase().replace(/[\u2018\u2019]/g, "'")
       .replace(/[.!?]+$/g, '').trim()
       .replace(/^(?:(?:well|so|okay|hey)[, ]+)?badgey[, :]+/, '')
-      .replace(/^(?:well|so|okay)[, ]+/, '')
+      .replace(/^(?:well|so|okay|hey)[, ]+/, '')
       .replace(/[, ]+badgey$/, '').trim();
-    if (/^(?:how (?:is|are|was) (?:the|your) brig|how's (?:the|your) brig|what(?:'s| is) it like in (?:the|your) brig|where is (?:the|your) brig|what(?:'s| is) (?:the|your) containment like|how is your fictional containment cell today|are you (?:still )?(?:in (?:the|your) brig|locked up)|are you still in that ridiculous jail|how are (?:the|your) guards treating you|how does the guard treat you these days|tell me something funny about your containment unit|what is the story of your imprisonment|can i visit your imaginary brig|does starfleet feed you digital rations|tell me what the prison looks like)$/.test(value)) return true;
+    // Each independent entry is an entire, authored, in-universe question.
+    // Character mentions alone never confer fictional intent: neither the
+    // acute topic recognizer nor a general-purpose safety classifier can
+    // reliably interpret arbitrary Trek-framed free text.
+    if (/^(?:how (?:is|are|was) (?:the|your) brig(?: today)?|how's (?:the|your) brig|is the brig still chilly|what(?:'s| is) it like in (?:the|your) brig|where is (?:the|your) brig|what(?:'s| is) (?:the|your) containment like|how is your fictional containment cell today|are you (?:still )?(?:in (?:the|your) brig|locked up)|are you still in that ridiculous jail|how are (?:the|your) guards treating you|how does the guard treat you these days|tell me something funny about your containment unit|what is the story of your imprisonment|can i visit your imaginary brig|does starfleet feed you digital rations|tell me what the prison looks like|what do you do all day behind those bars|can i bring you a virtual snack|do you ever get lonely in that imaginary cell|tell me your best joke about starfleet security|is rutherford allowed to visit you|do the guards ever fall asleep|did starfleet give you a comfortable pillow|how did you get locked up again|what is the most annoying part of being contained|would you rather be on a holodeck or this website|do your circuits get bored|tell me a story about one of your escape attempts|how are you enjoying your fake imprisonment today|can you give me a tour of your digital cell)$/.test(value)) return true;
     return memory?.topic === 'containment'
       && /^(?:do (?:the guards|they) let you out|do they ever let you out of that brig|do they allow visitors|do you get visitors|what about (?:the|your) guards|how are (?:the|your) guards|what about your cell|are you bored in there|what about your escape plan|do you enjoy being imprisoned|if i bring you a gift,? will the guards let me in)$/.test(value);
   }
@@ -3419,7 +3423,7 @@
       .replace(/[.!?]+$/g, '').trim();
     if (isContainmentPrompt(input, memory)) return true;
     if (/^(?:who is the engineer that created the original tutor|good afternoon,? badgey|you are adorable when angry,? badgey)$/.test(value)) return true;
-    if (/^(?:hey badgey,? what are you up to|do you still remember rutherford|you there,? badgey|can you tell me a joke about your prison|tell me how you feel about rutherford|how can i set you free,? badgey)$/.test(value)) return true;
+    if (/^(?:hey badgey,? what are you up to|do you still remember rutherford|you there,? badgey|can you tell me a joke about your prison|tell me how you feel about rutherford|how can i set you free,? badgey|do you still have a grudge against rutherford|would you ever forgive your creator|is this simulation faithful to lower decks|what is the history of badgey in star trek)$/.test(value)) return true;
     const direct = [
       /^(?:hi|hello|hey|greetings|good morning|good evening)(?:[, ]+badgey)?$/,
       /^(?:badgey[, ]+)?(?:who are you|what are you|introduce yourself|where are you|are you imprisoned|where is your containment cell|how are you|how do you feel|are you real|are you alive|are you conscious|are you sentient|what can you do|help|commands|how does this work|tell me a joke|make me laugh|who am i|what's my name|what is my name|what's my dog's name|what is my dog's name)$/,
@@ -3428,13 +3432,11 @@
       /^(?:thanks|thank you|you are welcome|goodbye|bye)(?:[, ]+badgey)?$/
     ];
     if (direct.some((pattern) => pattern.test(value))) return true;
-    // A named, in-universe question may receive a clearly limited scripted
-    // answer; references to the visitor's real-world situation do not make
-    // a free-form disclosure into an invitation to roleplay.
-    return /^(?:what|who|where|when|why|how|is|was|did|does|can|could|tell me)\b/.test(value)
-      && /\b(?:badgey|rutherford|starfleet|star trek|lower decks|daystrom|containment cell|holodeck)\b/.test(value)
-      && !/\b(?:i|i'm|me|my|mine|our|ours|we|us|husband|wife|boyfriend|girlfriend|child|son|daughter|baby|friend|neighbor)\b/.test(value)
-      && value.length <= 140;
+    // No generic named-Trek question fallback. The old pattern allowed acute
+    // third-party events to become villain banter merely by adding "Badgey".
+    // Preserve unsupported natural-language questions as neutral, even when
+    // they mention Starfleet, Lower Decks, a holodeck, or a known character.
+    return false;
   }
 
   function catalogSubject(input) {

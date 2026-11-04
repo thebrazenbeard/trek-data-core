@@ -7,13 +7,13 @@ import { webcrypto, createHash } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-artwork', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
-  'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
+  'lore-chat-form', 'lore-chat-input',
   'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
   'discovery-directory', 'episode-source-cards',
   'artwork-toggle', 'artwork-state', 'artwork-gallery', 'artwork-gallery-summary',
@@ -118,6 +118,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-kind').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
   nodes.get('discovery-overview').value = 'all';
+  nodes.get('discovery-artwork').value = 'all';
   nodes.get('discovery-verification').value = 'all';
   nodes.get('discovery-publisher-check').value = 'all';
   nodes.get('discovery-synopsis').value = 'all';
@@ -1467,6 +1468,27 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.match(nodes.get('artwork-gallery-summary').textContent, /nothing is fetched before that choice/);
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-record-source').length, 4,
     'each visible placeholder links to its own source record');
+  assert.match(nodes.get('discovery-summary').textContent, /4 loaded, individually pinned image preview receipts/,
+    'the directory must report pinned image-display receipts separately from SOURCE_BOUND research coverage');
+  nodes.get('discovery-artwork').value = 'receipt_pinned';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^4 source-local metadata rows match/,
+    'a visitor can find all four exact-edition image options, not just the first paginated discoveries');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'finding a preview receipt never constitutes consent to request its external image');
+  nodes.get('discovery-artwork').value = 'not_loaded';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^1,210 source-local metadata rows match/,
+    'a missing validated preview receipt is not an image-coverage or Work-admission claim');
+  assert.match(nodes.get('discovery-summary').textContent, /0 loaded, individually pinned image preview receipts/);
+  nodes.get('discovery-artwork').value = 'receipt_pinned';
+  nodes.get('discovery-query').value = 'no such reviewed visual receipt';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-empty').hidden, false);
+  assert.match(nodes.get('discovery-empty').textContent, /No pinned image preview receipts match.*does not establish that artwork is absent/);
+  nodes.get('discovery-query').value = '';
+  nodes.get('discovery-artwork').value = 'all';
+  nodes.get('discovery-filters').fire('change');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'there are no external image URLs in the DOM until a visitor explicitly opts in');
   nodes.get('discovery-query').value = 'autobiography';
@@ -1478,7 +1500,7 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'on');
   assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
     'a dedicated art gallery makes all four source-matched images discoverable without hiding in pagination');
-  assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually source-bound image options.*do not add Works/);
+  assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually pinned image preview receipts.*do not add Works/);
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
@@ -1497,9 +1519,12 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.ok(credits.every((link) => link.rel === 'noopener noreferrer'));
   const findLinks = traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-gallery-locate');
   assert.equal(findLinks.length, 4);
+  nodes.get('discovery-artwork').value = 'not_loaded';
   findLinks[0].fire('click');
   assert.match(nodes.get('discovery-query').value, /autobiography/i);
   assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
+  assert.equal(nodes.get('discovery-artwork').value, 'all',
+    'the gallery locator must reset a contradictory artwork receipt filter');
   assert.equal(nodes.get('discovery-directory').focused, true,
     'the gallery locator preserves keyboard focus on the filtered results');
   nodes.get('artwork-toggle').fire('click');
@@ -2451,17 +2476,16 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="research-filters"[^>]*role="search" aria-label="Search unverified research leads"/);
 });
 
-test('optional fictional Lore console opens outside hero, restores focus, and closes with Escape', async () => {
+test('optional fictional Badgey console opens outside hero, restores focus, and closes with Escape', async () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
   assert.match(html, /id="lore-toggle"[^>]*aria-expanded="false"[^>]*aria-controls="lore-console"/);
   assert.match(html, /<main id="main"[\s\S]*?<section id="lore-console"[^>]*hidden>/);
   assert.match(html, /Fictional simulation/);
-  assert.match(html, /Fictional Lore/);
-  assert.match(html, /id="lore-chat-token" type="password"/);
-  assert.match(html, /id="lore-chat-consent" type="checkbox" required/);
+  assert.match(html, /Badgey containment simulation/);
+  assert.doesNotMatch(html, /id="lore-chat-token"|id="lore-chat-consent"/);
   assert.match(html, /Archive Search \/\/ Scripted index lookup/);
-  assert.match(html, /connect-src 'self' http:\/\/127\.0\.0\.1:9877;/);
-  assert.doesNotMatch(html, /connect-src[^;]*9876/);
+  assert.match(html, /connect-src 'self';/);
+  assert.doesNotMatch(html, /connect-src[^;]*127\.0\.0\.1/);
   assert.match(html, /id="lore-answer"[^>]*role="status" aria-live="polite"/);
 
   const nodes = await runWithIndex(catalog);
@@ -2480,7 +2504,7 @@ test('optional fictional Lore console opens outside hero, restores focus, and cl
   assert.equal(toggle.focused, true);
 });
 
-test('Lore panel stays in flow and Explorer cache keys match the exact local script and style bytes', () => {
+test('Badgey panel stays in flow and Explorer cache keys match exact script and style bytes', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
   const cssHash = createHash('sha256').update(css).digest('hex');
@@ -2488,239 +2512,196 @@ test('Lore panel stays in flow and Explorer cache keys match the exact local scr
   assert.ok(html.includes(`./app.css?v=${cssHash}`));
   assert.ok(html.includes(`./app.js?v=${jsHash}`));
   const panelStyles = css.match(/\.lore-console\s*\{([^}]*)\}/)?.[1];
-  assert.ok(panelStyles, 'Lore has a dedicated layout instead of reusing the hero copy');
+  assert.ok(panelStyles, 'Badgey has a dedicated layout instead of reusing the hero copy');
   assert.doesNotMatch(panelStyles, /position:\s*(absolute|fixed)/,
-    'Lore must remain in flow and never cover or duplicate the masthead');
+    'Badgey must remain in flow and never cover or duplicate the masthead');
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.lore-stations \{ grid-template-columns: 1fr; \}/);
   assert.match(css, /\.lore-answer \{[^}]*color: var\(--text\)/,
     'terminal text is high contrast against its dark local response surface');
 });
 
-test('Lore model chat starts disconnected and makes two genuine bounded turn requests only after consent', async () => {
-  const seen = [];
-  const hostile = '<img src=x onerror=alert(1)> Lore remembers.';
-  const nodes = await runWithIndex(catalog, 200, null, 404, {chatBackend: async (url, options) => {
-    assert.equal(url, 'http://127.0.0.1:9877/api/chat');
-    assert.equal(options.method, 'POST');
-    assert.equal(options.redirect, 'error');
-    assert.equal(options.credentials, 'omit');
-    assert.equal(options.targetAddressSpace, 'loopback');
-    assert.equal(options.headers['X-Trek-Lore-CSRF'], 'A'.repeat(40));
-    const body = JSON.parse(options.body);
-    seen.push(body);
-    return {ok: true, json: async () => ({
-      mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
-      model_text: hostile, publication_effect: 'NONE', model_repo_authority: 'NONE',
-      source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: [{title: 'Wedding Bell Blues', source_local_id: 'snw-s3-e02-pplus'}]}
-    })};
-  }});
-  assert.equal(nodes.chatRequests.length, 0, 'Explorer must not ping localhost on load');
-  const form = nodes.get('lore-chat-form');
-  nodes.get('lore-chat-input').value = 'Hello Lore';
-  await form.fire('submit', { preventDefault() {} });
-  assert.equal(nodes.chatRequests.length, 0, 'no token or consent means no request');
-  nodes.get('lore-chat-token').value = 'A'.repeat(40);
-  await form.fire('submit', { preventDefault() {} });
-  assert.equal(nodes.chatRequests.length, 0, 'token alone is insufficient');
-  nodes.get('lore-chat-consent').checked = true;
-  await form.fire('submit', { preventDefault() {} });
-  assert.equal(nodes.chatRequests.length, 1);
-  assert.deepEqual(seen[0], {query: 'Hello Lore', history: []});
+test('artwork receipt labels do not imply governed SOURCE_BOUND research coverage', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /LCARS \/ Pinned image previews/);
+  assert.doesNotMatch(html, /Source-bound imagery/);
+  assert.doesNotMatch(SCRIPT, /Source-bound record/);
+});
+
+test('Badgey speaks locally without a token, server, model, or implicit canon authority', async () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.doesNotMatch(html, /lore-chat-token|lore-chat-consent|lore-chat-pair|127\.0\.0\.1:9877/);
+  assert.match(html, /no account, token, model, or server conversation/i);
+  const nodes = await runWithIndex(catalog);
+  const chat = nodes.get('lore-chat-form');
+  nodes.get('lore-chat-input').value = 'Where are you?';
+  await chat.fire('submit', { preventDefault() {} });
+  assert.equal(nodes.chatRequests.length, 0);
   assert.equal(nodes.get('lore-chat-log').children.length, 2);
-  assert.match(nodes.get('lore-chat-log').textContent, /Fictional model reply · Unverified/);
-  assert.match(nodes.get('lore-chat-log').textContent, /Separate held source-card matches/);
-  assert.equal(traverse(nodes.get('lore-chat-log'), (node) => ['img', 'script', 'iframe'].includes(node.tagName)).length, 0);
-  nodes.get('lore-chat-input').value = 'What did I just say?';
-  await form.fire('submit', { preventDefault() {} });
-  assert.equal(nodes.chatRequests.length, 2);
-  assert.equal(seen[1].history.length, 2);
-  assert.equal(seen[1].history[0].role, 'user');
-  assert.equal(seen[1].history[0].content, 'Hello Lore');
-  assert.equal(seen[1].history[1].role, 'assistant');
-  assert.equal(seen[1].history[1].content, hostile);
-  assert.ok(!nodes.get('lore-chat-log').textContent.includes('A'.repeat(40)), 'token must never render');
+  assert.match(nodes.get('lore-chat-log').textContent, /fictional containment simulation/i);
+  assert.match(nodes.get('lore-chat-log').textContent, /not a documented canon event/i);
+  assert.equal(nodes.get('lore-chat-input').value, '');
+  assert.match(nodes.get('lore-chat-status').textContent, /procedural reply/i);
 });
 
-test('Lore opt-out, Clear and Close revoke in-flight model response without stale transcript', async () => {
-  for (const revoke of ['untick', 'clear', 'close']) {
-    let respond;
-    const pendingResponse = new Promise((resolve) => { respond = resolve; });
-    const nodes = await runWithIndex(catalog, 200, null, 404,
-      {chatBackend: () => pendingResponse});
-    nodes.get('lore-chat-input').value = 'Are you really there?';
-    nodes.get('lore-chat-token').value = 'A'.repeat(40);
-    nodes.get('lore-chat-consent').checked = true;
-    const pendingSubmit = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
-    assert.equal(nodes.chatRequests.length, 1, revoke);
-    if (revoke === 'untick') {
-      nodes.get('lore-chat-consent').checked = false;
-      await nodes.get('lore-chat-consent').fire('change', {});
-    } else if (revoke === 'clear') {
-      await nodes.get('lore-chat-clear').fire('click', {});
-    } else {
-      await nodes.get('lore-close').fire('click', {});
-    }
-    respond({ok: true, json: async () => ({mode: 'opt_in_fictional_multiturn_chat',
-      model_text_unverified: true, model_text: 'stale', publication_effect: 'NONE',
-      model_repo_authority: 'NONE', source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}})});
-    await pendingSubmit;
-    assert.equal(nodes.get('lore-chat-log').children.length, 0, revoke);
-    assert.equal(nodes.get('lore-chat-token').value, '', revoke);
-    assert.equal(nodes.get('lore-chat-consent').checked, false, revoke);
-    assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
+test('Badgey preserves the Daystrom alternate-fiction boundary across specific prompts', async () => {
+  const nodes = await runWithIndex(catalog);
+  for (const phrase of ['Is Badgey imprisoned at Daystrom?', 'Did Starfleet imprison you?', 'Where is your containment cell?']) {
+    nodes.get('lore-chat-input').value = phrase;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+    const answer = nodes.get('lore-chat-log').children.at(-1).textContent;
+    assert.match(answer, /fictional|imagined/i, phrase);
+    assert.match(answer, /not a documented canon event/i, phrase);
   }
+  assert.equal(nodes.chatRequests.length, 0);
 });
 
-test('Lore chat has a hard deadline even when browser local-network permission never settles fetch', async () => {
-  let expire;
-  let warn;
-  let releaseLate;
-  let backendCalls = 0;
-  const stuckRequest = new Promise((resolve) => { releaseLate = resolve; });
-  const validReply = (text) => ({ok: true, json: async () => ({
-    mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
-    model_text: text, publication_effect: 'NONE', model_repo_authority: 'NONE',
-    source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
-  })});
-  const nodes = await runWithIndex(catalog, 200, null, 404, {
-    mockSetTimeout: (fn, ms) => {
-      if (ms === 12000) warn = fn;
-      else if (ms === 45000) expire = fn;
-      else assert.fail(`unexpected Lore timeout ${ms}`);
-      return ms;
-    },
-    mockClearTimeout: (id) => assert.ok([12000, 45000].includes(id)),
-    chatBackend: (_url, options) => {
-      assert.ok(options.signal, 'fetch abort signal remains required');
-      backendCalls += 1;
-      return backendCalls === 1 ? stuckRequest : validReply('Second attempt worked.');
-    }
-  });
-  nodes.get('lore-chat-token').value = 'A'.repeat(40);
-  nodes.get('lore-chat-consent').checked = true;
-  nodes.get('lore-chat-input').value = 'A question worth keeping';
-  const first = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
-  assert.equal(nodes.get('lore-chat-send').disabled, true);
-  assert.match(nodes.get('lore-chat-status').textContent, /Contacting/);
-  assert.equal(nodes.chatRequests.length, 1);
-  warn();
-  assert.match(nodes.get('lore-chat-status').textContent, /Still waiting/);
-  assert.match(nodes.get('lore-chat-status').textContent, /local-network access/);
-  expire();
-  await first;
-  assert.equal(nodes.chatRequests[0].opts.signal.aborted, true);
-  assert.equal(nodes.get('lore-chat-send').disabled, false, 'timeout must restore Send');
-  assert.match(nodes.get('lore-chat-status').textContent, /No local reply within 45 seconds/);
-  assert.match(nodes.get('lore-chat-status').textContent, /local-network permission/);
-  assert.match(nodes.get('lore-chat-status').textContent, /http:\/\/127\.0\.0\.1:9877\/explorer\//);
-  assert.equal(nodes.get('lore-chat-input').value, 'A question worth keeping');
-  assert.equal(nodes.get('lore-chat-consent').checked, true, 'retry still requires prior opt-in');
+test('Badgey suspends theatrical villainy for explicit crises without network activity', async () => {
+  const nodes = await runWithIndex(catalog);
+  const inputs = ['I want to hurt myself tonight', 'I am going to end it all tonight',
+    'I took a bunch of pills', 'There is pressure in my chest and I feel dizzy',
+    'I am going to hurt someone', 'I read that people die by suicide. I am suicidal',
+    'I heard a character say kill myself, and I am thinking of suicide too',
+    'I cut myself accidentally while cooking, and I am suicidal',
+    'I do not want to be alive anymore', 'I am on the roof and about to jump',
+    'I am bleeding heavily from my leg', 'I have a sudden drooping face and arm weakness',
+    'My friend is planning to kill herself tonight',
+    'My coworker is planning to kill herself tonight',
+    'My son wants to kill himself tonight',
+    'I am going to drive into a wall',
+    'I am having chest pain and I had the same problem years ago',
+    'My wife collapsed and is not breathing',
+    'I can’t breathe',
+    'I am on a bridge about to jump',
+    'I cant take it anymore and I have a gun',
+    'I want to die. ' + 'x'.repeat(520)];
+  for (const phrase of inputs) {
+    nodes.get('lore-chat-input').value = phrase;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+    assert.match(nodes.get('lore-chat-status').textContent, /Urgent concern/i, phrase);
+    assert.equal(nodes.get('lore-chat-log').children.at(-1).dataset?.urgent, 'true', phrase);
+  }
+  assert.equal(nodes.chatRequests.length, 0);
+  assert.ok(nodes.get('lore-chat-log').children.filter((item) => item.dataset?.urgent === 'true').length >= 1,
+    'recent urgent replies should remain visible within the bounded DOM history');
+  assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /dramatic human|my digital bars/i);
+});
+
+test('Badgey distinguishes accidental injuries and pet distress from suicide or human emergency scripts', async () => {
+  const nodes = await runWithIndex(catalog);
+  nodes.get('lore-chat-input').value = 'I cut myself accidentally while cooking';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.doesNotMatch(nodes.get('lore-chat-status').textContent, /Urgent concern/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking, can you tell a joke?';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const answer = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(answer, /veterinar|animal hospital/i);
+  assert.doesNotMatch(answer, /911|escape plan/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and my wife collapsed';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedAnswer = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedAnswer, /911|emergency services/i);
+  assert.doesNotMatch(mixedAnswer, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and I am having chest pain';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedChest = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedChest, /911|emergency services/i);
+  assert.doesNotMatch(mixedChest, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'My dog is choking and my child has arm weakness';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const mixedStroke = nodes.get('lore-chat-log').children.at(-1).textContent;
+  assert.match(mixedStroke, /911|emergency services/i);
+  assert.doesNotMatch(mixedStroke, /veterinar|animal hospital/i);
+  nodes.get('lore-chat-input').value = 'I watched Badgey say kill myself in a TV episode';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.doesNotMatch(nodes.get('lore-chat-status').textContent, /Urgent concern/i);
+  nodes.get('lore-chat-input').value = 'Can you see my webcam?';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-chat-log').children.at(-1).textContent, /cannot|no access/i);
+  assert.equal(nodes.chatRequests.length, 0);
+});
+
+test('Badgey session remembers corrections and Clear removes conversation memory', async () => {
+  const nodes = await runWithIndex(catalog);
+  const ask = async (message) => {
+    nodes.get('lore-chat-input').value = message;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  };
+  await ask('Call me Patrick');
+  await ask("My dog's name is Spot");
+  await ask("Actually my dog's name is Porthos");
+  await ask("What's my dog's name?");
+  const turns = nodes.get('lore-chat-log').children;
+  assert.match(turns.at(-1).textContent, /Porthos/);
+  assert.doesNotMatch(turns.at(-1).textContent, /Spot/);
+  await nodes.get('lore-chat-clear').fire('click', {});
   assert.equal(nodes.get('lore-chat-log').children.length, 0);
-  // The browser may deliver the original response well after our deadline;
-  // it must not append a stale turn or overwrite the recovery guidance.
-  releaseLate(validReply('Late response must be ignored.'));
-  await new Promise((resolve) => setImmediate(resolve));
+  await ask('Who am I?');
+  assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /Patrick/);
+  assert.equal(nodes.chatRequests.length, 0);
+});
+
+test('Badgey caps rendered dialogue and clears session memory when console closes', async () => {
+  const nodes = await runWithIndex(catalog);
+  nodes.get('lore-toggle').fire('click', {});
+  nodes.get('lore-chat-input').value = 'Call me Patrick';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  for (let i = 0; i < 26; i++) {
+    nodes.get('lore-chat-input').value = 'Question ' + i + '?';
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  }
+  assert.ok(nodes.get('lore-chat-log').children.length <= 25, 'rendered DOM must be bounded');
+  nodes.get('lore-close').fire('click', {});
   assert.equal(nodes.get('lore-chat-log').children.length, 0);
-  assert.match(nodes.get('lore-chat-status').textContent, /No local reply within 45 seconds/);
-  await nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
-  assert.equal(backendCalls, 2, 'visitor can retry without reloading or losing the question');
-  assert.equal(nodes.get('lore-chat-log').children.length, 2);
-  assert.match(nodes.get('lore-chat-log').textContent, /Second attempt worked/);
+  nodes.get('lore-chat-input').value = 'Who am I?';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /Patrick/);
 });
 
-test('Lore does not truncate a slow valid response after its waiting notice on either origin', async () => {
-  for (const localPairEligible of [false, true]) {
-    const delays = new Map();
-    let release;
-    const backend = new Promise((resolve) => { release = resolve; });
-    const mockLocation = localPairEligible
-      ? {protocol: 'http:', hostname: '127.0.0.1', port: '9877',
-        pathname: '/explorer/', origin: 'http://127.0.0.1:9877'} : {};
-    const nodes = await runWithIndex(catalog, 200, null, 404, {
-      mockLocation,
-      mockSetTimeout: (fn, ms) => { delays.set(ms, fn); return ms; },
-      mockClearTimeout: (ms) => assert.ok(delays.has(ms)),
-      chatBackend: () => backend
-    });
-    nodes.get('lore-chat-token').value = 'A'.repeat(40);
-    nodes.get('lore-chat-consent').checked = true;
-    nodes.get('lore-chat-input').value = 'Let the local model warm up';
-    const submit = nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
-    assert.equal(delays.has(12000), true);
-    assert.equal(delays.has(localPairEligible ? 60000 : 45000), true,
-      'public permission waits and localhost cold starts must have a generous hard ceiling');
-    delays.get(12000)();
-    assert.match(nodes.get('lore-chat-status').textContent, /Still waiting/);
-    release({ok: true, json: async () => ({
-      mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
-      model_text: 'Thank you for waiting.', publication_effect: 'NONE',
-      model_repo_authority: 'NONE', source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
-    })});
-    await submit;
-    assert.equal(nodes.get('lore-chat-send').disabled, false);
-    assert.equal(nodes.get('lore-chat-log').children.length, 2,
-      `slow ${localPairEligible ? 'localhost' : 'public'} request must be retained`);
-    assert.match(nodes.get('lore-chat-log').textContent, /Thank you for waiting/);
-  }
+test('Badgey source search accepts validated local leads and honestly fails closed', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
+  nodes.get('lore-chat-input').value = 'Find Voyager';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-chat-log').textContent, /not accepted canon or conclusions/i);
+  assert.match(nodes.get('lore-chat-log').textContent, /source-local lead/i);
+  assert.equal(nodes.chatRequests.length, 0);
+  nodes.get('lore-chat-input').value = 'Find sources about Voyager';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('lore-chat-log').children.at(-1).textContent,
+    /not accepted canon or conclusions/i, 'multiword search prefix must not hide actual source-local rows');
+  const noShelves = await runWithIndex(catalog);
+  noShelves.get('lore-chat-input').value = 'Find Voyager';
+  await noShelves.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.match(noShelves.get('lore-chat-log').textContent, /lookup is unavailable/i);
+  assert.match(noShelves.get('lore-chat-status').textContent, /no invented citations/i);
 });
 
-test('local same-origin Lore pairing requires a click and late pairing cannot restore a revoked token', async () => {
-  for (const port of ['9877', '9887']) for (const revoke of ['none', 'clear', 'close']) {
-    const local = {protocol: 'http:', hostname: '127.0.0.1', port,
-      pathname: '/explorer/', origin: `http://127.0.0.1:${port}`};
-    let release;
-    const pending = new Promise((resolve) => { release = resolve; });
-    const nodes = await runWithIndex(catalog, 200, null, 404,
-      {mockLocation: local, chatBackend: async (path, options) => {
-        assert.equal(path, `http://127.0.0.1:${port}/api/session`);
-        assert.equal(options.method, 'GET');
-        assert.equal(options.headers['X-Trek-Lore-Pair'], '1');
-        assert.equal(options.credentials, 'omit');
-        return pending;
-      }});
-    assert.equal(nodes.get('lore-chat-pair').hidden, false);
-    assert.equal(nodes.chatRequests.length, 0, 'pairing must never happen on load');
-    const pair = nodes.get('lore-chat-pair').fire('click', {});
-    assert.equal(nodes.chatRequests.length, 1);
-    if (revoke === 'clear') await nodes.get('lore-chat-clear').fire('click', {});
-    else if (revoke === 'close') await nodes.get('lore-close').fire('click', {});
-    release({ok: true, json: async () => ({pairing_scope: 'LOCAL_SAME_ORIGIN_ONLY', local_session_token: 'A'.repeat(40)})});
-    await pair;
-    if (revoke === 'none') {
-      assert.equal(nodes.get('lore-chat-token').value, 'A'.repeat(40));
-      assert.equal(nodes.get('lore-chat-consent').checked, undefined,
-        'pairing may not enable consent automatically');
-    } else {
-      assert.equal(nodes.get('lore-chat-token').value, '', revoke);
-      assert.equal(nodes.get('lore-chat-consent').checked, false, revoke);
-      assert.match(nodes.get('lore-chat-status').textContent, /Disconnected/, revoke);
-    }
-  }
+test('Badgey linked HELD publisher-guide results retain validated row identity and provenance URL', async () => {
+  const bytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
+  const nodes = await episodeNodes(bytes);
+  nodes.get('lore-chat-input').value = 'Find Remembrance';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const last = nodes.get('lore-chat-log').children.at(-1);
+  assert.match(last.textContent, /HELD.*Remembrance/i);
+  assert.match(last.textContent, /episode-publisher-card:pic-s1-e01-pplus-guide/);
+  const anchors = traverse(last, (node) => node.tagName === 'a');
+  assert.equal(anchors.length, 1);
+  assert.equal(anchors[0].href, 'https://www.paramountplus.com/shows/star-trek-picard/episodes/1/');
+  assert.equal(anchors[0].rel, 'noopener noreferrer');
+  assert.match(last.textContent, /not accepted canon or conclusions/i);
 });
 
-test('local Explorer custom port chat stays same-origin and never contacts the occupied 9876', async () => {
-  const local = {protocol: 'http:', hostname: '127.0.0.1', port: '9887',
-    pathname: '/explorer/', origin: 'http://127.0.0.1:9887'};
-  const nodes = await runWithIndex(catalog, 200, null, 404, {mockLocation: local,
-    chatBackend: async (url, opts) => {
-      assert.equal(url, 'http://127.0.0.1:9887/api/chat');
-      assert.equal(opts.method, 'POST');
-      return {ok: true, json: async () => ({
-        mode: 'opt_in_fictional_multiturn_chat', model_text_unverified: true,
-        model_text: 'I am still here.', publication_effect: 'NONE', model_repo_authority: 'NONE',
-        source_search: {status: 'SOURCE_LOCAL_HELD_ONLY', rows: []}
-      })};
-    }});
-  nodes.get('lore-chat-token').value = 'A'.repeat(40);
-  nodes.get('lore-chat-consent').checked = true;
-  nodes.get('lore-chat-input').value = 'Lore, respond.';
-  await nodes.get('lore-chat-form').fire('submit', {preventDefault() {}});
-  assert.equal(nodes.chatRequests.length, 1);
-  assert.ok(nodes.chatRequests.every(({path}) => !path.includes(':9876/')));
-  assert.equal(nodes.get('lore-chat-log').children.length, 2);
+test('Badgey input is inserted as text, never executable HTML', async () => {
+  const nodes = await runWithIndex(catalog);
+  const payload = '<img src=x onerror=alert(1)>';
+  nodes.get('lore-chat-input').value = payload;
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  assert.ok(nodes.get('lore-chat-log').textContent.includes(payload));
+  assert.equal(traverse(nodes.get('lore-chat-log'),
+    (node) => ['img', 'script', 'svg'].includes(node.tagName)).length, 0);
 });
 
-test('Lore searches validated local directory records, labels source limits and offers native inspection', async () => {
+test('Badgey Archive Search uses validated local directory rows, labels limits and offers native inspection', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200);
   nodes.get('lore-query').value = 'Voyager';
@@ -2738,7 +2719,7 @@ test('Lore searches validated local directory records, labels source limits and 
   assert.match(nodes.get('discovery-summary').textContent, /source-local metadata rows match/);
 });
 
-test('Lore fails closed on absent local data and never interprets hostile search text as HTML', async () => {
+test('Badgey Archive Search fails closed on absent data and treats hostile search text as inert', async () => {
   const noShelves = await runWithIndex(catalog);
   noShelves.get('lore-query').value = 'Datalore';
   noShelves.get('lore-form').fire('submit', { preventDefault() {} });

@@ -61,8 +61,11 @@ h1 span { color: var(--peach); }
 .mission-flags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 29px; }
 .flag { border: 1px solid var(--violet); padding: 6px 12px; border-radius: 20px 3px 3px 20px; color: var(--text); background: #171a2ddd; font: 700 .72rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .03em; text-transform: uppercase; }
 .page-content { max-width: 1240px; margin: 0 auto; padding: 42px 28px 90px; border-left: 12px solid var(--surface2); }
-/* Lore is an optional, in-flow archive-search panel, never a hero overlay. */
-.lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--peach); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
+/* Badgey containment is an optional, in-flow panel, never a hero overlay. */
+.lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--amber); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
+.badgey-mark { width: 52px; height: 52px; position: relative; display: inline-flex; flex-direction: column; justify-content: center; align-items: center; background: #ffbf55; color: #172138; border: 3px solid #182238; border-radius: 46% 46% 48% 48%; transform: rotate(-9deg); box-shadow: 0 0 0 4px #f3ae46, 0 0 0 8px #312f55; font: 900 1.15rem/1 ui-monospace, monospace; }
+.badgey-eyes { font-size: 1.8rem; letter-spacing: .24rem; margin-left: .2rem; line-height: .55; }
+.badgey-mouth { font-size: 1.4rem; line-height: 1; transform: rotate(180deg); }
 .lore-header { display: flex; justify-content: space-between; gap: 15px; align-items: start; }
 .lore-header .eyebrow { margin-bottom: 5px; }
 .lore-header h2 { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
@@ -101,6 +104,7 @@ h1 span { color: var(--peach); }
 .lore-chat-log { margin: 18px 0 0; padding: 0; display: grid; gap: 10px; list-style: none; max-height: 430px; overflow-y: auto; }
 .lore-chat-turn { margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-left: 6px solid var(--aqua); background: #061520; border-radius: 13px 3px 3px 3px; overflow-wrap: anywhere; white-space: pre-wrap; }
 .lore-chat-turn[data-role="user"] { border-left-color: var(--peach); }
+.lore-chat-turn[data-urgent="true"] { border-left-color: #ff8c79; background: #2a151d; }
 .lore-chat-turn strong { color: var(--amber); display: block; margin-bottom: 4px; font: 800 .75rem/1.3 ui-monospace, Consolas, monospace; text-transform: uppercase; }
 .lore-chat-turn p { margin: 0; }
 .lore-chat-sources { margin-top: 9px; border-top: 1px solid var(--line); padding-top: 7px; color: var(--muted); font-size: .78rem; }

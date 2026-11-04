@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S3.LAST5.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:27:07 GMT",
+    "observed_at_utc": "2026-11-04T21:27:07.719354+00:00",
+    "raw_response_bytes": 308190,
+    "raw_response_sha256": "0cf747270fe37f0027b4a4c90937e2bd2b2ca91442768e6f7fafcc22adee1253",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py",
+    "method": "Fresh complete publisher guide HTML GET and in-memory traversal of 24 descriptions. E06–E10 paragraphs actually read to write five original paraphrases. No media requested."
+  },
+  "prior_first_five": {
+    "path": "proposals/research/ent/enterprise-s3-first5-official-guide-20261104/records.json",
+    "sha256": "05e7375949b0facdbda22bc2e0a3ff8ec6a46c9cdb901a34ac5fd4e98d837f27",
+    "commit": "67e997fe4db0eaa20a96b311c91006520c767848",
+    "source_response_sha256": "227c1cbcbafd29cabb62ff83e73cccd2466604ab0e3c4462920badf774453391",
+    "scope": "E01–E05 first five source-relative descriptions; separate 24-card inventory context"
+  },
+  "observed_full_guide_card_count": 24,
+  "all_24_metadata_and_description_fingerprints_match_predecessor_snapshot": true,
+  "raw_html_digest_differs_from_predecessor": true,
+  "selected_tranche_episode_ordinals": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "last_five_source_descriptions_inspected": 5,
+  "last_five_description_total_chars": 836,
+  "last_five_analytical_synopses_proposed": 5,
+  "last_five_guide_cards": [
+    {
+      "display_order": 6,
+      "season": 3,
+      "episode": 6,
+      "analytics_ordinal": 6,
+      "title": "Exile",
+      "video_route_path": "/shows/video/1478477187/",
+      "publisher_datetime": "2003-10-15T20:00:00-07:00",
+      "html_anchor_line": 1622,
+      "html_description_line": 1640,
+      "description_chars": 192,
+      "description_sha256": "9fbfe25466b7f8d670d35c66d480f498884f0ece7b9cbc4050cc8c3fc1c98c53"
+    },
+    {
+      "display_order": 7,
+      "season": 3,
+      "episode": 7,
+      "analytics_ordinal": 7,
+      "title": "The Shipment",
+      "video_route_path": "/shows/video/1478503461/",
+      "publisher_datetime": "2003-10-29T20:00:00-08:00",
+      "html_anchor_line": 1650,
+      "html_description_line": 1668,
+      "description_chars": 153,
+      "description_sha256": "e797d41bea3abc7f33f89dbfe4702f91168ff002a7c6fd048fa06444e2c1c590"
+    },
+    {
+      "display_order": 8,
+      "season": 3,
+      "episode": 8,
+      "analytics_ordinal": 8,
+      "title": "Twilight",
+      "video_route_path": "/shows/video/1478507809/",
+      "publisher_datetime": "2003-11-05T20:00:00-08:00",
+      "html_anchor_line": 1678,
+      "html_description_line": 1696,
+      "description_chars": 116,
+      "description_sha256": "25046c252c40e19250ca307777cee39edffffbb1f8b18f5a9092c4b2ce021915"
+    },
+    {
+      "display_order": 9,
+      "season": 3,
+      "episode": 9,
+      "analytics_ordinal": 9,
+      "title": "North Star",
+      "video_route_path": "/shows/video/1479231371/",
+      "publisher_datetime": "2003-11-12T20:00:00-08:00",
+      "html_anchor_line": 1706,
+      "html_description_line": 1724,
+      "description_chars": 168,
+      "description_sha256": "5065c3891b188cce824b3ba881f682a341d87cb9f973f6bccee5782623f36743"
+    },
+    {
+      "display_order": 10,
+      "season": 3,
+      "episode": 10,
+      "analytics_ordinal": 10,
+      "title": "Similitude",
+      "video_route_path": "/shows/video/1479232274/",
+      "publisher_datetime": "2003-11-19T20:00:00-08:00",
+      "html_anchor_line": 1734,
+      "html_description_line": 1752,
+      "description_chars": 207,
+      "description_sha256": "037c1fad4eed589d8633110f841d48adc862349a93ff81a2facf085b264267e3"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ent-s3-e06-publisher-card",
+      "source_local_episode_hint": 6,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e07-publisher-card",
+      "source_local_episode_hint": 7,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e08-publisher-card",
+      "source_local_episode_hint": 8,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e09-publisher-card",
+      "source_local_episode_hint": 9,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e10-publisher-card",
+      "source_local_episode_hint": 10,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s3-e06-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+      "local_entity_id": "ent-s3-e06-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 6,
+      "locator": "HTML 1640, exact response digest in source receipt",
+      "publisher_description_sha256": "9fbfe25466b7f8d670d35c66d480f498884f0ece7b9cbc4050cc8c3fc1c98c53",
+      "original_paraphrase": "An alien telepath approaches Hoshi with an offer to collect intelligence about the Xindi and their weapon for Enterprise."
+    },
+    {
+      "id": "ent-s3-e07-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+      "local_entity_id": "ent-s3-e07-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 7,
+      "locator": "HTML 1668, exact response digest in source receipt",
+      "publisher_description_sha256": "e797d41bea3abc7f33f89dbfe4702f91168ff002a7c6fd048fa06444e2c1c590",
+      "original_paraphrase": "Archer, Reed and Major Hayes covertly enter a Xindi manufacturing site to investigate a substance needed for the planned weapon."
+    },
+    {
+      "id": "ent-s3-e08-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+      "local_entity_id": "ent-s3-e08-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 8,
+      "locator": "HTML 1696, exact response digest in source receipt",
+      "publisher_description_sha256": "25046c252c40e19250ca307777cee39edffffbb1f8b18f5a9092c4b2ce021915",
+      "original_paraphrase": "In a future twelve years beyond the present mission, T'Pol describes a settlement inhabited by the last remaining humans, where she lives with Archer."
+    },
+    {
+      "id": "ent-s3-e09-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+      "local_entity_id": "ent-s3-e09-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 9,
+      "locator": "HTML 1724, exact response digest in source receipt",
+      "publisher_description_sha256": "5065c3891b188cce824b3ba881f682a341d87cb9f973f6bccee5782623f36743",
+      "original_paraphrase": "Enterprise finds a human society on an Expanse planet resembling an old western frontier, where the humans subjugate another species."
+    },
+    {
+      "id": "ent-s3-e10-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-last5-20261104",
+      "local_entity_id": "ent-s3-e10-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 10,
+      "locator": "HTML 1752, exact response digest in source receipt",
+      "publisher_description_sha256": "037c1fad4eed589d8633110f841d48adc862349a93ff81a2facf085b264267e3",
+      "original_paraphrase": "After Trip is hurt in an engine-improvement attempt, Archer permits Phlox to create a short-lived duplicate who could supply tissue for a transplant."
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "ent-s3-e06-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e06-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e07-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e07-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e08-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e08-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e09-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e09-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e10-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e10-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "holds": [
+    "Last-five E06–E10 source-relative description analyses are distinct from the immutable E01–E05 packet; same 24-card guide context does not count as new analyses.",
+    "Both HTML observations originate from one Paramount+ publisher lineage, not independent corroboration.",
+    "Publisher descriptions claim narrative events; no actual episode, authenticated transcript or audio/video was read.",
+    "The raw HTML digest changed, while all 24 normalized card and description fingerprints stayed equal across observations.",
+    "No original publisher prose, video, audio, image or artwork bytes were committed; no Source/Work admission, CLOSE_READ, coverage, denominator, reconciliation or Explorer release."
+  ]
+}

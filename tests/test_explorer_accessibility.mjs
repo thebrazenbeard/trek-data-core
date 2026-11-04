@@ -143,6 +143,8 @@ test('publisher-card filter and availability use explicit accessible source-only
   assert.match(html, /<label for="discovery-publisher-check">Additional publisher-card read \(source-local\)<\/label>/);
   assert.match(html, /<label for="discovery-artwork">Image preview receipt \(loaded\)<\/label><select id="discovery-artwork" name="artwork"><option value="all">All receipt states<\/option><option value="receipt_pinned">/,
     'artwork availability must be accessible and must not borrow the governed SOURCE_BOUND status');
+  assert.match(html, /<option value="receipt_pinned">Pinned preview receipt<\/option><option value="not_loaded">No preview receipt<\/option>/,
+    'receipt filter options must fit a 320px native select without implying remote image loads or governed SOURCE_BOUND status');
   assert.match(html, /<select id="discovery-publisher-check" name="publisher-check">/);
   assert.match(html, /<p class="directory-state publisher-card-state" id="publisher-card-state" role="status" aria-live="polite">/);
   assert.match(html, /id="publisher-card-download"[^>]*hidden>/);

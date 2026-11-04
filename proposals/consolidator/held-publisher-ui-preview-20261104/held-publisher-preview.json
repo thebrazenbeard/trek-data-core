@@ -1,0 +1,299 @@
+{
+  "accepted_evidence_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "artwork_release_effect": "NONE",
+  "count_warning": "10 edition metadata rows, not ten accepted Works or complete book reads; separate from existing directory and publisher shelves",
+  "coverage_effect": "NONE",
+  "main_commit_or_pages_release_effect": "NONE",
+  "public_explorer_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "row_count": 10,
+  "rows": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Marco Palmieri",
+          "role": "EDITOR"
+        }
+      ],
+      "edition_format": "EBOOK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9780743400817",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "1999-12-01",
+      "publisher_extent_pages": 384,
+      "row_id": "draft-publisher-edition:494:9780743400817",
+      "source_anomaly": null,
+      "source_family": "publisher:simonandschuster.com",
+      "source_file": "proposals/research/lit-five-publisher-bibliography-20261104/records.json",
+      "source_file_sha256": "db04282ad717cb4f71932a5e2b7e8267c5e26b295dd7d02c1cf455b57be38c13",
+      "source_head": "0ec895e17f70b505579b35c69e4af423e4b1dd6f",
+      "source_local_form": "FICTION_PUBLISHER_EBOOK_METADATA",
+      "source_pr": 494,
+      "source_url": "https://www.simonandschuster.com/books/The-Lives-Of-Dax/Marco-Palmieri/Star-Trek-Deep-Space-Nine/9780743400817",
+      "title": "The Lives Of Dax"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Diane Duane",
+          "role": "AUTHOR"
+        },
+        {
+          "name": "Peter Morwood",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "EBOOK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9780743419864",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2000-09-22",
+      "publisher_extent_pages": 304,
+      "row_id": "draft-publisher-edition:494:9780743419864",
+      "source_anomaly": null,
+      "source_family": "publisher:simonandschuster.com",
+      "source_file": "proposals/research/lit-five-publisher-bibliography-20261104/records.json",
+      "source_file_sha256": "db04282ad717cb4f71932a5e2b7e8267c5e26b295dd7d02c1cf455b57be38c13",
+      "source_head": "0ec895e17f70b505579b35c69e4af423e4b1dd6f",
+      "source_local_form": "FICTION_PUBLISHER_EBOOK_METADATA",
+      "source_pr": 494,
+      "source_url": "https://www.simonandschuster.com/books/The-Romulan-Way/Diane-Duane/Star-Trek-The-Original-Series/9780743419864",
+      "title": "The Romulan Way"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Jeri Taylor",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "EBOOK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9780743420730",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2000-09-22",
+      "publisher_extent_pages": 256,
+      "row_id": "draft-publisher-edition:494:9780743420730",
+      "source_anomaly": "AUTHOR_HEADER_JERI_VS_DESCRIPTION_TERI_UNRESOLVED",
+      "source_family": "publisher:simonandschuster.com",
+      "source_file": "proposals/research/lit-five-publisher-bibliography-20261104/records.json",
+      "source_file_sha256": "db04282ad717cb4f71932a5e2b7e8267c5e26b295dd7d02c1cf455b57be38c13",
+      "source_head": "0ec895e17f70b505579b35c69e4af423e4b1dd6f",
+      "source_local_form": "FICTION_PUBLISHER_EBOOK_METADATA",
+      "source_pr": 494,
+      "source_url": "https://www.simonandschuster.com/books/Unification/Jeri-Taylor/Star-Trek-The-Next-Generation/9780743420730",
+      "title": "Unification"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Jeri Taylor",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "EBOOK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9780743453851",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2009-09-29",
+      "publisher_extent_pages": 528,
+      "row_id": "draft-publisher-edition:494:9780743453851",
+      "source_anomaly": null,
+      "source_family": "publisher:simonandschuster.com",
+      "source_file": "proposals/research/lit-five-publisher-bibliography-20261104/records.json",
+      "source_file_sha256": "db04282ad717cb4f71932a5e2b7e8267c5e26b295dd7d02c1cf455b57be38c13",
+      "source_head": "0ec895e17f70b505579b35c69e4af423e4b1dd6f",
+      "source_local_form": "FICTION_PUBLISHER_EBOOK_METADATA",
+      "source_pr": 494,
+      "source_url": "https://www.simonandschuster.com/books/Pathways/Jeri-Taylor/Star-Trek-Voyager/9780743453851",
+      "title": "Pathways"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Jeri Taylor",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "EBOOK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9780743453868",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2002-10-04",
+      "publisher_extent_pages": 320,
+      "row_id": "draft-publisher-edition:494:9780743453868",
+      "source_anomaly": null,
+      "source_family": "publisher:simonandschuster.com",
+      "source_file": "proposals/research/lit-five-publisher-bibliography-20261104/records.json",
+      "source_file_sha256": "db04282ad717cb4f71932a5e2b7e8267c5e26b295dd7d02c1cf455b57be38c13",
+      "source_head": "0ec895e17f70b505579b35c69e4af423e4b1dd6f",
+      "source_local_form": "FICTION_PUBLISHER_EBOOK_METADATA",
+      "source_pr": 494,
+      "source_url": "https://www.simonandschuster.com/books/Mosaic/Jeri-Taylor/Star-Trek-Voyager/9780743453868",
+      "title": "Mosaic"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Juan Ortiz",
+          "role": "AUTHOR_ARTIST"
+        }
+      ],
+      "edition_format": "HARDBACK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9781781166703",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2013-09-03",
+      "publisher_extent_pages": 112,
+      "row_id": "draft-publisher-edition:497:9781781166703",
+      "source_anomaly": null,
+      "source_family": "publisher:titanbooks.com",
+      "source_file": "proposals/research/lit-titan-five-artbooks-20261104/records.json",
+      "source_file_sha256": "c01c276712477b94565cd61ec275fa83c6f2130637022abf7cca1fd8a9bedc8d",
+      "source_head": "785e4516d65b8a8e3769e7eaf69875966bf2e4bb",
+      "source_local_form": "NONFICTION_ARTBOOK_PUBLISHER_METADATA",
+      "source_pr": 497,
+      "source_url": "https://titanbooks.com/6933-star-trek-the-art-of-juan-ortiz/",
+      "title": "Star Trek: The Art of Juan Ortiz"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Juan Ortiz",
+          "role": "AUTHOR_ARTIST"
+        }
+      ],
+      "edition_format": "HARDBACK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9781785653872",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2017-09-05",
+      "publisher_extent_pages": 208,
+      "row_id": "draft-publisher-edition:497:9781785653872",
+      "source_anomaly": null,
+      "source_family": "publisher:titanbooks.com",
+      "source_file": "proposals/research/lit-titan-five-artbooks-20261104/records.json",
+      "source_file_sha256": "c01c276712477b94565cd61ec275fa83c6f2130637022abf7cca1fd8a9bedc8d",
+      "source_head": "785e4516d65b8a8e3769e7eaf69875966bf2e4bb",
+      "source_local_form": "NONFICTION_ARTBOOK_PUBLISHER_METADATA",
+      "source_pr": 497,
+      "source_url": "https://titanbooks.com/9032-star-trek-the-next-generation-the-art-of-juan-ortiz/",
+      "title": "Star Trek The Next Generation: The Art of Juan Ortiz"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Joe Nazzaro",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "HARDBACK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9781785659119",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2018-11-27",
+      "publisher_extent_pages": 208,
+      "row_id": "draft-publisher-edition:497:9781785659119",
+      "source_anomaly": null,
+      "source_family": "publisher:titanbooks.com",
+      "source_file": "proposals/research/lit-titan-five-artbooks-20261104/records.json",
+      "source_file_sha256": "c01c276712477b94565cd61ec275fa83c6f2130637022abf7cca1fd8a9bedc8d",
+      "source_head": "785e4516d65b8a8e3769e7eaf69875966bf2e4bb",
+      "source_local_form": "NONFICTION_ARTBOOK_PUBLISHER_METADATA",
+      "source_pr": 497,
+      "source_url": "https://titanbooks.com/9614-star-trek-the-art-of-john-eaves/",
+      "title": "Star Trek: The Art of John Eaves"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Dan Curry",
+          "role": "AUTHOR"
+        },
+        {
+          "name": "Ben Robinson",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "HARDBACK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9781785659348",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2020-12-01",
+      "publisher_extent_pages": 204,
+      "row_id": "draft-publisher-edition:497:9781785659348",
+      "source_anomaly": null,
+      "source_family": "publisher:titanbooks.com",
+      "source_file": "proposals/research/lit-titan-five-artbooks-20261104/records.json",
+      "source_file_sha256": "c01c276712477b94565cd61ec275fa83c6f2130637022abf7cca1fd8a9bedc8d",
+      "source_head": "785e4516d65b8a8e3769e7eaf69875966bf2e4bb",
+      "source_local_form": "NONFICTION_ARTBOOK_PUBLISHER_METADATA",
+      "source_pr": 497,
+      "source_url": "https://titanbooks.com/9639-star-trek-the-artistry-of-dan-curry/",
+      "title": "Star Trek: The Artistry of Dan Curry"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "creator_credits": [
+        {
+          "name": "Joe Nazzaro",
+          "role": "AUTHOR"
+        }
+      ],
+      "edition_format": "HARDBACK",
+      "full_text_status": "NOT_READ",
+      "identity_scope": "SOURCE_LOCAL_EDITION_UNRECONCILED",
+      "isbn13": "9781789095159",
+      "publisher_claims_are_fictional_truth": false,
+      "publisher_date_us": "2023-08-08",
+      "publisher_extent_pages": 192,
+      "row_id": "draft-publisher-edition:497:9781789095159",
+      "source_anomaly": null,
+      "source_family": "publisher:titanbooks.com",
+      "source_file": "proposals/research/lit-titan-five-artbooks-20261104/records.json",
+      "source_file_sha256": "c01c276712477b94565cd61ec275fa83c6f2130637022abf7cca1fd8a9bedc8d",
+      "source_head": "785e4516d65b8a8e3769e7eaf69875966bf2e4bb",
+      "source_local_form": "NONFICTION_ARTBOOK_PUBLISHER_METADATA",
+      "source_pr": 497,
+      "source_url": "https://titanbooks.com/70373-star-trek-the-art-of-neville-page/",
+      "title": "Star Trek: The Art of Neville Page"
+    }
+  ],
+  "schema_version": "trek-held-draft-publisher-metadata-preview-v1",
+  "source_family_count": 2,
+  "source_pr_numbers": [
+    494,
+    497
+  ],
+  "status": "HELD_DRAFT_METADATA_PREVIEW_NOT_ACCEPTED"
+}

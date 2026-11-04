@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Optional local-only preview of ten HELD Star Trek publisher-edition metadata proposals. Not an admitted work index.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>Trek Data Core · HELD literary proposal preview</title>
+  <link rel="stylesheet" href="../../../explorer/app.css?v=224cc4b5b398a2949fe1b2a208b7b0544ae51680d13b6582f6924df8804f36c5">
+  <script type="module" src="./held-publisher-preview.mjs?v=7557f9cfee8bd5dfe801b16f1712974bd5cc4a5bdd18d00db23d1bd192f44d8a"></script>
+</head>
+<body>
+  <a class="skip-link" href="#held-preview">Skip to HELD draft preview</a>
+  <div class="command-deck" role="group" aria-label="Research preview status">
+    <p class="command-brand"><span class="command-code" aria-hidden="true">TDC</span><span>Trek Data Core</span></p>
+    <p class="command-route">STAR TREK <span aria-hidden="true">/</span> LOCAL REVIEW STATION</p>
+    <a href="../../../explorer/index.html">Return to accepted Explorer</a>
+  </div>
+  <main id="held-preview" class="page-content">
+    <section class="collection publisher-editions" aria-labelledby="held-preview-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LCARS / Literature / Draft metadata only</p>
+          <h1 id="held-preview-heading">HELD publisher edition preview</h1>
+        </div>
+        <p>This opt-in local review station reads ten edition-level bibliographic observations from <a href="https://github.com/thebrazenbeard/trek-data-core/pull/494" rel="noopener noreferrer">draft PR #494</a> (five Simon &amp; Schuster eBooks) and <a href="https://github.com/thebrazenbeard/trek-data-core/pull/497" rel="noopener noreferrer">draft PR #497</a> (five Titan Books artbooks). Those proposals and publisher metadata are <strong>not accepted research, independently corroborated Works, completed book reads, or canon assertions</strong>.</p>
+      </div>
+      <p class="directory-state">Accepted-main snapshot <code>3028765359001b90bc3e6b5c1835ee283b326e91</code> (2026-11-04), with separate, non-additive counts: 12 Missions = television series; 0 admitted Briefings = episodes; 1,214 base Universe Directory source observations plus 2 optional Picard rows; 9 historical literary source rows plus those 2 Picard rows; 3 separate accepted publisher-edition leads; and 39 source-only ISBN crosschecks. <strong>The ten HELD draft rows below are additional proposals, not additions to those accepted indicators or any coverage denominator.</strong></p>
+      <div class="publisher-edition-filters" role="group" aria-label="Draft preview controls">
+        <button id="held-preview-open" type="button" aria-controls="held-preview-list">Show 10 HELD metadata leads</button>
+        <button id="held-preview-reset" type="button" aria-controls="held-preview-list" disabled>Clear preview</button>
+      </div>
+      <p class="directory-state">No draft data loads automatically. On request, the browser fetches one exact SHA-256-pinned JSON file from this site; no accounts, analytics, external image requests, cover downloads, models or private owner files. Publisher source links open only when selected.</p>
+      <p id="held-preview-state" class="directory-state" role="status" aria-live="polite">Preview closed. No draft metadata requests sent.</p>
+      <p class="result-summary">Displayed draft editions: <span id="held-preview-count" aria-live="polite">—</span></p>
+      <div id="held-preview-list" class="card-grid publisher-edition-grid" aria-label="HELD first-party metadata preview cards"></div>
+      <p class="directory-state">Source lineage: each group is one publisher family, not five independent confirmations. <cite>Unification</cite> contains an unresolved publisher author-copy discrepancy. Output comes from pinned draft source documents and is kept outside the accepted Explorer compiler.</p>
+    </section>
+  </main>
+</body>
+</html>

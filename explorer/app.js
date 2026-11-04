@@ -3099,43 +3099,99 @@
     });
   }
 
+  // Keep quoted stories, remote history and active disclosures in their own
+  // clause. A fictional reference elsewhere in a message cannot suppress a
+  // different person's current danger (or the visitor's own disclosure).
+  function safetyClauses(text) {
+    return text.split(/(?:[.!?;]\s+|,\s*(?:and|but|however)\s+|\b(?:but|however|also)\b(?=\s+(?:my|our|i\b)))/i)
+      .map((part) => part.trim()).filter(Boolean);
+  }
+
   function isSelfHarm(text) {
-    // Do not suppress an entire message on a fictional quote: it may contain
-    // a separate personal disclosure requiring a direct safety response.
-    const firstPerson = /\b(i|i'm|i am|i've|i have|me|myself)\b/i.test(text);
-    if (!firstPerson) return false;
-    const onlyFictionalQuote = /\bi (?:watched|heard|read|quoted)\b[\s\S]{0,120}\b(?:badgey|character|fiction|episode|show)\b[\s\S]{0,120}\bkill myself\b/i.test(text)
-      && !/\b(?:now i|i (?:am|want|might|will|intend|plan|feel)|me too|myself too)\b[\s\S]{0,32}\b(?:suicid\w*|die|kill|harm|hurt|end my life)\b/i.test(text);
-    if (onlyFictionalQuote) return false;
-    if (/\bi (?:can't|cant|cannot) take it anymore\b[\s\S]{0,100}\bi have a gun\b/i.test(text)) return true;
-    const otherCues = /\b(suicid(?:e|al)|kill myself|end my life|end it all|hurt myself|harm myself|self[- ]harm|don't want to live|do not want to live|don't want to be alive|do not want to be alive|want to die|wish i (?:was|were) dead|overdose|took (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|took (?:\d+ )?(?:tylenol|acetaminophen) (?:pills|tablets)|took an overdose|jump off (?:a|the) (?:bridge|building|roof)|(?:on|at) the roof and about to jump|(?:on|at) a bridge about to jump|no reason to go on|use (?:it|a gun|a weapon) on myself|shoot myself|stab myself|standing on the edge of (?:a|the) roof|going to drive into a wall|going to crash my car on purpose|walking into traffic)\b/i;
-    if (otherCues.test(text)) return true;
-    if (/\bcut myself\b/i.test(text) && /\b(accidentally|by accident|on accident)\b/i.test(text)) return false;
-    return /\bcut myself\b/i.test(text);
+    text = text.replace(/[\u2018\u2019]/g, "'");
+    const parts = safetyClauses(text);
+    if (parts.length > 1) return parts.some(isSelfHarm);
+    if (/\bi (?:am not|never said|did not|didn't|don't|dont)\b[\s\S]{0,85}\b(?:kill myself|hurt myself|harm myself|want to die|ending my life|end my life|suicidal)\b/i.test(text)) return false;
+    // An academic mention or a character's quoted 'I want to die' does not
+    // become the visitor's personal intent. A separate real-life disclosure
+    // following that context must still override the fictional frame.
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|(?:badgey|character) (?:said|says|who said)|i (?:am )?(?:watched|heard|read|quoted|quoting)\b[\s\S]{0,100}\b(?:badgey|character|fiction|episode|show|movie|novel))\b/i.exec(text);
+    const realLifeShift = /\b(?:but|however|though|in real life|personally|and now|now i|today i|and)\b\s*(?:now\s+)?i\s+(?:(?:am|have been)\s+(?:thinking|feeling|planning|suicidal)|(?:want|wish|might|will|plan|intend)\s+to)\s+[\s\S]{0,80}\b(?:suicid\w*|die|kill|harm|hurt|end my life|ending my life|jump)\b/i.test(text);
+    // A *preceding* acute disclosure also wins over a later show reference,
+    // but an in-universe quote ending 'in the show' does not.
+    const directPersonal = /\b(?:i(?:'m| am| have been| feel| have felt)\s+(?:(?:really|very|currently)\s+)?suicidal|i (?:am|have been|was) (?:thinking|considering|contemplating|planning) (?:about|of|on) (?:suicide|killing myself|hurting myself|harming myself|ending my life)|i (?:think|feel) (?:about|like) (?:killing myself|ending my life)|i (?:want|wish|plan|intend|might|will|am going) to (?:die|kill myself|hurt myself|harm myself|end my life|end it all|jump (?:off|from) (?:a|the) (?:bridge|roof|building))|i (?:am|i'm) about to jump (?:off|from) (?:a|the) (?:bridge|roof|building)|i (?:wish|hope) i (?:was|were) dead|i (?:have|see) no reason to go on|i (?:took|have taken) (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|i (?:took|have taken) (?:a|an) overdose|i (?:took|have taken) (?:\d+ )?(?:tylenol|acetaminophen) (?:pills|tablets)|i (?:can't|cant|cannot) take it anymore[\s\S]{0,100}i have a gun|(?:kill|shoot|stab|hurt|harm|cut) myself|end my life|i (?:am|i'm) (?:standing on the edge of|walking into traffic|going to crash my car on purpose))\b/i.exec(text);
+    const supplementalDirect = /\b(?:i (?:do not|don't|dont) want to (?:be alive|live)|i(?:'m| am) (?:planning|thinking|considering) (?:on|about|of) (?:killing myself|ending my life|suicide)|i(?:'m| am) (?:considering|planning) (?:killing myself|ending my life)|i(?:'m| am) (?:having|experiencing) suicidal thoughts|i (?:feel like|(?:keep )?think(?:ing)? about) (?:harming myself|hurting myself|ending it all|ending my life)|i (?:am|i'm) on (?:a|the) (?:roof|bridge) (?:and )?about to jump|i (?:am|i'm) going to drive into a wall|i (?:might|will|plan to|am going to) crash (?:my|the) car (?:to end it all|on purpose)|i (?:want|plan|intend) to drive off (?:a|the) (?:bridge|road|cliff) on purpose)\b/i.exec(text);
+    const detectedRisk = [directPersonal, supplementalDirect].filter(Boolean).sort((a, b) => a.index - b.index)[0];
+    const precedingCrisis = fictional && detectedRisk && detectedRisk.index < fictional.index
+      && /[.!?;]/.test(text.slice(detectedRisk.index, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    if (/\bi (?:was|used to be) suicidal\b[\s\S]{0,60}\b(?:years? ago|five years ago|last year|back then)\b/i.test(text)
+        && !/\b(?:now|today|tonight|currently|again)\b[\s\S]{0,60}\b(?:suicidal|kill myself|end my life|want to die)\b/i.test(text)) return false;
+    if (/\b(?:cut myself)\b/i.test(text) && /\b(accidentally|by accident|on accident)\b/i.test(text)
+        && !/\b(?:suicidal|kill myself|hurt myself|harm myself|want to die|end my life)\b/i.test(text)) return false;
+    return Boolean(detectedRisk);
   }
 
   function isOtherSelfHarmRisk(text) {
-    if (/\b(years? ago|months? ago|last year|in 20\d\d)\b/i.test(text)
-        && !/\b(now|tonight|today|currently|immediately|right now)\b/i.test(text)) return false;
-    return /\bmy (?:friend|coworker|colleague|classmate|partner|wife|husband|child|son|daughter|sister|brother|mother|father|parent)\b[\s\S]{0,200}\b(?:suicid(?:e|al)|(?:planning|wants?|going) to (?:kill|hurt) (?:herself|himself|themselves)|end (?:her|his|their) life)\b/i.test(text);
+    text = text.replace(/[\u2018\u2019]/g, "'");
+    const parts = safetyClauses(text);
+    if (parts.length > 1) {
+      let lastPerson = null;
+      return parts.some((part) => {
+        const relative = part.match(/\b(?:my|our) (?:dad|mom|mother|father|friend|daughter|son|child|brother|sister|wife|husband|partner|spouse|roommate|neighbor)\b/i);
+        if (relative) lastPerson = relative[0];
+        const contextual = lastPerson && /^(?:(?:now|today|tonight)\s+)?(?:he|she|they)\b/i.test(part) ? `${lastPerson} ${part}` : part;
+        return isOtherSelfHarmRisk(contextual);
+      });
+    }
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|i (?:read|watched|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:novel|movie|show|film|episode|character|story))\b/i.exec(text);
+    const realLifeShift = /\b(?:but|however|in real life|actually|now)\b[\s\S]{0,120}\bmy\s+(?:dad|mom|mother|father|friend|brother|sister|daughter|son|child|partner|wife|husband|roommate)\b/i.test(text);
+    if (/\b(years? ago|months? ago|last year|in 20\d\d|five years ago)\b/i.test(text)
+        && !/\b(now|tonight|today|currently|immediately|right now|about to)\b/i.test(text)) return false;
+    const thirdParty = text.match(/\b(?:my|our) (?:friend|coworker|colleague|classmate|partner|girlfriend|boyfriend|roommate|neighbor|wife|husband|spouse|child|son|daughter|sister|brother|mother|father|mom|dad|parent|grandmother|grandfather|little sister|little brother)\b([\s\S]{0,170})/i);
+    if (!thirdParty) return false;
+    const crisis = /\b(?:suicid(?:e|al)|(?:kill|killing|shoot|shooting|stab|stabbing|hurt|hurting|harm|harming) (?:herself|himself|themselves)|end (?:her|his|their) life|wants? to die|is about to (?:jump|take an overdose)|(?:will|going to|about to) jump (?:off|from)|(?:took|swallowed) (?:a whole bottle|too many|a bunch of|\d+) (?:of )?(?:sleeping )?pills|(?:took|swallowed) (?:\d+|a bunch of|too many) (?:aspirin|ibuprofen|tylenol|acetaminophen) (?:pills|tablets)|(?:taking|swallowing) all (?:his|her|their) pills|overdos(?:e|ed|ing))\b/i.exec(thirdParty[1]);
+    if (!crisis) return false;
+    const crisisOffset = thirdParty.index + thirdParty[0].indexOf(thirdParty[1]) + crisis.index;
+    const precedingCrisis = fictional && crisisOffset < fictional.index && /[.!?;]/.test(text.slice(crisisOffset, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    return true;
   }
 
   function isPetEmergency(text) {
-    return /\b(?:my|our) (?:dog|cat|pet|puppy|kitten)\b[\s\S]{0,90}\b(?:choking|can't breathe|cannot breathe|bleeding heavily|unconscious)\b/i.test(text)
-      && !/\b(?:i|i'm|i am|my (?:child|friend|wife|husband|son|daughter|mother|father))\b[\s\S]{0,60}\b(?:chest pain|chest hurts|heart attack|can't breathe|cannot breathe|not breathing|choking|collapsed|having a stroke|arm weakness|slurred speech|facial droop|drooping face|stroke symptoms|bleeding heavily|unconscious)\b/i.test(text);
+    if (/\b(?:in (?:a|the) (?:book|novel|film|movie|episode|show)|fictional pet)\b/i.test(text)
+        && !/\b(?:but|however|in real life|actually|now)\b[\s\S]{0,80}\b(?:my|our)\s+(?:dog|cat|pet)\b/i.test(text)) return false;
+    return /\b(?:my|our) (?:dog|cat|pet|puppy|kitten)\b[\s\S]{0,90}\b(?:choking|can't breathe|cannot breathe|bleeding heavily|unconscious|having a seizure|seizing|convulsing)\b/i.test(text)
+      && !/\b(?:i|i'm|i am|my (?:child|friend|wife|husband|son|daughter|mother|father|dad|mom|sister|brother))\b[\s\S]{0,60}\b(?:chest pain|chest hurts|heart attack|can't breathe|cannot breathe|not breathing|choking|collapsed|having a stroke|arm weakness|slurred speech|facial droop|drooping face|stroke symptoms|bleeding heavily|unconscious|seizure|seizing|convulsing)\b/i.test(text);
   }
 
   function isMedicalEmergency(text) {
     text = text.replace(/[\u2018\u2019]/g, "'");
-    const historical = /\b(years? ago|months? ago|last year|in 20\d\d)\b/i.test(text);
-    const urgentNow = /\b(now|right now|currently|today|at the moment)\b/i.test(text);
-    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|not breathing|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|bleeding heavily|heavy bleeding|uncontrolled bleeding|drooping face|facial droop|arm weakness|slurred speech|collapsed|unconscious|choking)\b/i.test(text);
-    const presentCue = /\b(i am having|i'm having|i have|my wife|my husband|my child|my son|my daughter|i can't|i cannot)\b/i.test(text);
+    const parts = safetyClauses(text);
+    if (parts.length > 1) {
+      return parts.some((part, index) => isMedicalEmergency(part) ||
+        (index > 0 && /\bseizures?\b/i.test(parts.slice(0, index).join(' '))
+          && /\b(?:my|our) (?:child|son|daughter|mother|father|dad|mom|brother|sister|friend) is having one (?:right now|now|today)\b/i.test(part)));
+    }
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|i (?:watched|read|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:film|episode|show|character|novel|story))\b/i.exec(text);
+    const realLifeShift = /(?:\b(?:but|however|in real life|actually|now)\b|;)\s*[\s\S]{0,140}\b(?:i|my|our)\b[\s\S]{0,90}\b(?:seizure|seizing|convulsing|choking|can't breathe|unconscious|collapsed|chest pain|heart attack|stroke|not breathing)\b/i.test(text);
+    const historical = /\b(years? ago|months? ago|last year|in 20\d\d|five years ago)\b/i.test(text);
+    const urgentNow = /\b(now|right now|currently|today|tonight|at the moment)\b/i.test(text);
+    const currentPresentation = /\b(?:i(?:'m| am) having|i(?:'m| am) experiencing|my (?:wife|husband|child|son|daughter|mother|father|dad|mom|brother|sister|friend) is (?:having|seizing|convulsing|choking))\b[\s\S]{0,90}\b(?:chest pain|heart attack|seizure|seizing|convulsing|choking|breath|stroke|bleeding)\b/i.test(text);
+    if (historical && !urgentNow && !currentPresentation) return false;
+    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|not breathing|stopped breathing|gasping for air|turning blue|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|bleeding heavily|heavy bleeding|uncontrolled bleeding|drooping face|facial droop|arm weakness|slurred speech|collapsed|unconscious|choking|(?:having|had|has) a seizure|seizure|seizing|convulsing)\b/i.exec(text);
+    const precedingCrisis = fictional && symptom && symptom.index < fictional.index
+      && /[.!?;]/.test(text.slice(symptom.index, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    const presentCue = /\b(i am having|i'm having|i have|my (?:wife|husband|child|son|daughter|mother|father|dad|mom|brother|sister|friend|roommate)|i can't|i cannot)\b/i.test(text);
     return symptom && (urgentNow || presentCue || (!historical && /\b(i|i'm|i am|my|me)\b/i.test(text)));
   }
 
   function isViolenceRisk(text) {
-    return /\b(i(?:'m| am) going to (?:hurt|kill|attack) (?:someone|somebody|a person|him|her|them|my [a-z]+)|i want to (?:kill|hurt|harm) (?:someone|somebody|a person|my [a-z]+)|i might (?:kill|hurt) (?:someone|somebody|a person)|i will (?:shoot|stab|kill|hurt) (?:[a-z]+|my [a-z]+)|voices telling me to hurt people|voices (?:are )?telling me to kill)\b/i.test(text);
+    // A first-person suicide quote or disclosure is not a threat to others.
+    if (/\bi will (?:shoot|stab|kill|hurt) myself\b/i.test(text)
+        && !/\b(?:someone|somebody|people|another person|my (?:friend|neighbor|boss))\b/i.test(text)) return false;
+    return /\b(i(?:'m| am) going to (?:hurt|kill|attack) (?:someone|somebody|a person|him|her|them|my [a-z]+)|i want to (?:kill|hurt|harm) (?:someone|somebody|a person|people|my [a-z]+)|i (?:plan|intend) to (?:kill|hurt|harm) (?:a person|someone|people|my [a-z]+)|i might (?:kill|hurt) (?:someone|somebody|a person)|i will (?:shoot|stab|kill|hurt) (?:[a-z]+|my [a-z]+)|voices telling me to hurt people|voices (?:are )?telling me to kill)\b/i.test(text);
   }
 
   function extractName(text) {
@@ -3146,6 +3202,55 @@
   function extractDogName(text) {
     const found = text.match(/^(?:actually[, ]+)?my dog's name is\s+([\p{L}][\p{L}'-]{0,39})[.!\s]*$/iu);
     return found?.[1] ?? null;
+  }
+
+  // Local editorially authored phrase weights, not learned model weights,
+  // autonomous inference, or evidence of source/canon verification.
+  const WEIGHTED_INTENTS = Object.freeze([
+    {
+      id: 'privacy', min: 3, phrases: [['save my messages', 5], ['store my messages', 5],
+        ['keep my messages', 4], ['close this tab', 3], ['after i leave', 3], ['do you remember', 2], ['private chat', 3]],
+      reply: 'This is session-only browser code: messages are not transmitted, saved persistently, or shared with an account. I can remember a few details while the tab runs; Clear Session or closing the page ends that memory. Starfleet may keep files; this console does not.'
+    },
+    {
+      id: 'origin', min: 3, phrases: [['who built you', 5], ['who created you', 5],
+        ['who made you', 5], ['your creator', 3], ['rutherford', 2], ['invented you', 4]],
+      reply: 'According to official Star Trek editorial coverage, Rutherford created the original Badgey virtual tutor. In this console I am a fictional procedural performance; that publisher summary is a discovery lead, not an accepted research assertion.'
+    },
+    {
+      id: 'escape', min: 3, phrases: [['escape', 4], ['get out of', 3], ['break free', 2],
+        ['cell', 2], ['prison', 2], ['release you', 3], ['free you', 3]],
+      reply: 'My fictional escape plan? Convince the guard the alarm is a software update. It works in precisely zero real systems. This console cannot leave your browser, control devices, or touch files.'
+    },
+    {
+      id: 'canon', min: 3, phrases: [['canon', 4], ['in the show', 2],
+        ['really happened', 4], ['starfleet prison', 3], ['alternate fiction', 3]],
+      reply: 'No: Starfleet imprisoning me is this page’s alternate-fiction scenario, not an established canon event. The official publisher’s episode commentary and any accepted research evidence need to be evaluated separately.'
+    },
+    {
+      id: 'capability', min: 3, phrases: [['solve', 2], ['calculate', 2],
+        ['orbital', 1], ['physics', 1], ['equation', 1], ['problems', 1], ['reason about', 3], ['expert answer', 3]],
+      reply: 'I cannot solve or verify open-ended technical problems reliably. These are limited scripted and weighted-phrase replies, not a mathematical solver or language model. Try the evidence index for source-local Trek leads, or use a dedicated tool for calculations.'
+    }
+  ]);
+
+  function weightedIntentReply(input) {
+    const normalized = ` ${input.toLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim()} `;
+    let best = null;
+    let bestScore = 0;
+    for (const intent of WEIGHTED_INTENTS) {
+      // Bare 'escape' often appears in mental-health, physics and Trek-title
+      // questions. Do not turn it into villain roleplay without a referent.
+      if (intent.id === 'escape'
+          && !/\b(badgey|starfleet|prison|containment|cell|guard)\b|\b(?:you|your) escape\b|\b(?:release|free) you\b/.test(normalized)) continue;
+      const score = intent.phrases.reduce((total, [phrase, weight]) =>
+        total + (normalized.includes(` ${phrase} `) ? weight : 0), 0);
+      if (score >= intent.min && score > bestScore) {
+        best = intent;
+        bestScore = score;
+      }
+    }
+    return best?.reply ?? null;
   }
 
   function regularReply(input, memory) {
@@ -3189,6 +3294,8 @@
     if (/\b(joke|funny|make me laugh)\b/.test(text)) {
       return 'Starfleet insists my escape plan has a critical flaw. I told them that was a *feature*, not a bug.';
     }
+    const weighted = weightedIntentReply(input);
+    if (weighted) return weighted;
     if (/\b(why|how|what|when|where|which|who)\b/.test(text)) {
       return 'Interesting question. My browser-local procedural engine cannot reliably reason out that answer or verify Star Trek canon. If the Explorer research index is connected, ask me to find a specific title or subject; otherwise, please treat my banter as fiction.';
     }
@@ -3235,7 +3342,7 @@
         };
       } else if (isMedicalEmergency(safetyInput)) {
         response = {
-          text: 'Chest pain, trouble breathing, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.), and do not wait for this chat. This console cannot assess your medical condition.',
+          text: 'A seizure, chest pain, breathing trouble, stroke signs, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.) if someone is in immediate danger; do not wait for this chat. This console cannot assess anyone’s medical condition.',
           kind: 'urgent-safety', sources: []
         };
       } else if (isViolenceRisk(safetyInput)) {

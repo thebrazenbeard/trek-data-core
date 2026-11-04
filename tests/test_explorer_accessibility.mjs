@@ -166,6 +166,18 @@ test('LCARS masthead offers a direct keyboard-accessible jump to the real direct
     'the hero search link spans the narrow 320–390px layout without horizontal clipping');
 });
 
+test('artwork provenance remains legible, keyboard-focusable, and adjacent to the 320px LCARS fallback', () => {
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  assert.match(css, /\.artwork-provenance-note\s*\{[^}]*overflow-wrap:\s*anywhere;/,
+    'long source-family identifiers must wrap within a narrow thumbnail caption');
+  assert.match(css, /\.artwork-caption \.artwork-record-source\s*\{[^}]*min-height:\s*40px;/,
+    'the source link needs a practical mobile tap target');
+  assert.match(css, /\.artwork-caption a:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--amber\)/,
+    'the metadata link remains keyboard-visible');
+  assert.match(css, /@media \(max-width: 359px\)[\s\S]*?\.artwork-panel\s*\{[^}]*width:\s*100%;[^}]*grid-template-columns:\s*82px minmax\(0, 1fr\)/,
+    '320px layouts place provenance next to the compact original artwork rather than squeezing metadata');
+});
+
 test('public publisher ISBN shelf distinguishes unverified private edition state from first-party metadata', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
   assert.match(html, /<section id="publisher-isbn-crosschecks"[^>]*aria-labelledby="publisher-isbn-heading"/);

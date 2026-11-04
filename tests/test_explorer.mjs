@@ -1247,6 +1247,39 @@ test('honest LCARS artwork placeholders render without remote image requests or 
   assert.equal(nodes.get('briefing-count').textContent, '0', 'image presentation never changes admission');
 });
 
+test('record graphics disclose medium-specific missing imagery and separate metadata lineage from artwork rights', async () => {
+  const discovery = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, discovery, 200);
+  for (const [medium, expectedShort, expectedLong] of [
+    ['EPISODE', 'No still', 'No episode still displayed'],
+    ['FILM', 'No poster', 'No film poster displayed'],
+    ['LITERATURE', 'No cover', 'No book cover displayed']
+  ]) {
+    nodes.get('discovery-medium').value = medium;
+    nodes.get('discovery-filters').fire('input');
+    const frame = traverse(nodes.get('discovery-list'), (node) => node.tagName === 'div' &&
+      node.className === `artwork-slot artwork-${medium.toLowerCase()}`)[0];
+    assert.ok(frame, `${medium} has a source-local visual fallback`);
+    const figure = frame.parentNode;
+    const caption = traverse(figure, (node) => node.tagName === 'figcaption')[0];
+    const provenance = traverse(caption, (node) => node.className === 'artwork-provenance-note');
+    const sourceLink = traverse(caption, (node) => node.className === 'artwork-record-source');
+    assert.equal(frame.getAttribute('role'), 'img');
+    assert.match(frame.getAttribute('aria-label'), new RegExp(expectedLong, 'i'));
+    assert.match(frame.textContent, new RegExp(expectedShort, 'i'));
+    assert.match(caption.textContent, new RegExp(expectedLong));
+    assert.equal(provenance.length, 1);
+    assert.match(provenance[0].textContent, /Metadata: .* · no image-rights grant/);
+    assert.match(provenance[0].getAttribute('title'), /^Source-local record key: directory:/);
+    assert.equal(sourceLink.length, 1);
+    assert.equal(sourceLink[0].textContent, 'Record metadata · not image rights');
+    assert.match(sourceLink[0].getAttribute('aria-label'), /does not grant image rights/);
+    assert.equal(traverse(figure, (node) => node.tagName === 'img').length, 0,
+      `${medium} fallback never downloads a source image`);
+  }
+  assert.equal(nodes.get('briefing-count').textContent, '0');
+});
+
 test('each original LCARS record signal is deterministically tied to its exact source-local row, not a licensed image', async () => {
   const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200, directory, 200);
@@ -1314,6 +1347,8 @@ test('explicit artwork opt-in displays only same-origin rights-receipted assets 
   images[0].fire('error');
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
   assert.match(nodes.get('film-list').textContent, /Image unavailable/);
+  assert.match(nodes.get('film-list').textContent, /Metadata: startrek.com · no image-rights grant/,
+    'failed image reverts to provenance-labeled original artwork without losing attribution');
   assert.match(nodes.get('film-list').textContent, /Synthetic poster rights fixture/,
     'attribution remains visible when an authorized image fails to load');
   toggle.fire('click');

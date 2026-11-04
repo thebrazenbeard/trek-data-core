@@ -26,4 +26,15 @@ class GraphSearchProjectionTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td)/'projection'; fixture.make_projection(root); (root/'relations.jsonl').write_text('');
    with self.assertRaises(ValueError):graph.build_bundle(root,Path(td)/'out')
+ def test_output_must_not_overlap_verified_projection(self):
+  with tempfile.TemporaryDirectory() as td:
+   parent=Path(td); root=parent/'projection'; fixture.make_projection(root)
+   original=(root/'manifest.json').read_bytes()
+   for output in (root,parent,root/'derived'):
+    with self.subTest(output=output):
+     with self.assertRaisesRegex(ValueError,'overlap'):graph.build_bundle(root,output)
+     self.assertEqual((root/'manifest.json').read_bytes(),original)
+     self.assertFalse((root/'graph_nodes.jsonl').exists())
+   alias=parent/'projection-link'; alias.symlink_to(root,target_is_directory=True)
+   with self.assertRaisesRegex(ValueError,'overlap'):graph.build_bundle(root,alias)
 if __name__=='__main__':unittest.main()

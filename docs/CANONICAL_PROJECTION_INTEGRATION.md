@@ -54,6 +54,16 @@ builds from silently replacing an aliased file outside the bundle.
 This is an output-path consistency safeguard, not a claim of protection against
 concurrent hostile filesystem mutation or proof of source authenticity.
 
+The command-line semantic diff (`python3 -B tools/diff_projection.py OLD NEW`)
+verifies **both complete canonical bundles before comparing records**. A
+missing partition, altered JSONL, or absent manifest now fails before the CLI
+can misreport missing data as a `REMOVED_FACT` or missing provenance as a
+research change. The lower-level `semantic_diff()` helper intentionally accepts
+partial, manifest-free synthetic fixtures for isolated taxonomy tests; it is
+**not** the verified entry point for auditable comparisons. This input-integrity
+check does not promote the manifest's upstream declarations into attested
+research provenance; the receipt limitations below still apply.
+
 ## Verification receipts are not upstream provenance certificates
 
 `projection_bundle.verify_projection()` establishes canonical JSONL byte

@@ -2,7 +2,9 @@
 from __future__ import annotations
 import importlib.util, json, tempfile, unittest
 from pathlib import Path
+import subprocess, sys
 MODULE_PATH=Path(__file__).with_name('diff_projection.py'); spec=importlib.util.spec_from_file_location('trek_diff_projection',MODULE_PATH); diff=importlib.util.module_from_spec(spec); spec.loader.exec_module(diff)
+FIXTURE_PATH=Path(__file__).with_name('test_projection_fixture.py'); fixture_spec=importlib.util.spec_from_file_location('trek_projection_diff_fixture',FIXTURE_PATH); fixture=importlib.util.module_from_spec(fixture_spec); fixture_spec.loader.exec_module(fixture)
 
 def write_jsonl(root,filename,rows): (root/filename).write_text(''.join(json.dumps(r,sort_keys=True)+'\n' for r in rows),encoding='utf-8')
 def assertion(i='a1',status='STABLE',value='v1',supersedes=None,scopes=None):
@@ -69,5 +71,34 @@ class SemanticDiffTests(unittest.TestCase):
  def test_reconciliation_history_change_is_provisional_not_value_change(self):
   row={'record_type':'reconciliation_decision','decision_id':'d1','decision_type':'ASSERTION_DISPOSITION','subject_type':'ASSERTION','subject_id':'a1','payload':{'disposition':'ACCEPTED'},'status':'ACCEPTED','evidence':['e1'],'method':'fixture'}
   changes=self.run_diff({}, {'reconciliation_history.jsonl':[row]}); classes=self.classes(changes); self.assertIn('PROVISIONAL_RECONCILIATION_HISTORY_CHANGED',classes); self.assertNotIn('VALUE_CHANGED',classes)
+
+class VerifiedBundleDiffTests(unittest.TestCase):
+ def test_valid_canonical_bundles_compare_without_events(self):
+  with tempfile.TemporaryDirectory() as td:
+   old=Path(td)/'old'; new=Path(td)/'new'; fixture.make_projection(old); fixture.make_projection(new)
+   self.assertEqual(diff.verified_semantic_diff(old,new),[])
+   result=subprocess.run([sys.executable,str(MODULE_PATH),str(old),str(new)],capture_output=True,text=True)
+   self.assertEqual(result.returncode,0,result.stderr)
+   self.assertEqual(result.stdout.strip(),'changes=0')
+
+ def test_missing_partition_cannot_masquerade_as_removed_fact(self):
+  with tempfile.TemporaryDirectory() as td:
+   old=Path(td)/'old'; new=Path(td)/'new'; fixture.make_projection(old); fixture.make_projection(new,include_relation=False)
+   (new/'facts.jsonl').unlink()
+   # The low-level sparse-fixture helper would interpret the lost row as a
+   # genuine removal. The public CLI must fail closed before making claims.
+   self.assertIn('REMOVED_FACT',[r['class'] for r in diff.semantic_diff(old,new)])
+   with self.assertRaisesRegex(ValueError,'invalid new projection bundle'):
+    diff.verified_semantic_diff(old,new)
+   result=subprocess.run([sys.executable,str(MODULE_PATH),str(old),str(new)],capture_output=True,text=True)
+   self.assertNotEqual(result.returncode,0)
+   self.assertNotIn('REMOVED_FACT',result.stdout)
+
+ def test_corrupted_manifest_cannot_be_compared(self):
+  with tempfile.TemporaryDirectory() as td:
+   old=Path(td)/'old'; new=Path(td)/'new'; fixture.make_projection(old); fixture.make_projection(new)
+   (old/'manifest.json').unlink()
+   with self.assertRaisesRegex(ValueError,'invalid old projection bundle'):
+    diff.verified_semantic_diff(old,new)
 
 if __name__=='__main__': unittest.main()

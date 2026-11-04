@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import re
+import stat
 import subprocess
 import sys
 from collections import Counter
@@ -24,6 +25,10 @@ REPO = Path(__file__).resolve().parents[1]
 MANIFEST = REPO / "tools/held_episode_pr_sources.json"
 SUMMARY = REPO / "docs/HELD_EPISODE_PR_REVIEW_SNAPSHOT.json"
 SCHEMA = "trek-offline-draft-episode-review-v1"
+SERIES_CODES = frozenset({"TNG", "DS9", "VOY", "ENT", "PIC", "DIS"})
+ANOMALY_CODES = frozenset({"POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT"})
+SECURE_PARENT_SUPPORTED = (hasattr(os, "O_NOFOLLOW") and hasattr(os, "O_DIRECTORY")
+                           and all(operation in os.supports_dir_fd for operation in (os.open, os.stat, os.unlink)))
 
 
 def require(condition, why):
@@ -113,6 +118,7 @@ def note(item, *, row_id, series, season, ordinal, title, synopsis, guide, locat
             "missing draft local ID/title")
     require(type(season) is int and season > 0 and type(ordinal) is int and ordinal > 0,
             "source-local ordinal not a positive integer")
+    require(series in SERIES_CODES, "unrecognized source-local series code")
     require(synopsis is None or type(synopsis) is str and 25 <= len(synopsis) <= 350 and "\n" not in synopsis,
             "publisher paraphrase absent/malformed")
     require(digest_reported is None or type(digest_reported) is str and re.fullmatch(r"[0-9a-f]{64}", digest_reported),
@@ -215,8 +221,16 @@ def parse_candidate(item, obj):
         require(type(gaps) is list and all(type(g) is int and g > 0 for g in gaps)
                 and obj.get("observed_card_count") == len(slots), "DS9 extraction/census drift")
         anomalies = obj.get("anomaly_hypotheses", [])
-        require(type(anomalies) is list and all(a.get("resolution") == "UNRESOLVED_NO_EXTERNAL_VERIFICATION"
-                for a in anomalies), "DS9 anomaly falsely resolved")
+        require(type(anomalies) is list, "DS9 anomaly field not a list")
+        for anomaly in anomalies:
+            require(type(anomaly) is dict and set(anomaly) == {
+                "hypothesis", "basis", "affected_source_ordinals", "resolution"}
+                and anomaly["hypothesis"] in ANOMALY_CODES
+                and anomaly["basis"] == "PUBLISHER_CARD_TITLE_TOPIC_VS_DESCRIPTION_ONLY"
+                and anomaly["resolution"] == "UNRESOLVED_NO_EXTERNAL_VERIFICATION"
+                and type(anomaly["affected_source_ordinals"]) is list
+                and all(type(n) is int and n > 0 for n in anomaly["affected_source_ordinals"]),
+                "unrecognized anomaly code or false resolution")
         for row in slots:
             require(row.get("work_ref") is None and row.get("work_binding_status") == "UNRESOLVED",
                     "DS9 canonical Work identity promoted")
@@ -225,8 +239,11 @@ def parse_candidate(item, obj):
             require(witness.get("locator") == row["source_card_locator"]
                     and witness.get("description_sha256") == row["source_description_sha256"],
                     "DS9 slot/evidence source fingerprint misaligned")
-            row_flags = [a["hypothesis"] for a in anomalies if row["source_episode_ordinal"] in a.get("affected_source_ordinals", [])]
-            if row.get("title_description_alignment") not in (None, "NOT_INDEPENDENTLY_CHECKED"):
+            row_flags = ["POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT" for a in anomalies
+                         if row["source_episode_ordinal"] in a["affected_source_ordinals"]]
+            require(row.get("title_description_alignment") in (None, "NOT_INDEPENDENTLY_CHECKED",
+                    "SUSPECTED_MISMATCH_UNRESOLVED"), "unrecognized title alignment state")
+            if row.get("title_description_alignment") == "SUSPECTED_MISMATCH_UNRESOLVED":
                 row_flags.append(row["title_description_alignment"])
             rows.append(note(item, row_id=row["id"], series="DS9", season=row["season"],
                              ordinal=row["source_episode_ordinal"], title=row["publisher_title"],
@@ -292,7 +309,7 @@ def review(repo=REPO, manifest=None):
             gaps.append({"candidate_pr": source["pr"], "series": "DS9", "missing_publisher_ordinals_in_extraction": missing,
                          "interpretation": "EXTRACTION_GAP_NOT_ACCEPTED_EPISODE_CENSUS"})
         if conflicts:
-            anomalies.extend({"candidate_pr": source["pr"], "hypothesis": a["hypothesis"],
+            anomalies.extend({"candidate_pr": source["pr"], "hypothesis": "POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT",
                               "affected_source_ordinals": a["affected_source_ordinals"], "resolution": a["resolution"]} for a in conflicts)
     cards.sort(key=lambda row: (row["series"], row["season"], row["source_episode_ordinal"], row["candidate_pr"]))
     counts = Counter(row["series"] for row in cards)
@@ -318,20 +335,105 @@ def review(repo=REPO, manifest=None):
     return summary, cards
 
 
-def private_output(path, cards, summary, repo=REPO):
-    output = Path(path).absolute()
-    require(not output.is_relative_to(repo.resolve()) and not repo.resolve().is_relative_to(output),
-            "private held text output must not be inside or above the repository")
-    parent = output.parent
-    while parent != parent.parent:
-        require(not parent.is_symlink(), "private output parent symlink refused")
-        parent = parent.parent
-    require(output.parent.is_dir() and not output.exists() and not output.is_symlink(),
-            "private output requires new file under existing trusted external directory")
-    payload = canon({"summary": summary, "held_source_local_notes": cards}).encode()
-    fd = os.open(output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+def private_parent_supported():
+    return SECURE_PARENT_SUPPORTED
+
+
+def require_private_parent_binding(parent_fd, output, repo):
+    """Confirm the public pathname still denotes the pinned *outside* parent."""
+    try:
+        current = output.parent.stat(follow_symlinks=False)
+        pinned = os.fstat(parent_fd)
+        require(stat.S_ISDIR(current.st_mode)
+                and (current.st_dev, current.st_ino) == (pinned.st_dev, pinned.st_ino),
+                "private output parent changed during write")
+        require(not output.parent.resolve().is_relative_to(repo.resolve()),
+                "private output parent redirected into repository")
+    except OSError as exc:
+        raise ValueError("private output parent changed or became unavailable") from exc
+
+
+def secure_private_output(output, payload, repo):
+    """Use an open directory capability, never the mutable output pathname."""
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    parent_fd = os.open(output.anchor, flags)
+    try:
+        for component in output.parent.parts[1:]:
+            try:
+                next_fd = os.open(component, flags, dir_fd=parent_fd)
+            except OSError as exc:
+                raise ValueError("private output symlink or non-directory parent refused") from exc
+            os.close(parent_fd)
+            parent_fd = next_fd
+        require_private_parent_binding(parent_fd, output, repo)
+        created_fd = None
+        created_identity = None
+        try:
+            created_fd = os.open(output.name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                                 0o600, dir_fd=parent_fd)
+            created = os.fstat(created_fd)
+            created_identity = (created.st_dev, created.st_ino)
+            with os.fdopen(created_fd, "wb") as stream:
+                created_fd = None
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            require_private_parent_binding(parent_fd, output, repo)
+            final = os.stat(output.name, dir_fd=parent_fd, follow_symlinks=False)
+            require(stat.S_ISREG(final.st_mode)
+                    and (final.st_dev, final.st_ino) == created_identity,
+                    "private output file entry changed during write")
+        except BaseException:
+            # Remove only the *new* file created via O_EXCL, never a user file.
+            if created_fd is not None:
+                os.close(created_fd)
+            if created_identity is not None:
+                try:
+                    current = os.stat(output.name, dir_fd=parent_fd, follow_symlinks=False)
+                    if (current.st_dev, current.st_ino) == created_identity:
+                        os.unlink(output.name, dir_fd=parent_fd)
+                except FileNotFoundError:
+                    pass
+            raise
+    finally:
+        os.close(parent_fd)
+
+
+def trusted_private_output(output, payload, repo):
+    """Windows compatibility only: requires a trusted, non-mutating path tree."""
+    current = output.parent
+    while current != current.parent:
+        require(not current.is_symlink() and not (hasattr(current, "is_junction") and current.is_junction()),
+                "private output symlink/junction parent refused")
+        current = current.parent
+    stable_parent = output.parent.resolve()
+    require(not stable_parent.is_relative_to(repo.resolve()) and stable_parent.is_dir(),
+            "private output trusted parent must be existing and outside repository")
+    target = stable_parent / output.name
+    require(not target.exists() and not target.is_symlink(), "private output requires new file")
+    fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(fd, "wb") as stream:
         stream.write(payload)
+        stream.flush()
+        os.fsync(stream.fileno())
+    require(output.parent.resolve() == stable_parent, "private output trusted parent changed during write")
+
+
+def private_output(path, cards, summary, repo=REPO, *, trusted_output_path=False):
+    output = Path(os.path.abspath(path))
+    require(not output.is_relative_to(repo.resolve()) and not repo.resolve().is_relative_to(output),
+            "private held text output must not be inside or above the repository")
+    require(output.name not in ("", ".", "..") and not output.exists() and not output.is_symlink(),
+            "private output requires new file")
+    require(not output.parent.resolve().is_relative_to(repo.resolve()),
+            "private output parent resolved into repository")
+    payload = canon({"summary": summary, "held_source_local_notes": cards}).encode()
+    if private_parent_supported():
+        secure_private_output(output, payload, repo)
+    else:
+        require(trusted_output_path,
+                "private output needs no-follow dirfd support; Windows trusted path requires explicit --trusted-output-path")
+        trusted_private_output(output, payload, repo)
     return digest(payload)
 
 
@@ -363,8 +465,12 @@ def main():
     parser.add_argument("--check-summary", action="store_true", help="compare checked-in counts-only audit")
     parser.add_argument("--write-summary", action="store_true", help="regenerate counts-only audit metadata")
     parser.add_argument("--private-output", type=Path, help="explicitly write unpublished drafts to a new file OUTSIDE the repository")
+    parser.add_argument("--trusted-output-path", action="store_true",
+                        help="Windows compatibility opt-in for trusted, non-mutating private output paths; weaker than POSIX dirfd isolation")
     args = parser.parse_args()
     require(not (args.check_summary and args.write_summary), "choose one summary mode")
+    require(not args.trusted_output_path or args.private_output is not None,
+            "--trusted-output-path requires --private-output")
     summary, cards = review()
     summary["accepted_main_admission_preflight"] = accepted_pilot_preflight()
     rendered = canon(summary)
@@ -373,7 +479,8 @@ def main():
     if args.write_summary:
         SUMMARY.write_text(rendered, encoding="utf-8")
     if args.private_output:
-        output_hash = private_output(args.private_output, cards, summary)
+        output_hash = private_output(args.private_output, cards, summary,
+                                     trusted_output_path=args.trusted_output_path)
         print(f"PRIVATE_HELD_REVIEW_WRITTEN_SHA256={output_hash}")
     else:
         print(f"DRAFT_EPISODE_REVIEW: {len(cards)} observations / {summary['held_paraphrase_count']} unpublished paraphrases / {summary['withheld_identity_count']} identity hold; no acceptance or coverage effect")

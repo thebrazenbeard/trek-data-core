@@ -117,6 +117,21 @@ class DraftEpisodeReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "fingerprint misaligned"):
             reviewer.parse_candidate(source, changed)
 
+    def test_untrusted_anomaly_hypothesis_cannot_enter_public_counts(self):
+        changed = ds9()
+        changed["anomaly_hypotheses"] = [{
+            "hypothesis": "Sensitive unpublished publisher plot notes copied into a public field.",
+            "affected_source_ordinals": [1],
+            "basis": "PUBLISHER_CARD_TITLE_TOPIC_VS_DESCRIPTION_ONLY",
+            "resolution": "UNRESOLVED_NO_EXTERNAL_VERIFICATION",
+        }]
+        with self.assertRaisesRegex(ValueError, "unrecognized anomaly"):
+            reviewer.parse_candidate(descriptor(pr=557, profile="DS9_S3_S4"), changed)
+        with self.assertRaisesRegex(ValueError, "unrecognized source-local series code"):
+            reviewer.note(descriptor(), row_id="other", series="Sensitive held passage here", season=1, ordinal=1,
+                          title="Other", synopsis="A publisher summary of the episode card.",
+                          guide="https://www.paramountplus.com/shows/enterprise/episodes/1/", locator="publisher")
+
     def test_held_text_private_output_refuses_repo_and_creates_mode_600(self):
         source = descriptor()
         note = reviewer.note(source, row_id="slot-a", series="TNG", season=2, ordinal=1,
@@ -132,6 +147,57 @@ class DraftEpisodeReviewTests(unittest.TestCase):
             self.assertEqual(os.stat(out).st_mode & 0o777, 0o600)
             with self.assertRaisesRegex(ValueError, "requires new file"):
                 reviewer.private_output(out, [note], {})
+
+    def test_private_output_parent_replaced_by_repo_symlink_cannot_redirect_bytes(self):
+        source = descriptor()
+        item = reviewer.note(source, row_id="private", series="TNG", season=2, ordinal=1,
+                             title="Held", synopsis="Secret source-local publisher note that must stay private.",
+                             guide="https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+                             locator="publisher guide")
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            repo = root / "repo"
+            outside = root / "outside"
+            moved = root / "moved"
+            repo.mkdir()
+            outside.mkdir()
+            target = outside / "private.json"
+            original_open = os.open
+            swapped = False
+
+            def switch_during_create(path, flags, mode=0o777, *, dir_fd=None):
+                nonlocal swapped
+                if not swapped and flags & os.O_CREAT and flags & os.O_EXCL:
+                    swapped = True
+                    outside.rename(moved)
+                    outside.symlink_to(repo, target_is_directory=True)
+                if dir_fd is None:
+                    return original_open(path, flags, mode)
+                return original_open(path, flags, mode, dir_fd=dir_fd)
+
+            with mock.patch.object(reviewer.os, "open", side_effect=switch_during_create):
+                with self.assertRaisesRegex(ValueError, "private output.*changed|symlink"):
+                    reviewer.private_output(target, [item], {}, repo=repo)
+            self.assertTrue(swapped)
+            self.assertFalse((repo / "private.json").exists(), "unpublished draft escaped into repository")
+            self.assertFalse((moved / "private.json").exists(), "failed private output left orphaned held text")
+
+    def test_unsupported_platform_default_denies_private_output_with_explicit_trusted_fallback(self):
+        row = reviewer.note(descriptor(), row_id="held", series="TNG", season=2, ordinal=1,
+                            title="Held", synopsis="Private source-local marketing paraphrase.",
+                            guide="https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+                            locator="publisher")
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            repo = root / "repo"
+            repo.mkdir()
+            target = root / "private.json"
+            with mock.patch.object(reviewer, "private_parent_supported", return_value=False):
+                with self.assertRaisesRegex(ValueError, "--trusted-output-path"):
+                    reviewer.private_output(target, [row], {}, repo=repo)
+                self.assertFalse(target.exists())
+                receipt = reviewer.private_output(target, [row], {}, repo=repo, trusted_output_path=True)
+            self.assertEqual(receipt, hashlib.sha256(target.read_bytes()).hexdigest())
 
     def test_real_eight_draft_git_objects_if_fetched_locally(self):
         manifest = reviewer.read_manifest()

@@ -70,10 +70,37 @@ python3 -B tools/review_held_episode_prs.py \
 ```
 
 The `--private-output` target must have a trusted existing parent and must
-not already exist. The tool creates it with owner-only file permissions.
+not already exist. On POSIX platforms with directory-relative `O_NOFOLLOW`
+opens, the tool pins the parent directory by descriptor, rechecks its inode
+identity before and after writing, and creates the new file with `O_EXCL`
+and owner-only `0600` permissions. A swapped parent symlink cannot redirect
+the write into the repository; a detected swap fails closed and cleans up
+the new file through the pinned descriptor. This does not defend against
+privileged mount replacement or malicious modification of the pinned
+directory inode itself.
+
+On Windows or platforms missing these no-follow directory-descriptor
+primitives, private output **fails closed by default**. An explicit weaker
+compatibility option exists only for a trusted local directory tree without
+concurrent mutation:
+
+```sh
+python3 -B tools/review_held_episode_prs.py \
+  --private-output 'D:\\trusted-review\\held-notes.json' \
+  --trusted-output-path
+```
+
+That mode rejects observed symlink/junction parents and resolves its target,
+but **cannot guarantee** safety against adversarial concurrent directory or
+mount replacement. Never use it for untrusted/shared mutable paths.
+
 Do **not** commit that output or expose it via GitHub Pages: it contains
 unapproved held synopsis drafts. The repository checks in no such source
 text, imported image, episode clip, script, HTML body or transcript.
+
+Counts-only summaries accept only governed typed series/anomaly codes. The
+DS9 S4 hypothesis remains `POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT`;
+arbitrary draft prose is rejected rather than copied into public metadata.
 
 ## Mechanical governance barrier: `SOURCE_BOUND`
 

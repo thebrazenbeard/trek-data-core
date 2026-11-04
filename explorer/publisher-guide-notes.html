@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Publisher Guide Notes | Trek Data Core</title>
+  <link rel="stylesheet" href="./publisher-guide-notes.css">
+  <script src="./publisher-guide-notes.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#notes">Skip to source notes</a>
+  <div class="lcars-shell">
+    <aside class="lcars-rail" aria-hidden="true"><span class="rail-cap"></span><span class="rail-segment"></span><span class="rail-segment rail-purple"></span><span class="rail-segment rail-tan"></span></aside>
+    <main>
+      <header class="masthead">
+        <div class="eyebrow">Trek Data Core / source-local shelf / LCARS</div>
+        <div class="titlebar"><div><h1>Publisher Guide Notes</h1><p>Original, unapproved paraphrases of publisher episode-guide descriptions</p></div><span class="status-chip">HELD · NOT CANONICAL</span></div>
+        <div class="strip" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </header>
+
+      <section class="notice" aria-labelledby="read-this-title">
+        <h2 id="read-this-title">About this research shelf</h2>
+        <p>These cards describe <strong>what Paramount’s promotional guides say</strong>, not what happened in a verified episode. They are neither approved Mission Briefings nor admitted Works, close reads, independent corroborations, or episode coverage. One corporate publisher family underlies the notes.</p>
+        <p>Images and clips are intentionally absent: this sidecar grants no artwork or audiovisual reuse rights. Source cards retain exact proposal paths, digests and guide locators for review.</p>
+      </section>
+
+      <section class="controls" aria-label="Filter publisher notes">
+        <label class="control"><span>Search title, source note, or draft text</span><input id="search" type="search" placeholder="e.g. Burnham, Caretaker, S1 E1" autocomplete="off"></label>
+        <label class="control"><span>Series</span><select id="series"><option value="ALL">All series</option></select></label>
+        <label class="checkbox"><input id="withheld" type="checkbox"><span>Show withheld identity holds only</span></label>
+        <a class="download" href="./publisher-guide-notes.json" download="trek-held-publisher-guide-notes.json">Download exact sidecar JSON</a>
+      </section>
+
+      <section class="counterbar" aria-live="polite"><p id="counter">Loading source-local notes…</p><p id="source-status"></p></section>
+      <section id="notes" class="note-grid" aria-label="Held publisher guide notes"></section>
+
+      <footer class="footer">
+        <p>Source → Work → Local Entity → Evidence → Assertion remains the governing research model. This is a <strong>source-local promotional-description shelf</strong> and makes no global identity decision.</p>
+        <p><a href="./index.html">Back to LCARS Explorer</a> <span aria-hidden="true">·</span> <a href="https://github.com/thebrazenbeard/trek-data-core">Repository and provenance</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

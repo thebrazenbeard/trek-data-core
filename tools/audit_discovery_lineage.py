@@ -84,7 +84,7 @@ def audit_rows(rows):
 
         # Exact URL deliberately retained: we cannot conclude two distinct
         # links identify the same source without independently reviewing them.
-        signature = (row["medium"], _norm(row["context"]),
+        signature = (_norm(row["medium"]), _norm(row["context"]),
                      _norm(row["title"]), locator)
         by_signature[signature].append(row)
         by_locator[locator].append(row)
@@ -117,6 +117,29 @@ def audit_rows(rows):
                 "row_ids": sorted(row["row_id"] for row in cluster),
             })
 
+    # A locator can ambiguously point to multiple titles or contexts. Flag it
+    # for source-owner triage; do not infer a Work identity or promote coverage.
+    divergent_urls = []
+    for url, cluster in sorted(by_locator.items()):
+        by_descriptor = defaultdict(list)
+        for row in cluster:
+            descriptor = (_norm(row["medium"]), _norm(row["context"]), _norm(row["title"]))
+            by_descriptor[descriptor].append(row["row_id"])
+        if len(by_descriptor) > 1:
+            divergent_urls.append({
+                "source_locator": url,
+                "descriptors": [
+                    {
+                        "medium_normalized": medium,
+                        "context_normalized": context,
+                        "title_normalized": title,
+                        "row_ids": sorted(row_ids),
+                    }
+                    for (medium, context, title), row_ids in sorted(by_descriptor.items())
+                ],
+                "interpretation": "TRIAGE_ONLY_NOT_A_WORK_IDENTITY_DECISION",
+            })
+
     return {
         "audit_status": "SOURCE_LOCAL_ONLY_NO_ADMISSION",
         "row_count": len(rows),
@@ -127,6 +150,8 @@ def audit_rows(rows):
         "duplicate_signature_count": len(duplicates),
         "duplicate_extra_row_count": sum(len(c["row_ids"]) - 1 for c in duplicates),
         "duplicate_signatures": duplicates,
+        "same_url_divergent_observation_count": len(divergent_urls),
+        "same_url_divergent_observations": divergent_urls,
         "same_url_multiple_source_groups": alias_urls,
         "disclaimer": "Discovery observations only; not distinct Works, independent witnesses, or verified source content.",
     }
@@ -148,7 +173,8 @@ def main(argv=None):
               f"{result['unique_source_locator_count']}; overlap signatures: "
               f"{result['duplicate_signature_count']} "
               f"({result['duplicate_extra_row_count']} extra observations); "
-              f"multi-label URLs: {len(result['same_url_multiple_source_groups'])}")
+              f"multi-label URLs: {len(result['same_url_multiple_source_groups'])}; "
+          f"divergent URL observations: {result['same_url_divergent_observation_count']}")
         print(result["disclaimer"])
     return 0
 

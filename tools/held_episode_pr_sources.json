@@ -1,0 +1,15 @@
+{
+  "schema_version": "trek-held-draft-pr-source-snapshot-v1",
+  "accepted_main_at_review": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "admission_status": "UNMERGED_PR_PROPOSALS_NOT_ACCEPTED_RESEARCH",
+  "sources": [
+    {"pr": 538, "commit": "a2f92209808398f2df2118306b1e10745dc763a4", "path": "proposals/research/tng-s2-firstfive-publisher-20261104/records.json", "sha256": "1d50d91270b99a72fc70ce842412b33832d692abcb50857ff853a3b7ba789999", "profile": "TNG", "expected_rows": 5},
+    {"pr": 551, "commit": "df622f5c4d0bffc34f2b980ad1efc25064a8fe99", "path": "proposals/research/tng-s2-remaining17-publisher-20261104/records.json", "sha256": "d30e794e5889342128b2f52aca848609ed470ec13c297e84622661c588fa665d", "profile": "TNG", "expected_rows": 17},
+    {"pr": 559, "commit": "4ca0112e365e1b4c4b6714e78275ffcc45a64f63", "path": "proposals/research/tng-s3-all26-publisher-20261104/records.json", "sha256": "8768dfd32e1ecd658d4ce5cf68f4ee7396edb6ef43ce3b802fbf4c55b58a65ba", "profile": "TNG", "expected_rows": 26},
+    {"pr": 554, "commit": "ada2b29b2e6cede9c581e17dcce233b74fe43bc9", "path": "proposals/research/ds9-paramount-s2-guide-20261104/observations.json", "sha256": "ebacf9972ca8b5b62ab549ff2779ed83260e04d76cc939c8e4650c32c7a443a1", "profile": "DS9_S2", "expected_rows": 25},
+    {"pr": 557, "commit": "ab52eb406cb7e2bbb5cb470db725fc772f0cc913", "path": "proposals/research/ds9-paramount-s3-guide-20261104/records.json", "sha256": "fa6c257aebc47d83c41a0992f36f49a18699f7f13f880c090fc78f8f166ec20e", "profile": "DS9_S3_S4", "expected_rows": 24},
+    {"pr": 560, "commit": "5f5aeae3d3a42cda691b73a7b1eccd2cced2c9e0", "path": "proposals/research/ds9-paramount-s4-guide-20261104/records.json", "sha256": "69d52b6c99c52cd80ed2245d528539e36402bbd4c374d1c5720ced6b402088d8", "profile": "DS9_S3_S4", "expected_rows": 24},
+    {"pr": 544, "commit": "e1d07cd76d771f5fe7de6506d309b18970a8eb14", "path": "proposals/research/voy-s4-e15-e19-publisher-cards-20261104/records.json", "sha256": "a3e1ceeda5d5432a8cb6689f80d663cda40a8602941cc4869645e8b8ed5856db", "profile": "VOY", "expected_rows": 5},
+    {"pr": 558, "commit": "e084135e83d0f3656b092a2acb00c7b8400ff285", "path": "explorer/publisher-guide-notes.json", "sha256": "2517efbb0be3ef789fc8f063b19108769f4727655842cd47a68c69f9bed05d8b", "profile": "HELD_SIDECAR", "expected_rows": 58}
+  ]
+}

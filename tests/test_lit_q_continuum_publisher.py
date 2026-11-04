@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 P = ROOT / "proposals/research/lit-q-continuum-publisher-20261103/validate.py"
@@ -26,6 +27,16 @@ class QContinuumPublisherTests(unittest.TestCase):
         opf = M.accepted_opf_leads()
         self.assertEqual([x["source_local_id"] for x in opf], list(M.OPF_IDS))
         self.assertEqual(opf[2]["creator"], ["William C. Deets &Dean Williams"])
+
+    def test_held_other_proposals_do_not_become_accepted_isbn_collisions(self):
+        # Repeated publisher metadata in HELD packets is not a global Work
+        # identity assertion. A research validator must not crawl all proposal
+        # JSON looking for ISBN string literals.
+        with patch.object(Path, "rglob", side_effect=AssertionError("unbounded proposal scan")):
+            self.assertTrue(M.validate(M.EXPECTED))
+        all_publisher_isbns = [row["isbn13"] for row in M.EXPECTED["numbered_books"]]
+        all_publisher_isbns.append(M.EXPECTED["adjacent_unnumbered_publisher_product"]["isbn13"])
+        self.assertEqual(len(set(all_publisher_isbns)), 4)
 
     def test_unnumbered_not_assumed_omnibus(self):
         d = M.EXPECTED

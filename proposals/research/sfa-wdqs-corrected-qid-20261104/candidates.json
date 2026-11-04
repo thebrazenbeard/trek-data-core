@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SFA-WDQS-CORRECTED-QID-20261104-001",
+  "status": "HELD_WDQS_SOURCE_RELATIVE_CANDIDATES",
+  "receipt": "receipt.json",
+  "query_parent_qid": "Q117350388",
+  "all_rows_untyped": true,
+  "canonical_work_effect": "NONE",
+  "source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "ordinal_comparison": "UNAVAILABLE_FROM_WDQS_RESPONSE",
+  "publisher_route_basis": "proposals/research/sfa-publisher-video-routes-20261104/records.json",
+  "rows": [
+    {"source_local_id":"wdqs-sfa-20261104-q137786752","qid":"Q137786752","label":"Star Trek: Starfleet Academy, season 1","season_item_qid":null,"wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":null,"publisher_route_id":null,"title_comparison":"UNMATCHED_SEASON_LABELED_ITEM","identity_hold":"P179_MEMBER_NOT_VERIFIED_AS_EPISODE"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793912","qid":"Q137793912","label":"Kids These Days","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":1,"publisher_route_id":"sfa-pplus-route-01","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793913","qid":"Q137793913","label":"Beta Test","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":2,"publisher_route_id":"sfa-pplus-route-02","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793914","qid":"Q137793914","label":"Vitus Reflux","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":3,"publisher_route_id":"sfa-pplus-route-03","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793915","qid":"Q137793915","label":"Vox In Excelso","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":4,"publisher_route_id":"sfa-pplus-route-04","title_comparison":"CASE_ONLY_VARIANT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793916","qid":"Q137793916","label":"Series Acclimation Mil","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":5,"publisher_route_id":"sfa-pplus-route-05","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793917","qid":"Q137793917","label":"Come, Let's Away","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":6,"publisher_route_id":"sfa-pplus-route-06","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793918","qid":"Q137793918","label":"Ko'Zeine","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":7,"publisher_route_id":"sfa-pplus-route-07","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793920","qid":"Q137793920","label":"The Life of the Stars","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":8,"publisher_route_id":"sfa-pplus-route-08","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793921","qid":"Q137793921","label":"300th Night","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":9,"publisher_route_id":"sfa-pplus-route-09","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"},
+    {"source_local_id":"wdqs-sfa-20261104-q137793922","qid":"Q137793922","label":"Rubincon","season_item_qid":"Q137786752","wikidata_episode_ordinal":null,"wikidata_season_ordinal":null,"publisher_episode_hint":10,"publisher_route_id":"sfa-pplus-route-10","title_comparison":"CASE_SENSITIVE_EXACT","identity_hold":"TITLE_LEAD_ONLY_NO_WORK_ADMISSION"}
+  ],
+  "holds": [
+    {"id":"season-labeled-p179-member","class":"POTENTIAL_NON_EPISODE_SERIES_MEMBER","qid":"Q137786752","finding":"The relaxed P179 membership query returned a distinct item labeled as Season 1 without episode type verification; exclude it from episode-hint pairing."},
+    {"id":"ordinal-absent","class":"MISSING_DIRECT_ORDINAL_EVIDENCE","finding":"Neither episode seriesOrdinal nor linked seasonOrdinal appeared in any of the eleven returned bindings; publisher ordinals are join hints only."},
+    {"id":"title-case-variant","class":"CASE_ONLY_TITLE_VARIANT","qid":"Q137793915","publisher_route_id":"sfa-pplus-route-04","finding":"Wikidata label capitalizes In while Paramount+ displays in; preserve both exact source labels."},
+    {"id":"qid-gap-not-evidence","class":"QID_SEQUENCE_GAP","qid":"Q137793919","finding":"An unused number in a Wikidata QID sequence is not evidence of a missing episode, title or ordinal."},
+    {"id":"query-limited-untyped","class":"LIMITED_SOURCE_DISCOVERY","finding":"This is a LIMIT 40 untyped P179 membership result from a mutable third-party catalog; no episode denominator or completeness claim follows."}
+  ]
+}

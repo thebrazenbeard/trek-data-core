@@ -1,0 +1,39 @@
+# HELD private full-source research: *Collective Hindsight Book 1* (S.C.E. #33)
+
+2026-11-04 | **PROPOSAL — NOT ACCEPTED** | Isolated owner-local source reading; zero copyrighted prose or media copies in GitHub.
+
+## What was actually processed
+
+- On Patrick's authorized Lappy, opened the existing OneDrive Books archive **in memory**, without extracting files onto disk. The `Star_Trek_OPF_Converted.zip` archive was 95,673,655 bytes; raw SHA-256 `0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f`.
+- Independently read the archive's one-spine-item converted HTML narrative **from Chapter 1 through Chapter 5 and its explicit Book One continuation marker**. The converted HTML is 113,659 bytes, SHA-256 `59986296c2017c1c8adf656c603421649612e5c278df25ad808c16d78fb35059`.
+- Read its local OPF identity metadata (4,070 bytes, SHA-256 `66c8bb7c52f374d4df87a0fcb03d827feaa34f5f5d1d8e3fa18f91f45d609fc5`) and TOC member (1,082 bytes, SHA-256 `87cc9595247d2c71630644472f061a8c318b8b406c918562cd506c0934a8d572`). Book Two is explicitly *advertised*, **not read**, not part of this Source.
+- Correlated exact owner-local conversion provenance: the `ST ebooks/conversion_manifest.json` 115,409-byte file (SHA-256 `7b83b960729b3a51f2d2e026a543860f30dbd4183e7958c52a068935a9a65782`) reports this title's `.lit` input, `success`, DRM label 1, exit 0 and 13 output members. Its README says the owner previously ran ConvertLIT 1.8 over 347 input files (346 reported clean conversions, one separately flagged incomplete *Ghost Ship*). Independent read-only check confirmed that the original `ST ebooks.zip` archive is SHA-256 `c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac` and contains the exact 238,466-byte matching-named S.C.E. #33 `.lit` member (SHA-256 `065140cfb0b10a2e3217734f14f1acf1689a3183a066ca9a4f05ff983dd2bb2b`). **The conversion manifest attests a process and filename linkage; no independent re-conversion, licensed purchase, edition authenticity or DRM authorization is inferred.**
+- The user-controlled artifact is a converted copy of an ebook carrying a 2003 Paramount copyright notice and ReaderWorks conversion metadata. The host ZIP's legal acquisition and public republication rights are **not independently authenticated**. Reading it privately does not authorize public full-text redistribution or accepted corpus ingestion.
+- `records.json` contains only source-member relative locators, content fingerprints, original summaries, local entities, evidence classifications and assertions. No novel prose, quoted dialogue, chapter text, text extraction, cover art, local Windows absolute path or media bytes were committed.
+
+## Cross-checks and honest edition limits
+
+- Owner OPF-only inventory entry `opf-local:0044` is present (`observations.json` SHA-256 `5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7`) but records `isbn_checksum_valid=[]`. **Direct owner OPF inspection** found the decorated literal `ISBN 0-7434-8083-X` which normalizes to `074348083X` and valid ISBN13 `9780743480833`. This is an **inventory parser omission**, not evidence that the EPUB manifestation is licensed or an authenticated publisher master.
+- Independently opened [Simon & Schuster's official S.C.E. #33 ebook listing](https://www.simonandschuster.com/books/Star-Trek-Collective-Hindsight-Book-1/Aaron-Rosenberg/Star-Trek-Starfleet-Corps-of-Engineers/9780743480833): author Aaron Rosenberg, ebook ISBN13 `9780743480833`, Pocket Books/Star Trek October 27, 2003, 75 publisher-listed pages. The owner raw OPF matches the publisher ISBN **by checksum, not by authenticated edition/source custody**. The page and its apparent preview are one upstream publisher family, not independent corroboration or a full text.
+- **Source structural anomaly:** the local OPF spine references one `CollectiveHindSightBook1.html`. The OPF chapter tour advertises only four chapters; the actual narrative HTML contains anchors `#ch_1` through `#ch_5` and the fifth chapter concludes before the separate author/about and Book Two advertisement. Retain both facts. A chapter tour is not a complete enumeration.
+
+## Exact source-relative, non-quotational chapter receipt
+
+All start positions are zero-based UTF-8-independent **raw HTML byte offsets**, end exclusive; spans do not imply canonical printed pages, publication line numbers, or immutable HTML from the live publisher.
+
+| Chapter anchor | Byte span in private HTML member | SHA-256 of raw member slice | Original neutral summary |
+| --- | --- | --- | --- |
+| `#ch_1` | `[6260,27617)` | `c4cc3aa185613b2dd4f92ba8c68ef62410946a810e1a640da9a479a04f7db825` | Gomez's team meets the runaway and uncovers a classified earlier mission; grief over Kieran complicates the reconstruction. |
+| `#ch_2` | `[27617,49287)` | `78573b26256ecbe83184d0be8cda8c8bf5aca9f208c6a454fbac0ff3d6542fd2` | Wartime operation protects a concealed base while approaching a potentially hazardous unidentified vessel. |
+| `#ch_3` | `[49287,79754)` | `ad8519e9d0ad30b5f07067e8a033e7034343bd934f2fc895893e55e4ee264fc9` | Crew reports disclose a deliberate internal energy release; Salek reconstructs, rather than independently observes, its apparent protective motive. |
+| `#ch_4` | `[79754,104608)` | `18d2f913084cf310eef33ffbda5dfc01535fc331fd4a509f7b5ae19eef12e2ec` | Salek uses the runaway's energy to counter the attacking Cardassian vessel and dies; teammates stage disposal of both ships. |
+| `#ch_5` | `[104608,111428)` | `394a21ccfba09a77ea5b06670d0db4d4fe8e37d98a1612b60622300c7072dab7` | Gomez faces a contradiction: the supposedly disposed ship is back, still building power despite disconnected collectors. |
+
+Eight source-relative observations distinguish narrator framing, character briefing, computer-log report, character inference, and in-story sensor report. Four proposals remain typed. Most notably, crew reports establish an **utterance** about the prior captain's choice; Salek's explanation of *why* that crew acted remains a character inference. Neither becomes objective evidence about an actual universe. The final return mechanism is explicitly **UNRESOLVED** in this book.
+
+## Reproducibility, effect boundaries, next frontier
+
+- `python -m proposals.research.sce33_private_complete_read_20261104.verify_owner_archive --archive <owner-local-zip>` is a **read-only opt-in** verifier. It hashes the full ZIP and the three named members and recomputes all five chapter byte spans; it emits no book text, creates no archive extraction, and refuses altered members and symlink paths. The actual Lappy byte checks above were executed as an equivalent direct in-memory host probe; the packaged CLI itself is not claimed as executed on Lappy.
+- `validate.py` freezes one local source, one source-bound candidate Work, seven local entities, eight evidence observations and four tentative assertions via a canonical payload digest plus rights/coverage/identity checks. Hostile regressions verify source hashes, chapter-tour omission, source claims versus inferred claims, absence of accepted effects, and absence of copyrighted text fields.
+- The result is **one HELD privately completely read source-local Work candidate**. It is not an accepted `WORK`, `SOURCE_BOUND`, `FULL_TEXT_AVAILABLE`, `CLOSE_READ`, or `SEMANTICALLY_ANALYZED` corpus ledger entry; no public catalogue card, page, image, dataset coverage or global identity is changed.
+- Next frontier: a separate owner-authorized review of archive rights/edition custody and independent audit of this full-read receipt. If admission requirements eventually pass, convert the private source-relative observations to appropriate versioned accepted ledgers without placing copyrighted prose in GitHub. Otherwise continue the next **HELD** OPF publisher edition metadata IDs `0115–0121`.

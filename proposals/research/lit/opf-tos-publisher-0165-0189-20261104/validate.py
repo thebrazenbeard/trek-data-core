@@ -60,6 +60,8 @@ def validate_packet(report: dict, source: dict) -> tuple[int, int]:
     if not isinstance(report, dict) or set(report) != set(EXPECTED_FIELDS) | {"rows"}:
         raise ValueError("unreviewed publisher envelope")
     for key, expected in EXPECTED_FIELDS.items():
+        if type(report[key]) is not type(expected):
+            raise ValueError(f"publisher packet type drift: {key}")
         if report[key] != expected:
             raise ValueError(f"publisher packet attempted drift: {key}")
     if len(source.get("rows", [])) != 347:
@@ -94,7 +96,7 @@ def validate_packet(report: dict, source: dict) -> tuple[int, int]:
             date.fromisoformat(row["publisher_date"])
         except (TypeError, ValueError) as exc:
             raise ValueError("invalid official product date") from exc
-        if not isinstance(row["publisher_pages"], int) or not 1 <= row["publisher_pages"] <= 1500:
+        if type(row["publisher_pages"]) is not int or not 1 <= row["publisher_pages"] <= 1500:
             raise ValueError("invalid official product page count")
         isbn = row["publisher_isbn13"]
         if not isinstance(isbn, str) or not isbn13_valid(isbn) or isbn in seen:

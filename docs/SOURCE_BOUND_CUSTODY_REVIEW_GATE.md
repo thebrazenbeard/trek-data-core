@@ -20,8 +20,10 @@ accepted `SOURCE_BOUND` event must include exactly one of each in `basis_refs`:
   `coverage/bound-reviews/<digest>.json`.
 
 The files are read by the existing no-follow, directory-descriptor-anchored
-regular-file reader and must have exactly one hard link. Their UTF-8 bytes are
-SHA-256 checked against their filenames; duplicate JSON keys are rejected.
+regular-file reader and must have exactly one hard link. Their **exact raw
+bytes** are SHA-256 checked against their filenames *before strict UTF-8
+decoding* (CRLF and LF are not interchangeable); duplicate JSON keys are
+rejected. Inode identity is checked across and after the read.
 
 The **claim** (`SOURCE_BOUND_CUSTODY_CLAIM`, v1.0.0) pins the accepted Work,
 Source, binding, their canonical record hashes, the Source's *declared* content
@@ -66,7 +68,8 @@ The isolated unit fixture deliberately uses fake bytes and a fake private
 receipt hash to test only the mechanical rule. It checks a passing two-record
 chain and failures for absent review, invalid private digest, changed
 Work/Source/binding fingerprints, event scope/producer swaps, self-review,
-scope/publication escalation, and symlink/hardlink receipt aliases. It is
+scope/publication escalation, exact-byte CRLF normalization, and
+symlink/hardlink receipt aliases. It is
 **not** a genuine Source admission or an actual external custody test.
 
 ```sh

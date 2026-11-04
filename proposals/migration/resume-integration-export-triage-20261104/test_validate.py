@@ -35,6 +35,24 @@ class ResumeIntegrationMigrationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, message):
             verify(self.root)
 
+    def test_literary_effect_dimension_omission_is_rejected(self):
+        self.rejected(LIT_MAIN, lambda d: d["accepted_effects"].pop("coverage"),
+                      "literary metadata proposal promoted")
+
+    def test_literary_effect_dimension_rename_is_rejected(self):
+        def rename(d):
+            d["accepted_effects"]["binding"] = d["accepted_effects"].pop("bindings")
+        self.rejected(LIT_MAIN, rename, "literary metadata proposal promoted")
+
+    def test_literary_extra_effect_dimension_is_rejected(self):
+        self.rejected(LIT_MAIN,
+                      lambda d: d["accepted_effects"].update({"invented": "NONE"}),
+                      "literary metadata proposal promoted")
+
+    def test_literary_effect_dimensions_wrong_type_are_rejected(self):
+        self.rejected(LIT_MAIN, lambda d: d.update(accepted_effects=["NONE"]),
+                      "literary metadata proposal promoted")
+
     def test_clean_accepted_snapshot_is_valid_proposal_only(self) -> None:
         verify(self.root)
 

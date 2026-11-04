@@ -457,6 +457,20 @@ class ArtworkReleaseContractTests(unittest.TestCase):
 
     def test_css_remote_url_import_image_set_and_escape_are_pre_opt_in_rejections(self):
         art.check_css_no_pre_opt_in_network(".x{background:url('./art-original-episode.svg')}")
+        for film_id in (
+            "film-2009", "film-beyond", "film-final-frontier", "film-first-contact",
+            "film-generations", "film-insurrection", "film-into-darkness",
+            "film-motion-picture", "film-nemesis", "film-search-for-spock",
+            "film-section-31", "film-undiscovered-country", "film-voyage-home",
+            "film-wrath-of-khan",
+        ):
+            art.check_css_no_pre_opt_in_network(
+                f".x{{background:url('./interpretive-film/{film_id}.svg')}}"
+            )
+        with self.assertRaises(art.ArtworkRejected):
+            art.check_css_no_pre_opt_in_network(
+                ".x{background:url('./interpretive-film/film-fake.svg')}"
+            )
         for css in (
             ".x{background:url('https://covers.openlibrary.org/b/id/123-S.jpg')}",
             ".x{background:url(//covers.openlibrary.org/b/id/123-S.jpg)}",

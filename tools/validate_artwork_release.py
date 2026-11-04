@@ -523,6 +523,16 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
 
 ALLOWED_CSS_ASSETS = {f"./art-original-{kind}.svg" for kind in
                       ("episode", "film", "literature", "short-form", "audio")}
+# Fourteen source-keyed, generated ORIGINAL designs, not the separately gated
+# third-party licensed-artwork sidecar. These exact local paths are independently
+# byte-checked by build_interpretive_film_art.py and the Pages publish barrier.
+ALLOWED_CSS_ASSETS.update({f"./interpretive-film/{film_id}.svg" for film_id in (
+    "film-2009", "film-beyond", "film-final-frontier", "film-first-contact",
+    "film-generations", "film-insurrection", "film-into-darkness",
+    "film-motion-picture", "film-nemesis", "film-search-for-spock",
+    "film-section-31", "film-undiscovered-country", "film-voyage-home",
+    "film-wrath-of-khan",
+)})
 
 
 def check_css_no_pre_opt_in_network(css: str) -> None:

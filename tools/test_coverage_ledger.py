@@ -352,6 +352,22 @@ class CoverageLedgerTests(unittest.TestCase):
    with self.subTest(state=attack['coverage_state']):
     with self.assertRaisesRegex(ValueError,'binding context'):
      make_report([WORK,SOURCE,BINDING,proposed_metadata,discovered,bound,*prerequisites,attack],works={'w1':WORK})
+ def test_source_stages_cannot_lose_binding_identity_with_work_subject(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  representation={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'}
+  legitimate_full=event('f0','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0'],representation_scope=representation)
+  unbound_full=event('unbound-full','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0'],subject_type='WORK',subject_id='w1',representation_scope=representation)
+  unbound_index=event('unbound-index','STRUCTURALLY_INDEXED',role='TNG',source_id='s1',prereqs=['f0'],subject_type='WORK',subject_id='w1')
+  for invalid,prerequisites in ((unbound_full,[]),(unbound_index,[legitimate_full])):
+   with self.subTest(state=invalid['coverage_state']):
+    with self.assertRaisesRegex(ValueError,'binding context'):
+     make_report([WORK,SOURCE,BINDING,discovered,bound,*prerequisites,invalid],works={'w1':WORK})
+  # Legacy identity via SOURCE_WORK_BINDING subject remains accepted even
+  # without an otherwise redundant binding_id field on the successor.
+  self.assertEqual(make_report([WORK,SOURCE,BINDING,discovered,bound,legitimate_full],works={'w1':WORK})['states']['FULL_TEXT_AVAILABLE']['attained_count'],1)
+  work_subject_with_binding=event('f-explicit','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',binding_id='b1',prereqs=['b0'],subject_type='WORK',subject_id='w1',representation_scope=representation)
+  self.assertEqual(make_report([WORK,SOURCE,BINDING,discovered,bound,work_subject_with_binding],works={'w1':WORK})['states']['FULL_TEXT_AVAILABLE']['attained_count'],1)
  def test_source_stage_accepts_new_versioned_binding_with_own_active_prerequisite(self):
   newer=dict(BINDING,binding_id='b2',supersedes_binding_id='b1')
   discovered=event('d0','DISCOVERED',role='LIBRARIAN')

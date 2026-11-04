@@ -319,6 +319,37 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
    do not bury the distinct image beneath duplicate text at 82px mobile. */
 .artwork-slot.artwork-interpretive-film .artwork-record-title,
 .artwork-slot.artwork-interpretive-film .artwork-missing { display: none; }
+.artwork-slot.artwork-interpretive-episode { background-size: cover; background-position: center; }
+.artwork-slot[data-original-episode-art="tng-s2-001"] { background-image: url('./interpretive-episode/tng-s2-001.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-002"] { background-image: url('./interpretive-episode/tng-s2-002.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-003"] { background-image: url('./interpretive-episode/tng-s2-003.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-004"] { background-image: url('./interpretive-episode/tng-s2-004.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-005"] { background-image: url('./interpretive-episode/tng-s2-005.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-006"] { background-image: url('./interpretive-episode/tng-s2-006.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-007"] { background-image: url('./interpretive-episode/tng-s2-007.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-008"] { background-image: url('./interpretive-episode/tng-s2-008.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-009"] { background-image: url('./interpretive-episode/tng-s2-009.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-010"] { background-image: url('./interpretive-episode/tng-s2-010.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-011"] { background-image: url('./interpretive-episode/tng-s2-011.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-012"] { background-image: url('./interpretive-episode/tng-s2-012.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-013"] { background-image: url('./interpretive-episode/tng-s2-013.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-014"] { background-image: url('./interpretive-episode/tng-s2-014.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-015"] { background-image: url('./interpretive-episode/tng-s2-015.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-016"] { background-image: url('./interpretive-episode/tng-s2-016.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-017"] { background-image: url('./interpretive-episode/tng-s2-017.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-018"] { background-image: url('./interpretive-episode/tng-s2-018.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-019"] { background-image: url('./interpretive-episode/tng-s2-019.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-020"] { background-image: url('./interpretive-episode/tng-s2-020.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-021"] { background-image: url('./interpretive-episode/tng-s2-021.svg'); }
+.artwork-slot[data-original-episode-art="tng-s2-022"] { background-image: url('./interpretive-episode/tng-s2-022.svg'); }
+.artwork-slot.artwork-interpretive-episode::before,
+.artwork-slot.artwork-interpretive-episode::after,
+.artwork-slot.artwork-interpretive-episode .artwork-record-context,
+.artwork-slot.artwork-interpretive-episode .artwork-record-mark,
+.artwork-slot.artwork-interpretive-episode .artwork-record-title,
+.artwork-slot.artwork-interpretive-episode .artwork-missing { display: none; }
+.artwork-slot.artwork-interpretive-episode .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
+.artwork-panel-interpretive-episode .artwork-caption-status { color: var(--text); font-size: .68rem; line-height: 1.3; font-weight: 760; }
 .artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
 .artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
 .artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }

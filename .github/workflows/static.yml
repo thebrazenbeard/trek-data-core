@@ -55,6 +55,11 @@ jobs:
           test -f tools/build_interpretive_film_art.py
           test ! -L tools/build_interpretive_film_art.py
           python3 tools/build_interpretive_film_art.py --check
+          # Twenty-two title-inspired source-local TNG S2 episode graphics.
+          # Not production stills or evidence of episode close reads.
+          test -f tools/build_interpretive_episode_art.py
+          test ! -L tools/build_interpretive_episode_art.py
+          python3 tools/build_interpretive_episode_art.py --check
 
       - name: Verify deterministic catalog index
         if: steps.readiness.outputs.ready == 'true'
@@ -343,7 +348,31 @@ jobs:
             ! -path explorer/interpretive-film/film-section-31.svg \
             ! -path explorer/interpretive-film/film-undiscovered-country.svg \
             ! -path explorer/interpretive-film/film-voyage-home.svg \
-            ! -path explorer/interpretive-film/film-wrath-of-khan.svg -print -quit | grep -q .; then
+            ! -path explorer/interpretive-film/film-wrath-of-khan.svg \
+            ! -path explorer/interpretive-episode \
+            ! -path explorer/interpretive-episode/manifest.json \
+            ! -path explorer/interpretive-episode/tng-s2-001.svg \
+            ! -path explorer/interpretive-episode/tng-s2-002.svg \
+            ! -path explorer/interpretive-episode/tng-s2-003.svg \
+            ! -path explorer/interpretive-episode/tng-s2-004.svg \
+            ! -path explorer/interpretive-episode/tng-s2-005.svg \
+            ! -path explorer/interpretive-episode/tng-s2-006.svg \
+            ! -path explorer/interpretive-episode/tng-s2-007.svg \
+            ! -path explorer/interpretive-episode/tng-s2-008.svg \
+            ! -path explorer/interpretive-episode/tng-s2-009.svg \
+            ! -path explorer/interpretive-episode/tng-s2-010.svg \
+            ! -path explorer/interpretive-episode/tng-s2-011.svg \
+            ! -path explorer/interpretive-episode/tng-s2-012.svg \
+            ! -path explorer/interpretive-episode/tng-s2-013.svg \
+            ! -path explorer/interpretive-episode/tng-s2-014.svg \
+            ! -path explorer/interpretive-episode/tng-s2-015.svg \
+            ! -path explorer/interpretive-episode/tng-s2-016.svg \
+            ! -path explorer/interpretive-episode/tng-s2-017.svg \
+            ! -path explorer/interpretive-episode/tng-s2-018.svg \
+            ! -path explorer/interpretive-episode/tng-s2-019.svg \
+            ! -path explorer/interpretive-episode/tng-s2-020.svg \
+            ! -path explorer/interpretive-episode/tng-s2-021.svg \
+            ! -path explorer/interpretive-episode/tng-s2-022.svg -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
@@ -589,6 +618,26 @@ jobs:
             done
           elif test -e explorer/interpretive-film || test -L explorer/interpretive-film; then
             echo "Refusing to publish uncommitted original film art directory" >&2
+            exit 1
+          fi
+          if git cat-file -e HEAD:explorer/interpretive-episode/manifest.json 2>/dev/null; then
+            test -d explorer/interpretive-episode
+            test ! -L explorer/interpretive-episode
+            test -f tools/build_interpretive_episode_art.py
+            test ! -L tools/build_interpretive_episode_art.py
+            python3 tools/build_interpretive_episode_art.py --check
+            for path in explorer/interpretive-episode/*; do
+              test -f "$path"
+              test ! -L "$path"
+              expected="$(git rev-parse "HEAD:$path")"
+              actual="$(git hash-object "$path")"
+              if test "$actual" != "$expected"; then
+                echo "Refusing to deploy modified original episode artwork: $path" >&2
+                exit 1
+              fi
+            done
+          elif test -e explorer/interpretive-episode || test -L explorer/interpretive-episode; then
+            echo "Refusing to publish uncommitted original episode art directory" >&2
             exit 1
           fi
 

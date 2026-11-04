@@ -296,6 +296,13 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 112px; height: 142px; border: 1px solid var(--line); border-radius: 18px 3px 3px 3px; overflow: hidden; background: #090b19 center / cover no-repeat; color: var(--muted); }
 .artwork-slot.artwork-episode { background-image: url('./art-original-episode.svg'); }
 .artwork-slot.artwork-film { background-image: url('./art-original-film.svg'); }
+.artwork-slot.artwork-interpretive-film { background-size: cover; background-position: center; }
+.artwork-slot.artwork-interpretive-film::before, .artwork-slot.artwork-interpretive-film::after { display: none; }
+.artwork-slot.artwork-interpretive-film .artwork-record-context,
+.artwork-slot.artwork-interpretive-film .artwork-record-mark { display: none; }
+.artwork-slot.artwork-interpretive-film .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
+.artwork-slot.artwork-interpretive-film .artwork-record-title { margin-top: auto; width: 100%; max-width: 100%; padding: 7px 5px 5px; background: #090b19ef; text-shadow: 0 1px 3px #000; }
+.artwork-slot.artwork-interpretive-film .artwork-missing { padding: 3px; background: #090b19f5; }
 .artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
 .artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
 .artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }

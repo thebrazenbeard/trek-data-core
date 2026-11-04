@@ -112,6 +112,19 @@ class PagesArtifactScopeTests(unittest.TestCase):
         for slug in ("episode", "film", "literature", "short-form", "audio"):
             self.assertIn(f"! -path explorer/art-original-{slug}.svg", text)
         self.assertIn("python3 tools/build_explorer_abstract_art.py --check", text)
+        self.assertIn("python3 tools/build_interpretive_film_art.py --check", text)
+        self.assertIn("! -path explorer/interpretive-film ", text)
+        self.assertIn("! -path explorer/interpretive-film/manifest.json", text)
+        for ident in (
+            "film-2009", "film-beyond", "film-final-frontier", "film-first-contact",
+            "film-generations", "film-insurrection", "film-into-darkness",
+            "film-motion-picture", "film-nemesis", "film-search-for-spock",
+            "film-section-31", "film-undiscovered-country", "film-voyage-home",
+            "film-wrath-of-khan",
+        ):
+            self.assertIn(f"! -path explorer/interpretive-film/{ident}.svg", text)
+        self.assertIn('git rev-parse "HEAD:$path"', text)
+        self.assertIn("Refusing to deploy modified original film artwork", text)
         self.assertIn("python3 tools/build_source_local_search.py --check", text)
         self.assertIn("! -path explorer/lit-publisher-edition-leads.json", text)
         self.assertIn("python3 tools/build_lit_publisher_leads.py --check", text)

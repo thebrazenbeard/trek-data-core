@@ -546,6 +546,16 @@
   const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
+  // Reproducible, locally authored source-card graphics. The exact 14 assets
+  // are governed by build_interpretive_film_art.py and the Pages allowlist;
+  // this is NOT an allowlist of third-party image licenses or accepted Works.
+  const originalFilmArtIds = new Set([
+    'film-2009', 'film-beyond', 'film-final-frontier', 'film-first-contact',
+    'film-generations', 'film-insurrection', 'film-into-darkness',
+    'film-motion-picture', 'film-nemesis', 'film-search-for-spock',
+    'film-section-31', 'film-undiscovered-country', 'film-voyage-home',
+    'film-wrath-of-khan'
+  ]);
 
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
@@ -592,6 +602,19 @@
     const caption = el('figcaption', 'artwork-caption');
     const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
     caption.append(status);
+    // Only the validated publisher film shelf has these source IDs. No
+    // user-supplied locator or title becomes a CSS URL; 14 fixed file names
+    // are rebuilt and byte-checked from the held film catalog by CI.
+    const originalFilmId = medium === 'FILM' && typeof row?.id === 'string' &&
+      originalFilmArtIds.has(row.id) ? row.id : null;
+    if (originalFilmId) {
+      frame.className += ' artwork-interpretive-film';
+      frame.setAttribute('data-original-film-art', originalFilmId);
+      frame.setAttribute('style', `background-image: url('./interpretive-film/${originalFilmId}.svg')`);
+      frame.setAttribute('aria-label', `Original geometric interpretation for ${titleText}; sourced from a publisher metadata listing, not an official film poster or still`);
+      missing.textContent = 'Artwork not sourced · original film interpretation';
+      status.textContent = 'Original interpretive film art · metadata only';
+    }
     const beacon = el('span', 'artwork-record-beacon');
     beacon.setAttribute('aria-hidden', 'true');
     for (let bit = 0; bit < 8; bit++) {
@@ -652,7 +675,9 @@
         frame.setAttribute('role', 'img');
         frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
         frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
-        status.textContent = 'Sourced image unavailable · LCARS record graphic';
+        status.textContent = originalFilmId
+          ? 'Sourced image unavailable · original interpretive film art'
+          : 'Sourced image unavailable · LCARS record graphic';
       });
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.

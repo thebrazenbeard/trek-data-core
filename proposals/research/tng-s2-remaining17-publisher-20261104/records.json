@@ -1,0 +1,392 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_derivative_manifest_sha256": "dfbbd49ff5d3d3eba7934f295923f70f89b02c93cb2f4e80f93d18eb7a26f747",
+  "accepted_s2_bundle_sha256": "4817f8abcea7d55855970ae149558ec9fbe4d291aa1cadb7c9e0f77ccac1af85",
+  "accepted_s2_csv_sha256": "32b3dffa2afa0ba315ed6ad16e70eec21e2ec50df76eb7d60a039cc88ae4a85d",
+  "coverage_effect": "NONE",
+  "data_status": "HELD_TNG_S2_E6_TO_E22_PUBLISHER_METADATA",
+  "governed_research_admissions": 0,
+  "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+  "independent_source_families": 1,
+  "new_works": 0,
+  "publisher_family": "paramount_corporate_publisher_family",
+  "records": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher describes a dying scientist seeking survival by transferring his mind into Data.",
+      "publisher_card": {
+        "episode": 6,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "073245dc4c7603c19577358609411fdf905786f95638c86bfed24656561bb4e5",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:005",
+      "source_relative_mentions": [
+        "Data"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Schizoid Man"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "A disease that rapidly ages humans becomes the crew's urgent problem in the publisher's outline.",
+      "publisher_card": {
+        "episode": 7,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "6293da7f7931691783015e69c2903e55072a598051754d9b5ad277a17f17e6d6",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:006",
+      "source_relative_mentions": [],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Unnatural Selection"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Riker's temporary assignment to a Klingon vessel becomes a test of loyalty when Enterprise is threatened.",
+      "publisher_card": {
+        "episode": 8,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "13e0c224f98e83b9fa3d9dcb918ff74937bd95700870b3fdbbda2a932df51d93",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:007",
+      "source_relative_mentions": [
+        "Riker",
+        "Klingon",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "A Matter of Honor"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher frames Data's refusal of research disassembly as the issue Picard must defend in court.",
+      "preexisting_derivative_source_relationship": {
+        "accepted_prior_manifest_sha256": "dfbbd49ff5d3d3eba7934f295923f70f89b02c93cb2f4e80f93d18eb7a26f747",
+        "corroboration_effect": "NONE",
+        "relationship": "SAME_EPISODE_TITLE_SLOT_DIFFERENT_UNAUTHENTICATED_SOURCE_SURFACE",
+        "source_authentication": "UNRESOLVED"
+      },
+      "publisher_card": {
+        "episode": 9,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "7fb2e26657279394fdf0ff97fe9c79c58a4ab4e774b15c2aa513b26220320228",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:008",
+      "source_relative_mentions": [
+        "Data",
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Measure of a Man"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Wesley's romance with a young ruler is complicated by the undisclosed destructive power described in the publisher guide.",
+      "publisher_card": {
+        "episode": 10,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "302df2a1b40175e52aab398f70bbfb19a2b15b29a7f22928b3a6a3dcfd7a83d8",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:009",
+      "source_relative_mentions": [
+        "Wesley",
+        "Daled Four",
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Dauphin"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher describes an electronic infection of Enterprise's systems that threatens to trigger self-destruction.",
+      "publisher_card": {
+        "episode": 11,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "135fe3f503862f04089cca0501681630cd851a2d5004b4461090be3f5b52a5ce",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:010",
+      "source_relative_mentions": [
+        "Enterprise"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Contagion"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "After finding an Air Force-marked object, an away team is described as trapped in an environment resembling a novel's hotel.",
+      "publisher_card": {
+        "episode": 12,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "e6255f79ef5fb17670945d8ba69b80e2b80f48c6837222e341e35af84d72c30a",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:011",
+      "source_relative_mentions": [
+        "United States Air Force",
+        "The Hotel Royale"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Royale"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher presents a shuttle whose occupant resembles Picard and appears to have arrived from six hours ahead.",
+      "publisher_card": {
+        "episode": 13,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "2a57cc191cfe13f0c3ea2a169310b9412e4d58d4408587fd9d27c75b79507f5a",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:012",
+      "source_relative_mentions": [
+        "U.S.S. Enterprise",
+        "Federation",
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Time Squared"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Riker's estranged father returns during a period when a new starship command may be offered, according to the listing.",
+      "publisher_card": {
+        "episode": 14,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "fc534e9ea59518d3962923be0a368394aeba76693f239964f7f33ebcfe6a380f",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:013",
+      "source_relative_mentions": [
+        "Riker"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Icarus Factor"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher describes Data trying to protect an unnamed young alien as her planet faces destruction.",
+      "publisher_card": {
+        "episode": 15,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "add15085200ac7a9de4389903c549e833667fdc4f530abec4a72c9ab47598ce1",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:014",
+      "source_relative_mentions": [
+        "Data"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Pen Pals"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Q is described as transporting the crew to a remote region where a Borg threat awaits them.",
+      "publisher_card": {
+        "episode": 16,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "72d322507a912cf5d19a93e3cb9afed242bf85a36abe7fe02818aeb89078bc2c",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:015",
+      "source_relative_mentions": [
+        "Q",
+        "Borg"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Q-Who?"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher juxtaposes Picard's life-threatening surgery with Geordi's captivity at the hands of an alien group.",
+      "publisher_card": {
+        "episode": 17,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "a5d0d15c55f13649f28ce2de5946672560b34d558368c3d4d04559e120820f46",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:016",
+      "source_relative_mentions": [
+        "Picard",
+        "Geordi"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Samaritan Snare"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "A mission involving a missing Earth settlement is described as leading the crew to an all-clone society.",
+      "publisher_card": {
+        "episode": 18,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "b6ab598dc82ab49362dfa8a807f38af76c5ce6774ab1c02145f0f7baff9bebf7",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:017",
+      "source_relative_mentions": [],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Up the Long Ladder"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Troi's mother visits Enterprise in search of a partner and takes a particular interest in Picard, per the publisher.",
+      "publisher_card": {
+        "episode": 19,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "f2c1db35349e3f469d2f671b382939d2e2f2d825f5d40aa905e1b513be2ab197",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:018",
+      "source_relative_mentions": [
+        "Troi",
+        "Enterprise",
+        "Picard"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Manhunt"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "A former partner of Worf arrives to mediate a Klingon-Federation dispute, making an official mission personal.",
+      "publisher_card": {
+        "episode": 20,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "36028b9fe085ba46d2111100081e1d82930935808c47a523ac45eb355180e1c3",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:019",
+      "source_relative_mentions": [
+        "Worf",
+        "Enterprise",
+        "Klingons",
+        "Federation"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Emissary"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "The publisher describes a planned combat simulation overtaken by an actual ambush from a Ferengi ship.",
+      "publisher_card": {
+        "episode": 21,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "58a7cd0af2efab32fdf99abdb979fd333b5a5da7d19f823387e1168c5d8259d5",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:020",
+      "source_relative_mentions": [
+        "Ferengi"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Peak Performance"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "original_editorial_paraphrase_held": "Riker suffers a dangerous infection affecting his nervous system, in the publisher's episode listing.",
+      "publisher_card": {
+        "episode": 22,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "9f30092238553319b026a9339dc3ac4a63442ab17a492dbe1b4073c80894634c",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:021",
+      "source_relative_mentions": [
+        "Riker"
+      ],
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Shades of Gray"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_body_custody": "NOT_ESTABLISHED",
+  "source_local_cards_enriched": 17
+}

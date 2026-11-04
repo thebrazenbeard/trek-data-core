@@ -1,0 +1,19 @@
+{
+  "batch_id": "lead-qualification-tos-s1-followon-20261104",
+  "selection_basis": "Five nonoverlapping archived TOS leads with unique exact-title matches against previously accepted, hash-pinned Paramount+ Season 1 discovery observations; not a representative sample",
+  "source_custody": {
+    "new_primary_source_retrieval": "NONE",
+    "prior_observation_directory": "proposals/discovery/legacy-paramount-season1-20261102",
+    "prior_observation_date": "2026-11-02",
+    "live_page_rechecked": false,
+    "new_html_response_sha256": null,
+    "publisher_page": "https://www.paramountplus.com/shows/star_trek/episodes/1/"
+  },
+  "selected": [
+    {"qid": "Q2664096", "season": 1, "publisher_episode_number": 7, "publisher_title": "Mudd's Women"},
+    {"qid": "Q2984502", "season": 1, "publisher_episode_number": 6, "publisher_title": "The Enemy Within"},
+    {"qid": "Q3107459", "season": 1, "publisher_episode_number": 10, "publisher_title": "Dagger of the Mind"},
+    {"qid": "Q3178411", "season": 1, "publisher_episode_number": 15, "publisher_title": "Balance of Terror"},
+    {"qid": "Q3487125", "season": 1, "publisher_episode_number": 24, "publisher_title": "A Taste of Armageddon"}
+  ]
+}

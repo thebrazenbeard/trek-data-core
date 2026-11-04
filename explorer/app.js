@@ -610,7 +610,8 @@
     if (originalFilmId) {
       frame.className += ' artwork-interpretive-film';
       frame.setAttribute('data-original-film-art', originalFilmId);
-      frame.setAttribute('style', `background-image: url('./interpretive-film/${originalFilmId}.svg')`);
+      // Static CSS rules supply the exact source-keyed URLs. The Explorer's
+      // strict style-src CSP intentionally disallows inline style attributes.
       frame.setAttribute('aria-label', `Original geometric interpretation for ${titleText}; sourced from a publisher metadata listing, not an official film poster or still`);
       missing.textContent = 'Artwork not sourced · original film interpretation';
       status.textContent = 'Original interpretive film art · metadata only';

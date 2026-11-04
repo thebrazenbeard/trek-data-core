@@ -1826,9 +1826,12 @@ test('fourteen publisher film records receive original source-keyed illustration
   assert.equal(fullFilmCatalog.film_count, 14);
   assert.equal(artFrames.length, 14, 'every official publisher film metadata row has its own original image');
   assert.equal(new Set(artFrames.map((node) => node.getAttribute('data-original-film-art'))).size, 14);
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
   for (const frame of artFrames) {
     const id = frame.getAttribute('data-original-film-art');
-    assert.equal(frame.getAttribute('style'), `background-image: url('./interpretive-film/${id}.svg')`);
+    assert.equal(frame.getAttribute('style'), null, 'inline styles violate the Explorer CSP');
+    assert.ok(css.includes(`.artwork-slot[data-original-film-art="${id}"] { background-image: url('./interpretive-film/${id}.svg'); }`),
+      `source-keyed stylesheet rule missing for ${id}`);
     assert.match(frame.getAttribute('aria-label'), /Original geometric interpretation.*not an official film poster or still/);
     assert.match(frame.className, /artwork-interpretive-film/);
   }

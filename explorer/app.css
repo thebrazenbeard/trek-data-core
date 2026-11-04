@@ -297,6 +297,20 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot.artwork-episode { background-image: url('./art-original-episode.svg'); }
 .artwork-slot.artwork-film { background-image: url('./art-original-film.svg'); }
 .artwork-slot.artwork-interpretive-film { background-size: cover; background-position: center; }
+.artwork-slot[data-original-film-art="film-2009"] { background-image: url('./interpretive-film/film-2009.svg'); }
+.artwork-slot[data-original-film-art="film-beyond"] { background-image: url('./interpretive-film/film-beyond.svg'); }
+.artwork-slot[data-original-film-art="film-final-frontier"] { background-image: url('./interpretive-film/film-final-frontier.svg'); }
+.artwork-slot[data-original-film-art="film-first-contact"] { background-image: url('./interpretive-film/film-first-contact.svg'); }
+.artwork-slot[data-original-film-art="film-generations"] { background-image: url('./interpretive-film/film-generations.svg'); }
+.artwork-slot[data-original-film-art="film-insurrection"] { background-image: url('./interpretive-film/film-insurrection.svg'); }
+.artwork-slot[data-original-film-art="film-into-darkness"] { background-image: url('./interpretive-film/film-into-darkness.svg'); }
+.artwork-slot[data-original-film-art="film-motion-picture"] { background-image: url('./interpretive-film/film-motion-picture.svg'); }
+.artwork-slot[data-original-film-art="film-nemesis"] { background-image: url('./interpretive-film/film-nemesis.svg'); }
+.artwork-slot[data-original-film-art="film-search-for-spock"] { background-image: url('./interpretive-film/film-search-for-spock.svg'); }
+.artwork-slot[data-original-film-art="film-section-31"] { background-image: url('./interpretive-film/film-section-31.svg'); }
+.artwork-slot[data-original-film-art="film-undiscovered-country"] { background-image: url('./interpretive-film/film-undiscovered-country.svg'); }
+.artwork-slot[data-original-film-art="film-voyage-home"] { background-image: url('./interpretive-film/film-voyage-home.svg'); }
+.artwork-slot[data-original-film-art="film-wrath-of-khan"] { background-image: url('./interpretive-film/film-wrath-of-khan.svg'); }
 .artwork-slot.artwork-interpretive-film::before, .artwork-slot.artwork-interpretive-film::after { display: none; }
 .artwork-slot.artwork-interpretive-film .artwork-record-context,
 .artwork-slot.artwork-interpretive-film .artwork-record-mark { display: none; }

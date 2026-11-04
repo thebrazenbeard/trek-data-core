@@ -6,7 +6,7 @@ explicit governed denominator snapshot is supplied; the mere presence of Work re
 not evidence that the corpus denominator is complete.
 """
 from __future__ import annotations
-import argparse, hashlib, importlib.util, json, os, re, stat
+import argparse, hashlib, importlib.util, json, math, os, re, stat
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -35,8 +35,12 @@ def reject_duplicate_keys(pairs):
  return result
 def reject_nonfinite_constant(token):
  raise ValueError(f'non-finite JSON constant: {token}')
+def parse_finite_float(token):
+ value=float(token)
+ if not math.isfinite(value):raise ValueError(f'non-finite JSON number: {token}')
+ return value
 def strict_json(raw):
- return json.loads(raw,object_pairs_hook=reject_duplicate_keys,parse_constant=reject_nonfinite_constant)
+ return json.loads(raw,object_pairs_hook=reject_duplicate_keys,parse_constant=reject_nonfinite_constant,parse_float=parse_finite_float)
 
 def _secure_open_flags():
  """Never silently fall back to pathname-following reads on other platforms."""

@@ -1,0 +1,9 @@
+{
+  "base_head": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "candidate_head": "89c36295cb142a56addcdd867d81a5585ef4a9d8",
+  "mode": "review",
+  "drafts": [
+    {"id": "517", "head": "89c36295cb142a56addcdd867d81a5585ef4a9d8", "depends_on": []}
+  ],
+  "selected": ["517"]
+}

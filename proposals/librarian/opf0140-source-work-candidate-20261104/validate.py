@@ -8,6 +8,7 @@ replay the private source or determine the novel's content/rights/edition.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -29,6 +30,58 @@ ORIGINAL_MEMBER = "910b2da59954827c2bd6311088e2de3d3934437cc20331e684ee7952ca870
 OPF_MEMBER = "b815b98f15098b44c4e75aef3bc006feabd9f3e671bb4586566c48140ee8b248"
 PUBLISHER_URL = "https://www.simonandschuster.com/books/Star-Trek/Gene-Roddenberry/Star-Trek/9780743412087"
 SHA = re.compile(r"[0-9a-f]{64}\Z")
+
+# One intentionally bounded source-local proposal, not a general registry
+# authority. Pinning the *whole* normalized JSON object prevents an otherwise
+# valid-looking revision to an unexamined optional field from silently changing
+# the provenance, edition, rights, or admission story. A later intentional
+# revision must change this code and receive a fresh review; this digest does
+# not establish the truth of the owner-side claims or any acceptance effect.
+CANDIDATE_JSON_SHA256 = "cd174e39338a061448df30de5766fe14e383a87be0391c80fd8196980fc1344b"
+
+EXPECTED_EVIDENCE_CLASSES = {
+    "owner_extracted_file": "REAL_SYSTEM_BYTE_HASH",
+    "owner_archive_members": "PRIVATE_INDEPENDENT_BYTE_REPLAY",
+    "converter_relationship": "CONVERTER_DECLARED_CANDIDATE_NOT_EDITION_PROOF",
+    "opf_metadata": "MAIN_TRACKED_SOURCE_LOCAL_PROPOSAL_METADATA",
+    "publisher_page": "DIRECT_OFFICIAL_PRODUCT_PAGE_READ_NOT_RAW_HTML_CUSTODY",
+    "work_identity": "PROPOSED_UNVERIFIED",
+}
+
+EXPECTED_ADMISSION_BLOCKERS = [
+    "Standalone source-custody request and byte-replayed receipt not yet captured",
+    "Independent content-to-Work identity and complete-edition verification not performed",
+    "Rights basis for private research and any publication not independently reviewed",
+    "Separate Librarian and Auditor governance decisions required",
+    "No accepted Source, Work, evidence-bearing binding, discovery predecessor or governed coverage event",
+]
+
+EXPECTED_SOURCE_FIELDS = {
+    "source_id": "owner-lit-opf0140-candidate",
+    "provider": "OWNER_PRIVATE_CUSTODY_DECLARATION",
+    "locator": "private:lit-opf0140-candidate",
+    "source_kind": "LITERARY_EDITION",
+    "source_version": "OWNER_EXTRACTED_LIT_BINARY_UNVERIFIED_EDITION",
+    "source_variant": "LIT_SOURCE_REPRESENTATION_UNVERIFIED",
+    "provenance_family": "owner-private-lit-to-opf-conversion-chain",
+    "independence_group": "owner-private-lit-to-opf-conversion-chain",
+    "notes": "Exact extracted bytes matched the owner archive; no narrative or edition identity verification.",
+}
+
+EXPECTED_WORK_FIELDS = {
+    "work_id": "literary-opf0140-work-candidate",
+    "title": "Star Trek: The Motion Picture",
+    "work_type": "LITERARY_NOVELIZATION",
+    "notes": "Source-local Work candidate from OPF title and publisher ISBN metadata; no asserted source-to-text identity.",
+}
+
+EXPECTED_BINDING_FIELDS = {
+    "binding_id": "lit-opf0140-metadata-binding-candidate",
+    "source_id": "owner-lit-opf0140-candidate",
+    "work_id": "literary-opf0140-work-candidate",
+    "method": "private byte hash and converter link plus OPF ISBN10 to official eBook ISBN13; none proves book text equivalence",
+    "notes": "Metadata-only candidacy. Local conversion is not an independent witness and no semantic content was read.",
+}
 
 
 def _no_duplicate_keys(pairs):
@@ -81,8 +134,8 @@ def check(packet, upstream_observations):
             opf.get("creator") != ["Gene Roddenberry"] or
             opf.get("isbn_checksum_valid") != ["0743412087"]):
         raise ValueError("upstream OPF proposal identity fields changed")
-    if packet.get("evidence_classes", {}).get("opf_metadata") != "MAIN_TRACKED_SOURCE_LOCAL_PROPOSAL_METADATA":
-        raise ValueError("OPF proposal mistakenly promoted to accepted metadata")
+    if packet.get("evidence_classes") != EXPECTED_EVIDENCE_CLASSES:
+        raise ValueError("evidence class or owner-witness drift")
     if packet.get("opf_source_isbn10") != "0743412087":
         raise ValueError("unverified OPF ISBN drift")
 
@@ -137,6 +190,14 @@ def check(packet, upstream_observations):
             s["fixture_only"] is not False or w["fixture_only"] is not False or
             b["fixture_only"] is not False):
         raise ValueError("nonfixture metadata candidate was promoted")
+    for section, record, expected_fields in (
+        ("source", s, EXPECTED_SOURCE_FIELDS),
+        ("work", w, EXPECTED_WORK_FIELDS),
+        ("binding", b, EXPECTED_BINDING_FIELDS),
+    ):
+        if any(type(record.get(key)) is not type(expected) or
+               record.get(key) != expected for key, expected in expected_fields.items()):
+            raise ValueError(section + " source-local identity/provenance drift")
     if (s["content_hash"] != "sha256:" + ORIGINAL_MEMBER or
             s["provenance_family"] != s["independence_group"] or
             s["provider_metadata"].get("standalone_source_custody_receipt") != "NOT_CAPTURED" or
@@ -153,12 +214,16 @@ def check(packet, upstream_observations):
             packet.get("private_member_names_or_paths_exported") is not False or
             packet.get("copyrighted_prose_or_cover_bytes_exported") is not False):
         raise ValueError("forbidden admission, privacy or publication promotion")
-    if not isinstance(packet.get("admission_blockers"), list) or len(packet["admission_blockers"]) < 4:
-        raise ValueError("missing candidacy admission blockers")
+    if packet.get("admission_blockers") != EXPECTED_ADMISSION_BLOCKERS:
+        raise ValueError("admission blocker or rights decision drift")
     # No private filename, path, member ID or prose should enter this packet.
     body = json.dumps(packet, ensure_ascii=False)
     if any(x in body for x in ("member_name_private", "member_id", "C:\\\\", "/home/", "/Users/", ".lit\"")):
         raise ValueError("private identifier or path disclosure")
+    canonical = json.dumps(packet, sort_keys=True, separators=(",", ":"),
+                           ensure_ascii=False).encode("utf-8")
+    if hashlib.sha256(canonical).hexdigest() != CANDIDATE_JSON_SHA256:
+        raise ValueError("unreviewed candidate field or typed JSON value drift")
     return True
 
 

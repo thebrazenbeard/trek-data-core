@@ -60,6 +60,49 @@ class HeldCandidateTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             MODULE.check(self.packet, upstream)
 
+    def test_rejects_unrelated_work_title(self):
+        self.mutate_and_reject(lambda c: c["proposal"]["work"].update(
+            title="An Unrelated Star Trek Novel"))
+
+    def test_rejects_attacker_source_provider_and_locator(self):
+        for key, value in (("provider", "UNTRUSTED_REMOTE_PROVIDER"),
+                           ("locator", "private:alternate-source"),
+                           ("source_id", "owner-lit-attacker-candidate")):
+            with self.subTest(key=key):
+                self.mutate_and_reject(lambda c, key=key, value=value:
+                                       c["proposal"]["source"].update({key: value}))
+
+    def test_rejects_synchronized_unrelated_work_ids(self):
+        def mutate(c):
+            c["proposal"]["work"]["work_id"] = "literary-unrelated-work-candidate"
+            c["proposal"]["source_work_binding"]["work_id"] = "literary-unrelated-work-candidate"
+        self.mutate_and_reject(mutate)
+
+    def test_rejects_fabricated_edition_binding_method(self):
+        self.mutate_and_reject(lambda c: c["proposal"]["source_work_binding"].update(
+            method="independently authenticated exact edition and complete book text"))
+
+    def test_rejects_replaced_admission_blockers(self):
+        self.mutate_and_reject(lambda c: c.update(admission_blockers=[
+            "Owner rights approved", "Edition authenticated", "Auditor confirmed",
+            "Accepted source records ready", "Coverage can advance",
+        ]))
+
+    def test_rejects_fabricated_owner_witness(self):
+        self.mutate_and_reject(lambda c: c["evidence_classes"].update(
+            owner_extracted_file="INDEPENDENT_HUMAN_WITNESSED_COMPLETE_EDITION"))
+
+    def test_rejects_unknown_promotion_fields(self):
+        self.mutate_and_reject(lambda c: c["proposal"]["source"].update(
+            publisher_rights_granted=True))
+        self.mutate_and_reject(lambda c: c["evidence_classes"].update(
+            independent_verified_edition=True))
+
+    def test_rejects_boolean_numeric_alias(self):
+        self.mutate_and_reject(lambda c: c["publisher_observation"].update(page_count=True))
+        self.mutate_and_reject(lambda c: c["custody_observation"].update(
+            original_extracted_member_bytes=True))
+
 
 if __name__ == "__main__":
     unittest.main()

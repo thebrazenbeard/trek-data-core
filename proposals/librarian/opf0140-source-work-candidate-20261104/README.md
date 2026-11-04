@@ -49,7 +49,14 @@ uncertain, retain `METADATA_ONLY` and `UNVERIFIED`, and do not emit a
 `python3 proposals/librarian/opf0140-source-work-candidate-20261104/validate.py`
 
 This checker validates structure against accepted `main`'s Librarian contract,
-the tracked OPF metadata proposal and pinned observation fields. It **cannot**
+the tracked OPF metadata proposal and pinned observation fields. The bounded
+single-candidate packet is SHA-256 pinned over canonical typed JSON, with
+exact source, Work, binding, evidence-class, and admission-blocker values.
+This prevents unreviewed edits from silently changing provider/locator,
+Work identity, claimed verification method, rights blockers, or witness claims;
+it does **not** authenticate those claims independently. It **cannot**
 replay the owner's private LIT byte hash, publisher page, or legal provenance;
 those live observations require separate private and independent confirmation.
-Mutation tests: `python3 -m unittest discover -s proposals/librarian/opf0140-source-work-candidate-20261104 -p 'test_*.py'`.
+Seventeen mutation/contract tests include the independently reported seven
+source and identity falsifiers. Run them with
+`python3 -m unittest discover -s proposals/librarian/opf0140-source-work-candidate-20261104 -p 'test_*.py'`.

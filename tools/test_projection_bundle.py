@@ -36,6 +36,35 @@ class ProjectionBundleTests(unittest.TestCase):
    manifest_path.write_text(original_bytes[:-1]+',"research_head":"FORGED","research_head":'+json.dumps(original['research_head'])+'}')
    with self.assertRaisesRegex(ValueError,'duplicate JSON key'):
     bundle.verify_projection(root)
+ def test_matching_hashes_do_not_launder_nonfinite_jsonl_into_verified_receipt(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   path=root/'entities.jsonl'
+   payload=path.read_text(encoding='utf-8').replace('"local_entity_id":"local-1",','"local_entity_id":"local-1","nonfinite":NaN,').encode('utf-8')
+   path.write_bytes(payload)
+   manifest_path=root/'manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+   manifest['outputs']['entities.jsonl']['hash']=bundle.sha256_bytes(payload)
+   manifest['projection_hash']=bundle.compute_projection_hash(manifest['outputs'])
+   manifest_path.write_text(json.dumps(manifest),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
+    bundle.verify_projection(root)
+ def test_nonstandard_json_constants_and_serialize_fail_closed(self):
+  with tempfile.TemporaryDirectory() as td:
+   path=Path(td)/'entities.jsonl'
+   for constant in ('NaN','Infinity','-Infinity'):
+    with self.subTest(constant=constant):
+     path.write_text('{"local_entity_id":"local-1","value":'+constant+'}\n',encoding='utf-8')
+     with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
+      bundle.parse_jsonl(path,'local_entity_id')
+   with self.assertRaisesRegex(ValueError,'Out of range float values'):
+    bundle.canonical({'value':float('nan')})
+ def test_nonstandard_json_constant_in_manifest_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; raw=manifest_path.read_text(encoding='utf-8')
+   manifest_path.write_text(raw.replace('"record_type": "projection_manifest"','"nonfinite": Infinity, "record_type": "projection_manifest"'),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
+    bundle.verify_projection(root)
  def test_external_identity_expectations_bind_only_the_supplied_fields(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); manifest=fixture.make_projection(root)

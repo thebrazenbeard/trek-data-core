@@ -18,7 +18,11 @@ def unique_json_object(pairs):
   result[key]=value
  return result
 
-def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"))
+def reject_json_constant(value):
+ raise ValueError(f'non-finite JSON constant is forbidden: {value}')
+def strict_json_loads(text):
+ return json.loads(text,object_pairs_hook=unique_json_object,parse_constant=reject_json_constant)
+def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(",",":"),allow_nan=False)
 def sha256_bytes(data): return 'sha256:'+hashlib.sha256(data).hexdigest()
 def compute_projection_hash(outputs): return sha256_bytes(canonical({name:outputs[name]['hash'] for name in REQUIRED_OUTPUTS}).encode())
 def require_unaliased_bundle_path(path):
@@ -63,7 +67,7 @@ def parse_jsonl(path,id_key):
  rows=[]; seen=set(); raw_bytes=path.read_bytes()
  for line_no,raw in enumerate(raw_bytes.decode('utf-8').splitlines(),1):
   if not raw.strip():continue
-  try:row=json.loads(raw,object_pairs_hook=unique_json_object)
+  try:row=strict_json_loads(raw)
   except Exception as exc:raise ValueError(f'{path}:{line_no}: invalid JSON: {exc}') from exc
   if not isinstance(row,dict):raise ValueError(f'{path}:{line_no}: row must be object')
   rid=row.get(id_key)
@@ -87,10 +91,10 @@ def verify_projection(root,*,expected_identity=None):
  if not manifest_path.exists():raise ValueError('projection manifest is missing')
  if not manifest_path.is_file():raise ValueError('projection manifest must be a regular file')
  if manifest_path.stat().st_nlink>1:raise ValueError('projection manifest is hardlinked')
- try:manifest=json.loads(manifest_path.read_text(encoding='utf-8'),object_pairs_hook=unique_json_object)
+ try:manifest=strict_json_loads(manifest_path.read_text(encoding='utf-8'))
  except Exception as exc:raise ValueError(f'invalid projection manifest: {exc}') from exc
  if not isinstance(manifest,dict):raise ValueError('projection manifest must be object')
- schema=json.loads(MANIFEST_SCHEMA.read_text(encoding='utf-8'),object_pairs_hook=unique_json_object); errors=schema_errors(manifest,schema)
+ schema=strict_json_loads(MANIFEST_SCHEMA.read_text(encoding='utf-8')); errors=schema_errors(manifest,schema)
  if errors:raise ValueError('projection manifest schema failure: '+'; '.join(errors))
  outputs=manifest.get('outputs',{})
  if set(outputs)!=set(REQUIRED_OUTPUTS):raise ValueError(f'projection outputs must be exactly {sorted(REQUIRED_OUTPUTS)}')
@@ -120,7 +124,7 @@ def verify_projection(root,*,expected_identity=None):
    aid=row['assertion_id']
    if aid in active_ids:raise ValueError(f'assertion {aid} appears in multiple active partitions')
    active_ids.add(aid)
- relation_schema=json.loads(RELATION_SCHEMA.read_text(encoding='utf-8'),object_pairs_hook=unique_json_object); provenance_schema=json.loads(PROVENANCE_SCHEMA.read_text(encoding='utf-8'),object_pairs_hook=unique_json_object)
+ relation_schema=strict_json_loads(RELATION_SCHEMA.read_text(encoding='utf-8')); provenance_schema=strict_json_loads(PROVENANCE_SCHEMA.read_text(encoding='utf-8'))
  for row in rows['relations.jsonl']:
   errs=schema_errors(row,relation_schema)
   if errs:raise ValueError('invalid projection relation: '+'; '.join(errs))

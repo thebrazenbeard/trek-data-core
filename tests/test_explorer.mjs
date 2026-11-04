@@ -1819,6 +1819,33 @@ test('publisher film discovery remains available when the separate Mission index
   assert.match(nodes.get('result-summary').textContent, /unknown/);
 });
 
+test('fourteen publisher film records receive original source-keyed illustrations without a third-party image request', async () => {
+  const fullFilmCatalog = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, fullFilmCatalog, 200);
+  const artFrames = traverse(nodes.get('film-list'), (node) => Boolean(node.getAttribute('data-original-film-art')));
+  assert.equal(fullFilmCatalog.film_count, 14);
+  assert.equal(artFrames.length, 14, 'every official publisher film metadata row has its own original image');
+  assert.equal(new Set(artFrames.map((node) => node.getAttribute('data-original-film-art'))).size, 14);
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  for (const frame of artFrames) {
+    const id = frame.getAttribute('data-original-film-art');
+    assert.equal(frame.getAttribute('style'), null, 'inline styles violate the Explorer CSP');
+    assert.ok(css.includes(`.artwork-slot[data-original-film-art="${id}"] { background-image: url('./interpretive-film/${id}.svg'); }`),
+      `source-keyed stylesheet rule missing for ${id}`);
+    assert.match(frame.getAttribute('aria-label'), /Original geometric interpretation.*not an official film poster or still/);
+    assert.match(frame.className, /artwork-interpretive-film/);
+  }
+  assert.match(css,
+    /\.artwork-slot\.artwork-interpretive-film \.artwork-record-title,\s*\.artwork-slot\.artwork-interpretive-film \.artwork-missing \{ display: none; \}/,
+    'narrow film art must not be obscured by duplicate title/status overlays');
+  assert.equal(traverse(nodes.get('film-list'), (node) => node.tagName === 'img').length, 0,
+    'locally authored CSS images do not request optional external covers or posters');
+  assert.equal(traverse(nodes.get('film-list'), (node) => node.className === 'artwork-record-source').length, 14,
+    'every original visual retains the direct official metadata source link');
+  assert.match(nodes.get('film-list').textContent, /Original interpretive film art/);
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'visuals cannot create accepted Briefings');
+});
+
 test('separate official film discovery remains unadmitted and strictly source-scoped', async () => {
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200);
   assert.equal(nodes.get('film-top-count').textContent, '2');

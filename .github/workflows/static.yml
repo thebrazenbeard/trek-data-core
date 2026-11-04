@@ -50,6 +50,11 @@ jobs:
           test -f proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
           test ! -L proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
           python3 tools/build_explorer_abstract_art.py --check
+          # Fourteen original, record-specific geometric illustrations only.
+          # No sourced poster/cover bytes or network image ingestion are allowed.
+          test -f tools/build_interpretive_film_art.py
+          test ! -L tools/build_interpretive_film_art.py
+          python3 tools/build_interpretive_film_art.py --check
 
       - name: Verify deterministic catalog index
         if: steps.readiness.outputs.ready == 'true'
@@ -322,7 +327,23 @@ jobs:
             ! -path explorer/art-original-film.svg \
             ! -path explorer/art-original-literature.svg \
             ! -path explorer/art-original-short-form.svg \
-            ! -path explorer/art-original-audio.svg -print -quit | grep -q .; then
+            ! -path explorer/art-original-audio.svg \
+            ! -path explorer/interpretive-film \
+            ! -path explorer/interpretive-film/manifest.json \
+            ! -path explorer/interpretive-film/film-2009.svg \
+            ! -path explorer/interpretive-film/film-beyond.svg \
+            ! -path explorer/interpretive-film/film-final-frontier.svg \
+            ! -path explorer/interpretive-film/film-first-contact.svg \
+            ! -path explorer/interpretive-film/film-generations.svg \
+            ! -path explorer/interpretive-film/film-insurrection.svg \
+            ! -path explorer/interpretive-film/film-into-darkness.svg \
+            ! -path explorer/interpretive-film/film-motion-picture.svg \
+            ! -path explorer/interpretive-film/film-nemesis.svg \
+            ! -path explorer/interpretive-film/film-search-for-spock.svg \
+            ! -path explorer/interpretive-film/film-section-31.svg \
+            ! -path explorer/interpretive-film/film-undiscovered-country.svg \
+            ! -path explorer/interpretive-film/film-voyage-home.svg \
+            ! -path explorer/interpretive-film/film-wrath-of-khan.svg -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
             exit 1
           fi
@@ -547,6 +568,29 @@ jobs:
               exit 1
             fi
           done
+          # Optional until the full source-keyed art proposal is accepted.
+          # Once present, all fourteen art bytes and the exact film identities
+          # must match the committed, deterministic generator output.
+          if git cat-file -e HEAD:explorer/interpretive-film/manifest.json 2>/dev/null; then
+            test -d explorer/interpretive-film
+            test ! -L explorer/interpretive-film
+            test -f tools/build_interpretive_film_art.py
+            test ! -L tools/build_interpretive_film_art.py
+            python3 tools/build_interpretive_film_art.py --check
+            for path in explorer/interpretive-film/*; do
+              test -f "$path"
+              test ! -L "$path"
+              expected="$(git rev-parse "HEAD:$path")"
+              actual="$(git hash-object "$path")"
+              if test "$actual" != "$expected"; then
+                echo "Refusing to deploy modified original film artwork: $path" >&2
+                exit 1
+              fi
+            done
+          elif test -e explorer/interpretive-film || test -L explorer/interpretive-film; then
+            echo "Refusing to publish uncommitted original film art directory" >&2
+            exit 1
+          fi
 
       - name: Upload Explorer only
         if: steps.readiness.outputs.ready == 'true'

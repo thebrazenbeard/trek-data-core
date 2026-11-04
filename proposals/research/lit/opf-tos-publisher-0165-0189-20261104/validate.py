@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[4]
 SOURCE = ROOT / "proposals/librarian/private-opf-metadata-20261103/observations.json"
 PACKET = Path(__file__).with_name("records.json")
 SOURCE_SHA = "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7"
-PACKET_SHA = "3bb921242e992f45d9f16e8814e36c3c0db24aa3c06711e1f650659eafce1ed2"
+PACKET_SHA = "2b9f17bf26dc0a32c307c0181c36766d4b1a7d8e9ea2e049d5d4125a0fa625a7"
 IDS = tuple(f"opf-local:{n:04d}" for n in range(165, 190) if n != 178)
 EXPECTED_FIELDS = {
     "schema_version": "1.0.0",
@@ -116,9 +116,9 @@ def validate_packet(report: dict, source: dict) -> tuple[int, int]:
             byid["opf-local:0169"]["publisher_byline"] != ["Carter Carmen"] or
             "BYLINE_CARTER_CARMEN_VS_PUBLISHER_BIO_AND_OPF_CARMEN_CARTER" not in byid["opf-local:0169"]["hold"]):
         raise ValueError("Carter Carmen publisher name-order discrepancy erased")
-    if (byid["opf-local:0170"]["publisher_subtitle"] != "Rihannsu #2" or
+    if (byid["opf-local:0170"]["publisher_subtitle"] is not None or
             "COMPATIBLE_PUBLISHER_RIHANNSU_2_TOS_35_LABELS" not in byid["opf-local:0170"]["hold"]):
-        raise ValueError("compatible nested Rihannsu #2 and TOS #35 labels misclassified")
+        raise ValueError("compatible nested Rihannsu #2 and TOS #35 series labels misclassified as subtitle or conflict")
     if (source["rows"][172]["title"] != ["Star Trek - TOS 038 - Idic Plan"] or
             byid["opf-local:0173"]["publisher_title"] != "The IDIC Epidemic" or
             "TITLE_IDIC_PLAN_VS_PUBLISHER_THE_IDIC_EPIDEMIC" not in byid["opf-local:0173"]["hold"]):

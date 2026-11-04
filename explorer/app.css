@@ -448,13 +448,17 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .archive-navigation-mark { width: 32px; height: 32px; }
   .masthead-identity { gap: 9px; }
   .masthead-identity .eyebrow { font-size: .67rem; }
-  .directory-card.media-card, .film-grid .media-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 12px; }
+  /* At 390px an 82px metadata-caption column rendered the provenance and
+     source link at 8px text. Stack the card, then place the original visual
+     alongside readable provenance within the full-width panel. */
+  .directory-card.media-card, .film-grid .media-card { grid-template-columns: minmax(0, 1fr); gap: 11px; padding: 12px; }
   .artwork-gallery { padding: 12px; border-top-width: 8px; border-left-width: 8px; }
-  .artwork-gallery-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 10px; }
+  .artwork-gallery-card { grid-template-columns: minmax(0, 1fr); gap: 11px; padding: 10px; }
   .artwork-gallery-card.artwork-gallery-card-medium { grid-template-columns: minmax(0, 1fr); }
   .artwork-gallery-card-medium .artwork-panel-medium { display: flex; width: 100%; flex-direction: column; align-items: center; }
   .artwork-gallery-card-medium .artwork-caption { width: 100%; text-align: center; }
-  .artwork-panel, .artwork-slot { width: 82px; }
+  .artwork-panel { width: 100%; display: grid; grid-template-columns: 82px minmax(0, 1fr); align-items: center; gap: 12px; }
+  .artwork-slot { width: 82px; }
   .artwork-slot { height: 118px; }
   .artwork-slot::before { top: 12px; left: 10px; width: 54px; height: 63px; }
   .artwork-slot::after { top: 72px; left: 7px; width: 65px; }
@@ -462,8 +466,11 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .artwork-slot .artwork-record-context { font-size: .51rem; }
   .artwork-slot .artwork-record-mark { font-size: 1.45rem; }
   .artwork-slot .artwork-record-title { font-size: .52rem; }
-  .artwork-slot .artwork-missing { font-size: .43rem; }
-  .artwork-caption { font-size: .51rem; }
+  .artwork-slot .artwork-missing { font-size: .6rem; }
+  .artwork-caption { min-width: 0; text-align: left; font-size: .82rem; }
+  .artwork-record-label { font-size: .76rem; }
+  .artwork-provenance-note { font-size: .8rem; }
+  .artwork-caption .artwork-record-source { min-height: 44px; justify-content: flex-start; }
   .stat-grid { grid-template-columns: 1fr; }
   .stat { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
   .stat dt { font-size: .73rem; }
@@ -475,7 +482,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   #filters, .research-filters, .directory-filters, .publisher-edition-filters { grid-template-columns: 1fr; }
   .search-field, .research-search-field, .directory-search-field { grid-column: auto; }
   .research-counter { max-width: 100%; }
-  .publisher-edition-card { grid-template-columns: 82px minmax(0,1fr); gap: 11px; padding: 12px; }
+  .publisher-edition-card { grid-template-columns: minmax(0,1fr); gap: 11px; padding: 12px; }
+  .publisher-edition-card .artwork-panel { grid-row: auto; }
+  .publisher-edition-card details { grid-column: 1; }
   .footer { border-left-width: 12px; border-top-width: 9px; padding: 24px 20px 30px; }
 }
 @media (max-width: 359px) {
@@ -484,6 +493,6 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .directory-card.media-card, .film-grid .media-card, .publisher-edition-card { grid-template-columns: minmax(0, 1fr); }
   .artwork-gallery-card { grid-template-columns: minmax(0, 1fr); }
   .artwork-panel { width: 100%; display: grid; grid-template-columns: 82px minmax(0, 1fr); align-items: center; gap: 12px; }
-  .artwork-caption { min-width: 0; text-align: left; font-size: .58rem; }
+  .artwork-caption { min-width: 0; text-align: left; font-size: .82rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

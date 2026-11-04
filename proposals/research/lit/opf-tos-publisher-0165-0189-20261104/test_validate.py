@@ -50,7 +50,7 @@ class TOSPublisherHeldSecondWaveTests(unittest.TestCase):
 
     def test_rihannsu_and_tos_nested_series_are_compatible(self):
         self.reject(lambda r, _: r["rows"][5].update(hold="RIHANNSU_VS_TOS_TAXONOMY_HELD"), "compatible nested")
-        self.reject(lambda r, _: r["rows"][5].update(publisher_subtitle=None), "compatible nested")
+        self.reject(lambda r, _: r["rows"][5].update(publisher_subtitle="Rihannsu #2"), "compatible nested")
 
     def test_idic_plan_title_is_not_silently_equated_to_epidemic(self):
         self.reject(lambda r, _: r["rows"][8].update(hold="PRIVATE_EDITION_UNVERIFIED"), "IDIC")

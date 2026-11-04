@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import re
 from pathlib import Path
 
 
@@ -30,12 +31,28 @@ CATEGORIES = {
 }
 
 
+def background_without_labels(svg: str) -> str:
+    """Keep the procedural drawing, but leave visible record labels to HTML.
+
+    The category renderer embeds three fixed <text> elements; when used as a
+    CSS background those words collided with the source-keyed record title,
+    initials, and attribution rendered by the Explorer at mobile widths.
+    Fail closed if that renderer's contract changes.
+    """
+    result, count = re.subn(r"<text\b[^>]*>[^<>]*</text>", "", svg)
+    if count != 3 or "<text" in result.lower():
+        raise ValueError("accepted abstract renderer's text vocabulary changed")
+    return result
+
+
 def expected_art() -> dict[Path, bytes]:
     if set(CATEGORIES) != set(MODULE.MEDIA):
         raise ValueError("renderer media vocabulary changed; manual review required")
     return {
         ROOT / "explorer" / f"art-original-{slug}.svg":
-            (MODULE.render_card(f"public-category:{medium}", medium, title) + "\n").encode("utf-8")
+            (background_without_labels(
+                MODULE.render_card(f"public-category:{medium}", medium, title)
+            ) + "\n").encode("utf-8")
         for medium, (slug, title) in CATEGORIES.items()
     }
 

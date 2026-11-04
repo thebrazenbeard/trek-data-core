@@ -10,7 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import contextmanager, redirect_stdout
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -225,6 +225,44 @@ class SourceBoundReadinessTests(unittest.TestCase):
             (registry / 'linked.json').symlink_to(file)
             with self.assertRaises(ValueError):
                 preflight.governed_input_sha256()
+
+    def test_governed_pin_distinguishes_raw_lf_and_crlf_bytes(self):
+        root = self.base / 'mock-repo'
+        registry = root / 'registry' / 'authoritative'
+        registry.mkdir(parents=True)
+        file = registry / 'work.json'
+        file.write_bytes(b'{"record_type":"work"}\n')
+        with patch.object(preflight.ledger, 'ROOT', root):
+            lf = preflight.governed_input_sha256()
+            file.write_bytes(b'{"record_type":"work"}\r\n')
+            crlf = preflight.governed_input_sha256()
+            self.assertNotEqual(lf, crlf, 'byte identity must not normalize newlines')
+            file.write_bytes(b'{"record_type":"work"}\n')
+            self.assertEqual(lf, preflight.governed_input_sha256())
+
+    def test_governed_raw_reader_rejects_midread_path_replacement(self):
+        root = self.base / 'mock-repo'
+        registry = root / 'registry' / 'authoritative'
+        registry.mkdir(parents=True)
+        file = registry / 'work.json'
+        file.write_bytes(b'{"record_type":"work"}\n')
+        original_open = preflight.ledger._open_governed
+        swapped = False
+
+        @contextmanager
+        def replace_after_read(path, directory=False):
+            nonlocal swapped
+            with original_open(path, directory=directory) as fd:
+                yield fd
+            if path == file and not swapped:
+                file.rename(registry / 'original.json.bak')
+                file.write_bytes(b'{"record_type":"forged"}\n')
+                swapped = True
+
+        with patch.object(preflight.ledger, 'ROOT', root):
+            with patch.object(preflight.ledger, '_open_governed', side_effect=replace_after_read):
+                with self.assertRaisesRegex(ValueError, 'replaced during read'):
+                    preflight.governed_input_sha256()
 
     def test_governed_drift_during_main_preflight_fails_closed(self):
         output = io.StringIO()

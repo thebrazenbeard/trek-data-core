@@ -3393,6 +3393,17 @@
       memory.beat = 0;
     }
 
+    function requestHelp() {
+      // A visitor explicitly requests these options. No inferred crisis,
+      // diagnostic classifier, message content, lookup, or network is needed.
+      memory.topic = null;
+      memory.beat = 0;
+      return Object.freeze({
+        kind: 'realworld-help', sources: [],
+        text: 'You chose real-world help. If anyone may be in immediate danger, contact local emergency services now (911 in the U.S.). For emotional crisis support in the U.S., call or text 988 or use the 988 Lifeline link above; elsewhere contact your local crisis service. Consider contacting a trusted person nearby. This fictional browser page cannot assess or monitor a crisis, contact responders, or act for you.'
+      });
+    }
+
     function turn(rawInput) {
       const input = typeof rawInput === 'string' ? rawInput.trim() : '';
       if (!input) {
@@ -3476,7 +3487,7 @@
       return Object.freeze(response);
     }
 
-    return Object.freeze({ turn, reset, history });
+    return Object.freeze({ turn, reset, requestHelp, history });
   }
 
   // Badgey is a session-local procedural character. Research lookup remains
@@ -3516,7 +3527,8 @@
     const item = el('li', 'lore-chat-turn');
     item.dataset.role = role;
     if (kind === 'urgent-safety') item.dataset.urgent = 'true';
-    item.append(el('strong', '', role === 'user' ? 'Visitor' : 'Badgey // Procedural fiction · Unverified'));
+    item.append(el('strong', '', role === 'user' ? 'Visitor' : kind === 'realworld-help'
+      ? 'Real-world help // Not Badgey' : 'Badgey // Procedural fiction · Unverified'));
     item.append(el('p', '', body));
     if (sources.length) {
       const links = el('ul', 'lore-chat-sources');
@@ -3560,6 +3572,14 @@
         ? 'Source-local research shelves unavailable; no invented citations.'
         : 'Local procedural reply. Character dialogue is not research evidence.';
     chatInput.focus();
+  });
+  byId('lore-chat-help').addEventListener('click', () => {
+    const response = badgey.requestHelp();
+    appendBadgeyTurn('assistant', response.text, response.kind, response.sources);
+    chatStatus.textContent = 'Visitor-requested help shown. This fictional console cannot assess, monitor, or contact services.';
+    const support = byId('lore-realworld-help');
+    support.scrollIntoView({ block: 'nearest' });
+    support.focus();
   });
   byId('lore-chat-clear').addEventListener('click', () => {
     clearBadgeySession('Session cleared. Nothing was transmitted or saved persistently.');

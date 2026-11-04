@@ -15,7 +15,7 @@ const ids = [
   'artwork-gallery', 'artwork-gallery-summary', 'artwork-gallery-list',
   'artwork-nav-link', 'artwork-nav-count', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'lore-chat-form', 'lore-chat-input',
-  'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
+  'lore-chat-send', 'lore-chat-clear', 'lore-chat-help', 'lore-realworld-help', 'lore-chat-status', 'lore-chat-log',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
   'publisher-edition-list', 'publisher-edition-empty',

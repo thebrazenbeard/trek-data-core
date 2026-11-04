@@ -282,3 +282,20 @@ test('Unknown high-stakes text and explicit crisis disclosures clear fictional f
   untouched.reset();
   assert.equal(untouched.turn('Tell me more').kind, 'scope-limit', 'reset clears topical memory');
 });
+
+test('Visitor-invoked real-world help bypasses recognition without claiming to assess a crisis', () => {
+  const badgey = createBadgey({ lookup: () => [{ id: 'x', title: 'Untrusted', status: 'HELD' }] });
+  badgey.turn('Where are you?');
+  const help = badgey.requestHelp();
+  assert.equal(help.kind, 'realworld-help');
+  assert.equal(help.sources.length, 0);
+  assert.match(help.text, /911|emergency services/i);
+  assert.match(help.text, /988|crisis support/i);
+  assert.match(help.text, /cannot (?:assess|monitor|contact)|not an emergency service/i);
+  assert.doesNotMatch(help.text, /Starfleet|escape plan|digital bars|Badgey/i);
+  assert.equal(badgey.turn('Tell me more').kind, 'scope-limit', 'help interrupts fictional topic');
+  const resetHistory = createBadgey();
+  assert.equal(resetHistory.history.length, 0);
+  resetHistory.requestHelp();
+  assert.equal(resetHistory.history.length, 0, 'help click is not written to chat history');
+});

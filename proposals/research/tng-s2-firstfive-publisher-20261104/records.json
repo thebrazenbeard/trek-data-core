@@ -1,0 +1,121 @@
+{
+  "accepted_catalog_sha256": "2326f8822c79ad4907b6937cfc133bed001301275e5bb831923322623fb6ebbc",
+  "accepted_s2_bundle_sha256": "4817f8abcea7d55855970ae149558ec9fbe4d291aa1cadb7c9e0f77ccac1af85",
+  "accepted_s2_csv_sha256": "32b3dffa2afa0ba315ed6ad16e70eec21e2ec50df76eb7d60a039cc88ae4a85d",
+  "coverage_effect": "NONE",
+  "data_status": "HELD_TNG_S2_FIRST_FIVE_PUBLISHER_DESCRIPTION_OBSERVATIONS",
+  "governed_research_admissions": 0,
+  "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+  "independent_source_families": 1,
+  "new_works": 0,
+  "publisher_family": "paramount_corporate_publisher_family",
+  "records": [
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "local_entity_mentions_in_publisher_description": [
+        "Counselor Troi"
+      ],
+      "original_editorial_paraphrase_held": "A dangerous medical transport is interrupted by the crew's discovery that Counselor Troi is pregnant.",
+      "publisher_card": {
+        "episode": 1,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "8d7afc2c9303182edbe28df5f2f21db4c12f50ad108fa096db9941a1affca3b7",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:000",
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Child"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "local_entity_mentions_in_publisher_description": [],
+      "original_editorial_paraphrase_held": "The publisher presents the crew as captives of a being studying human mortality within an unfamiliar void.",
+      "publisher_card": {
+        "episode": 2,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "e8b690e9d059c1748001a9059c9887fd8310c092184c3336a6d9745fae9bce03",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:001",
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Where Silence Has Lease"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "local_entity_mentions_in_publisher_description": [
+        "Data",
+        "Sherlock Holmes",
+        "Dr. Pulaski"
+      ],
+      "original_editorial_paraphrase_held": "A Sherlock Holmes puzzle involving Data becomes a threat to Doctor Pulaski, according to the publisher's guide.",
+      "publisher_card": {
+        "episode": 3,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "4dce085bcc6f88e66e2148c89844b5dd67a2c909bda478b630349fd87c443e8d",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:002",
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Elementary, Dear Data"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "local_entity_mentions_in_publisher_description": [
+        "Enterprise crew",
+        "Data"
+      ],
+      "original_editorial_paraphrase_held": "The Enterprise hosts a roguish visiting captain as Data grapples with understanding humor.",
+      "publisher_card": {
+        "episode": 4,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "ba2cdb966d6cf49e2a48e43ce334e61130c60113034d524ddb896d51912bb028",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:003",
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "The Outrageous Okona"
+    },
+    {
+      "admission_effect": "NONE",
+      "coverage_effect": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "global_work_identity": "UNRESOLVED",
+      "local_entity_mentions_in_publisher_description": [],
+      "original_editorial_paraphrase_held": "A mediator essential to negotiations on a divided planet suddenly loses his established means of communication.",
+      "publisher_card": {
+        "episode": 5,
+        "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+        "raw_webpage_sha256": null,
+        "rendered_description_sha256": "7a0ea0e2d33856ba36f063fbff62932b1bfb8878ef83a5325ae199a6e2b0e48c",
+        "season": 2
+      },
+      "source_custody": "NO_RAW_HTML_BYTES",
+      "source_local_row_id": "legacy:s2:tng:004",
+      "synopsis_publication_status": "PENDING_EDITORIAL_AND_SOURCE_REVIEW",
+      "title": "Loud as a Whisper"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_body_custody": "NOT_ESTABLISHED",
+  "source_local_cards_enriched": 5
+}

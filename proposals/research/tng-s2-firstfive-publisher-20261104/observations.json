@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "TNG-S2-FIRST-FIVE-PUBLISHER-20261104",
+  "baseline_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "status": "HELD_SOURCE_LOCAL_PUBLISHER_METADATA",
+  "source": {
+    "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/2/",
+    "publisher_lineage": "paramount_corporate_publisher_family",
+    "retrieved_utc_date": "2026-11-04",
+    "read_surface": "FULL_RENDERED_PUBLISHER_SEASON_GUIDE_WEB_READER",
+    "entire_guide_card_count_read": 22,
+    "raw_html_sha256": null,
+    "raw_html_custody": "UNAVAILABLE",
+    "description_fingerprint_method": "RENDERED_WEB_READER_DESCRIPTION_TRIMMED_UTF8_NFC",
+    "independent_source_families": 1
+  },
+  "audiovisual_episodes_watched": false,
+  "scripts_or_transcripts_read": false,
+  "publisher_description_prose_republished": false,
+  "global_work_identity_resolved": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "row_id": "legacy:s2:tng:000",
+      "publisher_title": "The Child",
+      "season": 2,
+      "episode": 1,
+      "publisher_card_locator": "Season 2 / The Child / S2 E1",
+      "rendered_description_sha256": "8d7afc2c9303182edbe28df5f2f21db4c12f50ad108fa096db9941a1affca3b7",
+      "literal_description_mentions": ["Counselor Troi"],
+      "original_short_paraphrase": "A dangerous medical transport is interrupted by the crew's discovery that Counselor Troi is pregnant.",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:tng:001",
+      "publisher_title": "Where Silence Has Lease",
+      "season": 2,
+      "episode": 2,
+      "publisher_card_locator": "Season 2 / Where Silence Has Lease / S2 E2",
+      "rendered_description_sha256": "e8b690e9d059c1748001a9059c9887fd8310c092184c3336a6d9745fae9bce03",
+      "literal_description_mentions": [],
+      "original_short_paraphrase": "The publisher presents the crew as captives of a being studying human mortality within an unfamiliar void.",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:tng:002",
+      "publisher_title": "Elementary, Dear Data",
+      "season": 2,
+      "episode": 3,
+      "publisher_card_locator": "Season 2 / Elementary, Dear Data / S2 E3",
+      "rendered_description_sha256": "4dce085bcc6f88e66e2148c89844b5dd67a2c909bda478b630349fd87c443e8d",
+      "literal_description_mentions": ["Data", "Sherlock Holmes", "Dr. Pulaski"],
+      "original_short_paraphrase": "A Sherlock Holmes puzzle involving Data becomes a threat to Doctor Pulaski, according to the publisher's guide.",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:tng:003",
+      "publisher_title": "The Outrageous Okona",
+      "season": 2,
+      "episode": 4,
+      "publisher_card_locator": "Season 2 / The Outrageous Okona / S2 E4",
+      "rendered_description_sha256": "ba2cdb966d6cf49e2a48e43ce334e61130c60113034d524ddb896d51912bb028",
+      "literal_description_mentions": ["Enterprise crew", "Data"],
+      "original_short_paraphrase": "The Enterprise hosts a roguish visiting captain as Data grapples with understanding humor.",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "legacy:s2:tng:004",
+      "publisher_title": "Loud as a Whisper",
+      "season": 2,
+      "episode": 5,
+      "publisher_card_locator": "Season 2 / Loud as a Whisper / S2 E5",
+      "rendered_description_sha256": "7a0ea0e2d33856ba36f063fbff62932b1bfb8878ef83a5325ae199a6e2b0e48c",
+      "literal_description_mentions": [],
+      "original_short_paraphrase": "A mediator essential to negotiations on a divided planet suddenly loses his established means of communication.",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

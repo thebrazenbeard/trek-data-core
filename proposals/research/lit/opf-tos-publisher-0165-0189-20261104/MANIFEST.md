@@ -9,7 +9,7 @@
 | Source retrieval | 24/24 | Distinct full official Simon & Schuster eBook product pages successfully opened by URL. |
 | Content actually read | 24/24 | Rendered product title and byline, *About the Book* marketing paragraph, eBook format and *Product Details* imprint/date/extent/ISBN13. **Not** the copyrighted eBooks. |
 | Records produced | 24/24 | `records.json`: OPF-local ID and pinned digest; first-party product URL; exact displayed product metadata; short original paraphrase; uncertainty/contradiction hold. |
-| Deterministically validated | 24/24 | `validate.py` and adversarial `test_validate.py`; packet is byte pinned to SHA-256 `3bb921242e992f45d9f16e8814e36c3c0db24aa3c06711e1f650659eafce1ed2`. |
+| Deterministically validated | 24/24 | `validate.py` and adversarial `test_validate.py`; packet is byte pinned to SHA-256 `2b9f17bf26dc0a32c307c0181c36766d4b1a7d8e9ea2e049d5d4125a0fa625a7`. |
 | Manifest generated | 1 | This file. |
 | Source-to-Work admission | **0** | Private OPF edition equivalence not authenticated. Source rights UNKNOWN. |
 | Literary close reads | **0** | No private ebook prose was accessed in this batch. |
@@ -21,7 +21,7 @@
 | Source ID | Page or owner-derived discrepancy | Status |
 | --- | --- | --- |
 | `0169` | OPF creator **Carmen Carter**. Publisher *Dreams of the Raven* product heading says **Carter Carmen** while its author bio says **Carmen Carter**. The first-party page is internally inconsistent. | **HELD**, no normalized author identity. [Official edition page](https://www.simonandschuster.com/books/Dreams-of-the-Raven/Carter-Carmen/Star-Trek-The-Original-Series/9780743419857) |
-| `0170` | *The Romulan Way* publisher presents **Rihannsu #2** and **TOS #35** simultaneously. These are **compatible nested series labels**, not contradictory catalog facts; OPF lacks creator. | **HELD** for owner private-edition authenticity only. [Official edition page](https://www.simonandschuster.com/books/The-Romulan-Way/Diane-Duane/Star-Trek-The-Original-Series/9780743419864) |
+| `0170` | *The Romulan Way* publisher presents **Rihannsu #2** and **TOS #35** simultaneously. These are **compatible nested series labels**, not a book subtitle nor contradictory catalog facts; OPF lacks creator. | **HELD** for owner private-edition authenticity only. [Official edition page](https://www.simonandschuster.com/books/The-Romulan-Way/Diane-Duane/Star-Trek-The-Original-Series/9780743419864) |
 | `0173` | Owner metadata calls item `Idic Plan`; first-party title is **The IDIC Epidemic**, eBook ISBN `9780743419895`. | **HELD**, not silently equated. [Official edition page](https://www.simonandschuster.com/books/The-IDIC-Epidemic/Jean-Lorrah/Star-Trek-The-Original-Series/9780743419895) |
 | `0177` | The observed first-party *Vulcan's Glory* is **2006 eBook** ISBN `9780743419956`. A **2010 Gallery Books trade paperback** uses ISBN `9781451623345`. | Separate edition candidates; no cross-edition substitution. [2006 eBook](https://www.simonandschuster.com/books/Vulcans-Glory/D-C-Fontana/Star-Trek-The-Original-Series/9780743419956) |
 | `0183`–`0184` | Owner titles both embed number **53**; official *Home Is the Hunter* is TOS **#52** and *Ghost-Walker* TOS **#53**. | **HELD** ordering/label issue, no automatic correction of owner text. [Home Is the Hunter](https://www.simonandschuster.com/books/Home-Is-the-Hunter/Dana-Kramer-Rolls/Star-Trek-The-Original-Series/9780743420037) |

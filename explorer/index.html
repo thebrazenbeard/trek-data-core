@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=224cc4b5b398a2949fe1b2a208b7b0544ae51680d13b6582f6924df8804f36c5">
-  <script src="./app.js?v=0fecfdaec2324dec512ec08c6c5c46fad0fa239aaba6289739da08c5aa71feab" defer></script>
+  <link rel="stylesheet" href="./app.css?v=7fdf7bc157ba3a2745368a09aa21a71caaf1394847f2dd9e76814e2483440237">
+  <script src="./app.js?v=cef90ed6d67a4f0155c273463fec141c570e694999eff600cbc35bc316a26371" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -57,6 +57,21 @@
       </div>
     </div>
   </header>
+
+  <nav id="medium-shortcuts" class="medium-shortcuts" aria-label="Browse source-local records by medium">
+    <div class="medium-shortcuts-intro">
+      <p class="eyebrow">LCARS / Archive stations</p>
+      <p>Choose a medium to inspect the source-local directory. These are observations, <strong>not verified or distinct Works</strong>; the graphics are original index art, not production imagery.</p>
+    </div>
+    <div class="medium-shortcuts-track" aria-describedby="medium-shortcuts-hint">
+      <a id="quick-episode" class="medium-shortcut quick-episode" href="#discovery-directory"><span class="quick-art" aria-hidden="true"></span><span class="quick-copy"><span>Episodes</span><strong id="quick-episode-count">—</strong><small>Source-local rows</small></span></a>
+      <a id="quick-film" class="medium-shortcut quick-film" href="#discovery-directory"><span class="quick-art" aria-hidden="true"></span><span class="quick-copy"><span>Films</span><strong id="quick-film-count">—</strong><small>Source-local rows</small></span></a>
+      <a id="quick-literature" class="medium-shortcut quick-literature" href="#discovery-directory"><span class="quick-art" aria-hidden="true"></span><span class="quick-copy"><span>Literature</span><strong id="quick-literature-count">—</strong><small>Source-local rows</small></span></a>
+      <a id="quick-short" class="medium-shortcut quick-short" href="#discovery-directory"><span class="quick-art" aria-hidden="true"></span><span class="quick-copy"><span>Short-form</span><strong id="quick-short-count">—</strong><small>Source-local rows</small></span></a>
+      <a id="quick-audio" class="medium-shortcut quick-audio" href="#discovery-directory"><span class="quick-art" aria-hidden="true"></span><span class="quick-copy"><span>Audio</span><strong id="quick-audio-count">—</strong><small>Source-local rows</small></span></a>
+    </div>
+    <p id="medium-shortcuts-hint" class="medium-shortcuts-scroll-hint">Swipe, scroll or Tab to browse more media →</p>
+  </nav>
 
   <main id="main" class="page-content">
     <section id="lore-console" class="lore-console" aria-labelledby="lore-heading" aria-describedby="lore-disclosure" hidden>

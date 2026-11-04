@@ -7,6 +7,8 @@ import { webcrypto, createHash } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
+  'quick-episode', 'quick-film', 'quick-literature', 'quick-short', 'quick-audio',
+  'quick-episode-count', 'quick-film-count', 'quick-literature-count', 'quick-short-count', 'quick-audio-count',
   'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
@@ -1820,6 +1822,31 @@ test('multimedia source-local directory is independently searchable, paged, and 
     'episode observations surface as source-local leads, not accepted episode Works');
   assert.equal(nodes.get('discovery-literature-count').textContent, '9',
     'literary discovery leads surface separately from admitted Works');
+  for (const [id, expected] of [
+    ['quick-episode-count', '1,155'], ['quick-film-count', '14'], ['quick-literature-count', '9'],
+    ['quick-short-count', '35'], ['quick-audio-count', '1']
+  ]) assert.equal(nodes.get(id).textContent, expected,
+    'first-view medium plates use the validated source-local directory, not admitted coverage');
+  nodes.get('discovery-query').value = 'Stale search';
+  nodes.get('discovery-series').value = 'VOY';
+  nodes.get('quick-film').fire('click');
+  assert.equal(nodes.get('discovery-directory').focused, true, 'medium plate opens the directory');
+  assert.equal(nodes.get('discovery-medium').value, 'FILM');
+  assert.equal(nodes.get('discovery-query').value, '', 'medium shortcut clears stale query');
+  assert.equal(nodes.get('discovery-series').value, 'all', 'medium shortcut clears stale secondary facet');
+  assert.match(nodes.get('discovery-summary').textContent, /^14 source-local metadata rows match/);
+  assert.equal(nodes.get('quick-film').attributes.get('data-active'), 'true');
+  assert.equal(nodes.get('quick-episode').attributes.get('data-active'), 'false');
+  assert.equal(nodes.get('quick-film').attributes.get('aria-current'), 'true',
+    'selected medium is exposed semantically, not only through a color underline');
+  assert.equal(nodes.get('quick-episode').attributes.has('aria-current'), false,
+    'unselected medium is not announced as current');
+  nodes.get('quick-literature').fire('click');
+  assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
+  assert.equal(nodes.get('quick-literature').attributes.get('aria-current'), 'true');
+  assert.equal(nodes.get('quick-film').attributes.has('aria-current'), false,
+    'changing a medium retires its stale selected state');
+  assert.match(nodes.get('discovery-summary').textContent, /^9 source-local metadata rows match/);
   nodes.get('discovery-query').value = 'Voyager';
   nodes.get('discovery-medium').value = 'AUDIO';
   nodes.get('discovery-series').value = 'VOY';
@@ -1832,6 +1859,12 @@ test('multimedia source-local directory is independently searchable, paged, and 
   assert.equal(nodes.get('discovery-series').value, 'all');
   assert.equal(nodes.get('discovery-tag').value, 'all');
   assert.match(nodes.get('discovery-summary').textContent, /^1,155 source-local metadata rows match/);
+  nodes.get('discovery-query').value = 'The Trouble with Tribbles';
+  nodes.get('discovery-filters').fire('input');
+  assert.match(nodes.get('discovery-list').textContent, /source-local rows share this title · identity not reconciled/,
+    'matching exact title strings expose multiple source rows without pretending identity reconciliation');
+  nodes.get('discovery-query').value = '';
+  nodes.get('discovery-filters').fire('input');
   nodes.get('discovery-literature-count').fire('click');
   assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
   assert.match(nodes.get('discovery-summary').textContent, /^9 source-local metadata rows match/);
@@ -2426,6 +2459,12 @@ test('HTML exposes the separate research search and status elements', () => {
   assert.match(html, /id="discovery-literature-count"[^>]*href="#discovery-directory"/);
   assert.match(html, /id="discovery-episode-count"[^>]*aria-label="Show episode references in the source-local directory"/);
   assert.match(html, /id="discovery-literature-count"[^>]*aria-label="Show literary leads in the source-local directory"/);
+  assert.match(html, /id="medium-shortcuts"[^>]*aria-label="Browse source-local records by medium"/);
+  assert.match(html, /id="medium-shortcuts-hint"[^>]*>Swipe, scroll or Tab to browse more media/,
+    'mobile media strip explains how its overflow content can be reached');
+  for (const id of ['quick-episode', 'quick-film', 'quick-literature', 'quick-short', 'quick-audio'])
+    assert.match(html, new RegExp(`id="${id}"[^>]*href="#discovery-directory"`),
+      'quick-browse station is an actual native anchor to the source-local directory');
   assert.match(html, /Missions are series navigation categories, not an episode count/,
     'the front status board must make the twelve-Mission denominator explicit');
   assert.match(html, /id="discovery-filters"[^>]*aria-label="Search multimedia discovery metadata"/);

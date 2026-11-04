@@ -1,0 +1,38 @@
+{
+  "proposal_id": "LIT-OPF0110-IDENTIFIER-GAP-REVIEW-20261104",
+  "status": "HELD_SOURCE_RELATIVE_CORRECTION_CANDIDATE",
+  "accepted_main_reviewed": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_opf_observations_sha256": "5acb0f5af0f7c557214bcde07e60fe7e12cc9cb781c928a790341478013fd4a7",
+  "accepted_publisher_proposal_sha256": "3d3aa4703bb2ab47291aa7fadb487320ed4cbef68c7456fabe09c52a1e848d42",
+  "opf_source_local_id": "opf-local:0110",
+  "original_opf_xml_sha256_from_prior_independent_audit": "4c35fb7b4991d34add2e92c450475edda12e77b773d99de2e14bcab33d16b0aa",
+  "accepted_derivative_isbn_checksum_valid": [],
+  "original_xml_identifier_tag_from_prior_independent_audit": "dc:Identifier",
+  "original_xml_identifier_literal_from_prior_independent_audit": "ISBN 0-7434-9997-2",
+  "proposed_checksum_valid_isbn10": "0743499972",
+  "proposed_mathematically_derived_isbn13": "9780743499972",
+  "publisher_2004_ebook": {
+    "isbn13": "9780743499972",
+    "format": "EBOOK",
+    "imprint": "Pocket Books/Star Trek",
+    "date": "2004-10-01",
+    "pages": 384,
+    "official_url": "https://www.simonandschuster.com/books/A-Star-Trek-The-Next-Generation-Time-9-A-Time-for-War-A-Time-for-Peace/Keith-R-A-DeCandido/Star-Trek-The-Next-Generation/9780743499972"
+  },
+  "publisher_2019_trade_paperback": {
+    "isbn13": "9781982134907",
+    "format": "TRADE_PAPERBACK",
+    "imprint": "Gallery Books",
+    "date": "2019-05-18",
+    "pages": 384,
+    "official_url": "https://www.simonandschuster.com/books/A-Star-Trek-The-Next-Generation-Time-9-A-Time-for-War-A-Time-for-Peace/Keith-R-A-DeCandido/Star-Trek-The-Next-Generation/9781982134907"
+  },
+  "original_owner_xml_reread_this_wave": false,
+  "legacy_owner_host_extractor_code_inspected": false,
+  "upstream_extraction_root_cause": "UNKNOWN",
+  "source_text_equivalence": "NOT_VERIFIED",
+  "edition_admission": "NONE",
+  "global_work_identity": "NOT_RECONCILED",
+  "public_explorer_release": "HELD",
+  "coverage_effect": "NONE"
+}

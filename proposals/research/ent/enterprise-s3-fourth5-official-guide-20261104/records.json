@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S3.FOURTH5.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:45:29 GMT",
+    "observed_at_utc": "2026-11-04T21:45:29.161021+00:00",
+    "raw_response_bytes": 308190,
+    "raw_response_sha256": "b939d2a77786228811338f2c3b3b4d7c2bf0babc289f47768339945e017283bb",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py",
+    "method": "Read-only complete 24-card guide retrieval, all description fingerprints inspected, E16-E20 actual publisher-description reading and five original paraphrases; no audiovisual or images requested."
+  },
+  "prior_batches": [
+    {
+      "path": "proposals/research/ent/enterprise-s3-first5-official-guide-20261104/records.json",
+      "sha256": "05e7375949b0facdbda22bc2e0a3ff8ec6a46c9cdb901a34ac5fd4e98d837f27",
+      "commit": "67e997fe4db0eaa20a96b311c91006520c767848",
+      "source_response_sha256": "227c1cbcbafd29cabb62ff83e73cccd2466604ab0e3c4462920badf774453391",
+      "scope": "E01–E05 source-relative publisher synopsis analyses; separate held packet"
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-last5-official-guide-20261104/records.json",
+      "sha256": "54e50b5e169a961912f2cde1d1a19bdf8eabfc704bd5b216b40902df9ff302d7",
+      "commit": "865291996cf0c16286f1aea05fe562c354a83408",
+      "source_response_sha256": "0cf747270fe37f0027b4a4c90937e2bd2b2ca91442768e6f7fafcc22adee1253",
+      "scope": "E06–E10 source-relative publisher synopsis analyses; separate held packet"
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-third5-official-guide-20261104/records.json",
+      "sha256": "f8dd841d56f6551824dbac89739893fb0b924c46743cb96ff6226d6d8fe9572c",
+      "commit": "5719fcab4cac59c868d80456cb10a3110e728600",
+      "source_response_sha256": "3a970117c2e224b998be2b223e4f2ee925c41acb8c0c79eca34f4588d89d06c9",
+      "scope": "E11–E15 source-relative publisher synopsis analyses; separate held packet"
+    }
+  ],
+  "observed_full_guide_card_count": 24,
+  "all_24_metadata_and_description_fingerprints_match_three_prior_snapshots": true,
+  "raw_html_digest_differs_from_three_predecessors": true,
+  "selected_tranche_episode_ordinals": [
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "fourth_five_source_descriptions_inspected": 5,
+  "fourth_five_description_total_chars": 819,
+  "fourth_five_analytical_synopses_proposed": 5,
+  "fourth_five_guide_cards": [
+    {
+      "display_order": 16,
+      "season": 3,
+      "episode": 16,
+      "analytics_ordinal": 16,
+      "title": "Doctor's Orders",
+      "video_route_path": "/shows/video/1479394951/",
+      "publisher_datetime": "2004-02-18T20:00:00-08:00",
+      "html_anchor_line": 1902,
+      "html_description_line": 1920,
+      "description_chars": 208,
+      "description_sha256": "2b060a05e7e317e320e793f83696a8d529f8f4742dfe93572057369fd6537c7d"
+    },
+    {
+      "display_order": 17,
+      "season": 3,
+      "episode": 17,
+      "analytics_ordinal": 17,
+      "title": "Hatchery",
+      "video_route_path": "/shows/video/1479395507/",
+      "publisher_datetime": "2004-02-25T20:00:00-08:00",
+      "html_anchor_line": 1930,
+      "html_description_line": 1948,
+      "description_chars": 186,
+      "description_sha256": "9f307bd33144f6f21dc221607b3a5993de5dec3dd3cec9da2a249cf2e5f98125"
+    },
+    {
+      "display_order": 18,
+      "season": 3,
+      "episode": 18,
+      "analytics_ordinal": 18,
+      "title": "Azati Prime",
+      "video_route_path": "/shows/video/1479395808/",
+      "publisher_datetime": "2004-03-03T20:00:00-08:00",
+      "html_anchor_line": 1958,
+      "html_description_line": 1976,
+      "description_chars": 103,
+      "description_sha256": "465eb244c950bcb79cd685ee3f25449ab5d692fc79c3a119c851fff1528fded5"
+    },
+    {
+      "display_order": 19,
+      "season": 3,
+      "episode": 19,
+      "analytics_ordinal": 19,
+      "title": "Damage",
+      "video_route_path": "/shows/video/1479396610/",
+      "publisher_datetime": "2004-04-21T20:00:00-07:00",
+      "html_anchor_line": 1986,
+      "html_description_line": 2004,
+      "description_chars": 110,
+      "description_sha256": "0647b740b5dff34294f1cc59508f06966b2c4d5e2b450a62f93c6a137709385b"
+    },
+    {
+      "display_order": 20,
+      "season": 3,
+      "episode": 20,
+      "analytics_ordinal": 20,
+      "title": "The Forgotten",
+      "video_route_path": "/shows/video/1479407804/",
+      "publisher_datetime": "2004-04-28T20:00:00-07:00",
+      "html_anchor_line": 2014,
+      "html_description_line": 2032,
+      "description_chars": 212,
+      "description_sha256": "78d4de662bfffd6c2f070c3b3c8eb5771f8b52e8dc3051b84d30cd13d05a08c2"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ent-s3-e16-publisher-card",
+      "source_local_episode_hint": 16,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e17-publisher-card",
+      "source_local_episode_hint": 17,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e18-publisher-card",
+      "source_local_episode_hint": 18,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e19-publisher-card",
+      "source_local_episode_hint": 19,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e20-publisher-card",
+      "source_local_episode_hint": 20,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s3-e16-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+      "local_entity_id": "ent-s3-e16-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 16,
+      "locator": "HTML 1920, exact response digest in source receipt",
+      "publisher_description_sha256": "2b060a05e7e317e320e793f83696a8d529f8f4742dfe93572057369fd6537c7d",
+      "original_paraphrase": "A disturbance on the route to Azati Prime forces Phlox to place the crew in a coma and take Enterprise through the affected region alone."
+    },
+    {
+      "id": "ent-s3-e17-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+      "local_entity_id": "ent-s3-e17-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 17,
+      "locator": "HTML 1948, exact response digest in source receipt",
+      "publisher_description_sha256": "9f307bd33144f6f21dc221607b3a5993de5dec3dd3cec9da2a249cf2e5f98125",
+      "original_paraphrase": "Finding a Xindi-Insectoid nursery aboard a wreck, Archer becomes determined to protect it even as the crew worries his decisions imperil Enterprise."
+    },
+    {
+      "id": "ent-s3-e18-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+      "local_entity_id": "ent-s3-e18-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 18,
+      "locator": "HTML 1976, exact response digest in source receipt",
+      "publisher_description_sha256": "465eb244c950bcb79cd685ee3f25449ab5d692fc79c3a119c851fff1528fded5",
+      "original_paraphrase": "At Azati Prime, Enterprise learns that the nearly completed Xindi weapon is located on an ocean-covered planet."
+    },
+    {
+      "id": "ent-s3-e19-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+      "local_entity_id": "ent-s3-e19-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 19,
+      "locator": "HTML 2004, exact response digest in source receipt",
+      "publisher_description_sha256": "0647b740b5dff34294f1cc59508f06966b2c4d5e2b450a62f93c6a137709385b",
+      "original_paraphrase": "Despite heavy damage to Enterprise, the crew answers an Illyrian vessel's distress call after anomalies strike the other ship."
+    },
+    {
+      "id": "ent-s3-e20-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-fourth5-20261104",
+      "local_entity_id": "ent-s3-e20-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 20,
+      "locator": "HTML 2032, exact response digest in source receipt",
+      "publisher_description_sha256": "78d4de662bfffd6c2f070c3b3c8eb5771f8b52e8dc3051b84d30cd13d05a08c2",
+      "original_paraphrase": "While recovering from a Reptilian attack, Archer meets with Degra and argues that the Sphere Builders, not humanity, threaten the Xindi."
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "ent-s3-e16-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e16-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e17-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e17-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e18-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e18-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e19-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e19-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e20-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e20-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "holds": [
+    "E16–E20 publisher descriptions are independent local record IDs from E01–E05, E06–E10 and E11–E15 held batches; 24-card context is not 24 new analyses.",
+    "All repeated full guide reads share the same Paramount+ publisher lineage and are not independent content witnesses.",
+    "Publisher editorials do not establish audiovisual episode events; no program, transcript, closed captions or script accessed.",
+    "The raw full HTML digest differs across retrievals although every normalized card and description hash agrees.",
+    "No copyrighted publisher full prose or media committed, no Source/Work binding/admission, CLOSE_READ, coverage, denominator, reconciliation, or Explorer effect."
+  ]
+}

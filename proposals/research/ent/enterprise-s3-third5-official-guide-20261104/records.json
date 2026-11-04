@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S3.THIRD5.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:36:32 GMT",
+    "observed_at_utc": "2026-11-04T21:36:32.669611+00:00",
+    "raw_response_bytes": 308190,
+    "raw_response_sha256": "3a970117c2e224b998be2b223e4f2ee925c41acb8c0c79eca34f4588d89d06c9",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py",
+    "method": "Fresh read-only complete official publisher HTML guide GET, 24 card description fingerprint traversal, E11–E15 descriptions actually read for original paraphrases; no media."
+  },
+  "prior_batches": [
+    {
+      "path": "proposals/research/ent/enterprise-s3-first5-official-guide-20261104/records.json",
+      "sha256": "05e7375949b0facdbda22bc2e0a3ff8ec6a46c9cdb901a34ac5fd4e98d837f27",
+      "commit": "67e997fe4db0eaa20a96b311c91006520c767848",
+      "source_response_sha256": "227c1cbcbafd29cabb62ff83e73cccd2466604ab0e3c4462920badf774453391",
+      "scope": "E01–E05 source-local publisher synopses; 24-card inventory"
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-last5-official-guide-20261104/records.json",
+      "sha256": "54e50b5e169a961912f2cde1d1a19bdf8eabfc704bd5b216b40902df9ff302d7",
+      "commit": "865291996cf0c16286f1aea05fe562c354a83408",
+      "source_response_sha256": "0cf747270fe37f0027b4a4c90937e2bd2b2ca91442768e6f7fafcc22adee1253",
+      "scope": "E06–E10 source-local publisher synopses; five-card metadata"
+    }
+  ],
+  "observed_full_guide_card_count": 24,
+  "all_24_metadata_and_description_fingerprints_match_both_prior_snapshots": true,
+  "raw_html_digest_differs_from_both_predecessors": true,
+  "selected_tranche_episode_ordinals": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "third_five_source_descriptions_inspected": 5,
+  "third_five_description_total_chars": 957,
+  "third_five_analytical_synopses_proposed": 5,
+  "third_five_guide_cards": [
+    {
+      "display_order": 11,
+      "season": 3,
+      "episode": 11,
+      "analytics_ordinal": 11,
+      "title": "Carpenter Street",
+      "video_route_path": "/shows/video/1479237112/",
+      "publisher_datetime": "2003-11-26T20:00:00-08:00",
+      "html_anchor_line": 1762,
+      "html_description_line": 1780,
+      "description_chars": 117,
+      "description_sha256": "d4ae4a81b47e18f99f6f11f49770ae36cdd9eeceb31fdef1bdadf2582f24eaec"
+    },
+    {
+      "display_order": 12,
+      "season": 3,
+      "episode": 12,
+      "analytics_ordinal": 12,
+      "title": "Chosen Realm",
+      "video_route_path": "/shows/video/1479264034/",
+      "publisher_datetime": "2004-01-14T20:00:00-08:00",
+      "html_anchor_line": 1790,
+      "html_description_line": 1808,
+      "description_chars": 240,
+      "description_sha256": "7102998269532aee2e019d5118093a6933c5b0e58633c5307ae9b99c126e2c59"
+    },
+    {
+      "display_order": 13,
+      "season": 3,
+      "episode": 13,
+      "analytics_ordinal": 13,
+      "title": "Proving Ground",
+      "video_route_path": "/shows/video/1479267580/",
+      "publisher_datetime": "2004-01-21T20:00:00-08:00",
+      "html_anchor_line": 1818,
+      "html_description_line": 1836,
+      "description_chars": 168,
+      "description_sha256": "2e5062a9c9591dbd0ffd3fbea9f2fc70e9f37df8bc2447da3fe9d2ace0894340"
+    },
+    {
+      "display_order": 14,
+      "season": 3,
+      "episode": 14,
+      "analytics_ordinal": 14,
+      "title": "Strategem",
+      "video_route_path": "/shows/video/1479269511/",
+      "publisher_datetime": "2004-02-04T20:00:00-08:00",
+      "html_anchor_line": 1846,
+      "html_description_line": 1864,
+      "description_chars": 192,
+      "description_sha256": "1f8253ca8affbe9098730f499b4b34188dc28520acfd769b1a012ab7df977ef7"
+    },
+    {
+      "display_order": 15,
+      "season": 3,
+      "episode": 15,
+      "analytics_ordinal": 15,
+      "title": "Harbinger",
+      "video_route_path": "/shows/video/1479270313/",
+      "publisher_datetime": "2004-02-11T20:00:00-08:00",
+      "html_anchor_line": 1874,
+      "html_description_line": 1892,
+      "description_chars": 240,
+      "description_sha256": "cb5fdbad86dbb29369ec7340bfafebf12168f8a0c2c10230722fa105d4d40029"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ent-s3-e11-publisher-card",
+      "source_local_episode_hint": 11,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e12-publisher-card",
+      "source_local_episode_hint": 12,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e13-publisher-card",
+      "source_local_episode_hint": 13,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e14-publisher-card",
+      "source_local_episode_hint": 14,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e15-publisher-card",
+      "source_local_episode_hint": 15,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s3-e11-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+      "local_entity_id": "ent-s3-e11-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 11,
+      "locator": "HTML 1780, exact response digest in source receipt",
+      "publisher_description_sha256": "d4ae4a81b47e18f99f6f11f49770ae36cdd9eeceb31fdef1bdadf2582f24eaec",
+      "original_paraphrase": "Daniels sends Archer and T'Pol to Detroit in 2004 to investigate three Xindi-Reptilians working on a biological weapon."
+    },
+    {
+      "id": "ent-s3-e12-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+      "local_entity_id": "ent-s3-e12-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 12,
+      "locator": "HTML 1808, exact response digest in source receipt",
+      "publisher_description_sha256": "7102998269532aee2e019d5118093a6933c5b0e58633c5307ae9b99c126e2c59",
+      "original_paraphrase": "A Triannon leader takes control of Enterprise and plans to use the ship to wage a religious war against those he considers heretics."
+    },
+    {
+      "id": "ent-s3-e13-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+      "local_entity_id": "ent-s3-e13-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 13,
+      "locator": "HTML 1836, exact response digest in source receipt",
+      "publisher_description_sha256": "2e5062a9c9591dbd0ffd3fbea9f2fc70e9f37df8bc2447da3fe9d2ace0894340",
+      "original_paraphrase": "Enterprise follows a signal toward a Xindi weapon test site, weighing the hazards of an anomaly-filled shortcut."
+    },
+    {
+      "id": "ent-s3-e14-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+      "local_entity_id": "ent-s3-e14-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 14,
+      "locator": "HTML 1864, exact response digest in source receipt",
+      "publisher_description_sha256": "1f8253ca8affbe9098730f499b4b34188dc28520acfd769b1a012ab7df977ef7",
+      "original_paraphrase": "The crew captures the Xindi weapon's designer and stages an elaborate deception to learn where the weapon is being kept."
+    },
+    {
+      "id": "ent-s3-e15-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-third5-20261104",
+      "local_entity_id": "ent-s3-e15-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 15,
+      "locator": "HTML 1892, exact response digest in source receipt",
+      "publisher_description_sha256": "cb5fdbad86dbb29369ec7340bfafebf12168f8a0c2c10230722fa105d4d40029",
+      "original_paraphrase": "A strange pod is found among anomalies while Reed's rivalry with Hayes intensifies and T'Pol learns of Trip's neuro-pressure sessions with a MACO."
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "ent-s3-e11-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e11-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e12-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e12-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e13-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e13-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e14-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e14-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e15-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e15-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "holds": [
+    "Third five E11–E15 source-relative description analyses are distinct from E01–E05 and E06–E10 held batches; 24-card context is not 24 new analyses.",
+    "All three HTML observations derive from one Paramount+ publisher lineage and cannot count as independent corroboration.",
+    "Publisher guide prose is not audiovisual episode truth; no episodes, scripts or authenticated transcripts were accessed.",
+    "Dynamic raw HTML digests differed; all 24 normalized publisher-card fingerprints matched in three separate retrievals.",
+    "No copied publisher paragraphs, audiovisual content, image bytes, Source/Work admission, CLOSE_READ, coverage, denominator, reconciliation or Explorer release."
+  ]
+}

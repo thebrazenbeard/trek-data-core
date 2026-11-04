@@ -7,7 +7,7 @@ import { webcrypto, createHash } from 'node:crypto';
 const SCRIPT = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
   'explorer-navigation', 'navigation-scroll-hint',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-series', 'discovery-kind', 'discovery-lineage', 'discovery-overview', 'discovery-artwork', 'discovery-verification', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-synopsis', 'discovery-tag', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
@@ -118,6 +118,7 @@ async function runWithIndex(index, status = 200, research = null, researchStatus
   nodes.get('discovery-kind').value = 'all';
   nodes.get('discovery-lineage').value = 'all';
   nodes.get('discovery-overview').value = 'all';
+  nodes.get('discovery-artwork').value = 'all';
   nodes.get('discovery-verification').value = 'all';
   nodes.get('discovery-publisher-check').value = 'all';
   nodes.get('discovery-synopsis').value = 'all';
@@ -1467,6 +1468,27 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.match(nodes.get('artwork-gallery-summary').textContent, /nothing is fetched before that choice/);
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-record-source').length, 4,
     'each visible placeholder links to its own source record');
+  assert.match(nodes.get('discovery-summary').textContent, /4 loaded, individually pinned image preview receipts/,
+    'the directory must report pinned image-display receipts separately from SOURCE_BOUND research coverage');
+  nodes.get('discovery-artwork').value = 'receipt_pinned';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^4 source-local metadata rows match/,
+    'a visitor can find all four exact-edition image options, not just the first paginated discoveries');
+  assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+    'finding a preview receipt never constitutes consent to request its external image');
+  nodes.get('discovery-artwork').value = 'not_loaded';
+  nodes.get('discovery-filters').fire('change');
+  assert.match(nodes.get('discovery-summary').textContent, /^1,210 source-local metadata rows match/,
+    'a missing validated preview receipt is not an image-coverage or Work-admission claim');
+  assert.match(nodes.get('discovery-summary').textContent, /0 loaded, individually pinned image preview receipts/);
+  nodes.get('discovery-artwork').value = 'receipt_pinned';
+  nodes.get('discovery-query').value = 'no such reviewed visual receipt';
+  nodes.get('discovery-filters').fire('change');
+  assert.equal(nodes.get('discovery-empty').hidden, false);
+  assert.match(nodes.get('discovery-empty').textContent, /No pinned image preview receipts match.*does not establish that artwork is absent/);
+  nodes.get('discovery-query').value = '';
+  nodes.get('discovery-artwork').value = 'all';
+  nodes.get('discovery-filters').fire('change');
   assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
     'there are no external image URLs in the DOM until a visitor explicitly opts in');
   nodes.get('discovery-query').value = 'autobiography';
@@ -1478,7 +1500,7 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.equal(nodes.get('artwork-gallery').attributes.get('data-preview-state'), 'on');
   assert.equal(nodes.get('artwork-gallery-list').children.length, 4,
     'a dedicated art gallery makes all four source-matched images discoverable without hiding in pagination');
-  assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually source-bound image options.*do not add Works/);
+  assert.match(nodes.get('artwork-gallery-summary').textContent, /4 of 4 individually pinned image preview receipts.*do not add Works/);
   assert.equal(traverse(nodes.get('artwork-gallery-list'), (n) => n.tagName === 'img').length, 4);
   const rendered = traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img');
   assert.equal(rendered.length, 4, 'all four visually checked edition jackets are bound to their proper rows');
@@ -1497,9 +1519,12 @@ test('only four independently visually identified fictional-autobiography jacket
   assert.ok(credits.every((link) => link.rel === 'noopener noreferrer'));
   const findLinks = traverse(nodes.get('artwork-gallery-list'), (n) => n.className === 'artwork-gallery-locate');
   assert.equal(findLinks.length, 4);
+  nodes.get('discovery-artwork').value = 'not_loaded';
   findLinks[0].fire('click');
   assert.match(nodes.get('discovery-query').value, /autobiography/i);
   assert.equal(nodes.get('discovery-medium').value, 'LITERATURE');
+  assert.equal(nodes.get('discovery-artwork').value, 'all',
+    'the gallery locator must reset a contradictory artwork receipt filter');
   assert.equal(nodes.get('discovery-directory').focused, true,
     'the gallery locator preserves keyboard focus on the filtered results');
   nodes.get('artwork-toggle').fire('click');

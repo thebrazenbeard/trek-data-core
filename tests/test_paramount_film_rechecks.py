@@ -84,6 +84,24 @@ class ParamountFilmRechecksTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     builder.build()
 
+    def test_disputed_publisher_year_cannot_be_normalized_or_falsely_resolved(self):
+        real = builder.read_reviewed
+        for kind in ("normalized_year", "false_resolution"):
+            def corrupt(path, pin_name):
+                data, raw, pin = real(path, pin_name)
+                if path == builder.INPUTS[1][1]:
+                    data = copy.deepcopy(data)
+                    row = next(r for r in data["records"]
+                               if r["candidate_film_id"] == "film-search-for-spock")
+                    if kind == "normalized_year":
+                        row["year_as_listed"] = 1982
+                    else:
+                        row["source_anomaly"] = "RESOLVED"
+                return data, raw, pin
+            with self.subTest(kind=kind), patch.object(builder, "read_reviewed", side_effect=corrupt):
+                with self.assertRaisesRegex(ValueError, "Disputed publisher-local film-year observation drift"):
+                    builder.build()
+
     def test_original_source_byte_pin_rejects_changed_status_or_url_on_disk(self):
         paths = [p for _, p, _, _ in builder.INPUTS]
         for kind in ("status", "same_host_page_rebinding"):

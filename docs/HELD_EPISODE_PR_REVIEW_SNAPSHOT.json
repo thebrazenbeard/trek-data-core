@@ -1,0 +1,144 @@
+{
+  "accepted_evidence_effect": "NONE",
+  "accepted_main_admission_preflight": {
+    "accepted_nonfixture_episode_works": 0,
+    "approved_projection_hash_count": 0,
+    "automated_prerequisite_complete_works": 0,
+    "evidence_class": "REAL_ACCEPTED_MAIN_DIAGNOSTIC_NOT_PROPOSAL_ADMISSION",
+    "overall_status": "TECHNICAL_PREREQUISITES_BLOCKED",
+    "source_bound_requirements_not_supplied_by_drafts": [
+      "independently accepted episode Work and Source identities",
+      "accepted Librarian EVIDENCE_BEARING Source-to-Work binding using exact BYTE_HASH",
+      "rights-valid private source bytes and independently replayed custody receipt",
+      "accepted DISCOVERED predecessor and separately reviewed SOURCE_BOUND event"
+    ]
+  },
+  "accepted_main_at_review": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_work_effect": "NONE",
+  "by_pr_observations": {
+    "538": 5,
+    "544": 5,
+    "551": 17,
+    "554": 25,
+    "557": 24,
+    "558": 58,
+    "559": 26,
+    "560": 24
+  },
+  "by_series_observations": {
+    "DIS": 5,
+    "DS9": 73,
+    "ENT": 25,
+    "PIC": 10,
+    "TNG": 48,
+    "VOY": 23
+  },
+  "candidate_snapshot_pr_count": 8,
+  "canonical_briefing_effect": "NONE",
+  "denominator_note": "Counts source-local draft publisher-card observations, not distinct accepted Works, episodes, full-source reads, or coverage.",
+  "episode_coverage_effect": "NONE",
+  "held_paraphrase_count": 183,
+  "missing_extraction_ordinals": [
+    {
+      "candidate_pr": 557,
+      "interpretation": "EXTRACTION_GAP_NOT_ACCEPTED_EPISODE_CENSUS",
+      "missing_publisher_ordinals_in_extraction": [
+        4,
+        26
+      ],
+      "series": "DS9"
+    },
+    {
+      "candidate_pr": 560,
+      "interpretation": "EXTRACTION_GAP_NOT_ACCEPTED_EPISODE_CENSUS",
+      "missing_publisher_ordinals_in_extraction": [
+        2,
+        26
+      ],
+      "series": "DS9"
+    }
+  ],
+  "provenance": [
+    {
+      "commit": "a2f92209808398f2df2118306b1e10745dc763a4",
+      "expected_rows": 5,
+      "path": "proposals/research/tng-s2-firstfive-publisher-20261104/records.json",
+      "pr": 538,
+      "profile": "TNG",
+      "sha256": "1d50d91270b99a72fc70ce842412b33832d692abcb50857ff853a3b7ba789999"
+    },
+    {
+      "commit": "df622f5c4d0bffc34f2b980ad1efc25064a8fe99",
+      "expected_rows": 17,
+      "path": "proposals/research/tng-s2-remaining17-publisher-20261104/records.json",
+      "pr": 551,
+      "profile": "TNG",
+      "sha256": "d30e794e5889342128b2f52aca848609ed470ec13c297e84622661c588fa665d"
+    },
+    {
+      "commit": "4ca0112e365e1b4c4b6714e78275ffcc45a64f63",
+      "expected_rows": 26,
+      "path": "proposals/research/tng-s3-all26-publisher-20261104/records.json",
+      "pr": 559,
+      "profile": "TNG",
+      "sha256": "8768dfd32e1ecd658d4ce5cf68f4ee7396edb6ef43ce3b802fbf4c55b58a65ba"
+    },
+    {
+      "commit": "ada2b29b2e6cede9c581e17dcce233b74fe43bc9",
+      "expected_rows": 25,
+      "path": "proposals/research/ds9-paramount-s2-guide-20261104/observations.json",
+      "pr": 554,
+      "profile": "DS9_S2",
+      "sha256": "ebacf9972ca8b5b62ab549ff2779ed83260e04d76cc939c8e4650c32c7a443a1"
+    },
+    {
+      "commit": "ab52eb406cb7e2bbb5cb470db725fc772f0cc913",
+      "expected_rows": 24,
+      "path": "proposals/research/ds9-paramount-s3-guide-20261104/records.json",
+      "pr": 557,
+      "profile": "DS9_S3_S4",
+      "sha256": "fa6c257aebc47d83c41a0992f36f49a18699f7f13f880c090fc78f8f166ec20e"
+    },
+    {
+      "commit": "5f5aeae3d3a42cda691b73a7b1eccd2cced2c9e0",
+      "expected_rows": 24,
+      "path": "proposals/research/ds9-paramount-s4-guide-20261104/records.json",
+      "pr": 560,
+      "profile": "DS9_S3_S4",
+      "sha256": "69d52b6c99c52cd80ed2245d528539e36402bbd4c374d1c5720ced6b402088d8"
+    },
+    {
+      "commit": "e1d07cd76d771f5fe7de6506d309b18970a8eb14",
+      "expected_rows": 5,
+      "path": "proposals/research/voy-s4-e15-e19-publisher-cards-20261104/records.json",
+      "pr": 544,
+      "profile": "VOY",
+      "sha256": "a3e1ceeda5d5432a8cb6689f80d663cda40a8602941cc4869645e8b8ed5856db"
+    },
+    {
+      "commit": "e084135e83d0f3656b092a2acb00c7b8400ff285",
+      "expected_rows": 58,
+      "path": "explorer/publisher-guide-notes.json",
+      "pr": 558,
+      "profile": "HELD_SIDECAR",
+      "sha256": "2517efbb0be3ef789fc8f063b19108769f4727655842cd47a68c69f9bed05d8b"
+    }
+  ],
+  "publisher_lineage_note": "All selected observations derive from the Paramount/CBS corporate publisher family; not independent corroborations.",
+  "schema_version": "trek-offline-draft-episode-review-v1",
+  "source_local_observation_count": 184,
+  "source_state": "DRAFT_PR_GIT_OBJECTS_NOT_ACCEPTED_MAIN",
+  "synopsis_publication_approval": "NONE",
+  "unresolved_description_alignment_hypotheses": [
+    {
+      "affected_source_ordinals": [
+        3,
+        4
+      ],
+      "candidate_pr": 560,
+      "hypothesis": "POSSIBLE_TITLE_DESCRIPTION_CROSS_ASSIGNMENT",
+      "resolution": "UNRESOLVED_NO_EXTERNAL_VERIFICATION"
+    }
+  ],
+  "withheld_identity_count": 1
+}

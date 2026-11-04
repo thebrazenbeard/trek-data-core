@@ -315,8 +315,10 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot.artwork-interpretive-film .artwork-record-context,
 .artwork-slot.artwork-interpretive-film .artwork-record-mark { display: none; }
 .artwork-slot.artwork-interpretive-film .artwork-kind { align-self: flex-start; margin: 5px 0 0 6px; padding: 3px 5px; background: #090b19e8; border-radius: 4px; }
-.artwork-slot.artwork-interpretive-film .artwork-record-title { margin-top: auto; width: 100%; max-width: 100%; padding: 7px 5px 5px; background: #090b19ef; text-shadow: 0 1px 3px #000; }
-.artwork-slot.artwork-interpretive-film .artwork-missing { padding: 3px; background: #090b19f5; }
+/* The adjacent metadata card already prints the title and source status;
+   do not bury the distinct image beneath duplicate text at 82px mobile. */
+.artwork-slot.artwork-interpretive-film .artwork-record-title,
+.artwork-slot.artwork-interpretive-film .artwork-missing { display: none; }
 .artwork-slot.artwork-literature { background-image: url('./art-original-literature.svg'); }
 .artwork-slot.artwork-short_form { background-image: url('./art-original-short-form.svg'); }
 .artwork-slot.artwork-audio { background-image: url('./art-original-audio.svg'); }

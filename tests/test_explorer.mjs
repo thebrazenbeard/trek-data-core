@@ -1835,6 +1835,9 @@ test('fourteen publisher film records receive original source-keyed illustration
     assert.match(frame.getAttribute('aria-label'), /Original geometric interpretation.*not an official film poster or still/);
     assert.match(frame.className, /artwork-interpretive-film/);
   }
+  assert.match(css,
+    /\.artwork-slot\.artwork-interpretive-film \.artwork-record-title,\s*\.artwork-slot\.artwork-interpretive-film \.artwork-missing \{ display: none; \}/,
+    'narrow film art must not be obscured by duplicate title/status overlays');
   assert.equal(traverse(nodes.get('film-list'), (node) => node.tagName === 'img').length, 0,
     'locally authored CSS images do not request optional external covers or posters');
   assert.equal(traverse(nodes.get('film-list'), (node) => node.className === 'artwork-record-source').length, 14,

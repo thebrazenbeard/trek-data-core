@@ -26,6 +26,8 @@ def make_report(records,**kwargs):
    batch_record_files=kwargs.pop('research_records',{})
    receipts=kwargs.pop('read_receipts',[])
    reviews=kwargs.pop('read_reviews',[])
+   bound_claims=kwargs.pop('bound_claims',[])
+   bound_reviews=kwargs.pop('bound_reviews',[])
    receipt_transform=kwargs.pop('receipt_transform',None)
    for relative,payload in manifests.items():
     dest=coverage.ROOT/relative;dest.parent.mkdir(parents=True,exist_ok=True)
@@ -33,7 +35,7 @@ def make_report(records,**kwargs):
    for relative,rows in batch_record_files.items():
     dest=coverage.ROOT/relative;dest.parent.mkdir(parents=True,exist_ok=True)
     dest.write_text(''.join(encoded(row)+'\n' for row in rows),encoding='utf-8')
-   for directory,items in (('read-receipts',receipts),('read-reviews',reviews)):
+   for directory,items in (('read-receipts',receipts),('read-reviews',reviews),('bound-claims',bound_claims),('bound-reviews',bound_reviews)):
     for payload in items:
      dest=coverage.ROOT/'coverage'/directory/(sha256_text(encoded(payload)).removeprefix('sha256:')+'.json')
      dest.parent.mkdir(parents=True,exist_ok=True)
@@ -84,6 +86,33 @@ def close_read_chain(close_overrides=None):
  return [WORK,SOURCE,BINDING,discovered,bound,full,indexed,close]
 def encoded(payload):return json.dumps(payload,sort_keys=True,separators=(',',':'))
 def sha256_text(raw):return 'sha256:'+hashlib.sha256(raw.encode('utf-8')).hexdigest()
+def source_bound_receipts(bound):
+ claim={'receipt_kind':'SOURCE_BOUND_CUSTODY_CLAIM','receipt_version':'1.0.0','work_id':'w1','source_id':'s1','binding_id':'b1',
+        'source_content_hash':SOURCE['content_hash'],'work_record_hash':coverage.content_hash(WORK),
+        'source_record_hash':coverage.content_hash(SOURCE),'binding_record_hash':coverage.content_hash(BINDING),
+        'scope_key':bound['scope_key'],'private_custody_receipt_sha256':sha256_text('synthetic owner-private receipt, not real media'),
+        'producer_role':bound['producer_role'],'producer_ref':bound['producer_ref'],
+        'verification_status':'CLAIM_PENDING_SEPARATE_REVIEW'}
+ claim_ref='bound-claim:'+sha256_text(encoded(claim))
+ review={'receipt_kind':'SOURCE_BOUND_CUSTODY_REVIEW','receipt_version':'1.0.0','claim_receipt_hash':claim_ref.removeprefix('bound-claim:'),
+         'work_id':'w1','source_id':'s1','binding_id':'b1','reviewer_role':'AUDITOR','reviewer_id':'synthetic-fixture-reviewer',
+         'decision':'APPROVED_FOR_SOURCE_BOUND',
+         'review_basis_refs':['private-custody-receipt:'+claim['private_custody_receipt_sha256']],
+         'rights_scope':'PRIVATE_RESEARCH_ONLY_NO_PUBLICATION_GRANT','identity_scope':'SOURCE_LOCAL_ONLY'}
+ review_ref='bound-review:'+sha256_text(encoded(review))
+ bound['basis_refs']=[claim_ref,review_ref]
+ return {'bound_claims':[claim],'bound_reviews':[review]},claim,review
+def source_bound_chain():
+ discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+ bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+ files,claim,review=source_bound_receipts(bound)
+ return [WORK,SOURCE,BINDING,discovered,bound],files,claim,review
+def refresh_source_bound_refs(records,files):
+ claim=files['bound_claims'][0];review=files['bound_reviews'][0]
+ claim_ref='bound-claim:'+sha256_text(encoded(claim))
+ review['claim_receipt_hash']=claim_ref.removeprefix('bound-claim:')
+ bound=next(row for row in records if row.get('coverage_state')=='SOURCE_BOUND')
+ bound['basis_refs']=[claim_ref,'bound-review:'+sha256_text(encoded(review))]
 def close_read_receipts(**receipt_changes):
  evidence={'record_type':'evidence','evidence_id':'ev1','work_id':'w1','source_id':'s1','evidence_kind':'depiction','fixture_only':False,
            'locator':{'line_start':1,'line_end':100},'observed':{'note':'Synthetic test only'}}
@@ -104,7 +133,9 @@ def close_read_receipts(**receipt_changes):
          'decision':'APPROVED_FOR_COVERAGE','review_basis_refs':['evidence:ev1']}
  review_ref='read-review:'+sha256_text(encoded(review))
  close=close_read_chain({'producer_ref':producer,'basis_refs':[read_ref,review_ref,'evidence:ev1']})
- return close+[evidence],{'research_manifests':{producer:batch},'research_records':{evidence_path:[evidence]},'read_receipts':[receipt],'read_reviews':[review]},receipt,review
+ bound=next(row for row in close if row.get('coverage_state')=='SOURCE_BOUND')
+ bound_files,_,_=source_bound_receipts(bound)
+ return close+[evidence],{'research_manifests':{producer:batch},'research_records':{evidence_path:[evidence]},'read_receipts':[receipt],'read_reviews':[review],**bound_files},receipt,review
 def refresh_close_read_refs(records,files):
  receipt=files['read_receipts'][0];review=files['read_reviews'][0]
  read_ref='read-receipt:'+sha256_text(encoded(receipt))
@@ -487,8 +518,58 @@ class CoverageLedgerTests(unittest.TestCase):
   self.assertTrue(any('supersession' in err and 'scope' in err for err in errors))
  def test_source_presence_does_not_imply_source_bound(self):
   report=make_report([WORK,SOURCE]); self.assertEqual(report['states']['SOURCE_BOUND']['numerator'],0); self.assertEqual(report['states']['FULL_TEXT_AVAILABLE']['numerator'],0)
+ def test_disk_backed_source_bound_must_not_count_without_private_custody_review_record(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  # Registries and a matching declared SHA-256 are not a Source byte witness.
+  with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*custody claim'):
+   make_report([WORK,SOURCE,BINDING,discovered,bound],works={'w1':WORK})
+ def test_source_bound_custody_claim_and_separate_auditor_review_are_required(self):
+  records,files,_,_=source_bound_chain()
+  result=make_report(records,works={'w1':WORK},**files)
+  self.assertEqual(result['states']['SOURCE_BOUND']['numerator'],1)
+  self.assertEqual(result['states']['FULL_TEXT_AVAILABLE']['numerator'],0)
+  files['bound_reviews']=[]
+  with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*bound-reviews'):
+   make_report(records,works={'w1':WORK},**files)
+ def test_source_bound_rejects_changed_private_digest_or_source_record_even_after_ref_resigning(self):
+  for mutation in ('invalid-digest','source-registry-changed'):
+   with self.subTest(mutation=mutation):
+    records,files,claim,_=source_bound_chain()
+    if mutation=='invalid-digest':
+     claim['private_custody_receipt_sha256']='sha256:NOT_A_REAL_DIGEST'
+    else:
+     claim['source_record_hash']='sha256:'+'f'*64
+    refresh_source_bound_refs(records,files)
+    with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*SHA-256|SOURCE_BOUND.*source_record_hash'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_source_bound_rejects_context_and_scope_rewrite_even_with_rehashed_claim(self):
+  for key,value in (('binding_id','another-binding'),('scope_key','sha256:'+'0'*64),('producer_role','TNG'),('verification_status','VERIFIED')):
+   with self.subTest(key=key):
+    records,files,claim,_=source_bound_chain();claim[key]=value;refresh_source_bound_refs(records,files)
+    with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*custody claim'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_source_bound_rejects_self_review_and_rights_publication_promotion(self):
+  for key,value in (('reviewer_role','LIBRARIAN'),('reviewer_id','LIBRARIAN'),('reviewer_id',' librarian '),('reviewer_id','librarian'),('decision','APPROVED_FOR_PUBLICATION'),
+                    ('rights_scope','UNRESTRICTED_PUBLICATION'),('identity_scope','CANONICAL_WORK_TRUTH'),
+                    ('review_basis_refs',['unverified:claim'])):
+   with self.subTest(key=key):
+    records,files,_,review=source_bound_chain();review[key]=value;refresh_source_bound_refs(records,files)
+    with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*custody'):
+     make_report(records,works={'w1':WORK},**files)
+ def test_source_bound_receipt_paths_reject_symlink_and_hardlink_alias(self):
+  for kind in ('symlink','hardlink'):
+   with self.subTest(kind=kind):
+    records,files,claim,_=source_bound_chain()
+    def swap(root):
+     path=root/'coverage'/'bound-claims'/(sha256_text(encoded(claim)).removeprefix('sha256:')+'.json')
+     alias=root/'coverage'/'copy.json';alias.write_text(path.read_text(encoding='utf-8'),encoding='utf-8')
+     if kind=='symlink':path.unlink();path.symlink_to(alias)
+     else:path.unlink();os.link(alias,path)
+    with self.assertRaisesRegex(ValueError,'SOURCE_BOUND.*symlink|SOURCE_BOUND.*hardlinked'):
+     make_report(records,works={'w1':WORK},receipt_transform=swap,**files)
  def test_source_bound_does_not_imply_later_ledgers(self):
-  discovered=event('d0','DISCOVERED',role='LIBRARIAN'); bound=event('c1','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0']); records=[WORK,SOURCE,BINDING,discovered,bound]; errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING}); self.assertEqual(errors,[]); result=make_report(records,works={'w1':WORK},denominator_snapshot=denominator()); self.assertEqual(result['states']['SOURCE_BOUND']['numerator'],1); self.assertEqual(result['states']['FULL_TEXT_AVAILABLE']['numerator'],0); self.assertEqual(result['states']['CLOSE_READ']['numerator'],0)
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN'); bound=event('c1','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0']); bound_files,_,_=source_bound_receipts(bound);records=[WORK,SOURCE,BINDING,discovered,bound];errors=coverage.validate_coverage(records,works={'w1':WORK},sources={'s1':SOURCE},bindings={'b1':BINDING});self.assertEqual(errors,[]);result=make_report(records,works={'w1':WORK},denominator_snapshot=denominator(),**bound_files);self.assertEqual(result['states']['SOURCE_BOUND']['numerator'],1);self.assertEqual(result['states']['FULL_TEXT_AVAILABLE']['numerator'],0);self.assertEqual(result['states']['CLOSE_READ']['numerator'],0)
  def test_completed_staging_read_does_not_advance_accepted_coverage(self):
   proposed=event('c1','CLOSE_READ',status='PROPOSED',role='TNG',source_id='s1'); report=make_report([WORK,SOURCE,proposed],works={'w1':WORK},denominator_snapshot=denominator()); self.assertEqual(report['states']['CLOSE_READ']['numerator'],0); self.assertEqual(report['history_event_count'],1)
  def test_local_entity_presence_does_not_imply_entity_linked(self):

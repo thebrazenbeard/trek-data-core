@@ -1,0 +1,25 @@
+{
+  "receipt_id": "tos-s1-paramount-rendered-guide-20261104",
+  "role": "TOS",
+  "status": "HELD_METADATA_OBSERVATION",
+  "retrieved_date_utc": "2026-11-04",
+  "publisher": "Paramount+",
+  "publisher_family": "publisher:paramount",
+  "source_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+  "representation": "COMPLETE_PUBLICLY_RENDERED_EPISODE_GUIDE_TEXT",
+  "raw_html_bytes_captured": false,
+  "raw_html_sha256": null,
+  "audiovisual_work_read_or_viewed": false,
+  "source_work_binding": "NONE",
+  "accepted_coverage_effect": "NONE",
+  "canonical_work_identity_effect": "NONE",
+  "original_synopses_generated": 0,
+  "publisher_guide_cards": [
+    {"season": 1, "episode_number": 1, "title": "The Cage", "locator": "Season 1 > The Cage > S1 E1"},
+    {"season": 1, "episode_number": 2, "title": "The Man Trap", "locator": "Season 1 > The Man Trap > S1 E2"},
+    {"season": 1, "episode_number": 3, "title": "Charlie \"X\"", "locator": "Season 1 > Charlie \"X\" > S1 E3"},
+    {"season": 1, "episode_number": 4, "title": "Where No Man Has Gone Before", "locator": "Season 1 > Where No Man Has Gone Before > S1 E4"},
+    {"season": 1, "episode_number": 5, "title": "The Naked Time", "locator": "Season 1 > The Naked Time > S1 E5"}
+  ],
+  "review_boundary": "Publisher listing fields only. No source page bytes, dialogue, audiovisual work, independently held script, thumbnail or copyright clearance."
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S3.FINAL4.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s3-paramountplus-guide-html-final4-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/3/",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 21:56:03 GMT",
+    "observed_at_utc": "2026-11-04T21:56:03.917959+00:00",
+    "raw_response_bytes": 308190,
+    "raw_response_sha256": "6c27e3a8ab1e8a5b7842f66bc51ecc142abe401aaefa08be201acd6a36aac7be",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py",
+    "method": "Fresh complete read-only official guide HTML GET and parser traversal of 24 descriptions; final E21–E24 descriptions read to write four original brief paraphrases; no linked video/images."
+  },
+  "prior_batches": [
+    {
+      "path": "proposals/research/ent/enterprise-s3-first5-official-guide-20261104/records.json",
+      "sha256": "05e7375949b0facdbda22bc2e0a3ff8ec6a46c9cdb901a34ac5fd4e98d837f27",
+      "commit": "67e997fe4db0eaa20a96b311c91006520c767848",
+      "source_response_sha256": "227c1cbcbafd29cabb62ff83e73cccd2466604ab0e3c4462920badf774453391",
+      "episode_scope": [
+        1,
+        5
+      ]
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-last5-official-guide-20261104/records.json",
+      "sha256": "54e50b5e169a961912f2cde1d1a19bdf8eabfc704bd5b216b40902df9ff302d7",
+      "commit": "865291996cf0c16286f1aea05fe562c354a83408",
+      "source_response_sha256": "0cf747270fe37f0027b4a4c90937e2bd2b2ca91442768e6f7fafcc22adee1253",
+      "episode_scope": [
+        6,
+        10
+      ]
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-third5-official-guide-20261104/records.json",
+      "sha256": "f8dd841d56f6551824dbac89739893fb0b924c46743cb96ff6226d6d8fe9572c",
+      "commit": "5719fcab4cac59c868d80456cb10a3110e728600",
+      "source_response_sha256": "3a970117c2e224b998be2b223e4f2ee925c41acb8c0c79eca34f4588d89d06c9",
+      "episode_scope": [
+        11,
+        15
+      ]
+    },
+    {
+      "path": "proposals/research/ent/enterprise-s3-fourth5-official-guide-20261104/records.json",
+      "sha256": "5783a77f9910588ac4647e9c3ca384faae38912fa893749be5e04d9b032046ca",
+      "commit": "e4fac2d43c0e24f7259a9eb22200d4dbcda1ee3f",
+      "source_response_sha256": "b939d2a77786228811338f2c3b3b4d7c2bf0babc289f47768339945e017283bb",
+      "episode_scope": [
+        16,
+        20
+      ]
+    }
+  ],
+  "observed_full_guide_card_count": 24,
+  "all_24_metadata_and_description_fingerprints_match_four_prior_snapshots": true,
+  "raw_html_digest_differs_from_four_predecessors": true,
+  "selected_tranche_episode_ordinals": [
+    21,
+    22,
+    23,
+    24
+  ],
+  "final_four_source_descriptions_inspected": 4,
+  "final_four_description_total_chars": 699,
+  "final_four_analytical_synopses_proposed": 4,
+  "final_four_guide_cards": [
+    {
+      "display_order": 21,
+      "season": 3,
+      "episode": 21,
+      "analytics_ordinal": 21,
+      "title": "E (squared)",
+      "video_route_path": "/shows/video/oJeuPw0_lI36D1DJ_RAQMA0a0qchtYve/",
+      "publisher_datetime": "2004-05-05T22:00:00-07:00",
+      "html_anchor_line": 2042,
+      "html_description_line": 2060,
+      "description_chars": 185,
+      "description_sha256": "5570b50cb63f0043941cbf9a2469b9414152432f4628384deeb99989055b483a"
+    },
+    {
+      "display_order": 22,
+      "season": 3,
+      "episode": 22,
+      "analytics_ordinal": 22,
+      "title": "The Council",
+      "video_route_path": "/shows/video/1479408410/",
+      "publisher_datetime": "2004-05-12T20:00:00-07:00",
+      "html_anchor_line": 2070,
+      "html_description_line": 2088,
+      "description_chars": 172,
+      "description_sha256": "51e321ada9f03d4b72e64fa5f98e63b4d99b8d8092765c5eef3d4354fbb30956"
+    },
+    {
+      "display_order": 23,
+      "season": 3,
+      "episode": 23,
+      "analytics_ordinal": 23,
+      "title": "Countdown",
+      "video_route_path": "/shows/video/1479412103/",
+      "publisher_datetime": "2004-05-19T20:00:00-07:00",
+      "html_anchor_line": 2098,
+      "html_description_line": 2116,
+      "description_chars": 163,
+      "description_sha256": "ab20b5e99082d383d162e6fc721d9d945f0e7f871d89fd5f2b02d45b4485812d"
+    },
+    {
+      "display_order": 24,
+      "season": 3,
+      "episode": 24,
+      "analytics_ordinal": 24,
+      "title": "Zero Hour",
+      "video_route_path": "/shows/video/1479413796/",
+      "publisher_datetime": "2004-05-26T20:00:00-07:00",
+      "html_anchor_line": 2126,
+      "html_description_line": 2144,
+      "description_chars": 179,
+      "description_sha256": "f29bf2d5a9eec9512619456ed68a93dcc0df61527ad11f5eba76bee9025c4343"
+    }
+  ],
+  "held_series_guide_description_partition_summary": {
+    "prior_analyses": 20,
+    "this_tranche_analyses": 4,
+    "total_nonoverlapping_source_relative_description_proposals": 24,
+    "source_local_guide_cards_observed": 24,
+    "accepted_work_coverage_or_close_read_claims": 0,
+    "final_publisher_card_ordinal": 24,
+    "fictional_episode_25_invented": false,
+    "status": "HELD_PUBLISHER_GUIDE_DESCRIPTIONS_COMPLETE_NOT_EPISODE_CONTENT_CLOSE_READ"
+  },
+  "local_entities": [
+    {
+      "id": "ent-s3-e21-publisher-card",
+      "source_local_episode_hint": 21,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e22-publisher-card",
+      "source_local_episode_hint": 22,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e23-publisher-card",
+      "source_local_episode_hint": 23,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "ent-s3-e24-publisher-card",
+      "source_local_episode_hint": 24,
+      "source_kind": "PUBLISHER_EPISODE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s3-e21-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-final4-20261104",
+      "local_entity_id": "ent-s3-e21-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 21,
+      "locator": "HTML 2060, exact response digest in source receipt",
+      "publisher_description_sha256": "5570b50cb63f0043941cbf9a2469b9414152432f4628384deeb99989055b483a",
+      "original_paraphrase": "Approaching a subspace passage toward Degra, Enterprise encounters another version of itself staffed by descendants of the original crew."
+    },
+    {
+      "id": "ent-s3-e22-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-final4-20261104",
+      "local_entity_id": "ent-s3-e22-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 22,
+      "locator": "HTML 2088, exact response digest in source receipt",
+      "publisher_description_sha256": "51e321ada9f03d4b72e64fa5f98e63b4d99b8d8092765c5eef3d4354fbb30956",
+      "original_paraphrase": "T'Pol sets out to recover a Sphere's memory core while Archer tells the Xindi Council that humans are not its true enemy."
+    },
+    {
+      "id": "ent-s3-e23-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-final4-20261104",
+      "local_entity_id": "ent-s3-e23-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 23,
+      "locator": "HTML 2116, exact response digest in source receipt",
+      "publisher_description_sha256": "ab20b5e99082d383d162e6fc721d9d945f0e7f871d89fd5f2b02d45b4485812d",
+      "original_paraphrase": "As Reptilians prepare to arm the weapon, Archer seeks Aquatic support for a joint interception with other Xindi factions and Enterprise."
+    },
+    {
+      "id": "ent-s3-e24-guide-description",
+      "source_id": "ent-s3-paramountplus-guide-html-final4-20261104",
+      "local_entity_id": "ent-s3-e24-publisher-card",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "card_ordinal": 24,
+      "locator": "HTML 2144, exact response digest in source receipt",
+      "publisher_description_sha256": "f29bf2d5a9eec9512619456ed68a93dcc0df61527ad11f5eba76bee9025c4343",
+      "original_paraphrase": "Archer's team races to stop the Xindi weapon before it reaches Earth while Enterprise attempts to destroy a crucial Sphere despite interference from its Builders."
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "ent-s3-e21-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e21-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e22-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e22-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e23-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e23-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "ent-s3-e24-publisher-describes",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "ent-s3-e24-guide-description",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "holds": [
+    "Publisher-guide descriptions now have 24 non-overlapping HELD source-local analyses across five batches, not 24 accepted Works or close reads.",
+    "Final card on complete official guide is E24 Zero Hour; E25 is not invented, nor is source-derived episode ordering promoted to global Work identity.",
+    "All five complete HTML reads share one Paramount+ publisher lineage and do not independently corroborate claimed fictional events.",
+    "No episode video, audio, transcripts, scripts, raw HTML, publisher full paragraphs or image bytes were accessed for release/committed.",
+    "No Source/Work admission, canonical reconciliation, audiovisual CLOSE_READ, governed coverage/denominator, or Explorer synopsis effect."
+  ]
+}

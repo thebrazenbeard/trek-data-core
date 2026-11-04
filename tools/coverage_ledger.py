@@ -77,15 +77,15 @@ def _open_governed(path,directory=False):
  finally:
   if fd is not None:os.close(fd)
 
-def read_governed_text(path,expected_identity=None,require_single_link=False):
- """Read stable file bytes with an enumeration-time identity check when available."""
+def read_governed_bytes(path,expected_identity=None,require_single_link=False):
+ """Read exact stable bytes; do not normalize CRLF before content hashing."""
  with _open_governed(path) as fd:
   info=os.fstat(fd);before=_file_identity(info)
   if require_single_link and info.st_nlink!=1:
    raise ValueError(f'{path}: governed receipt must not be hardlinked')
   if expected_identity is not None and before!=expected_identity:
    raise ValueError(f'{path}: governed file changed after enumeration')
-  with os.fdopen(os.dup(fd),'r',encoding='utf-8') as stream:raw=stream.read()
+  with os.fdopen(os.dup(fd),'rb') as stream:raw=stream.read()
   after=os.fstat(fd)
   if require_single_link and after.st_nlink!=1:
    raise ValueError(f'{path}: governed receipt became hardlinked during read')
@@ -99,6 +99,10 @@ def read_governed_text(path,expected_identity=None,require_single_link=False):
   if _file_identity(os.fstat(fd))!=before:
    raise ValueError(f'{path}: governed file replaced during read')
  return raw
+
+def read_governed_text(path,expected_identity=None,require_single_link=False):
+ """Decode unchanged governed bytes as strict UTF-8, preserving line endings."""
+ return read_governed_bytes(path,expected_identity,require_single_link).decode('utf-8')
 
 def read_jsonl(path,expected_identity=None,require_single_link=False):
  rows=[]
@@ -259,10 +263,10 @@ def _governed_receipt(ref,prefix,subdirectory):
   raise ValueError(f'invalid {prefix} reference')
  digest=ref.removeprefix(prefix)
  path=ROOT/'coverage'/subdirectory/(digest.removeprefix('sha256:')+'.json')
- raw=read_governed_text(path,require_single_link=True)
- if 'sha256:'+hashlib.sha256(raw.encode('utf-8')).hexdigest()!=digest:
+ raw=read_governed_bytes(path,require_single_link=True)
+ if 'sha256:'+hashlib.sha256(raw).hexdigest()!=digest:
   raise ValueError(f'{prefix} bytes do not match content-addressed SHA-256')
- receipt=strict_json(raw)
+ receipt=strict_json(raw.decode('utf-8'))
  if not isinstance(receipt,dict):raise ValueError(f'{prefix} must be an object')
  return receipt,digest
 

@@ -1,0 +1,28 @@
+{
+  "schema_version": "trek-lit-shadows-audio-identity-audit-v1",
+  "proposal_only": true,
+  "publisher_source_url": "https://www.simonandschuster.com/books/Shadows-of-the-Sun/Michael-Jan-Friedman/Star-Trek-The-Original-Series/9780743546744",
+  "publisher_page_checked_utc": "2026-11-04",
+  "publisher_page_metadata": {
+    "title": "Shadows of the Sun",
+    "creator": "Michael Jan Friedman",
+    "reader": "James Doohan",
+    "isbn13": "9780743546744",
+    "edition_format": "ABRIDGED_AUDIO_DOWNLOAD",
+    "imprint": "Simon & Schuster Audio",
+    "publication_date": "1993-08-01",
+    "runtime_minutes": 180
+  },
+  "publisher_description_spelling_disagreement": "SSAN_VS_SUSAN_UNRESOLVED",
+  "publisher_upstream_family_count": 1,
+  "private_opf_edition_identified": false,
+  "private_opf_to_audio_isbn_identity_verified": false,
+  "audio_full_content_read": false,
+  "private_ebook_full_content_read": false,
+  "accepted_source_work_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "accepted_evidence_effect": "NONE",
+  "coverage_effect": "NONE",
+  "public_synopsis_effect": "NONE",
+  "artwork_release_effect": "NONE"
+}

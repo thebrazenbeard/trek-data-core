@@ -359,6 +359,12 @@ def coverage_key(row):
  # A correction may not transfer accepted coverage to another Work, Source,
  # or Librarian binding by reusing a subject and a forged scope hash.
  return (row.get('coverage_state'),row.get('subject_type'),row.get('subject_id'),row.get('work_id'),row.get('source_id'),row.get('binding_id'),row.get('scope_key'))
+def binding_claims(row):
+ """Return explicit source-binding identities, including a binding subject."""
+ claims=[]
+ if row.get('binding_id') is not None:claims.append(row['binding_id'])
+ if row.get('subject_type')=='SOURCE_WORK_BINDING':claims.append(row.get('subject_id'))
+ return claims
 def role_errors(row):
  state=row.get('coverage_state');role=row.get('producer_role');errors=[]
  if state in {'DISCOVERED','SOURCE_BOUND'} and role!='LIBRARIAN':errors.append(f'{state} must be produced by LIBRARIAN')
@@ -469,13 +475,21 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
   if state=='AUDITED' and not row.get('audit_ref'):errors.append(f'{eid}: AUDITED requires audit_ref')
   predecessor_state=PREDECESSOR.get(state)
   if predecessor_state:
-   candidates=[]
+   candidates=[];binding_context_mismatch=False
    for prereq_id in row.get('prerequisite_event_ids',[]):
     prereq=active.get(prereq_id)
     if prereq and prereq.get('coverage_state')==predecessor_state and prereq.get('work_id')==work_id:
-     if predecessor_state in SOURCE_STATES and state in SOURCE_STATES and prereq.get('source_id')!=source_id:continue
+     if predecessor_state in SOURCE_STATES and state in SOURCE_STATES:
+      if prereq.get('source_id')!=source_id:continue
+      previous_bindings=binding_claims(prereq);current_bindings=binding_claims(row)
+      # A later stage cannot substitute an unaccepted metadata route for its
+      # eligible SOURCE_BOUND lineage while keeping the same Source and Work.
+      if current_bindings and (len(set(previous_bindings))!=1 or any(claim!=previous_bindings[0] for claim in current_bindings)):
+       binding_context_mismatch=True;continue
      candidates.append(prereq_id)
-   if not candidates:errors.append(f'{eid}: accepted {state} requires active accepted {predecessor_state} prerequisite for the same governed context')
+   if not candidates:
+    if binding_context_mismatch:errors.append(f'{eid}: accepted {state} binding context must match active accepted {predecessor_state} prerequisite')
+    else:errors.append(f'{eid}: accepted {state} requires active accepted {predecessor_state} prerequisite for the same governed context')
  return errors
 def normalize_denominator_snapshot(snapshot,works,origin_path=None,enforce_origin=False):
  if snapshot is None:return None

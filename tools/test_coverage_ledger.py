@@ -317,6 +317,12 @@ class CoverageLedgerTests(unittest.TestCase):
   bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
   with self.assertRaisesRegex(ValueError,'exact accepted Source SHA-256 BYTE_HASH'):
    make_report([WORK,SOURCE,bad_binding,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_bound_rejects_accepted_metadata_only_binding(self):
+  metadata_only=dict(BINDING,mapping_role='METADATA_ONLY')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  with self.assertRaisesRegex(ValueError,'metadata-only binding'):
+   make_report([WORK,SOURCE,metadata_only,discovered,bound],works={'w1':WORK})
  def test_source_bound_rejects_blank_binding_method(self):
   missing_method=dict(BINDING,method='')
   discovered=event('d0','DISCOVERED',role='LIBRARIAN')
@@ -335,6 +341,37 @@ class CoverageLedgerTests(unittest.TestCase):
   bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'],subject_type='WORK',subject_id='forged:subject',scope={'work_id':'w1','source_id':'s-mismatch'})
   with self.assertRaisesRegex(ValueError,'subject|scope'):
    make_report([WORK,SOURCE,BINDING,discovered,bound],works={'w1':WORK},denominator_snapshot=denominator())
+ def test_source_stage_cannot_switch_to_proposed_metadata_only_binding(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  legitimate_full=event('f0','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0'],representation_scope={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'})
+  proposed_metadata=dict(BINDING,binding_id='b-proposed-route',lifecycle='PROPOSED',mapping_role='METADATA_ONLY',basis=[])
+  attack_full=event('f1','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',binding_id='b-proposed-route',prereqs=['b0'],representation_scope={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'})
+  attack_indexed=event('i1','STRUCTURALLY_INDEXED',role='TNG',source_id='s1',binding_id='b-proposed-route',prereqs=['f0'])
+  for attack,prerequisites in ((attack_full,[]),(attack_indexed,[legitimate_full])):
+   with self.subTest(state=attack['coverage_state']):
+    with self.assertRaisesRegex(ValueError,'binding context'):
+     make_report([WORK,SOURCE,BINDING,proposed_metadata,discovered,bound,*prerequisites,attack],works={'w1':WORK})
+ def test_source_stage_accepts_new_versioned_binding_with_own_active_prerequisite(self):
+  newer=dict(BINDING,binding_id='b2',supersedes_binding_id='b1')
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  old_bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  new_bound=event('b2-bound','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b2',prereqs=['d0'])
+  full=event('f2','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',binding_id='b2',prereqs=['b0','b2-bound'],representation_scope={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'})
+  report=make_report([WORK,SOURCE,BINDING,newer,discovered,old_bound,new_bound,full],works={'w1':WORK})
+  self.assertEqual(report['states']['FULL_TEXT_AVAILABLE']['attained_count'],1)
+  with self.assertRaisesRegex(ValueError,'binding context'):
+   make_report([WORK,SOURCE,BINDING,newer,discovered,old_bound,dict(full,prerequisite_event_ids=['b0'])],works={'w1':WORK})
+ def test_same_binding_accepted_correction_is_valid_active_prerequisite(self):
+  discovered=event('d0','DISCOVERED',role='LIBRARIAN')
+  old_bound=event('b0','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'])
+  corrected=event('b0-corrected','SOURCE_BOUND',role='LIBRARIAN',source_id='s1',binding_id='b1',prereqs=['d0'],supersedes='b0',reason='corrected source binding receipt')
+  full=event('f0','FULL_TEXT_AVAILABLE',role='TNG',source_id='s1',prereqs=['b0-corrected'],representation_scope={'representation_type':'synthetic transcript','completeness_scope':'complete synthetic fixture'})
+  report=make_report([WORK,SOURCE,BINDING,discovered,old_bound,corrected,full],works={'w1':WORK})
+  self.assertEqual(report['states']['SOURCE_BOUND']['event_count'],1)
+  self.assertEqual(report['states']['FULL_TEXT_AVAILABLE']['attained_count'],1)
+  with self.assertRaisesRegex(ValueError,'active accepted SOURCE_BOUND prerequisite'):
+   make_report([WORK,SOURCE,BINDING,discovered,old_bound,corrected,dict(full,prerequisite_event_ids=['b0'])],works={'w1':WORK})
  def test_resolved_denominator_rejects_proposed_work_even_with_self_hash(self):
   proposed=dict(WORK,status='PROPOSED')
   with self.assertRaisesRegex(ValueError,'ACCEPTED|authoritative|registry'):

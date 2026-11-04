@@ -119,6 +119,18 @@ class CoverageLedgerTests(unittest.TestCase):
     with self.assertRaisesRegex(ValueError, 'non-finite'):
      coverage.strict_json('{"invalid":' + token + '}')
 
+ def test_strict_json_rejects_exponent_overflow(self):
+  for token in ('1e9999', '-1e9999', '1E+9999', '-1E+9999'):
+   with self.subTest(token=token):
+    with self.assertRaisesRegex(ValueError, 'non-finite'):
+     coverage.strict_json('{"invalid":' + token + '}')
+
+ def test_strict_json_retains_valid_numbers_and_strings(self):
+  self.assertEqual(coverage.strict_json('{"decimal":1.25,"exponent":-3e-2,"integer":9007199254740993,"quoted":"1e9999"}'),
+                   {'decimal':1.25,'exponent':-0.03,'integer':9007199254740993,'quoted':'1e9999'})
+  with self.assertRaisesRegex(ValueError, 'duplicate JSON key'):
+   coverage.strict_json('{"integer":1,"integer":2}')
+
  def test_scanner_rejects_final_symlink_swapped_after_enumeration(self):
   for extension in ('.json','.jsonl'):
    with self.subTest(extension=extension),tempfile.TemporaryDirectory() as tmp:

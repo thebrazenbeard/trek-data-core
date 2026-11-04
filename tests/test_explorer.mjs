@@ -14,7 +14,7 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'lore-chat-form', 'lore-chat-input',
-  'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
+  'lore-chat-send', 'lore-chat-clear', 'lore-chat-help', 'lore-realworld-help', 'lore-chat-status', 'lore-chat-log',
   'discovery-directory', 'episode-source-cards',
   'artwork-toggle', 'artwork-state', 'artwork-gallery', 'artwork-gallery-summary',
   'artwork-nav-link', 'artwork-nav-count', 'artwork-gallery-list', 'publisher-edition-nav-count', 'publisher-edition-state',
@@ -2542,6 +2542,23 @@ test('Badgey speaks locally without a token, server, model, or implicit canon au
   assert.match(nodes.get('lore-chat-log').textContent, /not a documented canon event/i);
   assert.equal(nodes.get('lore-chat-input').value, '');
   assert.match(nodes.get('lore-chat-status').textContent, /procedural reply/i);
+});
+
+test('One-click visitor-requested real-world help is outside Badgey roleplay and requires no chat input', async () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /id="lore-chat-help"[^>]*type="button"[^>]*aria-describedby="lore-realworld-help"/);
+  assert.match(html, /id="lore-realworld-help"[^>]*tabindex="-1"/, 'the support region can receive programmatic focus');
+  const nodes = await runWithIndex(catalog);
+  nodes.get('lore-chat-input').value = 'Unsent private draft';
+  nodes.get('lore-chat-help').fire('click');
+  assert.equal(nodes.get('lore-realworld-help').focused, true, 'keyboard/screen-reader focus follows the help request');
+  assert.equal(nodes.get('lore-chat-input').value, 'Unsent private draft', 'help does not submit or erase a draft');
+  assert.equal(nodes.chatRequests.length, 0);
+  assert.equal(nodes.get('lore-chat-log').children.length, 1);
+  assert.match(nodes.get('lore-chat-log').textContent, /Real-world help.*Not Badgey/i);
+  assert.match(nodes.get('lore-chat-log').textContent, /emergency services|988|911/i);
+  assert.match(nodes.get('lore-chat-status').textContent, /not.*(?:assess|monitor|contact)|visitor-requested help/i);
+  assert.doesNotMatch(nodes.get('lore-chat-log').textContent, /fictional escape|digital bars|Rutherford/i);
 });
 
 test('Badgey preserves the Daystrom alternate-fiction boundary across specific prompts', async () => {

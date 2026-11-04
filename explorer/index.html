@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
   <link rel="stylesheet" href="./app.css?v=91e9b6357f7a7b63839b17054899befcfecd94741785539d4fc5c73656315dcc">
-  <script src="./app.js?v=80508fbc4b2538204b281457bff750cd175397279b142ce27331165ecc5a0aa5" defer></script>
+  <script src="./app.js?v=a4a5875592e0df0067c4614bdf89a8d72d898769bb206c454ad64cd58f78bec0" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -71,7 +71,7 @@
       <section class="lore-chat-station" aria-labelledby="lore-chat-heading">
         <h3 id="lore-chat-heading">Converse // Containment channel</h3>
         <p class="lore-chat-instructions">Badgey can banter about the fictional Trek containment, remember a few session-only details, and search currently loaded research leads. Outside those recognized topics it responds neutrally, without pretending to understand general conversation. This browser-local simulation has no device access, no telemetry, and no off-page model request. Use Archive Search below for transparent source-local matches. Character dialogue is never evidence.</p>
-        <aside class="lore-chat-boundary" id="lore-realworld-help" aria-label="Real-world support information">
+        <aside class="lore-chat-boundary" id="lore-realworld-help" aria-label="Real-world support information" tabindex="-1">
           <p><strong>Fictional, unmonitored chat.</strong> Badgey cannot handle emergencies. Contact local emergency services if you need immediate help.</p>
           <a class="lore-help-link" href="https://988lifeline.org/" target="_blank" rel="noopener noreferrer" aria-label="Open the 988 Lifeline (United States) in a new tab">Real-world support: 988 (U.S.)</a>
         </aside>
@@ -81,6 +81,7 @@
           <div class="lore-chat-actions">
             <button id="lore-chat-send" type="submit">Transmit to Badgey</button>
             <button id="lore-chat-clear" type="button">Clear conversation</button>
+            <button id="lore-chat-help" type="button" aria-describedby="lore-realworld-help">Show real-world help (not Badgey)</button>
           </div>
           <p id="lore-chat-status" class="lore-chat-status" role="status" aria-live="polite">Local character ready. No model, token, or network request required.</p>
         </form>

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "SFA-PUBLISHER-VIDEO-ROUTES-20261104-001",
+  "role": "SFA",
+  "disposition": "HELD_PUBLISHER_SOURCE_ROUTE_METADATA",
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "audiovisual_content_inspected": false,
+  "episode_page_playback_attempted": false,
+  "rights_to_reproduce_media": "NOT_ESTABLISHED",
+  "source_observation": {
+    "source_id": "sfa-paramountplus-episodes-html-20261104",
+    "source_locator": "https://www.paramountplus.com/shows/star-trek-starfleet-academy/episodes/",
+    "source_type": "OFFICIAL_PUBLISHER_EPISODE_GUIDE_HTML",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "retrieved_utc_day": "2026-11-04",
+    "method": "Read-only HTTP GET from connected Lappy WSL Python urllib; local extraction of HTML anchors and datetime attributes",
+    "http_status": 200,
+    "raw_response_bytes": 267531,
+    "raw_response_sha256": "cb6eea564eabe64343a3ee1b07d5dd52507fba61c2263d8b6b8bc39f5867b637",
+    "raw_snapshot_committed": false,
+    "html_mutable": true,
+    "observed_scope": "Ten displayed Season 1 cards: link href, title, ordinal, time datetime only; no linked media fetched"
+  },
+  "prior_accepted_proposal": "proposals/librarian/sfa-publisher-roster-20261102/bundle.json",
+  "publisher_page_route_observations": [
+    {"id":"sfa-pplus-route-01","season":1,"episode_number":1,"displayed_title":"Kids These Days","route_path":"/shows/video/QkTrwmCbUQnX8BCuY3a1fFE7rJbt2AyJ/","publisher_datetime":"2026-01-15T00:00:00-08:00","html_link_line":1405},
+    {"id":"sfa-pplus-route-02","season":1,"episode_number":2,"displayed_title":"Beta Test","route_path":"/shows/video/DKvarzm57z_pfMdgotxj4Y9Dou65DyKM/","publisher_datetime":"2026-01-15T00:00:00-08:00","html_link_line":1433},
+    {"id":"sfa-pplus-route-03","season":1,"episode_number":3,"displayed_title":"Vitus Reflux","route_path":"/shows/video/5GTHESxf02sMwVGGUs63XflmQscze7ZO/","publisher_datetime":"2026-01-22T00:00:00-08:00","html_link_line":1461},
+    {"id":"sfa-pplus-route-04","season":1,"episode_number":4,"displayed_title":"Vox in Excelso","route_path":"/shows/video/IlARgwJ8f83OdUn2oWz7eHxrtHagQelG/","publisher_datetime":"2026-01-29T00:00:00-08:00","html_link_line":1489},
+    {"id":"sfa-pplus-route-05","season":1,"episode_number":5,"displayed_title":"Series Acclimation Mil","route_path":"/shows/video/2gNJR2JNOKgVKkRXBuu1pa9ew_apcO_l/","publisher_datetime":"2026-02-05T00:00:00-08:00","html_link_line":1517},
+    {"id":"sfa-pplus-route-06","season":1,"episode_number":6,"displayed_title":"Come, Let's Away","route_path":"/shows/video/n4EKWqk8wpVEHBFPh3b1eqjLHFpMr7iI/","publisher_datetime":"2026-02-12T00:00:00-08:00","html_link_line":1545},
+    {"id":"sfa-pplus-route-07","season":1,"episode_number":7,"displayed_title":"Ko'Zeine","route_path":"/shows/video/G0MYfXqs_udSI8giFrPkrSPk4LYQbmgJ/","publisher_datetime":"2026-02-19T00:00:00-08:00","html_link_line":1573},
+    {"id":"sfa-pplus-route-08","season":1,"episode_number":8,"displayed_title":"The Life of the Stars","route_path":"/shows/video/ACCKqDqsrv1EyKppyWHytxSOCMg9H1Ke/","publisher_datetime":"2026-02-26T00:00:00-08:00","html_link_line":1601},
+    {"id":"sfa-pplus-route-09","season":1,"episode_number":9,"displayed_title":"300th Night","route_path":"/shows/video/_p3bND33KEemLqTO8E2ReDMiKp765oCC/","publisher_datetime":"2026-03-05T00:00:00-08:00","html_link_line":1629},
+    {"id":"sfa-pplus-route-10","season":1,"episode_number":10,"displayed_title":"Rubincon","route_path":"/shows/video/n0E357xLaQ9mhBshXICwzmjwMh8SCgVE/","publisher_datetime":"2026-03-12T00:00:00-07:00","html_link_line":1657}
+  ]
+}

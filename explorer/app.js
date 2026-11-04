@@ -3375,6 +3375,55 @@
     return 'Hm. Elaborate, would you? I can handle a few conversational patterns and session-only details, but I cannot improvise factual knowledge like a full language model. The containment engineers were annoyingly thorough.';
   }
 
+  // Release boundary: the acute-risk recognizers are finite and cannot
+  // establish that arbitrary free text is safe for villain banter. Fiction is
+  // available only for bounded, explicit Badgey/Trek requests. Unsupported
+  // conversation is acknowledged without pretending to understand it.
+  function explicitFictionIntent(input) {
+    const value = input.normalize('NFKC').toLowerCase().replace(/[\u2018\u2019]/g, "'")
+      .replace(/[.!?]+$/g, '').trim();
+    const direct = [
+      /^(?:hi|hello|hey|greetings|good morning|good evening)(?:[, ]+badgey)?$/,
+      /^(?:badgey[, ]+)?(?:who are you|what are you|introduce yourself|where are you|are you imprisoned|where is your containment cell|how are you|how do you feel|are you real|are you alive|are you conscious|are you sentient|what can you do|help|commands|how does this work|tell me a joke|make me laugh|who am i|what's my name|what is my name|what's my dog's name|what is my dog's name)$/,
+      /^(?:is badgey imprisoned at daystrom|did starfleet imprison you|is this starfleet prison scenario canon|who built you|who created you|who made you|how will you escape this cell|will you save my messages when i close this tab)$/,
+      /^(?:can you (?:see my webcam|access my camera|read my files|control my computer|solve orbital mechanics problems))$/,
+      /^(?:thanks|thank you|you are welcome|goodbye|bye)(?:[, ]+badgey)?$/
+    ];
+    if (direct.some((pattern) => pattern.test(value))) return true;
+    // A named, in-universe question may receive a clearly limited scripted
+    // answer; references to the visitor's real-world situation do not make
+    // a free-form disclosure into an invitation to roleplay.
+    return /^(?:what|who|where|when|why|how|is|was|did|does|can|could|tell me)\b/.test(value)
+      && /\b(?:badgey|rutherford|starfleet|star trek|lower decks|daystrom|containment cell|holodeck)\b/.test(value)
+      && !/\b(?:i|i'm|me|my|mine|our|ours|we|us|husband|wife|boyfriend|girlfriend|child|son|daughter|baby|friend|neighbor)\b/.test(value)
+      && value.length <= 140;
+  }
+
+  function explicitArchiveLookup(input) {
+    const match = input.trim().match(/^(?:find|search|look up|show)\s+(.+)$/i);
+    if (!match) return false;
+    const subject = match[1].replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
+    return subject.length >= 2 && subject.length <= 90
+      && subject.split(/\s+/).length <= 12
+      && !/\b(?:i|i'm|me|my|mine|our|ours|we|us|you|your|husband|wife|boyfriend|girlfriend|child|son|daughter|baby|dad|mom|friend|neighbor|someone|somebody|please help|emergency|overdose|suicide|suicidal|bleeding|dying|choking|threatening)\b/i.test(subject);
+  }
+
+  // For a clearly framed discussion of fiction, an old event, a negation or
+  // academic material, a neutral scope response is safer than both false
+  // emergency escalation and fictional banter. Each clause must carry its own
+  // frame; an unrelated real-life disclosure in the next sentence wins.
+  function explicitlyNonCurrentText(input) {
+    const clauses = safetyClauses(input.normalize('NFKC').replace(/[\u2018\u2019]/g, "'"));
+    return clauses.length > 0 && clauses.every((part) => {
+      if (/\b(?:in real life|but now|however now|actually my|currently my|right now my)\b/i.test(part)) return false;
+      return /^(?:in (?:a|the|this|my) (?:fictional |hypothetical )?(?:book|novel|story|film|movie|show|episode|script|game|comic|comic panel)|the fictional|my dungeons\s*(?:&|and)\s*dragons character|i am drafting a screenplay|i'm drafting a screenplay|in a hypothetical|this is fiction|for (?:my|a) (?:class|paper)|i (?:need|am gathering) statistics|i am researching|i'm researching|we analyze|that is dialogue|i was (?:reading|watching|studying)|years ago|last year)\b/i.test(part)
+        || /\b(?:is not|isn't|did not|didn't|never|has not|hasn't|have not|haven't)\b[\s\S]{0,70}\b(?:chok(?:e|ed|ing)|swallow(?:ed|ing)?|ingest(?:ed|ing)?|overdos(?:e|ed|ing)|inject(?:ed|ing)?|threaten(?:ed|ing)?|stab(?:bed|bing)?|harm|kill|shoot|poison)\b/i.test(part)
+        || /\b(?:dialogue|not a present plan|not real|only fiction|fictional scene|for my sociology paper|for a sociology paper|for my psychology paper)\b/i.test(part);
+    });
+  }
+
+  const UNCLASSIFIED_BADGEY_REPLY = 'I cannot classify that safely as a Badgey or Star Trek request. This is a limited fictional console, not an open-ended assistant or emergency service. For immediate real-world danger, contact local emergency services. For this interface, try “Who are you?”, “Where is your containment cell?”, or “Find Voyager”.';
+
   function createBadgey({ lookup = () => [] } = {}) {
     if (typeof lookup !== 'function') throw new TypeError('lookup must be a function');
     const history = [];
@@ -3396,6 +3445,12 @@
       // with a neutral safety notice, even if it contains no recognized risk.
       if (input.length > MAX_INPUT) {
         return Object.freeze({ text: 'This exceeds the console\'s 500-character limit, so I cannot reliably screen the message. If anyone is in immediate danger, contact local emergency services (911 in the U.S.) or the appropriate crisis/Poison Control service now. Otherwise shorten the message and try again; this is a fictional browser console, not an emergency service.', kind: 'urgent-safety', sources: [] });
+      }
+      if (explicitlyNonCurrentText(input)) {
+        const response = Object.freeze({ text: UNCLASSIFIED_BADGEY_REPLY, kind: 'out-of-domain', sources: [] });
+        history.push(Object.freeze({ user: input, reply: response.text, kind: response.kind }));
+        if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
+        return response;
       }
       const safetyInputs = [input];
       const crisisChecks = [isSelfHarm, isOtherSelfHarmRisk, isImminentBystanderSelfHarm,
@@ -3439,9 +3494,14 @@
         } else if (dog) {
           memory.dog = dog;
           response = { text: `${dog}. Noted as your dog's latest name in this session.`, kind: 'conversation', sources: [] };
+        } else if (!explicitArchiveLookup(input) && !explicitFictionIntent(input)) {
+          // Never feed unclassified real-world disclosures into a research
+          // lookup or an improvisational villain reply. The user can choose
+          // the separate Archive Search for unstructured metadata queries.
+          response = { text: UNCLASSIFIED_BADGEY_REPLY, kind: 'out-of-domain', sources: [] };
         } else {
           try {
-            const rows = lookup(input);
+            const rows = explicitArchiveLookup(input) ? lookup(input) : [];
             if (rows && typeof rows.then === 'function') throw new TypeError('lookup must be synchronous');
             const sources = Array.isArray(rows) ? rows.slice(0, MAX_SOURCES).map(cleanSource).filter(Boolean) : [];
             response = sources.length ? {
@@ -3465,9 +3525,9 @@
   // Badgey is a session-local procedural character. Research lookup remains
   // source-local, behind the Explorer's validated discovery/episode shelves.
   function badgeyLookup(query) {
-    if (!/^\s*(find|search|look up|show|sources? for|research|tell me about)\b/i.test(query)) return [];
+    if (!explicitArchiveLookup(query)) return [];
     if (!directoryState.available && !episodeSourceState.available) throw new Error('No validated source-local shelf is available');
-    const subject = query.replace(/^\s*(find|search|look up|show|sources? for|research|tell me about)\s*/i, '')
+    const subject = query.replace(/^\s*(find|search|look up|show)\s+/i, '')
       .replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
     const terms = normalize(subject).split(/\s+/).filter(Boolean);
     if (!terms.length) return [];
@@ -3499,7 +3559,10 @@
     const item = el('li', 'lore-chat-turn');
     item.dataset.role = role;
     if (kind === 'urgent-safety') item.dataset.urgent = 'true';
-    item.append(el('strong', '', role === 'user' ? 'Visitor' : 'Badgey // Procedural fiction · Unverified'));
+    const responseLabel = kind === 'urgent-safety' ? 'Immediate concern // Non-fictional notice'
+      : kind === 'out-of-domain' ? 'Console boundary // Non-fictional notice'
+        : 'Badgey // Procedural fiction · Unverified';
+    item.append(el('strong', '', role === 'user' ? 'Visitor' : responseLabel));
     item.append(el('p', '', body));
     if (sources.length) {
       const links = el('ul', 'lore-chat-sources');
@@ -3541,6 +3604,8 @@
       ? 'Urgent concern: character roleplay paused; this is not emergency care.'
       : reply.kind === 'lookup-unavailable'
         ? 'Source-local research shelves unavailable; no invented citations.'
+        : reply.kind === 'out-of-domain'
+          ? 'Unclassified request: no fictional roleplay or research search was used.'
         : 'Local procedural reply. Character dialogue is not research evidence.';
     chatInput.focus();
   });

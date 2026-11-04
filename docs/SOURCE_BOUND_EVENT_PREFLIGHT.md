@@ -45,6 +45,29 @@ actual episode identity, independent human observation, or acceptance of an
 event. A second qualified reviewer must check those separately. A matching
 declared checksum alone is insufficient.
 
+Every well-formed preflight report now includes `governed_inputs_sha256`, a
+SHA-256 fingerprint of the **exact local bytes and repository-relative paths**
+of all `.json`/`.jsonl` files under `registry/authoritative/` and `coverage/`.
+This pins the accepted Work/Source/binding roster inputs and coverage events
+used to evaluate the candidate, not merely a rendered status string. Re-run
+the preflight at review/admission time and compare this digest; a different
+digest means the earlier readiness result was evaluated against different
+local governed state and needs fresh review. The scan uses the repository's
+anchored no-symlink open and inode checks but reads **raw bytes** (never
+text-mode newline normalization); LF and CRLF inputs must produce different
+pins. It rejects enumerated-file replacement and checks the digest both
+before and after validation to reject visible concurrent drift.
+
+`governed_inputs_scope` says
+`LOCAL_AUTHORITATIVE_REGISTRY_AND_COVERAGE_BYTES_NOT_REMOTE_ACCEPTANCE` for a
+reason: this is a **local worktree state identity**, not proof that its bytes
+were merged to GitHub `main`, independently reviewed, or authorized. Exact
+accepted GitHub commit/tree identity still needs separate verification. The
+report contains neither private source-file paths nor source bytes, and the
+digest does not authenticate any external episode representation. This pin
+does not substitute for accepted custody review or cure a weak admission
+record that only repeats its own claimed SHA-256.
+
 Default invocation exits `0` for a valid diagnostic even when `BLOCKED`.
 `--require-ready` exits `2` for blocked input; invalid governed corpus input
 exits `3`. Only a properly reviewed, explicitly accepted event physically

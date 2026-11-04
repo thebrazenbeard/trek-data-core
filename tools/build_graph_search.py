@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
-"""Build deterministic structural graph and literal search projections from verified canonical bytes."""
+"""Build deterministic graph/search outputs without writing through mutable output paths.
+
+POSIX output writes are anchored to a no-symlink directory descriptor. The
+output directory and its parents must be under trusted local filesystem
+administration: another actor able to rename directories or mount filesystems
+can still invalidate a path while the build runs. Platforms without the
+required directory-descriptor primitives fail closed by default; an explicit
+trusted-output-path opt-in permits a weaker compatibility fallback on trusted,
+non-mutating filesystems only.
+"""
 from __future__ import annotations
-import argparse, hashlib, importlib.util, json
+import argparse, contextlib, hashlib, importlib.util, json, os, secrets, stat
 from pathlib import Path
 _MODULE=Path(__file__).with_name('projection_bundle.py'); _SPEC=importlib.util.spec_from_file_location('trek_projection_bundle_graph',_MODULE); bundle=importlib.util.module_from_spec(_SPEC); _SPEC.loader.exec_module(bundle)
 ASSERTION_PARTITIONS={'facts.jsonl':'facts','contested.jsonl':'contested','unresolved.jsonl':'unresolved'}; BUNDLE_VERSION='0.2.0'
@@ -32,8 +41,90 @@ def string_values(v):
   for k in sorted(v):out.extend(string_values(v[k]))
   return out
  return []
-def write_jsonl(path,rows,id_key):
- ordered=sorted(rows,key=lambda r:(str(r.get(id_key,'')),canonical(r))); payload=''.join(canonical(r)+'\n' for r in ordered).encode(); path.write_bytes(payload); return {'hash':sha256_bytes(payload),'count':len(ordered)}
+def paths_overlap(first,second):
+ return first==second or first in second.parents or second in first.parents
+
+def require_safe_directory_writes():
+ primitives=(os.open,os.mkdir,os.rename,os.unlink)
+ if not hasattr(os,'O_NOFOLLOW') or not hasattr(os,'O_DIRECTORY') or any(op not in os.supports_dir_fd for op in primitives):
+  raise OSError('graph-search output requires no-follow directory-relative writes on this platform')
+
+def ensure_output_binding(output_fd,output_path,projection_root):
+ try: current=output_path.stat(follow_symlinks=False)
+ except OSError as exc:raise ValueError('graph-search output directory changed during build') from exc
+ pinned=os.fstat(output_fd)
+ if not stat.S_ISDIR(current.st_mode) or (current.st_dev,current.st_ino)!=(pinned.st_dev,pinned.st_ino):
+  raise ValueError('graph-search output directory changed during build')
+ if paths_overlap(output_path.resolve(),projection_root.resolve()):
+  raise ValueError('graph-search output overlaps verified projection tree')
+
+@contextlib.contextmanager
+def pinned_output_directory(output_root,projection_root):
+ """Pin a directory without following symlinks in any path component."""
+ require_safe_directory_writes()
+ output_path=Path(os.path.abspath(output_root)); flags=os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW
+ if paths_overlap(output_path.resolve(),projection_root.resolve()):
+  raise ValueError('graph-search output overlaps verified projection tree')
+ fd=os.open(output_path.anchor,flags)
+ try:
+  for part in output_path.parts[1:]:
+   try:os.mkdir(part,dir_fd=fd)
+   except FileExistsError:pass
+   try:next_fd=os.open(part,flags,dir_fd=fd)
+   except OSError as exc:raise ValueError('graph-search output path must not contain symlinks or non-directories') from exc
+   os.close(fd); fd=next_fd
+  ensure_output_binding(fd,output_path,projection_root)
+  yield fd
+  ensure_output_binding(fd,output_path,projection_root)
+ finally:os.close(fd)
+
+def trusted_output_binding(output_path,pinned_path,projection_root):
+ """Best-effort consistency check; only valid with trusted, non-mutating parents."""
+ path=output_path
+ while path!=path.parent:
+  if path.is_symlink() or (hasattr(path,'is_junction') and path.is_junction()):
+   raise ValueError('graph-search trusted output path contains symlink or junction')
+  path=path.parent
+ if output_path.resolve()!=pinned_path or paths_overlap(pinned_path,projection_root.resolve()):
+  raise ValueError('graph-search trusted output directory changed or overlaps verified projection')
+
+@contextlib.contextmanager
+def output_directory(output_root,projection_root,*,trusted_output_path=False):
+ try:require_safe_directory_writes()
+ except OSError:
+  if not trusted_output_path:raise
+  requested=Path(os.path.abspath(output_root)); target=requested.resolve()
+  if paths_overlap(target,projection_root.resolve()):
+   raise ValueError('graph-search output overlaps verified projection tree')
+  trusted_output_binding(requested,target,projection_root)
+  target.mkdir(parents=True,exist_ok=True)
+  trusted_output_binding(requested,target,projection_root)
+  yield target
+  trusted_output_binding(requested,target,projection_root)
+ else:
+  with pinned_output_directory(output_root,projection_root) as fd:yield fd
+
+def write_output_bytes(output_fd,name,payload):
+ """Replace a destination entry atomically; never truncate an existing hardlink."""
+ if isinstance(output_fd,Path):
+  # Explicit opt-in compatibility path. It relies on trusted, stable ancestors.
+  temp=output_fd/f'.{name}.{secrets.token_hex(12)}.tmp'
+  file_fd=os.open(temp,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+  try:
+   with os.fdopen(file_fd,'wb') as f:f.write(payload)
+   os.replace(temp,output_fd/name)
+  finally:temp.unlink(missing_ok=True)
+  return
+ temp=f'.{name}.{secrets.token_hex(12)}.tmp'; file_fd=os.open(temp,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600,dir_fd=output_fd)
+ try:
+  with os.fdopen(file_fd,'wb') as f:f.write(payload)
+  os.rename(temp,name,src_dir_fd=output_fd,dst_dir_fd=output_fd)
+ finally:
+  try:os.unlink(temp,dir_fd=output_fd)
+  except FileNotFoundError:pass
+
+def write_jsonl(output_fd,name,rows,id_key):
+ ordered=sorted(rows,key=lambda r:(str(r.get(id_key,'')),canonical(r))); payload=''.join(canonical(r)+'\n' for r in ordered).encode(); write_output_bytes(output_fd,name,payload); return {'hash':sha256_bytes(payload),'count':len(ordered)}
 def ref_node_id(ref_type,ref_id,active_ids):
  return {'SOURCE':f'source:{ref_id}','WORK':f'work:{ref_id}','LOCAL_ENTITY':f'entity:{ref_id}','EVIDENCE':f'evidence:{ref_id}','ASSERTION':f'assertion:{ref_id}' if ref_id in active_ids else f'assertion_history:{ref_id}','RECONCILIATION_DECISION':f'reconciliation:{ref_id}'}.get(ref_type,f'reference:{ref_type}:{ref_id}')
 def ensure_ref_node(nodes,ref_type,ref_id,active_ids):
@@ -45,8 +136,12 @@ def add_catalog(catalog,key,row,label):
  if rid in catalog and canonical(catalog[rid])!=canonical(row):raise ValueError(f'conflicting {label} metadata for {rid}')
  catalog[rid]=row
 
-def build_bundle(projection_root,output_root):
- projection_root=Path(projection_root); output_root=Path(output_root); verified=bundle.verify_projection(projection_root); rows=verified['rows']; manifest=verified['manifest']; nodes={}; edges={}; search={}; active_ids=set()
+def build_bundle(projection_root,output_root,*,trusted_output_path=False):
+ projection_root=Path(projection_root); output_root=Path(output_root)
+ source_path=projection_root.resolve(); target_path=output_root.resolve()
+ if paths_overlap(source_path,target_path):
+  raise ValueError('graph-search output overlaps verified projection tree')
+ verified=bundle.verify_projection(projection_root); rows=verified['rows']; manifest=verified['manifest']; nodes={}; edges={}; search={}; active_ids=set()
  for entity in rows['entities.jsonl']:
   eid=entity['local_entity_id']; node=f'entity:{eid}'; merge_node(nodes,node,{'node_kind':'local_entity','local_entity_id':eid,'work_id':entity.get('work_id'),'label':entity.get('label'),'record':entity})
   if entity.get('work_id'):
@@ -94,8 +189,12 @@ def build_bundle(projection_root,output_root):
  for relation in rows['relations.jsonl']:
   source=ensure_ref_node(nodes,relation['subject_type'],relation['subject_id'],active_ids); target=ensure_ref_node(nodes,relation['target_type'],relation['target_id'],active_ids); add_edge(edges,f"relation:{relation['relation_id']}",'GOVERNED_RELATION',source,target,relation_id=relation['relation_id'],relation_kind=relation.get('relation_kind'),predicate=relation.get('predicate'),projection_status=relation.get('projection_status'),record=relation); search[f"relation:{relation['relation_id']}"]={'document_id':f"relation:{relation['relation_id']}",'document_kind':'relation','text':' '.join(string_values(relation)),'record':relation}
  for node_id,node in sorted(nodes.items()):search[node_id]={'document_id':node_id,'document_kind':node.get('node_kind'),'projection_status':node.get('projection_status'),'partition':node.get('partition'),'text':' '.join(string_values(node)),'record':node}
- output_root.mkdir(parents=True,exist_ok=True); outputs={'graph_nodes.jsonl':write_jsonl(output_root/'graph_nodes.jsonl',nodes.values(),'node_id'),'graph_edges.jsonl':write_jsonl(output_root/'graph_edges.jsonl',edges.values(),'edge_id'),'search_documents.jsonl':write_jsonl(output_root/'search_documents.jsonl',search.values(),'document_id')}; result={'record_type':'graph_search_projection_bundle','bundle_version':BUNDLE_VERSION,'projection_hash':manifest['projection_hash'],'builder_identity':bundle.tool_identity(Path(__file__),_MODULE),'verification_receipt_hash':verified['receipt_hash'],'verification_receipt':verified['receipt'],'imported_output_contract':list(bundle.REQUIRED_OUTPUTS),'relation_mapping_contract':'projection-relation.schema.json@0.2.0','outputs':outputs}; (output_root/'manifest.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n',encoding='utf-8'); return result
+ with output_directory(output_root,projection_root,trusted_output_path=trusted_output_path) as output_fd:
+  outputs={'graph_nodes.jsonl':write_jsonl(output_fd,'graph_nodes.jsonl',nodes.values(),'node_id'),'graph_edges.jsonl':write_jsonl(output_fd,'graph_edges.jsonl',edges.values(),'edge_id'),'search_documents.jsonl':write_jsonl(output_fd,'search_documents.jsonl',search.values(),'document_id')}
+  result={'record_type':'graph_search_projection_bundle','bundle_version':BUNDLE_VERSION,'projection_hash':manifest['projection_hash'],'builder_identity':bundle.tool_identity(Path(__file__),_MODULE),'verification_receipt_hash':verified['receipt_hash'],'verification_receipt':verified['receipt'],'imported_output_contract':list(bundle.REQUIRED_OUTPUTS),'relation_mapping_contract':'projection-relation.schema.json@0.2.0','outputs':outputs}
+  write_output_bytes(output_fd,'manifest.json',(json.dumps(result,indent=2,sort_keys=True)+'\n').encode())
+ return result
 
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('projection'); ap.add_argument('output'); args=ap.parse_args(); print(build_bundle(Path(args.projection),Path(args.output))['projection_hash'])
+ ap=argparse.ArgumentParser(); ap.add_argument('projection'); ap.add_argument('output'); ap.add_argument('--trusted-output-path',action='store_true',help='opt in to path-based output only where no-follow dirfd writes are unavailable; requires trusted, non-mutating filesystem paths'); args=ap.parse_args(); print(build_bundle(Path(args.projection),Path(args.output),trusted_output_path=args.trusted_output_path)['projection_hash'])
 if __name__=='__main__':main()

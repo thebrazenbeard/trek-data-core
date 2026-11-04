@@ -54,6 +54,25 @@ builds from silently replacing an aliased file outside the bundle.
 This is an output-path consistency safeguard, not a claim of protection against
 concurrent hostile filesystem mutation or proof of source authenticity.
 
+The graph/search *derived* builder adds a narrower output-isolation contract:
+it refuses output paths overlapping the verified canonical projection, opens
+every output directory component without following symlinks, and writes via a
+pinned directory descriptor with atomic file replacements. If an output path
+is redirected during verification or writing, the build fails closed and
+does not follow that redirect into the canonical projection. The secure writer
+requires POSIX `O_NOFOLLOW` plus directory-relative `open`, `mkdir`, `rename`,
+and `unlink`. On Windows or platforms lacking those primitives, graph/search
+fails closed by default. The explicit `--trusted-output-path` opt-in preserves
+Windows compatibility for operators who control the output directory **and all
+parents** and can exclude concurrent path mutation. This fallback rejects
+observed symlinks/junctions, rechecks path bindings, and uses atomic file
+replacement; it is **not** race-safe against an attacker concurrently
+swapping directories and must never be used for untrusted shared paths.
+Even the descriptor-backed mode assumes trusted local filesystem administrators
+and does not protect against mount-point replacement, writable directory
+entries manipulated by another privileged actor, or direct malicious mutation
+of the pinned directory itself.
+
 ## Verification receipts are not upstream provenance certificates
 
 `projection_bundle.verify_projection()` establishes canonical JSONL byte

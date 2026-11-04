@@ -1,0 +1,858 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ds9-paramount-s5-guide-20261104",
+  "role": "DS9",
+  "proposal_only": true,
+  "accepted_main_at_selection": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "observed_utc_date": "2026-11-04",
+  "source": {
+    "source_id": "paramount-ds9-s5-guide-render-20261104",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramount",
+    "url": "https://www.paramountplus.com/shows/star_trek_deep_space_nine/episodes/5/",
+    "retrieval_date_utc": "2026-11-04",
+    "retrieval_method": "TINYFISH_FETCH_CONTENT_RENDERED_MARKDOWN",
+    "page_title": "Star Trek: Deep Space Nine Season 5 Episodes - Watch on Paramount+",
+    "page_heading": "Season 5 > Episode Guide",
+    "raw_source_body_sha256": null,
+    "raw_html_bytes_pinned": false,
+    "http_status_verified": false,
+    "full_episode_audiovisual_or_script_read": false,
+    "source_description_fingerprint_method": "SHA256_UTF8_EXTRACTED_DESCRIPTION_SINGLE_LINE_NO_TRAILING_NEWLINE"
+  },
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "episode_research_coverage_effect": "NONE",
+  "synopsis_publication_effect": "NONE",
+  "admitted_briefings": 0,
+  "observed_card_count": 24,
+  "missing_publisher_ordinals_in_extraction": [
+    12,
+    26
+  ],
+  "episode_census_claim": "NONE",
+  "source_local_episode_slots": [
+    {
+      "id": "ds9-s5-slot-01",
+      "season": 5,
+      "source_episode_ordinal": 1,
+      "publisher_title": "Apocalypse Rising",
+      "source_card_locator": "Season 5 > Episode Guide > Apocalypse Rising > S5 E1 > short description",
+      "source_description_sha256": "c80cf7dde78fd2058e91e5894d2d48bfc861b3f867417b90fd3967d596631b18",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-02",
+      "season": 5,
+      "source_episode_ordinal": 2,
+      "publisher_title": "The Ship",
+      "source_card_locator": "Season 5 > Episode Guide > The Ship > S5 E2 > short description",
+      "source_description_sha256": "7738f32bf5489f7e5571756487757a111ea843adfd22883c7cf5bff956798a2f",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-03",
+      "season": 5,
+      "source_episode_ordinal": 3,
+      "publisher_title": "Looking for Par'mach in All the Wrong Places",
+      "source_card_locator": "Season 5 > Episode Guide > Looking for Par'mach in All the Wrong Places > S5 E3 > short description",
+      "source_description_sha256": "3df461d0086ad2f54e51baca0bf1e18d08661af9674aabc73e05dcbaa668fe39",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-04",
+      "season": 5,
+      "source_episode_ordinal": 4,
+      "publisher_title": "...Nor The Battle To The Strong",
+      "source_card_locator": "Season 5 > Episode Guide > ...Nor The Battle To The Strong > S5 E4 > short description",
+      "source_description_sha256": "dfd1836ed9d6d75b43de8aa703d0c89199d9e01f1fb97acfcebe476f861b327a",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-05",
+      "season": 5,
+      "source_episode_ordinal": 5,
+      "publisher_title": "The Assignment",
+      "source_card_locator": "Season 5 > Episode Guide > The Assignment > S5 E5 > short description",
+      "source_description_sha256": "40e99ffa58170042907d535c7ac4ea41db60e6037e045e54748723825fc2911c",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-06",
+      "season": 5,
+      "source_episode_ordinal": 6,
+      "publisher_title": "Trials and Tribble-ations",
+      "source_card_locator": "Season 5 > Episode Guide > Trials and Tribble-ations > S5 E6 > short description",
+      "source_description_sha256": "aa0032b946094b2715f6d4f841cf38e83fd68fe6c6b9cd383d7fcf59899e0e5b",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-07",
+      "season": 5,
+      "source_episode_ordinal": 7,
+      "publisher_title": "Let He Who Is Without Sin...",
+      "source_card_locator": "Season 5 > Episode Guide > Let He Who Is Without Sin... > S5 E7 > short description",
+      "source_description_sha256": "ef6cf63fc720854a832b2d18c9c38ceb4bee2a626eca231263abcf5638f94a01",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-08",
+      "season": 5,
+      "source_episode_ordinal": 8,
+      "publisher_title": "Things Past",
+      "source_card_locator": "Season 5 > Episode Guide > Things Past > S5 E8 > short description",
+      "source_description_sha256": "542b2ee4a99b07190b8b8a0820b8ff55044b90681064249eccabedc6822ae824",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-09",
+      "season": 5,
+      "source_episode_ordinal": 9,
+      "publisher_title": "The Ascent",
+      "source_card_locator": "Season 5 > Episode Guide > The Ascent > S5 E9 > short description",
+      "source_description_sha256": "c70a0d33ee1c24cc648cc29093ca6778cf11f63585effede12efb185f2dae0c6",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-10",
+      "season": 5,
+      "source_episode_ordinal": 10,
+      "publisher_title": "Rapture",
+      "source_card_locator": "Season 5 > Episode Guide > Rapture > S5 E10 > short description",
+      "source_description_sha256": "5c929e24130dd2dfeaa437e8d85c13e48a9fc6d7383b42925c4a253d94dff800",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-11",
+      "season": 5,
+      "source_episode_ordinal": 11,
+      "publisher_title": "The Darkness and the Light",
+      "source_card_locator": "Season 5 > Episode Guide > The Darkness and the Light > S5 E11 > short description",
+      "source_description_sha256": "4f13779e60872544961eda1255ecf3bcae6b6f035e9fedf1e33e2923ab4b91c4",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-13",
+      "season": 5,
+      "source_episode_ordinal": 13,
+      "publisher_title": "For the Uniform",
+      "source_card_locator": "Season 5 > Episode Guide > For the Uniform > S5 E13 > short description",
+      "source_description_sha256": "06641259aa2c23b497c9b7c168074ca23246dd471a398f416011f1c9122f4671",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-14",
+      "season": 5,
+      "source_episode_ordinal": 14,
+      "publisher_title": "In Purgatory's Shadow",
+      "source_card_locator": "Season 5 > Episode Guide > In Purgatory's Shadow > S5 E14 > short description",
+      "source_description_sha256": "ad0d07a4e12db11e401213e10971e7aabd8943683d0f1b28473211d2d277d256",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-15",
+      "season": 5,
+      "source_episode_ordinal": 15,
+      "publisher_title": "By Inferno's Light",
+      "source_card_locator": "Season 5 > Episode Guide > By Inferno's Light > S5 E15 > short description",
+      "source_description_sha256": "0e64be3ebdf25a6565a9963ee99076c906769af3a23fc48be47ea88e7bdc379e",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-16",
+      "season": 5,
+      "source_episode_ordinal": 16,
+      "publisher_title": "Doctor Bashir, I Presume",
+      "source_card_locator": "Season 5 > Episode Guide > Doctor Bashir, I Presume > S5 E16 > short description",
+      "source_description_sha256": "2c0e6898edce600cc13e557db88d4cbb5adba05c055dc032ddcc23eac6be43db",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-17",
+      "season": 5,
+      "source_episode_ordinal": 17,
+      "publisher_title": "A Simple Investigation",
+      "source_card_locator": "Season 5 > Episode Guide > A Simple Investigation > S5 E17 > short description",
+      "source_description_sha256": "9d8709faec30ed0af0b8f0493d75979b090896d0d9276e9c373ba8c6d85d6449",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-18",
+      "season": 5,
+      "source_episode_ordinal": 18,
+      "publisher_title": "Business As Usual",
+      "source_card_locator": "Season 5 > Episode Guide > Business As Usual > S5 E18 > short description",
+      "source_description_sha256": "912407f45b4f447b41e74feffed313e20a3cf58169b3a306de17d3c7d34957af",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-19",
+      "season": 5,
+      "source_episode_ordinal": 19,
+      "publisher_title": "Ties of Blood and Water",
+      "source_card_locator": "Season 5 > Episode Guide > Ties of Blood and Water > S5 E19 > short description",
+      "source_description_sha256": "511b9f2bb28f4f5eed832b6395f8515015857d045bfdf03bb33b440310e75ae5",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-20",
+      "season": 5,
+      "source_episode_ordinal": 20,
+      "publisher_title": "Ferengi Love Songs",
+      "source_card_locator": "Season 5 > Episode Guide > Ferengi Love Songs > S5 E20 > short description",
+      "source_description_sha256": "cec378c710ca8f609529545ce179ec6e2a2e7256df3c6833243d0533e60c5e9f",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-21",
+      "season": 5,
+      "source_episode_ordinal": 21,
+      "publisher_title": "Soldiers of the Empire",
+      "source_card_locator": "Season 5 > Episode Guide > Soldiers of the Empire > S5 E21 > short description",
+      "source_description_sha256": "23747145d6df481a51c6d66b871b551a016d04c468edda9e09dd3f55847d3d3f",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-22",
+      "season": 5,
+      "source_episode_ordinal": 22,
+      "publisher_title": "Children of Time",
+      "source_card_locator": "Season 5 > Episode Guide > Children of Time > S5 E22 > short description",
+      "source_description_sha256": "94f74776b9edf0ff773b125724b6a91a2deb77d11aa929a55e2e3bcda87ae741",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-23",
+      "season": 5,
+      "source_episode_ordinal": 23,
+      "publisher_title": "Blaze of Glory",
+      "source_card_locator": "Season 5 > Episode Guide > Blaze of Glory > S5 E23 > short description",
+      "source_description_sha256": "c16e95485aa676cd06ee4cbfb496affb7a23199adbfd73c9d7634d99b9424738",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-24",
+      "season": 5,
+      "source_episode_ordinal": 24,
+      "publisher_title": "Empok Nor",
+      "source_card_locator": "Season 5 > Episode Guide > Empok Nor > S5 E24 > short description",
+      "source_description_sha256": "49792ef5e096d39491a2782ed17e8eff0808954eeec0551f7e7ce8da32c06957",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    },
+    {
+      "id": "ds9-s5-slot-25",
+      "season": 5,
+      "source_episode_ordinal": 25,
+      "publisher_title": "In the Cards",
+      "source_card_locator": "Season 5 > Episode Guide > In the Cards > S5 E25 > short description",
+      "source_description_sha256": "c18ea24983296bdf3b13c320beefef90ce1d258fafce689237637eb9e45d2d5c",
+      "work_ref": null,
+      "work_binding_status": "UNRESOLVED"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "ds9-s5-local-card-01",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-01",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-02",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-02",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-03",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-03",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-04",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-04",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-05",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-05",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-06",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-06",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-07",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-07",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-08",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-08",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-09",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-09",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-10",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-10",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-11",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-11",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-13",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-13",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-14",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-14",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-15",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-15",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-16",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-16",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-17",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-17",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-18",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-18",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-19",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-19",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-20",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-20",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-21",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-21",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-22",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-22",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-23",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-23",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-24",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-24",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    },
+    {
+      "id": "ds9-s5-local-card-25",
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "slot_id": "ds9-s5-slot-25",
+      "identity_scope": "SOURCE_LOCAL_ONLY"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ds9-s5-ev-01",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-01",
+      "locator": "Season 5 > Episode Guide > Apocalypse Rising > S5 E1 > short description",
+      "description_sha256": "c80cf7dde78fd2058e91e5894d2d48bfc861b3f867417b90fd3967d596631b18",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-02",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-02",
+      "locator": "Season 5 > Episode Guide > The Ship > S5 E2 > short description",
+      "description_sha256": "7738f32bf5489f7e5571756487757a111ea843adfd22883c7cf5bff956798a2f",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-03",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-03",
+      "locator": "Season 5 > Episode Guide > Looking for Par'mach in All the Wrong Places > S5 E3 > short description",
+      "description_sha256": "3df461d0086ad2f54e51baca0bf1e18d08661af9674aabc73e05dcbaa668fe39",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-04",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-04",
+      "locator": "Season 5 > Episode Guide > ...Nor The Battle To The Strong > S5 E4 > short description",
+      "description_sha256": "dfd1836ed9d6d75b43de8aa703d0c89199d9e01f1fb97acfcebe476f861b327a",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-05",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-05",
+      "locator": "Season 5 > Episode Guide > The Assignment > S5 E5 > short description",
+      "description_sha256": "40e99ffa58170042907d535c7ac4ea41db60e6037e045e54748723825fc2911c",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-06",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-06",
+      "locator": "Season 5 > Episode Guide > Trials and Tribble-ations > S5 E6 > short description",
+      "description_sha256": "aa0032b946094b2715f6d4f841cf38e83fd68fe6c6b9cd383d7fcf59899e0e5b",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-07",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-07",
+      "locator": "Season 5 > Episode Guide > Let He Who Is Without Sin... > S5 E7 > short description",
+      "description_sha256": "ef6cf63fc720854a832b2d18c9c38ceb4bee2a626eca231263abcf5638f94a01",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-08",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-08",
+      "locator": "Season 5 > Episode Guide > Things Past > S5 E8 > short description",
+      "description_sha256": "542b2ee4a99b07190b8b8a0820b8ff55044b90681064249eccabedc6822ae824",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-09",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-09",
+      "locator": "Season 5 > Episode Guide > The Ascent > S5 E9 > short description",
+      "description_sha256": "c70a0d33ee1c24cc648cc29093ca6778cf11f63585effede12efb185f2dae0c6",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-10",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-10",
+      "locator": "Season 5 > Episode Guide > Rapture > S5 E10 > short description",
+      "description_sha256": "5c929e24130dd2dfeaa437e8d85c13e48a9fc6d7383b42925c4a253d94dff800",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-11",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-11",
+      "locator": "Season 5 > Episode Guide > The Darkness and the Light > S5 E11 > short description",
+      "description_sha256": "4f13779e60872544961eda1255ecf3bcae6b6f035e9fedf1e33e2923ab4b91c4",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-13",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-13",
+      "locator": "Season 5 > Episode Guide > For the Uniform > S5 E13 > short description",
+      "description_sha256": "06641259aa2c23b497c9b7c168074ca23246dd471a398f416011f1c9122f4671",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-14",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-14",
+      "locator": "Season 5 > Episode Guide > In Purgatory's Shadow > S5 E14 > short description",
+      "description_sha256": "ad0d07a4e12db11e401213e10971e7aabd8943683d0f1b28473211d2d277d256",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-15",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-15",
+      "locator": "Season 5 > Episode Guide > By Inferno's Light > S5 E15 > short description",
+      "description_sha256": "0e64be3ebdf25a6565a9963ee99076c906769af3a23fc48be47ea88e7bdc379e",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-16",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-16",
+      "locator": "Season 5 > Episode Guide > Doctor Bashir, I Presume > S5 E16 > short description",
+      "description_sha256": "2c0e6898edce600cc13e557db88d4cbb5adba05c055dc032ddcc23eac6be43db",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-17",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-17",
+      "locator": "Season 5 > Episode Guide > A Simple Investigation > S5 E17 > short description",
+      "description_sha256": "9d8709faec30ed0af0b8f0493d75979b090896d0d9276e9c373ba8c6d85d6449",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-18",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-18",
+      "locator": "Season 5 > Episode Guide > Business As Usual > S5 E18 > short description",
+      "description_sha256": "912407f45b4f447b41e74feffed313e20a3cf58169b3a306de17d3c7d34957af",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-19",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-19",
+      "locator": "Season 5 > Episode Guide > Ties of Blood and Water > S5 E19 > short description",
+      "description_sha256": "511b9f2bb28f4f5eed832b6395f8515015857d045bfdf03bb33b440310e75ae5",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-20",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-20",
+      "locator": "Season 5 > Episode Guide > Ferengi Love Songs > S5 E20 > short description",
+      "description_sha256": "cec378c710ca8f609529545ce179ec6e2a2e7256df3c6833243d0533e60c5e9f",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-21",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-21",
+      "locator": "Season 5 > Episode Guide > Soldiers of the Empire > S5 E21 > short description",
+      "description_sha256": "23747145d6df481a51c6d66b871b551a016d04c468edda9e09dd3f55847d3d3f",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-22",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-22",
+      "locator": "Season 5 > Episode Guide > Children of Time > S5 E22 > short description",
+      "description_sha256": "94f74776b9edf0ff773b125724b6a91a2deb77d11aa929a55e2e3bcda87ae741",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-23",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-23",
+      "locator": "Season 5 > Episode Guide > Blaze of Glory > S5 E23 > short description",
+      "description_sha256": "c16e95485aa676cd06ee4cbfb496affb7a23199adbfd73c9d7634d99b9424738",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-24",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-24",
+      "locator": "Season 5 > Episode Guide > Empok Nor > S5 E24 > short description",
+      "description_sha256": "49792ef5e096d39491a2782ed17e8eff0808954eeec0551f7e7ce8da32c06957",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    },
+    {
+      "id": "ds9-s5-ev-25",
+      "kind": "PUBLISHER_SHORT_DESCRIPTION",
+      "source_id": "paramount-ds9-s5-guide-render-20261104",
+      "local_entity_id": "ds9-s5-local-card-25",
+      "locator": "Season 5 > Episode Guide > In the Cards > S5 E25 > short description",
+      "description_sha256": "c18ea24983296bdf3b13c320beefef90ce1d258fafce689237637eb9e45d2d5c",
+      "observation": "Publisher season guide presents this title and ordinal with a short description; no episode media was read."
+    }
+  ],
+  "assertions": [
+    {
+      "id": "ds9-s5-assert-01",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-01",
+      "supporting_evidence_id": "ds9-s5-ev-01",
+      "original_held_paraphrase": "The publisher guide describes a Sisko-led team entering Klingon territory to investigate a claim that Gowron is a Changeling; his identity is not established by the description.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-02",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-02",
+      "supporting_evidence_id": "ds9-s5-ev-02",
+      "original_held_paraphrase": "The guide describes Sisko seeking control of a crashed Jem'Hadar vessel while a wounded crewmember remains in danger.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-03",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-03",
+      "supporting_evidence_id": "ds9-s5-ev-03",
+      "original_held_paraphrase": "The guide describes Worf assisting Quark's pursuit of a Klingon woman despite his own romantic feelings toward her.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-04",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-04",
+      "supporting_evidence_id": "ds9-s5-ev-04",
+      "original_held_paraphrase": "The guide describes Jake experiencing fear and panic while trapped amid a Klingon attack.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-05",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-05",
+      "supporting_evidence_id": "ds9-s5-ev-05",
+      "original_held_paraphrase": "The guide describes an entity occupying Keiko's body and coercing O'Brien through threats to his wife; no identity conclusion is made.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-06",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-06",
+      "supporting_evidence_id": "ds9-s5-ev-06",
+      "original_held_paraphrase": "The guide describes Sisko visiting a moment in the original Enterprise's past; the exact temporal event remains publisher-reported.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-07",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-07",
+      "supporting_evidence_id": "ds9-s5-ev-07",
+      "original_held_paraphrase": "The guide describes Worf becoming involved with traditionalists opposed to Risa's recreational culture.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-08",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-08",
+      "supporting_evidence_id": "ds9-s5-ev-08",
+      "original_held_paraphrase": "The guide describes several station officers experiencing roles associated with Bajoran prisoners from years earlier; mechanism and reality status remain unresolved.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-09",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-09",
+      "supporting_evidence_id": "ds9-s5-ev-09",
+      "original_held_paraphrase": "The guide describes Odo and Quark forced to cooperate for survival on a desolate world.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-10",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-10",
+      "supporting_evidence_id": "ds9-s5-ev-10",
+      "original_held_paraphrase": "The guide describes Sisko suffering dangerous visions that may concern Bajor's future; their truth remains unproven.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-11",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-11",
+      "supporting_evidence_id": "ds9-s5-ev-11",
+      "original_held_paraphrase": "The guide describes a killer targeting people from Kira's former resistance group.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-13",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-13",
+      "supporting_evidence_id": "ds9-s5-ev-13",
+      "original_held_paraphrase": "The guide describes Sisko pursuing a former officer who deceived him and aligned with the Maquis.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-14",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-14",
+      "supporting_evidence_id": "ds9-s5-ev-14",
+      "original_held_paraphrase": "The guide contrasts Worf and Garak imprisoned in the Gamma Quadrant with Sisko discovering a potential Dominion invasion.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-15",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-15",
+      "supporting_evidence_id": "ds9-s5-ev-15",
+      "original_held_paraphrase": "The guide describes a Cardassian-Dominion alliance led by Dukat and preparations for wider territorial conquest.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-16",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-16",
+      "supporting_evidence_id": "ds9-s5-ev-16",
+      "original_held_paraphrase": "The guide describes a holographic medical-model project threatening to expose a secret in Bashir's history.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-17",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-17",
+      "supporting_evidence_id": "ds9-s5-ev-17",
+      "original_held_paraphrase": "The guide describes Odo becoming attached to a woman who is reportedly being targeted for murder.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-18",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-18",
+      "supporting_evidence_id": "ds9-s5-ev-18",
+      "original_held_paraphrase": "The guide describes Quark entering the weapons trade in hopes of ending his financial problems.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-19",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-19",
+      "supporting_evidence_id": "ds9-s5-ev-19",
+      "original_held_paraphrase": "The guide describes Kira revisiting grief for her father while facing the imminent death of a Cardassian paternal figure; kinship is not resolved.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-20",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-20",
+      "supporting_evidence_id": "ds9-s5-ev-20",
+      "original_held_paraphrase": "The guide describes Quark choosing social advancement at the expense of his mother's happiness.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-21",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-21",
+      "supporting_evidence_id": "ds9-s5-ev-21",
+      "original_held_paraphrase": "The guide describes Worf questioning Martok's ability to lead during a Klingon military operation.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-22",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-22",
+      "supporting_evidence_id": "ds9-s5-ev-22",
+      "original_held_paraphrase": "The guide describes the Defiant crew confronting a choice involving their own prospective descendants; causal status remains source-relative.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-23",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-23",
+      "supporting_evidence_id": "ds9-s5-ev-23",
+      "original_held_paraphrase": "The guide describes Sisko attempting to stop a former officer's planned Maquis attack amid warnings of extensive consequences.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-24",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-24",
+      "supporting_evidence_id": "ds9-s5-ev-24",
+      "original_held_paraphrase": "The guide describes an O'Brien-led salvage party stranded aboard an apparently deserted Cardassian station.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    },
+    {
+      "id": "ds9-s5-assert-25",
+      "predicate": "PUBLISHER_GUIDE_DESCRIBES",
+      "subject_local_entity_id": "ds9-s5-local-card-25",
+      "supporting_evidence_id": "ds9-s5-ev-25",
+      "original_held_paraphrase": "The guide describes Jake and Nog pursuing a seemingly innocent scheme to improve Sisko's mood despite diplomatic risk.",
+      "status": "PROPOSED_SOURCE_LOCAL",
+      "fictional_truth_scope": "NOT_OBJECTIVELY_ASSERTED"
+    }
+  ]
+}

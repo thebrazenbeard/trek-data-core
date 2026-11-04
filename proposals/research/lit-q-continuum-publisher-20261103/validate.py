@@ -126,12 +126,12 @@ def validate(data: object, *, check_prior: bool = True) -> bool:
         require(row == EXPECTED["accepted_opf_candidate_lead_context"][i], "unreviewed OPF crosscheck")
     if check_prior:
         known_isbns = {r["isbn13"] for r in books} | {unnumbered["isbn13"]}
-        for path in (ROOT / "proposals").rglob("*.json"):
-            if path == HERE / "observations.json":
-                continue
-            prior_text = path.read_text(encoding="utf-8")
-            # Exact quoted edition strings are unique; the accepted OPF data has no ISBN for these rows.
-            require(not any('"' + isbn + '"' in prior_text for isbn in known_isbns), "ISBN reused by accepted proposal")
+        # A publisher ISBN can legitimately recur in independent, HELD source-local
+        # observations. Another proposal mentioning it does not establish a
+        # duplicate accepted Work/edition; identity is resolved only through the
+        # governed reconciliation path. Do not scan all proposal JSON as if it
+        # were an accepted-identity registry.
+        require(len(known_isbns) == len(books) + 1, "duplicate ISBN within publisher source packet")
     return True
 
 

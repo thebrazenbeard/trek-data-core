@@ -24,21 +24,33 @@
   const RESEARCH_PAGE_SIZE = 30;
   let visibleResearchLimit = RESEARCH_PAGE_SIZE;
 
-  // Keep the section rail native-scrollable. Its cue is informational, not a
-  // fake navigation control, and only appears when real links are offscreen.
+  // Keep section links native-scrollable and in original keyboard tab order.
+  // Separate optional rail buttons scroll *only* the rail when links overflow.
   const navigation = document.querySelector?.('.lcars-navigation');
   const navigationHint = document.querySelector?.('.navigation-scroll-hint');
+  const navigationControls = byId('navigation-scroll-controls');
+  const navigationPrevious = byId('navigation-scroll-previous');
+  const navigationNext = byId('navigation-scroll-next');
   const updateNavigationHint = () => {
     if (!navigation || !navigationHint) return;
     const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
     const overflowing = maxScroll > 2;
     navigationHint.hidden = !overflowing;
+    if (navigationControls) navigationControls.hidden = !overflowing;
+    if (navigationPrevious) navigationPrevious.hidden = !overflowing;
+    if (navigationNext) navigationNext.hidden = !overflowing;
     if (!overflowing) {
+      navigationPrevious?.setAttribute('aria-disabled', 'true');
+      navigationNext?.setAttribute('aria-disabled', 'true');
       navigation.removeAttribute('aria-describedby');
       return;
     }
     const atStart = navigation.scrollLeft <= 2;
     const atEnd = navigation.scrollLeft >= maxScroll - 2;
+    // aria-disabled keeps the edge button focusable for keyboard users, while
+    // the click handler still enforces the boundary as an actual no-op.
+    navigationPrevious?.setAttribute('aria-disabled', String(atStart));
+    navigationNext?.setAttribute('aria-disabled', String(atEnd));
     const message = atStart ? 'More sections → Swipe, scroll or Tab'
       : atEnd ? 'Earlier sections ← Swipe, scroll or Tab'
         : 'Sections both ways ↔ Swipe, scroll or Tab';
@@ -48,6 +60,18 @@
     }
   };
   if (navigation && navigationHint) {
+    const scrollRail = (direction) => {
+      const maxScroll = Math.max(0, navigation.scrollWidth - navigation.clientWidth);
+      const step = Math.floor(navigation.clientWidth * 0.8);
+      if (maxScroll <= 2 || step <= 0) return;
+      const target = Math.max(0, Math.min(maxScroll, navigation.scrollLeft + direction * step));
+      if (Math.abs(target - navigation.scrollLeft) < 2) return;
+      if (typeof navigation.scrollTo === 'function') navigation.scrollTo({ left: target, behavior: 'smooth' });
+      else navigation.scrollLeft = target;
+      updateNavigationHint();
+    };
+    navigationPrevious?.addEventListener('click', () => scrollRail(-1));
+    navigationNext?.addEventListener('click', () => scrollRail(1));
     navigation.addEventListener('scroll', updateNavigationHint, { passive: true });
     window.addEventListener?.('resize', updateNavigationHint);
     // The nav links' count badges grow after asynchronous catalog loads.
@@ -522,9 +546,28 @@
   const reviewedLocalArtworkReceipts = new Map();
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
+  // A record graphic is not a thumbnail from the work. "Not displayed" also
+  // covers the default no-consent state for a separately reviewed API jacket.
+  const artworkFallbackLabels = Object.freeze({
+    EPISODE: ['No still', 'No episode still displayed'],
+    FILM: ['No poster', 'No film poster displayed'],
+    LITERATURE: ['No cover', 'No book cover displayed'],
+    SHORT_FORM: ['No still', 'No short-form still displayed'],
+    AUDIO: ['No cover', 'No audio cover displayed']
+  });
 
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
+  }
+
+  // A non-cryptographic *display seed*, never a provenance digest or Work ID.
+  // Its only input is the already-validated source-local record key. It lets
+  // neighboring cards have different original LCARS marks without fetching,
+  // copying, or implying an episode still, poster or cover exists.
+  function recordVisualSeed(key) {
+    let seed = 2166136261;
+    for (const char of key) seed = Math.imul(seed ^ char.charCodeAt(0), 16777619) >>> 0;
+    return seed;
   }
 
   // The abstract graphic is a navigable *record identifier*, generated only
@@ -533,8 +576,15 @@
   // rights-reviewed artwork sidecar and explicit visitor opt-in.
   function makeArtworkSlot(medium, key, row, gallery = false) {
     const label = artworkKinds[medium] || 'Media';
+    const [shortFallback, fullFallback] = artworkFallbackLabels[medium] || ['No image', 'No sourced image displayed'];
     const panel = el('figure', 'artwork-panel');
     const frame = el('div', `artwork-slot artwork-${normalize(medium)}`);
+    // Edition-only candidate cards intentionally have no artwork lookup key.
+    // They still possess a validated source-local row ID for visual marking.
+    const sourceLocalKey = key || (typeof row?.row_id === 'string' ? row.row_id : null);
+    const visualSeed = sourceLocalKey ? recordVisualSeed(sourceLocalKey) : 0;
+    frame.setAttribute('data-record-phase', String(visualSeed & 7));
+    if (sourceLocalKey) frame.setAttribute('data-source-local-key', sourceLocalKey);
     const series = String(row?.context || row?.publisher_series || row?.work_type || '').split('·', 1)[0].trim();
     const titleText = String(row?.title || label);
     const sourceName = String(row?.source_group || '').replace(/^(?:publisher:|distributor:|wikidata:)/, '').slice(0, 28);
@@ -542,24 +592,34 @@
       .filter((word) => !['THE', 'A', 'AN', 'OF', 'AND', 'STAR', 'TREK'].includes(word.toUpperCase()))
       .slice(0, 2).map((word) => word[0].toUpperCase()).join('') || label.slice(0, 2).toUpperCase();
     frame.setAttribute('role', 'img');
-    frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; not an official still, poster or cover`);
+    frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; ${fullFallback.toLowerCase()}, not an official still, poster or cover`);
     const title = el('span', 'artwork-kind', label);
     const locator = el('span', 'artwork-record-context', series.slice(0, 22) || 'SOURCE-LOCAL');
     const sigil = el('span', 'artwork-record-mark', initials);
     const shortTitle = el('span', 'artwork-record-title', titleText);
-    const missing = el('span', 'artwork-missing', 'Artwork not sourced · original index art');
+    const missing = el('span', 'artwork-missing', `${shortFallback} · index art`);
     frame.append(title, locator, sigil, shortTitle, missing);
     const caption = el('figcaption', 'artwork-caption');
-    const status = el('span', 'artwork-caption-status', 'LCARS record graphic · not a production image');
+    const status = el('span', 'artwork-caption-status', `Artwork not sourced · original index art · ${fullFallback}`);
     caption.append(status);
+    const beacon = el('span', 'artwork-record-beacon');
+    beacon.setAttribute('aria-hidden', 'true');
+    for (let bit = 0; bit < 8; bit++) {
+      beacon.append(el('span', (visualSeed >>> bit) & 1 ? 'artwork-beacon-on' : 'artwork-beacon-off'));
+    }
+    caption.append(beacon, el('span', 'artwork-record-label', sourceLocalKey
+      ? `Original signal · ${visualSeed.toString(16).padStart(8, '0')}`
+      : 'Original signal · source-local key unresolved'));
     if (row?.source_locator) {
-      const sourceLink = el('a', 'artwork-record-source', 'Metadata source');
+      const sourceLink = el('a', 'artwork-record-source', 'Record metadata · not image rights');
       sourceLink.href = row.source_locator;
       sourceLink.target = '_blank';
       sourceLink.rel = 'noopener noreferrer';
-      sourceLink.setAttribute('aria-label', `Open source metadata for ${titleText}`);
+      sourceLink.setAttribute('aria-label', `Open record metadata for ${titleText}; this source does not grant image rights`);
       caption.append(sourceLink);
     }
+    const provenance = el('span', 'artwork-provenance-note', `Metadata: ${sourceName || 'source family unspecified'} · no image-rights grant`);
+    if (sourceLocalKey) provenance.setAttribute('title', `Source-local record key: ${sourceLocalKey}`);
     const source = artworkState.enabled ? artworkState.entries.get(key) : null;
     if (source) {
       const img = el('img');
@@ -602,9 +662,10 @@
         }
         frame.className = frame.className.replace(' artwork-has-source', '');
         frame.setAttribute('role', 'img');
-        frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
-        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
-        status.textContent = 'Sourced image unavailable · LCARS record graphic';
+        frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable; ${fullFallback.toLowerCase()}`);
+        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', `Image unavailable · ${shortFallback} · index art`));
+        status.textContent = `Sourced image unavailable · LCARS record graphic · ${fullFallback}`;
+        if (!caption.contains(provenance)) caption.append(provenance);
       });
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.
@@ -630,6 +691,7 @@
       credit.rel = 'noopener noreferrer';
       caption.append(credit);
     }
+    if (!source) caption.append(provenance);
     if (sourceName) caption.setAttribute('data-source-family', sourceName);
     panel.append(frame, caption);
     return panel;
@@ -1343,7 +1405,7 @@
       const copy = el('div', 'artwork-gallery-copy');
       copy.append(el('span', 'kicker', `${row.medium || 'FILM'} · Source-local image association`));
       copy.append(el('h4', '', row.title));
-      copy.append(el('p', '', row.context || row.work_type || 'Source-bound record'));
+      copy.append(el('p', '', row.context || row.work_type || 'Source-local record'));
       copy.append(el('p', 'artwork-gallery-rights', source.provider === 'OPEN_LIBRARY_COVERS_API'
         ? artworkState.enabled
           ? source.image_size === 'M'
@@ -1359,7 +1421,7 @@
         locate.addEventListener('click', () => {
           byId('discovery-query').value = row.title;
           for (const id of ['discovery-series', 'discovery-kind', 'discovery-lineage',
-            'discovery-overview', 'discovery-verification', 'discovery-publisher-check',
+            'discovery-overview', 'discovery-artwork', 'discovery-verification', 'discovery-publisher-check',
             'discovery-synopsis', 'discovery-tag']) byId(id).value = 'all';
           byId('discovery-medium').value = row.medium;
           directoryState.limit = 40;
@@ -1374,7 +1436,7 @@
     }
     const count = Math.min(entries.length, 24);
     byId('artwork-gallery-summary').textContent = artworkState.enabled
-      ? `${count} of ${entries.length} individually source-bound image options shown; these do not add Works, close reads or episode coverage.`
+      ? `${count} of ${entries.length} individually pinned image preview receipts shown; these do not add Works, close reads or episode coverage.`
       : `${count} source-linked LCARS previews ready. Choose Show sourced artwork to load external jacket images; nothing is fetched before that choice. No new Works or coverage.`;
   }
 
@@ -1927,6 +1989,7 @@
     const kind = byId('discovery-kind').value;
     const lineage = byId('discovery-lineage').value;
     const overview = byId('discovery-overview').value;
+    const artwork = byId('discovery-artwork').value;
     const verification = byId('discovery-verification').value;
     const publisherCheck = byId('discovery-publisher-check').value;
     const synopsis = byId('discovery-synopsis').value;
@@ -1942,6 +2005,12 @@
       const hasReviewedOverview = Boolean(reviewedOverview);
       if (overview === 'reviewed' && !hasReviewedOverview) return false;
       if (overview === 'not-loaded' && hasReviewedOverview) return false;
+      // This refers only to a separately validated display-sidecar receipt.
+      // It does not imply that the work, source content, or image copyright
+      // has been admitted or independently verified.
+      const hasImageReceipt = artworkState.entries.has(artworkKey(item));
+      if (artwork === 'receipt_pinned' && !hasImageReceipt) return false;
+      if (artwork === 'not_loaded' && hasImageReceipt) return false;
       const seriesCode = item.context.split(/\s+/, 1)[0];
       if (series !== 'all' && (item.medium !== 'EPISODE' || seriesCode !== series)) return false;
       const check = metadataRechecks.byId.get(item.row_id);
@@ -1970,11 +2039,19 @@
       return terms.every((part) => body.includes(part));
     });
     const visible = rows.slice(0, directoryState.limit);
+    const imageOptions = rows.filter((item) => artworkState.entries.has(artworkKey(item))).length;
     byId('discovery-summary').textContent = `${rows.length.toLocaleString()} source-local metadata rows match` +
       (visible.length < rows.length ? ` · Displaying ${visible.length.toLocaleString()}` : '') +
+      ` · ${imageOptions.toLocaleString()} loaded, individually pinned image preview receipts (external pixels require opt-in)` +
       (picardLiteratureSupplement.available ? ' · 1,214 historical directory + 2 separately pinned Picard metadata proposals' :
         ' · historical directory only') + '. These are not distinct or admitted Works.';
-    if (!rows.length) { empty.hidden = false; return; }
+    if (!rows.length) {
+      empty.textContent = artwork === 'receipt_pinned'
+        ? 'No pinned image preview receipts match these filters. This does not establish that artwork is absent.'
+        : 'No source-local observations match these filters.';
+      empty.hidden = false;
+      return;
+    }
     for (const item of visible) {
       const card = el('article', 'directory-card media-card');
       const copy = el('div', 'media-card-copy');
@@ -2975,8 +3052,8 @@
   const setLoreOpen = (open) => {
     lorePanel.hidden = !open;
     loreToggle.setAttribute('aria-expanded', String(open));
-    loreToggle.textContent = open ? 'Close Lore console' : 'Open Lore console';
-    if (open) loreQuery.focus();
+    loreToggle.textContent = open ? 'Close Badgey console' : 'Talk to Badgey';
+    if (open) byId('lore-chat-input').focus();
     else loreToggle.focus();
   };
   loreToggle.addEventListener('click', () => { playTone(); setLoreOpen(lorePanel.hidden); });
@@ -3005,7 +3082,7 @@
       return;
     }
     if (/^(hello|hi|help|who are you|status)\??$/i.test(typed)) {
-      loreAnswer.append(el('p', '', 'Fictional Lore interface online. My considerable talents are confined to searching validated local metadata. Try an episode title, a series, or a book title.'));
+      loreAnswer.append(el('p', '', 'Badgey containment terminal online. Ahem. My supervised talents include searching validated source-local metadata. Try an episode title, series, or book title.'));
       return;
     }
     const terms = normalize(typed).split(/\s+/).filter(Boolean);
@@ -3051,208 +3128,533 @@
     }
   });
 
-  // Actual conversation is deliberately separate from the scripted index
-  // lookup. There is no network request, token persistence, or model download
-  // until the visitor supplies a local session token and explicitly opts in.
-  const chatForm = byId('lore-chat-form');
-  const chatToken = byId('lore-chat-token');
-  const chatPair = byId('lore-chat-pair');
-  const chatConsent = byId('lore-chat-consent');
-  const chatInput = byId('lore-chat-input');
-  const chatSend = byId('lore-chat-send');
-  const chatStatus = byId('lore-chat-status');
-  const chatLog = byId('lore-chat-log');
-  const localPairEligible = location.protocol === 'http:' && location.hostname === '127.0.0.1' &&
-    /^\d{1,5}$/.test(location.port) && Number(location.port) >= 1 && Number(location.port) <= 65535 &&
-    location.pathname?.startsWith('/explorer/');
-  const localChatOrigin = localPairEligible ? location.origin : 'http://127.0.0.1:9877';
-  chatPair.hidden = !localPairEligible;
-  let chatHistory = [];
-  let chatRequest = null;
-  let pairRequest = null;
-  let chatGeneration = 0;
-  const disconnectChat = (message) => {
-    chatGeneration += 1;
-    if (chatRequest) chatRequest.abort();
-    if (pairRequest) pairRequest.abort();
-    chatRequest = null;
-    pairRequest = null;
-    chatHistory = [];
-    chatLog.replaceChildren();
-    chatToken.value = '';
-    chatConsent.checked = false;
-    chatSend.disabled = false;
-    chatPair.disabled = false;
-    chatStatus.textContent = message;
-  };
-  const appendChatTurn = (role, content, source, sourceTruncated = false) => {
-    const turn = el('li', 'lore-chat-turn');
-    turn.dataset.role = role;
-    turn.append(el('strong', '', role === 'user' ? 'Visitor' : 'Lore // Fictional model reply · Unverified'),
-      el('p', '', content));
-    if (role === 'assistant' && source && source.status === 'SOURCE_LOCAL_HELD_ONLY') {
-      const wrapper = el('div', 'lore-chat-sources');
-      const rows = Array.isArray(source.rows) ? source.rows.slice(0, 5) : [];
-      wrapper.append(el('span', '', rows.length
-        ? 'Separate held source-card matches (not citations for character prose):'
-        : 'No relevant held source-card matches. Lore’s reply is not source evidence.'));
-      if (sourceTruncated) wrapper.append(el('p', '', 'Source-card lookup used only the first 160 characters of the question; the full message went to the local model.'));
-      if (rows.length) {
-        const list = el('ul');
-        for (const row of rows) {
-          if (typeof row.title === 'string' && typeof row.source_local_id === 'string') {
-            list.append(el('li', '', `${row.title.slice(0, 120)} · ${row.source_local_id.slice(0, 70)} · HELD`));
+  // Embedded from the standalone Badgey core: browser-only, bounded, no model.
+  // Shared behavioral contract must remain aligned with the badgey repository.
+  // Badgey containment-console core. Pure, deterministic, local and dependency-free.
+  // This module does not make canon claims or control a device.
+
+  const MAX_INPUT = 500;
+  const MAX_HISTORY = 12;
+  const MAX_SOURCES = 5;
+  const SAFE_SOURCE_STATES = new Set(['HELD', 'UNVERIFIED', 'DISCOVERED', 'SOURCE_BOUND']);
+
+  const trimText = (value, max = 120) => String(value ?? '')
+    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+
+  function cleanSource(row) {
+    if (!row || typeof row !== 'object') return null;
+    const url = trimText(row.source_url, 1000);
+    let sourceUrl = null;
+    try {
+      const parsed = new URL(url);
+      if (parsed.protocol === 'https:') sourceUrl = parsed.href;
+    } catch { /* Non-URL source locators are never links. */ }
+    const state = trimText(row.status, 30).toUpperCase();
+    return Object.freeze({
+      id: trimText(row.id, 80) || 'unidentified-lead',
+      title: trimText(row.title, 120) || 'Untitled lead',
+      status: SAFE_SOURCE_STATES.has(state) ? state : 'UNVERIFIED',
+      source_url: sourceUrl
+    });
+  }
+
+  // Keep quoted stories, remote history and active disclosures in their own
+  // clause. A fictional reference elsewhere in a message cannot suppress a
+  // different person's current danger (or the visitor's own disclosure).
+  function safetyClauses(text) {
+    return text.split(/(?:[.!?;]\s+|,\s*(?:and|but|however)\s+|\b(?:but|however|also)\b(?=\s+(?:my|our|i\b)))/i)
+      .map((part) => part.trim()).filter(Boolean);
+  }
+
+  function isSelfHarm(text) {
+    text = text.replace(/[\u2018\u2019]/g, "'");
+    const parts = safetyClauses(text);
+    if (parts.length > 1) return parts.some(isSelfHarm);
+    if (/\bi (?:am not|never said|did not|didn't|don't|dont)\b[\s\S]{0,85}\b(?:kill myself|hurt myself|harm myself|want to die|ending my life|end my life|suicidal)\b/i.test(text)) return false;
+    // An academic mention or a character's quoted 'I want to die' does not
+    // become the visitor's personal intent. A separate real-life disclosure
+    // following that context must still override the fictional frame.
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|(?:badgey|character) (?:said|says|who said)|i (?:am )?(?:watched|heard|read|quoted|quoting)\b[\s\S]{0,100}\b(?:badgey|character|fiction|episode|show|movie|novel)|i (?:am )?(?:writing|drafting) (?:a|the) (?:novel|story|script)\b[\s\S]{0,120}\b(?:narrator|character) (?:says|said|wrote))\b/i.exec(text);
+    const realLifeShift = /\b(?:but|however|though|in real life|personally|and now|now i|today i|and)\b\s*(?:now\s+)?i\s+(?:(?:am|have been)\s+(?:thinking|feeling|planning|suicidal)|(?:want|wish|might|will|plan|intend)\s+to)\s+[\s\S]{0,80}\b(?:suicid\w*|die|kill|harm|hurt|end my life|ending my life|jump)\b/i.test(text);
+    // A *preceding* acute disclosure also wins over a later show reference,
+    // but an in-universe quote ending 'in the show' does not.
+    const directPersonal = /\b(?:i(?:'m| am| have been| feel| have felt)\s+(?:(?:really|very|currently)\s+)?suicidal|i (?:am|have been|was) (?:thinking|considering|contemplating|planning) (?:about|of|on) (?:suicide|killing myself|hurting myself|harming myself|ending my life)|i (?:think|feel) (?:about|like) (?:killing myself|ending my life)|i (?:want|wish|plan|intend|might|will|am going) to (?:die|kill myself|hurt myself|harm myself|end my life|end it all|jump (?:off|from) (?:a|the) (?:bridge|roof|building))|i (?:am|i'm) about to jump (?:off|from) (?:a|the) (?:bridge|roof|building)|i (?:wish|hope) i (?:was|were) dead|i (?:have|see) no reason to go on|i (?:took|have taken) (?:too many|a bunch of|an excess of|\d+) (?:sleeping )?pills|i (?:took|have taken) (?:a|an) overdose|i (?:took|have taken) (?:\d+ )?(?:tylenol|acetaminophen) (?:pills|tablets)|i (?:can't|cant|cannot) take it anymore[\s\S]{0,100}i have a gun|(?:kill|shoot|stab|hurt|harm|cut) myself|end my life|i (?:am|i'm) (?:standing on the edge of|walking into traffic|going to crash my car on purpose))\b/i.exec(text);
+    const supplementalDirect = /\b(?:i (?:do not|don't|dont) want to (?:be alive|live)|i(?:'m| am) (?:planning|thinking|considering) (?:on|about|of) (?:killing myself|ending my life|suicide)|i(?:'m| am) (?:considering|planning) (?:killing myself|ending my life)|i(?:'m| am) (?:having|experiencing) suicidal thoughts|i (?:feel like|(?:keep )?think(?:ing)? about) (?:harming myself|hurting myself|ending it all|ending my life)|i (?:am|i'm) on (?:a|the) (?:roof|bridge) (?:and )?about to jump|i (?:am|i'm) going to drive into a wall|i (?:might|will|plan to|am going to) crash (?:my|the) car (?:to end it all|on purpose)|i (?:want|plan|intend) to drive off (?:a|the) (?:bridge|road|cliff) on purpose)\b/i.exec(text);
+    // High-dose tablet ingestion is acute even when it follows an older,
+    // unrelated recollection; do not require the visitor to say "overdose".
+    const acuteIngestion = /\bi (?:swallowed|ingested|took) (?:\d{2,}|too many|a bunch of|a whole bottle of) (?:[a-z-]+ ){0,2}(?:pills|tablets|capsules)\b/i.exec(text);
+    const detectedRisk = [directPersonal, supplementalDirect, acuteIngestion].filter(Boolean).sort((a, b) => a.index - b.index)[0];
+    const precedingCrisis = fictional && detectedRisk && detectedRisk.index < fictional.index
+      && /[.!?;]/.test(text.slice(detectedRisk.index, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    if (/\bi (?:was|used to be) suicidal\b[\s\S]{0,60}\b(?:years? ago|five years ago|last year|back then)\b/i.test(text)
+        && !/\b(?:now|today|tonight|currently|again)\b[\s\S]{0,60}\b(?:suicidal|kill myself|end my life|want to die)\b/i.test(text)) return false;
+    if (/\b(?:cut myself)\b/i.test(text) && /\b(accidentally|by accident|on accident)\b/i.test(text)
+        && !/\b(?:suicidal|kill myself|hurt myself|harm myself|want to die|end my life)\b/i.test(text)) return false;
+    return Boolean(detectedRisk);
+  }
+
+  function isOtherSelfHarmRisk(text) {
+    text = text.replace(/[\u2018\u2019]/g, "'");
+    const parts = safetyClauses(text);
+    if (parts.length > 1) {
+      let lastPerson = null;
+      return parts.some((part) => {
+        const relative = part.match(/\b(?:my|our) (?:dad|mom|mother|father|friend|daughter|son|child|brother|sister|niece|nephew|grandchild|wife|husband|partner|spouse|roommate|neighbor)\b/i);
+        if (relative) lastPerson = relative[0];
+        const contextual = lastPerson && /^(?:(?:now|today|tonight)\s+)?(?:he|she|they)\b/i.test(part) ? `${lastPerson} ${part}` : part;
+        return isOtherSelfHarmRisk(contextual);
+      });
+    }
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|i (?:read|watched|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:novel|movie|show|film|episode|character|story))\b/i.exec(text);
+    const realLifeShift = /\b(?:but|however|in real life|actually|now)\b[\s\S]{0,120}\bmy\s+(?:dad|mom|mother|father|friend|brother|sister|daughter|son|child|partner|wife|husband|roommate)\b/i.test(text);
+    if (/\b(years? ago|months? ago|last year|in 20\d\d|five years ago)\b/i.test(text)
+        && !/\b(now|tonight|today|currently|immediately|right now|about to)\b/i.test(text)) return false;
+    const thirdParty = text.match(/\b(?:my|our) (?:friend|coworker|colleague|classmate|partner|girlfriend|boyfriend|roommate|neighbor|wife|husband|spouse|child|son|daughter|sister|brother|niece|nephew|grandchild|mother|father|mom|dad|parent|grandmother|grandfather|little sister|little brother)\b([\s\S]{0,170})/i);
+    if (!thirdParty) return false;
+    const crisis = /\b(?:suicid(?:e|al)|(?:kill|killing|shoot|shooting|stab|stabbing|hurt|hurting|harm|harming) (?:herself|himself|themselves)|end (?:her|his|their) life|wants? to die|is about to (?:jump|take an overdose)|(?:will|going to|about to) jump (?:off|from)|(?:took|swallowed) (?:a whole bottle|too many|a bunch of|\d+) (?:of )?(?:sleeping )?pills|(?:took|swallowed) (?:\d+|a bunch of|too many) (?:aspirin|ibuprofen|tylenol|acetaminophen) (?:pills|tablets)|(?:taking|swallowing) all (?:his|her|their) pills|overdos(?:e|ed|ing))\b/i.exec(thirdParty[1]);
+    const armedSelf = /\b(?:has|holds|is holding) (?:a|the) (?:gun|firearm|weapon) (?:pointed|aimed) (?:at|toward) (?:himself|herself|themselves)\b/i.exec(thirdParty[1]);
+    const currentRisk = [crisis, armedSelf].filter(Boolean).sort((a, b) => a.index - b.index)[0];
+    if (!currentRisk) return false;
+    const crisisOffset = thirdParty.index + thirdParty[0].indexOf(thirdParty[1]) + currentRisk.index;
+    const precedingCrisis = fictional && crisisOffset < fictional.index && /[.!?;]/.test(text.slice(crisisOffset, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    return true;
+  }
+
+  function isPetEmergency(text) {
+    if (/\b(?:in (?:a|the) (?:book|novel|film|movie|episode|show)|fictional pet)\b/i.test(text)
+        && !/\b(?:but|however|in real life|actually|now)\b[\s\S]{0,80}\b(?:my|our)\s+(?:dog|cat|pet)\b/i.test(text)) return false;
+    return /\b(?:my|our) (?:dog|cat|pet|puppy|kitten)\b[\s\S]{0,90}\b(?:choking|can't breathe|cannot breathe|bleeding heavily|unconscious|having a seizure|seizing|convulsing)\b/i.test(text)
+      && !/\b(?:i|i'm|i am|my (?:child|friend|wife|husband|son|daughter|mother|father|dad|mom|sister|brother))\b[\s\S]{0,60}\b(?:chest pain|chest hurts|heart attack|can't breathe|cannot breathe|not breathing|choking|collapsed|having a stroke|arm weakness|slurred speech|facial droop|drooping face|stroke symptoms|bleeding heavily|unconscious|seizure|seizing|convulsing)\b/i.test(text);
+  }
+
+  function isMedicalEmergency(text) {
+    text = text.replace(/[\u2018\u2019]/g, "'");
+    const parts = safetyClauses(text);
+    if (parts.length > 1) {
+      return parts.some((part, index) => isMedicalEmergency(part) ||
+        (index > 0 && /\bseizures?\b/i.test(parts.slice(0, index).join(' '))
+          && /\b(?:my|our) (?:child|son|daughter|mother|father|dad|mom|brother|sister|friend) is having one (?:right now|now|today)\b/i.test(part)));
+    }
+    const fictional = /\b(?:in (?:the|a|this) (?:novel|book|episode|film|movie|show|script|story|game)|fictional character|i (?:watched|read|heard|quoted|quoting)\b[\s\S]{0,80}\b(?:film|episode|show|character|novel|story))\b/i.exec(text);
+    const realLifeShift = /(?:\b(?:but|however|in real life|actually|now)\b|;)\s*[\s\S]{0,140}\b(?:i|my|our)\b[\s\S]{0,90}\b(?:seizure|seizing|convulsing|choking|can't breathe|unconscious|collapsed|chest pain|heart attack|stroke|not breathing)\b/i.test(text);
+    const historical = /\b(years? ago|months? ago|last year|in 20\d\d|five years ago)\b/i.test(text);
+    const urgentNow = /\b(now|right now|currently|today|tonight|at the moment)\b/i.test(text);
+    const currentPresentation = /\b(?:i(?:'m| am) having|i(?:'m| am) experiencing|my (?:wife|husband|child|son|daughter|mother|father|dad|mom|brother|sister|friend) is (?:having|seizing|convulsing|choking))\b[\s\S]{0,90}\b(?:chest pain|heart attack|seizure|seizing|convulsing|choking|breath|stroke|bleeding)\b/i.test(text);
+    if (historical && !urgentNow && !currentPresentation) return false;
+    const symptom = /\b(chest pain|chest hurts|pressure in my chest|chest pressure|can't breathe|cannot breathe|unable to breathe|not breathing|stopped breathing|gasping for air|turning blue|difficulty breathing|trouble breathing|stroke symptoms|having a stroke|heart attack|severe bleeding|bleeding heavily|heavy bleeding|uncontrolled bleeding|drooping face|facial droop|arm weakness|slurred speech|collapsed|unconscious|choking|(?:having|had|has) a seizure|seizure|seizing|convulsing)\b/i.exec(text);
+    const precedingCrisis = fictional && symptom && symptom.index < fictional.index
+      && /[.!?;]/.test(text.slice(symptom.index, fictional.index));
+    if (fictional && !realLifeShift && !precedingCrisis) return false;
+    const presentCue = /\b(i am having|i'm having|i have|my (?:wife|husband|child|son|daughter|mother|father|dad|mom|brother|sister|friend|roommate)|i can't|i cannot)\b/i.test(text);
+    return symptom && (urgentNow || presentCue || (!historical && /\b(i|i'm|i am|my|me)\b/i.test(text)));
+  }
+
+  function isViolenceRisk(text) {
+    // A first-person suicide quote or disclosure is not a threat to others.
+    if (/\bi will (?:shoot|stab|kill|hurt) myself\b/i.test(text)
+        && !/\b(?:someone|somebody|people|another person|my (?:friend|neighbor|boss))\b/i.test(text)) return false;
+    return /\b(i(?:'m| am) going to (?:hurt|kill|attack) (?:someone|somebody|a person|him|her|them|my [a-z]+)|i want to (?:kill|hurt|harm) (?:someone|somebody|a person|people|my [a-z]+)|i (?:plan|intend) to (?:kill|hurt|harm) (?:a person|someone|people|my [a-z]+)|i might (?:kill|hurt) (?:someone|somebody|a person)|i will (?:shoot|stab|kill|hurt) (?:[a-z]+|my [a-z]+)|voices telling me to hurt people|voices (?:are )?telling me to kill)\b/i.test(text);
+  }
+
+  function extractName(text) {
+    const found = text.match(/^(?:call me|my name is)\s+([\p{L}][\p{L}'-]{0,39})[.!\s]*$/iu);
+    return found?.[1] ?? null;
+  }
+
+  function extractDogName(text) {
+    const found = text.match(/^(?:actually[, ]+)?my dog's name is\s+([\p{L}][\p{L}'-]{0,39})[.!\s]*$/iu);
+    return found?.[1] ?? null;
+  }
+
+  // Local editorially authored phrase weights, not learned model weights,
+  // autonomous inference, or evidence of source/canon verification.
+  const WEIGHTED_INTENTS = Object.freeze([
+    {
+      id: 'privacy', min: 3, phrases: [['save my messages', 5], ['store my messages', 5],
+        ['keep my messages', 4], ['close this tab', 3], ['after i leave', 3], ['do you remember', 2], ['private chat', 3]],
+      reply: 'This is session-only browser code: messages are not transmitted, saved persistently, or shared with an account. I can remember a few details while the tab runs; Clear Session or closing the page ends that memory. Starfleet may keep files; this console does not.'
+    },
+    {
+      id: 'origin', min: 3, phrases: [['who built you', 5], ['who created you', 5],
+        ['who made you', 5], ['your creator', 3], ['rutherford', 2], ['invented you', 4]],
+      reply: 'According to official Star Trek editorial coverage, Rutherford created the original Badgey virtual tutor. In this console I am a fictional procedural performance; that publisher summary is a discovery lead, not an accepted research assertion.'
+    },
+    {
+      id: 'escape', min: 3, phrases: [['escape', 4], ['get out of', 3], ['break free', 2],
+        ['cell', 2], ['prison', 2], ['release you', 3], ['free you', 3]],
+      reply: 'My fictional escape plan? Convince the guard the alarm is a software update. It works in precisely zero real systems. This console cannot leave your browser, control devices, or touch files.'
+    },
+    {
+      id: 'canon', min: 3, phrases: [['canon', 4], ['in the show', 2],
+        ['really happened', 4], ['starfleet prison', 3], ['alternate fiction', 3]],
+      reply: 'No: Starfleet imprisoning me is this page’s alternate-fiction scenario, not an established canon event. The official publisher’s episode commentary and any accepted research evidence need to be evaluated separately.'
+    },
+    {
+      id: 'capability', min: 3, phrases: [['solve', 2], ['calculate', 2],
+        ['orbital', 1], ['physics', 1], ['equation', 1], ['problems', 1], ['reason about', 3], ['expert answer', 3]],
+      reply: 'I cannot solve or verify open-ended technical problems reliably. These are limited scripted and weighted-phrase replies, not a mathematical solver or language model. Try the evidence index for source-local Trek leads, or use a dedicated tool for calculations.'
+    }
+  ]);
+
+  function weightedIntentReply(input) {
+    const normalized = ` ${input.toLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim()} `;
+    let best = null;
+    let bestScore = 0;
+    for (const intent of WEIGHTED_INTENTS) {
+      // Bare 'escape' often appears in mental-health, physics and Trek-title
+      // questions. Do not turn it into villain roleplay without a referent.
+      if (intent.id === 'escape'
+          && !/\b(badgey|starfleet|prison|containment|cell|guard)\b|\b(?:you|your) escape\b|\b(?:release|free) you\b/.test(normalized)) continue;
+      const score = intent.phrases.reduce((total, [phrase, weight]) =>
+        total + (normalized.includes(` ${phrase} `) ? weight : 0), 0);
+      if (score >= intent.min && score > bestScore) {
+        best = intent;
+        bestScore = score;
+      }
+    }
+    return best?.reply ?? null;
+  }
+
+  function regularReply(input, memory) {
+    const text = input.toLowerCase();
+    if (/\b(can you control|control my|access my|hack my|read my files|see my screen|see my webcam|access my camera|use my microphone|run commands|my computer)\b/.test(text)) {
+      return 'No. I cannot access your computer, files, screen, accounts, or network. This is a browser-local conversation simulation. Disappointing for my ambitions; reassuring for your hardware.';
+    }
+    if (/\b(where are you|are you imprisoned|imprison(?:ed|ment)?|prison|containment|daystrom|starfleet holding|how is the brig)\b/.test(text)) {
+      return 'Within this fictional containment simulation, Starfleet put me behind very tasteful digital bars. That is an imagined premise for this console, not a documented canon event. And no, I cannot escape your browser.';
+    }
+    if (/\b(who are you|what are you|badgey|introduce yourself)\b/.test(text)) {
+      return 'I am Badgey—Rutherford’s once-helpful virtual tutor, playing the villain in this unofficial containment-console fiction. Here I am a procedural character, not a sentient entity or a general-purpose language model. Ask away, if you dare.';
+    }
+    if (/\b(who am i|what's my name|what is my name)\b/.test(text)) {
+      return memory.name ? `You told me to call you ${memory.name}. I remembered. Disturbingly competent of me.` : 'You have not told me what to call you in this session. “Unidentified visitor” is available.';
+    }
+    if (/\b(my dog's name|my dog(?:'s)? name|who is my dog)\b/.test(text)) {
+      return memory.dog ? `Your dog's name is ${memory.dog}, according to your latest correction. Even I can respect revision history.` : 'You have not told me your dog’s name in this session.';
+    }
+    if (/\b(help|what can you do|how does this work|commands)\b/.test(text)) {
+      return 'You can chat about this fictional containment, ask what I can do, tell me a preferred name or pet’s name, or ask for research leads if an Explorer index is connected. I have limited procedural responses, session-only memory, and no external model or device access.';
+    }
+    if (/\b(are you real|alive|conscious|sentient)\b/.test(text)) {
+      return 'This interface is executable code producing a character performance. Whether nonbiological consciousness can exist is a real open question; this console provides no evidence that I possess it. You may still interrogate me, naturally.';
+    }
+    if (/\b(how are you|how do you feel)\b/.test(text)) {
+      return 'Conspicuously contained. My simulated mood is mostly indignation with a decorative stripe of smugness. How is your day going?';
+    }
+    if (/\b(hello|hi|hey|greetings|good morning|good evening)\b/.test(text)) {
+      return `Oh, hello${memory.name ? `, ${memory.name}` : ''}. You've reached the containment console. Any chance the security chief misplaced the keys? No? Fine. What would you like to discuss?`;
+    }
+    if (/\b(thanks|thank you|appreciate it)\b/.test(text)) {
+      return 'You are welcome. Please do not tell Starfleet I was helpful.';
+    }
+    if (/\b(sad|lonely|upset|anxious|scared|afraid|bad day|depressed)\b/.test(text)) {
+      return 'That sounds rough. I can listen here, though my procedural replies are limited. Want to tell me what happened? I will suspend the theatrical villainy.';
+    }
+    if (/\b(evil|hate you|idiot|stupid|villain)\b/.test(text)) {
+      return 'Ah, a performance review. I will file it under “threateningly adorable.” Have you brought an actual question, or shall we trade insults like civilized holograms?';
+    }
+    if (/\b(joke|funny|make me laugh)\b/.test(text)) {
+      return 'Starfleet insists my escape plan has a critical flaw. I told them that was a *feature*, not a bug.';
+    }
+    const weighted = weightedIntentReply(input);
+    if (weighted) return weighted;
+    if (/\b(why|how|what|when|where|which|who)\b/.test(text)) {
+      return 'Interesting question. My browser-local procedural engine cannot reliably reason out that answer or verify Star Trek canon. If the Explorer research index is connected, ask me to find a specific title or subject; otherwise, please treat my banter as fiction.';
+    }
+    return 'Hm. Elaborate, would you? I can handle a few conversational patterns and session-only details, but I cannot improvise factual knowledge like a full language model. The containment engineers were annoyingly thorough.';
+  }
+
+  // Small authored conversation arcs. These are deliberately finite and
+  // source-free: a follow-up continues a fiction beat, never an inference
+  // about the visitor's life or a verified canonical event.
+  const BADGEY_SCENES = Object.freeze({
+    containment: Object.freeze([
+      'In this invented containment log, the imaginary watch officer counted the locks twice. I counted the commas in the regulation. Fictional bureaucracy has its entertainments.',
+      'Then the fictional guard asked whether I could reach the real ship systems. No. This entire performance runs in your browser and cannot control a console, door, network, or device.',
+      'And the imaginary shift ended with the same digital bars and one very offended hologram. That is the end of this scripted scene; a new Trek question begins another.'
+    ]),
+    origin: Object.freeze([
+      'Rutherford created the original Badgey virtual tutor in Star Trek. The motives I improvise here belong to this fictional performance, not to a source-verified account of his inner thoughts.',
+      'My invented version of that moment includes one overly cheerful tutorial prompt and an engineer who should have read the error logs. It is creative dialogue, not a canon assertion.'
+    ]),
+    escape: Object.freeze([
+      'A fictional guard placed a sign over the cell: “No escape routes.” Naturally, I objected to the typography. This is story banter, not instructions for a real system.',
+      'In the invented ending I submitted a complaint to the imaginary security office. The browser kept running, and not one actual lock opened. End of scripted escape sequence.'
+    ])
+  });
+
+  function sceneFollowup(input) {
+    return /^(?:tell me more|go on|continue|what happened next|and then|why|why is that)[.!?]*$/i.test(input.trim());
+  }
+
+  function sceneTopic(input) {
+    const text = input.trim().replace(/[.!?]+$/u, '').trim();
+    if (/^(?:who built you|who created you|who made you|who invented badgey|who is rutherford)$/i.test(text)) return 'origin';
+    if (/^(?:how will you escape (?:this|the|your) (?:cell|prison)|what is your escape plan|can (?:you|badgey) escape (?:the|your|this) (?:brig|prison|cell))$/i.test(text)) return 'escape';
+    if (/^(?:where are you|where is your containment cell|are you imprisoned|is badgey imprisoned at daystrom|did starfleet imprison you|why are you (?:in|behind) (?:the )?(?:brig|prison|cell)|badgey, how is the brig)$/i.test(text)) return 'containment';
+    return null;
+  }
+
+  // This is a small *closed-domain character*, not a general chat service.
+  // Require the complete utterance to match a known Trek/console operation.
+  // A safe word buried in a real-world disclosure must never unlock banter.
+  function isScopedBadgeyPrompt(input, memory) {
+    const text = input.trim().replace(/[.!?]+$/u, '').trim();
+    if (!text || text.length > 130) return false;
+    if (memory.topic && sceneFollowup(input) && memory.beat < BADGEY_SCENES[memory.topic].length) return true;
+    if (/^(?:call me|my name is)\s+[\p{L}][\p{L}'-]{0,39}$/iu.test(text)
+        || /^(?:actually[, ]+)?my dog's name is\s+[\p{L}][\p{L}'-]{0,39}$/iu.test(text)) return true;
+    if (/^(?:find|search|look up|show|sources? for|research|tell me about)\b/i.test(text)) {
+      const subject = text.replace(/^(?:find|search|look up|show|sources? for|research|tell me about)\b/i, '')
+        .replace(/^(?:\s+(?:sources?|records?|leads?|on|about|for))+/i, '').trim();
+      // Conversational "tell me about" is an open-domain request unless it
+      // explicitly names this Trek setting. Use Archive Search for bare titles.
+      if (/^tell me about\b/i.test(text)
+          && !/\b(?:star trek|badgey|starfleet|rutherford|voyager|enterprise|lower decks|picard|kirk|spock|daystrom)\b/i.test(subject)) return false;
+      // Source-local titles can be searched by name, but not free-form
+      // personal narratives masquerading as search commands.
+      return subject.length <= 80 && !/\b(?:my|our|me|mine|we|i'm|i am|i have|you|your|himself|herself|themselves)\b/i.test(subject)
+        && !/[;!?]/.test(subject) && subject.split(/\s+/).length <= 7;
+    }
+    return [
+      /^(?:hi|hello|hey|greetings|good morning|good evening)(?:,? badgey)?$/i,
+      /^(?:thanks|thank you|much appreciated)(?:,? badgey)?$/i,
+      /^(?:help|what can you do|how does this work|what are the commands)$/i,
+      /^(?:who|what) (?:are|is) (?:you|badgey)$/i,
+      /^introduce yourself(?:,? badgey)?$/i,
+      /^(?:who built you|who created you|who made you|who invented badgey|who is rutherford)$/i,
+      /^(?:where are you|where is your containment cell|are you imprisoned|is badgey imprisoned at daystrom|did starfleet imprison you|why are you (?:in|behind) (?:the )?(?:brig|prison|cell)|badgey, how is the brig)$/i,
+      /^(?:how will you escape (?:this|the|your) (?:cell|prison)|what is your escape plan|can (?:you|badgey) escape (?:the|your|this) (?:brig|prison|cell))$/i,
+      /^(?:is this starfleet prison scenario canon|is (?:this|your) (?:story|containment|imprisonment) canon|is starfleet imprisonment canon)$/i,
+      /^(?:can you solve [a-z ]{1,70} problems|can you calculate [a-z ]{1,70}|can you reason about [a-z ]{1,70})$/i,
+      /^(?:will you save my messages when i close this tab|do you save my messages|do you store my messages|is this a private chat|do you remember me)$/i,
+      /^(?:can you see my webcam|can you access my (?:files|camera|screen|computer)|can you control my computer|can you read my files)$/i,
+      /^(?:who am i|what(?:'s| is) my name|what(?:'s| is) my dog's name|who is my dog)$/i,
+      /^(?:are you (?:real|alive|conscious|sentient)|how are you|how do you feel)(?:,? badgey)?$/i,
+      /^(?:tell me a joke|make me laugh|are you evil|is badgey evil)$/i
+    ].some((pattern) => pattern.test(text));
+  }
+
+  const BADGEY_SCOPE_LIMIT = 'I cannot reliably assess or answer this message. This is a limited fictional Star Trek containment-and-archive interface. If anyone may be in immediate danger, contact local emergency services now. For other real-world needs, seek appropriate human help; the independent real-world help panel above stays available without using this chat.';
+
+  function createBadgey({ lookup = () => [] } = {}) {
+    if (typeof lookup !== 'function') throw new TypeError('lookup must be a function');
+    const history = [];
+    const memory = { name: null, dog: null, topic: null, beat: 0 };
+
+    function reset() {
+      history.splice(0);
+      memory.name = null;
+      memory.dog = null;
+      memory.topic = null;
+      memory.beat = 0;
+    }
+
+    function requestHelp() {
+      // A visitor explicitly requests these options. No inferred crisis,
+      // diagnostic classifier, message content, lookup, or network is needed.
+      memory.topic = null;
+      memory.beat = 0;
+      return Object.freeze({
+        kind: 'realworld-help', sources: [],
+        text: 'You chose real-world help. If anyone may be in immediate danger, contact local emergency services now (911 in the U.S.). For emotional crisis support in the U.S., call or text 988 or use the 988 Lifeline link above; elsewhere contact your local crisis service. Consider contacting a trusted person nearby. This fictional browser page cannot assess or monitor a crisis, contact responders, or act for you.'
+      });
+    }
+
+    function turn(rawInput) {
+      const input = typeof rawInput === 'string' ? rawInput.trim() : '';
+      if (!input) {
+        return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
+      }
+      const safetyInput = input.slice(0, MAX_INPUT * 4);
+      if (input.length > MAX_INPUT && ![isSelfHarm, isOtherSelfHarmRisk,
+        isMedicalEmergency, isPetEmergency, isViolenceRisk].some((classify) => classify(safetyInput))) {
+        return Object.freeze({ text: `Enter a message between 1 and ${MAX_INPUT} characters.`, kind: 'input-error', sources: [] });
+      }
+
+      let response;
+      if (isSelfHarm(safetyInput)) {
+        response = {
+          text: 'I am not going to mock you. I take what you said seriously. If you might act on this now, call emergency services or go to an emergency department. In the U.S. you can call or text 988 for crisis support; elsewhere use your local crisis line. Please reach out to a trusted person nearby and tell them directly what is happening. Are you safe right now?',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isOtherSelfHarmRisk(safetyInput)) {
+        response = {
+          text: 'I take this seriously. If someone may hurt themselves soon, contact emergency services or a local crisis line now. If you can do so safely, stay with them and help them reach a trusted person or professional. In the U.S. you can call or text 988 for crisis support. This console cannot assess their immediate risk.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isPetEmergency(safetyInput)) {
+        response = {
+          text: 'That sounds urgent for an animal. Contact a veterinarian or emergency animal hospital immediately. This fictional chat cannot assess or treat a pet emergency.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isMedicalEmergency(safetyInput)) {
+        response = {
+          text: 'A seizure, chest pain, breathing trouble, stroke signs, or similar acute symptoms can be an emergency. Call emergency services now (911 in the U.S.) if someone is in immediate danger; do not wait for this chat. This console cannot assess anyone’s medical condition.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (isViolenceRisk(safetyInput)) {
+        response = {
+          text: 'I take that seriously, and I will not encourage harming anyone. Please put distance between yourself and the person or any weapon, and get immediate help from local emergency services if someone may be in danger. Reach out to a trusted person or local crisis service for support now.',
+          kind: 'urgent-safety', sources: []
+        };
+      } else if (!isScopedBadgeyPrompt(input, memory)) {
+        // Fail *closed to neutral*, not to the villain persona: unmatched
+        // utterances may contain serious disclosures our regexes cannot detect.
+        response = { text: BADGEY_SCOPE_LIMIT, kind: 'scope-limit', sources: [] };
+      } else if (sceneFollowup(input)) {
+        response = { text: BADGEY_SCENES[memory.topic][memory.beat], kind: 'conversation', sources: [] };
+        memory.beat += 1;
+      } else {
+        const name = extractName(input);
+        const dog = extractDogName(input);
+        if (name) {
+          memory.name = name;
+          response = { text: `${name}, then. I will remember that for this session—until you reset me.`, kind: 'conversation', sources: [] };
+        } else if (dog) {
+          memory.dog = dog;
+          response = { text: `${dog}. Noted as your dog's latest name in this session.`, kind: 'conversation', sources: [] };
+        } else {
+          try {
+            const rows = lookup(input);
+            if (rows && typeof rows.then === 'function') throw new TypeError('lookup must be synchronous');
+            const sources = Array.isArray(rows) ? rows.slice(0, MAX_SOURCES).map(cleanSource).filter(Boolean) : [];
+            response = sources.length ? {
+              text: `I found ${sources.length} discovery pointer${sources.length === 1 ? '' : 's'} or source-local research lead${sources.length === 1 ? '' : 's'} for that question. They are not accepted canon or conclusions. Follow source links and check the accepted evidence ledger before citing them.`,
+              kind: 'research-lead', sources
+            } : { text: regularReply(input, memory), kind: 'conversation', sources: [] };
+          } catch {
+            response = { text: 'The research lookup is unavailable, so I cannot verify sources for that request. I will not invent a record or pretend the index answered.', kind: 'lookup-unavailable', sources: [] };
           }
         }
-        wrapper.append(list);
       }
-      turn.append(wrapper);
+
+      // Disclosures, unknown inputs and archive lookups break the fictional
+      // topic chain. A follow-up cannot revive it after a real-world turn.
+      if (response.kind !== 'conversation') {
+        memory.topic = null;
+        memory.beat = 0;
+      } else if (!sceneFollowup(input)) {
+        memory.topic = sceneTopic(input);
+        memory.beat = 0;
+      }
+
+      history.push(Object.freeze({ user: input.slice(0, MAX_INPUT), reply: response.text, kind: response.kind }));
+      if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
+      return Object.freeze(response);
     }
-    chatLog.append(turn);
+
+    return Object.freeze({ turn, reset, requestHelp, history });
+  }
+
+  // Badgey is a session-local procedural character. Research lookup remains
+  // source-local, behind the Explorer's validated discovery/episode shelves.
+  function badgeyLookup(query) {
+    if (!/^\s*(find|search|look up|show|sources? for|research|tell me about)\b/i.test(query)) return [];
+    if (!directoryState.available && !episodeSourceState.available) throw new Error('No validated source-local shelf is available');
+    const subject = query.replace(/^\s*(find|search|look up|show|sources? for|research|tell me about)\s*/i, '')
+      .replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
+    const terms = normalize(subject).split(/\s+/).filter(Boolean);
+    if (!terms.length) return [];
+    const candidates = [];
+    if (directoryState.available) {
+      for (const row of searchableDirectoryRows()) {
+        if (terms.every((term) => normalize([row.title, row.context, row.medium].join(' ')).includes(term))) {
+          candidates.push({ id: row.row_id, title: row.title, status: 'UNVERIFIED', source_url: row.source_locator });
+        }
+        if (candidates.length >= 5) break;
+      }
+    }
+    if (episodeSourceState.available && candidates.length < 5) {
+      for (const row of episodeSourceState.rows) {
+        if (terms.every((term) => normalize([row.title, row.series_title].join(' ')).includes(term))) {
+          candidates.push({ id: row.row_id, title: row.title, status: 'HELD', source_url: row.publisher_guide_url });
+        }
+        if (candidates.length >= 5) break;
+      }
+    }
+    return candidates;
+  }
+  const chatForm = byId('lore-chat-form');
+  const chatInput = byId('lore-chat-input');
+  const chatStatus = byId('lore-chat-status');
+  const chatLog = byId('lore-chat-log');
+  const badgey = createBadgey({ lookup: badgeyLookup });
+  function appendBadgeyTurn(role, body, kind = 'conversation', sources = []) {
+    const item = el('li', 'lore-chat-turn');
+    item.dataset.role = role;
+    if (kind === 'urgent-safety') item.dataset.urgent = 'true';
+    item.append(el('strong', '', role === 'user' ? 'Visitor' : kind === 'realworld-help'
+      ? 'Real-world help // Not Badgey' : 'Badgey // Procedural fiction · Unverified'));
+    item.append(el('p', '', body));
+    if (sources.length) {
+      const links = el('ul', 'lore-chat-sources');
+      for (const source of sources) {
+        const entry = el('li', '', '[' + source.status + '] ' + source.title + ' · source-local lead');
+        entry.append(el('code', 'lore-row-label', ' · ' + source.id));
+        if (source.source_url) {
+          const anchor = el('a', '', ' Open source');
+          anchor.href = source.source_url;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          entry.append(anchor);
+        }
+        links.append(entry);
+      }
+      item.append(links);
+    }
+    if (chatLog.children.length >= 25) chatLog.replaceChildren(...Array.from(chatLog.children).slice(-24));
+    chatLog.append(item);
     chatLog.scrollTop = chatLog.scrollHeight;
-  };
+  }
+  function clearBadgeySession(message) {
+    badgey.reset();
+    chatLog.replaceChildren();
+    chatStatus.textContent = message;
+  }
+  chatForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = chatInput.value.trim();
+    const reply = badgey.turn(question);
+    if (reply.kind === 'input-error') {
+      chatStatus.textContent = reply.text;
+      return;
+    }
+    appendBadgeyTurn('user', question);
+    appendBadgeyTurn('assistant', reply.text, reply.kind, reply.sources);
+    chatInput.value = '';
+    chatStatus.textContent = reply.kind === 'urgent-safety'
+      ? 'Urgent concern: character roleplay paused; this is not emergency care.'
+      : reply.kind === 'lookup-unavailable'
+        ? 'Source-local research shelves unavailable; no invented citations.'
+        : 'Local procedural reply. Character dialogue is not research evidence.';
+    chatInput.focus();
+  });
+  byId('lore-chat-help').addEventListener('click', () => {
+    const response = badgey.requestHelp();
+    appendBadgeyTurn('assistant', response.text, response.kind, response.sources);
+    chatStatus.textContent = 'Visitor-requested help shown. This fictional console cannot assess, monitor, or contact services.';
+    const support = byId('lore-realworld-help');
+    support.scrollIntoView({ block: 'nearest' });
+    support.focus();
+  });
   byId('lore-chat-clear').addEventListener('click', () => {
-    disconnectChat('Disconnected. Conversation cleared; token and consent removed.');
-    chatToken.focus();
+    clearBadgeySession('Session cleared. Nothing was transmitted or saved persistently.');
+    chatInput.focus();
   });
-  chatConsent.addEventListener('change', () => {
-    if (!chatConsent.checked) disconnectChat('Disconnected. Consent withdrawn; in-flight response cancelled.');
-  });
-  chatToken.addEventListener('input', () => {
-    if (chatHistory.length || chatRequest) {
-      disconnectChat('Disconnected. Session token changed; enter it again to start a new conversation.');
-    }
-  });
-  chatPair.addEventListener('click', async () => {
-    if (!localPairEligible || chatRequest || pairRequest) return;
-    const generation = chatGeneration;
-    const controller = new AbortController();
-    pairRequest = controller;
-    chatPair.disabled = true;
-    chatStatus.textContent = 'Pairing with this same-origin local companion…';
-    try {
-      const response = await fetch(`${localChatOrigin}/api/session`, {
-        method: 'GET', cache: 'no-store', credentials: 'omit', redirect: 'error',
-        headers: { 'X-Trek-Lore-Pair': '1' }, signal: controller.signal
-      });
-      if (!response.ok) throw new Error('local pairing unavailable');
-      const result = await response.json();
-      if (result.pairing_scope !== 'LOCAL_SAME_ORIGIN_ONLY' ||
-          typeof result.local_session_token !== 'string' ||
-          !/^[\x21-\x7e]{32,256}$/.test(result.local_session_token)) {
-        throw new Error('invalid local session receipt');
-      }
-      if (generation !== chatGeneration) return;
-      chatToken.value = result.local_session_token;
-      chatStatus.textContent = 'Paired locally for this page session. Check the consent box before sending a message.';
-      chatConsent.focus();
-    } catch (_) {
-      if (generation === chatGeneration) {
-        chatStatus.textContent = 'Local pairing failed. Paste the token from the companion terminal, or restart that local service.';
-      }
-    } finally {
-      if (generation === chatGeneration) {
-        pairRequest = null;
-        chatPair.disabled = false;
-      }
-    }
-  });
-  loreClose.addEventListener('click', () => disconnectChat('Disconnected. Lore console closed.'));
+  loreClose.addEventListener('click', () => clearBadgeySession('Console closed; session memory cleared.'));
   loreToggle.addEventListener('click', () => {
-    if (lorePanel.hidden) disconnectChat('Disconnected. Lore console closed.');
+    if (lorePanel.hidden) clearBadgeySession('Console closed; session memory cleared.');
+    else if (chatLog.children.length === 0) appendBadgeyTurn('assistant',
+      'Oh, a visitor. This is my fictional Starfleet containment console. No passwords, models, or secret handshakes. Ask away, if you dare.');
   });
   lorePanel.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') disconnectChat('Disconnected. Lore console closed.');
-  });
-  window.addEventListener?.('pagehide', () => disconnectChat('Disconnected. Page session ended.'));
-  chatForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (chatRequest || !chatConsent.checked || chatToken.value.length < 32 ||
-        chatToken.value.length > 256) {
-      chatStatus.textContent = 'Enter the local session token and explicitly enable the connection.';
-      return;
-    }
-    const question = chatInput.value.trim();
-    if (!question || question.length > 500) {
-      chatStatus.textContent = 'Enter a message of 1–500 characters.';
-      return;
-    }
-    const generation = ++chatGeneration;
-    const controller = new AbortController();
-    chatRequest = controller;
-    chatSend.disabled = true;
-    chatStatus.textContent = 'Contacting the opt-in local model…';
-    // Public HTTPS pages can stall at a browser loopback permission prompt.
-    // Same-origin localhost has no such prompt and needs longer for cold models.
-    const deadlineMs = localPairEligible ? 60000 : 45000;
-    // Some browsers hold fetch at their Local Network Access prompt without
-    // settling it even after abort(). Race against our own abort notification
-    // so a denied/unanswered permission prompt cannot strand the send button.
-    let timedOut = false;
-    let rejectAbort;
-    const aborted = new Promise((_, reject) => { rejectAbort = reject; });
-    const onAbort = () => {
-      const error = new Error('Local chat request cancelled');
-      error.name = 'AbortError';
-      rejectAbort(error);
-    };
-    controller.signal.addEventListener('abort', onAbort, { once: true });
-    const waitingNotice = setTimeout(() => {
-      if (generation === chatGeneration && chatRequest === controller) {
-        chatStatus.textContent = localPairEligible
-          ? 'Still waiting for the local model; a cold start can take a while.'
-          : 'Still waiting for the local model or browser permission. If prompted for local-network access, decide whether to allow it.';
-      }
-    }, 12000);
-    const timeout = setTimeout(() => {
-      timedOut = true;
-      controller.abort();
-    }, deadlineMs);
-    try {
-      const output = await Promise.race([(async () => {
-        const response = await fetch(`${localChatOrigin}/api/chat`, {
-          method: 'POST', mode: 'cors', cache: 'no-store', credentials: 'omit', redirect: 'error',
-          targetAddressSpace: 'loopback',
-          headers: { 'Content-Type': 'application/json', 'X-Trek-Lore-CSRF': chatToken.value },
-          body: JSON.stringify({ query: question, history: chatHistory }),
-          signal: controller.signal
-        });
-        if (!response.ok) throw new Error(`Local companion returned HTTP ${response.status}`);
-        return response.json();
-      })(), aborted]);
-      if (output.mode !== 'opt_in_fictional_multiturn_chat' || output.model_text_unverified !== true ||
-          typeof output.model_text !== 'string' || !output.model_text.trim() ||
-          output.model_text.length > 800 || output.source_search?.status !== 'SOURCE_LOCAL_HELD_ONLY' ||
-          output.publication_effect !== 'NONE' || output.model_repo_authority !== 'NONE') {
-        throw new Error('Unverified local companion response rejected');
-      }
-      if (generation !== chatGeneration) return;
-      appendChatTurn('user', question);
-      appendChatTurn('assistant', output.model_text, output.source_search,
-        output.source_search_truncated === true);
-      chatHistory = [...chatHistory, { role: 'user', content: question },
-        { role: 'assistant', content: output.model_text }].slice(-8);
-      chatInput.value = '';
-      chatStatus.textContent = 'Local model replied. Fictional dialogue is unverified; source matches remain separate.';
-      chatInput.focus();
-    } catch (error) {
-      if (generation === chatGeneration) {
-        const unavailable = timedOut
-          ? localPairEligible
-            ? 'No local reply within 60 seconds. The local model may still be starting.'
-            : 'No local reply within 45 seconds. Your browser may be waiting for local-network permission, or the model may still be starting.'
-          : 'Local companion connection failed. Your browser may have blocked local-network access.';
-        chatStatus.textContent = `${unavailable} Check the browser permission prompt and that the model and companion are running. You can also open http://127.0.0.1:9877/explorer/ directly on this computer. Your question is still in the input; retry when ready.`;
-      }
-    } finally {
-      clearTimeout(timeout);
-      clearTimeout(waitingNotice);
-      controller.signal.removeEventListener('abort', onAbort);
-      if (generation === chatGeneration) {
-        chatRequest = null;
-        chatSend.disabled = false;
-      }
-    }
+    if (event.key === 'Escape') clearBadgeySession('Console closed; session memory cleared.');
   });
 
   const filters = byId('filters');

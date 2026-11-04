@@ -134,6 +134,11 @@ class PremiereReleaseContractTests(unittest.TestCase):
         with self.assertRaises(ReleaseRejected):
             validate(self.root)
         shutil.copyfile(ROOT / "explorer" / "index.html", html)
+        html.write_text(html.read_text().replace(
+            "connect-src 'self';", "connect-src 'self' http://127.0.0.1:9877;"))
+        with self.assertRaises(ReleaseRejected):
+            validate(self.root)
+        shutil.copyfile(ROOT / "explorer" / "index.html", html)
         js = self.root / "explorer" / "app.js"
         js.write_text(js.read_text().replace("premierePhotoState.epoch !== epoch", "false"))
         with self.assertRaises(ReleaseRejected):

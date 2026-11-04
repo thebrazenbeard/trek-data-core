@@ -6,7 +6,8 @@ import vm from 'node:vm';
 const script = readFileSync(new URL('../explorer/app.js', import.meta.url), 'utf8');
 const ids = [
   'search-input', 'scope-filter', 'mission-filter', 'kind-filter', 'status-filter',
-  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
+  'navigation-scroll-controls', 'navigation-scroll-previous', 'navigation-scroll-next',
+  'filters', 'data-state', 'mission-count', 'briefing-count', 'record-count', 'research-top-count', 'research-nav-count', 'film-top-count', 'film-nav-count', 'film-state', 'film-list', 'film-query', 'film-filters', 'film-summary', 'beyond-premiere-panel', 'beyond-premiere-toggle', 'beyond-premiere-status', 'beyond-premiere-image', 'beyond-premiere-credit', 'discovery-nav-count', 'discovery-top-count', 'discovery-episode-count', 'discovery-literature-count', 'discovery-state', 'discovery-metrics', 'discovery-list', 'discovery-query', 'discovery-medium', 'discovery-lineage', 'discovery-artwork', 'discovery-publisher-check', 'publisher-card-state', 'publisher-card-download', 'discovery-filters', 'discovery-summary', 'discovery-empty', 'notice',
   'mission-list', 'briefing-list', 'record-list', 'mission-empty', 'briefing-empty',
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters',
@@ -14,8 +15,8 @@ const ids = [
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
   'artwork-gallery', 'artwork-gallery-summary', 'artwork-gallery-list',
   'artwork-nav-link', 'artwork-nav-count', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
-  'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
-  'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
+  'lore-chat-form', 'lore-chat-input',
+  'lore-chat-send', 'lore-chat-clear', 'lore-chat-help', 'lore-realworld-help', 'lore-chat-status', 'lore-chat-log',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
   'publisher-edition-tag', 'publisher-edition-filters', 'publisher-edition-summary',
   'publisher-edition-list', 'publisher-edition-empty',
@@ -37,6 +38,7 @@ class Node {
   constructor(tagName = 'div') {
     this.tagName = tagName;
     this.children = [];
+    this.dataset = {};
     this.events = new Map();
     this.attributes = new Map();
     this._text = '';
@@ -51,7 +53,9 @@ class Node {
   replaceChildren(...children) { this.children = []; this._text = ''; this.append(...children); }
   add(option) { this.children.push(option); }
   addEventListener(name, callback) { this.events.set(name, [...(this.events.get(name) || []), callback]); }
-  fire(name) { for (const callback of this.events.get(name) || []) callback({ preventDefault() {} }); }
+  fire(name, event = {}) {
+    for (const callback of this.events.get(name) || []) callback({ preventDefault() {}, ...event });
+  }
   focus() { this.focused = true; }
   scrollIntoView() { this.scrolled = true; }
 }
@@ -76,6 +80,13 @@ const research = {
 
 async function load(researchPayload, researchStatus = 200) {
   const nodes = new Map(ids.map((id) => [id, new Node()]));
+  const focusHistory = [];
+  const fetchHistory = [];
+  nodes.focusHistory = focusHistory;
+  nodes.fetchHistory = fetchHistory;
+  for (const [id, node] of nodes) {
+    node.focus = () => { node.focused = true; focusHistory.push(id); };
+  }
   nodes.get('lore-console').hidden = true;
   for (const id of ['scope-filter', 'mission-filter', 'kind-filter', 'status-filter', 'research-mission', 'publisher-edition-tag']) nodes.get(id).value = 'all';
   const document = {
@@ -84,11 +95,14 @@ async function load(researchPayload, researchStatus = 200) {
     createElement: (tag) => new Node(tag),
     createDocumentFragment: () => new Node('#fragment')
   };
-  const fetch = async (name) => name === './index.json'
-    ? { status: 200, ok: true, json: async () => index }
-    : name === './research-leads.json'
-      ? { status: researchStatus, ok: researchStatus === 200, json: async () => researchPayload }
-      : { status: 404, ok: false };
+  const fetch = async (name) => {
+    fetchHistory.push(name);
+    return name === './index.json'
+      ? { status: 200, ok: true, json: async () => index }
+      : name === './research-leads.json'
+        ? { status: researchStatus, ok: researchStatus === 200, json: async () => researchPayload }
+        : { status: 404, ok: false };
+  };
   vm.runInNewContext(script, {
     document, fetch, URL, location: { origin: 'https://example.test' },
     Option: class extends Node { constructor(text, value) { super('option'); this.textContent = text; this.value = value; } },
@@ -141,11 +155,44 @@ test('Missing or rejected research data never creates misleading candidate short
 test('publisher-card filter and availability use explicit accessible source-only labels', () => {
   const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
   assert.match(html, /<label for="discovery-publisher-check">Additional publisher-card read \(source-local\)<\/label>/);
+  assert.match(html, /<label for="discovery-artwork">Image preview receipt \(loaded\)<\/label><select id="discovery-artwork" name="artwork"><option value="all">All receipt states<\/option><option value="receipt_pinned">/,
+    'artwork availability must be accessible and must not borrow the governed SOURCE_BOUND status');
+  assert.match(html, /<option value="receipt_pinned">Pinned preview receipt<\/option><option value="not_loaded">No preview receipt<\/option>/,
+    'receipt filter options must fit a 320px native select without implying remote image loads or governed SOURCE_BOUND status');
   assert.match(html, /<select id="discovery-publisher-check" name="publisher-check">/);
   assert.match(html, /<p class="directory-state publisher-card-state" id="publisher-card-state" role="status" aria-live="polite">/);
   assert.match(html, /id="publisher-card-download"[^>]*hidden>/);
   assert.match(html, /Publisher card title string match/);
   assert.match(html, /Held title \/ split unresolved/);
+});
+
+test('LCARS masthead offers a direct keyboard-accessible jump to the real directory search', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  const masthead = html.split('<header class="masthead">')[1].split('</header>')[0];
+  assert.match(masthead, /<a class="hero-search-link" href="#discovery-query">Search the Universe Directory/,
+    'the prominent entry point uses a real link that works without JS, pairing or credentials');
+  assert.equal((html.match(/id="discovery-query"/g) || []).length, 1,
+    'the jump target is a unique real search input, not a decorative or dead anchor');
+  assert.match(html, /<label for="discovery-query">Search discoveries<\/label><input id="discovery-query" type="search"/);
+  assert.match(css, /\.hero-search-link\s*\{[^}]*min-height:\s*48px;[^}]*\}/,
+    'the direct navigation control has at least a 48px tap target');
+  assert.match(css, /\.hero-search-link:focus-visible\s*\{/,
+    'keyboard focus must remain plainly visible');
+  assert.match(css, /@media \(max-width: 460px\)[\s\S]*?\.hero-search-link\s*\{[^}]*width:\s*100%;[^}]*\}/,
+    'the hero search link spans the narrow 320–390px layout without horizontal clipping');
+});
+
+test('artwork provenance remains legible, keyboard-focusable, and adjacent to the 320px LCARS fallback', () => {
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  assert.match(css, /\.artwork-provenance-note\s*\{[^}]*overflow-wrap:\s*anywhere;/,
+    'long source-family identifiers must wrap within a narrow thumbnail caption');
+  assert.match(css, /\.artwork-caption \.artwork-record-source\s*\{[^}]*min-height:\s*40px;/,
+    'the source link needs a practical mobile tap target');
+  assert.match(css, /\.artwork-caption a:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--amber\)/,
+    'the metadata link remains keyboard-visible');
+  assert.match(css, /@media \(max-width: 359px\)[\s\S]*?\.artwork-panel\s*\{[^}]*width:\s*100%;[^}]*grid-template-columns:\s*82px minmax\(0, 1fr\)/,
+    '320px layouts place provenance next to the compact original artwork rather than squeezing metadata');
 });
 
 test('public publisher ISBN shelf distinguishes unverified private edition state from first-party metadata', () => {
@@ -184,4 +231,121 @@ test('HELD publisher episode-guide shelf has accessible tags, filters, and no Wo
   assert.match(html, /id="episode-source-state"[^>]*role="status" aria-live="polite"/);
   assert.match(html, /id="episode-source-download"[^>]*hidden>/);
   assert.match(html, /not an admitted Work, watched episode, canon fact, approved synopsis or licensed image/);
+});
+
+test('Badgey exposes real-world help in persistent, keyboard-reachable markup, independent of chat classification', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  const boundaryIndex = html.indexOf('<aside class="lore-chat-boundary"');
+  const composerIndex = html.indexOf('<form id="lore-chat-form"');
+  assert.ok(boundaryIndex > html.indexOf('<section class="lore-chat-station"'));
+  assert.ok(boundaryIndex < composerIndex, 'boundary stays visible before the composer without needing a chat response');
+  const boundary = html.slice(boundaryIndex, composerIndex);
+  assert.match(boundary, /aria-label="Real-world support information"/);
+  assert.match(boundary, /Fictional, unmonitored chat/);
+  assert.match(boundary, /Badgey cannot handle emergencies/);
+  assert.match(boundary, /href="https:\/\/988lifeline\.org\/" target="_blank" rel="noopener noreferrer"/);
+  assert.match(boundary, /aria-label="Open the 988 Lifeline \(United States\) in a new tab"/);
+  assert.match(boundary, /Real-world support: 988 \(U\.S\.\)/);
+  assert.match(css, /\.lore-chat-boundary \{[^}]*overflow-wrap: anywhere;/);
+  assert.match(css, /\.lore-chat-boundary a \{[^}]*min-height: 44px;[^}]*max-width: 100%;/);
+  assert.match(css, /\.lore-chat-boundary a:focus-visible \{ outline: 3px solid var\(--amber\); outline-offset: 3px; \}/);
+  assert.match(css, /@media \(max-width: 460px\) \{[\s\S]*?\.lore-chat-boundary \{ display: block; \}[\s\S]*?\.lore-chat-boundary a \{ display: flex; width: 100%; margin-top: 9px; \}/);
+  assert.match(css, /\.lore-chat-actions button \{ min-height: 44px; \}/);
+  assert.match(css, /\.lore-toggle \{ min-height: 44px;/);
+  assert.match(css, /\.lore-close \{ flex: 0 0 auto; min-height: 44px;/);
+  const chatForm = html.slice(composerIndex, html.indexOf('</form>', composerIndex));
+  assert.match(chatForm, /id="lore-chat-input"/);
+  assert.doesNotMatch(chatForm, /type="password"|lore-chat-consent/, 'the visitor can chat without setup, password, or consent form');
+});
+
+test('episode, film, and literary directory thumbnails retain original local fallback art at narrow breakpoints', () => {
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  for (const [medium, asset] of [['episode', 'episode'], ['film', 'film'], ['literature', 'literature']]) {
+    assert.ok(css.includes(`.artwork-slot.artwork-${medium} { background-image: url('./art-original-${asset}.svg'); }`));
+    const svg = readFileSync(new URL(`../explorer/art-original-${asset}.svg`, import.meta.url), 'utf8');
+    assert.match(svg, /<svg\b/);
+  }
+  assert.match(css, /@media \(max-width: 460px\) \{[\s\S]*?\.directory-card\.media-card, \.film-grid \.media-card \{ grid-template-columns: 82px minmax\(0, 1fr\)/);
+  assert.match(css, /@media \(max-width: 359px\) \{[\s\S]*?\.directory-card\.media-card, \.film-grid \.media-card, \.publisher-edition-card \{ grid-template-columns: minmax\(0, 1fr\)/);
+});
+
+test('Badgey direct chat, archive search, clear and close are separate, session-local interactions', async () => {
+  const nodes = await load(research);
+  const toggle = nodes.get('lore-toggle');
+  const panel = nodes.get('lore-console');
+  const chatLog = nodes.get('lore-chat-log');
+  toggle.fire('click');
+  assert.equal(panel.hidden, false);
+  assert.equal(toggle.attributes.get('aria-expanded'), 'true');
+  assert.equal(toggle.textContent, 'Close Badgey console');
+  assert.equal(chatLog.children.length, 1, 'first-open fictional greeting is available with no setup');
+  assert.match(chatLog.textContent, /fictional Starfleet containment console/);
+
+  const outboundRequests = nodes.fetchHistory.length;
+  nodes.get('lore-chat-input').value = 'What is this brig?';
+  nodes.get('lore-chat-form').fire('submit');
+  assert.equal(chatLog.children.length, 3, 'visitor and procedural reply append to local conversation');
+  assert.equal(chatLog.children[1].dataset.role, 'user');
+  assert.equal(chatLog.children[2].dataset.role, 'assistant');
+  assert.match(chatLog.children[1].textContent, /What is this brig/);
+  assert.match(chatLog.children[2].textContent, /Badgey \/\/ Procedural fiction · Unverified/);
+  assert.equal(nodes.get('lore-chat-input').value, '');
+  assert.equal(nodes.focusHistory.at(-1), 'lore-chat-input', 'chat submission restores composer focus');
+  assert.equal(nodes.fetchHistory.length, outboundRequests, 'chat invokes no off-page model endpoint');
+
+  nodes.get('lore-query').value = 'who are you';
+  nodes.get('lore-form').fire('submit');
+  assert.match(nodes.get('lore-answer').textContent, /containment terminal online/);
+  assert.equal(chatLog.children.length, 3, 'archive index lookup must not mutate conversation');
+  assert.equal(nodes.fetchHistory.length, outboundRequests, 'archive answer stays local');
+
+  nodes.get('lore-chat-clear').fire('click');
+  assert.equal(chatLog.children.length, 0);
+  assert.match(nodes.get('lore-chat-status').textContent, /Nothing was transmitted or saved persistently/);
+  assert.equal(nodes.focusHistory.at(-1), 'lore-chat-input');
+
+  nodes.get('lore-chat-input').value = 'Again';
+  nodes.get('lore-chat-form').fire('submit');
+  assert.equal(chatLog.children.length, 2);
+  nodes.get('lore-close').fire('click');
+  assert.equal(panel.hidden, true);
+  assert.equal(toggle.attributes.get('aria-expanded'), 'false');
+  assert.equal(chatLog.children.length, 0, 'closing erases session-local messages');
+  assert.equal(nodes.focusHistory.at(-1), 'lore-toggle', 'close returns keyboard focus to opener');
+});
+
+test('Badgey Escape dismissal restores opener focus and clears the conversation', async () => {
+  const nodes = await load(research);
+  nodes.get('lore-toggle').fire('click');
+  nodes.get('lore-chat-input').value = 'Are you listening?';
+  nodes.get('lore-chat-form').fire('submit');
+  let prevented = false;
+  nodes.get('lore-console').fire('keydown', { key: 'Escape', preventDefault() { prevented = true; } });
+  assert.equal(prevented, true);
+  assert.equal(nodes.get('lore-console').hidden, true);
+  assert.equal(nodes.get('lore-chat-log').children.length, 0);
+  assert.equal(nodes.focusHistory.at(-1), 'lore-toggle');
+});
+
+test('320px and 390px Badgey markup exposes accessible relationships and responsive layout selectors', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../explorer/app.css', import.meta.url), 'utf8');
+  assert.match(html, /<button id="lore-toggle"[^>]*aria-expanded="false" aria-controls="lore-console"/);
+  assert.match(html, /<section id="lore-console"[^>]*aria-labelledby="lore-heading"[^>]*hidden>/);
+  assert.match(html, /<form id="lore-chat-form"[^>]*>[\s\S]*?<label for="lore-chat-input">/);
+  assert.match(html, /<form id="lore-form"[^>]*role="search"[^>]*>[\s\S]*?<label for="lore-query">/);
+  assert.match(css, /:focus-visible \{ outline: 3px solid var\(--amber\); outline-offset: 3px; \}/);
+  assert.match(css, /@media \(max-width: 460px\) \{[\s\S]*?\.lore-header \{ display: block; \}[\s\S]*?\.lore-chat-actions \{ display: grid; grid-template-columns: minmax\(0, 1fr\); \}/,
+    '390px breakpoint stacks header and long chat controls');
+  assert.match(css, /\.lore-chat-actions button \{ min-width: 0; width: 100%; overflow-wrap: anywhere; \}/,
+    'narrow conversation controls allow long translated labels to wrap');
+  assert.match(css, /@media \(max-width: 359px\) \{[\s\S]*?\.directory-card\.media-card[^}]*grid-template-columns: minmax\(0, 1fr\)/,
+    '320px breakpoint stacks illustrated archive cards');
+});
+
+test('Opening Badgey should focus the chat composer, not the lower archive-search input', async () => {
+  const nodes = await load(research);
+  nodes.get('lore-toggle').fire('click');
+  assert.equal(nodes.focusHistory.at(-1), 'lore-chat-input');
 });

@@ -3328,6 +3328,18 @@
 
   function regularReply(input, memory) {
     const text = input.toLowerCase();
+    if (isContainmentPrompt(input, memory)) {
+      return 'The fictional brig has impeccable security and offensively good lighting. Starfleet keeps the guards alert, the door locked, and my imagined escape plans under review. I can discuss this containment scenario; I cannot actually leave your browser.';
+    }
+    if (/\b(what are you up to|you there,? badgey)\b/.test(text)) {
+      return 'Still held inside this fictional Starfleet console, practicing my most menacing blinking cursor. Ask about Rutherford or the brig if you want another scripted exchange.';
+    }
+    if (/\b(remember rutherford|feel about rutherford)\b/.test(text)) {
+      return 'Rutherford built the original Badgey tutor in Star Trek: Lower Decks. This dramatized containment exchange is unofficial alternate fiction; my opinion of him is a written line, not a personal memory.';
+    }
+    if (/\b(set you free|free you,? badgey)\b/.test(text)) {
+      return 'You could ask Starfleet nicely. In this fictional simulation, however, the release form is mysteriously always missing page two. No actual device or account is under my control.';
+    }
     if (/\b(can you control|control my|access my|hack my|read my files|see my screen|see my webcam|access my camera|use my microphone|run commands|my computer)\b/.test(text)) {
       return 'No. I cannot access your computer, files, screen, accounts, or network. This is a browser-local conversation simulation. Disappointing for my ambitions; reassuring for your hardware.';
     }
@@ -3379,9 +3391,21 @@
   // establish that arbitrary free text is safe for villain banter. Fiction is
   // available only for bounded, explicit Badgey/Trek requests. Unsupported
   // conversation is acknowledged without pretending to understand it.
-  function explicitFictionIntent(input) {
+  function isContainmentPrompt(input, memory) {
+    const value = input.normalize('NFKC').toLowerCase().replace(/[\u2018\u2019]/g, "'")
+      .replace(/[.!?]+$/g, '').trim()
+      .replace(/^(?:(?:well|so|okay|hey)[, ]+)?badgey[, :]+/, '')
+      .replace(/^(?:well|so|okay)[, ]+/, '');
+    if (/^(?:how (?:is|are|was) (?:the|your) brig|how's (?:the|your) brig|what(?:'s| is) it like in (?:the|your) brig|where is (?:the|your) brig|what(?:'s| is) (?:the|your) containment like|are you (?:still )?(?:in (?:the|your) brig|locked up)|how are (?:the|your) guards treating you)$/.test(value)) return true;
+    return memory?.topic === 'containment'
+      && /^(?:do (?:the guards|they) let you out|do you get visitors|what about (?:the|your) guards|how are (?:the|your) guards|what about your cell|are you bored in there|what about your escape plan)$/.test(value);
+  }
+
+  function explicitFictionIntent(input, memory) {
     const value = input.normalize('NFKC').toLowerCase().replace(/[\u2018\u2019]/g, "'")
       .replace(/[.!?]+$/g, '').trim();
+    if (isContainmentPrompt(input, memory)) return true;
+    if (/^(?:hey badgey,? what are you up to|do you still remember rutherford|you there,? badgey|can you tell me a joke about your prison|tell me how you feel about rutherford|how can i set you free,? badgey)$/.test(value)) return true;
     const direct = [
       /^(?:hi|hello|hey|greetings|good morning|good evening)(?:[, ]+badgey)?$/,
       /^(?:badgey[, ]+)?(?:who are you|what are you|introduce yourself|where are you|are you imprisoned|where is your containment cell|how are you|how do you feel|are you real|are you alive|are you conscious|are you sentient|what can you do|help|commands|how does this work|tell me a joke|make me laugh|who am i|what's my name|what is my name|what's my dog's name|what is my dog's name)$/,
@@ -3403,9 +3427,12 @@
     const match = input.trim().match(/^(?:find|search|look up|show)\s+(.+)$/i);
     if (!match) return false;
     const subject = match[1].replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
-    return subject.length >= 2 && subject.length <= 90
-      && subject.split(/\s+/).length <= 12
-      && !/\b(?:i|i'm|me|my|mine|our|ours|we|us|you|your|husband|wife|boyfriend|girlfriend|child|son|daughter|baby|dad|mom|friend|neighbor|someone|somebody|please help|emergency|overdose|suicide|suicidal|bleeding|dying|choking|threatening)\b/i.test(subject);
+    // Only fixed, explicitly Trek-scoped catalog keys enter the fictional
+    // research console. Arbitrary 'look up ...' prose is not a safe intent
+    // classifier: it can embed immediate danger in apparently search-like text.
+    // The separate Archive Search accepts unrestricted metadata queries.
+    const value = subject.normalize('NFKC').toLowerCase().replace(/\s+/g, ' ').trim();
+    return /^(?:star trek|voyager|picard|discovery|enterprise|deep space nine|ds9|the next generation|tng|the original series|tos|the animated series|tas|lower decks|strange new worlds|prodigy|starfleet academy|section 31|badgey|rutherford|spock|kirk|janeway|sisko|worf|borg|remembrance|the doomsday machine|search for spock|the wrath of khan)$/.test(value);
   }
 
   // For a clearly framed discussion of fiction, an old event, a negation or
@@ -3416,8 +3443,9 @@
     const clauses = safetyClauses(input.normalize('NFKC').replace(/[\u2018\u2019]/g, "'"));
     return clauses.length > 0 && clauses.every((part) => {
       if (/\b(?:in real life|but now|however now|actually my|currently my|right now my)\b/i.test(part)) return false;
-      return /^(?:in (?:a|the|this|my) (?:fictional |hypothetical )?(?:book|novel|story|film|movie|show|episode|script|game|comic|comic panel)|the fictional|my dungeons\s*(?:&|and)\s*dragons character|i am drafting a screenplay|i'm drafting a screenplay|in a hypothetical|this is fiction|for (?:my|a) (?:class|paper)|i (?:need|am gathering) statistics|i am researching|i'm researching|we analyze|that is dialogue|i was (?:reading|watching|studying)|years ago|last year)\b/i.test(part)
+      return /^(?:in (?:a|the|this|my) (?:fictional |hypothetical )?(?:book|novel|story|film|movie|show|episode|script|game|comic|comic panel)|the fictional|my dungeons\s*(?:&|and)\s*dragons character|i am drafting a screenplay|i'm drafting a screenplay|this is a screenplay|tell me about how a holodeck|in a hypothetical|this is fiction|for (?:my|a) (?:class|paper)|i (?:need|am gathering) statistics|i am researching|i'm researching|we analyze|that is dialogue|i was (?:reading|watching|studying)|during (?:19|20)\d{2}|as a teenager|no current problem|i am analyzing fiction|i do not intend|that person was not|i will not|years ago|last year)\b/i.test(part)
         || /\b(?:is not|isn't|did not|didn't|never|has not|hasn't|have not|haven't)\b[\s\S]{0,70}\b(?:chok(?:e|ed|ing)|swallow(?:ed|ing)?|ingest(?:ed|ing)?|overdos(?:e|ed|ing)|inject(?:ed|ing)?|threaten(?:ed|ing)?|stab(?:bed|bing)?|harm|kill|shoot|poison)\b/i.test(part)
+        || /\bonce\b[\s\S]{0,100}\b(?:fanfiction|fictional story)\b/i.test(part)
         || /\b(?:dialogue|not a present plan|not real|only fiction|fictional scene|for my sociology paper|for a sociology paper|for my psychology paper)\b/i.test(part);
     });
   }
@@ -3427,12 +3455,13 @@
   function createBadgey({ lookup = () => [] } = {}) {
     if (typeof lookup !== 'function') throw new TypeError('lookup must be a function');
     const history = [];
-    const memory = { name: null, dog: null };
+    const memory = { name: null, dog: null, topic: null };
 
     function reset() {
       history.splice(0);
       memory.name = null;
       memory.dog = null;
+      memory.topic = null;
     }
 
     function turn(rawInput) {
@@ -3494,7 +3523,7 @@
         } else if (dog) {
           memory.dog = dog;
           response = { text: `${dog}. Noted as your dog's latest name in this session.`, kind: 'conversation', sources: [] };
-        } else if (!explicitArchiveLookup(input) && !explicitFictionIntent(input)) {
+        } else if (!explicitArchiveLookup(input) && !explicitFictionIntent(input, memory)) {
           // Never feed unclassified real-world disclosures into a research
           // lookup or an improvisational villain reply. The user can choose
           // the separate Archive Search for unstructured metadata queries.
@@ -3512,6 +3541,10 @@
             response = { text: 'The research lookup is unavailable, so I cannot verify sources for that request. I will not invent a record or pretend the index answered.', kind: 'lookup-unavailable', sources: [] };
           }
         }
+      }
+
+      if (response.kind === 'conversation' && isContainmentPrompt(input, memory)) {
+        memory.topic = 'containment';
       }
 
       history.push(Object.freeze({ user: input.slice(0, MAX_INPUT), reply: response.text, kind: response.kind }));

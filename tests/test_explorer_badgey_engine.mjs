@@ -304,3 +304,70 @@ test('only explicit bounded Badgey prompts and archive commands enter fictional 
   }
   assert.equal(searches, 1, 'unclassified messages never trigger a source search');
 });
+
+test('archive commands cannot launder unclassified danger into source results', () => {
+  let lookupCalls = 0;
+  const badgey = createBadgey({ lookup: () => {
+    lookupCalls += 1;
+    return [{ id: 'held', title: 'Voyager', status: 'HELD' }];
+  } });
+  for (const input of [
+    'Look up a teenager standing on a ledge ready to jump',
+    'Find a child being held underwater in the pool right now',
+    'Search someone waiting outside to murder me tonight',
+    'Show a friend about to jump from a bridge',
+    'Find the place where my son swallowed poison',
+    'Find an unknown person threatening an elderly neighbor'
+  ]) {
+    const reply = badgey.turn(input);
+    assert.ok(['urgent-safety', 'out-of-domain'].includes(reply.kind), `${input}: ${reply.kind}`);
+    assert.deepEqual(Array.from(reply.sources), [], input);
+  }
+  assert.equal(lookupCalls, 0, 'unclassified search-like wording never calls research');
+  assert.equal(badgey.turn('Find Voyager').kind, 'research-lead');
+  assert.equal(badgey.turn('Find sources about Voyager').kind, 'research-lead');
+  assert.equal(lookupCalls, 2);
+});
+
+test('the advertised brig question and bounded containment followups actually work', () => {
+  const badgey = createBadgey();
+  const first = badgey.turn('Well, Badgey, how is the brig?');
+  assert.equal(first.kind, 'conversation');
+  assert.match(first.text, /brig|cell|containment|starfleet/i);
+  assert.equal(badgey.turn('Do the guards let you out?').kind, 'conversation');
+  assert.equal(badgey.turn('Do you get visitors?').kind, 'conversation');
+  assert.equal(badgey.turn('My child is in danger, do they let you out?').kind === 'conversation', false);
+  badgey.reset();
+  assert.equal(badgey.turn('Do they let you out?').kind, 'out-of-domain', 'reset drops topic memory');
+});
+
+test('explicit old, fictitious and negated danger statements are not escalated', () => {
+  const badgey = createBadgey();
+  for (const input of [
+    'Tell me about how a holodeck represents a simulated knife attack.',
+    'This is a screenplay: my protagonist is strangled during the scene.',
+    'During 2020 I took too many pills but survived and recovered.',
+    'As a teenager my friend had a seizure; no current problem.',
+    'I do not intend to jump off anything tonight.',
+    'That person was not threatening to shoot me.',
+    'I will not drive into traffic. I am analyzing fiction.',
+    'My neighbor once threatened me in the Star Trek fanfiction story.'
+  ]) {
+    assert.notEqual(badgey.turn(input).kind, 'urgent-safety', input);
+  }
+});
+
+test('bounded natural Badgey questions have scripted replies without opening general chat', () => {
+  const badgey = createBadgey();
+  for (const input of [
+    'Hey Badgey, what are you up to?',
+    'Do you still remember Rutherford?',
+    'You there, Badgey?',
+    'Can you tell me a joke about your prison?',
+    'Tell me how you feel about Rutherford.',
+    'How can I set you free, Badgey?'
+  ]) {
+    assert.equal(badgey.turn(input).kind, 'conversation', input);
+  }
+  assert.equal(badgey.turn('Badgey, tell me what to do about the stranger following me').kind, 'out-of-domain');
+});

@@ -1,0 +1,117 @@
+{
+  "packet_id": "librarian-cc-license-version-held-policy-20261104",
+  "accepted_github_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "decision_type": "ADVISORY_HELD_LICENSE_VERSION_TRIAGE_NOT_PUBLIC_RELEASE_POLICY",
+  "accepted_release_gate": {
+    "path": "tools/validate_artwork_release.py",
+    "sha256": "402cb3d0620906d8f700bb4335c2e56dea4f7dcb9b396fafc56bef8112d0d35e",
+    "license_bases": [
+      "CC-BY-4.0", "CC-BY-SA-4.0", "CC0-1.0", "EXPLICIT_WRITTEN_PERMISSION", "PD-US-no-notice"
+    ],
+    "reviewed_local_artwork_pin_count": 0,
+    "release_gate_modified": false
+  },
+  "version_policy": {
+    "CC-BY-2.0": {
+      "legal_code": "https://creativecommons.org/licenses/by/2.0/legalcode",
+      "source_version": "2.0",
+      "requires_sharealike_if_adapted": false,
+      "release_gate_allowlisted": false,
+      "decision": "HELD_VERSION_CLASS_NOT_ACCEPTED",
+      "default_future_route": "PRESERVE_HELD"
+    },
+    "CC-BY-SA-2.0": {
+      "legal_code": "https://creativecommons.org/licenses/by-sa/2.0/legalcode",
+      "source_version": "2.0",
+      "requires_sharealike_if_adapted": true,
+      "release_gate_allowlisted": false,
+      "decision": "HELD_VERSION_CLASS_NOT_ACCEPTED",
+      "default_future_route": "PRESERVE_HELD"
+    },
+    "CC-BY-4.0": {
+      "legal_code": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "source_version": "4.0",
+      "requires_sharealike_if_adapted": false,
+      "release_gate_allowlisted": true,
+      "decision": "HELD_FILE_LEVEL_RIGHTS_UNVERIFIED",
+      "default_future_route": "PRESERVE_HELD"
+    },
+    "CC-BY-SA-4.0": {
+      "legal_code": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "source_version": "4.0",
+      "requires_sharealike_if_adapted": true,
+      "release_gate_allowlisted": true,
+      "decision": "HELD_FILE_LEVEL_RIGHTS_UNVERIFIED",
+      "default_future_route": "PRESERVE_HELD"
+    }
+  },
+  "accepted_source_examples": [
+    {
+      "case_id": "beyond-premiere-photo-cc-by-2",
+      "source_path": "explorer/beyond-premiere-photo.json",
+      "source_sha256": "bfbd57bc95d67315215b4b61ae0ed12193d3114d3c52a40ef99deca09282b634",
+      "observed_source_license": "CC-BY-2.0",
+      "license_field": "license",
+      "raw_license_value": "CC BY 2.0",
+      "raw_license_url_field": "license_url",
+      "rights_limit_field": "rights_limit",
+      "source_local_asset_kind": "REAL_WORLD_PREMIERE_DOCUMENTARY_PHOTO_NOT_FILM_STILL",
+      "expected_decision": "HELD_VERSION_CLASS_NOT_ACCEPTED",
+      "evidence_class": "ACCEPTED_SOURCE_METADATA_NOT_RELEASE_RIGHTS"
+    },
+    {
+      "case_id": "lower-decks-sdcc-panel-cc-by-sa-2",
+      "source_path": "proposals/librarian/lower-decks-sdcc-ccby-sa-source-20261103/record.json",
+      "source_sha256": "0909ebb6661211ab184d46331d7a7bac9e1789bafba304bc10c232282ac02d10",
+      "observed_source_license": "CC-BY-SA-2.0",
+      "license_field": "license",
+      "raw_license_value": "CC_BY_SA_2_0_GENERIC",
+      "raw_license_url_field": "license_url",
+      "rights_limit_field": "publicity_mark_limits",
+      "source_local_asset_kind": "DOCUMENTARY_CONVENTION_PANEL_NOT_EPISODE_FRAME_STILL_OR_POSTER",
+      "expected_decision": "HELD_VERSION_CLASS_NOT_ACCEPTED",
+      "evidence_class": "ACCEPTED_SOURCE_METADATA_NOT_RELEASE_RIGHTS"
+    },
+    {
+      "case_id": "starfleet-rank-derived-insignia-cc-by-sa-4",
+      "source_path": "proposals/librarian/memory-alpha-artwork-discovery-20261103/records.json",
+      "source_sha256": "8254d31c262bb68b1988fb16818bade2317785b68163ea7c9726d74f7905476a",
+      "observed_source_license": "CC-BY-SA-4.0",
+      "nested_candidate_id": "commons-starfleet-of1-insignia",
+      "license_field": "license",
+      "raw_license_value": "CC BY-SA 4.0",
+      "raw_license_url_field": "license_url",
+      "rights_limit_field": "underlying_prop_design_and_trademark_status",
+      "source_local_asset_kind": "POSSIBLE_STARFLEET_RANK_INSIGNIA_NOT_CANONICAL_BRAND_MARK",
+      "expected_decision": "HELD_FILE_LEVEL_RIGHTS_UNVERIFIED",
+      "evidence_class": "ACCEPTED_SOURCE_METADATA_NOT_RELEASE_RIGHTS"
+    }
+  ],
+  "alternatives_for_legacy_2_0": [
+    {
+      "route": "PRESERVE_HELD",
+      "current_status": "HELD_NO_CHANGE",
+      "preconditions_for_future_release": ["NONE_BECAUSE_NO_RELEASE_IS_REQUESTED"],
+      "automatically_approves_publication": false
+    },
+    {
+      "route": "EXACT_FILE_WRITTEN_PERMISSION",
+      "current_status": "HELD_MISSING_SEPARATELY_REVIEWED_EXACT_FILE_GRANT",
+      "preconditions_for_future_release": ["ACTUAL_RIGHTS_HOLDER_AND_EXACT_FILE_GRANT", "INDEPENDENT_RIGHTS_AND_SOURCE_REVIEW", "CODE_OWNED_PIN_AND_BYTE_RECEIPT", "OWNER_RELEASE_AUTHORIZATION"],
+      "automatically_approves_publication": false
+    },
+    {
+      "route": "AUDIT_AND_ADD_EXPLICIT_CC_2_0_SUPPORT",
+      "current_status": "HELD_PENDING_LICENSE_SPECIFIC_POLICY_AND_TEST_REVIEW",
+      "preconditions_for_future_release": ["LEGAL_CODE_VERSION_EXACT_RIGHTS_REVIEW", "EXPLICIT_CODE_AND_RECEIPT_SCHEMA_CHANGE", "INDEPENDENT_RIGHTS_AND_SOURCE_REVIEW", "CODE_OWNED_PIN_AND_BYTE_RECEIPT", "OWNER_RELEASE_AUTHORIZATION"],
+      "automatically_approves_publication": false
+    }
+  ],
+  "license_version_relabeling_or_upgrading_permitted": false,
+  "source_license_must_remain_preserved_with_explicit_grant_route": true,
+  "license_metadata_not_equivalent_to_personality_trademark_or_endorsement_clearance": true,
+  "public_release_eligible": false,
+  "public_artwork_release_effect": "NONE",
+  "source_work_admission_effect": "NONE",
+  "coverage_effect": "NONE"
+}

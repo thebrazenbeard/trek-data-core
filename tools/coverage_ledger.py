@@ -472,10 +472,12 @@ def validate_coverage(records,works=None,sources=None,bindings=None,record_paths
    candidates=[]
    for prereq_id in row.get('prerequisite_event_ids',[]):
     prereq=active.get(prereq_id)
-    if prereq and prereq.get('coverage_state')==predecessor_state and prereq.get('work_id')==work_id:
+    # An accepted BLOCKED or REVOKED predecessor is not evidence that its
+    # state was attained. A later event cannot bootstrap coverage from it.
+    if prereq and prereq.get('effect')=='ATTAINED' and prereq.get('coverage_state')==predecessor_state and prereq.get('work_id')==work_id:
      if predecessor_state in SOURCE_STATES and state in SOURCE_STATES and prereq.get('source_id')!=source_id:continue
      candidates.append(prereq_id)
-   if not candidates:errors.append(f'{eid}: accepted {state} requires active accepted {predecessor_state} prerequisite for the same governed context')
+   if not candidates:errors.append(f'{eid}: accepted {state} requires active accepted ATTAINED {predecessor_state} prerequisite for the same governed context')
  return errors
 def normalize_denominator_snapshot(snapshot,works,origin_path=None,enforce_origin=False):
  if snapshot is None:return None

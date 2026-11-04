@@ -1846,6 +1846,46 @@ test('fourteen publisher film records receive original source-keyed illustration
   assert.equal(nodes.get('briefing-count').textContent, '0', 'visuals cannot create accepted Briefings');
 });
 
+test('original film art fails closed when legitimate publisher metadata is swapped under a valid film ID', async () => {
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const original = await runWithIndex(catalog, 200, null, 404, {}, films, 200);
+  assert.equal(traverse(original.get('film-list'), (node) => Boolean(node.getAttribute('data-original-film-art'))).length, 14);
+
+  // An altered sidecar can still pass the existing film envelope and hostname
+  // checks when two otherwise legitimate publisher title/locator pairs trade
+  // IDs. This must never cross the record-specific illustration join.
+  const swapped = structuredClone(films);
+  for (const key of ['title', 'source_locator']) {
+    [swapped.films[0][key], swapped.films[1][key]] = [swapped.films[1][key], swapped.films[0][key]];
+  }
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, swapped, 200);
+  assert.equal(nodes.get('film-list').children.length, 14, 'valid discovery metadata remains visible');
+  const artwork = traverse(nodes.get('film-list'), (node) => Boolean(node.getAttribute('data-original-film-art')));
+  assert.equal(artwork.length, 12, 'neither mismatched title/locator pair may claim a pinned illustration');
+  const rejected = nodes.get('film-list').children.slice(0, 2);
+  for (const card of rejected) {
+    const frame = traverse(card, (node) => node.className?.includes?.('artwork-slot'))[0];
+    assert.ok(frame);
+    assert.equal(frame.getAttribute('data-original-film-art'), null);
+    assert.doesNotMatch(frame.className, /artwork-interpretive-film/);
+    assert.match(frame.getAttribute('aria-label'), /Original LCARS index graphic.*not an official still/);
+    assert.match(card.textContent, /source binding unverified/i);
+  }
+
+  const wrongTitle = structuredClone(films);
+  wrongTitle.films[0].title = `${wrongTitle.films[0].title} (altered)`;
+  const titleMismatch = await runWithIndex(catalog, 200, null, 404, {}, wrongTitle, 200);
+  const marked = traverse(titleMismatch.get('film-list'), (node) => Boolean(node.getAttribute('data-original-film-art')));
+  assert.equal(marked.length, 13, 'title-only mismatch must not be accepted by ID-only lookup');
+
+  const wrongLocator = structuredClone(films);
+  [wrongLocator.films[0].source_locator, wrongLocator.films[1].source_locator] =
+    [wrongLocator.films[1].source_locator, wrongLocator.films[0].source_locator];
+  const locatorMismatch = await runWithIndex(catalog, 200, null, 404, {}, wrongLocator, 200);
+  const locatorArt = traverse(locatorMismatch.get('film-list'), (node) => Boolean(node.getAttribute('data-original-film-art')));
+  assert.equal(locatorArt.length, 12, 'publisher-locator mismatch alone must also hide both source-keyed illustrations');
+});
+
 test('separate official film discovery remains unadmitted and strictly source-scoped', async () => {
   const nodes = await runWithIndex(catalog, 200, null, 404, {}, filmCatalog, 200);
   assert.equal(nodes.get('film-top-count').textContent, '2');

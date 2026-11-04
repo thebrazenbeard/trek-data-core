@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "external_metadata_source_audit",
+  "status": "REVIEW_ONLY_NO_ADMISSION",
+  "accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "draft_pr": 488,
+  "draft_pr_head": "eea7478b08a1ae1b34bf27e74b8884f33f36a1a6",
+  "draft_selection_sha256": "406452d366e74e93a38ad10826a69f193690a474517f5bf71c475735147a8368",
+  "publisher_observation": {
+    "official_guide_url": "https://www.paramountplus.com/shows/star_trek/episodes/1/",
+    "observed_on": "2026-11-04",
+    "reader": "public_web_text_extract",
+    "retrieved_page_content": "EPISODE_GUIDE_FIELD_TEXT_ONLY",
+    "raw_body_sha256": null,
+    "full_episode_content_read": false,
+    "publisher_independence_group": "paramountplus:tos:season1:guide"
+  },
+  "wikidata_observation": {
+    "reader": "public_web_text_extract_mixed_cache_freshness",
+    "observed_on": "2026-11-04",
+    "raw_response_sha256": null,
+    "historical_discovery_independence_group": "wikidata:wdqs",
+    "ordinal_meaning": "WIKIDATA_ITEM_ENGLISH_DESCRIPTION_OR_SERIES_ORDINAL",
+    "new_source_custody_effect": "NONE"
+  },
+  "rows": [
+    {"qid": "Q2664096", "title": "Mudd's Women", "season": 1, "paramount_slot": 7, "wikidata_ordinal_observed": 6, "paramount_guide_lines": [136, 138], "wikidata_item_url": "https://www.wikidata.org/wiki/Q2664096", "wikidata_item_lines": [47, 89, 99]},
+    {"qid": "Q2984502", "title": "The Enemy Within", "season": 1, "paramount_slot": 6, "wikidata_ordinal_observed": 5, "paramount_guide_lines": [130, 132], "wikidata_item_url": "https://www.wikidata.org/wiki/Q2984502", "wikidata_item_lines": [45, 89, 109]},
+    {"qid": "Q3107459", "title": "Dagger of the Mind", "season": 1, "paramount_slot": 10, "wikidata_ordinal_observed": 9, "paramount_guide_lines": [153, 155], "wikidata_item_url": "https://www.wikidata.org/wiki/Q3107459", "wikidata_item_lines": [47, 89, 100]},
+    {"qid": "Q3178411", "title": "Balance of Terror", "season": 1, "paramount_slot": 15, "wikidata_ordinal_observed": 14, "paramount_guide_lines": [182, 184], "wikidata_item_url": "https://www.wikidata.org/wiki/Q3178411", "wikidata_item_lines": [47, 89, 100]},
+    {"qid": "Q3487125", "title": "A Taste of Armageddon", "season": 1, "paramount_slot": 24, "wikidata_ordinal_observed": 23, "paramount_guide_lines": [234, 236], "wikidata_item_url": "https://www.wikidata.org/wiki/Q3487125", "wikidata_item_lines": [47, 89, 100]}
+  ],
+  "accepted_work_effect": "NONE",
+  "accepted_source_binding_effect": "NONE",
+  "coverage_effect": "NONE"
+}

@@ -118,15 +118,22 @@ def inventory_zip(path: Path) -> dict:
                     raise CustodyError("converted ZIP entry count exceeds limit")
                 seen: set[str] = set()
                 files = []
+                entry_paths = []
                 for info in entries:
                     safe_name(info.filename, seen)
-                    if stat.S_ISLNK(info.external_attr >> 16):
-                        raise CustodyError("ZIP member symlink refused")
+                    unix_type = stat.S_IFMT(info.external_attr >> 16)
+                    is_directory = info.is_dir()
+                    if is_directory and unix_type not in {0, stat.S_IFDIR}:
+                        raise CustodyError("ZIP directory marker has non-directory mode")
+                    if not is_directory and unix_type not in {0, stat.S_IFREG}:
+                        raise CustodyError("ZIP file member has non-regular Unix mode")
                     if info.flag_bits & 1:
                         raise CustodyError("encrypted ZIP member refused")
                     if info.compress_type not in {ZIP_STORED, ZIP_DEFLATED}:
                         raise CustodyError("unsupported ZIP compression")
-                    if info.is_dir():
+                    normalized_path = unicodedata.normalize("NFKC", info.filename).casefold()
+                    entry_paths.append((normalized_path.rstrip("/"), is_directory))
+                    if is_directory:
                         if info.file_size != 0:
                             raise CustodyError("directory marker contains unexpected bytes")
                         directories += 1
@@ -144,6 +151,15 @@ def inventory_zip(path: Path) -> dict:
                     if total_bytes > MAX_TOTAL_BYTES:
                         raise CustodyError("total converted ZIP expansion exceeds limit")
                     files.append((extension, info))
+                file_paths = {name for name, is_directory in entry_paths if not is_directory}
+                directory_paths = {name for name, is_directory in entry_paths if is_directory}
+                for name, is_directory in entry_paths:
+                    if not is_directory and name in directory_paths:
+                        raise CustodyError("ZIP path is both file and directory")
+                    segments = name.split("/")
+                    if any("/".join(segments[:index]) in file_paths
+                           for index in range(1, len(segments))):
+                        raise CustodyError("ZIP member nested beneath file path")
                 for extension, info in sorted(files, key=lambda item: (item[0], item[1].filename.casefold())):
                     counts[extension] += 1
                     empty = info.file_size == 0
@@ -201,9 +217,30 @@ def inventory_zip(path: Path) -> dict:
     }
 
 
+def checked_private_target(path: Path) -> Path:
+    """Reject lexical aliases and canonical containment within the public repo.
+
+    A path like /unrelated/../repo/private/file is physically inside repo,
+    despite its lexical parent list containing an unrelated leading segment.
+    Reject every '..' outright and additionally compare canonical locations.
+    O_NOFOLLOW dirfd opens below still protect against subsequent symlink races.
+    """
+    target = path.absolute()
+    if ".." in target.parts:
+        raise CustodyError("parent traversal in private receipt path refused")
+    try:
+        canonical_root = ROOT.resolve(strict=False)
+        canonical_target = target.resolve(strict=False)
+    except (OSError, RuntimeError):
+        raise CustodyError("cannot verify private receipt containment") from None
+    if canonical_target == canonical_root or canonical_root in canonical_target.parents:
+        raise CustodyError("refusing private receipt inside public repository")
+    return target
+
+
 def check_private_parent(path: Path):
     """Require a real owner-private receipt parent, even for verify."""
-    parent = path.absolute().parent
+    parent = checked_private_target(path).parent
     if parent.is_symlink():
         raise CustodyError("symlinked private receipt parent refused")
     try:
@@ -216,9 +253,7 @@ def check_private_parent(path: Path):
 
 def open_private_output(path: Path):
     """Create private receipt with O_EXCL and no followed directory links."""
-    target = path.absolute()
-    if target == ROOT or ROOT in target.parents:
-        raise CustodyError("refusing receipt inside public repository")
+    target = checked_private_target(path)
     check_private_parent(target)
     if target.exists() or target.is_symlink():
         raise CustodyError("refusing to overwrite existing private receipt")

@@ -9,6 +9,7 @@ from pathlib import Path
 import stat
 import tempfile
 import unittest
+from unittest.mock import patch
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
@@ -178,6 +179,52 @@ class ConvertedDerivativeCustodyTests(unittest.TestCase):
         self.assertEqual(self.cli("capture", files=1, directories=1,
                                   css=0, htm=0, jpg=0)[0], 1)
         self.assertFalse(self.receipt.exists())
+
+    def test_dotdot_alias_into_public_repo_is_rejected_before_create(self):
+        self.make_zip()
+        public_root = self.base / "public_repo"
+        public_root.mkdir()
+        private_inside_public = public_root / "owner_private"
+        private_inside_public.mkdir(mode=0o700)
+        unrelated = self.base / "unrelated"
+        unrelated.mkdir()
+        direct = private_inside_public / "should-not-exist.json"
+        through_dotdot = unrelated / ".." / "public_repo" / "owner_private" / direct.name
+        with patch.object(custody, "ROOT", public_root):
+            self.receipt = direct
+            self.assertEqual(self.cli("capture")[0], 1)
+            self.receipt = through_dotdot
+            self.assertEqual(self.cli("capture")[0], 1)
+        self.assertFalse(direct.exists())
+
+    def test_nonregular_unix_entry_types_cannot_masquerade_as_opf(self):
+        for mode in (stat.S_IFCHR | 0o666, stat.S_IFDIR | 0o755,
+                     stat.S_IFBLK | 0o660, stat.S_IFIFO | 0o600):
+            with self.subTest(unix_mode=oct(mode)):
+                if self.receipt.exists():
+                    self.receipt.unlink()
+                self.make_zip([("book/record.opf", b"not-regular", mode)])
+                self.assertEqual(self.cli("capture", files=1, opf=1,
+                                          css=0, htm=0, jpg=0)[0], 1)
+                self.assertFalse(self.receipt.exists())
+
+    def test_file_directory_name_and_parent_component_collisions_rejected(self):
+        scenarios = [
+            [("book/entry.opf/", b"", None), ("book/entry.opf", b"metadata", None)],
+            [("book/entry.opf", b"metadata", None), ("book/entry.opf/", b"", None)],
+            [("book/entry.opf", b"metadata", None),
+             ("book/entry.opf/nested.htm", b"html", None)],
+        ]
+        for members in scenarios:
+            with self.subTest(members=members):
+                if self.receipt.exists():
+                    self.receipt.unlink()
+                self.make_zip(members)
+                dirs = sum(name.endswith("/") for name, _, _ in members)
+                files = len(members) - dirs
+                self.assertEqual(self.cli("capture", files=files, directories=dirs,
+                                          css=0, htm=0, jpg=0)[0], 1)
+                self.assertFalse(self.receipt.exists())
 
 
 if __name__ == "__main__":

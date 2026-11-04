@@ -36,6 +36,35 @@ class ProjectionBundleTests(unittest.TestCase):
    manifest_path.write_text(original_bytes[:-1]+',"research_head":"FORGED","research_head":'+json.dumps(original['research_head'])+'}')
    with self.assertRaisesRegex(ValueError,'duplicate JSON key'):
     bundle.verify_projection(root)
+ def test_nonfinite_jsonl_constant_rejected_even_when_hashes_match(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   path=root/'entities.jsonl'; entity=json.loads(path.read_text(encoding='utf-8'))
+   entity['unreviewed_numeric_value']=float('nan')
+   payload=(json.dumps(entity,sort_keys=True,separators=(',',':'))+'\n').encode('utf-8')
+   path.write_bytes(payload)
+   manifest_path=root/'manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+   manifest['outputs']['entities.jsonl']['hash']=bundle.sha256_bytes(payload)
+   manifest['projection_hash']=bundle.compute_projection_hash(manifest['outputs'])
+   manifest_path.write_text(json.dumps(manifest),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
+    bundle.verify_projection(root)
+ def test_nonfinite_manifest_constant_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+   manifest['unreviewed_numeric_value']=float('inf')
+   manifest_path.write_text(json.dumps(manifest),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON constant'):
+    bundle.verify_projection(root)
+ def test_manifest_numeric_exponent_overflow_rejected(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td); fixture.make_projection(root)
+   manifest_path=root/'manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+   text=json.dumps({**manifest,'unreviewed_numeric_value':'OVERFLOW_SENTINEL'})
+   manifest_path.write_text(text.replace('"OVERFLOW_SENTINEL"','1e999'),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'non-finite JSON number'):
+    bundle.verify_projection(root)
  def test_external_identity_expectations_bind_only_the_supplied_fields(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); manifest=fixture.make_projection(root)

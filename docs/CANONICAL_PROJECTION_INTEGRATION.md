@@ -76,6 +76,12 @@ the bundle alone. For those fields, the returned receipt explicitly says
 the old `input_hash` and still pass intrinsic bundle checks; this must never be
 interpreted as accepted Git state or source custody.
 
+JSON decoding rejects duplicate keys, nonstandard `NaN`/`Infinity` constants,
+and numeric exponents that overflow to non-finite Python floats, even when
+declared output hashes are internally consistent. The canonical encoder also
+refuses non-finite floats. These are bundle-integrity checks, not evidence of
+the authenticity of asserted upstream research or reconciliation heads.
+
 A caller with **independently obtained accepted values** may pass a bounded
 `expected_identity` map to `verify_projection(root, expected_identity={...})`.
 Only exact-matching supplied fields change to `EXTERNAL_EXPECTATION_MATCHED`;

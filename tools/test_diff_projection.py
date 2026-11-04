@@ -101,4 +101,16 @@ class VerifiedBundleDiffTests(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,'invalid old projection bundle'):
     diff.verified_semantic_diff(old,new)
 
+ def test_nonfinite_new_bundle_cannot_be_interpreted_as_semantic_diff(self):
+  with tempfile.TemporaryDirectory() as td:
+   old=Path(td)/'old'; new=Path(td)/'new'; fixture.make_projection(old); fixture.make_projection(new)
+   manifest_path=new/'manifest.json'; manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+   manifest['unreviewed_numeric_value']=float('inf')
+   manifest_path.write_text(json.dumps(manifest),encoding='utf-8')
+   with self.assertRaisesRegex(ValueError,'invalid new projection bundle:.*non-finite JSON constant'):
+    diff.verified_semantic_diff(old,new)
+   result=subprocess.run([sys.executable,str(MODULE_PATH),str(old),str(new)],capture_output=True,text=True)
+   self.assertNotEqual(result.returncode,0)
+   self.assertNotIn('changes=',result.stdout)
+
 if __name__=='__main__': unittest.main()

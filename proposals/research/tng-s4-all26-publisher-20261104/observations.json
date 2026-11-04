@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "TNG-S4-B017-PUBLISHER-CARDS-20261104",
+  "baseline_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "status": "HELD_SOURCE_LOCAL_PUBLISHER_METADATA",
+  "source": {
+    "guide_url": "https://www.paramountplus.com/shows/star_trek_the_next_generation/episodes/4/",
+    "publisher_lineage": "paramount_corporate_publisher_family",
+    "retrieved_utc_date": "2026-11-04",
+    "read_surface": "FULL_RENDERED_PUBLISHER_SEASON_GUIDE_WEB_READER",
+    "entire_guide_card_count_read": 26,
+    "fresh_raw_html_sha256": null,
+    "fresh_raw_html_custody": "UNAVAILABLE",
+    "prior_2026_11_02_discovery_receipt_sha256": "0cc73489140c6427a0cf0f608483d6d0aa07671596d31e4be6e96dcf285dab95",
+    "prior_receipt_status": "HISTORICAL_UNREVALIDATED_RAW_DISCOVERY_RECEIPT",
+    "description_fingerprint_method": "RENDERED_WEB_READER_DESCRIPTION_TRIMMED_UTF8_NFC",
+    "independent_source_families": 1
+  },
+  "audiovisual_episodes_watched": false,
+  "scripts_or_transcripts_read_in_this_batch": false,
+  "publisher_description_prose_republished": false,
+  "global_work_identity_resolved": false,
+  "admission_effect": "NONE",
+  "coverage_effect": "NONE",
+  "rows": [
+    {
+      "row_id": "publisher:s4:tng:000",
+      "publisher_title": "The Best Of Both Worlds, Part 2",
+      "season": 4,
+      "episode": 1,
+      "publisher_card_locator": "Season 4 / The Best Of Both Worlds, Part 2 / S4 E1",
+      "rendered_description_sha256": "245c7f87bbd53b1e44f67c53bee1bd9d5bcd5124510c4326b32b5c77658c6589",
+      "literal_description_mentions": [
+        "Riker",
+        "Picard",
+        "Borg",
+        "Earth"
+      ],
+      "original_short_paraphrase": "The publisher frames Riker's response to the Borg as a choice involving Picard's safety and Earth's fate.",
+      "publisher_framing_anomaly": "THREATENED_DESTRUCTION_NOT_COMPLETION",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:001",
+      "publisher_title": "Family",
+      "season": 4,
+      "episode": 2,
+      "publisher_card_locator": "Season 4 / Family / S4 E2",
+      "rendered_description_sha256": "f3562986f1913c80583892250fdd97ff394370baffd6fd4f3c5c7bcf84c41b6d",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Earth",
+        "Picard"
+      ],
+      "original_short_paraphrase": "Enterprise repairs coincide with family visits and Picard meeting a resentful brother, according to the guide.",
+      "publisher_framing_anomaly": "UNNAMED_BROTHER",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:002",
+      "publisher_title": "Brothers",
+      "season": 4,
+      "episode": 3,
+      "publisher_card_locator": "Season 4 / Brothers / S4 E3",
+      "rendered_description_sha256": "48b59d3c7fce119a8156649828f60e23ec6beb7acdd887384b0f5510448bb49c",
+      "literal_description_mentions": [
+        "Data",
+        "Lore"
+      ],
+      "original_short_paraphrase": "Data responds to his creator's summons and confronts Lore, whom the publisher calls his brother.",
+      "publisher_framing_anomaly": "EVALUATIVE_EVIL_LABEL",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:003",
+      "publisher_title": "Suddenly Human",
+      "season": 4,
+      "episode": 4,
+      "publisher_card_locator": "Season 4 / Suddenly Human / S4 E4",
+      "rendered_description_sha256": "0f381ea9e2e0fac5ee053cdfcc54195456da1d2706bd24da6eab2a610d9b1347",
+      "literal_description_mentions": [
+        "Picard"
+      ],
+      "original_short_paraphrase": "The listing says Picard withholds a boy from the alien father who raised him amid a qualified abuse concern.",
+      "publisher_framing_anomaly": "ABUSE_SUSPICION_NOT_VERIFIED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:004",
+      "publisher_title": "Remember Me",
+      "season": 4,
+      "episode": 5,
+      "publisher_card_locator": "Season 4 / Remember Me / S4 E5",
+      "rendered_description_sha256": "49540104054d340cea01be26ee43b176e40706a816aae1c6bbc0fb0c3f01ccb1",
+      "literal_description_mentions": [
+        "Wesley"
+      ],
+      "original_short_paraphrase": "The publisher associates Wesley's warp-field experiment with unexplained crew disappearances.",
+      "publisher_framing_anomaly": "CAUSE_NOT_INDEPENDENTLY_ESTABLISHED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:005",
+      "publisher_title": "Legacy",
+      "season": 4,
+      "episode": 6,
+      "publisher_card_locator": "Season 4 / Legacy / S4 E6",
+      "rendered_description_sha256": "3846e86935e32922bbb9bb1ef2e40589144e3a6a4bd074dd869af10a6d10dd21",
+      "literal_description_mentions": [
+        "Tasha Yar"
+      ],
+      "original_short_paraphrase": "A rescue takes the crew to Tasha Yar's home settlement and an unnamed sister, per the publisher.",
+      "publisher_framing_anomaly": "UNNAMED_SISTER",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:006",
+      "publisher_title": "Reunion",
+      "season": 4,
+      "episode": 7,
+      "publisher_card_locator": "Season 4 / Reunion / S4 E7",
+      "rendered_description_sha256": "669ac966dc9a75e3d58efdbbb899aada2cca3dc5527d4d55362bef891df2b40e",
+      "literal_description_mentions": [
+        "Picard",
+        "Klingon",
+        "Worf"
+      ],
+      "original_short_paraphrase": "Picard is asked to mediate a Klingon leadership dispute as Worf confronts a former adversary.",
+      "publisher_framing_anomaly": "PAST_DISGRACE_SOURCE_RELATIVE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:007",
+      "publisher_title": "Future Imperfect",
+      "season": 4,
+      "episode": 8,
+      "publisher_card_locator": "Season 4 / Future Imperfect / S4 E8",
+      "rendered_description_sha256": "e8e669f54aca396f0a8fcaa46c8cd74b70fb9449147e5c46f117a4c2e77cac9a",
+      "literal_description_mentions": [
+        "Riker",
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "The blurb presents Riker awakening to an apparent sixteen-year passage and a new command.",
+      "publisher_framing_anomaly": "SUBJECTIVE_TIME_DISPLACEMENT_UNRESOLVED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:008",
+      "publisher_title": "Final Mission",
+      "season": 4,
+      "episode": 9,
+      "publisher_card_locator": "Season 4 / Final Mission / S4 E9",
+      "rendered_description_sha256": "657d3ca3e35fdf086e6e4376281a2a53895c609a610a5be516d95462f99181a9",
+      "literal_description_mentions": [
+        "Starfleet Academy",
+        "Wesley",
+        "Picard"
+      ],
+      "original_short_paraphrase": "Wesley accompanies Picard on a mission after academy acceptance and faces a medical survival crisis.",
+      "publisher_framing_anomaly": "NONE",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:009",
+      "publisher_title": "The Loss",
+      "season": 4,
+      "episode": 10,
+      "publisher_card_locator": "Season 4 / The Loss / S4 E10",
+      "rendered_description_sha256": "93f396b18817d1bb9abbaf97b1b2f1995d31d22ace61b2bbcf97b242ad9bb6dd",
+      "literal_description_mentions": [
+        "Troi"
+      ],
+      "original_short_paraphrase": "The publisher says Troi leaves her position after her empathic abilities appear to vanish.",
+      "publisher_framing_anomaly": "SUBJECTIVE_CAPABILITY_LOSS",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:010",
+      "publisher_title": "Data's Day",
+      "season": 4,
+      "episode": 11,
+      "publisher_card_locator": "Season 4 / Data's Day / S4 E11",
+      "rendered_description_sha256": "9509034342f166289f6d051125fd9421febcdec0b5a395254713201c53ab334e",
+      "literal_description_mentions": [
+        "Data"
+      ],
+      "original_short_paraphrase": "An approaching wedding intensifies Data's questions about human emotions in the guide.",
+      "publisher_framing_anomaly": "UNNAMED_FRIEND",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:011",
+      "publisher_title": "The Wounded",
+      "season": 4,
+      "episode": 12,
+      "publisher_card_locator": "Season 4 / The Wounded / S4 E12",
+      "rendered_description_sha256": "a1836eedb448cf78b953cc59cabfafec66c8853719a0d0e6ce16c9e12aa0c661",
+      "literal_description_mentions": [
+        "Picard",
+        "Federation"
+      ],
+      "original_short_paraphrase": "Picard is assigned to halt attacks attributed to another Federation vessel, according to the publisher.",
+      "publisher_framing_anomaly": "UNPROVOKED_ATTACKS_PUBLISHER_FRAMING",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:012",
+      "publisher_title": "Devil's Due",
+      "season": 4,
+      "episode": 13,
+      "publisher_card_locator": "Season 4 / Devil's Due / S4 E13",
+      "rendered_description_sha256": "efa843e75e5e4ca43fa717f8c45862a2e51f31e346685e5e8987e6e5898a53b7",
+      "literal_description_mentions": [
+        "Picard"
+      ],
+      "original_short_paraphrase": "The blurb depicts Picard opposing a woman who claims supernatural authority over a planet.",
+      "publisher_framing_anomaly": "SELF_PROCLAIMED_DEVIL_NOT_ONTOLOGY",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:013",
+      "publisher_title": "Clues",
+      "season": 4,
+      "episode": 14,
+      "publisher_card_locator": "Season 4 / Clues / S4 E14",
+      "rendered_description_sha256": "1d2bade0b67f39208105919dfc3d05e51daf0a7d09649ce2f4ed26dea1e7d57e",
+      "literal_description_mentions": [
+        "Picard",
+        "Data"
+      ],
+      "original_short_paraphrase": "The publisher frames a crew discovery about Data as apparent deception.",
+      "publisher_framing_anomaly": "PUBLISHER_DECEPTION_FRAME_NOT_ADJUDICATED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:014",
+      "publisher_title": "First Contact",
+      "season": 4,
+      "episode": 15,
+      "publisher_card_locator": "Season 4 / First Contact / S4 E15",
+      "rendered_description_sha256": "984afad29dce0943107f92f39d90457c7788ffd054bc1f090bb94762e801cac1",
+      "literal_description_mentions": [
+        "Riker"
+      ],
+      "original_short_paraphrase": "Riker is injured on a contact mission and identified by others as a threatening outsider, per the guide.",
+      "publisher_framing_anomaly": "ERRONEOUS_HOSTILE_LABEL",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:015",
+      "publisher_title": "Galaxy's Child",
+      "season": 4,
+      "episode": 16,
+      "publisher_card_locator": "Season 4 / Galaxy's Child / S4 E16",
+      "rendered_description_sha256": "5d7cd8b3ff250af9f4839268a42f32484bdc600f07eaf7f9a762edea1353b05f",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Picard"
+      ],
+      "original_short_paraphrase": "The publisher describes Enterprise caring for a creature after its parent is destroyed in Picard's encounter.",
+      "publisher_framing_anomaly": "METAPHORICAL_PARENTAGE_NOT_BIOLOGY",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:016",
+      "publisher_title": "Night Terrors",
+      "season": 4,
+      "episode": 17,
+      "publisher_card_locator": "Season 4 / Night Terrors / S4 E17",
+      "rendered_description_sha256": "f3ffa25c6d7a73054955622f5ddbea1a61d6e4ae4154ee4f598a53ba9c3218c9",
+      "literal_description_mentions": [
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "A spatial-rift ordeal is accompanied by crew paranoia and hallucinations in the listing.",
+      "publisher_framing_anomaly": "PERCEPTION_HALLUCINATION_FRAME",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:017",
+      "publisher_title": "Identity Crisis",
+      "season": 4,
+      "episode": 18,
+      "publisher_card_locator": "Season 4 / Identity Crisis / S4 E18",
+      "rendered_description_sha256": "0322c5f85cb780e34675858b2fb3d11814ab4bc1da228f2e145a190bfd996c45",
+      "literal_description_mentions": [
+        "Crusher",
+        "Geordi"
+      ],
+      "original_short_paraphrase": "Crusher investigates a parasite described as threatening Geordi with physical transformation.",
+      "publisher_framing_anomaly": "THREATENED_CHANGE_NOT_VERIFIED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:018",
+      "publisher_title": "The Nth Degree",
+      "season": 4,
+      "episode": 19,
+      "publisher_card_locator": "Season 4 / The Nth Degree / S4 E19",
+      "rendered_description_sha256": "670857a4709db466e367abdeef09d1fcb673b1e6dc42a3c9c30a5d55e54a0692",
+      "literal_description_mentions": [
+        "Enterprise"
+      ],
+      "original_short_paraphrase": "A probe is said to alter an unnamed crew member's intellect and create danger for Enterprise.",
+      "publisher_framing_anomaly": "UNNAMED_CREW_MEMBER",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:019",
+      "publisher_title": "Qpid",
+      "season": 4,
+      "episode": 20,
+      "publisher_card_locator": "Season 4 / Qpid / S4 E20",
+      "rendered_description_sha256": "49da68c1ca1ac9249b09c1fb4dd3fb849f5b1053fca044d11d0cd36338edab91",
+      "literal_description_mentions": [
+        "Q",
+        "Picard",
+        "Robin Hood"
+      ],
+      "original_short_paraphrase": "The listing places Picard in a Robin Hood role orchestrated by Q as a romantic test.",
+      "publisher_framing_anomaly": "ROLEPLAY_IDENTITY_NOT_GLOBAL",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:020",
+      "publisher_title": "The Drumhead",
+      "season": 4,
+      "episode": 21,
+      "publisher_card_locator": "Season 4 / The Drumhead / S4 E21",
+      "rendered_description_sha256": "abf64a871b679c8bb5d19af6d1d990c5ade818a06042a442ab8f94171a5a4d23",
+      "literal_description_mentions": [
+        "Enterprise",
+        "Picard"
+      ],
+      "original_short_paraphrase": "A shipboard investigation expands into allegations against Picard, according to the publisher.",
+      "publisher_framing_anomaly": "ALLEGATION_NOT_GUILT",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:021",
+      "publisher_title": "Half a Life",
+      "season": 4,
+      "episode": 22,
+      "publisher_card_locator": "Season 4 / Half a Life / S4 E22",
+      "rendered_description_sha256": "cd811b03a4cf223bd7d5b0ab2a82359a4f13f0ca6d3b83b7863a3d8dc433062b",
+      "literal_description_mentions": [
+        "Picard"
+      ],
+      "original_short_paraphrase": "Picard offers refuge to a scientist seeking to avoid a culturally imposed death ritual, per the guide.",
+      "publisher_framing_anomaly": "SOCIETAL_MANDATE_NOT_ACT",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:022",
+      "publisher_title": "The Host",
+      "season": 4,
+      "episode": 23,
+      "publisher_card_locator": "Season 4 / The Host / S4 E23",
+      "rendered_description_sha256": "1de34a7e0c457aa8de72c52abdb85571d4727de1ea3de17c3b52e00e5b6818f4",
+      "literal_description_mentions": [
+        "Crusher"
+      ],
+      "original_short_paraphrase": "The publisher describes Crusher's relationship with an alien whose survival involves changing bodily hosts.",
+      "publisher_framing_anomaly": "MULTIPLE_HOST_BODY_IDENTITY_UNRESOLVED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:023",
+      "publisher_title": "The Mind's Eye",
+      "season": 4,
+      "episode": 24,
+      "publisher_card_locator": "Season 4 / The Mind's Eye / S4 E24",
+      "rendered_description_sha256": "84c1485a8c98a47fec1cbff6e29dba8c942453702b65cff13fa28c2dd0dcd4ef",
+      "literal_description_mentions": [
+        "Romulan",
+        "Geordi"
+      ],
+      "original_short_paraphrase": "The listing says Romulan captors manipulate Geordi toward violent use.",
+      "publisher_framing_anomaly": "PUBLISHER_METAPHOR_NOT_ACTION_PROOF",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:024",
+      "publisher_title": "In Theory",
+      "season": 4,
+      "episode": 25,
+      "publisher_card_locator": "Season 4 / In Theory / S4 E25",
+      "rendered_description_sha256": "830c0b4b4b5788e63687c0d20408d18cd6b89e10644f5585eee2ad36fa8ce8e1",
+      "literal_description_mentions": [
+        "Data"
+      ],
+      "original_short_paraphrase": "The publisher describes Data exploring romantic involvement with another crew member.",
+      "publisher_framing_anomaly": "ROMANCE_NOT_CONSCIOUSNESS_PROOF",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    },
+    {
+      "row_id": "publisher:s4:tng:025",
+      "publisher_title": "Redemption, Part 1",
+      "season": 4,
+      "episode": 26,
+      "publisher_card_locator": "Season 4 / Redemption, Part 1 / S4 E26",
+      "rendered_description_sha256": "cf98f4de8b67aad8107b690cae16095c485d19757bd055cf133256935b7bec76",
+      "literal_description_mentions": [
+        "Klingon Empire",
+        "Worf",
+        "Federation"
+      ],
+      "original_short_paraphrase": "Worf faces conflicting loyalties amid a threatened Klingon political conflict in the guide.",
+      "publisher_framing_anomaly": "THREATENED_CONFLICT_NOT_CONFIRMED",
+      "evidence_frame": "PUBLISHER_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "identity_hold": "NO_GLOBAL_WORK_IDENTITY_ASSERTED"
+    }
+  ]
+}

@@ -37,7 +37,11 @@ occurred or the episode was watched.
 Each note identifies its exact accepted proposal `source_packet_path`,
 SHA-256 of the packet bytes, local row ID, canonicalized row SHA-256, published
 guide URL, source-card locator, and any actually recorded publisher-description
-digest or source response receipts. These provenance classes are separate:
+digest or source response receipts. Separate upstream discovery pointers and
+digests preserve the original lineage path; for VOY b006 that includes a
+Wikidata-derived discovery lead and a distinct official publisher-card check,
+**not** independent episode-content corroboration. These provenance classes
+are separate:
 
 - `source_packet_sha256` proves the input Git JSON bytes match the compiler's
   reviewed pins, not that the live publisher page is unchanged.

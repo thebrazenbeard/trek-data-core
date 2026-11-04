@@ -38,6 +38,10 @@ function card(note) {
   detail(metadata, "Source locator", note.source_card_locator);
   detail(metadata, "Original packet SHA-256", note.source_packet_sha256);
   detail(metadata, "Card fingerprint", note.publisher_description_sha256 || "Not held / not archived");
+  if (note.upstream_discovery_locator) {
+    detail(metadata, "Discovery lineage", note.upstream_discovery_lineage);
+    detail(metadata, "Discovery locator", note.upstream_discovery_locator);
+  }
   if (note.identity_hold !== "NO_GLOBAL_WORK_IDENTITY_ASSERTED")
     detail(metadata, "Identity caution", note.identity_hold);
   node.append(metadata);

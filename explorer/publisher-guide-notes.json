@@ -35,7 +35,10 @@
       "source_local_title": "The Vulcan Hello",
       "source_packet_path": "proposals/research/discovery/s1-publisher-first5-20261103/records.json",
       "source_packet_sha256": "9e4492351ebd2625968c8107f766a4317887e6726f674132b4b10a8af5e8c71b",
-      "source_row_sha256": "99e3fd8d3cce451ffdc00f2a42312c00b42bd72358e81e3ed4bb973f6c3e0b5e"
+      "source_row_sha256": "99e3fd8d3cce451ffdc00f2a42312c00b42bd72358e81e3ed4bb973f6c3e0b5e",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+      "upstream_discovery_sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418"
     },
     {
       "canonical_briefing_id": null,
@@ -65,7 +68,10 @@
       "source_local_title": "Battle at the Binary Stars",
       "source_packet_path": "proposals/research/discovery/s1-publisher-first5-20261103/records.json",
       "source_packet_sha256": "9e4492351ebd2625968c8107f766a4317887e6726f674132b4b10a8af5e8c71b",
-      "source_row_sha256": "7b7cbb7addb1cc506a6013d371fca92a5a72607ee54444223f4b1e2674e0531a"
+      "source_row_sha256": "7b7cbb7addb1cc506a6013d371fca92a5a72607ee54444223f4b1e2674e0531a",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+      "upstream_discovery_sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418"
     },
     {
       "canonical_briefing_id": null,
@@ -95,7 +101,10 @@
       "source_local_title": "Context Is For Kings",
       "source_packet_path": "proposals/research/discovery/s1-publisher-first5-20261103/records.json",
       "source_packet_sha256": "9e4492351ebd2625968c8107f766a4317887e6726f674132b4b10a8af5e8c71b",
-      "source_row_sha256": "0b3f366e6374a75641b46560576469d3bf89b7aa2173864c27980b48fa71caae"
+      "source_row_sha256": "0b3f366e6374a75641b46560576469d3bf89b7aa2173864c27980b48fa71caae",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+      "upstream_discovery_sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418"
     },
     {
       "canonical_briefing_id": null,
@@ -125,7 +134,10 @@
       "source_local_title": "The Butcher's Knife Cares Not for the Lamb's Cry",
       "source_packet_path": "proposals/research/discovery/s1-publisher-first5-20261103/records.json",
       "source_packet_sha256": "9e4492351ebd2625968c8107f766a4317887e6726f674132b4b10a8af5e8c71b",
-      "source_row_sha256": "253a0032cea33fdb36235f848e833ad317ba7b573c6140259f2a44c51ba130ff"
+      "source_row_sha256": "253a0032cea33fdb36235f848e833ad317ba7b573c6140259f2a44c51ba130ff",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+      "upstream_discovery_sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418"
     },
     {
       "canonical_briefing_id": null,
@@ -155,7 +167,10 @@
       "source_local_title": "Choose Your Pain",
       "source_packet_path": "proposals/research/discovery/s1-publisher-first5-20261103/records.json",
       "source_packet_sha256": "9e4492351ebd2625968c8107f766a4317887e6726f674132b4b10a8af5e8c71b",
-      "source_row_sha256": "e8337c33d4bdd6df05ac9453bb027a7c18ba3e2d7a26fe4e56b62d8bcd3bd4b0"
+      "source_row_sha256": "e8337c33d4bdd6df05ac9453bb027a7c18ba3e2d7a26fe4e56b62d8bcd3bd4b0",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/dis/bundle.json",
+      "upstream_discovery_sha256": "0d3db808c7319e32168be00e8756cf31e9686fe363419c6e671e1a7c0bc27418"
     },
     {
       "canonical_briefing_id": null,
@@ -180,7 +195,10 @@
       "source_local_title": "Broken Bow - Part 1 and 2",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "0678f189ad8ccf69a3cdd8a4435e9d4e34f9b1c04e5e55dbc05cffc86fae3485"
+      "source_row_sha256": "0678f189ad8ccf69a3cdd8a4435e9d4e34f9b1c04e5e55dbc05cffc86fae3485",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -205,7 +223,10 @@
       "source_local_title": "Fight or Flight",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "2548bdfae2516bbde47c57b0589ebb8c5d5fb3c1e4c0bc1e268680290cbbc406"
+      "source_row_sha256": "2548bdfae2516bbde47c57b0589ebb8c5d5fb3c1e4c0bc1e268680290cbbc406",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -230,7 +251,10 @@
       "source_local_title": "Strange New World",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "f9e91375afa922890a1b1c1b164689de602a92aa7f7c560ecefcbf9b958219f6"
+      "source_row_sha256": "f9e91375afa922890a1b1c1b164689de602a92aa7f7c560ecefcbf9b958219f6",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -255,7 +279,10 @@
       "source_local_title": "Unexpected",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "e076a926ece932cbc87a08039884ae39513b4c4418be5110be2cc951cff6b355"
+      "source_row_sha256": "e076a926ece932cbc87a08039884ae39513b4c4418be5110be2cc951cff6b355",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -280,7 +307,10 @@
       "source_local_title": "Terra Nova",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "f02cf88da1a7a2a4d2597ee7568920504ed45afb856ebbf09938489fb8fa0100"
+      "source_row_sha256": "f02cf88da1a7a2a4d2597ee7568920504ed45afb856ebbf09938489fb8fa0100",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -305,7 +335,10 @@
       "source_local_title": "The Andorian Incident",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "db6c8253773ef4ce6b7a150a4f7d6259d25ee256e78cd82f47606a911f190d80"
+      "source_row_sha256": "db6c8253773ef4ce6b7a150a4f7d6259d25ee256e78cd82f47606a911f190d80",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -330,7 +363,10 @@
       "source_local_title": "Breaking The Ice",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "d2127c89d28de55d9c2774e46e7b1f8de81073e5e5be259cdc85149e477b1c28"
+      "source_row_sha256": "d2127c89d28de55d9c2774e46e7b1f8de81073e5e5be259cdc85149e477b1c28",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -355,7 +391,10 @@
       "source_local_title": "Civilization",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "fca179538e332075403cc617416c684403c15d0092d76be1c391c55e2d265cae"
+      "source_row_sha256": "fca179538e332075403cc617416c684403c15d0092d76be1c391c55e2d265cae",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -380,7 +419,10 @@
       "source_local_title": "Fortunate Son",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "21f6a8866e7b685af908012a7aaf81e36bedbae26152e4f0bc2307af84982add"
+      "source_row_sha256": "21f6a8866e7b685af908012a7aaf81e36bedbae26152e4f0bc2307af84982add",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -405,7 +447,10 @@
       "source_local_title": "Cold Front",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b001-20261103/observations.json",
       "source_packet_sha256": "761f45a956f8fc409f2c3a80273c9e0d6ba479310ac536729760cef10716de4b",
-      "source_row_sha256": "f8421bc4819335079f4acdb9e72f006eff8562ddbe7280708bfe1f7ac872635a"
+      "source_row_sha256": "f8421bc4819335079f4acdb9e72f006eff8562ddbe7280708bfe1f7ac872635a",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -430,7 +475,10 @@
       "source_local_title": "Silent Enemy",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "5d3cf3f6ff8cc2d967e060d6e79304fd62ace546d417c2be75e2581823fee784"
+      "source_row_sha256": "5d3cf3f6ff8cc2d967e060d6e79304fd62ace546d417c2be75e2581823fee784",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -455,7 +503,10 @@
       "source_local_title": "Dear Doctor",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "c9214d87cb7405b27bf39875eaee0b223968c0ca5dcd15e882c2ddc59b5ea2e3"
+      "source_row_sha256": "c9214d87cb7405b27bf39875eaee0b223968c0ca5dcd15e882c2ddc59b5ea2e3",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -480,7 +531,10 @@
       "source_local_title": "Sleeping Dogs",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "e04d4e52fc5f7bb1c2c4f33e361f5f0b2a71d4fd49ba387aa435957924a30f39"
+      "source_row_sha256": "e04d4e52fc5f7bb1c2c4f33e361f5f0b2a71d4fd49ba387aa435957924a30f39",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -505,7 +559,10 @@
       "source_local_title": "Shadows of P'Jem",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "1aa34e1610230a5d751d2850742149ea83261400c234d3d5d435165d2db0bd70"
+      "source_row_sha256": "1aa34e1610230a5d751d2850742149ea83261400c234d3d5d435165d2db0bd70",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -530,7 +587,10 @@
       "source_local_title": "Shuttlepod One",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "bb56ef0f6448a93b90b366e3fe913705b3c907d44a606aafee87748eebc95ee9"
+      "source_row_sha256": "bb56ef0f6448a93b90b366e3fe913705b3c907d44a606aafee87748eebc95ee9",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -555,7 +615,10 @@
       "source_local_title": "Fusion",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "f1562233c9514e2373591ebf7e410baa5c80d5ff408f5148f9a0a7c157f14b04"
+      "source_row_sha256": "f1562233c9514e2373591ebf7e410baa5c80d5ff408f5148f9a0a7c157f14b04",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -580,7 +643,10 @@
       "source_local_title": "Rogue Planet",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "76f4fa454af22517a39236af11acb9691c7fbd2eddcc7fbd785e70b6578e124f"
+      "source_row_sha256": "76f4fa454af22517a39236af11acb9691c7fbd2eddcc7fbd785e70b6578e124f",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -605,7 +671,10 @@
       "source_local_title": "Acquisition",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "de318d9315e52b15abd485befd5a6d12f78f15c44d16fa98c4f01ed85d131474"
+      "source_row_sha256": "de318d9315e52b15abd485befd5a6d12f78f15c44d16fa98c4f01ed85d131474",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -630,7 +699,10 @@
       "source_local_title": "Oasis",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "551c9b3da729971827a47ba8a04d42b7a98667a6dc96e930d61b8fb4d3017a55"
+      "source_row_sha256": "551c9b3da729971827a47ba8a04d42b7a98667a6dc96e930d61b8fb4d3017a55",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -655,7 +727,10 @@
       "source_local_title": "Detained",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b002-20261103/observations.json",
       "source_packet_sha256": "ce21bf57f9863915e612f46d9e81cc15139433b909a48b6e659c03add5a324b4",
-      "source_row_sha256": "5d62f65d89e707fa4fe03f7ab36236ad03a1f34b02556f0b52512d3f72952a45"
+      "source_row_sha256": "5d62f65d89e707fa4fe03f7ab36236ad03a1f34b02556f0b52512d3f72952a45",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -680,7 +755,10 @@
       "source_local_title": "Vox Solis",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b003-20261103/observations.json",
       "source_packet_sha256": "a965e3b94cb3c59248b7cf5d3c3814a0db2a3140b7dc749a0a70d8666047090f",
-      "source_row_sha256": "b9dc35a38c71f34b0861cf522e7f4829bbb3a2c43969d251a08722b4f31b9246"
+      "source_row_sha256": "b9dc35a38c71f34b0861cf522e7f4829bbb3a2c43969d251a08722b4f31b9246",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -705,7 +783,10 @@
       "source_local_title": "Fallen Hero",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b003-20261103/observations.json",
       "source_packet_sha256": "a965e3b94cb3c59248b7cf5d3c3814a0db2a3140b7dc749a0a70d8666047090f",
-      "source_row_sha256": "ba1bbbb5bd2427fa386e7c2dd8f4b5042e86e9050897c2bf112741f7a2a36d54"
+      "source_row_sha256": "ba1bbbb5bd2427fa386e7c2dd8f4b5042e86e9050897c2bf112741f7a2a36d54",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -730,7 +811,10 @@
       "source_local_title": "Desert Crossing",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b003-20261103/observations.json",
       "source_packet_sha256": "a965e3b94cb3c59248b7cf5d3c3814a0db2a3140b7dc749a0a70d8666047090f",
-      "source_row_sha256": "a778239f4f08733a276d1889fde6585a28175038b069b12e15e7309a0bd34124"
+      "source_row_sha256": "a778239f4f08733a276d1889fde6585a28175038b069b12e15e7309a0bd34124",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -755,7 +839,10 @@
       "source_local_title": "Two Days and Two Nights",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b003-20261103/observations.json",
       "source_packet_sha256": "a965e3b94cb3c59248b7cf5d3c3814a0db2a3140b7dc749a0a70d8666047090f",
-      "source_row_sha256": "83f266ba31f72d4331dc6b9585b99798d5d863968cd22d37628120122cc8f580"
+      "source_row_sha256": "83f266ba31f72d4331dc6b9585b99798d5d863968cd22d37628120122cc8f580",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -780,7 +867,10 @@
       "source_local_title": "Shockwave Part I",
       "source_packet_path": "proposals/verification/ent-season1-publisher-b003-20261103/observations.json",
       "source_packet_sha256": "a965e3b94cb3c59248b7cf5d3c3814a0db2a3140b7dc749a0a70d8666047090f",
-      "source_row_sha256": "2fddc870bf148553ad857ac400d190909ddd11a6560b94741b878fd6522fda6c"
+      "source_row_sha256": "2fddc870bf148553ad857ac400d190909ddd11a6560b94741b878fd6522fda6c",
+      "upstream_discovery_lineage": "PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+      "upstream_discovery_sha256": "79a1347c46e73fc74120353c43a819d891b1406e4ea91fa5d20793ba7040c486"
     },
     {
       "canonical_briefing_id": null,
@@ -814,7 +904,10 @@
       "source_local_title": "Remembrance",
       "source_packet_path": "proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json",
       "source_packet_sha256": "070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f",
-      "source_row_sha256": "10144816179d85080eed585970f1466baaeda710b47bd0803ed44f9bd778d453"
+      "source_row_sha256": "10144816179d85080eed585970f1466baaeda710b47bd0803ed44f9bd778d453",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -848,7 +941,10 @@
       "source_local_title": "Maps and Legends",
       "source_packet_path": "proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json",
       "source_packet_sha256": "070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f",
-      "source_row_sha256": "5970c61dfb126b8af01afcdd811417a3ebedce8563b44312f0e21e5c4fdd8eea"
+      "source_row_sha256": "5970c61dfb126b8af01afcdd811417a3ebedce8563b44312f0e21e5c4fdd8eea",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -882,7 +978,10 @@
       "source_local_title": "The End is the Beginning",
       "source_packet_path": "proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json",
       "source_packet_sha256": "070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f",
-      "source_row_sha256": "ae39c614da825a4e255ee1a52435a72eae173a8880eba30c2bda2d40185a469f"
+      "source_row_sha256": "ae39c614da825a4e255ee1a52435a72eae173a8880eba30c2bda2d40185a469f",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -916,7 +1015,10 @@
       "source_local_title": "Absolute Candor",
       "source_packet_path": "proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json",
       "source_packet_sha256": "070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f",
-      "source_row_sha256": "d3bd4540cda4495f55485535177f847266551fe7de622d838f0de0f727ed01d1"
+      "source_row_sha256": "d3bd4540cda4495f55485535177f847266551fe7de622d838f0de0f727ed01d1",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -950,7 +1052,10 @@
       "source_local_title": "Stardust City Rag",
       "source_packet_path": "proposals/research/pic/picard-s1-first5-guide-cards-20261103/records.json",
       "source_packet_sha256": "070dccdbda3b7a777e6f12201d725bd906610f4e1c5ee26e8c37c3a218c6829f",
-      "source_row_sha256": "d7fe79305a2c66230203d51b1cc7365c106005a56aadc81d8ceab0289d61172e"
+      "source_row_sha256": "d7fe79305a2c66230203d51b1cc7365c106005a56aadc81d8ceab0289d61172e",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -984,7 +1089,10 @@
       "source_local_title": "The Impossible Box",
       "source_packet_path": "proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json",
       "source_packet_sha256": "fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc",
-      "source_row_sha256": "79295cb92e6f5dca885341ddc0e5362c06a3ebc6d8d5fdcd254790fe45a1c340"
+      "source_row_sha256": "79295cb92e6f5dca885341ddc0e5362c06a3ebc6d8d5fdcd254790fe45a1c340",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -1018,7 +1126,10 @@
       "source_local_title": "Nepenthe",
       "source_packet_path": "proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json",
       "source_packet_sha256": "fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc",
-      "source_row_sha256": "8cac98a21303fe3ef49d660a1963fb0da8248337a04e48b1601c7bcb53f56b78"
+      "source_row_sha256": "8cac98a21303fe3ef49d660a1963fb0da8248337a04e48b1601c7bcb53f56b78",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -1052,7 +1163,10 @@
       "source_local_title": "Broken Pieces",
       "source_packet_path": "proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json",
       "source_packet_sha256": "fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc",
-      "source_row_sha256": "aec9685c2bf8548ed663152ab56db232ed2ce1a5fa8b1f13433070aded1b1903"
+      "source_row_sha256": "aec9685c2bf8548ed663152ab56db232ed2ce1a5fa8b1f13433070aded1b1903",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -1086,7 +1200,10 @@
       "source_local_title": "Et in Arcadia Ego, Part 1",
       "source_packet_path": "proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json",
       "source_packet_sha256": "fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc",
-      "source_row_sha256": "339ef48e8533cc9876e0c910fb1e6cb36dbaa83e6b5dcc8c378d28843e8c17df"
+      "source_row_sha256": "339ef48e8533cc9876e0c910fb1e6cb36dbaa83e6b5dcc8c378d28843e8c17df",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -1120,7 +1237,10 @@
       "source_local_title": "Et in Arcadia Ego, Part 2",
       "source_packet_path": "proposals/research/pic/picard-s1-last5-guide-cards-20261103/records.json",
       "source_packet_sha256": "fe962cc235ffc84f5cff7a970a940419cf9a21dce72cd5844cae76ce89f9a9cc",
-      "source_row_sha256": "8e8c0f7d433ad6f0e68f44541de8debaf769933a79eb902b8237af6a81c2d11d"
+      "source_row_sha256": "8e8c0f7d433ad6f0e68f44541de8debaf769933a79eb902b8237af6a81c2d11d",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/modern-paramount-season1-20261102/pic-observed-slots.csv",
+      "upstream_discovery_sha256": "a3c798fce4ab4121f8487319d921a56f42a3793b4668273474e69a74842f383c"
     },
     {
       "canonical_briefing_id": null,
@@ -1145,7 +1265,10 @@
       "source_local_title": "Caretaker",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "ff0f0effc7a4dc80b94a3fd8d8a176d90b6cff19422569532c2dcca6583654ed"
+      "source_row_sha256": "ff0f0effc7a4dc80b94a3fd8d8a176d90b6cff19422569532c2dcca6583654ed",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q2121683",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1170,7 +1293,10 @@
       "source_local_title": "Time and Again",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "ea9eb54855bcbbe486650b2ac354d50c46aa218dfd93dcbcfd3f7a7234167e7d"
+      "source_row_sha256": "ea9eb54855bcbbe486650b2ac354d50c46aa218dfd93dcbcfd3f7a7234167e7d",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q1976840",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1195,7 +1321,10 @@
       "source_local_title": "The Cloud",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "17baeb2b41c2c809defb889ec28d1b8aae937d8fef8f5ca062a0e291d8e024e0"
+      "source_row_sha256": "17baeb2b41c2c809defb889ec28d1b8aae937d8fef8f5ca062a0e291d8e024e0",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q1016685",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1220,7 +1349,10 @@
       "source_local_title": "Jetrel",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "6a8426cd659f2afc529ca154ace6a639b2a93077a8d6557025e21906ec033ce1"
+      "source_row_sha256": "6a8426cd659f2afc529ca154ace6a639b2a93077a8d6557025e21906ec033ce1",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q13639300",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1245,7 +1377,10 @@
       "source_local_title": "Initiations",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "1f4ad23fa0d9fa6f1b3974a1bea7950c9ad911b0b6941818eeb0062483ab23e1"
+      "source_row_sha256": "1f4ad23fa0d9fa6f1b3974a1bea7950c9ad911b0b6941818eeb0062483ab23e1",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q13115900",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1270,7 +1405,10 @@
       "source_local_title": "Investigations",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "7e676ab67ee97d3ec0178e5c172b9c886d0171663a6897d65b54f282d55d36ac"
+      "source_row_sha256": "7e676ab67ee97d3ec0178e5c172b9c886d0171663a6897d65b54f282d55d36ac",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q13115914",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1295,7 +1433,10 @@
       "source_local_title": "The Q and the Grey",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "df060fc167467de09a1906dad1f55e909040371ec72ef0ebeffcdd1aca76807b"
+      "source_row_sha256": "df060fc167467de09a1906dad1f55e909040371ec72ef0ebeffcdd1aca76807b",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q14476529",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1320,7 +1461,10 @@
       "source_local_title": "Random Thoughts",
       "source_packet_path": "proposals/research/voy-s4-e10-e14-publisher-cards-20261103/records.json",
       "source_packet_sha256": "dde9b0b1fb24da95efe882e36042ed0d99045dd83583da5c29a18788852672b0",
-      "source_row_sha256": "61b3fa21c40b96394b8f6d2a24ba53c68d6d46a0c7aee9424a685ee74ba110c5"
+      "source_row_sha256": "61b3fa21c40b96394b8f6d2a24ba53c68d6d46a0c7aee9424a685ee74ba110c5",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "upstream_discovery_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
     },
     {
       "canonical_briefing_id": null,
@@ -1345,7 +1489,10 @@
       "source_local_title": "Concerning Flight",
       "source_packet_path": "proposals/research/voy-s4-e10-e14-publisher-cards-20261103/records.json",
       "source_packet_sha256": "dde9b0b1fb24da95efe882e36042ed0d99045dd83583da5c29a18788852672b0",
-      "source_row_sha256": "7eeb9b3d712cde4a4fef8343ac61ac8f9db4f4c3b282d405d3ea63d9a6a56969"
+      "source_row_sha256": "7eeb9b3d712cde4a4fef8343ac61ac8f9db4f4c3b282d405d3ea63d9a6a56969",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "upstream_discovery_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
     },
     {
       "canonical_briefing_id": null,
@@ -1370,7 +1517,10 @@
       "source_local_title": "Mortal Coil",
       "source_packet_path": "proposals/research/voy-s4-e10-e14-publisher-cards-20261103/records.json",
       "source_packet_sha256": "dde9b0b1fb24da95efe882e36042ed0d99045dd83583da5c29a18788852672b0",
-      "source_row_sha256": "f3603c2a96900de8719c9230beb7ef13fe18d13f0c8ff0f22d23c14bc5d0d651"
+      "source_row_sha256": "f3603c2a96900de8719c9230beb7ef13fe18d13f0c8ff0f22d23c14bc5d0d651",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "upstream_discovery_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
     },
     {
       "canonical_briefing_id": null,
@@ -1395,7 +1545,10 @@
       "source_local_title": "Waking Moment's",
       "source_packet_path": "proposals/research/voy-s4-e10-e14-publisher-cards-20261103/records.json",
       "source_packet_sha256": "dde9b0b1fb24da95efe882e36042ed0d99045dd83583da5c29a18788852672b0",
-      "source_row_sha256": "5127e90ed931c4cfd4b0246b86142ac09e1df9ae1a96b21cce445f332e8982d6"
+      "source_row_sha256": "5127e90ed931c4cfd4b0246b86142ac09e1df9ae1a96b21cce445f332e8982d6",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "upstream_discovery_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
     },
     {
       "canonical_briefing_id": null,
@@ -1420,7 +1573,10 @@
       "source_local_title": "Message In A Bottle",
       "source_packet_path": "proposals/research/voy-s4-e10-e14-publisher-cards-20261103/records.json",
       "source_packet_sha256": "dde9b0b1fb24da95efe882e36042ed0d99045dd83583da5c29a18788852672b0",
-      "source_row_sha256": "5ec3370a4277e92237216ff666e143263e6d52ae856d2e5423fcd064315336f9"
+      "source_row_sha256": "5ec3370a4277e92237216ff666e143263e6d52ae856d2e5423fcd064315336f9",
+      "upstream_discovery_lineage": "PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+      "upstream_discovery_locator": "proposals/discovery/publisher-season4-20261102/voy.csv",
+      "upstream_discovery_sha256": "e9e8ac0cae8a30ac1c71b0c36b1d0f28b9ff9cf25d5f2a8d2875fad2e34e598e"
     },
     {
       "canonical_briefing_id": null,
@@ -1445,7 +1601,10 @@
       "source_local_title": "The Omega Directive",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "4ca28e23bf053652ab30b12a1d5af8ae8657ca59c2280a168d9a8c150f99fe3d"
+      "source_row_sha256": "4ca28e23bf053652ab30b12a1d5af8ae8657ca59c2280a168d9a8c150f99fe3d",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q1093269",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1470,7 +1629,10 @@
       "source_local_title": "In the Flesh",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "455b46bbee84da160a5fea641e76ddd6b68219a4a3f58852733b485336639b2a"
+      "source_row_sha256": "455b46bbee84da160a5fea641e76ddd6b68219a4a3f58852733b485336639b2a",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q10857017",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1495,7 +1657,10 @@
       "source_local_title": "Think Tank",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "0fd8440aee91e5c4243cf5bc8be56bf52e616c2283ae31196c311d5b5863b732"
+      "source_row_sha256": "0fd8440aee91e5c4243cf5bc8be56bf52e616c2283ae31196c311d5b5863b732",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q14643756",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1520,7 +1685,10 @@
       "source_local_title": "Virtuoso",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "a83b4134cd8c39f7783d8f2e26bc58dbaeb9dacd7218e363ac1581e50c77ff34"
+      "source_row_sha256": "a83b4134cd8c39f7783d8f2e26bc58dbaeb9dacd7218e363ac1581e50c77ff34",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q13403516",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1545,7 +1713,10 @@
       "source_local_title": "Ashes to Ashes",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "36750442a89599525e16b5286abdf05e91768e1375f378cc977f935c08417909"
+      "source_row_sha256": "36750442a89599525e16b5286abdf05e91768e1375f378cc977f935c08417909",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q13479268",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     },
     {
       "canonical_briefing_id": null,
@@ -1570,7 +1741,10 @@
       "source_local_title": "Q2",
       "source_packet_path": "proposals/research/voyager/b006-publisher-synopsis-drafts-20261103/records.json",
       "source_packet_sha256": "ffffcba59ecd1a1c9a6449fd1acc52e3909ce4b45eb19606de3d977d528a6638",
-      "source_row_sha256": "0c2d9315af2027cf429965129034735c1cee795beaeab2aaefc438a695223847"
+      "source_row_sha256": "0c2d9315af2027cf429965129034735c1cee795beaeab2aaefc438a695223847",
+      "upstream_discovery_lineage": "wikidata_collaborative_derivative",
+      "upstream_discovery_locator": "https://www.wikidata.org/wiki/Q125917",
+      "upstream_discovery_sha256": "c20af10beacfcf3a3d533352276e766dda98ddca983b8a87291dd2ac30e61df7"
     }
   ],
   "schema_version": "trek-held-publisher-guide-notes-v1",

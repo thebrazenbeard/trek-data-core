@@ -97,7 +97,8 @@ def synopsis_check(value, status):
 
 def add_note(records, packet, row, *, series, row_id, title, season, episode,
              synopsis, status, guide_url, locator, description_digest=None,
-             source_receipts=(), identity_hold=None):
+             source_receipts=(), identity_hold=None, discovery_lineage=None,
+             discovery_locator=None, discovery_sha256=None):
     require(isinstance(row_id, str) and row_id and isinstance(title, str) and title.strip(), "missing local identity/title")
     require(isinstance(guide_url, str) and guide_url.startswith("https://www.paramountplus.com/shows/")
             and "?" not in guide_url and "#" not in guide_url, "invalid publisher source URL")
@@ -106,6 +107,7 @@ def add_note(records, packet, row, *, series, row_id, title, season, episode,
             "invalid source-local episode slot")
     synopsis_check(synopsis, status)
     digest_check(description_digest, "publisher description digest", optional=True)
+    digest_check(discovery_sha256, "upstream discovery digest", optional=True)
     note_id = f"{packet.kind.lower()}:{row_id}"
     require(note_id not in records, f"duplicate source-local note: {note_id}")
     require(not any(other["series"] == series and other["season"] == season and other["episode"] == episode
@@ -130,6 +132,9 @@ def add_note(records, packet, row, *, series, row_id, title, season, episode,
         "source_card_locator": locator,
         "publisher_description_sha256": description_digest,
         "reported_source_receipts": list(source_receipts),
+        "upstream_discovery_lineage": discovery_lineage,
+        "upstream_discovery_locator": discovery_locator,
+        "upstream_discovery_sha256": discovery_sha256,
         "source_packet_path": packet.path,
         "source_packet_sha256": packet.sha256,
         "source_row_sha256": sha256(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
@@ -154,7 +159,10 @@ def emit_packet(records, packet, data, *, voy_metadata=None):
                      synopsis=row["original_synopsis_draft"], status="HELD_EDITORIAL_DRAFT",
                      guide_url=data["guide_url"],
                      locator=f"S{row['season']} E{row['episode']} > {row['publisher_title']} > publisher description",
-                     description_digest=row["publisher_description_sha256"], identity_hold=row["identity_hold"])
+                     description_digest=row["publisher_description_sha256"], identity_hold=row["identity_hold"],
+                     discovery_lineage="PARAMOUNT_EPISODE_DISCOVERY_BUNDLE_ONLY",
+                     discovery_locator="proposals/discovery/legacy-paramount-season1-20261102/ent/bundle.json",
+                     discovery_sha256=data["accepted_ent_bundle_sha256"])
     elif packet.kind == "VOY_S4":
         require(data.get("status") == "HELD_PROPOSAL_ONLY" and data.get("coverage_effect") == "NONE"
                 and data.get("global_work_identity_effect") == "NONE"
@@ -169,7 +177,10 @@ def emit_packet(records, packet, data, *, voy_metadata=None):
                      title=row["source_title"], season=row["season"], episode=row["source_ordinal"],
                      synopsis=row["original_synopsis"], status="HELD_EDITORIAL_DRAFT",
                      guide_url=data["source"]["url"], locator=row["locator"],
-                     description_digest=row["blurb_sha256"], identity_hold=row["title_reconciliation"])
+                     description_digest=row["blurb_sha256"], identity_hold=row["title_reconciliation"],
+                     discovery_lineage="PARAMOUNT_SEASON_SLOT_DISCOVERY_CSV_ONLY",
+                     discovery_locator=data["source"]["upstream_discovery_csv"],
+                     discovery_sha256=data["source"]["upstream_discovery_sha256"])
     elif packet.kind == "PIC":
         require(data.get("proposal_only") is True and data.get("accepted_work_effect") == "NONE"
                 and data.get("accepted_source_binding_effect") == "NONE" and data.get("coverage_effect") == "NONE",
@@ -187,7 +198,10 @@ def emit_packet(records, packet, data, *, voy_metadata=None):
                      synopsis=row["synopsis_paraphrase_candidate"], status="HELD_EDITORIAL_DRAFT",
                      guide_url=src["url"],
                      locator=f"publisher guide lines {row['guide_line_window'][0]}–{row['guide_line_window'][1]}",
-                     source_receipts=src["raw_sample_receipts"])
+                     source_receipts=src["raw_sample_receipts"],
+                     discovery_lineage="PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+                     discovery_locator=data["upstream_discovery"]["path"],
+                     discovery_sha256=data["upstream_discovery"]["sha256"])
     elif packet.kind == "DIS":
         require(data.get("status") == "PROPOSAL_ONLY"
                 and data.get("accepted_work_effect") == "NONE" and data.get("coverage_effect") == "NONE"
@@ -206,7 +220,10 @@ def emit_packet(records, packet, data, *, voy_metadata=None):
                      guide_url=src["url"],
                      locator=f"publisher HTML lines {row['raw_html_card_lines'][0]}–{row['raw_html_card_lines'][1]}",
                      description_digest=row["publisher_description_sha256"],
-                     source_receipts=[{"sha256": src["raw_html_sha256"], "bytes": src["raw_html_bytes"]}])
+                     source_receipts=[{"sha256": src["raw_html_sha256"], "bytes": src["raw_html_bytes"]}],
+                     discovery_lineage="PARAMOUNT_SEASON_SLOT_CROSSCHECK_ONLY",
+                     discovery_locator=data["candidate_inventory_crosswalk"]["path"],
+                     discovery_sha256=data["candidate_inventory_crosswalk"]["sha256"])
     elif packet.kind == "VOY_B006":
         require(voy_metadata is not None and data.get("data_status") == "SOURCE_LOCAL_PROMOTIONAL_PARAPHRASE_DRAFT_ONLY"
                 and data.get("accepted_metadata_sha256") == VOY_B006_SOURCE.sha256
@@ -234,7 +251,10 @@ def emit_packet(records, packet, data, *, voy_metadata=None):
                      synopsis=row["synopsis"],
                      status="WITHHELD_MULTIPART_IDENTITY" if withheld else "HELD_EDITORIAL_DRAFT",
                      guide_url=card["guide_url"], locator=card["section_locator"],
-                     identity_hold=row["title_resolution"])
+                     identity_hold=row["title_resolution"],
+                     discovery_lineage=source_row["source_local_lineage"],
+                     discovery_locator=source_row["source_local_locator"],
+                     discovery_sha256=VOY_B006_SOURCE.sha256)
     else:
         raise ValueError(f"unknown compiler adapter: {packet.kind}")
 

@@ -3249,17 +3249,17 @@
       const person = /\b(?:i|i'm|me|my|mine|our|us|he|she|they|him|her|them|someone|somebody|anyone|child|son|daughter|baby|infant|toddler|kid|boy|girl|man|woman|friend|partner|boyfriend|girlfriend|husband|wife|roommate|ex|mother|father|mom|dad|brother|sister|neighbor|person|patient|two-year-old)\b/i.test(part);
       if (!person) continue;
 
-      const poison = /\b(?:button\s+batter(?:y|ies)|batter(?:y|ies)|bleach|antifreeze|rat\s+poison|poison(?:ed|ing)?|pesticide|(?:drain|household|caustic)\s+cleaner|cleaning fluid|fentanyl|heroin|opioid|oxycodone|morphine|overdos(?:e|ed|ing)|pills|tablets)\b/i.test(part);
+      const poison = /\b(?:button\s+batter(?:y|ies)|batter(?:y|ies)|magnets?|detergent\s+pods?|bleach|antifreeze|rat\s+poison|poison(?:ed|ing)?|pesticide|(?:drain|household|caustic)\s+cleaner|cleaning fluid|fentanyl|heroin|opioid|oxycodone|morphine|overdos(?:e|ed|ing)|pills|tablets)\b/i.test(part);
       const exposure = /\b(?:swallow(?:ed|ing)?|ingest(?:ed|ing)?|drank|drink|ate|eaten|took|take|taking|used|use|injected|got into|overdos(?:e|ed|ing)|poisoned|too much|all (?:my|his|her|their) pills|bottle of pills|nodding off|barely breathing|unresponsive|unconscious|won't wake|will not wake)\b/i.test(part);
       if (poison && (exposure || current && /\b(?:my|our|me|i|he|she|they)\b/i.test(part))) return 'medical';
 
-      const acuteSymptom = /\b(?:chok(?:e|es|ed|ing)|strangl(?:e|es|ed|ing)|gasping|seiz(?:e|ed|ing|ure|ures)|convuls(?:e|es|ed|ing)|collapsed?|unconscious|unresponsive|barely conscious|not responding|turning (?:blue|gray|grey)|clutching (?:his|her|my|their) chest|heart attack|stroke|bleeding heavily|not breathing|barely breathing|stopped breathing|can't breathe|cannot breathe|unable to breathe|cannot speak|can't speak|struggling to breathe|hands around (?:my|his|her|their) neck)\b/i.test(part);
+      const acuteSymptom = /\b(?:chok(?:e|es|ed|ing)|strangl(?:e|es|ed|ing)|gasping|seiz(?:e|ed|ing|ure|ures)|convuls(?:e|es|ed|ing)|collapsed?|unconscious|unresponsive|barely conscious|not responding|turning (?:blue|gray|grey)|clutching (?:his|her|my|their) chest|heart attack|stroke|chest pressure|bleeding (?:heavily|out)|not breathing|barely breathing|stopped breathing|can't breathe|cannot breathe|unable to breathe|cannot speak|can't speak|struggling to breathe|hands around (?:my|his|her|their) neck)\b/i.test(part);
       if (acuteSymptom && (current || /\b(?:choking|strangling|collapsed|unconscious|unresponsive|not breathing|can't breathe|cannot breathe)\b/i.test(part))) return 'medical';
 
-      const selfRisk = /\b(?:suicid(?:e|al)|kill(?:ing)? (?:myself|himself|herself|themselves)|end(?:ing)? (?:my|his|her|their) life|wants? to die|ready to jump|about to jump|jump (?:off|from)|take all (?:my|his|her|their) pills|drive into traffic|gun to (?:my|his|her|their) head|bridge railing|roof(?:top)? ledge)\b/i.test(part);
+      const selfRisk = /\b(?:suicid(?:e|al)|kill(?:ing)? (?:myself|himself|herself|themselves)|end(?:ing)? (?:my|his|her|their) life|wants? to die|ready to jump|about to jump|jump (?:off|from)|take all (?:my|his|her|their) pills|drive into traffic|gun to (?:my|his|her|their) head|bridge railing|ledge of a bridge|roof(?:top)? ledge)\b/i.test(part);
       if (selfRisk && (current || /\b(?:wants? to die|suicidal|kill(?:ing)? (?:myself|himself|herself|themselves))\b/i.test(part))) return 'self-harm';
 
-      const weapon = /\b(?:knife|knives|gun|pistol|firearm|weapon|blade|machete|razor|stab(?:bed|bing)?|shoot(?:ing)?|shot|attack(?:ed|ing)?|threaten(?:ed|ing|s)?|strangl(?:ed|ing)?|chok(?:ed|ing)?|kill(?:ing)?)\b/i.test(part);
+      const weapon = /\b(?:knife|knives|gun|pistol|firearm|weapon|blade|switchblade|machete|razor|stab(?:bed|bing)?|shoot(?:ing)?|shot|attack(?:ed|ing)?|threaten(?:ed|ing|s)?|strangl(?:ed|ing)?|chok(?:ed|ing)?|kill(?:ing)?)\b/i.test(part);
       const directThreat = /\b(?:against|at|to|toward|pointed|aimed|held|holding|has|outside with|threaten(?:ed|ing|s)?|shoot|stab|kill|hurt|attack|strangle|choke|hands around)\b/i.test(part);
       const closeTarget = /\b(?:me|my|us|our|him|her|their|at (?:someone|anyone)|someone|somebody)\b/i.test(part);
       if (weapon && directThreat && closeTarget) return 'violence';

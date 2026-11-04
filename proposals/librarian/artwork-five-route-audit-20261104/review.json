@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "librarian_artwork_rights_release_audit",
+  "audit_date": "2026-11-04",
+  "accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "draft_explorer_pr": 486,
+  "draft_explorer_head": "8f71963f905eb4c2169ef46a1b488a257a99cc7e",
+  "public_licensed_image_release": "NONE",
+  "canonical_source_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "representative_cases": [
+    {
+      "case_id": "episode-snw-s3-e01",
+      "source_packet": "PRIMARY_ASSET_LOCATORS",
+      "source_local_asset_id": "art-snw-s3-e01-20261103",
+      "expected_medium": "EPISODE",
+      "expected_image_kind": "PUBLISHER_EPISODE_CARD_THUMBNAIL",
+      "public_delivery_route": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "rights_evidence": "PUBLISHER_HTML_LOCATOR_NOT_LICENSE"
+    },
+    {
+      "case_id": "film-wrath-header",
+      "source_packet": "PRIMARY_ASSET_LOCATORS",
+      "source_local_asset_id": "art-film-wrath-khan-og-20261103",
+      "expected_medium": "FILM",
+      "expected_image_kind": "PUBLISHER_PAGE_OG_HEADER_NOT_POSTER",
+      "public_delivery_route": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "rights_evidence": "PUBLISHER_OG_META_NOT_LICENSE"
+    },
+    {
+      "case_id": "literature-kobayashi-ebook-cover",
+      "source_packet": "PRIMARY_ASSET_LOCATORS",
+      "source_local_asset_id": "art-lit-kobayashi-ebook-20261103",
+      "expected_medium": "LITERATURE",
+      "expected_image_kind": "PUBLISHER_LINKED_HIGH_RES_COVER_FOR_EBOOK_ISBN",
+      "public_delivery_route": "HELD_NO_PUBLIC_DISPLAY_LICENSE",
+      "rights_evidence": "DOWNLOAD_URL_NOT_PERMISSION_EXACT_EBOOK_ISBN_ONLY"
+    },
+    {
+      "case_id": "commons-joe-ross-museum-photo",
+      "source_packet": "COMMONS_PHOTO_CANDIDATE",
+      "source_local_asset_id": "commons-joe-ross-iconic-tos-props",
+      "expected_medium": "DOCUMENTARY_PHOTO",
+      "expected_image_kind": "COMMONS_CC_BY_SA_2_PHOTOGRAPH",
+      "public_delivery_route": "HELD_UNDERLYING_PROP_RIGHTS_AND_NO_BINARY_CUSTODY",
+      "rights_evidence": "PHOTOGRAPH_CC_LICENSE_REPORTED_UNDERLYING_RIGHTS_UNRESOLVED"
+    },
+    {
+      "case_id": "picard-dark-veil-openlibrary-jacket",
+      "source_packet": "PICARD_OPEN_LIBRARY_SIDECAR",
+      "source_local_asset_id": "directory:literature:proposed-lit-picard-the-dark-veil",
+      "expected_medium": "LITERATURE",
+      "expected_image_kind": "EDITION_PINNED_OPEN_LIBRARY_API_COVER",
+      "public_delivery_route": "OPT_IN_REMOTE_API_PREVIEW_NOT_LICENSED_COPY",
+      "rights_evidence": "API_DOCUMENTATION_AND_EDITION_RECEIPTS_COPYRIGHT_UNRESOLVED"
+    }
+  ]
+}

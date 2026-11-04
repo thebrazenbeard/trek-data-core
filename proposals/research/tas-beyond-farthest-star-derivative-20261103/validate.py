@@ -3,11 +3,13 @@
 import json
 import re
 from pathlib import Path
-from urllib.parse import urlsplit
 
 
 RECORDS = Path(__file__).with_name("records.json")
 HASH = re.compile(r"[0-9a-f]{64}\Z")
+SOURCE_URL = "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?episode=s01e01&tv-show=star-trek-the-animated-series-1973"
+RAW_HTML_SHA256 = "07bdbddad2000679c6c97b86b0fb7aa7316c2891c248e42e711cbdabac8ee198"
+FRAGMENT_STREAM_SHA256 = "9b5bba7a654c66b8d294c5b08bdc299ea1bbbf09245ac3c5c4fe8024cc1652a3"
 
 
 def require(ok, message):
@@ -23,16 +25,14 @@ def validate(data):
         require(data.get(effect) == "NONE", f"prohibited effect: {effect}")
     source = data.get("source", {})
     work = data.get("work", {})
-    url = urlsplit(source.get("url", ""))
-    require(url.scheme == "https" and url.hostname == "www.springfieldspringfield.co.uk" and not url.username,
-            "source origin mismatch")
+    require(source.get("url") == SOURCE_URL, "source URL identity mismatch")
     require(source.get("source_id") == "src:tas001:springfield-20261103", "source identity drift")
     require(source.get("kind") == "THIRD_PARTY_DERIVATIVE_TRANSCRIPT", "source type elevated")
     require(source.get("lineage_status") == "UNKNOWN_NOT_INDEPENDENTLY_ESTABLISHED", "unverified lineage promoted")
     require(source.get("http_status") == 200, "source not retrieved")
-    require(source.get("raw_html_bytes") == 43366 and HASH.fullmatch(source.get("raw_html_sha256", "")),
+    require(source.get("raw_html_bytes") == 43366 and source.get("raw_html_sha256") == RAW_HTML_SHA256,
             "invalid raw-source receipt")
-    require(source.get("fragment_count") == 263 and HASH.fullmatch(source.get("normalized_fragment_stream_sha256", "")),
+    require(source.get("fragment_count") == 263 and source.get("normalized_fragment_stream_sha256") == FRAGMENT_STREAM_SHA256,
             "invalid fragment receipt")
     require(source.get("all_fragments_read") is True, "source batch not actually processed")
     for flag in ("authenticated_primary_audiovisual", "transcript_accuracy_independently_verified", "copyright_source_text_committed"):

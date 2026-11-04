@@ -33,8 +33,10 @@ def reject_duplicate_keys(pairs):
   if key in result:raise ValueError(f'duplicate JSON key {key}')
   result[key]=value
  return result
+def reject_nonfinite_constant(token):
+ raise ValueError(f'non-finite JSON constant: {token}')
 def strict_json(raw):
- return json.loads(raw,object_pairs_hook=reject_duplicate_keys)
+ return json.loads(raw,object_pairs_hook=reject_duplicate_keys,parse_constant=reject_nonfinite_constant)
 
 def _secure_open_flags():
  """Never silently fall back to pathname-following reads on other platforms."""

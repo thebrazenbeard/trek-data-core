@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "VOY.PPLUS.ENUS.S1.SECOND5.GUIDE.20261105",
+  "role": "VOY",
+  "status": "HELD_OFFICIAL_US_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_main_baseline": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_publication_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "media_bytes_fetched": false,
+  "source": {
+    "local_source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+    "publisher": "Paramount+",
+    "url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+    "locale": "en-US",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "independence_group": "publisher:paramountplus.com",
+    "http_status": 200,
+    "retrieval_date_header": null,
+    "observed_at_utc": "2026-11-05 UTC (day-level, exact retrieval timestamp unavailable)",
+    "response_bytes": 292338,
+    "response_sha256": "1c079a6bfd707c9252a576d71884344ce6fab0ef8cb963c90a8ffc6df47bbdbf",
+    "normalized_15_card_sha256": "7bef657a899ca288a86e7f5dc6e310784b33ffbc46e04b78d2fa412a7f0e2f80",
+    "source_html_committed": false,
+    "retrieval_mutable": true,
+    "reproducible_extractor": "source_probe.py"
+  },
+  "publisher_guide_card_count": 15,
+  "publisher_guide_card_ordinals": "CONTIGUOUS_1_TO_15",
+  "publisher_guide_badges": "BADGE_1_THEN_3_TO_16",
+  "pilot_representation": {
+    "source_local_first_card_title": "Caretaker, Part 1 & 2",
+    "first_card_guide_ordinal": 1,
+    "first_card_publisher_episode_badge": 1,
+    "second_card_guide_ordinal": 2,
+    "second_card_publisher_episode_badge": 3,
+    "cross_locale_discrepancy": "GERMAN_PAGE_REPORTS_SEPARATE_PILOT_CARDS_HELD_UNRECONCILED",
+    "canonical_two_part_episode_identity": "UNRESOLVED"
+  },
+  "selected_guide_card_ordinals": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "selected_publisher_badges": [
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "source_relative_descriptions_read": 5,
+  "original_analyses_proposed": 5,
+  "selected_description_chars": 1314,
+  "cards": [
+    {
+      "guide_order": 6,
+      "publisher_analytics_ordinal": 6,
+      "season_badge": 1,
+      "episode_badge": 7,
+      "display_title": "Eye Of The Needle",
+      "video_route_path": "/shows/video/t7wLoDpWS_d40TGqJjfZTLNeGL57wRo_/",
+      "publisher_datetime": "1995-02-20T17:00:00-08:00",
+      "html_anchor_line": 1703,
+      "html_description_line": 1721,
+      "description_chars": 228,
+      "description_sha256": "16a7a5027e316987f9b97a8b8fd6669905f63c62922509c323e9384689cfe27a"
+    },
+    {
+      "guide_order": 7,
+      "publisher_analytics_ordinal": 7,
+      "season_badge": 1,
+      "episode_badge": 8,
+      "display_title": "Ex Post Facto",
+      "video_route_path": "/shows/video/I_FyNlKxfo6VepIb8GqyJterhl803s53/",
+      "publisher_datetime": "1995-02-27T17:00:00-08:00",
+      "html_anchor_line": 1731,
+      "html_description_line": 1749,
+      "description_chars": 295,
+      "description_sha256": "ed1f20d85a6923980cd61d17389bf494122cb441d57d5a2b6410a05ec7dc8ca9"
+    },
+    {
+      "guide_order": 8,
+      "publisher_analytics_ordinal": 8,
+      "season_badge": 1,
+      "episode_badge": 9,
+      "display_title": "Emanations",
+      "video_route_path": "/shows/video/jlNtWPx19RZ6fefERgUImN288gPs3R5d/",
+      "publisher_datetime": "1995-03-13T17:00:00-08:00",
+      "html_anchor_line": 1759,
+      "html_description_line": 1777,
+      "description_chars": 268,
+      "description_sha256": "fb2d422ac834ce8f8ec16cddb5cb0ff4fc282535042f9bd61a8f6f0d5f420413"
+    },
+    {
+      "guide_order": 9,
+      "publisher_analytics_ordinal": 9,
+      "season_badge": 1,
+      "episode_badge": 10,
+      "display_title": "Prime Factors",
+      "video_route_path": "/shows/video/il7VjsVIcD9hyWIhvFPqUTg2QbAJZMhj/",
+      "publisher_datetime": "1995-03-20T17:00:00-08:00",
+      "html_anchor_line": 1787,
+      "html_description_line": 1805,
+      "description_chars": 287,
+      "description_sha256": "a2edab2366531da64beca8da9cac0434a24d6033bea0c118aaef29331d80eb00"
+    },
+    {
+      "guide_order": 10,
+      "publisher_analytics_ordinal": 10,
+      "season_badge": 1,
+      "episode_badge": 11,
+      "display_title": "State Of Flux",
+      "video_route_path": "/shows/video/4g6HGQR37ow_uHF05ZaoED8f2I86MDTP/",
+      "publisher_datetime": "1995-04-10T17:00:00-07:00",
+      "html_anchor_line": 1815,
+      "html_description_line": 1833,
+      "description_chars": 236,
+      "description_sha256": "4b659f8bead1ae52b324c17c51816e27bb53f48a816b1503676111e7dd54d4b9"
+    }
+  ],
+  "local_entities": [
+    {
+      "id": "voy-s1-card6",
+      "guide_order": 6,
+      "publisher_episode_badge": 7,
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "voy-s1-card7",
+      "guide_order": 7,
+      "publisher_episode_badge": 8,
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "voy-s1-card8",
+      "guide_order": 8,
+      "publisher_episode_badge": 9,
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "voy-s1-card9",
+      "guide_order": 9,
+      "publisher_episode_badge": 10,
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "canonical_work_id": null
+    },
+    {
+      "id": "voy-s1-card10",
+      "guide_order": 10,
+      "publisher_episode_badge": 11,
+      "kind": "PUBLISHER_GUIDE_CARD",
+      "canonical_work_id": null
+    }
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "voy-s1-card6-publisher-copy",
+      "source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+      "local_entity_id": "voy-s1-card6",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "locator": "source HTML line 1721",
+      "description_sha256": "16a7a5027e316987f9b97a8b8fd6669905f63c62922509c323e9384689cfe27a",
+      "original_paraphrase": "The publisher describes a tiny wormhole pointing toward Romulan-controlled space; a contacted Romulan appears increasingly willing to assist, but any practical route home remains unverified here.",
+      "claim_mode": "PUBLISHER_CONTACT_APPEARS_WILLING_NOT_VERIFIED"
+    },
+    {
+      "id": "voy-s1-card7-publisher-copy",
+      "source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+      "local_entity_id": "voy-s1-card7",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "locator": "source HTML line 1749",
+      "description_sha256": "ed1f20d85a6923980cd61d17389bf494122cb441d57d5a2b6410a05ec7dc8ca9",
+      "original_paraphrase": "The guide frames Paris as accused of killing a Banean official, then attributes a different culprit's exposure to Tuvok's investigation and an animal clue; these remain the publisher's account.",
+      "claim_mode": "PUBLISHER_ACCUSATION_AND_INVESTIGATION_NOT_AV_READ"
+    },
+    {
+      "id": "voy-s1-card8-publisher-copy",
+      "source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+      "local_entity_id": "voy-s1-card8",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "locator": "source HTML line 1777",
+      "description_sha256": "fb2d422ac834ce8f8ec16cddb5cb0ff4fc282535042f9bd61a8f6f0d5f420413",
+      "original_paraphrase": "The publisher describes a transporter exchange placing Harry Kim within a Vhnori funeral practice, then explicitly questions whether the apparent mundane explanation for their afterlife belief is complete.",
+      "claim_mode": "PUBLISHER_EXPLICITLY_CONTESTS_AFTERLIFE_EXPLANATION"
+    },
+    {
+      "id": "voy-s1-card9-publisher-copy",
+      "source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+      "local_entity_id": "voy-s1-card9",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "locator": "source HTML line 1805",
+      "description_sha256": "a2edab2366531da64beca8da9cac0434a24d6033bea0c118aaef29331d80eb00",
+      "original_paraphrase": "The publisher portrays a possible technological shortcut home blocked by the Sikaran society's noninterference rule, while a faction aboard Voyager considers obtaining it anyway; outcome is not verified.",
+      "claim_mode": "PUBLISHER_NONINTERFERENCE_AND_UNRESOLVED_CHOICE"
+    },
+    {
+      "id": "voy-s1-card10-publisher-copy",
+      "source_id": "voy-s1-enus-pplus-html-secondfive-20261105",
+      "local_entity_id": "voy-s1-card10",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION",
+      "locator": "source HTML line 1833",
+      "description_sha256": "4b659f8bead1ae52b324c17c51816e27bb53f48a816b1503676111e7dd54d4b9",
+      "original_paraphrase": "The guide reports Federation replicator technology on a Kazon vessel, suspicion of an internal collaborator, and a disguised Cardassian tied to Chakotay's former group; no audiovisual evidence was examined.",
+      "claim_mode": "PUBLISHER_ALLEGED_INFILTRATOR_NOT_INDEPENDENTLY_CONFIRMED"
+    }
+  ],
+  "typed_assertions": [
+    {
+      "id": "voy-s1-card6-description-assertion",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "voy-s1-card6-publisher-copy",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "voy-s1-card7-description-assertion",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "voy-s1-card7-publisher-copy",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "voy-s1-card8-description-assertion",
+      "predicate": "PUBLISHER_POSES_CONTESTED_AFTERLIFE",
+      "evidence_id": "voy-s1-card8-publisher-copy",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "voy-s1-card9-description-assertion",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "voy-s1-card9-publisher-copy",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    },
+    {
+      "id": "voy-s1-card10-description-assertion",
+      "predicate": "PUBLISHER_DESCRIBES",
+      "evidence_id": "voy-s1-card10-publisher-copy",
+      "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"
+    }
+  ],
+  "held_description_partition": {
+    "publisher_cards_discovered": 15,
+    "first_party_descriptions_actually_read": 5,
+    "publisher_descriptions_not_yet_processed": 10,
+    "audiovisual_episodes_close_read": 0,
+    "status": "HELD_PARTIAL_PUBLISHER_GUIDE_NOT_AV_EPISODE_RESEARCH"
+  },
+  "holds": [
+    "This batch covers US publisher guide ordinals 6 through 10 only; overlapping first-five work remains a separate HELD proposal, not accepted coverage.",
+    "Official US guide still contains a combined two-part Caretaker card while German locale lists split pilot cards; publisher identities across locales remain unresolved.",
+    "Publisher-attributed contact, murder investigation, death/afterlife belief, technology policy and suspected espionage are descriptions, not direct audiovisual evidence.",
+    "The Emanations guide itself questions whether its apparent afterlife explanation is complete; preserve CONTESTED/UNKNOWN rather than a world-state conclusion.",
+    "Raw publisher HTML can vary; retained response and paragraph SHA pins are one retrieval, not independent corroboration or media rights.",
+    "No global Work/episode identity, accepted research coverage, episode close-read, image bytes or Explorer publication was performed."
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "ENT.PPLUS.S1.FIRST5.GUIDE.20261104",
+  "role": "ENT",
+  "status": "HELD_OFFICIAL_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_main_baseline": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_synopsis_release_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "image_bytes_fetched": false,
+  "source": {
+    "local_source_id": "ent-s1-paramountplus-guide-html-first5-20261104",
+    "url": "https://www.paramountplus.com/shows/enterprise/episodes/1/",
+    "publisher": "Paramount+",
+    "independence_group": "publisher:paramountplus.com",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "response_http_status": 200,
+    "response_date_header": "Wed, 04 Nov 2026 23:58:50 GMT",
+    "observed_at_utc": "2026-11-04T23:58:50.902109+00:00",
+    "raw_response_bytes": 311889,
+    "raw_response_sha256": "e4c46b3b56ecaf2bc20ac562b69e94be7fbc9321ade1939e080ccaefc0d543f4",
+    "all_25_cards_fingerprint_sha256": "a6ca94bbdfbe7a32e304e3bc9c0f4ce516e639f9d8f505af97fb82b92df8a9c4",
+    "raw_html_committed": false,
+    "snapshot_mutable": true,
+    "reproducible_extractor": "source_probe.py"
+  },
+  "observed_publisher_guide_card_count": 25,
+  "pilot_structure": {
+    "first_guide_card_title": "Broken Bow - Part 1 and 2",
+    "first_guide_card_display_order": 1,
+    "first_guide_card_episode_badge": 1,
+    "second_guide_card_display_order": 2,
+    "second_guide_card_episode_badge": 3,
+    "publisher_analytics_card_ordinals": "CONTIGUOUS_1_TO_25",
+    "publisher_episode_badges": "BADGE_1_THEN_3_TO_26",
+    "two_part_pilot_global_episode_count": "UNRESOLVED_NOT_WORK_RECONCILED"
+  },
+  "selected_guide_card_ordinals": [1, 2, 3, 4, 5],
+  "selected_publisher_episode_badges": [1, 3, 4, 5, 6],
+  "five_source_descriptions_inspected": 5,
+  "five_original_analyses_proposed": 5,
+  "five_publisher_description_chars": 1012,
+  "first_five_guide_cards": [
+    {
+      "display_order": 1,
+      "analytics_ordinal": 1,
+      "season": 1,
+      "episode_badge": 1,
+      "title": "Broken Bow - Part 1 and 2",
+      "video_route_path": "/shows/video/vDnTX2qyJMb41JRFGjBNY2SmJKplW9uD/",
+      "publisher_datetime": "2001-09-25T21:00:00-07:00",
+      "html_anchor_line": 1482,
+      "html_description_line": 1500,
+      "description_chars": 230,
+      "description_sha256": "f9cdbebc04c72787fb2d4fbd27a18b7328f560a67e48f95360c0842a439bcd04"
+    },
+    {
+      "display_order": 2,
+      "analytics_ordinal": 2,
+      "season": 1,
+      "episode_badge": 3,
+      "title": "Fight or Flight",
+      "video_route_path": "/shows/video/1476847392/",
+      "publisher_datetime": "2001-10-02T21:00:00-07:00",
+      "html_anchor_line": 1510,
+      "html_description_line": 1528,
+      "description_chars": 200,
+      "description_sha256": "13e04b4fee6e130a6e24d101a6f6867ea7f718bbdf1d971db04f66ee3e7ef113"
+    },
+    {
+      "display_order": 3,
+      "analytics_ordinal": 3,
+      "season": 1,
+      "episode_badge": 4,
+      "title": "Strange New World",
+      "video_route_path": "/shows/video/1476847956/",
+      "publisher_datetime": "2001-10-09T21:00:00-07:00",
+      "html_anchor_line": 1538,
+      "html_description_line": 1556,
+      "description_chars": 209,
+      "description_sha256": "cacf492e4be677014615a61dbbd655e64112ba3b2372a20129ab04587f2ff101"
+    },
+    {
+      "display_order": 4,
+      "analytics_ordinal": 4,
+      "season": 1,
+      "episode_badge": 5,
+      "title": "Unexpected",
+      "video_route_path": "/shows/video/1476848062/",
+      "publisher_datetime": "2001-10-16T21:00:00-07:00",
+      "html_anchor_line": 1566,
+      "html_description_line": 1584,
+      "description_chars": 165,
+      "description_sha256": "21e7fe97c79abfb50c4e6f7d08214ab1b480d559f2c7b0280eab38ca88c5f8ea"
+    },
+    {
+      "display_order": 5,
+      "analytics_ordinal": 5,
+      "season": 1,
+      "episode_badge": 6,
+      "title": "Terra Nova",
+      "video_route_path": "/shows/video/1477078878/",
+      "publisher_datetime": "2001-10-23T21:00:00-07:00",
+      "html_anchor_line": 1594,
+      "html_description_line": 1612,
+      "description_chars": 208,
+      "description_sha256": "2ee93b94196b39c376dc5d6259bbb34dd76cf2947833837b5205af30c8448832"
+    }
+  ],
+  "local_entities": [
+    {"id": "ent-s1-card01", "guide_card_ordinal": 1, "publisher_episode_badge": 1, "kind": "PUBLISHER_EPISODE_CARD", "canonical_work_id": null},
+    {"id": "ent-s1-card02", "guide_card_ordinal": 2, "publisher_episode_badge": 3, "kind": "PUBLISHER_EPISODE_CARD", "canonical_work_id": null},
+    {"id": "ent-s1-card03", "guide_card_ordinal": 3, "publisher_episode_badge": 4, "kind": "PUBLISHER_EPISODE_CARD", "canonical_work_id": null},
+    {"id": "ent-s1-card04", "guide_card_ordinal": 4, "publisher_episode_badge": 5, "kind": "PUBLISHER_EPISODE_CARD", "canonical_work_id": null},
+    {"id": "ent-s1-card05", "guide_card_ordinal": 5, "publisher_episode_badge": 6, "kind": "PUBLISHER_EPISODE_CARD", "canonical_work_id": null}
+  ],
+  "source_relative_evidence": [
+    {
+      "id": "ent-s1-card01-guide-description", "source_id": "ent-s1-paramountplus-guide-html-first5-20261104", "local_entity_id": "ent-s1-card01",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1500", "publisher_description_sha256": "f9cdbebc04c72787fb2d4fbd27a18b7328f560a67e48f95360c0842a439bcd04",
+      "original_paraphrase": "The publisher describes Enterprise carrying a Klingon messenger toward Kronos while its first crew seeks greater independence from Vulcan oversight; arrival is not established.",
+      "claim_mode": "PUBLISHER_MISSION_SETUP_NOT_COMPLETION_VERIFIED"
+    },
+    {
+      "id": "ent-s1-card02-guide-description", "source_id": "ent-s1-paramountplus-guide-html-first5-20261104", "local_entity_id": "ent-s1-card02",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1528", "publisher_description_sha256": "13e04b4fee6e130a6e24d101a6f6867ea7f718bbdf1d971db04f66ee3e7ef113",
+      "original_paraphrase": "The publisher presents Archer choosing between crew safety and intervention amid a conflict between unfamiliar vessels; outcome and ship identities remain unverified here.",
+      "claim_mode": "PUBLISHER_ETHICAL_DILEMMA_NOT_OUTCOME_VERIFIED"
+    },
+    {
+      "id": "ent-s1-card03-guide-description", "source_id": "ent-s1-paramountplus-guide-html-first5-20261104", "local_entity_id": "ent-s1-card03",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1556", "publisher_description_sha256": "cacf492e4be677014615a61dbbd655e64112ba3b2372a20129ab04587f2ff101",
+      "original_paraphrase": "The publisher attributes an away team's paranoia and distorted perceptions to alien pollen while a storm delays their departure; perceived threats lack separate corroboration.",
+      "claim_mode": "HALLUCINATORY_FRAME_NOT_OBJECTIVE_DANGER_CONFIRMED"
+    },
+    {
+      "id": "ent-s1-card04-guide-description", "source_id": "ent-s1-paramountplus-guide-html-first5-20261104", "local_entity_id": "ent-s1-card04",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1584", "publisher_description_sha256": "21e7fe97c79abfb50c4e6f7d08214ab1b480d559f2c7b0280eab38ca88c5f8ea",
+      "original_paraphrase": "According to the publisher, Trip experiences an unexpected pregnancy during aid to another vessel, prompting Enterprise to locate that craft; no independent biological verification is claimed.",
+      "claim_mode": "PUBLISHER_BIOLOGICAL_EVENT_NOT_INDEPENDENTLY_VERIFIED"
+    },
+    {
+      "id": "ent-s1-card05-guide-description", "source_id": "ent-s1-paramountplus-guide-html-first5-20261104", "local_entity_id": "ent-s1-card05",
+      "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1612", "publisher_description_sha256": "2ee93b94196b39c376dc5d6259bbb34dd76cf2947833837b5205af30c8448832",
+      "original_paraphrase": "The publisher depicts Enterprise finding descendants of Terra Nova's missing colonists living underground; the asserted evolutionary change remains a publisher claim.",
+      "claim_mode": "PUBLISHER_COLONY_DESCENDANT_FRAME_NOT_EVOLUTION_VERIFIED"
+    }
+  ],
+  "typed_assertions": [
+    {"id": "ent-s1-card01-publisher-describes", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "ent-s1-card01-guide-description", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED", "frame_claim_status": "PUBLISHER_DESCRIPTION_ONLY"},
+    {"id": "ent-s1-card02-publisher-describes", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "ent-s1-card02-guide-description", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED", "frame_claim_status": "PUBLISHER_DESCRIPTION_ONLY"},
+    {"id": "ent-s1-card03-publisher-describes", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "ent-s1-card03-guide-description", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED", "frame_claim_status": "PUBLISHER_DESCRIPTION_ONLY"},
+    {"id": "ent-s1-card04-publisher-describes", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "ent-s1-card04-guide-description", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED", "frame_claim_status": "PUBLISHER_DESCRIPTION_ONLY"},
+    {"id": "ent-s1-card05-publisher-describes", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "ent-s1-card05-guide-description", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED", "frame_claim_status": "PUBLISHER_DESCRIPTION_ONLY"}
+  ],
+  "held_description_partition": {
+    "publisher_cards_seen": 25,
+    "source_relative_descriptions_read": 5,
+    "remaining_unprocessed_card_descriptions": 20,
+    "accepted_episode_close_reads": 0,
+    "status": "HELD_PARTIAL_PUBLISHER_GUIDE_NOT_EPISODE_CLOSE_READ"
+  },
+  "holds": [
+    "One publisher card combines the two-part pilot; guide-card count is not canonical episode count.",
+    "Publisher display/analytics ordinals and episode badge labels are distinct identity fields.",
+    "Source HTML is mutable; hash/line locators describe one retrieved body and do not confer independent corroboration.",
+    "Five publisher descriptions read is not five episodes watched, and does not grant CLOSE_READ or Work coverage.",
+    "Character perception and publisher biological/cultural summary are not independently confirmed fictional world-state.",
+    "No copyrighted full paragraphs, HTML, video, audio, scripts or image bytes are committed.",
+    "Public Explorer publication and global Source/Work reconciliation remain forbidden absent accepted review."
+  ]
+}

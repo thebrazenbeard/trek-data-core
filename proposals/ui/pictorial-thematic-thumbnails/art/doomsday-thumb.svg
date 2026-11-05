@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Original visual motif for source-local lead:0000; not official art or close-read evidence"><g transform="translate(-100 -9) scale(1.25)"><defs><linearGradient id="space" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#121a39" /><stop offset="1" stop-color="#093c56" /></linearGradient><radialGradient id="planet"><stop stop-color="#e2e8fa" /><stop offset=".7" stop-color="#7dcada" /><stop offset="1" stop-color="#347b9a" /></radialGradient></defs>
+    <rect width="800" height="450" fill="url(#space)" /><circle cx="38" cy="42" r="1" fill="#ddf5ff" opacity=".54" /><circle cx="190" cy="43" r="1" fill="#ddf5ff" opacity=".54" /><circle cx="359" cy="57" r="2" fill="#ddf5ff" opacity=".54" /><circle cx="633" cy="23" r="1" fill="#ddf5ff" opacity=".54" /><circle cx="719" cy="81" r="1" fill="#ddf5ff" opacity=".54" /><circle cx="93" cy="178" r="1" fill="#ddf5ff" opacity=".54" /><circle cx="747" cy="194" r="1" fill="#ddf5ff" opacity=".54" />
+    <circle cx="601" cy="211" r="90" fill="url(#planet)" />
+    <path d="M 554 147 L 575 176 L 551 202 L 603 244 L 626 209 L 651 231 L 661 255" stroke="#0e557b" stroke-width="8" fill="none" />
+    <path d="M 613 108 L 670 95 L 681 119 L 715 122 L 701 145 L 735 166" stroke="#f7e7b0" stroke-width="10" fill="none" />
+    <path d="M 527 270 L 486 310 L 475 286 L 447 296 M 675 281 L 707 299 L 728 288" stroke="#b8f6ef" stroke-width="6" fill="none" />
+    <path d="M -20 103 L 200 60 L 373 189 L 194 341 L -20 302 Z" fill="#22334c" stroke="#f5ad6b" stroke-width="12" />
+    <path d="M 30 131 L 179 109 L 282 186 L 169 290 L 30 275 Z" fill="#142a3d" stroke="#e7c07a" stroke-width="6" />
+    <ellipse cx="198" cy="198" rx="57" ry="90" fill="#e26568" opacity=".38" />
+    <ellipse cx="198" cy="198" rx="33" ry="59" fill="#ffb871" opacity=".6" />
+    <path d="M 275 166 L 442 182 M 275 232 L 435 220" stroke="#ffb45a" stroke-width="5" stroke-dasharray="17 13" opacity=".8" /><path d="M 112 144 L 133 179 L 112 213" stroke="#ffbf63" stroke-width="5" fill="none" opacity=".72" /><path d="M 127 152 L 148 179 L 127 213" stroke="#ffbf63" stroke-width="5" fill="none" opacity=".72" /><path d="M 142 160 L 163 179 L 142 213" stroke="#ffbf63" stroke-width="5" fill="none" opacity=".72" /><path d="M 157 144 L 178 179 L 157 213" stroke="#ffbf63" stroke-width="5" fill="none" opacity=".72" /><path d="M 172 152 L 193 179 L 172 213" stroke="#ffbf63" stroke-width="5" fill="none" opacity=".72" />
+    </g></svg>

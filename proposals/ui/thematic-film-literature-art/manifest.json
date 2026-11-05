@@ -1,0 +1,196 @@
+{
+  "accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "admitted_works": 0,
+  "coverage_effect": "NONE",
+  "edition_equivalence_asserted": false,
+  "film_or_book_close_reads": 0,
+  "public_release_effect": "NONE",
+  "records": [
+    {
+      "admission_effect": "NONE",
+      "art_class": "ORIGINAL_INTERPRETIVE_GEOMETRY_NOT_SOURCE_IMAGE",
+      "art_path": "art/legacy-future.svg",
+      "art_sha256": "53aec4331ba61bc5f8803e650f262a20d298c0eaff46a50c4ccd94f2067e2a25",
+      "coverage_effect": "NONE",
+      "edition_identifier": null,
+      "film_or_book_close_read": false,
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "FILM",
+      "motif_evidence_links": [
+        {
+          "cue_index": 0,
+          "illustrative_element": "two diverging legacy/future paths"
+        },
+        {
+          "cue_index": 1,
+          "illustrative_element": "opposing vectors converging on an abstract star chart"
+        }
+      ],
+      "motif_id": "legacy-future",
+      "official_image_rights_grant": "NONE",
+      "official_section": "StarTrek.com film page > Synopsis",
+      "publisher_edition_listing_admitted": false,
+      "publisher_page_edition_listing": null,
+      "publisher_page_full_html_sha256": null,
+      "source_cue_sha256": [
+        "d69c11ff0c55e2331fb9befcd503a8d8f86e82c4cb486a5a258af19aa8bbe794",
+        "8aecde71c3f1c7fb85cb591ae2033caa7cde0e33cb63772bf415c4ca79ce1216"
+      ],
+      "source_cues": [
+        "legacy of his father",
+        "vengeful Romulan from the future"
+      ],
+      "source_group": "publisher:startrek.com",
+      "source_input": "explorer/film-catalog.json",
+      "source_kind": "PUBLISHER_FILM_SYNOPSIS",
+      "source_local_row_id": "film:film-2009",
+      "source_reference_url": "https://www.startrek.com/movies/star-trek-2009",
+      "source_text_scope": "SHORT_EXACT_FIRST_PARTY_PAGE_CUES_NOT_FULL_FILM_OR_BOOK",
+      "title": "Star Trek (2009)",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "art_class": "ORIGINAL_INTERPRETIVE_GEOMETRY_NOT_SOURCE_IMAGE",
+      "art_path": "art/mirror-weapon.svg",
+      "art_sha256": "1de2b3b86ae1a06f27219db58062c01fb25fcdae7f4c60de68250964e44f517a",
+      "coverage_effect": "NONE",
+      "edition_identifier": null,
+      "film_or_book_close_read": false,
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "FILM",
+      "motif_evidence_links": [
+        {
+          "cue_index": 0,
+          "illustrative_element": "two opposed mirrored geometric forms"
+        },
+        {
+          "cue_index": 1,
+          "illustrative_element": "central destructive energy bar"
+        }
+      ],
+      "motif_id": "mirror-weapon",
+      "official_image_rights_grant": "NONE",
+      "official_section": "StarTrek.com film page > Synopsis",
+      "publisher_edition_listing_admitted": false,
+      "publisher_page_edition_listing": null,
+      "publisher_page_full_html_sha256": null,
+      "source_cue_sha256": [
+        "220273fdef976878f8e8cc8f3c1dcfda2e31c3229e49c15c7a71e6274f0d703f",
+        "bb841e60d2768287dfc0dd8f6bc30fa0b9ef3940fb261177975badcadfd5b3c4"
+      ],
+      "source_cues": [
+        "A clone of Picard",
+        "threatens the destruction of the Federation with a powerful weapon"
+      ],
+      "source_group": "publisher:startrek.com",
+      "source_input": "explorer/film-catalog.json",
+      "source_kind": "PUBLISHER_FILM_SYNOPSIS",
+      "source_local_row_id": "film:film-nemesis",
+      "source_reference_url": "https://www.startrek.com/movies/star-trek-nemesis",
+      "source_text_scope": "SHORT_EXACT_FIRST_PARTY_PAGE_CUES_NOT_FULL_FILM_OR_BOOK",
+      "title": "Star Trek Nemesis",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "art_class": "ORIGINAL_INTERPRETIVE_GEOMETRY_NOT_SOURCE_IMAGE",
+      "art_path": "art/delta-journal.svg",
+      "art_sha256": "3398130475f32ab39f27623afc05a1bf4cf544eaaf49d4a1efdc571211aefb4a",
+      "coverage_effect": "NONE",
+      "edition_identifier": null,
+      "film_or_book_close_read": false,
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "motif_evidence_links": [
+        {
+          "cue_index": 0,
+          "illustrative_element": "open abstract memoir pages"
+        },
+        {
+          "cue_index": 1,
+          "illustrative_element": "long dotted route across a stylized starfield"
+        }
+      ],
+      "motif_id": "delta-journal",
+      "official_image_rights_grant": "NONE",
+      "official_section": "Penguin Random House distributor page > Book Description",
+      "publisher_edition_listing_admitted": false,
+      "publisher_page_edition_listing": {
+        "publisher_listed_format": "Paperback",
+        "publisher_listed_isbn13": "9781789095333",
+        "publisher_listed_page_count": 224,
+        "publisher_listed_publication_date": "2021-11-16",
+        "publisher_or_distributor": "Penguin Random House / Titan Books"
+      },
+      "publisher_page_full_html_sha256": null,
+      "source_cue_sha256": [
+        "4aea61c2de7a4a27c7f6da6cfa21764e1c15dd9efef7cd14e90e411c7eb29938",
+        "6711c2002e7d231d210a5b98d1951e0efb506c1daebdbc271bb50eac4c178650"
+      ],
+      "source_cues": [
+        "her lifestory for the first time in her own words",
+        "epic journey through the Delta Quadrant"
+      ],
+      "source_group": "distributor:penguinrandomhouse.com:titan-books",
+      "source_input": "proposals/librarian/prh-star-trek-autobiographies-20261103/records.json",
+      "source_kind": "DISTRIBUTOR_BOOK_DESCRIPTION",
+      "source_local_row_id": "literature:prh-autobiography-janeway",
+      "source_reference_url": "https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/",
+      "source_text_scope": "SHORT_EXACT_FIRST_PARTY_PAGE_CUES_NOT_FULL_FILM_OR_BOOK",
+      "title": "The Autobiography of Kathryn Janeway",
+      "verification_status": "UNVERIFIED_METADATA"
+    },
+    {
+      "admission_effect": "NONE",
+      "art_class": "ORIGINAL_INTERPRETIVE_GEOMETRY_NOT_SOURCE_IMAGE",
+      "art_path": "art/accretion-station.svg",
+      "art_sha256": "7f404c22c18e272d48ea080727d3928542ab754d19f34853847bcd725f6c8a97",
+      "coverage_effect": "NONE",
+      "edition_identifier": null,
+      "film_or_book_close_read": false,
+      "identity_scope": "SOURCE_LOCAL",
+      "medium": "LITERATURE",
+      "motif_evidence_links": [
+        {
+          "cue_index": 0,
+          "illustrative_element": "original accretion torus"
+        },
+        {
+          "cue_index": 1,
+          "illustrative_element": "small abstract research station above the disk"
+        }
+      ],
+      "motif_id": "accretion-station",
+      "official_image_rights_grant": "NONE",
+      "official_section": "Simon & Schuster publisher page > About the Book",
+      "publisher_edition_listing_admitted": false,
+      "publisher_page_edition_listing": {
+        "publisher_listed_format": "Hardcover",
+        "publisher_listed_isbn13": "9781668095898",
+        "publisher_listed_page_count": 336,
+        "publisher_listed_publication_date": "2025-10-07",
+        "publisher_or_distributor": "Simon & Schuster / Pocket Books/Star Trek"
+      },
+      "publisher_page_full_html_sha256": null,
+      "source_cue_sha256": [
+        "e03e9e7dd7dc6f85a22ea610c560deee2063b64640f5c482e89ead6be1f1e56b",
+        "b58ac4d9577e18d7ca3c4be553ea38d5187effb8747ea35118ed3289b017ca82"
+      ],
+      "source_cues": [
+        "accretion disk of a black hole",
+        "classified research facility located above"
+      ],
+      "source_group": "publisher:simonandschuster.com",
+      "source_input": "proposals/librarian/ring-of-fire-editions-20261102/records.json",
+      "source_kind": "PUBLISHER_BOOK_DESCRIPTION",
+      "source_local_row_id": "literature:proposed-lit-snw-ring-of-fire",
+      "source_reference_url": "https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898",
+      "source_text_scope": "SHORT_EXACT_FIRST_PARTY_PAGE_CUES_NOT_FULL_FILM_OR_BOOK",
+      "title": "Star Trek: Strange New Worlds: Ring of Fire",
+      "verification_status": "UNVERIFIED_METADATA"
+    }
+  ],
+  "source_image_bytes": 0,
+  "status": "HELD_FILM_LITERATURE_INTERPRETIVE_ART_NOT_PUBLIC"
+}

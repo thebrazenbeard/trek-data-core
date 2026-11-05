@@ -19,8 +19,8 @@ ASSETS = ROOT / "explorer/original-source-art"
 # the first source-map declaration. Otherwise a later Map.set(), early resolver
 # return, or later specificity override can silently misbind original visuals.
 # Any subsequent UI change requires an explicit pin review and HTML cache update.
-REVIEWED_EXPLORER_JS_SHA256 = "cd28180824c7c8042aea8ac75c429a4f34230c29c03cedb9ef07a99dced9703f"
-REVIEWED_EXPLORER_CSS_SHA256 = "362f245e51dd3183fbe1522b47c9ea601f58df27588abfc081517929d66267f1"
+REVIEWED_EXPLORER_JS_SHA256 = "83b097b45f681399d470a534bc1ac7fcf4c42aa9822a16d2c66d38651c10ef40"
+REVIEWED_EXPLORER_CSS_SHA256 = "0a6eb6c0c9e532f4f54157b012a604a5231ea0f3c5f8240f0c1dfd89d1ac6dac"
 ALLOWED_TAGS = {"svg", "defs", "linearGradient", "radialGradient", "stop", "circle", "ellipse", "rect", "path", "text"}
 ALLOWED_ATTRS = {
     "xmlns", "viewBox", "role", "aria-label", "id", "x", "y", "x1", "x2", "y1", "y2",

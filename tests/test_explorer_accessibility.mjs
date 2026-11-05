@@ -15,7 +15,7 @@ const ids = [
   'research-count', 'research-state', 'research-list', 'research-empty',
   'research-summary', 'research-heading', 'tone-toggle', 'artwork-toggle', 'artwork-state',
   'artwork-gallery', 'artwork-gallery-summary', 'artwork-gallery-list',
-  'artwork-nav-link', 'artwork-nav-count', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
+  'artwork-nav-link', 'artwork-nav-count', 'badgey-console', 'badgey-form', 'badgey-query', 'badgey-send', 'badgey-clear', 'badgey-status', 'badgey-log', 'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
   'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
   'publisher-edition-nav-count', 'publisher-edition-state', 'publisher-edition-query',
@@ -187,4 +187,16 @@ test('HELD publisher episode-guide shelf has accessible tags, filters, and no Wo
   assert.match(html, /id="episode-source-state"[^>]*role="status" aria-live="polite"/);
   assert.match(html, /id="episode-source-download"[^>]*hidden>/);
   assert.match(html, /not an admitted Work, watched episode, canon fact, approved synopsis or licensed image/);
+});
+
+test('contained Badgey archive station has an accessible source-only form without login or model dependencies', () => {
+  const html = readFileSync(new URL('../explorer/index.html', import.meta.url), 'utf8');
+  assert.match(html, /<section id="badgey-console"[^>]*aria-labelledby="badgey-heading"[^>]*aria-describedby="badgey-disclosure"/);
+  assert.match(html, /<form id="badgey-form"[^>]*role="search" aria-label="Ask Badgey to search local archive records"/);
+  assert.match(html, /<label for="badgey-query">Ask Badgey to find a source<\/label>/);
+  assert.match(html, /id="badgey-query"[^>]*maxlength="120"[^>]*required/);
+  assert.match(html, /id="badgey-status"[^>]*role="status" aria-live="polite"/);
+  assert.match(html, /id="badgey-log"[^>]*aria-label="Source-local Badgey archive exchange" aria-live="polite"/);
+  assert.match(html, /not a general chatbot or a model/);
+  assert.ok(html.indexOf('id="badgey-console"') < html.indexOf('id="lore-console"'));
 });

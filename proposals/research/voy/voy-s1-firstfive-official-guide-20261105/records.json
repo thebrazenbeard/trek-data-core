@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "batch_id": "VOY.PPLUS.ENUS.S1.FIRST5.GUIDE.20261105",
+  "role": "VOY",
+  "status": "HELD_OFFICIAL_US_PUBLISHER_GUIDE_SOURCE_RELATIVE",
+  "accepted_main_baseline": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "accepted_source_binding_effect": "NONE",
+  "accepted_work_effect": "NONE",
+  "coverage_effect": "NONE",
+  "denominator_effect": "NONE",
+  "reconciliation_effect": "NONE",
+  "explorer_publication_effect": "NONE",
+  "episode_content_watched": false,
+  "transcripts_read": false,
+  "media_bytes_fetched": false,
+  "source": {
+    "local_source_id": "voy-s1-enus-pplus-html-firstfive-20261105",
+    "publisher": "Paramount+",
+    "url": "https://www.paramountplus.com/shows/star_trek_voyager/episodes/1/",
+    "locale": "en-US",
+    "source_kind": "FIRST_PARTY_PUBLISHER_SEASON_EPISODE_GUIDE_HTML",
+    "independence_group": "publisher:paramountplus.com",
+    "http_status": 200,
+    "retrieval_date_header": "Thu, 05 Nov 2026 00:33:30 GMT",
+    "observed_at_utc": "2026-11-05T00:33:30.736718+00:00",
+    "response_bytes": 292338,
+    "response_sha256": "d13c1985dc71d8ea560378bac946d4fa07cce2c2929556a4ddf8a0dbbc37be69",
+    "normalized_15_card_sha256": "7bef657a899ca288a86e7f5dc6e310784b33ffbc46e04b78d2fa412a7f0e2f80",
+    "source_html_committed": false,
+    "retrieval_mutable": true,
+    "reproducible_extractor": "source_probe.py"
+  },
+  "publisher_guide_card_count": 15,
+  "publisher_guide_card_ordinals": "CONTIGUOUS_1_TO_15",
+  "publisher_guide_badges": "BADGE_1_THEN_3_TO_16",
+  "pilot_representation": {
+    "source_local_first_card_title": "Caretaker, Part 1 & 2",
+    "first_card_guide_ordinal": 1,
+    "first_card_publisher_episode_badge": 1,
+    "second_card_guide_ordinal": 2,
+    "second_card_publisher_episode_badge": 3,
+    "cross_locale_discrepancy": "GERMAN_PAGE_REPORTS_SEPARATE_PILOT_CARDS_HELD_UNRECONCILED",
+    "canonical_two_part_episode_identity": "UNRESOLVED"
+  },
+  "selected_guide_card_ordinals": [1, 2, 3, 4, 5],
+  "selected_publisher_badges": [1, 3, 4, 5, 6],
+  "source_relative_descriptions_read": 5,
+  "original_analyses_proposed": 5,
+  "selected_description_chars": 926,
+  "cards": [
+    {"guide_order": 1, "publisher_analytics_ordinal": 1, "season_badge": 1, "episode_badge": 1, "display_title": "Caretaker, Part 1 & 2", "video_route_path": "/shows/video/aNy9fyAsPOdixxFtPMHoEXq9oXGz0eie/", "publisher_datetime": "1995-01-16T17:00:00-08:00", "html_anchor_line": 1563, "html_description_line": 1581, "description_chars": 118, "description_sha256": "57b973908377c1c03024fe21dc89d7a77cbf2e9878f69e8fa7e278dcbccadbd9"},
+    {"guide_order": 2, "publisher_analytics_ordinal": 2, "season_badge": 1, "episode_badge": 3, "display_title": "Parallax", "video_route_path": "/shows/video/O0h_DNgC3u8NWNWsX4pvg24W1ZXunJD0/", "publisher_datetime": "1995-01-23T17:00:00-08:00", "html_anchor_line": 1591, "html_description_line": 1609, "description_chars": 195, "description_sha256": "0b06b096e7c33ba4e71fa19b7f6d449a9b47d01524cf1fa92558972291dd4eb5"},
+    {"guide_order": 3, "publisher_analytics_ordinal": 3, "season_badge": 1, "episode_badge": 4, "display_title": "Time And Again", "video_route_path": "/shows/video/k4NTOMBqi_aHZwfZA7vKZ_ZT1IQY4e5M/", "publisher_datetime": "1995-01-30T17:00:00-08:00", "html_anchor_line": 1619, "html_description_line": 1637, "description_chars": 210, "description_sha256": "95dc75ce70bd8a4982646600c137c7b78e4767c05832fc801ce7a8ab92f22d18"},
+    {"guide_order": 4, "publisher_analytics_ordinal": 4, "season_badge": 1, "episode_badge": 5, "display_title": "Phage", "video_route_path": "/shows/video/MKBk0egktsNccEutB4i8YtD1DUs2bMjX/", "publisher_datetime": "1995-02-06T17:00:00-08:00", "html_anchor_line": 1647, "html_description_line": 1665, "description_chars": 199, "description_sha256": "0114c1006b147afc963c3f79b560fd23906e7dd50062793f02459395e3e9dda6"},
+    {"guide_order": 5, "publisher_analytics_ordinal": 5, "season_badge": 1, "episode_badge": 6, "display_title": "The Cloud", "video_route_path": "/shows/video/fBbwrRKZwvIoiwAt_Wh9yLu7FWLQYRmO/", "publisher_datetime": "1995-02-13T17:00:00-08:00", "html_anchor_line": 1675, "html_description_line": 1693, "description_chars": 204, "description_sha256": "5e53c9d6e01751af668c13e338c92cdf8ff06242a40858e1a6c340fde513ed8c"}
+  ],
+  "local_entities": [
+    {"id": "voy-s1-card01", "guide_order": 1, "publisher_episode_badge": 1, "kind": "PUBLISHER_GUIDE_CARD", "canonical_work_id": null},
+    {"id": "voy-s1-card02", "guide_order": 2, "publisher_episode_badge": 3, "kind": "PUBLISHER_GUIDE_CARD", "canonical_work_id": null},
+    {"id": "voy-s1-card03", "guide_order": 3, "publisher_episode_badge": 4, "kind": "PUBLISHER_GUIDE_CARD", "canonical_work_id": null},
+    {"id": "voy-s1-card04", "guide_order": 4, "publisher_episode_badge": 5, "kind": "PUBLISHER_GUIDE_CARD", "canonical_work_id": null},
+    {"id": "voy-s1-card05", "guide_order": 5, "publisher_episode_badge": 6, "kind": "PUBLISHER_GUIDE_CARD", "canonical_work_id": null}
+  ],
+  "source_relative_evidence": [
+    {"id": "voy-s1-card01-publisher-copy", "source_id": "voy-s1-enus-pplus-html-firstfive-20261105", "local_entity_id": "voy-s1-card01", "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1581", "description_sha256": "57b973908377c1c03024fe21dc89d7a77cbf2e9878f69e8fa7e278dcbccadbd9", "original_paraphrase": "The publisher begins describing Janeway's short-term mission tracking an infiltrated Maquis group and a newly launched ship, but the available card copy ends in an incomplete sentence before the outcome.", "claim_mode": "PUBLISHER_TRUNCATED_SETUP_OUTCOME_UNKNOWN"},
+    {"id": "voy-s1-card02-publisher-copy", "source_id": "voy-s1-enus-pplus-html-firstfive-20261105", "local_entity_id": "voy-s1-card02", "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1609", "description_sha256": "0b06b096e7c33ba4e71fa19b7f6d449a9b47d01524cf1fa92558972291dd4eb5", "original_paraphrase": "According to the guide, tensions between the Maquis and Starfleet crews accompany a spatial problem; it credits B'Elanna Torres with solving that puzzle and being selected as chief engineer.", "claim_mode": "PUBLISHER_REPORTED_CREW_AND_ROLE_NOT_EPISODE_VERIFIED"},
+    {"id": "voy-s1-card03-publisher-copy", "source_id": "voy-s1-enus-pplus-html-firstfive-20261105", "local_entity_id": "voy-s1-card03", "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1637", "description_sha256": "95dc75ce70bd8a4982646600c137c7b78e4767c05832fc801ce7a8ab92f22d18", "original_paraphrase": "The guide questions whether an industrial planet's apparent destruction came from dangerous polaron technology or from the visiting crew's actions in its recent past; the cause is unresolved in the synopsis.", "claim_mode": "PUBLISHER_POSES_CONTESTED_CAUSALITY"},
+    {"id": "voy-s1-card04-publisher-copy", "source_id": "voy-s1-enus-pplus-html-firstfive-20261105", "local_entity_id": "voy-s1-card04", "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1665", "description_sha256": "0114c1006b147afc963c3f79b560fd23906e7dd50062793f02459395e3e9dda6", "original_paraphrase": "The publisher describes Vidiians taking Neelix's lungs, holographic substitutes keeping him alive, and Janeway tracing the theft to a society afflicted by the Phage; these are guide claims only.", "claim_mode": "PUBLISHER_EVENT_SUMMARY_NOT_AV_READ"},
+    {"id": "voy-s1-card05-publisher-copy", "source_id": "voy-s1-enus-pplus-html-firstfive-20261105", "local_entity_id": "voy-s1-card05", "kind": "PUBLISHER_GUIDE_DESCRIPTION", "locator": "source HTML line 1693", "description_sha256": "5e53c9d6e01751af668c13e338c92cdf8ff06242a40858e1a6c340fde513ed8c", "original_paraphrase": "The guide calls a difficult-to-exit nebula a living entity and attributes the crew's escape to a repair-like intervention led by Janeway, without independent audiovisual confirmation.", "claim_mode": "PUBLISHER_LIVING_NEBULA_RECAP_NOT_AV_READ"}
+  ],
+  "typed_assertions": [
+    {"id": "voy-s1-card01-description-assertion", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "voy-s1-card01-publisher-copy", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id": "voy-s1-card02-description-assertion", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "voy-s1-card02-publisher-copy", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id": "voy-s1-card03-description-assertion", "predicate": "PUBLISHER_DESCRIBES_CONTESTED_CAUSALITY", "evidence_id": "voy-s1-card03-publisher-copy", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id": "voy-s1-card04-description-assertion", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "voy-s1-card04-publisher-copy", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"},
+    {"id": "voy-s1-card05-description-assertion", "predicate": "PUBLISHER_DESCRIBES", "evidence_id": "voy-s1-card05-publisher-copy", "status": "SOURCE_RELATIVE_NOT_EPISODE_CONTENT_VERIFIED"}
+  ],
+  "held_description_partition": {
+    "publisher_cards_discovered": 15,
+    "first_party_descriptions_actually_read": 5,
+    "publisher_descriptions_not_yet_processed": 10,
+    "audiovisual_episodes_close_read": 0,
+    "status": "HELD_PARTIAL_PUBLISHER_GUIDE_NOT_AV_EPISODE_RESEARCH"
+  },
+  "holds": [
+    "US first-party guide groups Caretaker parts under one card; guide-card ordinals cannot be inferred to equal global episode IDs.",
+    "German-locale official page presents pilot as two separate cards; cross-locale card identity and episode Work reconciliation are unresolved.",
+    "The US Caretaker card description is visibly truncated; no mission outcome can be supplied from this source.",
+    "Raw HTML and normalized page structure are mutable; this batch pins one observed HTML snapshot and publisher source lineage, not independent corroboration.",
+    "Only publisher synopsis content was read; no episode audiovisual, transcript, script, image or audio inspected, redistributed, or close-read.",
+    "No global Work identities, source admissions, coverage increments, cross-medium edition equivalence or public Explorer effect is authorized."
+  ]
+}

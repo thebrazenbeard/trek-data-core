@@ -1,0 +1,131 @@
+{
+  "schema_version": "trek-film-source-local-creator-interview-v1",
+  "proposal_only": true,
+  "accepted_main_at_start": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "source_custody_state": "COMPLETE_RENDERED_OFFICIAL_ARTICLE_READ_RAW_BYTES_NOT_ARCHIVED",
+  "source_bound_effect": "NONE",
+  "coverage_effect": "NONE",
+  "film_close_read": false,
+  "script_close_read": false,
+  "public_source_text_effect": "NONE",
+  "independent_source_family_count": 1,
+  "source": {
+    "id": "src-meyer-part2-2014",
+    "title": "EXCLUSIVE INTERVIEW: Part II, Nicholas Meyer on Directing",
+    "url": "https://www.startrek.com/en-un/news/exclusive-interview-part-ii-nicholas-meyer-on-directing",
+    "publisher": "StarTrek.com Staff",
+    "published_date": "2014-09-26",
+    "source_family": "publisher:startrek.com",
+    "first_person_witness": "Nicholas Meyer",
+    "retrieved_utc": "2026-11-04T23:52:31Z",
+    "rendered_line_span": "39-89",
+    "raw_page_sha256": null,
+    "rights_status": "READ_FOR_SOURCE_RELATIVE_ANALYSIS_NO_REHOST_LICENSE"
+  },
+  "film_candidates": [
+    {"id": "film-wrath-of-khan", "title": "Star Trek II: The Wrath of Khan", "catalog_row_id": "film:film-wrath-of-khan"},
+    {"id": "film-voyage-home", "title": "Star Trek IV: The Voyage Home", "catalog_row_id": "film:film-voyage-home"},
+    {"id": "film-undiscovered-country", "title": "Star Trek VI: The Undiscovered Country", "catalog_row_id": "film:film-undiscovered-country"}
+  ],
+  "local_entities": [
+    {"id": "meyer-account-ii", "film_candidate_id": "film-wrath-of-khan", "source_id": "src-meyer-part2-2014", "kind": "SOURCE_RELATIVE_CREATOR_ACCOUNT"},
+    {"id": "meyer-account-iv", "film_candidate_id": "film-voyage-home", "source_id": "src-meyer-part2-2014", "kind": "SOURCE_RELATIVE_CREATOR_ACCOUNT"},
+    {"id": "meyer-account-vi", "film_candidate_id": "film-undiscovered-country", "source_id": "src-meyer-part2-2014", "kind": "SOURCE_RELATIVE_CREATOR_ACCOUNT"}
+  ],
+  "evidence": [
+    {
+      "id": "meyer-e01-spock-placement",
+      "local_entity_id": "meyer-account-ii",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "47-55",
+      "evidence_kind": "ATTRIBUTED_DIRECTOR_TESTIMONY",
+      "paraphrase": "Meyer distinguishes the ending of his own screenplay from earlier scripts he cannot fully recall, and remembers placing the apparent death at the simulator opening as an audience misdirection."
+    },
+    {
+      "id": "meyer-e02-return-setup",
+      "local_entity_id": "meyer-account-ii",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "56-57",
+      "evidence_kind": "ATTRIBUTED_DIRECTOR_TESTIMONY",
+      "paraphrase": "Meyer recalls opposing late additions that made a future return conceivable and later qualifies his earlier objection with retrospective uncertainty."
+    },
+    {
+      "id": "meyer-e03-montalban-direction",
+      "local_entity_id": "meyer-account-ii",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "60-65",
+      "evidence_kind": "ATTRIBUTED_DIRECTOR_TESTIMONY",
+      "paraphrase": "Meyer recalls an unavailable rehearsal schedule and a first-day private conversation intended to moderate Montalban's initial level of vocal intensity."
+    },
+    {
+      "id": "meyer-e04-earth-rewrite",
+      "local_entity_id": "meyer-account-iv",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "66-70",
+      "evidence_kind": "ATTRIBUTED_SCREENWRITER_TESTIMONY",
+      "paraphrase": "Meyer says producers discarded an earlier script without asking him to read it, then gave him the Earth-set middle section to write while Bennett handled the framing sections."
+    },
+    {
+      "id": "meyer-e05-speed",
+      "local_entity_id": "meyer-account-iv",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "71-73",
+      "evidence_kind": "ATTRIBUTED_SCREENWRITER_TESTIMONY",
+      "paraphrase": "Meyer recalls that the Voyage Home rewrite was unusually fast, although he explicitly does not remember its exact duration, and compares it with his twelve-day Wrath screenplay recollection."
+    },
+    {
+      "id": "meyer-e06-wall",
+      "local_entity_id": "meyer-account-vi",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "76-82",
+      "evidence_kind": "ATTRIBUTED_DIRECTOR_TESTIMONY",
+      "paraphrase": "Meyer recalls Nimoy proposing a Cold War analogy about the removal of an enemy as an identity crisis and the pair discussing a catastrophic opening for the sixth film."
+    },
+    {
+      "id": "meyer-e07-writers",
+      "local_entity_id": "meyer-account-vi",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "80-82",
+      "evidence_kind": "ATTRIBUTED_DIRECTOR_TESTIMONY_WITH_INFERENCE",
+      "paraphrase": "Meyer reports other writers initially being hired, then himself collaborating with Denny Martin Flinn; his proposed explanation for the commissioning decision is explicitly speculative."
+    },
+    {
+      "id": "meyer-e08-corrected-recollection",
+      "local_entity_id": "meyer-account-vi",
+      "source_id": "src-meyer-part2-2014",
+      "line_span": "76-87",
+      "evidence_kind": "INTERVIEWER_CHALLENGE_AND_WITNESS_ACKNOWLEDGMENT",
+      "paraphrase": "The interviewer challenges Meyer's uncertain recollection of which unrelated production he had been completing; Meyer accepts the suggested correction, illustrating the limits of this retrospective account."
+    }
+  ],
+  "assertions": [
+    {"id": "meyer-a01", "evidence_id": "meyer-e01-spock-placement", "subject": "meyer-account-ii", "predicate": "DIRECTOR_RECALLS_OWN_SCRIPT_STRUCTURE", "object": "His screenplay placed the death at the end; prior other drafts explicitly not fully recalled", "epistemic_status": "SOURCE_ATTRIBUTED_UNCORROBORATED"},
+    {"id": "meyer-a02", "evidence_id": "meyer-e02-return-setup", "subject": "meyer-account-ii", "predicate": "DIRECTOR_RECALLS_LATE_REVISION_DISAGREEMENT", "object": "Return-facilitating additions were opposed at the time; he later allows he might have been mistaken", "epistemic_status": "SOURCE_ATTRIBUTED_WITH_RETROSPECTIVE_QUALIFICATION"},
+    {"id": "meyer-a03", "evidence_id": "meyer-e03-montalban-direction", "subject": "meyer-account-ii", "predicate": "DIRECTOR_RECALLS_PERFORMANCE_DIRECTION", "object": "Private coaching of Montalban after an initial rehearsal opportunity was unavailable", "epistemic_status": "SOURCE_ATTRIBUTED_UNCORROBORATED"},
+    {"id": "meyer-a04", "evidence_id": "meyer-e04-earth-rewrite", "subject": "meyer-account-iv", "predicate": "WRITER_REPORTS_SECTION_ASSIGNMENT", "object": "Meyer reports Earth-set material assignment; no production draft independently examined", "epistemic_status": "SOURCE_ATTRIBUTED_NOT_SCRIPT_VERIFIED"},
+    {"id": "meyer-a05", "evidence_id": "meyer-e05-speed", "subject": "meyer-account-iv", "predicate": "WRITER_RECALLS_RAPID_DEVELOPMENT", "object": "Unusually rapid rewrite with exact duration explicitly unremembered", "epistemic_status": "SOURCE_ATTRIBUTED_DURATION_UNCERTAIN"},
+    {"id": "meyer-a06", "evidence_id": "meyer-e06-wall", "subject": "meyer-account-vi", "predicate": "DIRECTOR_RECALLS_COLLABORATIVE_THEME", "object": "Cold War enemy-withdrawal identity question proposed during remembered discussion with Nimoy", "epistemic_status": "SOURCE_ATTRIBUTED_NOT_NIMOY_CORROBORATED"},
+    {"id": "meyer-a07", "evidence_id": "meyer-e07-writers", "subject": "meyer-account-vi", "predicate": "DIRECTOR_REPORTS_COMMISSIONING_HISTORY", "object": "Other writers first, Meyer and Flinn later; asserted cost motive only a guess", "epistemic_status": "SOURCE_ATTRIBUTED_MOTIVE_SPECULATIVE"},
+    {"id": "meyer-a08", "evidence_id": "meyer-e08-corrected-recollection", "subject": "meyer-account-vi", "predicate": "INTERVIEW_EXPOSES_RETROSPECTIVE_MEMORY_LIMIT", "object": "Meyer agrees to interviewer-suggested correction about timing of unrelated production", "epistemic_status": "SOURCE_ATTRIBUTED_CORRECTION_NOT_EXTERNAL_VERIFICATION"}
+  ],
+  "source_account_summaries": [
+    {
+      "film_candidate_id": "film-wrath-of-khan",
+      "source_id": "src-meyer-part2-2014",
+      "summary_kind": "ORIGINAL_CREATOR_INTERVIEW_ACCOUNT",
+      "text": "The directing account describes a deliberately staged opening feint around Spock's mortality, then a dispute about added signals of possible continuation after the death. Meyer is precise about his own screenplay placing the death at the end but admits he cannot reconstruct every earlier draft. He also remembers learning how to work with Montalban under limited rehearsal conditions. These are recollections of creative practice, not footage or draft verification."
+    },
+    {
+      "film_candidate_id": "film-voyage-home",
+      "source_id": "src-meyer-part2-2014",
+      "summary_kind": "ORIGINAL_CREATOR_INTERVIEW_ACCOUNT",
+      "text": "Meyer presents his involvement as an emergency rewrite after another screenplay was abandoned. He claims responsibility for the Earth-based middle section, while Harve Bennett handled the framing portions, and recalls adapting unused ideas from a different film. He does not claim to have examined the discarded script or to remember the rewrite's precise duration. The account therefore supports attributed authorship testimony rather than a verified script comparison."
+    },
+    {
+      "film_candidate_id": "film-undiscovered-country",
+      "source_id": "src-meyer-part2-2014",
+      "summary_kind": "ORIGINAL_CREATOR_INTERVIEW_ACCOUNT",
+      "text": "Meyer remembers Nimoy introducing a Cold War metaphor in which removing an adversary destabilizes a community's self-definition. Their discussion preceded the project eventually written with Denny Martin Flinn, according to Meyer's account. He speculates about why other writers were commissioned, without claiming knowledge of Paramount's internal decision. An interviewer correction to Meyer's unrelated production chronology is retained as direct counterevidence to treating all details of his retrospective narrative as independently established."
+    }
+  ]
+}

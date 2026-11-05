@@ -12,8 +12,14 @@ import sys
 import unicodedata
 from collections import defaultdict
 
-RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\..*)?$", re.I)
+RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³])$", re.I)
 INVALID = re.compile(r'[<>:"\\|?*\x00-\x1f]')
+
+
+def reserved_device(segment):
+    """Windows ignores trailing spaces/dots in the device-name stem."""
+    stem = segment.split(".", 1)[0].rstrip(" .")
+    return bool(RESERVED.fullmatch(stem))
 
 
 def inspect(ref):
@@ -32,7 +38,7 @@ def inspect(ref):
         path = path_bytes.decode("utf-8", "surrogateescape")
         key = unicodedata.normalize("NFKC", path).casefold()
         groups[key].append({"path": path, "blob": oid, "mode": mode})
-        if any(INVALID.search(s) or s.endswith((" ", ".")) or RESERVED.match(s)
+        if any(INVALID.search(s) or s.endswith((" ", ".")) or reserved_device(s)
                for s in path.split("/")):
             invalid.append(path)
     collisions = [sorted(v, key=lambda x: x["path"]) for v in groups.values() if len(v) > 1]

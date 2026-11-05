@@ -1,0 +1,19 @@
+{
+  "batch_id": "films-meyer-interview-2014-part2-held",
+  "proposal_only": true,
+  "accepted_main_at_start": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "packet_path": "proposals/research/films/meyer-interview-2014-part2-held/records.json",
+  "packet_sha256": "7e31d09295ad03bd681a4a73b5e447ed53272760e4e1783a0a71119d7108c9ab",
+  "source_page_count": 1,
+  "film_candidate_count": 3,
+  "local_entity_count": 3,
+  "evidence_count": 8,
+  "assertion_count": 8,
+  "original_summary_count": 3,
+  "raw_source_bytes_published": false,
+  "film_close_read": false,
+  "script_close_read": false,
+  "coverage_effect": "NONE",
+  "published_effect": "NONE",
+  "review_status": "LOCAL_VALIDATION_ONLY_AUDIT_PENDING"
+}

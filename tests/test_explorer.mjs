@@ -14,6 +14,7 @@ const IDS = ['search-input', 'scope-filter', 'mission-filter', 'kind-filter', 's
   'record-empty', 'missions', 'briefings', 'records', 'result-summary', 'search-heading',
   'research-query', 'research-mission', 'research-reset', 'research-filters', 'research-count',
   'research-state', 'research-list', 'research-empty', 'research-summary', 'tone-toggle',
+  'badgey-console', 'badgey-form', 'badgey-query', 'badgey-send', 'badgey-clear', 'badgey-status', 'badgey-log',
   'lore-toggle', 'lore-console', 'lore-close', 'lore-form', 'lore-query', 'lore-answer',
   'lore-chat-form', 'lore-chat-token', 'lore-chat-pair', 'lore-chat-consent', 'lore-chat-input',
   'lore-chat-send', 'lore-chat-clear', 'lore-chat-status', 'lore-chat-log',
@@ -2839,4 +2840,63 @@ test('Lore fails closed on absent local data and never interprets hostile search
   nodes.get('lore-form').fire('submit', { preventDefault() {} });
   assert.match(nodes.get('lore-answer').textContent, /1–100 characters/);
   assert.equal(nodes.get('lore-answer').textContent.includes('directory observations'), false);
+});
+
+test('contained Badgey exact-title question preserves distinct source-local IDs without model calls', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const episodeBytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    null, 404, null, 404, SCRIPT, null, 404, null, 404, false, null, 404, null, 404,
+    null, 404, null, 404, episodeBytes, 200);
+  nodes.get('badgey-query').value = 'Tell me about The Trouble with Tribbles?';
+  await nodes.get('badgey-form').fire('submit', { preventDefault() {} });
+  const result = nodes.get('badgey-log');
+  assert.match(result.textContent, /Exact validated title match only/);
+  assert.match(result.textContent, /lead:0001/);
+  assert.match(result.textContent, /legacy:s2:tos:014/);
+  assert.match(result.textContent, /UNVERIFIED/);
+  assert.equal(nodes.chatRequests.length, 0);
+  assert.equal(traverse(result, (node) => node.tagName === 'a').every((node) => /^#(?:discovery-directory|episode-source-cards)$/.test(node.href)), true);
+  assert.equal(traverse(result, (node) => node.tagName === 'li' && node.className === 'badgey-turn').length, 1);
+});
+
+test('contained Badgey balanced source families, exact-title guard, unavailable shelves and Clear', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const episodeBytes = readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
+    null, 404, null, 404, SCRIPT, null, 404, null, 404, false, null, 404, null, 404,
+    null, 404, null, 404, episodeBytes, 200);
+  nodes.get('badgey-query').value = 'Find Star Trek';
+  await nodes.get('badgey-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('badgey-log').textContent, /HELD publisher-guide candidates/);
+  const rows = traverse(nodes.get('badgey-log'), (node) => node.tagName === 'li' && !node.className);
+  assert.ok(rows.length <= 5);
+  assert.ok(rows.some((node) => node.textContent.includes('publisher:') || node.textContent.includes('wikidata:')));
+  assert.ok(rows.some((node) => node.textContent.includes('HELD')));
+  nodes.get('badgey-query').value = 'What do you know about The Trouble with Tribbles and my life?';
+  await nodes.get('badgey-form').fire('submit', { preventDefault() {} });
+  assert.match(nodes.get('badgey-log').children[1].textContent, /No matching record/);
+  nodes.get('badgey-query').value = '<img src=x onerror=alert(1)>';
+  await nodes.get('badgey-form').fire('submit', { preventDefault() {} });
+  assert.equal(traverse(nodes.get('badgey-log'), (node) => ['img', 'script', 'svg'].includes(node.tagName)).length, 0);
+  assert.equal(nodes.chatRequests.length, 0);
+  await nodes.get('badgey-clear').fire('click');
+  assert.equal(nodes.get('badgey-log').children.length, 0);
+  assert.equal(nodes.get('badgey-query').focused, true);
+  const noShelf = await runWithIndex(catalog);
+  noShelf.get('badgey-query').value = 'Find Voyager';
+  await noShelf.get('badgey-form').fire('submit', { preventDefault() {} });
+  assert.match(noShelf.get('badgey-log').textContent, /No validated source shelf loaded/);
+  assert.doesNotMatch(noShelf.get('badgey-log').textContent, /0 directory observations/);
+});
+
+test('contained Badgey keeps only twenty browser-tab turns without persistence or hidden requests', async () => {
+  const nodes = await runWithIndex(catalog);
+  for (let index = 0; index < 23; index += 1) {
+    nodes.get('badgey-query').value = `Unsupported question ${index}?`;
+    await nodes.get('badgey-form').fire('submit', { preventDefault() {} });
+  }
+  assert.equal(nodes.get('badgey-log').children.length, 20);
+  assert.match(nodes.get('badgey-log').children[0].textContent, /question 3/);
+  assert.equal(nodes.chatRequests.length, 0);
 });

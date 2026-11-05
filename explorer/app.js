@@ -3045,6 +3045,79 @@
   // This is a small, deterministic local-search *character interface*, not a
   // model or a semantic/canon engine. It consumes only the same validated
   // source-local shelves the Explorer has already admitted for display.
+  // Badgey's archive station is browser-local and source-only. In particular,
+  // it does not import the held general-chat implementation or call a model.
+  const badgeyForm = byId('badgey-form');
+  const badgeyQuery = byId('badgey-query');
+  const badgeyLog = byId('badgey-log');
+  const badgeyStatus = byId('badgey-status');
+  let badgeyTurns = 0;
+  const badgeyTitle = (text) => normalize(text).trim().replace(/\s+/g, ' ');
+  const badgeyQuestionTitle = (query) => {
+    const exactQuestion = query.match(/^(?:tell me about|what do you know about|what can you tell me about|what is)\s+(.+)$/i);
+    return exactQuestion ? badgeyTitle(exactQuestion[1].replace(/[?.!\s]+$/, '')) : '';
+  };
+  const badgeySources = (term, exact) => {
+    const text = badgeyTitle(term);
+    const matches = (value) => exact ? badgeyTitle(value) === text : badgeyTitle(value).includes(text);
+    const directory = directoryState.available ? searchableDirectoryRows().filter((row) =>
+      exact ? matches(row.title) : matches([row.title, row.context, row.medium, row.candidate_kind].join(' '))) : [];
+    const guide = episodeSourceState.available ? episodeSourceState.rows.filter((row) =>
+      exact ? matches(row.title) : matches([row.title, row.series_title, ...row.tags].join(' '))) : [];
+    return { directory, guide };
+  };
+  const badgeyRecord = (row, shelf) => {
+    const item = el('li');
+    const sourceId = shelf === 'directory' ? row.row_id : row.source_local_id;
+    const status = shelf === 'directory' ? row.verification_status : row.source_status;
+    const location = shelf === 'directory' ? 'discovery-directory' : 'episode-source-cards';
+    const link = el('a', '', row.title);
+    link.href = `#${location}`;
+    item.append(link, el('span', 'badgey-row-meta', ` — ${sourceId} · ${status} · ${shelf === 'directory' ? row.source_group : row.publisher_family} · SOURCE-LOCAL`));
+    return item;
+  };
+  badgeyForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const query = badgeyQuery.value.trim();
+    if (!query || query.length > 120) { badgeyStatus.textContent = 'Enter a source query of 1–120 characters.'; return; }
+    const turn = el('li', 'badgey-turn');
+    turn.append(el('strong', '', `You: ${query}`));
+    const title = badgeyQuestionTitle(query);
+    const search = query.match(/^(?:find|search(?: for)?|look up|lookup)\s+(.+)$/i);
+    const term = title || (search ? search[1].trim() : '');
+    if (!term) {
+      turn.append(el('p', '', 'Badgey archive mode only: ask “Tell me about [exact title]?” or “Find [subject]”. I cannot answer open-ended, personal, or unrelated questions.'));
+      badgeyStatus.textContent = 'Unsupported question; no source claim generated.';
+    } else if (!directoryState.available && !episodeSourceState.available) {
+      turn.append(el('p', '', 'No validated source shelf loaded. I cannot infer an answer or its coverage.'));
+      badgeyStatus.textContent = 'Both local source shelves unavailable.';
+    } else {
+      const { directory, guide } = badgeySources(term, Boolean(title));
+      turn.append(el('p', '', `${directoryState.available ? `${directory.length} directory observations` : 'directory shelf unavailable'} / ${episodeSourceState.available ? `${guide.length} HELD publisher-guide candidates` : 'publisher-guide shelf unavailable'}. ${title ? 'Exact validated title match only.' : 'Literal indexed-field match only.'} These are distinct source-local references, not reconciled Works or canon.`));
+      if (directory.length || guide.length) {
+        const results = el('ul', 'badgey-result-list');
+        for (const row of directory.slice(0, 3)) results.append(badgeyRecord(row, 'directory'));
+        for (const row of guide.slice(0, 2)) results.append(badgeyRecord(row, 'guide'));
+        turn.append(results);
+      } else {
+        turn.append(el('p', '', 'No matching record in the loaded shelves. This does not establish absence from Star Trek.'));
+      }
+      if (!directoryState.available || !episodeSourceState.available) turn.append(el('p', '', 'One or more shelves could not be checked; total coverage is unknown.'));
+      badgeyStatus.textContent = `${directory.length + guide.length} source-local matches; showing up to three directory and two publisher-guide references.`;
+    }
+    badgeyLog.append(turn);
+    badgeyTurns += 1;
+    if (badgeyTurns > 20) {
+      badgeyLog.replaceChildren(...Array.from(badgeyLog.children).slice(1));
+      badgeyTurns = 20;
+    }
+  });
+  byId('badgey-clear').addEventListener('click', () => {
+    badgeyLog.replaceChildren(); badgeyQuery.value = ''; badgeyTurns = 0;
+    badgeyStatus.textContent = 'Session cleared in this browser tab. No conversation was stored or sent.';
+    badgeyQuery.focus();
+  });
+
   const loreToggle = byId('lore-toggle');
   const lorePanel = byId('lore-console');
   const loreClose = byId('lore-close');

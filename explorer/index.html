@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' http://127.0.0.1:9877; img-src 'self' https://covers.openlibrary.org https://archive.org https://*.us.archive.org; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="dark">
   <title>Trek Data Core · Explorer</title>
-  <link rel="stylesheet" href="./app.css?v=362f245e51dd3183fbe1522b47c9ea601f58df27588abfc081517929d66267f1">
-  <script src="./app.js?v=cd28180824c7c8042aea8ac75c429a4f34230c29c03cedb9ef07a99dced9703f" defer></script>
+  <link rel="stylesheet" href="./app.css?v=0a6eb6c0c9e532f4f54157b012a604a5231ea0f3c5f8240f0c1dfd89d1ac6dac">
+  <script src="./app.js?v=83b097b45f681399d470a534bc1ac7fcf4c42aa9822a16d2c66d38651c10ef40" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to Explorer</a>
@@ -74,6 +74,22 @@
   </nav>
 
   <main id="main" class="page-content">
+    <section id="badgey-console" class="badgey-console" aria-labelledby="badgey-heading" aria-describedby="badgey-disclosure">
+      <div class="badgey-heading-row">
+        <div>
+          <p class="eyebrow">LCARS / Contained archive terminal</p>
+          <h2 id="badgey-heading">Badgey <span class="lore-simulation-tag">Fictional character interface</span></h2>
+        </div>
+        <span class="badgey-offline-indicator">SOURCE-LOCAL · ZERO TOKEN</span>
+      </div>
+      <p id="badgey-disclosure" class="badgey-disclosure">This is an unofficial, fictional Badgey interface for looking up source-local Trek records. It is <strong>not a general chatbot or a model</strong>. Answers identify unverified directory observations and HELD publisher-guide candidates; neither establishes canon, a completed research read, or a unique Work. No login, token, chat service, or network conversation is required.</p>
+      <form id="badgey-form" class="badgey-form" role="search" aria-label="Ask Badgey to search local archive records" autocomplete="off">
+        <label for="badgey-query">Ask Badgey to find a source</label>
+        <div class="badgey-input-row"><input id="badgey-query" type="search" minlength="1" maxlength="120" required spellcheck="false" placeholder="Tell me about The Trouble with Tribbles?" aria-describedby="badgey-disclosure"><button id="badgey-send" type="submit">Ask Badgey</button><button id="badgey-clear" type="button">Clear</button></div>
+      </form>
+      <p id="badgey-status" class="badgey-status" role="status" aria-live="polite">Archive terminal ready. Entries will reflect only successfully loaded local shelves.</p>
+      <ol id="badgey-log" class="badgey-log" aria-label="Source-local Badgey archive exchange" aria-live="polite" aria-relevant="additions"></ol>
+    </section>
     <section id="lore-console" class="lore-console" aria-labelledby="lore-heading" aria-describedby="lore-disclosure" hidden>
       <div class="lore-header">
         <div>

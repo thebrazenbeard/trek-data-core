@@ -1,0 +1,80 @@
+{
+  "schema_version": "trek-literature-owner-source-gap-held-v1",
+  "baseline_accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "status": "HELD_SOURCE_ABSENT_NOT_CLOSE_READ",
+  "research_role": "LITERATURE",
+  "scope": "SCE_38_OWNER_PRIVATE_LOCAL_ARCHIVE_DISCOVERY_ONLY",
+  "as_of_date_utc": "2026-11-05",
+  "public_metadata_candidate": {
+    "title": "Star Trek: Orphans",
+    "creator_display_name": "Kevin Killiany",
+    "series_display_name": "Star Trek: Starfleet Corps of Engineers",
+    "publisher_series_number": 38,
+    "publisher_ebook_isbn13": "9780743480857",
+    "publisher_url": "https://www.simonandschuster.com/books/Star-Trek-Orphans/Kevin-Killiany/Star-Trek-Starfleet-Corps-of-Engineers/9780743480857",
+    "evidence_class": "PUBLISHER_PUBLIC_METADATA_ONLY",
+    "source_edition_identity_authenticated": false,
+    "global_work_identity_resolved": false
+  },
+  "owner_archive_scan": {
+    "scan_kind": "READ_ONLY_ZIP_MEMBER_LIST_AND_BOOKS_TREE_NAME_SEARCH",
+    "owner_root_label": "OneDrive/Documents/Books",
+    "original_lit_zip": {
+      "basename": "ST ebooks.zip",
+      "zip_sha256": "c30b66c73935b3bbf75fa288a85d406329b617fba3beaf9809291017913fbfac",
+      "zip_members_total": 573,
+      "lit_members_total": 347,
+      "sce_labeled_lit_members": 40,
+      "sce_distinct_numbered_labels": 36,
+      "sce_missing_numbers_in_1_through_37": [10],
+      "sce_duplicate_label_multiplicities": {"1": 2, "5": 2, "9": 2, "13": 2},
+      "highest_numbered_sce_label": 37,
+      "matched_sce38_or_orphans_member_names": 0
+    },
+    "converted_opf_zip": {
+      "basename": "Star_Trek_OPF_Converted.zip",
+      "zip_sha256": "0b2b27b3a8a37e8bae667ef2cdeaed31580c3782452aead1d561047e8b61975f",
+      "zip_members_total": 3846,
+      "sce_labeled_opf_members": 40,
+      "sce_distinct_numbered_labels": 36,
+      "highest_numbered_sce_label": 37,
+      "matched_sce38_or_orphans_member_names": 0
+    },
+    "books_tree_name_search": {
+      "search_scope": "LOCALLY_SYNCED_BOOKS_TREE_ONLY",
+      "max_depth": 5,
+      "case_insensitive_name_substring": "orphans",
+      "matched_names": 0
+    },
+    "source_absence_claim_scope": "ABSENT_FROM_THE_TWO_VERIFIED_ZIPS_AND_THE_LOCAL_BOOKS_TREE_NAME_SEARCH_ONLY"
+  },
+  "literary_processing": {
+    "owner_private_full_source_found": false,
+    "full_private_source_read_done": false,
+    "source_local_work_created": false,
+    "chapter_count_verified_from_full_text": false,
+    "chapter_spans": [],
+    "local_entities": [],
+    "evidence": [],
+    "assertions": [],
+    "original_source_based_synopsis": null,
+    "covered_literary_count_delta": 0
+  },
+  "effects": {
+    "accepted_source_binding_effect": "NONE",
+    "accepted_work_effect": "NONE",
+    "accepted_evidence_effect": "NONE",
+    "accepted_close_read_effect": "NONE",
+    "coverage_effect": "NONE",
+    "public_explorer_effect": "NONE",
+    "global_identity_effect": "NONE",
+    "cross_work_reconciliation_effect": "NONE",
+    "copyrighted_book_text_exported": false,
+    "push_merge_deploy_effect": "NONE"
+  },
+  "next_frontier": {
+    "blocked_on": "OWNER_AUTHORIZED_COMPLETE_SCE38_PRIMARY_SOURCE",
+    "acceptable_next_action": "Verify owner-provided SCE38 licensed full source; only then perform chapter-level private read, locators/fingerprints, neutral coding, independent check and held research packet",
+    "do_not_substitute": "Publisher synopsis, external catalog cards, filename leads, or neighboring SCE37 evidence are not a novel close read"
+  }
+}

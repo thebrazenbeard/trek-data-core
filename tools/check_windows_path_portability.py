@@ -32,12 +32,16 @@ def inspect(ref):
             continue
         metadata, path_bytes = record.split(b"\t", 1)
         mode, kind, oid = metadata.decode("ascii").split()
-        if kind != "blob":
-            continue
-        count += 1
+        # Gitlinks (mode 160000) are tracked paths too: an unsafe submodule
+        # name can break a Windows checkout even though it has no blob payload.
+        if kind not in ("blob", "commit"):
+            raise ValueError(f"unexpected tracked Git object kind: {kind}")
+        if kind == "blob":
+            count += 1
         path = path_bytes.decode("utf-8", "surrogateescape")
         key = unicodedata.normalize("NFKC", path).casefold()
-        groups[key].append({"path": path, "blob": oid, "mode": mode})
+        groups[key].append({"path": path, "blob": oid if kind == "blob" else None,
+                            "mode": mode, "kind": kind, "oid": oid})
         if any(INVALID.search(s) or s.endswith((" ", ".")) or reserved_device(s)
                for s in path.split("/")):
             invalid.append(path)

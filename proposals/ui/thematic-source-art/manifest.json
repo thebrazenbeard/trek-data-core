@@ -1,0 +1,65 @@
+{
+  "accepted_main": "3028765359001b90bc3e6b5c1835ee283b326e91",
+  "admitted_works": 0,
+  "art_class": "ORIGINAL_THEMATIC_INTERPRETATION_NOT_OFFICIAL",
+  "coverage_effect": "NONE",
+  "full_episode_viewing": false,
+  "public_release_effect": "NONE",
+  "records": [
+    {
+      "accepted_metadata_status": "UNVERIFIED_METADATA",
+      "admission_effect": "NONE",
+      "art_path": "art/doomsday.svg",
+      "art_sha256": "6a04cc729c7de6c44a26f1f125ee4ccc02e3e5ac9d22a43a9b481f0bd0505f1f",
+      "coverage_effect": "NONE",
+      "description_utf8_sha256": "0ec46cffd8810f5700b9e23bb7aebe8e18e8f2bfbbb03b59d83a660bb2ad9b7f",
+      "episode_slot": "TOS S2 E6",
+      "identity_scope": "SOURCE_LOCAL",
+      "licensed_source_image": false,
+      "medium": "EPISODE",
+      "metadata_row_sha256": "d40b0d2b9da78854e3162c03d79442d81b30be163e6c0fe4d77201fe3d3dc477",
+      "motif_evidence_terms": [
+        "machine",
+        "destroys planets"
+      ],
+      "motif_id": "doomsday",
+      "motif_interpretation": "abstract mechanical planet-destroyer near a fragmented world",
+      "motif_status": "INTERPRETIVE_FROM_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "official_publisher_url": "https://www.paramountplus.com/shows/video/1226106142/",
+      "publisher_description": "A machine that destroys planets threatens the Enterprise",
+      "publisher_source_scope": "OFFICIAL_PARAMOUNT_PLUS_RENDERED_EPISODE_LISTING_NOT_VIDEO_CLOSE_READ",
+      "raw_publisher_html_sha256": null,
+      "source_local_row_id": "lead:0000",
+      "title": "The Doomsday Machine"
+    },
+    {
+      "accepted_metadata_status": "UNVERIFIED_METADATA",
+      "admission_effect": "NONE",
+      "art_path": "art/tribbles.svg",
+      "art_sha256": "5c2221b36d88d00966e5fd8bcace79067fc8e562845d610bf09705d7e9387480",
+      "coverage_effect": "NONE",
+      "description_utf8_sha256": "948b01094036dd5e0cd391fc558e8ec77ec26a7e4a8a4e4066ff2bf4ed305729",
+      "episode_slot": "TOS S2 E15",
+      "identity_scope": "SOURCE_LOCAL",
+      "licensed_source_image": false,
+      "medium": "EPISODE",
+      "metadata_row_sha256": "337fb0293878816387c7631e8a2262b90880c6dbce116ea77033cd45c77fe35b",
+      "motif_evidence_terms": [
+        "overrun",
+        "furry creatures"
+      ],
+      "motif_id": "tribbles",
+      "motif_interpretation": "abstract overflow of fuzzy circles through generic compartments",
+      "motif_status": "INTERPRETIVE_FROM_DESCRIPTION_NOT_EPISODE_DEPICTION",
+      "official_publisher_url": "https://www.paramountplus.com/shows/video/1226188697/",
+      "publisher_description": "The Enterprise is overrun by furry creatures while tangling with Klingons and bureaucrats",
+      "publisher_source_scope": "OFFICIAL_PARAMOUNT_PLUS_RENDERED_EPISODE_LISTING_NOT_VIDEO_CLOSE_READ",
+      "raw_publisher_html_sha256": null,
+      "source_local_row_id": "lead:0001",
+      "title": "The Trouble with Tribbles"
+    }
+  ],
+  "source_image_bytes": 0,
+  "source_scope": "OFFICIAL_PARAMOUNT_PLUS_RENDERED_EPISODE_LISTING_NOT_VIDEO_CLOSE_READ",
+  "status": "HELD_THEMATIC_PUBLISHER_DESCRIPTION_ART_NOT_PUBLIC"
+}

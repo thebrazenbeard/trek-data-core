@@ -305,6 +305,10 @@ const episodeNodes = (bytes, status = 200, script = SCRIPT) => runWithIndex(cata
   null, 404, {}, null, 404, null, 404, null, 404, null, 404, script,
   null, 404, null, 404, false, null, 404, null, 404, null, 404, null, 404, bytes, status);
 
+const badgeyTwoShelfNodes = (directory, episodeBytes) => runWithIndex(catalog, 200,
+  null, 404, {}, null, 404, directory, 200, null, 404, null, 404, SCRIPT,
+  null, 404, null, 404, false, null, 404, null, 404, null, 404, null, 404, episodeBytes, 200);
+
 const runMediumArtwork = (directory, mediumArtwork, mediumStatus = 200, smallArtwork = null) =>
   runWithIndex(catalog, 200, null, 404, {}, null, 404, directory, 200,
     smallArtwork, smallArtwork ? 200 : 404, null, 404, SCRIPT,
@@ -2829,6 +2833,46 @@ test('Badgey linked HELD publisher-guide results retain validated row identity a
   assert.equal(anchors[0].href, 'https://www.paramountplus.com/shows/star-trek-picard/episodes/1/');
   assert.equal(anchors[0].rel, 'noopener noreferrer');
   assert.match(last.textContent, /not accepted canon or conclusions/i);
+});
+
+test('Badgey natural title questions only route when a validated exact source-local title exists', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await badgeyTwoShelfNodes(directory,
+    readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url)));
+  const ask = async (input) => {
+    nodes.get('lore-chat-input').value = input;
+    await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+    return nodes.get('lore-chat-log').children.at(-1);
+  };
+  const tribbles = await ask('Tell me about The Trouble with Tribbles?');
+  assert.match(tribbles.textContent, /source-local research lead/i);
+  assert.match(tribbles.textContent, /lead:0001/);
+  assert.match(tribbles.textContent, /legacy:s2:tos:014/,
+    'same-title independent source rows must not be collapsed into one Work');
+  const doomsday = await ask('What do you know about The Doomsday Machine?');
+  assert.match(doomsday.textContent, /source-local research lead/i);
+  assert.match(doomsday.textContent, /The Doomsday Machine/i);
+  const unknown = await ask('Tell me about a random unknown planet?');
+  assert.doesNotMatch(unknown.textContent, /source-local research lead/i);
+  assert.match(unknown.textContent, /cannot reliably assess|limited fictional/i);
+  const disclosure = await ask('Tell me about my wife barely breathing; The Trouble with Tribbles');
+  assert.doesNotMatch(disclosure.textContent, /source-local research lead|escape plan/i);
+  assert.match(disclosure.textContent, /emergency|cannot assess/i);
+  assert.equal(nodes.chatRequests.length, 0, 'natural title routing must stay entirely in the page');
+});
+
+test('Badgey broad search includes both validated directory and HELD publisher-guide sources', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await badgeyTwoShelfNodes(directory,
+    readFileSync(new URL('../explorer/episode-source-cards.json', import.meta.url)));
+  nodes.get('lore-chat-input').value = 'Find Star Trek';
+  await nodes.get('lore-chat-form').fire('submit', { preventDefault() {} });
+  const result = nodes.get('lore-chat-log').children.at(-1);
+  assert.match(result.textContent, /UNVERIFIED/);
+  assert.match(result.textContent, /HELD/,
+    'directory matches cannot starve a separate publisher-guide source family');
+  assert.match(result.textContent, /source-local lead/);
+  assert.equal(nodes.chatRequests.length, 0);
 });
 
 test('Badgey input is inserted as text, never executable HTML', async () => {

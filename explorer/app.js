@@ -3561,24 +3561,51 @@
       .replace(/^(?:(?:sources?|records?|leads?|on|about|for)\s*)+/i, '').trim();
     const terms = normalize(subject).split(/\s+/).filter(Boolean);
     if (!terms.length) return [];
-    const candidates = [];
+    // Do not let a large source-local discovery shelf hide a separate,
+    // independently labeled publisher-guide family. This is presentation
+    // sampling, not source independence, entity reconciliation, or ranking.
+    const directoryCandidates = [];
+    const guideCandidates = [];
     if (directoryState.available) {
       for (const row of searchableDirectoryRows()) {
         if (terms.every((term) => normalize([row.title, row.context, row.medium].join(' ')).includes(term))) {
-          candidates.push({ id: row.row_id, title: row.title, status: 'UNVERIFIED', source_url: row.source_locator });
+          directoryCandidates.push({ id: row.row_id, title: row.title, status: 'UNVERIFIED', source_url: row.source_locator });
         }
-        if (candidates.length >= 5) break;
+        if (directoryCandidates.length >= 5) break;
       }
     }
-    if (episodeSourceState.available && candidates.length < 5) {
+    if (episodeSourceState.available) {
       for (const row of episodeSourceState.rows) {
         if (terms.every((term) => normalize([row.title, row.series_title].join(' ')).includes(term))) {
-          candidates.push({ id: row.row_id, title: row.title, status: 'HELD', source_url: row.publisher_guide_url });
+          guideCandidates.push({ id: row.row_id, title: row.title, status: 'HELD', source_url: row.publisher_guide_url });
         }
-        if (candidates.length >= 5) break;
+        if (guideCandidates.length >= 5) break;
       }
     }
+    const candidates = [...directoryCandidates.slice(0, 3), ...guideCandidates.slice(0, 2)];
+    for (const row of [...directoryCandidates.slice(3), ...guideCandidates.slice(2)]) {
+      if (candidates.length >= 5) break;
+      candidates.push(row);
+    }
     return candidates;
+  }
+
+  // Questions about an *exact title already present in a validated shelf*
+  // can use Badgey's existing source-local lookup with no model or token.
+  // Unknown/open-ended and personal requests retain the engine's neutral
+  // closed-domain boundary; a substring or lookalike is not an identity match.
+  function badgeyExactTitleQuestion(question) {
+    const match = /^(?:tell me about|what do you know about|what can you tell me about|what is)\s+(.{1,100})$/iu.exec(question.trim());
+    if (!match) return question;
+    const title = match[1].trim().replace(/[?.!]+$/u, '').trim();
+    if (!title || title.length > 80 || !/^[\p{L}\p{N}\s:,'’\-]+$/u.test(title) ||
+        /\b(?:i|me|my|mine|myself|we|our|you|your|someone|somebody|himself|herself|themselves)\b/iu.test(title)) {
+      return question;
+    }
+    const key = normalize(title);
+    const isKnown = (directoryState.available && searchableDirectoryRows().some((row) => normalize(row.title) === key)) ||
+      (episodeSourceState.available && episodeSourceState.rows.some((row) => normalize(row.title) === key));
+    return isKnown ? `Find ${title}` : question;
   }
   const chatForm = byId('lore-chat-form');
   const chatInput = byId('lore-chat-input');
@@ -3620,7 +3647,7 @@
   chatForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const question = chatInput.value.trim();
-    const reply = badgey.turn(question);
+    const reply = badgey.turn(badgeyExactTitleQuestion(question));
     if (reply.kind === 'input-error') {
       chatStatus.textContent = reply.text;
       return;

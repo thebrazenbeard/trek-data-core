@@ -329,6 +329,28 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
 .artwork-slot .artwork-image-link { position: absolute; inset: 0; z-index: 2; display: block; border-radius: inherit; outline-offset: 3px; }
 .artwork-slot .artwork-image-link:focus-visible { outline: 4px solid var(--aqua); }
 .artwork-slot .artwork-image-link:hover img { outline: 2px solid var(--aqua); outline-offset: -2px; }
+.directory-card.media-card:has(.artwork-panel-original),
+.film-grid .media-card:has(.artwork-panel-original) { grid-template-columns: minmax(0, 190px) minmax(0, 1fr); }
+.artwork-panel.artwork-panel-original,
+.artwork-panel-original .artwork-slot { width: 190px; }
+.artwork-panel-original .artwork-slot { height: auto; aspect-ratio: 16 / 9; border-radius: 17px 3px 3px 3px; }
+.artwork-panel-original .artwork-slot::before,
+.artwork-panel-original .artwork-slot::after { display: none; }
+.artwork-panel-original .artwork-slot { background-size: contain; background-repeat: no-repeat; background-position: center; }
+.artwork-original-visible > .artwork-kind,
+.artwork-original-visible > .artwork-record-context,
+.artwork-original-visible > .artwork-record-mark,
+.artwork-original-visible > .artwork-record-title,
+.artwork-original-visible > .artwork-missing { display: none; }
+/* Each image maps to one code-pinned source-local row; not by display title. */
+.artwork-slot.artwork-original-doomsday { background-image: url('./original-source-art/doomsday.svg'), url('./art-original-episode.svg'); }
+.artwork-slot.artwork-original-tribbles { background-image: url('./original-source-art/tribbles.svg'), url('./art-original-episode.svg'); }
+.artwork-slot.artwork-original-episode-8cf3e38782500993 { background-image: url('./original-source-art/episode-8cf3e38782500993.svg'), url('./art-original-episode.svg'); }
+.artwork-slot.artwork-original-film-ec60cc8243a3c9b6 { background-image: url('./original-source-art/film-ec60cc8243a3c9b6.svg'), url('./art-original-film.svg'); }
+.artwork-slot.artwork-original-film-b83e09c9a6ac3f76 { background-image: url('./original-source-art/film-b83e09c9a6ac3f76.svg'), url('./art-original-film.svg'); }
+.artwork-slot.artwork-original-literature-4c4c1a2caf914887 { background-image: url('./original-source-art/literature-4c4c1a2caf914887.svg'), url('./art-original-literature.svg'); }
+.artwork-slot.artwork-original-literature-a86727079426b771 { background-image: url('./original-source-art/literature-a86727079426b771.svg'), url('./art-original-literature.svg'); }
+.artwork-panel-original .artwork-caption { font-size: .64rem; }
 .artwork-caption { display: flex; flex-direction: column; gap: 3px; padding: 5px 2px 1px; color: var(--muted); text-align: center; font: 650 .57rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
 .artwork-caption a { color: var(--aqua); text-decoration: underline; text-underline-offset: 2px; }
 .artwork-caption .artwork-credit { color: var(--peach); }
@@ -454,6 +476,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   .masthead-identity { gap: 9px; }
   .masthead-identity .eyebrow { font-size: .67rem; }
   .directory-card.media-card, .film-grid .media-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 12px; }
+  .directory-card.media-card:has(.artwork-panel-original),
+  .film-grid .media-card:has(.artwork-panel-original) { grid-template-columns: minmax(0, 132px) minmax(0, 1fr); }
+  .artwork-panel.artwork-panel-original, .artwork-panel-original .artwork-slot { width: 132px; }
   .artwork-gallery { padding: 12px; border-top-width: 8px; border-left-width: 8px; }
   .artwork-gallery-card { grid-template-columns: 82px minmax(0, 1fr); gap: 11px; padding: 10px; }
   .artwork-gallery-card.artwork-gallery-card-medium { grid-template-columns: minmax(0, 1fr); }
@@ -487,6 +512,9 @@ button:disabled, input:disabled, select:disabled { cursor: not-allowed; opacity:
   /* Keep record title, source and synopsis readable on 320px screens instead
      of squeezing them into a ~100px column beside the illustrated key. */
   .directory-card.media-card, .film-grid .media-card, .publisher-edition-card { grid-template-columns: minmax(0, 1fr); }
+  .directory-card.media-card:has(.artwork-panel-original),
+  .film-grid .media-card:has(.artwork-panel-original) { grid-template-columns: minmax(0, 1fr); }
+  .artwork-panel.artwork-panel-original, .artwork-panel-original .artwork-slot { width: 100%; }
   .artwork-gallery-card { grid-template-columns: minmax(0, 1fr); }
   .artwork-panel { width: 100%; display: grid; grid-template-columns: 82px minmax(0, 1fr); align-items: center; gap: 12px; }
   .artwork-caption { min-width: 0; text-align: left; font-size: .58rem; }

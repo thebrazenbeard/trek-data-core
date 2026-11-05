@@ -523,6 +523,28 @@
   const artworkToggle = byId('artwork-toggle');
   const artworkKinds = { EPISODE: 'Episode', FILM: 'Film', LITERATURE: 'Book', SHORT_FORM: 'Short', AUDIO: 'Audio' };
 
+  // Exact source-local original illustrations: no title-only matching, no
+  // external image requests, and no inference of a reconciled franchise Work.
+  // The physical SVG SHA-256 and safe element vocabulary are separately
+  // verified by tools/validate_original_source_art.py before Pages packaging.
+  // These are NOT publisher stills, official covers, or episode close reads.
+  const proposedOriginalArt = new Map([
+    ['directory:lead:0000', ['EPISODE', 'The Doomsday Machine', 'https://www.wikidata.org/wiki/Q1136071', 'doomsday.svg', 'https://www.paramountplus.com/shows/video/1226106142/']],
+    ['directory:lead:0001', ['EPISODE', 'The Trouble with Tribbles', 'https://www.wikidata.org/wiki/Q1136084', 'tribbles.svg', 'https://www.paramountplus.com/shows/video/1226188697/']],
+    ['directory:lead:0050', ['EPISODE', 'Crossfire', 'https://www.wikidata.org/wiki/Q1027877', 'episode-8cf3e38782500993.svg', null]],
+    ['film:film-2009', ['FILM', 'Star Trek (2009)', 'https://www.startrek.com/movies/star-trek-2009', 'film-ec60cc8243a3c9b6.svg', 'https://www.startrek.com/movies/star-trek-2009']],
+    ['film:film-nemesis', ['FILM', 'Star Trek Nemesis', 'https://www.startrek.com/movies/star-trek-nemesis', 'film-b83e09c9a6ac3f76.svg', 'https://www.startrek.com/movies/star-trek-nemesis']],
+    ['directory:literature:prh-autobiography-janeway', ['LITERATURE', 'The Autobiography of Kathryn Janeway', 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/', 'literature-4c4c1a2caf914887.svg', 'https://www.penguinrandomhouse.com/books/646637/the-autobiography-of-kathryn-janeway-by-una-mccormack/']],
+    ['directory:literature:proposed-lit-snw-ring-of-fire', ['LITERATURE', 'Star Trek: Strange New Worlds: Ring of Fire', 'https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898', 'literature-a86727079426b771.svg', 'https://www.simonandschuster.com/books/Star-Trek-Strange-New-Worlds-Ring-of-Fire/David-Mack/Star-Trek-Strange-New-Worlds/9781668095898']]
+  ]);
+
+  function sourceLocalOriginalArt(medium, key, row) {
+    const exact = proposedOriginalArt.get(key);
+    if (!exact || !row || medium !== exact[0] || row.title !== exact[1] ||
+        row.source_locator !== exact[2] || row.verification_status !== 'UNVERIFIED_METADATA') return null;
+    return { assetClass: `artwork-original-${exact[3].slice(0, -4)}`, thematicSource: exact[4] };
+  }
+
   function artworkKey(row) {
     return row && row.row_id ? `directory:${row.row_id}` : `film:${row.id}`;
   }
@@ -560,6 +582,34 @@
       sourceLink.setAttribute('aria-label', `Open source metadata for ${titleText}`);
       caption.append(sourceLink);
     }
+    const original = sourceLocalOriginalArt(medium, key, row);
+    const restoreOriginalArtwork = () => {
+      frame.replaceChildren(title, locator, sigil, shortTitle, missing);
+      frame.className = frame.className.replace(' artwork-has-source', '');
+      if (!original) return;
+      // Original SVG is a same-origin CSS background with a generic fallback.
+      // It creates zero network-capable <img> elements: the existing explicit
+      // remote-cover opt-in remains unchanged and testable.
+      if (!frame.className.includes(original.assetClass)) frame.className += ` artwork-original-visible ${original.assetClass}`;
+      frame.setAttribute('role', 'img');
+      frame.setAttribute('aria-label', `Original ${original.thematicSource ? 'first-party description motif' : 'source-local reference image'} for ${titleText}; not an official still, poster or book jacket`);
+      if (!panel.className.includes('artwork-panel-original')) panel.className += ' artwork-panel-original';
+      status.textContent = original.thematicSource
+        ? 'Original source-description motif · no episode, film or book close read'
+        : 'Original source-local index illustration · not official artwork';
+      // Only TOS motifs add a separate publisher-description source beside
+      // their Wikidata discovery row. Film/book motifs already cite their own
+      // first-party source; duplicate links would imply false corroboration.
+      if (original.thematicSource && original.thematicSource !== row.source_locator &&
+          !caption.querySelector?.('.artwork-thematic-source')) {
+        const publisher = el('a', 'artwork-thematic-source', 'Illustration source');
+        publisher.href = original.thematicSource;
+        publisher.target = '_blank';
+        publisher.rel = 'noopener noreferrer';
+        caption.append(publisher);
+      }
+    };
+    restoreOriginalArtwork();
     const source = artworkState.enabled ? artworkState.entries.get(key) : null;
     if (source) {
       const img = el('img');
@@ -603,8 +653,8 @@
         frame.className = frame.className.replace(' artwork-has-source', '');
         frame.setAttribute('role', 'img');
         frame.setAttribute('aria-label', `Original LCARS index graphic for ${titleText}; sourced image unavailable`);
-        frame.replaceChildren(title, locator, sigil, shortTitle, el('span', 'artwork-missing', 'Image unavailable · original index art'));
-        status.textContent = 'Sourced image unavailable · LCARS record graphic';
+        restoreOriginalArtwork();
+        if (!original) status.textContent = 'Sourced image unavailable · LCARS record graphic';
       });
       // Assign src only after non-leaking loading/referrer policy and error
       // behavior are installed; a browser may request on src assignment.

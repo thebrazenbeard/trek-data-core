@@ -64,3 +64,4 @@ jobs:
         run: |
           node tests/test_explorer.mjs
           node tests/test_explorer_accessibility.mjs
+          python tools/validate_original_source_art.py

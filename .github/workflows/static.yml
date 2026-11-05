@@ -50,6 +50,7 @@ jobs:
           test -f proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
           test ! -L proposals/librarian/original-nasa-fallback-20261103/tools/render_original_abstract_art.py
           python3 tools/build_explorer_abstract_art.py --check
+          python3 tools/validate_original_source_art.py
 
       - name: Verify deterministic catalog index
         if: steps.readiness.outputs.ready == 'true'
@@ -322,8 +323,33 @@ jobs:
             ! -path explorer/art-original-film.svg \
             ! -path explorer/art-original-literature.svg \
             ! -path explorer/art-original-short-form.svg \
-            ! -path explorer/art-original-audio.svg -print -quit | grep -q .; then
+            ! -path explorer/art-original-audio.svg \
+            ! -path explorer/original-source-art \
+            ! -path explorer/original-source-art/doomsday.svg \
+            ! -path explorer/original-source-art/tribbles.svg \
+            ! -path explorer/original-source-art/episode-8cf3e38782500993.svg \
+            ! -path explorer/original-source-art/film-ec60cc8243a3c9b6.svg \
+            ! -path explorer/original-source-art/film-b83e09c9a6ac3f76.svg \
+            ! -path explorer/original-source-art/literature-4c4c1a2caf914887.svg \
+            ! -path explorer/original-source-art/literature-a86727079426b771.svg -print -quit | grep -q .; then
             echo "Refusing to publish an unexpected Explorer entry" >&2
+            exit 1
+          fi
+          # Optional source-art appendix needs its own *accepted committed*
+          # anchor; fixture/core-only builds remain valid without it. Once
+          # committed, the exact seven files and safety checks are mandatory.
+          if git cat-file -e HEAD:explorer/original-source-art/doomsday.svg 2>/dev/null; then
+            test -d explorer/original-source-art
+            test ! -L explorer/original-source-art
+            test -f tools/validate_original_source_art.py
+            test ! -L tools/validate_original_source_art.py
+            python3 tools/validate_original_source_art.py
+            for path in explorer/original-source-art/*.svg; do
+              test ! -L "$path"
+              test "$(git rev-parse "HEAD:$path")" = "$(git hash-object "$path")" || exit 1
+            done
+          elif test -e explorer/original-source-art || test -L explorer/original-source-art; then
+            echo "Refusing to publish uncommitted original source-local artwork" >&2
             exit 1
           fi
           # Independent physical-binary release gate. Today there are zero

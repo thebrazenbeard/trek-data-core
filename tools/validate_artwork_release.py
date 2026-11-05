@@ -523,6 +523,18 @@ def validate_manifest(root: Path = ROOT, *, local_pins=None, library_pins=None,
 
 ALLOWED_CSS_ASSETS = {f"./art-original-{kind}.svg" for kind in
                       ("episode", "film", "literature", "short-form", "audio")}
+# Separately SHA-pinned original source-local drawings, not third-party
+# artwork. The release gate also checks exact assets, code-owned row receipts
+# and the reviewed safe SVG vocabulary before publishing any of these bytes.
+ALLOWED_CSS_ASSETS.update({
+    "./original-source-art/doomsday.svg",
+    "./original-source-art/tribbles.svg",
+    "./original-source-art/episode-8cf3e38782500993.svg",
+    "./original-source-art/film-ec60cc8243a3c9b6.svg",
+    "./original-source-art/film-b83e09c9a6ac3f76.svg",
+    "./original-source-art/literature-4c4c1a2caf914887.svg",
+    "./original-source-art/literature-a86727079426b771.svg",
+})
 
 
 def check_css_no_pre_opt_in_network(css: str) -> None:

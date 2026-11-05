@@ -1245,6 +1245,50 @@ test('honest LCARS artwork placeholders render without remote image requests or 
   assert.equal(nodes.get('briefing-count').textContent, '0', 'image presentation never changes admission');
 });
 
+test('seven source-local original illustrations appear in actual browsing; equal titles are never automatically joined', async () => {
+  const directory = JSON.parse(readFileSync(new URL('../explorer/discovery-catalog.json', import.meta.url), 'utf8'));
+  const films = JSON.parse(readFileSync(new URL('../explorer/film-catalog.json', import.meta.url), 'utf8'));
+  const nodes = await runWithIndex(catalog, 200, null, 404, {}, films, 200, directory, 200);
+  const originalSlots = (container, token) => traverse(container, (node) =>
+    node.className?.split(' ').includes(token));
+  for (const [name, token] of [
+    ['The Doomsday Machine', 'artwork-original-doomsday'],
+    ['The Trouble with Tribbles', 'artwork-original-tribbles']
+  ]) {
+    nodes.get('discovery-query').value = name;
+    nodes.get('discovery-filters').fire('input');
+    assert.match(nodes.get('discovery-summary').textContent, /^2 source-local metadata rows match/,
+      'a publisher row and a Wikidata row are independent observations');
+    assert.equal(originalSlots(nodes.get('discovery-list'), token).length, 1,
+      'the original illustrated metadata row cannot spill onto a same-title publisher row');
+    assert.match(nodes.get('discovery-list').textContent, /identity not reconciled/);
+    assert.equal(traverse(nodes.get('discovery-list'), (n) => n.tagName === 'img').length, 0,
+      'original same-origin graphics use static CSS and cannot bypass remote-image consent');
+  }
+  nodes.get('discovery-query').value = 'Crossfire';
+  nodes.get('discovery-filters').fire('input');
+  assert.equal(originalSlots(nodes.get('discovery-list'), 'artwork-original-episode-8cf3e38782500993').length, 1);
+  for (const token of ['artwork-original-film-ec60cc8243a3c9b6', 'artwork-original-film-b83e09c9a6ac3f76']) {
+    const slots = originalSlots(nodes.get('film-list'), token);
+    assert.equal(slots.length, 1);
+    assert.match(slots[0].getAttribute('aria-label'), /Original first-party description motif/,
+      'film motifs must say publisher synopsis rather than claim an official film image');
+  }
+  for (const [title, token] of [
+    ['The Autobiography of Kathryn Janeway', 'artwork-original-literature-4c4c1a2caf914887'],
+    ['Ring of Fire', 'artwork-original-literature-a86727079426b771']
+  ]) {
+    nodes.get('discovery-query').value = title;
+    nodes.get('discovery-filters').fire('input');
+    const slots = originalSlots(nodes.get('discovery-list'), token);
+    assert.equal(slots.length, 1);
+    assert.match(slots[0].getAttribute('aria-label'), /Original first-party description motif/,
+      'book motifs must remain distributor/publisher descriptions, not ebook edition art');
+  }
+  assert.equal(nodes.get('briefing-count').textContent, '0', 'original art does not confer research admission');
+  assert.equal(nodes.get('artwork-toggle').disabled, true, 'external licensed/cover images remain separately held');
+});
+
 test('explicit artwork opt-in displays only same-origin rights-receipted assets with graceful error fallback', async () => {
   assert.ok(SCRIPT.indexOf("img.referrerPolicy = 'no-referrer'") < SCRIPT.indexOf('img.src = remoteLibrary'),
     'privacy policy must be assigned before src could initiate a request');
@@ -1279,7 +1323,7 @@ test('explicit artwork opt-in displays only same-origin rights-receipted assets 
   assert.match(nodes.get('film-list').textContent, /Rights-reviewed poster/);
   images[0].fire('error');
   assert.equal(traverse(nodes.get('film-list'), (n) => n.tagName === 'img').length, 0);
-  assert.match(nodes.get('film-list').textContent, /Image unavailable/);
+  assert.match(nodes.get('film-list').textContent, /Sourced image unavailable/);
   assert.match(nodes.get('film-list').textContent, /Synthetic poster rights fixture/,
     'attribution remains visible when an authorized image fails to load');
   toggle.fire('click');
@@ -1567,7 +1611,7 @@ test('additive v1.3 medium jacket URL preserves four v1.2 small covers for old b
   assert.ok(galleryImages.every((img) => img.width === 180 &&
     img.height >= 271 && img.height <= 275 && img.loading === 'lazy' &&
     img.referrerPolicy === 'no-referrer'));
-  assert.equal(traverse(gallery, (n) => n.className === 'artwork-panel artwork-panel-medium').length, 4,
+  assert.equal(traverse(gallery, (n) => n.className?.includes('artwork-panel-medium')).length, 4,
     'native-width medium jackets need their own responsive gallery presentation');
   assert.match(gallery.textContent, /Medium Open Library API jacket preview · 180 pixels wide .*copyright unresolved/);
   assert.doesNotMatch(gallery.textContent, /Enterprise War/);

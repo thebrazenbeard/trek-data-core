@@ -12,7 +12,7 @@ import sys
 import unicodedata
 from collections import defaultdict
 
-RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³])$", re.I)
+RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|CONIN\$|CONOUT\$|COM[1-9¹²³]|LPT[1-9¹²³])$", re.I)
 INVALID = re.compile(r'[<>:"\\|?*\x00-\x1f]')
 
 

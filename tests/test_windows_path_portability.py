@@ -18,12 +18,38 @@ def classify(paths):
     with tempfile.TemporaryDirectory(prefix="trek-portability-") as td:
         git(td, "init", "-q")
         blob = git(td, "hash-object", "-w", "--stdin", input_bytes=b"fixture").decode().strip()
-        records = []
-        for name, kind in paths:
-            mode, oid = ("160000", "1" * 40) if kind == "gitlink" else ("100644", blob)
-            records.append(f"{mode} {oid}\t{name}".encode("utf-8") + b"\0")
-        git(td, "update-index", "-z", "--index-info", input_bytes=b"".join(records))
-        tree = git(td, "write-tree").decode().strip()
+        # Raw Git trees bypass native Windows index filename filtering.
+        def make_tree(entries):
+            groups = {}
+            for name, kind in entries:
+                first, sep, rest = name.partition("/")
+                groups.setdefault(first, []).append((rest if sep else "", kind))
+            records = []
+            for segment, members in sorted(groups.items()):
+                if any(rest == "" for rest, _ in members):
+                    assert len(members) == 1, "fixture path conflict"
+                    kind = members[0][1]
+                    mode, typ, oid = (("160000", "commit", "1" * 40)
+                                      if kind == "gitlink" else ("100644", "blob", blob))
+                else:
+                    mode, typ, oid = "040000", "tree", make_tree(members)
+                records.append(f"{mode} {typ} {oid}\t{segment}".encode("utf-8") + b"\0")
+            return git(td, "mktree", "-z", "--missing", input_bytes=b"".join(records)).decode().strip()
+
+        tree = make_tree(paths)
+        actual = git(td, "ls-tree", "-rz", tree)
+        observed = {}
+        for entry in actual.split(b"\0"):
+            if not entry:
+                continue
+            metadata, raw_path = entry.split(b"\t", 1)
+            mode, kind, oid = metadata.decode().split(" ")
+            observed[raw_path.decode("utf-8")] = (mode, kind, oid)
+        expected = {name: ("160000", "commit") if kind == "gitlink"
+                    else ("100644", "blob") for name, kind in paths}
+        assert set(observed) == set(expected), (expected, observed)
+        for name, (mode, kind) in expected.items():
+            assert observed[name][:2] == (mode, kind), (name, observed[name])
         proc = subprocess.run([sys.executable, str(CHECKER), "--ref", tree],
                               cwd=td, capture_output=True, text=True)
         return proc.returncode, json.loads(proc.stdout)

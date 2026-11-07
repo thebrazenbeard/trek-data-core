@@ -49,7 +49,25 @@ def inspect(ref):
                             or len(s.encode("utf-16-le", "surrogatepass")) // 2 > 255
                             for s in path.split("/")):
             invalid.append(path)
-    collisions = [sorted(v, key=lambda x: x["path"]) for v in groups.values() if len(v) > 1]
+    # A Windows checkout also has to materialize every implied directory.
+    # Git records leaf paths, so compare all normalized prefixes as well.
+    # Deduplicate shared directory prefixes without erasing case variants.
+    for entries in list(groups.values()):
+        for entry in entries:
+            parts = entry["path"].split("/")
+            for depth in range(1, len(parts)):
+                prefix = "/".join(parts[:depth])
+                key = unicodedata.normalize("NFKC", prefix).casefold()
+                directory = {"path": prefix, "blob": None, "mode": "040000",
+                             "kind": "tree", "oid": None}
+                if not any(e["path"] == prefix and e["kind"] == "tree"
+                           for e in groups[key]):
+                    groups[key].append(directory)
+    collisions = [
+        sorted(v, key=lambda x: (x["path"], x["kind"]))
+        for v in groups.values()
+        if len({(e["path"], e["kind"]) for e in v}) > 1
+    ]
     collisions.sort(key=lambda v: v[0]["path"])
     return {"ref": ref, "blob_count": count, "collision_groups": collisions,
             "windows_invalid_paths": sorted(invalid), "portable": not collisions and not invalid}

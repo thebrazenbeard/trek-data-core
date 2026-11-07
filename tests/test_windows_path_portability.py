@@ -138,6 +138,25 @@ class WindowsGitTreePortability(unittest.TestCase):
                 if expected_rc:
                     self.assertIn(name, data["windows_invalid_paths"])
 
+    def test_identical_duplicate_leaf_git_entries_rejected(self):
+        # A malformed Git tree can contain duplicate records that the normal
+        # index cannot create. Never deduplicate these before validation.
+        with tempfile.TemporaryDirectory(prefix="trek-duplicate-leaf-") as td:
+            git(td, "init", "-q")
+            blob = git(td, "hash-object", "-w", "--stdin",
+                       input_bytes=b"fixture").decode().strip()
+            record = f"100644 blob {blob}\\tduplicate.txt\\n".encode()
+            tree = git(td, "mktree", input_bytes=record * 2).decode().strip()
+            actual = git(td, "ls-tree", "-rz", tree)
+            self.assertEqual(actual.count(b"\\tduplicate.txt\\0"), 2)
+            proc = subprocess.run([sys.executable, str(CHECKER), "--ref", tree],
+                                  cwd=td, capture_output=True, text=True)
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            data = json.loads(proc.stdout)
+            self.assertFalse(data["portable"])
+            self.assertEqual(len(data["collision_groups"]), 1)
+            self.assertEqual(len(data["collision_groups"][0]), 2)
+
     def test_invalid_character(self):
         rc, data = classify([("bad?.txt", "blob")])
         self.assertEqual(rc, 1)

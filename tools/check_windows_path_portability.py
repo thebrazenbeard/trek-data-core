@@ -63,10 +63,13 @@ def inspect(ref):
                 if not any(e["path"] == prefix and e["kind"] == "tree"
                            for e in groups[key]):
                     groups[key].append(directory)
+    # Preserve multiplicity: malformed Git trees can contain duplicate leaf
+    # entries with identical path, mode and object ID. A set would erase them.
+    # Implied directory prefixes are deduplicated above, not leaf entries.
     collisions = [
-        sorted(v, key=lambda x: (x["path"], x["kind"]))
+        sorted(v, key=lambda x: (x["path"], x["kind"], x["oid"] or ""))
         for v in groups.values()
-        if len({(e["path"], e["kind"]) for e in v}) > 1
+        if len(v) > 1
     ]
     collisions.sort(key=lambda v: v[0]["path"])
     return {"ref": ref, "blob_count": count, "collision_groups": collisions,

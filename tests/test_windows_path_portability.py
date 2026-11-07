@@ -87,6 +87,24 @@ class WindowsGitTreePortability(unittest.TestCase):
         self.assertEqual({e["path"] for e in data["collision_groups"][0]},
                          {"Case.txt", "case.txt"})
 
+    def test_invalid_utf8_git_filename_is_rejected(self):
+        # Git accepts raw filename bytes that cannot be decoded as UTF-8.
+        # Construct a real tree directly; do not rely on filesystem encoding.
+        with tempfile.TemporaryDirectory(prefix="trek-invalid-utf8-") as td:
+            git(td, "init", "-q")
+            blob = git(td, "hash-object", "-w", "--stdin",
+                       input_bytes=b"fixture").decode().strip()
+            entry = b"100644 blob " + blob.encode("ascii") + b"\\tbad-\\xff.txt\\0"
+            tree = git(td, "mktree", "-z", input_bytes=entry).decode().strip()
+            actual = git(td, "ls-tree", "-rz", tree)
+            self.assertIn(b"bad-\\xff.txt", actual)
+            proc = subprocess.run([sys.executable, str(CHECKER), "--ref", tree],
+                                  cwd=td, capture_output=True, text=True)
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            data = json.loads(proc.stdout)
+            self.assertFalse(data["portable"])
+            self.assertEqual(len(data["windows_invalid_paths"]), 1)
+
     def test_invalid_character(self):
         rc, data = classify([("bad?.txt", "blob")])
         self.assertEqual(rc, 1)

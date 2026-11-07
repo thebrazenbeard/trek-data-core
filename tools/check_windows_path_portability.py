@@ -46,6 +46,7 @@ def inspect(ref):
         groups[key].append({"path": path, "blob": oid if kind == "blob" else None,
                             "mode": mode, "kind": kind, "oid": oid})
         if undecodable or any(INVALID.search(s) or s.endswith((" ", ".")) or reserved_device(s)
+                            or len(s.encode("utf-16-le", "surrogatepass")) // 2 > 255
                             for s in path.split("/")):
             invalid.append(path)
     collisions = [sorted(v, key=lambda x: x["path"]) for v in groups.values() if len(v) > 1]

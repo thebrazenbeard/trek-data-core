@@ -87,6 +87,23 @@ class WindowsGitTreePortability(unittest.TestCase):
         self.assertEqual({e["path"] for e in data["collision_groups"][0]},
                          {"Case.txt", "case.txt"})
 
+    def test_file_directory_case_prefix_conflict(self):
+        for paths in (
+            [("Foo", "blob"), ("foo/bar", "blob")],
+            [("Foo/bar", "blob"), ("foo/baz", "blob")],
+            [("Foo", "gitlink"), ("foo/bar", "blob")],
+        ):
+            with self.subTest(paths=paths):
+                rc, data = classify(paths)
+                self.assertEqual(rc, 1)
+                self.assertFalse(data["portable"])
+                self.assertTrue(data["collision_groups"])
+
+    def test_shared_directory_prefix_is_not_collision(self):
+        rc, data = classify([("same/a", "blob"), ("same/b", "blob")])
+        self.assertEqual(rc, 0)
+        self.assertEqual(data["collision_groups"], [])
+
     def test_invalid_utf8_git_filename_is_rejected(self):
         # Git accepts raw filename bytes that cannot be decoded as UTF-8.
         # Construct a real tree directly; do not rely on filesystem encoding.

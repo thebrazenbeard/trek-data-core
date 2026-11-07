@@ -39,11 +39,14 @@ def inspect(ref):
         if kind == "blob":
             count += 1
         path = path_bytes.decode("utf-8", "surrogateescape")
+        # Git permits arbitrary filename bytes, but a surrogateescaped byte
+        # is not a valid UTF-8 pathname and must never pass portability.
+        undecodable = any(0xDC80 <= ord(ch) <= 0xDCFF for ch in path)
         key = unicodedata.normalize("NFKC", path).casefold()
         groups[key].append({"path": path, "blob": oid if kind == "blob" else None,
                             "mode": mode, "kind": kind, "oid": oid})
-        if any(INVALID.search(s) or s.endswith((" ", ".")) or reserved_device(s)
-               for s in path.split("/")):
+        if undecodable or any(INVALID.search(s) or s.endswith((" ", ".")) or reserved_device(s)
+                            for s in path.split("/")):
             invalid.append(path)
     collisions = [sorted(v, key=lambda x: x["path"]) for v in groups.values() if len(v) > 1]
     collisions.sort(key=lambda v: v[0]["path"])

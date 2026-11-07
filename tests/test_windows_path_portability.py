@@ -105,6 +105,22 @@ class WindowsGitTreePortability(unittest.TestCase):
             self.assertFalse(data["portable"])
             self.assertEqual(len(data["windows_invalid_paths"]), 1)
 
+    def test_windows_component_utf16_length_boundary(self):
+        # NTFS filename components are limited to 255 UTF-16 code units.
+        for name, expected_rc in (
+            ("a" * 255, 0),
+            ("a" * 256, 1),
+            ("a" * 300, 1),
+            ("😀" * 127, 0),
+            ("😀" * 128, 1),
+        ):
+            with self.subTest(code_units=len(name.encode("utf-16-le")) // 2):
+                rc, data = classify([(name, "blob")])
+                self.assertEqual(rc, expected_rc)
+                self.assertEqual(data["portable"], expected_rc == 0)
+                if expected_rc:
+                    self.assertIn(name, data["windows_invalid_paths"])
+
     def test_invalid_character(self):
         rc, data = classify([("bad?.txt", "blob")])
         self.assertEqual(rc, 1)

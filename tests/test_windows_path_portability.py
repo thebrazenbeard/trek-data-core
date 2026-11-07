@@ -94,10 +94,10 @@ class WindowsGitTreePortability(unittest.TestCase):
             git(td, "init", "-q")
             blob = git(td, "hash-object", "-w", "--stdin",
                        input_bytes=b"fixture").decode().strip()
-            entry = b"100644 blob " + blob.encode("ascii") + b"\\tbad-\\xff.txt\\0"
+            entry = b"100644 blob " + blob.encode("ascii") + b"\tbad-\xff.txt\0"
             tree = git(td, "mktree", "-z", input_bytes=entry).decode().strip()
             actual = git(td, "ls-tree", "-rz", tree)
-            self.assertIn(b"bad-\\xff.txt", actual)
+            self.assertIn(b"bad-\xff.txt", actual)
             proc = subprocess.run([sys.executable, str(CHECKER), "--ref", tree],
                                   cwd=td, capture_output=True, text=True)
             self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)

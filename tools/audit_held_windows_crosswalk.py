@@ -16,6 +16,8 @@ from pathlib import Path
 DEFAULT_MANIFEST = "reconciliation/audits/architecture-bootstrap-001/PR82-WINDOWS-COLLISION-CROSSWALK-PROPOSED.md"
 ROW = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \| `([0-9a-f]{40})` \| (100[0-7]{3}|120000|160000) \| ([0-9]+) \|$")
 BASE = re.compile(r"main@([0-9a-f]{40})`, root tree `([0-9a-f]{40})`")
+WINDOWS_RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\..*)?$", re.I)
+WINDOWS_FORBIDDEN = set('<>:"\\\\|?*')
 
 def git(*args, data=None):
     return subprocess.run(["git", *args], input=data, stdout=subprocess.PIPE,
@@ -24,6 +26,16 @@ def git(*args, data=None):
 def norm(path):
     return "/".join(unicodedata.normalize("NFKC", s).casefold().rstrip(" .")
                     for s in path.split("/"))
+
+def validate_windows_path(path):
+    if not path or path.startswith("/") or "\\x00" in path:
+        raise ValueError("Invalid candidate path: " + repr(path))
+    for part in path.split("/"):
+        if (not part or part in (".", "..") or part.endswith((" ", "."))
+                or WINDOWS_RESERVED.fullmatch(part)
+                or any(ch in WINDOWS_FORBIDDEN or ord(ch) < 32 for ch in part)):
+            raise ValueError("Windows-invalid candidate path segment: " + repr(part))
+
 
 def audit(manifest):
     text = Path(manifest).read_text(encoding="utf-8")
@@ -43,10 +55,26 @@ def audit(manifest):
         if kind != "blob":
             raise ValueError("Unexpected nonblob recursive tree entry")
         entries[path.decode("utf-8", "surrogateescape")] = (mode, oid)
-    rows = [(p, d, oid, mode, int(size))
-            for line in text.splitlines()
-            if (m := ROW.fullmatch(line))
-            for p, d, oid, mode, size in [m.groups()]]
+    rows = []
+    in_table = False
+    for line in text.splitlines():
+        if line.startswith("| Original path | Proposed unique destination |"):
+            if in_table:
+                raise ValueError("Duplicate mapping table")
+            in_table = True
+            continue
+        if in_table and line.startswith("| ---"):
+            continue
+        if in_table and line.startswith("|"):
+            match_row = ROW.fullmatch(line)
+            if not match_row:
+                raise ValueError("Malformed mapping row: " + line)
+            p, d, oid, mode, size = match_row.groups()
+            rows.append((p, d, oid, mode, int(size)))
+        elif in_table and rows:
+            in_table = False
+    if not rows:
+        raise ValueError("Missing mapping table")
     if len(rows) != 16 or len({r[0] for r in rows}) != 16:
         raise ValueError("Expected 16 unique source rows")
     if len({r[1] for r in rows}) != 16:
@@ -73,6 +101,7 @@ def audit(manifest):
     files = set()
     directories = set()
     for path in changed:
+        validate_windows_path(path)
         key = norm(path)
         if key in seen:
             raise ValueError("Normalized path collision: " + seen[key] + " / " + path)

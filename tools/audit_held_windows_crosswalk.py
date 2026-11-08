@@ -16,7 +16,7 @@ from pathlib import Path
 DEFAULT_MANIFEST = "reconciliation/audits/architecture-bootstrap-001/PR82-WINDOWS-COLLISION-CROSSWALK-PROPOSED.md"
 ROW = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \| `([0-9a-f]{40})` \| (100[0-7]{3}|120000|160000) \| ([0-9]+) \|$")
 BASE = re.compile(r"main@([0-9a-f]{40})`, root tree `([0-9a-f]{40})`")
-WINDOWS_RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\..*)?$", re.I)
+WINDOWS_RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9¹²³]|LPT[1-9¹²³])(?:\..*)?$", re.I)
 WINDOWS_FORBIDDEN = set('<>:"\\\\|?*')
 
 def git(*args, data=None):

@@ -25,6 +25,15 @@ class WindowsDeviceNameTests(unittest.TestCase):
             with self.subTest(path=repr(path)), self.assertRaises(ValueError):
                 auditor.validate_windows_path(path)
 
+    def test_utf16_component_length_boundaries(self):
+        # Supplementary Unicode characters consume two UTF-16 code units.
+        for name in ("a" * 256, "\U0001f680" * 128, "a" * 254 + "\U0001f680"):
+            with self.subTest(length=len(name.encode("utf-16-le")) // 2), self.assertRaises(ValueError):
+                auditor.validate_windows_path("held/" + name)
+        for name in ("a" * 255, "\U0001f680" * 127, "a" * 253 + "\U0001f680"):
+            with self.subTest(length=len(name.encode("utf-16-le")) // 2):
+                auditor.validate_windows_path("held/" + name)
+
     def test_non_device_controls(self):
         for name in ("CONIN", "CONOUT", "CONIN$extra", "COM10", "README.txt"):
             with self.subTest(name=name):

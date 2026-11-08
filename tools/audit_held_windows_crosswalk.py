@@ -57,9 +57,11 @@ def audit(manifest):
         entries[path.decode("utf-8", "surrogateescape")] = (mode, oid)
     rows = []
     in_table = False
+    table_count = 0
     for line in text.splitlines():
         if line.startswith("| Original path | Proposed unique destination |"):
-            if in_table:
+            table_count += 1
+            if table_count != 1:
                 raise ValueError("Duplicate mapping table")
             in_table = True
             continue

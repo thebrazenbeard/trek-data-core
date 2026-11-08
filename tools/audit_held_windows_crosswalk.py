@@ -14,7 +14,7 @@ import unicodedata
 from pathlib import Path
 
 DEFAULT_MANIFEST = "reconciliation/audits/architecture-bootstrap-001/PR82-WINDOWS-COLLISION-CROSSWALK-PROPOSED.md"
-ROW = re.compile(r"^\\| `([^`]+)` \\| `([^`]+)` \\| `([0-9a-f]{40})` \\| (100[0-7]{3}|120000|160000) \\| ([0-9]+) \\|$")
+ROW = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \| `([0-9a-f]{40})` \| (100[0-7]{3}|120000|160000) \| ([0-9]+) \|$")
 BASE = re.compile(r"main@([0-9a-f]{40})`, root tree `([0-9a-f]{40})`")
 
 def git(*args, data=None):

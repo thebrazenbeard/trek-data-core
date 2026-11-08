@@ -1,6 +1,8 @@
 # PR82 Windows case-collision preservation crosswalk (PROPOSED / HELD)
 
-Source: accepted GitHub `main@3028765359001b90bc3e6b5c1835ee283b326e91`, tree `3028765359001b90bc3e6b5c1835ee283b326e91`, complete recursive Git-tree response (`truncated=false`). This is an **inventory and proposed reversible path mapping**, not a performed migration, source-read custody, or permission to merge/deploy. No original blob is deleted or rewritten. All destination names are distinct under NFKC/casefold. Git blob SHA-1 identifies repository objects, **not** an independently retained source-byte SHA-256.
+Source: accepted GitHub `main@3028765359001b90bc3e6b5c1835ee283b326e91`, root tree `19d0a56eb70009d14df147c23fc093e6157bacaa`, complete recursive Git-tree response (`truncated=false`). This is an **inventory and proposed reversible path mapping**, not a performed migration, source-read custody, or permission to merge/deploy. No original blob is deleted or rewritten. All destination names are distinct under NFKC/casefold. Git blob SHA-1 identifies repository objects, **not** an independently retained source-byte SHA-256.
+
+Identity qualification: the commit OID and root tree OID are distinct Git objects. The root tree OID is the previously verified root for this pinned commit; independently re-resolve it from the commit object during final exact-head review. This correction does not provide SHA-256 content custody or native Windows qualification.
 
 Collision groups: **8**; distinct original blobs: **16**. All modes are preserved in this proposed mapping. To execute later, copy/move each exact blob to the proposed destination in a separately reviewed migration, validate byte/object identities, preserve historical Git lineage, then prove native Windows checkout on the exact candidate. Retain this crosswalk as a provenance artifact. The old names remain in accepted main until separately authorized.
 

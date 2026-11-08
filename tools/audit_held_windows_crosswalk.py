@@ -30,6 +30,8 @@ def norm(path):
 def validate_windows_path(path):
     if not path or path.startswith("/") or chr(0) in path:
         raise ValueError("Invalid candidate path: " + repr(path))
+    if any(unicodedata.category(ch) == "Cs" for ch in path):
+        raise ValueError("Windows-invalid Unicode surrogate in candidate path: " + repr(path))
     for part in path.split("/"):
         if (not part or part in (".", "..") or part.endswith((" ", "."))
                 or WINDOWS_RESERVED.fullmatch(part)

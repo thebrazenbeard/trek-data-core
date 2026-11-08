@@ -28,7 +28,7 @@ def norm(path):
                     for s in path.split("/"))
 
 def validate_windows_path(path):
-    if not path or path.startswith("/") or "\\x00" in path:
+    if not path or path.startswith("/") or chr(0) in path:
         raise ValueError("Invalid candidate path: " + repr(path))
     for part in path.split("/"):
         if (not part or part in (".", "..") or part.endswith((" ", "."))

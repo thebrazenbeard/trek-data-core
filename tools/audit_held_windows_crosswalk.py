@@ -35,10 +35,10 @@ def audit(manifest):
     if actual_tree != expected_tree:
         raise ValueError("Pinned root tree does not match commit object")
     entries = {}
-    for entry in git("ls-tree", "-rz", "--full-tree", commit).split(b"\\0"):
+    for entry in git("ls-tree", "-rz", "--full-tree", commit).split(b"\0"):
         if not entry:
             continue
-        header, path = entry.split(b"\\t", 1)
+        header, path = entry.split(b"\t", 1)
         mode, kind, oid = header.decode("ascii").split()
         if kind != "blob":
             raise ValueError("Unexpected nonblob recursive tree entry")
@@ -59,7 +59,7 @@ def audit(manifest):
         raw = git("cat-file", "blob", oid)
         if len(raw) != size:
             raise ValueError("Original byte size mismatch: " + src)
-        if hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\\0" + raw).hexdigest() != oid:
+        if hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest() != oid:
             raise ValueError("Git blob SHA-1 mismatch: " + src)
         custody.append({"original": src, "destination": dest, "blob_sha1": oid,
                         "git_object_sha256": hashlib.sha256(raw).hexdigest(),

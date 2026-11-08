@@ -33,6 +33,9 @@ def validate_windows_path(path):
     if any(unicodedata.category(ch) == "Cs" for ch in path):
         raise ValueError("Windows-invalid Unicode surrogate in candidate path: " + repr(path))
     for part in path.split("/"):
+        # Windows filename components are bounded in UTF-16 code units, not code points.
+        if len(part.encode("utf-16-le")) // 2 > 255:
+            raise ValueError("Windows-overlong UTF-16 path segment: " + repr(part))
         if (not part or part in (".", "..") or part.endswith((" ", "."))
                 or WINDOWS_RESERVED.fullmatch(part)
                 or any(ch in WINDOWS_FORBIDDEN or ord(ch) < 32 for ch in part)):

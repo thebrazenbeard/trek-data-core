@@ -19,6 +19,12 @@ class WindowsDeviceNameTests(unittest.TestCase):
             with self.subTest(name=name), self.assertRaises(ValueError):
                 auditor.validate_windows_path("held/" + name)
 
+    def test_surrogateescape_git_names_fail_closed(self):
+        # Git permits arbitrary filename bytes; surrogateescape cannot be a Windows path.
+        for path in ("held/invalid\\udcff.txt", "held/\\udc80", "held/sub\\udcffile"):
+            with self.subTest(path=repr(path)), self.assertRaises(ValueError):
+                auditor.validate_windows_path(path)
+
     def test_non_device_controls(self):
         for name in ("CONIN", "CONOUT", "CONIN$extra", "COM10", "README.txt"):
             with self.subTest(name=name):

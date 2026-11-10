@@ -84,6 +84,28 @@ h1 span { color: var(--peach); }
 .quick-audio { border-left-color: var(--peach); }
 .quick-audio .quick-art { background-image: url('./art-original-audio.svg'); }
 .page-content { max-width: 1240px; margin: 0 auto; padding: 42px 28px 90px; border-left: 12px solid var(--surface2); }
+/* Badgey is a source-index query station, not an unqualified general chatbot. */
+.badgey-console { margin: 0 0 30px; padding: 20px 26px; border: 1px solid var(--line); border-left: 17px solid var(--amber); border-top: 9px solid var(--aqua); border-radius: 35px 4px 4px 4px; background: var(--surface); scroll-margin-top: 20px; }
+.badgey-heading-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.badgey-heading-row .eyebrow { margin-bottom: 3px; }
+.badgey-heading-row h2 { margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.badgey-offline-indicator { color: var(--aqua); font: 800 .7rem/1.5 ui-monospace, Consolas, monospace; letter-spacing: .08em; }
+.badgey-disclosure { margin: 11px 0 15px; max-width: 100ch; color: var(--muted); font-size: .84rem; line-height: 1.6; }
+.badgey-disclosure strong { color: var(--text); }
+.badgey-form label { display: block; font-weight: 750; margin-bottom: 8px; }
+.badgey-input-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.badgey-input-row input { flex: 1 1 260px; min-width: 0; background: var(--deep); border: 1px solid var(--line); border-radius: 5px; color: var(--text); padding: 9px 12px; }
+.badgey-input-row button { flex: 0 0 auto; min-height: 42px; }
+.badgey-status { color: var(--aqua); font: 700 .77rem/1.6 ui-monospace, Consolas, monospace; margin: 10px 0 0; }
+.badgey-log { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+.badgey-log:empty { display: none; }
+.badgey-turn { border: 1px solid var(--line); border-left: 7px solid var(--violet); background: #0a1a26; padding: 12px 14px; border-radius: 16px 4px 4px 4px; overflow-wrap: anywhere; }
+.badgey-turn > strong { color: var(--peach); display: block; margin-bottom: 5px; }
+.badgey-turn p { margin: 6px 0; }
+.badgey-result-list { margin: 8px 0; padding-left: 20px; }
+.badgey-result-list li { margin: 6px 0; }
+.badgey-row-meta { color: var(--muted); font-size: .8rem; }
+.badgey-result-list a { color: var(--aqua); overflow-wrap: anywhere; }
 /* Lore is an optional, in-flow archive-search panel, never a hero overlay. */
 .lore-console { margin: 0 0 30px; padding: 24px 28px 28px; border: 1px solid var(--line); border-left: 18px solid var(--peach); border-top: 10px solid var(--violet); border-radius: 38px 4px 4px 4px; background: var(--surface); color: var(--text); scroll-margin-top: 20px; }
 .lore-header { display: flex; justify-content: space-between; gap: 15px; align-items: start; }

@@ -85,7 +85,8 @@ def summarize(works: dict, sources: dict, bindings: dict, records: list[dict],
                 matched_evidence[row.get("evidence_id")] = binding
         evidence_ids = {eid for eid in matched_evidence if isinstance(eid, str) and eid}
         asserted = any(
-            isinstance(row.get("evidence"), list) and evidence_ids.intersection(row["evidence"])
+            row.get("work_id") == wid
+            and isinstance(row.get("evidence"), list) and evidence_ids.intersection(row["evidence"])
             for row in assertion_rows
         )
         source_bound = any(

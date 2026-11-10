@@ -47,7 +47,7 @@ def fixture():
         {"record_type": "evidence", "evidence_id": "fixture-evidence", "source_id": SOURCE,
          "work_id": EPISODE, "fixture_only": False},
         {"record_type": "assertion", "assertion_id": "fixture-assertion", "status": "ACCEPTED",
-         "fixture_only": False, "evidence": ["fixture-evidence"]},
+         "fixture_only": False, "work_id": EPISODE, "evidence": ["fixture-evidence"]},
         {"record_type": "coverage_event", "coverage_event_id": "fixture-event",
          "status": "ACCEPTED", "effect": "ATTAINED", "coverage_state": "SOURCE_BOUND",
          "work_id": EPISODE, "binding_id": BINDING, "source_id": SOURCE},
@@ -76,6 +76,22 @@ class PilotReadinessTests(unittest.TestCase):
         self.assertEqual(result["episodes"][0]["mission_id"], "fixture-mission")
         self.assertEqual(result["episodes"][0]["human_source_review"], "REQUIRED_NOT_MACHINE_VERIFIABLE")
         self.assertEqual(result["complete_mission_denominator"], "NOT_ESTABLISHED_BY_THIS_REPORT")
+
+    def test_cross_work_assertion_cannot_complete_episode_readiness(self):
+        data = list(fixture())
+        other = "fixture-other-episode"
+        data[0][other] = {"record_type": "work", "work_id": other,
+                          "status": "ACCEPTED", "fixture_only": False,
+                          "work_type": "EPISODE", "title": "Other Synthetic Installment",
+                          "parent_work_id": SERIES}
+        # An accepted assertion for another Work must not count toward this Work,
+        # even when it references an otherwise eligible evidence ID.
+        data[3][1]["work_id"] = other
+        result = report(*data, work_id=EPISODE)
+        gates = result["episodes"][0]["technical_gates"]
+        self.assertTrue(gates["binding_grounded_nonfixture_evidence"])
+        self.assertFalse(gates["accepted_assertion_referencing_evidence"])
+        self.assertEqual(result["automated_prerequisite_complete_works"], 0)
 
     def test_external_title_candidate_is_never_an_accepted_episode(self):
         data = list(fixture())

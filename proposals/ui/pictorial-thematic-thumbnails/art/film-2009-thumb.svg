@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Original visual motif for source-local film:film-2009; not official art or close-read evidence"><g transform="translate(-100 -9) scale(1.25)"><rect width="800" height="450" fill="#16203e" /><circle cx="53" cy="36" r="2" fill="#d8ebff" opacity=".36" /><circle cx="166" cy="85" r="1" fill="#d8ebff" opacity=".36" /><circle cx="315" cy="42" r="1" fill="#d8ebff" opacity=".36" /><circle cx="483" cy="77" r="2" fill="#d8ebff" opacity=".36" /><circle cx="697" cy="49" r="1" fill="#d8ebff" opacity=".36" /><circle cx="745" cy="166" r="1" fill="#d8ebff" opacity=".36" /><circle cx="83" cy="250" r="1" fill="#d8ebff" opacity=".36" />
+    <path d="M 51 320 C 173 312 240 270 314 206 S 482 90 624 98" stroke="#ffc17e" stroke-width="20" fill="none" opacity=".8" />
+    <path d="M 52 78 C 173 102 237 172 313 206 S 492 309 734 238" stroke="#9bcaf0" stroke-width="19" fill="none" opacity=".9" />
+    <path d="M 314 206 l-23 -24 l0 48z" fill="#efcad1" />
+    <circle cx="315" cy="206" r="50" fill="none" stroke="#f6e5aa" stroke-width="8" />
+    <circle cx="624" cy="98" r="37" fill="none" stroke="#ffac7d" stroke-width="7" />
+    <path d="M 597 66 L 653 130 M 597 129 L 653 66" stroke="#ffac7d" stroke-width="6" />
+    <path d="M 120 62 V 337 M 676 75 V 288" stroke="#8e97d2" stroke-dasharray="10 15" opacity=".65" />
+    </g></svg>
